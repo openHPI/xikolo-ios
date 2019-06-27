@@ -47,14 +47,6 @@ public struct Brand: Decodable {
         return "Copyright © \(currentYear) \(self.copyrightName). All rights reserved."
     }
 
-    public var locale: Locale {
-        if Bundle.main.localizations.contains(Locale.current.languageCode ?? Locale.current.identifier) {
-            return Locale.current
-        } else {
-            return Locale(identifier: "en")
-        }
-    }
-
     public var feedbackRecipients: [String] {
         return ["mobile-feedback@hpi.de"]
     }

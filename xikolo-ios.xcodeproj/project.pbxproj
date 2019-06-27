@@ -85,6 +85,7 @@
 		5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1DE20EBA9D700572924 /* UserDefaults+playbackRate.swift */; };
 		5095B1E220EBB45800572924 /* UserProfileHelperDelegateInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */; };
 		5095B1E420EBD41900572924 /* NSManagedObjectContext+typed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E320EBD41900572924 /* NSManagedObjectContext+typed.swift */; };
+		50B31DFD22C4B660007DDDA4 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFC22C4B660007DDDA4 /* Locale.swift */; };
 		50B71B88212AC61C008CE681 /* DocumentsPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */; };
 		50BC011B217755B500F38B30 /* UnavailableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */; };
 		50CF1F4620DCDBFC0011BFE9 /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
@@ -512,6 +513,7 @@
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
+		50B31DFC22C4B660007DDDA4 /* Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
 		50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsPersistenceManager.swift; sourceTree = "<group>"; };
 		50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableContentViewController.swift; sourceTree = "<group>"; };
 		50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crashlytics.swift; sourceTree = "<group>"; };
@@ -868,6 +870,7 @@
 				50046F6C216B53EB00D59073 /* Notification+CoreData.swift */,
 				5095B1E320EBD41900572924 /* NSManagedObjectContext+typed.swift */,
 				50046F70216BBAD200D59073 /* BrightFuture+earliest.swift */,
+				50B31DFC22C4B660007DDDA4 /* Locale.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2086,6 +2089,7 @@
 				50FA2E1220E4B24300656776 /* AnnouncementHelper.swift in Sources */,
 				50FA2E2320E4B24A00656776 /* CourseDateHelper+FetchRequests.swift in Sources */,
 				5054B2E32108836300CE9067 /* DocumentHelper+FetchRequests.swift in Sources */,
+				50B31DFD22C4B660007DDDA4 /* Locale.swift in Sources */,
 				50FA2E1C20E4B24300656776 /* RichTextHelper.swift in Sources */,
 				5054B2E92108BF9B00CE9067 /* DocumentLocalizationHelper+FetchRequest.swift in Sources */,
 				5052D27A2159208100927D52 /* XikoloSyncEngine.swift in Sources */,

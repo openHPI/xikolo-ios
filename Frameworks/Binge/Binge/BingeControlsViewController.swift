@@ -256,6 +256,9 @@ class BingeControlsViewController: UIViewController {
             }
         }()
 
+        let emptyViewWidthConstraint = self.emptyView.widthAnchor.constraint(equalToConstant: 0)
+        emptyViewWidthConstraint.priority = .required - 1
+
         NSLayoutConstraint.activate([
             // bottom bar
             self.currentTimeView.leadingAnchor.constraint(equalTo: parentMargins.leadingAnchor, constant: padding),
@@ -287,7 +290,7 @@ class BingeControlsViewController: UIViewController {
             self.topBarLeftStackView.topAnchor.constraint(equalTo: parentMargins.topAnchor),
             self.topBarLeftStackView.heightAnchor.constraint(equalToConstant: 44),
 
-            self.emptyView.widthAnchor.constraint(equalToConstant: 0),
+            emptyViewWidthConstraint,
             self.closeButton.widthAnchor.constraint(equalToConstant: 44),
             self.offlineLabel.leadingAnchor.constraint(greaterThanOrEqualTo: parentMargins.leadingAnchor, constant: padding),
 

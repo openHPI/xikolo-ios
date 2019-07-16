@@ -54,8 +54,8 @@ extension BingeMediaSelectionViewController  {
 
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        let audioOptionAvailable = !(self.mediaSelectionGroup(for: 1)?.options.isEmpty ?? true)
-        let subtitleOptionAvailable = !(self.mediaSelectionGroup(for: 2)?.options.isEmpty ?? true)
+        let audioOptionAvailable = !(self.mediaSelectionGroup(forSection: 1)?.options.isEmpty ?? true)
+        let subtitleOptionAvailable = !(self.mediaSelectionGroup(forSection: 2)?.options.isEmpty ?? true)
 
         var numberOfSections = 1
         if audioOptionAvailable { numberOfSections += 1 }
@@ -64,8 +64,8 @@ extension BingeMediaSelectionViewController  {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let mediaSelectionGroup = self.mediaSelectionGroup(for: section) else { return 1 }
-        return mediaSelectionGroup.options.count
+        guard let mediaSelectionGroup = self.mediaSelectionGroup(forSection: section) else { return 1 }
+        return self.allowsEmptySelection(in: section) ? mediaSelectionGroup.options.count + 1 : mediaSelectionGroup.options.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,7 +98,7 @@ extension BingeMediaSelectionViewController  {
         }
     }
 
-    private func mediaSelectionGroup(for section: Int) -> AVMediaSelectionGroup? {
+    private func mediaSelectionGroup(forSection section: Int) -> AVMediaSelectionGroup? {
         switch section {
         case 1:
             return self.mediaSelection?.asset?.mediaSelectionGroup(forMediaCharacteristic: .audible)
@@ -110,12 +110,12 @@ extension BingeMediaSelectionViewController  {
     }
 
     private func allowsEmptySelection(in section: Int) -> Bool {
-        guard let mediaSelectionGroup = self.mediaSelectionGroup(for: section) else { return false }
+        guard let mediaSelectionGroup = self.mediaSelectionGroup(forSection: section) else { return false }
         return mediaSelectionGroup.allowsEmptySelection && section == 2
     }
 
     private func titleForOption(at indexPath: IndexPath) -> String {
-        guard let mediaSelectionGroup = self.mediaSelectionGroup(for: indexPath.section) else {
+        guard let mediaSelectionGroup = self.mediaSelectionGroup(forSection: indexPath.section) else {
             return BingeLocalizedString("media-option-selection.cell.title.unknown", comment: "cell title for an unknonw option in the media option selection")
         }
 
@@ -130,7 +130,7 @@ extension BingeMediaSelectionViewController  {
     }
 
     private func optionIsSelected(at indexPath: IndexPath) -> Bool {
-        guard let mediaSelectionGroup = self.mediaSelectionGroup(for: indexPath.section) else {
+        guard let mediaSelectionGroup = self.mediaSelectionGroup(forSection: indexPath.section) else {
             return false
         }
 
@@ -154,7 +154,7 @@ extension BingeMediaSelectionViewController  {
 
 extension BingeMediaSelectionViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let mediaSelectionGroup = self.mediaSelectionGroup(for: indexPath.section) else { return }
+        guard let mediaSelectionGroup = self.mediaSelectionGroup(forSection: indexPath.section) else { return }
 
         let allowsEmptySelection = self.allowsEmptySelection(in: indexPath.section)
         if allowsEmptySelection, indexPath.row == 0 {

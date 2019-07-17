@@ -31,6 +31,7 @@ protocol PersistenceManager: AnyObject {
     var progresses: [String: Double] { get set }
     var didRestorePersistenceManager: Bool { get set }
 
+    func downloadLocation(for task: URLSessionTask) -> URL?
     func fileSize(for resource: Resource) -> UInt64?
 
     // configuration
@@ -258,6 +259,12 @@ extension PersistenceManager {
                     fetchRequest.fetchLimit = 1
 
                     if let resource = context.fetchSingle(fetchRequest).value {
+                        if #available(iOS 11, *) {
+                            if let downloadLocation = self.downloadLocation(for: task) {
+                                self.finishDownload(for: resource, to: downloadLocation, in: context)
+                            }
+                        }
+
                         self.didFinishDownload(for: resource)
                     }
                 }
@@ -267,7 +274,7 @@ extension PersistenceManager {
         }
     }
 
-    func didFinishDownloadTask(_ task: URLSessionTask, to location: URL) {
+    func finishDownloadTask(_ task: URLSessionTask, to location: URL) {
         guard let resourceId = self.activeDownloads[task] else { return }
 
         let context = CoreDataHelper.persistentContainer.newBackgroundContext()
@@ -278,20 +285,24 @@ extension PersistenceManager {
 
             switch context.fetchSingle(fetchRequest) {
             case let .success(resource):
-                do {
-                    let bookmark = try location.bookmarkData()
-                    resource[keyPath: self.keyPath] = NSData(data: bookmark)
-                    try context.save()
-                    log.debug("Successfully downloaded file for '\(Self.downloadType)' resource '\(resourceId)'")
-                } catch {
-                    log.debug("Failed to downloaded file for '\(Self.downloadType)' resource '\(resourceId)'")
-                    self.deleteDownload(for: resource, in: context)
-                }
+                self.finishDownload(for: resource, to: location, in: context)
             case let .failure(error):
                 ErrorManager.shared.remember((Self.downloadType, resourceId), forKey: "resource")
                 ErrorManager.shared.report(error)
                 log.error("Failed to finish download for '\(Self.downloadType)' resource '\(resourceId)': \(error)")
             }
+        }
+    }
+
+    func finishDownload(for resource: Resource, to location: URL, in context: NSManagedObjectContext) {
+        do {
+            let bookmark = try location.bookmarkData()
+            resource[keyPath: self.keyPath] = NSData(data: bookmark)
+            try context.save()
+            log.debug("Successfully downloaded file for '\(Self.downloadType)' resource '\(resource[keyPath: Resource.identifierKeyPath])'")
+        } catch {
+            self.deleteDownload(for: resource, in: context)
+            log.debug("Failed to downloaded file for '\(Self.downloadType)' resource '\(resource[keyPath: Resource.identifierKeyPath])'")
         }
     }
 
@@ -321,6 +332,10 @@ extension PersistenceManager {
             let presentingViewController = rootViewController?.presentedViewController ?? rootViewController
             presentingViewController?.present(alert, animated: trueUnlessReduceMotionEnabled)
         }
+    }
+
+    func downloadLocation(for task: URLSessionTask) -> URL? {
+        return nil
     }
 
     // MARK: configurations

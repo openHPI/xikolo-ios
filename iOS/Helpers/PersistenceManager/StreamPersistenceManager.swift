@@ -23,6 +23,7 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
     var activeDownloads: [URLSessionTask: String] = [:]
     var progresses: [String: Double] = [:]
     var didRestorePersistenceManager: Bool = false
+    var willDownloadToUrlMap: [URLSessionTask: URL] = [:]
 
     lazy var persistentContainerQueue = self.createPersistenceContainerQueue()
     lazy var session: AVAssetDownloadURLSession = {
@@ -47,12 +48,27 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
         let asset = AVURLAsset(url: url)
         let options = [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: UserDefaults.standard.videoQualityForDownload.rawValue]
 
-        return session.makeAssetDownloadTask(asset: asset, assetTitle: assetTitle, assetArtworkData: resource.posterImageData, options: options)
+        if #available(iOS 11, *) {
+            return session.aggregateAssetDownloadTask(with: asset,
+                                                      mediaSelections: asset.allMediaSelections,
+                                                      assetTitle: assetTitle,
+                                                      assetArtworkData: resource.posterImageData,
+                                                      options: options)
+        } else {
+            return session.makeAssetDownloadTask(asset: asset,
+                                                 assetTitle: assetTitle,
+                                                 assetArtworkData: resource.posterImageData,
+                                                 options: options)
+        }
     }
 
     func startDownload(for video: Video) {
         guard let url = video.streamURLForDownload else { return }
         self.startDownload(with: url, for: video)
+    }
+
+    func downloadLocation(for task: URLSessionTask) -> URL? {
+        return self.willDownloadToUrlMap[task]
     }
 
     func resourceModificationAfterStartingDownload(for resource: Video) {
@@ -142,22 +158,48 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
         self.didCompleteDownloadTask(task, with: error)
     }
 
+    @available(iOS, obsoleted: 11.0)
     func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didFinishDownloadingTo location: URL) {
-        self.didFinishDownloadTask(assetDownloadTask, to: location)
+        self.finishDownloadTask(assetDownloadTask, to: location)
     }
 
+    @available(iOS, obsoleted: 11.0)
     func urlSession(_ session: URLSession,
                     assetDownloadTask: AVAssetDownloadTask,
                     didLoad timeRange: CMTimeRange,
                     totalTimeRangesLoaded loadedTimeRanges: [NSValue],
                     timeRangeExpectedToLoad: CMTimeRange) {
-        guard let videoId = self.activeDownloads[assetDownloadTask] else { return }
+        self.postDownloadProgressChange(forDownloadTask: assetDownloadTask,
+                                        totalTimeRangesLoaded: loadedTimeRanges,
+                                        timeRangeExpectedToLoad: timeRangeExpectedToLoad)
+    }
 
-        var percentComplete = 0.0
-        for value in loadedTimeRanges {
-            let loadedTimeRange: CMTimeRange = value.timeRangeValue
-            percentComplete += CMTimeGetSeconds(loadedTimeRange.duration) / CMTimeGetSeconds(timeRangeExpectedToLoad.duration)
-        }
+    @available(iOS 11, *)
+    func urlSession(_ session: URLSession,
+                    aggregateAssetDownloadTask: AVAggregateAssetDownloadTask,
+                    didLoad timeRange: CMTimeRange,
+                    totalTimeRangesLoaded loadedTimeRanges: [NSValue],
+                    timeRangeExpectedToLoad: CMTimeRange,
+                    for mediaSelection: AVMediaSelection) {
+        self.postDownloadProgressChange(forDownloadTask: aggregateAssetDownloadTask,
+                                        totalTimeRangesLoaded: loadedTimeRanges,
+                                        timeRangeExpectedToLoad: timeRangeExpectedToLoad)
+    }
+
+    @available(iOS 11, *)
+    func urlSession(_ session: URLSession,
+                    aggregateAssetDownloadTask: AVAggregateAssetDownloadTask,
+                    willDownloadTo location: URL) {
+        self.willDownloadToUrlMap[aggregateAssetDownloadTask] = location
+    }
+
+    private func postDownloadProgressChange(forDownloadTask downloadTask: URLSessionTask,
+                                            totalTimeRangesLoaded loadedTimeRanges: [NSValue],
+                                            timeRangeExpectedToLoad: CMTimeRange) {
+        guard let videoId = self.activeDownloads[downloadTask] else { return }
+
+        let expectedSecondsToLoad = timeRangeExpectedToLoad.duration.seconds
+        let percentComplete = loadedTimeRanges.map { $0.timeRangeValue.duration.seconds / expectedSecondsToLoad }.reduce(0, +)
 
         var userInfo: [String: Any] = [:]
         userInfo[DownloadNotificationKey.downloadType] = StreamPersistenceManager.downloadType

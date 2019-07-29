@@ -19,8 +19,8 @@ public final class TrackingEvent: NSManagedObject {
     @discardableResult convenience init(user: TrackingEventUser,
                                         verb: TrackingEventVerb,
                                         resource: TrackingEventResource,
-                                        result: [String: AnyObject]? = nil,
-                                        trackingContext: [String: AnyObject]? = nil,
+                                        result: [String: AnyObject] = [:],
+                                        trackingContext: [String: AnyObject] = [:],
                                         inContext context: NSManagedObjectContext) {
         self.init(context: context)
         self.user = user
@@ -70,8 +70,8 @@ extension TrackingEvent: JSONAPIPushable {
             "verb": self.verb.resourceAttributes(),
             "resource": self.resource.resourceAttributes(),
             "timestamp": timestamp as Any,
-            "result": self.result as Any,
-            "context": self.context as Any,
+            "result": (self.result ?? [:]) as Any,
+            "context": (self.context ?? [:]) as Any,
         ]
     }
 

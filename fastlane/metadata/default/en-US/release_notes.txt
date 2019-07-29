@@ -1,6 +1,3 @@
-• Fix setting playback speed correctly when opening videos
-
-Also in version 2.5:
-• Improved course navigation: Swipe horizontally to jump between course items. This also works for course areas.
-• See all your earned certifcates in the account tab
-• Easily manage the downloaded content in the account tab
+• The course search can now be refined by applying additional filters
+• If available, course items show the points which can be achieved
+• Teaser for courses can be viewed from the course detail page

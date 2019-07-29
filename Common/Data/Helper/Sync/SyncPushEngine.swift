@@ -117,21 +117,9 @@ class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObje
                     log.warning("unhandle resource modification")
                 }
 
-                // it makes only sense to retry on network errors
-                pushFuture = pushFuture?.recoverWith { error -> Future<(), XikoloError> in
-                    if case .network = error {
-                        return Future(error: error)
-                    } else if case let .synchronization(.api(.response(statusCode: statusCode, headers: _))) = error, 500 ... 599 ~= statusCode {
-                        return Future(error: error)
-                    }
-
+                if let error = pushFuture?.forced().error {
                     log.error("Failed to push resource modification", error: error)
                     ErrorManager.shared.report(error)
-                    return Future(value: ())
-                }
-
-                guard pushFuture?.forced().value != nil else {
-                    log.warning("Failed to push resource modification due to network issues")
                     return
                 }
 

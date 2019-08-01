@@ -158,9 +158,6 @@ enum AppNavigator {
         self.currentCourseNavigationController?.closeCourse()
         self.currentCourseNavigationController = nil
 
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-        feedbackGenerator.prepare()
-
         guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
             let reason = "root view controller could not be found"
             log.error(reason)
@@ -180,8 +177,6 @@ enum AppNavigator {
         courseNavigationController.transitioningDelegate = self.courseTransitioningDelegate
         courseNavigationController.modalPresentationStyle = .custom
         courseNavigationController.modalPresentationCapturesStatusBarAppearance = true
-
-        feedbackGenerator.impactOccurred()
 
         rootViewController.present(courseNavigationController, animated: trueUnlessReduceMotionEnabled) {
             CourseHelper.visit(course)

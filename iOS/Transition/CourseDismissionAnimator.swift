@@ -5,7 +5,7 @@
 
 import UIKit
 
-class CourseDismissionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+class CourseDismissAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 
     private var propertyAnimator: UIViewPropertyAnimator?
 
@@ -18,30 +18,29 @@ class CourseDismissionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
     }
 
     func interruptibleAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {
-        // as per documentation, we need to return existing animator for ongoing transition
         if let propertyAnimator = self.propertyAnimator {
             return propertyAnimator
         }
 
-        guard let fromViewController = transitionContext.viewController(forKey: .from) else {
+        guard let fromVC = transitionContext.viewController(forKey: .from) else {
             fatalError("from view controller could not be found")
         }
 
-        guard let toViewController = transitionContext.viewController(forKey: .to) else {
+        guard let toVC = transitionContext.viewController(forKey: .to) else {
             fatalError("from view controller could not be found")
         }
 
-        transitionContext.containerView.insertSubview(toViewController.view, at: 0)
+        transitionContext.containerView.insertSubview(toVC.view, at: 0)
 
         // Update frame of toViewController's view to avoid UI glitches when dismissing a course
         // in a different device orientation compared to the orientation the course was opened in
-        toViewController.view.frame = transitionContext.finalFrame(for: toViewController)
+        toVC.view.frame = transitionContext.finalFrame(for: toVC)
 
-        let animationDuration = self.transitionDuration(using: transitionContext)
-        let animator = UIViewPropertyAnimator(duration: animationDuration, timingParameters: UICubicTimingParameters(animationCurve: .easeInOut))
+        let duration = transitionDuration(using: transitionContext)
+        let animator = UIViewPropertyAnimator(duration: duration, timingParameters: UICubicTimingParameters(animationCurve: .easeIn))
 
         animator.addAnimations {
-            fromViewController.view.transform = CGAffineTransform(translationX: 0, y: transitionContext.containerView.bounds.height)
+            fromVC.view.transform = CGAffineTransform(translationX: 0, y: transitionContext.containerView.bounds.height)
         }
 
         animator.addCompletion { _ in
@@ -53,3 +52,4 @@ class CourseDismissionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
         return animator
     }
 }
+

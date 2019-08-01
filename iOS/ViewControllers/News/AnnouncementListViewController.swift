@@ -13,6 +13,8 @@ class AnnouncementListViewController: UITableViewController {
 
     private var dataSource: CoreDataTableViewDataSource<AnnouncementListViewController>!
 
+    weak var scrollDelegate: CourseAreaScrollDelegate?
+
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
@@ -82,6 +84,15 @@ class AnnouncementListViewController: UITableViewController {
         if let typedInfo = R.segue.announcementListViewController.showAnnouncement(segue: segue) {
             typedInfo.destination.configure(for: announcement, showCourseTitle: self.course == nil)
         }
+    }
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.scrollDelegate?.scrollViewDidScroll(scrollView)
+    }
+
+    override func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        self.scrollDelegate?.scrollToTop(scrollView)
+        return false
     }
 
     @objc private func updateUIAfterLoginStateChanged() {
@@ -166,6 +177,7 @@ extension AnnouncementListViewController: CourseAreaViewController {
     func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
         assert(area == self.area)
         self.course = course
+        self.scrollDelegate = delegate
     }
 
 }

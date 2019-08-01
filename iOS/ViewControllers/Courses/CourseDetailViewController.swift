@@ -257,6 +257,10 @@ extension CourseDetailViewController: UITextViewDelegate {
 
 extension CourseDetailViewController: CourseAreaViewController {
 
+    var courseAreaScrollView: UIScrollView {
+        return self.scrollView
+    }
+
     var area: CourseArea {
         return .courseDetails
     }

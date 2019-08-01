@@ -21,6 +21,8 @@ class CourseItemListViewController: UITableViewController {
     private var course: Course!
     private var dataSource: CoreDataTableViewDataSource<CourseItemListViewController>!
 
+    weak var scrollDelegate: CourseAreaScrollDelegate?
+
     var isPreloading = false
     var inOfflineMode = ReachabilityHelper.connection == .none {
         didSet {
@@ -123,6 +125,15 @@ class CourseItemListViewController: UITableViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         self.tableView.reloadData()
+    }
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.scrollDelegate?.scrollViewDidScroll(scrollView)
+    }
+
+    override func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        self.scrollDelegate?.scrollToTop(scrollView)
+        return false
     }
 
     private func updateFooterView() {
@@ -277,6 +288,7 @@ extension CourseItemListViewController: CourseAreaViewController {
     func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
         assert(area == self.area)
         self.course = course
+        self.scrollDelegate = delegate
     }
 
 }

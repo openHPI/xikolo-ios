@@ -15,6 +15,8 @@ class DocumentListViewController: UITableViewController {
 
     private var dataSource: CoreDataTableViewDataSource<DocumentListViewController>!
 
+    weak var scrollDelegate: CourseAreaScrollDelegate?
+
     var inOfflineMode = ReachabilityHelper.connection == .none {
         didSet {
             if oldValue != self.inOfflineMode {
@@ -56,6 +58,15 @@ class DocumentListViewController: UITableViewController {
                                                selector: #selector(reachabilityChanged),
                                                name: Notification.Name.reachabilityChanged,
                                                object: nil)
+    }
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.scrollDelegate?.scrollViewDidScroll(scrollView)
+    }
+
+    override func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        self.scrollDelegate?.scrollToTop(scrollView)
+        return false
     }
 
     func setupEmptyState() {
@@ -115,6 +126,7 @@ extension DocumentListViewController: CourseAreaViewController {
     func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
         assert(area == self.area)
         self.course = course
+        self.scrollDelegate = delegate
     }
 
 }

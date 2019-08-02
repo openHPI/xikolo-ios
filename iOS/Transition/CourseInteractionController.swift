@@ -36,7 +36,6 @@ class CourseInteractionController: UIPercentDrivenInteractiveTransition {
         let velocity = gestureRecognizer.velocity(in: view)
         let shouldFinishByFlicking = velocity.y > CourseInteractionController.flickVelocityThreshold
 
-        print(gestureRecognizer.state.rawValue, shouldFinishByDragging, shouldFinishByFlicking)
         switch gestureRecognizer.state {
         case .began:
             self.interactionInProgress = true

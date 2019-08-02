@@ -9,12 +9,13 @@ import UIKit
 
 class CourseViewController: UIViewController {
 
-    @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var titleView: UIView!
+    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var headerImageView: UIImageView!
     @IBOutlet private weak var courseAreaListContainerHeight: NSLayoutConstraint!
-    @IBOutlet private weak var headerHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var headerTopConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var headerHelperTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var headerImageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var headerImageTopSuperviewConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var headerImageTopSafeAreaConstraint: NSLayoutConstraint!
 
     private var courseAreaViewController: UIViewController?
     private var courseAreaListViewController: CourseAreaListViewController? {
@@ -31,6 +32,10 @@ class CourseViewController: UIViewController {
     }
 
     private var courseObserver: ManagedObjectObserver?
+
+    private var headerHeight: CGFloat {
+        return self.headerImageHeightConstraint.constant + self.titleView.frame.height
+    }
 
     var course: Course! {
         didSet {
@@ -58,6 +63,10 @@ class CourseViewController: UIViewController {
 
         self.navigationController?.navigationBar.tintColor = .white
 
+        if self.course != nil {
+            self.updateView()
+        }
+
         self.navigationController?.delegate = self
 
         self.decideContent()
@@ -72,10 +81,10 @@ class CourseViewController: UIViewController {
         self.courseAreaListViewController?.reloadData()
 
         let shouldHideHeader = self.traitCollection.verticalSizeClass == .compact
-        let headerHeight = self.headerHeightConstraint.constant
-        let headerOffset = self.headerTopConstraint.constant
-        self.headerTopConstraint.constant = shouldHideHeader ? headerHeight * -1 : 0
-        self.headerHelperTopConstraint.constant = shouldHideHeader ? headerHeight * -1 : 0
+        let headerHeight = self.headerHeight
+        let headerOffset = self.headerImageTopSuperviewConstraint.constant
+        self.headerImageTopSuperviewConstraint.constant = shouldHideHeader ? headerHeight * -1 : 0
+        self.headerImageTopSafeAreaConstraint.constant = shouldHideHeader ? headerHeight * -1 : 0
         self.updateNavigationBar(forProgress: shouldHideHeader ? 1.0 : headerOffset / headerHeight)
     }
 
@@ -102,7 +111,7 @@ class CourseViewController: UIViewController {
     private func updateView() {
         guard self.isViewLoaded else { return }
         self.navigationItem.title = self.course.title
-        self.titleView.text = self.course.title
+        self.titleLabel.text = self.course.title
         self.headerImageView.sd_setImage(with: self.course.imageURL)
     }
 
@@ -336,12 +345,12 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let headerHeight = self.headerHeightConstraint.constant
+        let headerHeight = self.headerHeight
         var headerOffset = max(0, min(scrollView.contentOffset.y + scrollView.contentInset.top, headerHeight))
         headerOffset = self.traitCollection.verticalSizeClass == .compact ? headerHeight : headerOffset
 
-        self.headerTopConstraint.constant = headerOffset * -1
-        self.headerHelperTopConstraint.constant = headerOffset * -1
+        self.headerImageTopSuperviewConstraint.constant = headerOffset * -1
+        self.headerImageTopSafeAreaConstraint.constant = headerOffset * -1
 
         scrollView.contentInset = UIEdgeInsets(top: headerOffset, left: 0, bottom: 0, right: 0)
 
@@ -356,8 +365,8 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
     }
 
     func scrollToTop(_ scrollView: UIScrollView) {
-        self.headerTopConstraint.constant = 0
-        self.headerHelperTopConstraint.constant = 0
+        self.headerImageTopSuperviewConstraint.constant = 0
+        self.headerImageTopSafeAreaConstraint.constant = 0
 
         UIView.animate(withDuration: 0.25) {
             scrollView.contentInset = .zero
@@ -375,10 +384,8 @@ extension CourseViewController: UINavigationControllerDelegate {
         let progress: CGFloat = {
             guard viewController == self else { return 1 }
 
-            let headerHeight = self.headerHeightConstraint.constant
-            let headerOffset = self.headerTopConstraint.constant * -1
-
-            return headerOffset / headerHeight
+            let headerOffset = self.headerImageTopSuperviewConstraint.constant * -1
+            return headerOffset / self.headerHeight
         }()
 
         guard let transitionController = navigationController.transitionCoordinator, animated else {

@@ -34,10 +34,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AJR-HV-dnR" userLabel="Title Container">
+                            <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AJR-HV-dnR" userLabel="Title Container">
                                 <rect key="frame" x="0.0" y="214" width="375" height="47.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOr-5N-Ewr">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Course Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOr-5N-Ewr">
                                         <rect key="frame" x="16" y="8" width="343" height="31.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
@@ -51,7 +51,7 @@
                                 <constraints>
                                     <constraint firstItem="MOr-5N-Ewr" firstAttribute="leading" secondItem="AJR-HV-dnR" secondAttribute="leadingMargin" id="ePo-z9-7me"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="MOr-5N-Ewr" secondAttribute="trailing" id="eYt-lZ-Tbg"/>
-                                    <constraint firstItem="MOr-5N-Ewr" firstAttribute="top" secondItem="AJR-HV-dnR" secondAttribute="topMargin" id="f0l-Mu-i9F"/>
+                                    <constraint firstItem="MOr-5N-Ewr" firstAttribute="top" secondItem="AJR-HV-dnR" secondAttribute="top" constant="8" id="f0l-Mu-i9F"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="MOr-5N-Ewr" secondAttribute="bottom" id="p53-ob-m2C"/>
                                 </constraints>
                             </view>
@@ -73,7 +73,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KL2-g9-OIx">
-                                <rect key="frame" x="0.0" y="305.5" width="375" height="361.5"/>
+                                <rect key="frame" x="0.0" y="313.5" width="375" height="353.5"/>
                                 <connections>
                                     <segue destination="6qK-3g-pc6" kind="embed" id="lSN-d1-iw9"/>
                                 </connections>
@@ -96,7 +96,7 @@
                             <constraint firstItem="VE7-ox-Fte" firstAttribute="top" secondItem="raX-iA-spo" secondAttribute="top" id="bDn-SI-ndM"/>
                             <constraint firstItem="BeB-Ri-K3W" firstAttribute="bottom" secondItem="VE7-ox-Fte" secondAttribute="bottom" id="bu7-hM-lgd"/>
                             <constraint firstItem="AFF-tD-7pz" firstAttribute="centerY" secondItem="VE7-ox-Fte" secondAttribute="bottom" id="iJe-gj-e1T"/>
-                            <constraint firstItem="KL2-g9-OIx" firstAttribute="top" secondItem="TJT-Kl-tfg" secondAttribute="bottom" id="jIw-8M-6IA"/>
+                            <constraint firstItem="KL2-g9-OIx" firstAttribute="top" secondItem="TJT-Kl-tfg" secondAttribute="bottom" constant="8" symbolic="YES" id="jIw-8M-6IA"/>
                             <constraint firstItem="AJR-HV-dnR" firstAttribute="leading" secondItem="raX-iA-spo" secondAttribute="leading" id="oRd-Zg-xpC"/>
                             <constraint firstItem="TJT-Kl-tfg" firstAttribute="trailing" secondItem="raX-iA-spo" secondAttribute="trailing" id="szC-2n-xTx"/>
                             <constraint firstAttribute="trailing" secondItem="AFF-tD-7pz" secondAttribute="trailing" id="yRw-MR-JCY"/>
@@ -118,11 +118,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="courseAreaListContainerHeight" destination="M5J-wN-Bdc" id="8zh-Oz-2x2"/>
-                        <outlet property="headerHeightConstraint" destination="qIM-0C-4xD" id="044-K2-V6e"/>
-                        <outlet property="headerHelperTopConstraint" destination="Gns-35-cOf" id="blo-WB-3hW"/>
+                        <outlet property="headerImageHeightConstraint" destination="qIM-0C-4xD" id="044-K2-V6e"/>
+                        <outlet property="headerImageTopSafeAreaConstraint" destination="Gns-35-cOf" id="blo-WB-3hW"/>
+                        <outlet property="headerImageTopSuperviewConstraint" destination="bDn-SI-ndM" id="dXS-Ro-RgK"/>
                         <outlet property="headerImageView" destination="VE7-ox-Fte" id="BNm-BP-iJQ"/>
-                        <outlet property="headerTopConstraint" destination="bDn-SI-ndM" id="dXS-Ro-RgK"/>
-                        <outlet property="titleView" destination="MOr-5N-Ewr" id="1mo-Fw-9f0"/>
+                        <outlet property="titleLabel" destination="MOr-5N-Ewr" id="1mo-Fw-9f0"/>
+                        <outlet property="titleView" destination="AJR-HV-dnR" id="D8I-cq-SH7"/>
                         <segue destination="Nqa-is-6mG" kind="presentation" identifier="ShowLogin" id="GuI-2H-Gxr"/>
                     </connections>
                 </viewController>

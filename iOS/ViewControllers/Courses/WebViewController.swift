@@ -51,6 +51,7 @@ class WebViewController: UIViewController {
         super.viewDidLoad()
         self.webView.isHidden = true
         self.webView.delegate = self
+        self.webView.scrollView.delegate = self
 
         self.progress.alpha = 0.0
 
@@ -139,6 +140,18 @@ extension WebViewController: UIWebViewDelegate {
 
         return true
     }
+}
+
+extension WebViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.scrollDelegate?.scrollViewDidScroll(scrollView)
+    }
+
+    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        self.scrollDelegate?.scrollToTop(scrollView)
+    }
+
 }
 
 extension WebViewController: CourseAreaViewController {

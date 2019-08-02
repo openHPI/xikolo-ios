@@ -66,6 +66,8 @@ class CourseDetailViewController: UIViewController {
                                                name: Notification.Name.reachabilityChanged,
                                                object: nil)
 
+        self.scrollView.delegate = self
+
         CourseHelper.syncCourse(course)
     }
 
@@ -223,6 +225,18 @@ class CourseDetailViewController: UIViewController {
             ErrorManager.shared.report(error)
             self?.enrollmentButton.shake()
         }
+    }
+
+}
+
+extension CourseDetailViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.delegate?.scrollViewDidScroll(scrollView)
+    }
+
+    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        self.delegate?.scrollToTop(scrollView)
     }
 
 }

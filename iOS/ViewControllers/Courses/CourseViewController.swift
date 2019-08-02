@@ -56,8 +56,7 @@ class CourseViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
 
-        let tintColor = UIColor(hue: 180/255, saturation: 0, brightness: 1, alpha: 1)
-        self.navigationController?.navigationBar.tintColor = tintColor
+        self.navigationController?.navigationBar.tintColor = .white
 
         self.navigationController?.delegate = self
 
@@ -77,7 +76,7 @@ class CourseViewController: UIViewController {
         let headerOffset = self.headerTopConstraint.constant
         self.headerTopConstraint.constant = shouldHideHeader ? headerHeight * -1 : 0
         self.headerHelperTopConstraint.constant = shouldHideHeader ? headerHeight * -1 : 0
-        self.updateNavigationBar(forProgress: shouldHideHeader ? 1.0 : headerOffset/headerHeight)
+        self.updateNavigationBar(forProgress: shouldHideHeader ? 1.0 : headerOffset / headerHeight)
     }
 
     func show(item: CourseItem, animated: Bool) {
@@ -346,7 +345,7 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
 
         scrollView.contentInset = UIEdgeInsets(top: headerOffset, left: 0, bottom: 0, right: 0)
 
-        if 0 <= scrollView.contentOffset.y + scrollView.contentInset.top, // for pull to refresh
+        if scrollView.contentOffset.y + scrollView.contentInset.top >= 0, // for pull to refresh
             scrollView.contentOffset.y + scrollView.contentInset.top <= headerHeight, // over scrolling
             self.traitCollection.verticalSizeClass != .compact {
             scrollView.contentOffset = .zero
@@ -399,4 +398,3 @@ extension CourseViewController: UINavigationControllerDelegate {
     }
 
 }
-

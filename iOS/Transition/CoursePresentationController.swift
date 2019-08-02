@@ -28,7 +28,7 @@ final class CoursePresentationController: UIPresentationController {
             self.dimmingView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
             self.dimmingView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             self.dimmingView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            ])
+        ])
 
         guard let coordinator = presentedViewController.transitionCoordinator else {
             self.dimmingView.alpha = 1.0

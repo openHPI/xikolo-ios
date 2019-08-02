@@ -52,4 +52,3 @@ class CourseDismissAnimationController: NSObject, UIViewControllerAnimatedTransi
         return animator
     }
 }
-

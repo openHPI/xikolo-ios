@@ -13,17 +13,17 @@ class CourseInteractionController: UIPercentDrivenInteractiveTransition {
     var interactionInProgress = false
 
     private var shouldCompleteTransition = false
-    private weak var viewController: CourseViewController!
+    private weak var navigationController: CourseNavigationController!
 
-    init(for viewController: CourseViewController) {
+    init(for navigationController: CourseNavigationController) {
         super.init()
-        self.viewController = viewController
-        self.prepareGestureRecognizer(for: viewController)
+        self.navigationController = navigationController
+        self.prepareGestureRecognizer(for: navigationController)
     }
 
-    private func prepareGestureRecognizer(for viewController: CourseViewController) {
+    private func prepareGestureRecognizer(for navigationController: CourseNavigationController) {
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
-        viewController.addDismissalGestureRecognizer(gesture)
+        navigationController.addDismissalGestureRecognizer(gesture)
     }
 
     @objc func handleGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
@@ -36,10 +36,11 @@ class CourseInteractionController: UIPercentDrivenInteractiveTransition {
         let velocity = gestureRecognizer.velocity(in: view)
         let shouldFinishByFlicking = velocity.y > CourseInteractionController.flickVelocityThreshold
 
+        print("gesture", gestureRecognizer.state.rawValue, verticalMovement, shouldFinishByDragging, shouldFinishByFlicking)
         switch gestureRecognizer.state {
         case .began:
             self.interactionInProgress = true
-            self.viewController.dismiss(animated: true)
+            self.navigationController.topViewController?.dismiss(animated: trueUnlessReduceMotionEnabled)
         case .changed:
             self.shouldCompleteTransition = shouldFinishByDragging || shouldFinishByFlicking
             self.update(dragPercentage)

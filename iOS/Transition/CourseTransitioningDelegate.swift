@@ -12,8 +12,8 @@ class CourseTransitioningDelegate: NSObject, UIViewControllerTransitioningDelega
     func presentationController(forPresented presented: UIViewController,
                                 presenting: UIViewController?,
                                 source: UIViewController) -> UIPresentationController? {
-        if let nvc = presented as? UINavigationController, let viewController = nvc.topViewController as? CourseViewController {
-            self.dismissInteractionController = CourseInteractionController(for: viewController)
+        if let courseNavigationController = presented as? CourseNavigationController {
+            self.dismissInteractionController = CourseInteractionController(for: courseNavigationController)
         }
 
         return CoursePresentationController(presentedViewController: presented, presenting: presenting)

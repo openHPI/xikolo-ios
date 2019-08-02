@@ -239,10 +239,6 @@ class CourseViewController: UIViewController {
         ]
     }
 
-    func addDismissalGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {
-        self.view.addGestureRecognizer(gestureRecognizer)
-    }
-
 }
 
 extension CourseViewController: CourseAreaListViewControllerDelegate {

@@ -102,6 +102,7 @@ class CourseViewController: UIViewController {
 
     private func updateView() {
         guard self.isViewLoaded else { return }
+        self.navigationItem.title = self.course.title
         self.titleView.text = self.course.title
         self.headerImageView.sd_setImage(with: self.course.imageURL)
     }
@@ -223,6 +224,11 @@ class CourseViewController: UIViewController {
         UIGraphicsEndImageContext()
         self.navigationController?.navigationBar.setBackgroundImage(transparentBackground, for: .default)
         self.navigationController?.navigationBar.setBackgroundImage(transparentBackground, for: .compact)
+
+        let textColor = UIColor(white: 0.1, alpha: mappedProgress)
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: textColor,
+        ]
     }
 
     func addDismissalGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {

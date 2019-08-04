@@ -17,6 +17,12 @@ class CourseViewController: UIViewController {
     @IBOutlet private weak var headerImageTopSuperviewConstraint: NSLayoutConstraint!
     @IBOutlet private weak var headerImageTopSafeAreaConstraint: NSLayoutConstraint!
 
+    private var headerOffset: CGFloat = 0 {
+        didSet {
+            self.updateHeaderConstraints()
+        }
+    }
+
     private var courseAreaViewController: UIViewController?
     private var courseAreaListViewController: CourseAreaListViewController? {
         didSet {
@@ -80,12 +86,8 @@ class CourseViewController: UIViewController {
         self.updateCourseAreaListContainerHeight()
         self.courseAreaListViewController?.reloadData()
 
-        let shouldHideHeader = self.traitCollection.verticalSizeClass == .compact
-        let headerHeight = self.headerHeight
-        let headerOffset = self.headerImageTopSuperviewConstraint.constant
-        self.headerImageTopSuperviewConstraint.constant = shouldHideHeader ? headerHeight * -1 : 0
-        self.headerImageTopSafeAreaConstraint.constant = shouldHideHeader ? headerHeight * -1 : 0
-        self.updateNavigationBar(forProgress: shouldHideHeader ? 1.0 : headerOffset / headerHeight)
+        self.updateHeaderConstraints()
+        self.updateNavigationBar(forProgress: self.headerOffset / self.headerHeight)
 
         self.titleLabel.textAlignment = self.traitCollection.horizontalSizeClass == .compact ? .natural : .center
     }
@@ -206,11 +208,21 @@ class CourseViewController: UIViewController {
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 
-    func updateNavigationBar(forProgress progress: CGFloat) {
+    private func updateHeaderConstraints() {
+        let shouldHideHeader = self.traitCollection.verticalSizeClass == .compact
+        let offset = shouldHideHeader ? self.headerHeight : self.headerOffset
+        self.headerImageTopSuperviewConstraint.constant = offset * -1
+        self.headerImageTopSafeAreaConstraint.constant = offset * -1
+    }
 
-        var mappedProgress = max(0, min(progress, 1)) // clamping
+    func updateNavigationBar(forProgress progress: CGFloat) {
+        let headerHidden = self.traitCollection.verticalSizeClass == .compact
+        var mappedProgress = headerHidden ? 1.0 : progress
+        mappedProgress = max(0, min(mappedProgress, 1)) // clamping
         mappedProgress = pow(mappedProgress, 3) // ease in
-        let navigationBarAlpha = min(mappedProgress, 0.995) // otherwise the bar switches to translucent
+        mappedProgress = min(mappedProgress, 0.995) // otherwise the bar switches to translucent
+
+        let navigationBarAlpha = mappedProgress
 
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
@@ -313,19 +325,6 @@ extension CourseViewController: UIPageViewControllerDelegate {
 
         self.area = currentCourseAreaViewController.area
         self.courseAreaListViewController?.refresh(animated: trueUnlessReduceMotionEnabled)
-
-        guard let previousVC = previousViewControllers.first as? CourseAreaViewController else {
-            return
-        }
-
-        let insets = previousVC.courseAreaScrollView.contentInset
-        currentCourseAreaViewController.courseAreaScrollView.contentInset = insets
-
-        if currentCourseAreaViewController.courseAreaScrollView.contentOffset.y >= insets.top {
-            currentCourseAreaViewController.courseAreaScrollView.contentOffset = CGPoint(x: 0, y: 0)
-        }
-
-        self.scrollViewDidScroll(currentCourseAreaViewController.courseAreaScrollView)
     }
 
 }
@@ -344,30 +343,25 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let headerHeight = self.headerHeight
-        var headerOffset = max(0, min(scrollView.contentOffset.y + scrollView.contentInset.top, headerHeight))
+        let adjustedScrollOffset = scrollView.contentOffset.y + self.headerOffset
+        var headerOffset = max(0, min(adjustedScrollOffset, headerHeight))
         headerOffset = self.traitCollection.verticalSizeClass == .compact ? headerHeight : headerOffset
 
-        self.headerImageTopSuperviewConstraint.constant = headerOffset * -1
-        self.headerImageTopSafeAreaConstraint.constant = headerOffset * -1
+        self.headerOffset = headerOffset
 
-        scrollView.contentInset = UIEdgeInsets(top: headerOffset, left: 0, bottom: 0, right: 0)
-
-        if scrollView.contentOffset.y + scrollView.contentInset.top >= 0, // for pull to refresh
-            scrollView.contentOffset.y + scrollView.contentInset.top <= headerHeight, // over scrolling
+        if adjustedScrollOffset >= 0, // for pull to refresh
+            adjustedScrollOffset <= headerHeight, // over scrolling
             self.traitCollection.verticalSizeClass != .compact {
             scrollView.contentOffset = .zero
         }
 
-        // update navigationbar
         self.updateNavigationBar(forProgress: headerOffset / headerHeight)
     }
 
     func scrollToTop(_ scrollView: UIScrollView) {
-        self.headerImageTopSuperviewConstraint.constant = 0
-        self.headerImageTopSafeAreaConstraint.constant = 0
+        self.headerOffset = 0
 
         UIView.animate(withDuration: 0.25) {
-            scrollView.contentInset = .zero
             scrollView.contentOffset = .zero
             self.updateNavigationBar(forProgress: 0)
             self.view.layoutIfNeeded()

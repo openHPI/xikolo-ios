@@ -86,6 +86,8 @@ class CourseViewController: UIViewController {
         self.headerImageTopSuperviewConstraint.constant = shouldHideHeader ? headerHeight * -1 : 0
         self.headerImageTopSafeAreaConstraint.constant = shouldHideHeader ? headerHeight * -1 : 0
         self.updateNavigationBar(forProgress: shouldHideHeader ? 1.0 : headerOffset / headerHeight)
+
+        self.titleLabel.textAlignment = self.traitCollection.horizontalSizeClass == .compact ? .natural : .center
     }
 
     func show(item: CourseItem, animated: Bool) {

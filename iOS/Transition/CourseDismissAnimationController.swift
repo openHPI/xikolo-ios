@@ -22,25 +22,25 @@ class CourseDismissAnimationController: NSObject, UIViewControllerAnimatedTransi
             return propertyAnimator
         }
 
-        guard let fromVC = transitionContext.viewController(forKey: .from) else {
+        guard let fromViewController = transitionContext.viewController(forKey: .from) else {
             fatalError("from view controller could not be found")
         }
 
-        guard let toVC = transitionContext.viewController(forKey: .to) else {
+        guard let toViewController = transitionContext.viewController(forKey: .to) else {
             fatalError("from view controller could not be found")
         }
 
-        transitionContext.containerView.insertSubview(toVC.view, at: 0)
+        transitionContext.containerView.insertSubview(toViewController.view, at: 0)
 
         // Update frame of toViewController's view to avoid UI glitches when dismissing a course
         // in a different device orientation compared to the orientation the course was opened in
-        toVC.view.frame = transitionContext.finalFrame(for: toVC)
+        toViewController.view.frame = transitionContext.finalFrame(for: toViewController)
 
         let duration = transitionDuration(using: transitionContext)
         let animator = UIViewPropertyAnimator(duration: duration, timingParameters: UICubicTimingParameters(animationCurve: .easeIn))
 
         animator.addAnimations {
-            fromVC.view.transform = CGAffineTransform(translationX: 0, y: transitionContext.containerView.bounds.height)
+            fromViewController.view.transform = CGAffineTransform(translationX: 0, y: transitionContext.containerView.bounds.height)
         }
 
         animator.addCompletion { _ in

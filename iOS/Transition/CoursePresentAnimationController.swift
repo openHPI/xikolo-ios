@@ -12,18 +12,18 @@ class CoursePresentAnimationController: NSObject, UIViewControllerAnimatedTransi
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let toVC = transitionContext.viewController(forKey: .to) else {
+        guard let toViewController = transitionContext.viewController(forKey: .to) else {
             return
         }
 
-        toVC.view.transform = CGAffineTransform(translationX: 0, y: transitionContext.containerView.bounds.height)
-        transitionContext.containerView.addSubview(toVC.view)
+        toViewController.view.transform = CGAffineTransform(translationX: 0, y: transitionContext.containerView.bounds.height)
+        transitionContext.containerView.addSubview(toViewController.view)
 
         let duration = self.transitionDuration(using: transitionContext)
         let animator = UIViewPropertyAnimator(duration: duration, timingParameters: UICubicTimingParameters(animationCurve: .easeOut))
 
         animator.addAnimations {
-            toVC.view.transform = CGAffineTransform.identity
+            toViewController.view.transform = CGAffineTransform.identity
         }
 
         animator.addCompletion { _ in

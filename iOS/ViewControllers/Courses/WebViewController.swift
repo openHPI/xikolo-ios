@@ -148,8 +148,9 @@ extension WebViewController: UIScrollViewDelegate {
         self.scrollDelegate?.scrollViewDidScroll(scrollView)
     }
 
-    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
         self.scrollDelegate?.scrollToTop(scrollView)
+        return false
     }
 
 }

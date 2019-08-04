@@ -235,8 +235,9 @@ extension CourseDetailViewController: UIScrollViewDelegate {
         self.delegate?.scrollViewDidScroll(scrollView)
     }
 
-    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
         self.delegate?.scrollToTop(scrollView)
+        return false
     }
 
 }

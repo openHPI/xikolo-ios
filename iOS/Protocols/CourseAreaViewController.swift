@@ -8,9 +8,6 @@ import Foundation
 
 protocol CourseAreaViewController: AnyObject {
 
-//    var scrollDelegate: CourseAreaScrollDelegate? { get set }
-    var courseAreaScrollView: UIScrollView { get }
-
     var area: CourseArea { get }
 
     func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate)
@@ -31,19 +28,3 @@ protocol CourseAreaEnrollmentDelegate: AnyObject {
 }
 
 typealias CourseAreaViewControllerDelegate = CourseAreaScrollDelegate & CourseAreaEnrollmentDelegate
-
-extension CourseAreaViewController where Self: UITableViewController {
-
-    var courseAreaScrollView: UIScrollView {
-        return self.tableView
-    }
-
-}
-
-extension CourseAreaViewController where Self: UICollectionViewController {
-
-    var courseAreaScrollView: UIScrollView {
-        return self.collectionView
-    }
-
-}

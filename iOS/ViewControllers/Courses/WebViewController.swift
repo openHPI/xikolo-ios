@@ -156,10 +156,6 @@ extension WebViewController: UIScrollViewDelegate {
 
 extension WebViewController: CourseAreaViewController {
 
-    var courseAreaScrollView: UIScrollView {
-        return self.webView.scrollView
-    }
-
     var area: CourseArea {
         return self.courseArea.require()
     }

@@ -27,12 +27,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="9a3-Lq-xW3"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="16"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AJR-HV-dnR" userLabel="Title Container">
                                 <rect key="frame" x="0.0" y="214" width="375" height="47.5"/>
@@ -117,6 +111,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cornerView" destination="AFF-tD-7pz" id="zDB-Ct-JmO"/>
                         <outlet property="courseAreaListContainerHeight" destination="M5J-wN-Bdc" id="8zh-Oz-2x2"/>
                         <outlet property="headerImageHeightConstraint" destination="qIM-0C-4xD" id="044-K2-V6e"/>
                         <outlet property="headerImageTopSafeAreaConstraint" destination="Gns-35-cOf" id="blo-WB-3hW"/>

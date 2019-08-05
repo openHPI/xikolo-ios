@@ -12,6 +12,7 @@ class CourseViewController: UIViewController {
     @IBOutlet private weak var titleView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var headerImageView: UIImageView!
+    @IBOutlet private weak var cornerView: UIView!
     @IBOutlet private weak var courseAreaListContainerHeight: NSLayoutConstraint!
     @IBOutlet private weak var headerImageHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var headerImageTopSuperviewConstraint: NSLayoutConstraint!
@@ -61,6 +62,11 @@ class CourseViewController: UIViewController {
         super.viewDidLoad()
 
         self.headerImageView.backgroundColor = Brand.default.colors.secondary
+
+        self.cornerView.layer.cornerRadius = self.cornerView.frame.height / 2
+        self.cornerView.layer.shadowOpacity = 0.2
+        self.cornerView.layer.shadowRadius = 8.0
+        self.cornerView.layer.shadowColor = UIColor.black.cgColor
 
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .compact)

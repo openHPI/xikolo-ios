@@ -358,6 +358,23 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
         self.updateNavigationBar(forProgress: headerOffset / headerHeight)
     }
 
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if decelerate { return }
+
+        let adjustedScrollOffset = scrollView.contentOffset.y + self.headerOffset
+        if adjustedScrollOffset > self.headerHeight { return }
+
+        let snapThreshold: CGFloat = 0.3
+        let snapUpwards = adjustedScrollOffset / self.headerHeight > snapThreshold
+
+        self.headerOffset = snapUpwards ? self.headerHeight : 0
+
+        UIView.animate(withDuration: 0.25) {
+            self.updateNavigationBar(forProgress: snapUpwards ? 1 : 0)
+            self.view.layoutIfNeeded()
+        }
+    }
+
 }
 
 extension CourseViewController: UINavigationControllerDelegate {

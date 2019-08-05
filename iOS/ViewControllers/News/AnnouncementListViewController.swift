@@ -90,6 +90,10 @@ class AnnouncementListViewController: UITableViewController {
         self.scrollDelegate?.scrollViewDidScroll(scrollView)
     }
 
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.scrollDelegate?.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+    }
+
     @objc private func updateUIAfterLoginStateChanged() {
         self.navigationItem.rightBarButtonItem = UserProfileHelper.shared.isLoggedIn ? self.actionButton : nil
     }

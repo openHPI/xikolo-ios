@@ -148,6 +148,10 @@ extension WebViewController: UIScrollViewDelegate {
         self.scrollDelegate?.scrollViewDidScroll(scrollView)
     }
 
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.scrollDelegate?.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+    }
+
 }
 
 extension WebViewController: CourseAreaViewController {

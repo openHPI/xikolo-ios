@@ -235,6 +235,10 @@ extension CourseDetailViewController: UIScrollViewDelegate {
         self.delegate?.scrollViewDidScroll(scrollView)
     }
 
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.delegate?.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+    }
+
 }
 
 extension CourseDetailViewController: RefreshableViewController {

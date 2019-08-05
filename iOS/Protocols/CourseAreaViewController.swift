@@ -17,6 +17,7 @@ protocol CourseAreaViewController: AnyObject {
 protocol CourseAreaScrollDelegate: AnyObject {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView)
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
 
 }
 

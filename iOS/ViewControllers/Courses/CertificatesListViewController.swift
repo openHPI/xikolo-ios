@@ -38,6 +38,10 @@ class CertificatesListViewController: UICollectionViewController {
         self.scrollDelegate?.scrollViewDidScroll(scrollView)
     }
 
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.scrollDelegate?.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+    }
+
     func stateOfCertificate(withURL certificateURL: URL?) -> String {
         guard self.course.enrollment != nil else {
             return NSLocalizedString("course.certificates.not-enrolled", comment: "the current state of a certificate")

@@ -64,6 +64,10 @@ class DocumentListViewController: UITableViewController {
         self.scrollDelegate?.scrollViewDidScroll(scrollView)
     }
 
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.scrollDelegate?.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+    }
+
     func setupEmptyState() {
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self

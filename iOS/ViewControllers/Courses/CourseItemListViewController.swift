@@ -131,11 +131,6 @@ class CourseItemListViewController: UITableViewController {
         self.scrollDelegate?.scrollViewDidScroll(scrollView)
     }
 
-    override func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-        self.scrollDelegate?.scrollToTop(scrollView)
-        return false
-    }
-
     private func updateFooterView() {
         guard self.course.startsAt?.inPast ?? true else {
             self.nextSectionStartLabel.isHidden = true

@@ -90,11 +90,6 @@ class AnnouncementListViewController: UITableViewController {
         self.scrollDelegate?.scrollViewDidScroll(scrollView)
     }
 
-    override func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-        self.scrollDelegate?.scrollToTop(scrollView)
-        return false
-    }
-
     @objc private func updateUIAfterLoginStateChanged() {
         self.navigationItem.rightBarButtonItem = UserProfileHelper.shared.isLoggedIn ? self.actionButton : nil
     }

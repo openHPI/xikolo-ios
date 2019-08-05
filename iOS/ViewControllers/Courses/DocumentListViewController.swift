@@ -64,11 +64,6 @@ class DocumentListViewController: UITableViewController {
         self.scrollDelegate?.scrollViewDidScroll(scrollView)
     }
 
-    override func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-        self.scrollDelegate?.scrollToTop(scrollView)
-        return false
-    }
-
     func setupEmptyState() {
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self

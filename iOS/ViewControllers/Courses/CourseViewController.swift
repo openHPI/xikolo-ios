@@ -358,16 +358,6 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
         self.updateNavigationBar(forProgress: headerOffset / headerHeight)
     }
 
-    func scrollToTop(_ scrollView: UIScrollView) {
-        self.headerOffset = 0
-
-        UIView.animate(withDuration: 0.25) {
-            scrollView.contentOffset = .zero
-            self.updateNavigationBar(forProgress: 0)
-            self.view.layoutIfNeeded()
-        }
-    }
-
 }
 
 extension CourseViewController: UINavigationControllerDelegate {

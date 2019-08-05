@@ -235,11 +235,6 @@ extension CourseDetailViewController: UIScrollViewDelegate {
         self.delegate?.scrollViewDidScroll(scrollView)
     }
 
-    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-        self.delegate?.scrollToTop(scrollView)
-        return false
-    }
-
 }
 
 extension CourseDetailViewController: RefreshableViewController {

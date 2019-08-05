@@ -148,11 +148,6 @@ extension WebViewController: UIScrollViewDelegate {
         self.scrollDelegate?.scrollViewDidScroll(scrollView)
     }
 
-    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-        self.scrollDelegate?.scrollToTop(scrollView)
-        return false
-    }
-
 }
 
 extension WebViewController: CourseAreaViewController {

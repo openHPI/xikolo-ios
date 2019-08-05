@@ -17,7 +17,6 @@ protocol CourseAreaViewController: AnyObject {
 protocol CourseAreaScrollDelegate: AnyObject {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView)
-    func scrollToTop(_ scrollView: UIScrollView)
 
 }
 

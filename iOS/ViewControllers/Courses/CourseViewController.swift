@@ -143,10 +143,6 @@ class CourseViewController: UIViewController {
 
         guard self.viewIfLoaded != nil else { return }
 
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-        feedbackGenerator.prepare()
-        feedbackGenerator.impactOccurred()
-
         self.updateContainerView()
 
         if updateCourseAreaSelection {

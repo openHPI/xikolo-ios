@@ -5,7 +5,7 @@
 
 import UIKit
 
-class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+class CoursePresentAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.3
@@ -13,14 +13,14 @@ class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let toViewController = transitionContext.viewController(forKey: .to) else {
-            fatalError("to view controller could not be found")
+            return
         }
 
         toViewController.view.transform = CGAffineTransform(translationX: 0, y: transitionContext.containerView.bounds.height)
         transitionContext.containerView.addSubview(toViewController.view)
 
-        let animationDuration = self.transitionDuration(using: transitionContext)
-        let animator = UIViewPropertyAnimator(duration: animationDuration, timingParameters: UICubicTimingParameters(animationCurve: .easeInOut))
+        let duration = self.transitionDuration(using: transitionContext)
+        let animator = UIViewPropertyAnimator(duration: duration, timingParameters: UICubicTimingParameters(animationCurve: .easeOut))
 
         animator.addAnimations {
             toViewController.view.transform = CGAffineTransform.identity
@@ -32,4 +32,5 @@ class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
 
         animator.startAnimation()
     }
+
 }

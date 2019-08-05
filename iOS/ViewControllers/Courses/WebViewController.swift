@@ -10,6 +10,8 @@ class WebViewController: UIViewController {
 
     @IBOutlet private weak var webView: UIWebView!
 
+    weak var scrollDelegate: CourseAreaScrollDelegate?
+
     private var courseArea: CourseArea?
 
     private lazy var progress: CircularProgressView = {
@@ -49,6 +51,7 @@ class WebViewController: UIViewController {
         super.viewDidLoad()
         self.webView.isHidden = true
         self.webView.delegate = self
+        self.webView.scrollView.delegate = self
 
         self.progress.alpha = 0.0
 
@@ -139,6 +142,18 @@ extension WebViewController: UIWebViewDelegate {
     }
 }
 
+extension WebViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.scrollDelegate?.scrollViewDidScroll(scrollView)
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.scrollDelegate?.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+    }
+
+}
+
 extension WebViewController: CourseAreaViewController {
 
     var area: CourseArea {
@@ -147,6 +162,7 @@ extension WebViewController: CourseAreaViewController {
 
     func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
         self.courseArea = area
+        self.scrollDelegate = delegate
 
         if let slug = course.slug, area == .discussions {
             self.url = Routes.courses.appendingPathComponents([slug, "pinboard"])

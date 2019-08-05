@@ -4,12 +4,24 @@
 //
 
 import Common
+import SDWebImage
 import UIKit
 
 class CourseViewController: UIViewController {
 
-    @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var titleView: UIView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var headerImageView: UIImageView!
     @IBOutlet private weak var courseAreaListContainerHeight: NSLayoutConstraint!
+    @IBOutlet private weak var headerImageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var headerImageTopSuperviewConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var headerImageTopSafeAreaConstraint: NSLayoutConstraint!
+
+    private var headerOffset: CGFloat = 0 {
+        didSet {
+            self.updateHeaderConstraints()
+        }
+    }
 
     private var courseAreaViewController: UIViewController?
     private var courseAreaListViewController: CourseAreaListViewController? {
@@ -26,6 +38,10 @@ class CourseViewController: UIViewController {
     }
 
     private var courseObserver: ManagedObjectObserver?
+
+    private var headerHeight: CGFloat {
+        return self.headerImageHeightConstraint.constant + self.titleView.frame.height
+    }
 
     var course: Course! {
         didSet {
@@ -44,6 +60,21 @@ class CourseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.headerImageView.backgroundColor = Brand.default.colors.secondary
+
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .compact)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+
+        self.navigationController?.navigationBar.tintColor = .white
+
+        if self.course != nil {
+            self.updateView()
+        }
+
+        self.navigationController?.delegate = self
+
         self.decideContent()
 
         SpotlightHelper.shared.setUserActivity(for: self.course)
@@ -54,6 +85,11 @@ class CourseViewController: UIViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         self.updateCourseAreaListContainerHeight()
         self.courseAreaListViewController?.reloadData()
+
+        self.updateHeaderConstraints()
+        self.updateNavigationBar(forProgress: self.headerOffset / self.headerHeight)
+
+        self.titleLabel.textAlignment = self.traitCollection.horizontalSizeClass == .compact ? .natural : .center
     }
 
     func show(item: CourseItem, animated: Bool) {
@@ -77,16 +113,10 @@ class CourseViewController: UIViewController {
     }
 
     private func updateView() {
-        self.titleView.text = self.course.title
-
-        if let titleView = self.navigationItem.titleView, let text = self.titleView.text {
-            let font = self.titleView.font ?? UIFont.systemFont(ofSize: 14, weight: .medium)
-            let titleWidth = NSString(string: text).size(withAttributes: [.font: font]).width
-            var frame = titleView.frame
-            frame.size.width = titleWidth + 2
-            titleView.frame = frame
-            titleView.setNeedsLayout()
-        }
+        guard self.isViewLoaded else { return }
+        self.navigationItem.title = self.course.title
+        self.titleLabel.text = self.course.title
+        self.headerImageView.sd_setImage(with: self.course.imageURL)
     }
 
     private func updateCourseAreaListContainerHeight() {
@@ -112,10 +142,6 @@ class CourseViewController: UIViewController {
         self.area = area
 
         guard self.viewIfLoaded != nil else { return }
-
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-        feedbackGenerator.prepare()
-        feedbackGenerator.impactOccurred()
 
         self.updateContainerView()
 
@@ -176,6 +202,51 @@ class CourseViewController: UIViewController {
         }
 
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    private func updateHeaderConstraints() {
+        let shouldHideHeader = self.traitCollection.verticalSizeClass == .compact
+        let offset = shouldHideHeader ? self.headerHeight : self.headerOffset
+        self.headerImageTopSuperviewConstraint.constant = offset * -1
+        self.headerImageTopSafeAreaConstraint.constant = offset * -1
+    }
+
+    func updateNavigationBar(forProgress progress: CGFloat) {
+        let headerHidden = self.traitCollection.verticalSizeClass == .compact
+        var mappedProgress = headerHidden ? 1.0 : progress
+        mappedProgress = max(0, min(mappedProgress, 1)) // clamping
+        mappedProgress = pow(mappedProgress, 3) // ease in
+        mappedProgress = min(mappedProgress, 0.995) // otherwise the bar switches to translucent
+
+        let navigationBarAlpha = mappedProgress
+
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = 0
+        var alpha: CGFloat = 1
+        Brand.default.colors.window.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        let tintColor = UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: (1 - mappedProgress * (1 - brightness)), alpha: alpha)
+        self.navigationController?.navigationBar.tintColor = tintColor
+
+        var transparentBackground: UIImage
+
+        // The background of a navigation bar switches from being translucent to transparent when a background image is applied.
+        // Below, a background image is dynamically generated with the desired opacity.
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 1, height: 1),
+                                               false,
+                                               navigationController!.navigationBar.layer.contentsScale)
+        let context = UIGraphicsGetCurrentContext()!
+        context.setFillColor(red: 1, green: 1, blue: 1, alpha: navigationBarAlpha)
+        UIRectFill(CGRect(x: 0, y: 0, width: 1, height: 1))
+        transparentBackground = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        self.navigationController?.navigationBar.setBackgroundImage(transparentBackground, for: .default)
+        self.navigationController?.navigationBar.setBackgroundImage(transparentBackground, for: .compact)
+
+        let textColor = UIColor(white: 0.1, alpha: mappedProgress)
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: textColor,
+        ]
     }
 
 }
@@ -264,6 +335,68 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
         } else {
             self.courseAreaListViewController?.refresh(animated: trueUnlessReduceMotionEnabled)
         }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let headerHeight = self.headerHeight
+        let adjustedScrollOffset = scrollView.contentOffset.y + self.headerOffset
+        var headerOffset = max(0, min(adjustedScrollOffset, headerHeight))
+        headerOffset = self.traitCollection.verticalSizeClass == .compact ? headerHeight : headerOffset
+
+        self.headerOffset = headerOffset
+
+        if adjustedScrollOffset >= 0, // for pull to refresh
+            adjustedScrollOffset <= headerHeight, // over scrolling
+            self.traitCollection.verticalSizeClass != .compact {
+            scrollView.contentOffset = .zero
+        }
+
+        self.updateNavigationBar(forProgress: headerOffset / headerHeight)
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if decelerate { return }
+
+        let adjustedScrollOffset = scrollView.contentOffset.y + self.headerOffset
+        if adjustedScrollOffset > self.headerHeight { return }
+
+        let snapThreshold: CGFloat = 0.3
+        let snapUpwards = adjustedScrollOffset / self.headerHeight > snapThreshold
+
+        self.headerOffset = snapUpwards ? self.headerHeight : 0
+
+        UIView.animate(withDuration: 0.25) {
+            self.updateNavigationBar(forProgress: snapUpwards ? 1 : 0)
+            self.view.layoutIfNeeded()
+        }
+    }
+
+}
+
+extension CourseViewController: UINavigationControllerDelegate {
+
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        let progress: CGFloat = {
+            guard viewController == self else { return 1 }
+
+            let headerOffset = self.headerImageTopSuperviewConstraint.constant * -1
+            return headerOffset / self.headerHeight
+        }()
+
+        guard let transitionController = navigationController.transitionCoordinator, animated else {
+            self.updateNavigationBar(forProgress: progress)
+            return
+        }
+
+        transitionController.animate(alongsideTransition: { context in
+            self.updateNavigationBar(forProgress: progress)
+            self.navigationController?.navigationBar.layoutIfNeeded()
+        }, completion: { context in
+            guard viewController == self else { return }
+            guard navigationController.viewControllers.count > 1 else { return }
+            guard context.isCancelled else { return }
+            self.updateNavigationBar(forProgress: 1)
+        })
     }
 
 }

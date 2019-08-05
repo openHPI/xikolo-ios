@@ -9,31 +9,12 @@ final class CoursePresentationController: UIPresentationController {
 
     private var dimmingView: UIView = {
         let dimmingView = UIView()
-        dimmingView.backgroundColor = UIColor(white: 0.2, alpha: 1.0)
+        dimmingView.backgroundColor = UIColor(white: 0.3, alpha: 1.0)
         dimmingView.translatesAutoresizingMaskIntoConstraints = false
         dimmingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         dimmingView.alpha = 0.0
         return dimmingView
     }()
-
-    private var topOffset: CGFloat {
-        let topMargin: CGFloat = {
-            if #available(iOS 11, *) {
-                return self.containerView?.safeAreaInsets.top ?? 0
-            } else {
-                return self.presentedViewController.prefersStatusBarHidden ? 0 : 20
-            }
-        }()
-
-        return topMargin > 0 ? topMargin + 4 : 0
-    }
-
-    override var frameOfPresentedViewInContainerView: CGRect {
-        let containerView = self.containerView.require()
-        let size = self.size(forChildContentContainer: self.presentedViewController, withParentContainerSize: containerView.bounds.size)
-        let origin = CGPoint(x: 0, y: self.topOffset)
-        return CGRect(origin: origin, size: size)
-    }
 
     override func presentationTransitionWillBegin() {
         guard let containerView = self.containerView else {
@@ -72,17 +53,8 @@ final class CoursePresentationController: UIPresentationController {
         })
     }
 
-    override func containerViewWillLayoutSubviews() {
-        super.containerViewWillLayoutSubviews()
-        self.presentedView?.frame = self.frameOfPresentedViewInContainerView
-    }
-
     override var shouldRemovePresentersView: Bool {
         return true
-    }
-
-    override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
-        return CGSize(width: parentSize.width, height: parentSize.height - self.topOffset)
     }
 
 }

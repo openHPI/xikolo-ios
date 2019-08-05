@@ -93,7 +93,7 @@
 		50CF1F4620DCDBFC0011BFE9 /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
 		50CF1F4E20DCDBFC0011BFE9 /* RichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichtextViewController.swift */; };
 		50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
-		50CF1F5020DCDBFC0011BFE9 /* CourseDismissionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A62B207978BA00E98351 /* CourseDismissionAnimator.swift */; };
+		50CF1F5020DCDBFC0011BFE9 /* CourseDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A62B207978BA00E98351 /* CourseDismissAnimationController.swift */; };
 		50CF1F5120DCDBFC0011BFE9 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50082B4F20BFDA7800B4511C /* PersistenceManager.swift */; };
 		50CF1F5520DCDBFC0011BFE9 /* FilePersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50082B5420BFDA8800B4511C /* FilePersistenceManager.swift */; };
 		50CF1F5820DCDBFC0011BFE9 /* CourseItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FFD20501388006E9634 /* CourseItemDetailView.swift */; };
@@ -138,14 +138,14 @@
 		50CF1FB820DCDBFC0011BFE9 /* SlidesPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50082B5920BFDA9C00B4511C /* SlidesPersistenceManager.swift */; };
 		50CF1FB920DCDBFC0011BFE9 /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
 		50CF1FBD20DCDBFC0011BFE9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */; };
-		50CF1FC820DCDBFC0011BFE9 /* CourseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A6172079780500E98351 /* CourseInteractor.swift */; };
+		50CF1FC820DCDBFC0011BFE9 /* CourseInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A6172079780500E98351 /* CourseInteractionController.swift */; };
 		50CF1FCC20DCDBFC0011BFE9 /* AnnouncementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70388C611EF1566A0093F186 /* AnnouncementListViewController.swift */; };
 		50CF1FCD20DCDBFC0011BFE9 /* UIAlertViewController+cancel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500228E720580142003301A7 /* UIAlertViewController+cancel.swift */; };
 		50CF1FD020DCDBFC0011BFE9 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
 		50CF1FD320DCDBFC0011BFE9 /* Video+Preloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7621F20ACE6008C8138 /* Video+Preloading.swift */; };
 		50CF1FD520DCDBFC0011BFE9 /* Video+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7202C1F28E29B00779995 /* Video+Download.swift */; };
 		50CF1FD620DCDBFC0011BFE9 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* AccountViewController.swift */; };
-		50CF1FD720DCDBFC0011BFE9 /* CoursePresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A6262079788900E98351 /* CoursePresentationAnimator.swift */; };
+		50CF1FD720DCDBFC0011BFE9 /* CoursePresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A6262079788900E98351 /* CoursePresentAnimationController.swift */; };
 		50CF1FD920DCDBFC0011BFE9 /* CoursePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A6212079787000E98351 /* CoursePresentationController.swift */; };
 		50CF1FDA20DCDBFC0011BFE9 /* CourseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A63020797ED800E98351 /* CourseNavigationController.swift */; };
 		50CF1FE020DCDBFC0011BFE9 /* CoreDataTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* CoreDataTableViewDataSource.swift */; };
@@ -433,11 +433,11 @@
 		5040A60920795BFD00E98351 /* WebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebViewController.storyboard; sourceTree = "<group>"; };
 		5040A61220795CB200E98351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Course.storyboard; sourceTree = "<group>"; };
 		5040A61520795CBA00E98351 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Course.strings; sourceTree = "<group>"; };
-		5040A6172079780500E98351 /* CourseInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInteractor.swift; sourceTree = "<group>"; };
+		5040A6172079780500E98351 /* CourseInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInteractionController.swift; sourceTree = "<group>"; };
 		5040A61C2079781900E98351 /* CourseTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTransitioningDelegate.swift; sourceTree = "<group>"; };
 		5040A6212079787000E98351 /* CoursePresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePresentationController.swift; sourceTree = "<group>"; };
-		5040A6262079788900E98351 /* CoursePresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePresentationAnimator.swift; sourceTree = "<group>"; };
-		5040A62B207978BA00E98351 /* CourseDismissionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDismissionAnimator.swift; sourceTree = "<group>"; };
+		5040A6262079788900E98351 /* CoursePresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePresentAnimationController.swift; sourceTree = "<group>"; };
+		5040A62B207978BA00E98351 /* CourseDismissAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDismissAnimationController.swift; sourceTree = "<group>"; };
 		5040A63020797ED800E98351 /* CourseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseNavigationController.swift; sourceTree = "<group>"; };
 		5044C8DC21A8089C006490CE /* ContentPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPersistenceManager.swift; sourceTree = "<group>"; };
 		5044C8E221A8105C006490CE /* UIAlertViewController+downloadedContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+downloadedContent.swift"; sourceTree = "<group>"; };
@@ -948,10 +948,10 @@
 			isa = PBXGroup;
 			children = (
 				5040A61C2079781900E98351 /* CourseTransitioningDelegate.swift */,
-				5040A6172079780500E98351 /* CourseInteractor.swift */,
+				5040A6172079780500E98351 /* CourseInteractionController.swift */,
 				5040A6212079787000E98351 /* CoursePresentationController.swift */,
-				5040A6262079788900E98351 /* CoursePresentationAnimator.swift */,
-				5040A62B207978BA00E98351 /* CourseDismissionAnimator.swift */,
+				5040A6262079788900E98351 /* CoursePresentAnimationController.swift */,
+				5040A62B207978BA00E98351 /* CourseDismissAnimationController.swift */,
 			);
 			path = Transition;
 			sourceTree = "<group>";
@@ -1934,7 +1934,7 @@
 				50CF1F4E20DCDBFC0011BFE9 /* RichtextViewController.swift in Sources */,
 				50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */,
 				5095B1E220EBB45800572924 /* UserProfileHelperDelegateInstance.swift in Sources */,
-				50CF1F5020DCDBFC0011BFE9 /* CourseDismissionAnimator.swift in Sources */,
+				50CF1F5020DCDBFC0011BFE9 /* CourseDismissAnimationController.swift in Sources */,
 				503578942195BF1500982093 /* Accessibility.swift in Sources */,
 				502902E021BABA79004B1B43 /* AccountViewControllerDataSource.swift in Sources */,
 				5058578621351CBD006A5D15 /* PseudoCourseCell.swift in Sources */,
@@ -2016,7 +2016,7 @@
 				503988792167A04200F9043B /* CourseItem+DetailedContent.swift in Sources */,
 				5044C8DD21A8089C006490CE /* ContentPersistenceManager.swift in Sources */,
 				50CF1FBD20DCDBFC0011BFE9 /* WebViewController.swift in Sources */,
-				50CF1FC820DCDBFC0011BFE9 /* CourseInteractor.swift in Sources */,
+				50CF1FC820DCDBFC0011BFE9 /* CourseInteractionController.swift in Sources */,
 				5039887521679A0600F9043B /* CourseItemCellDelegate.swift in Sources */,
 				50FA2E6220E51A0500656776 /* SpotlightHelper.swift in Sources */,
 				508AB2EE21145A500079EAE5 /* CourseDateSummaryView.swift in Sources */,
@@ -2030,7 +2030,7 @@
 				50CF1FD520DCDBFC0011BFE9 /* Video+Download.swift in Sources */,
 				50911AF7223E29A9000C2007 /* DefaultTableViewCell.swift in Sources */,
 				50CF1FD620DCDBFC0011BFE9 /* AccountViewController.swift in Sources */,
-				50CF1FD720DCDBFC0011BFE9 /* CoursePresentationAnimator.swift in Sources */,
+				50CF1FD720DCDBFC0011BFE9 /* CoursePresentAnimationController.swift in Sources */,
 				50CF1FD920DCDBFC0011BFE9 /* CoursePresentationController.swift in Sources */,
 				50CF1FDA20DCDBFC0011BFE9 /* CourseNavigationController.swift in Sources */,
 				50CF1FE020DCDBFC0011BFE9 /* CoreDataTableViewDataSource.swift in Sources */,

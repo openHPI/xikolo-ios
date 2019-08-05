@@ -18,6 +18,8 @@ class CertificatesListViewController: UICollectionViewController {
         }
     }
 
+    weak var scrollDelegate: CourseAreaScrollDelegate?
+
     override func viewDidLoad() {
         self.collectionView?.register(R.nib.certificateCell)
         if let certificateListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
@@ -30,6 +32,14 @@ class CertificatesListViewController: UICollectionViewController {
         self.addRefreshControl()
         self.refresh()
         self.setupEmptyState()
+    }
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.scrollDelegate?.scrollViewDidScroll(scrollView)
+    }
+
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.scrollDelegate?.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
     }
 
     func stateOfCertificate(withURL certificateURL: URL?) -> String {
@@ -161,6 +171,7 @@ extension CertificatesListViewController: CourseAreaViewController {
     func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
         assert(area == self.area)
         self.course = course
+        self.scrollDelegate = delegate
     }
 
 }

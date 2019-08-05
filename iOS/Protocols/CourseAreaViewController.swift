@@ -14,8 +14,17 @@ protocol CourseAreaViewController: AnyObject {
 
 }
 
-protocol CourseAreaViewControllerDelegate: AnyObject {
+protocol CourseAreaScrollDelegate: AnyObject {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+
+}
+
+protocol CourseAreaEnrollmentDelegate: AnyObject {
 
     func enrollmentStateDidChange(whenNewlyCreated newlyCreated: Bool)
 
 }
+
+typealias CourseAreaViewControllerDelegate = CourseAreaScrollDelegate & CourseAreaEnrollmentDelegate

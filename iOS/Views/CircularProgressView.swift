@@ -59,6 +59,9 @@ class CircularProgressView: UIView {
     override func didMoveToWindow() {
         super.didMoveToWindow()
 
+        self.backgroundColor = .clear
+        self.progressLayer.backgroundColor = UIColor.clear.cgColor
+
         if let window = window {
             self.progressLayer.contentsScale = window.screen.scale
             self.progressLayer.setNeedsDisplay()
@@ -78,7 +81,6 @@ class CircularProgressView: UIView {
         self.progressLayer.indeterminateProgress = Defaults.indeterminateProgress
         self.indeterminateDuration = Defaults.indeterminateDuration
 
-        self.backgroundColor = .clear
         self.isUserInteractionEnabled = false
     }
 
@@ -96,6 +98,7 @@ class CircularProgressView: UIView {
     }
 
     func updateProgress(_ newValue: CGFloat?, animated: Bool = true) {
+        print("progress", newValue, self.backgroundColor == .clear, self.layer.backgroundColor == UIColor.clear.cgColor)
         if let progress = newValue {
             let pinnedProgress = self.pin(progress)
             self.progressLayer.indeterminateProgress = 1

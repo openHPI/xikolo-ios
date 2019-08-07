@@ -32,7 +32,7 @@ class XikoloNavigationController: UINavigationController {
             let size = imageView.bounds.size.height
             if size <= 1 && size > 0 && imageView.subviews.isEmpty {
                 let forcedBackground = UIView(frame: imageView.bounds)
-                forcedBackground.backgroundColor = .white
+                forcedBackground.backgroundColor = ColorCompatibility.systemBackground
                 imageView.addSubview(forcedBackground)
                 forcedBackground.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                 return true

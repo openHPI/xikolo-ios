@@ -39,14 +39,14 @@ class CourseItemCell: UITableViewCell {
         self.isUserInteractionEnabled = isAvailable
 
         self.titleView.text = courseItem.title
-        self.titleView.textColor = isAvailable ? ColorCompatibility.label : ColorCompatibility.tertiaryLabel
+        self.titleView.textColor = isAvailable ? ColorCompatibility.label : ColorCompatibility.disabled
 
         self.iconView.image = courseItem.image?.withRenderingMode(.alwaysTemplate)
-        self.iconView.tintColor = isAvailable ? ColorCompatibility.label : ColorCompatibility.tertiaryLabel
+        self.iconView.tintColor = isAvailable ? ColorCompatibility.label : ColorCompatibility.disabled
 
         let wasVisitedBefore = courseItem.visited
         self.readStateView.alpha = wasVisitedBefore ? 0.0 : 1.0
-        self.readStateView.backgroundColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.tertiaryLabel
+        self.readStateView.backgroundColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         self.configureActionsButton(for: courseItem)
         self.detailContentView.configure(for: courseItem, with: self.delegate)
@@ -61,7 +61,7 @@ class CourseItemCell: UITableViewCell {
 
         let isAvailable = !(self.delegate?.inOfflineMode ?? true) || video.isAvailableOffline
         self.actionsButton.isEnabled = isAvailable
-        self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.tertiaryLabel
+        self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         self.actionsButton.alpha = 1
     }

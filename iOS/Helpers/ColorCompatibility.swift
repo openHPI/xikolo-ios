@@ -129,4 +129,8 @@ enum ColorCompatibility {
         return UIColor(red: 0.9490196078431372, green: 0.9490196078431372, blue: 0.9686274509803922, alpha: 1.0)
     }
 
+    static var disabled: UIColor {
+        return self.tertiaryLabel
+    }
+
 }

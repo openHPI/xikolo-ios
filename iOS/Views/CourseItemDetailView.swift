@@ -20,7 +20,7 @@ class CourseItemDetailView: UIView {
 
     private let shimmerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
+        view.backgroundColor = ColorCompatibility.systemFill
         view.layer.cornerRadius = view.frame.height / 2
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -109,8 +109,12 @@ class CourseItemDetailView: UIView {
 
     private var pulseAnimation: CAAnimation {
         let pulseAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.backgroundColor))
-        pulseAnimation.fromValue = UIColor(white: 0.9, alpha: 1.0).cgColor
-        pulseAnimation.toValue = UIColor(white: 0.95, alpha: 1.0).cgColor
+
+        self.traitCollection.performAsCurrent {
+            pulseAnimation.fromValue = ColorCompatibility.systemFill.cgColor
+            pulseAnimation.toValue = ColorCompatibility.secondarySystemFill.cgColor
+        }
+
         pulseAnimation.duration = 1
         pulseAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         pulseAnimation.autoreverses = true
@@ -172,7 +176,7 @@ class DetailedDataView: UIStackView {
         let imageView = UIImageView(image: image)
         imageView.bounds = CGRect(x: 0, y: 0, width: 12, height: 14)
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = UIColor.darkText.withAlphaComponent(0.7)
+        imageView.tintColor = ColorCompatibility.secondaryLabel //.withAlphaComponent(0.7)
 
         if #available(iOS 11, *) {
             imageView.adjustsImageSizeForAccessibilityContentSizeCategory = true
@@ -271,7 +275,7 @@ class DetailedDataView: UIStackView {
             downloaded = false
         }
 
-        label.textColor = downloaded || !isOffline ? ColorCompatibility.label : ColorCompatibility.quaternaryLabel
+        label.textColor = downloaded || !isOffline ? ColorCompatibility.secondaryLabel : ColorCompatibility.disabled
         label.sizeToFit()
 
         return label

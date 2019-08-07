@@ -247,15 +247,8 @@ class CourseViewController: UIViewController {
         var backgroundGreen: CGFloat = 0
         var backgroundBlue: CGFloat = 0
         var backgroundAlpha: CGFloat = 1
-        let backgroundColor: UIColor = {
-            if #available(iOS 13, *) {
-                return .systemBackground
-            } else {
-                return .white
-            }
-        }()
 
-        let result = backgroundColor.getRed(&backgroundRed, green: &backgroundGreen, blue: &backgroundBlue, alpha: &backgroundAlpha)
+        ColorCompatibility.systemBackground.getRed(&backgroundRed, green: &backgroundGreen, blue: &backgroundBlue, alpha: &backgroundAlpha)
 
 
         // The background of a navigation bar switches from being translucent to transparent when a background image is applied.
@@ -271,16 +264,8 @@ class CourseViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(transparentBackground, for: .default)
         self.navigationController?.navigationBar.setBackgroundImage(transparentBackground, for: .compact)
 
-        let textColor: UIColor = {
-            if #available(iOS 13, *) {
-                return .label
-            } else {
-                return UIColor(white: 0.1, alpha: mappedProgress)
-            }
-        }()
-
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: textColor.withAlphaComponent(mappedProgress),
+            NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(mappedProgress),
         ]
     }
 

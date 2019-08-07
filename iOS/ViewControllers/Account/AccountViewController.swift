@@ -58,10 +58,8 @@ class AccountViewController: UITableViewController {
         self.profileImage.layer.cornerRadius = self.profileImage.bounds.width / 2
         self.profileImage.layer.borderWidth = 3.0
 
-        if #available(iOS 13, *) {
-            self.profileImage.layer.borderColor = UIColor.systemBackground.cgColor // XXX
-        } else {
-            self.profileImage.layer.borderColor = UIColor.white.cgColor
+        self.traitCollection.performAsCurrent {
+             self.profileImage.layer.borderColor = ColorCompatibility.systemBackground.cgColor
         }
 
         // set copyright and app version info
@@ -112,7 +110,7 @@ class AccountViewController: UITableViewController {
 
         if #available(iOS 13, *) {
             if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-                self.profileImage.layer.borderColor = UIColor.systemBackground.cgColor
+                self.profileImage.layer.borderColor = ColorCompatibility.systemBackground.cgColor
             }
         }
     }

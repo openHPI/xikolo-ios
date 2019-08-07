@@ -271,13 +271,9 @@ class DetailedDataView: UIStackView {
             downloaded = false
         }
 
-        if #available(iOS 13, *) {
-            label.textColor = downloaded || !isOffline ? .label : .quaternaryLabel
-        } else {
-            label.textColor = downloaded || !isOffline ? .darkText : .lightGray
-        }
-
+        label.textColor = downloaded || !isOffline ? ColorCompatibility.label : ColorCompatibility.quaternaryLabel
         label.sizeToFit()
+
         return label
     }
 

@@ -10,13 +10,6 @@ class XikoloNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        if #available(iOS 13, *) {
-//            self.navigationBar.barTintColor = UIColor.systemBackground
-//        } else {
-//            self.navigationBar.barTintColor = UIColor.white
-//        }
-
-//        self.navigationBar.isTranslucent = false
         self.navigationBar.shadowImage = UIImage()
 
         if #available(iOS 11.0, *) {

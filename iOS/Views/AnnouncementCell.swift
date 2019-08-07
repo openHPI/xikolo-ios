@@ -26,11 +26,7 @@ class AnnouncementCell: UITableViewCell {
         self.readStateLabel.isHidden = !userIsLoggedIn || announcement.visited
         self.separatorView.isHidden = !userIsLoggedIn || announcement.visited
 
-        if #available(iOS 13, *) {
-            self.titleLabel.textColor = userIsLoggedIn && announcement.visited ? .tertiaryLabel : .label
-        } else {
-            self.titleLabel.textColor = userIsLoggedIn && announcement.visited ? .gray : .black
-        }
+        self.titleLabel.textColor = userIsLoggedIn && announcement.visited ? ColorCompatibility.tertiaryLabel : ColorCompatibility.label
 
         self.courseLabel.textColor = Brand.default.colors.secondary
         if let courseTitle = announcement.course?.title, showCourseTitle {

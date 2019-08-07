@@ -39,26 +39,14 @@ class CourseItemCell: UITableViewCell {
         self.isUserInteractionEnabled = isAvailable
 
         self.titleView.text = courseItem.title
-        if #available(iOS 13, *) {
-            self.titleView.textColor = isAvailable ? .label : .tertiaryLabel
-        } else {
-            self.titleView.textColor = isAvailable ? .black : .lightGray
-        }
+        self.titleView.textColor = isAvailable ? ColorCompatibility.label : ColorCompatibility.tertiaryLabel
 
         self.iconView.image = courseItem.image?.withRenderingMode(.alwaysTemplate)
-        if #available(iOS 13, *) {
-            self.iconView.tintColor = isAvailable ? .label : .tertiaryLabel
-        } else {
-            self.iconView.tintColor = isAvailable ? .black : .lightGray
-        }
+        self.iconView.tintColor = isAvailable ? ColorCompatibility.label : ColorCompatibility.tertiaryLabel
 
         let wasVisitedBefore = courseItem.visited
         self.readStateView.alpha = wasVisitedBefore ? 0.0 : 1.0
-        if #available(iOS 13, *) {
-            self.readStateView.backgroundColor = isAvailable ? Brand.default.colors.primary : .tertiaryLabel
-        } else {
-            self.readStateView.backgroundColor = isAvailable ? Brand.default.colors.primary : .lightGray
-        }
+        self.readStateView.backgroundColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.tertiaryLabel
 
         self.configureActionsButton(for: courseItem)
         self.detailContentView.configure(for: courseItem, with: self.delegate)
@@ -73,12 +61,7 @@ class CourseItemCell: UITableViewCell {
 
         let isAvailable = !(self.delegate?.inOfflineMode ?? true) || video.isAvailableOffline
         self.actionsButton.isEnabled = isAvailable
-
-        if #available(iOS 13, *) {
-            self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : .tertiaryLabel
-        } else {
-            self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : .lightGray
-        }
+        self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.tertiaryLabel
 
         self.actionsButton.alpha = 1
     }

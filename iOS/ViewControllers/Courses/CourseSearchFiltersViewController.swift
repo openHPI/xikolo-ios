@@ -39,13 +39,8 @@ class CourseSearchFiltersViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 13, *) {
-            self.view.backgroundColor = .systemBackground
-            self.collectionView.backgroundColor = .systemBackground
-        } else {
-            self.view.backgroundColor = .white
-            self.collectionView.backgroundColor = .white
-        }
+        self.view.backgroundColor = ColorCompatibility.systemBackground
+        self.collectionView.backgroundColor = ColorCompatibility.systemBackground
 
         self.collectionView.register(R.nib.courseSearchFilterCell)
     }

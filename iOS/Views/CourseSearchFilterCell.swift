@@ -22,15 +22,10 @@ class CourseSearchFilterCell: UICollectionViewCell {
         self.layer.roundCorners(for: .default)
 
         self.titleLabel.font = CourseSearchFilterCell.titleFont
+        self.titleLabel.textColor = ColorCompatibility.secondaryLabel
 
-        if #available(iOS 13, *) {
-            self.titleLabel.textColor = .secondaryLabel
-            self.traitCollection.performAsCurrent {
-                self.layer.borderColor = UIColor.secondaryLabel.cgColor
-            }
-        } else {
-            self.layer.borderColor = UIColor.lightGray.cgColor
-            self.titleLabel.textColor = .lightGray
+        self.traitCollection.performAsCurrent {
+            self.layer.borderColor = ColorCompatibility.secondaryLabel.cgColor
         }
     }
 
@@ -51,16 +46,11 @@ class CourseSearchFilterCell: UICollectionViewCell {
     }
 
     private func configureAppearance(normalState: Bool) {
-        if #available(iOS 13, *) {
-            self.titleLabel.textColor = normalState ? UIColor.secondaryLabel : UIColor.systemBackground
-            self.traitCollection.performAsCurrent {
-                self.layer.backgroundColor = normalState ? UIColor.systemBackground.cgColor : Brand.default.colors.window.cgColor
-                self.layer.borderColor = normalState ? UIColor.secondaryLabel.cgColor : Brand.default.colors.window.cgColor
-            }
-        } else {
-            self.titleLabel.textColor = normalState ? UIColor.lightGray : UIColor.white
-            self.layer.backgroundColor = normalState ? UIColor.white.cgColor : Brand.default.colors.window.cgColor
-            self.layer.borderColor = normalState ? UIColor.lightGray.cgColor : Brand.default.colors.window.cgColor
+        self.titleLabel.textColor = normalState ? ColorCompatibility.secondaryLabel : ColorCompatibility.systemBackground
+
+        self.traitCollection.performAsCurrent {
+            self.layer.backgroundColor = normalState ? ColorCompatibility.systemBackground.cgColor : Brand.default.colors.window.cgColor
+            self.layer.borderColor = normalState ? ColorCompatibility.secondaryLabel.cgColor : Brand.default.colors.window.cgColor
         }
     }
 

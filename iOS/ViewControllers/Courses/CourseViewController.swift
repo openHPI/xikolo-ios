@@ -250,7 +250,6 @@ class CourseViewController: UIViewController {
 
         ColorCompatibility.systemBackground.getRed(&backgroundRed, green: &backgroundGreen, blue: &backgroundBlue, alpha: &backgroundAlpha)
 
-
         // The background of a navigation bar switches from being translucent to transparent when a background image is applied.
         // Below, a background image is dynamically generated with the desired opacity.
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 1, height: 1),

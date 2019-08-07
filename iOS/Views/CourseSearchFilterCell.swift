@@ -17,12 +17,21 @@ class CourseSearchFilterCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.borderColor = UIColor.lightGray.cgColor
+
         self.layer.borderWidth = 1
         self.layer.roundCorners(for: .default)
 
-        self.titleLabel.textColor = .lightGray
         self.titleLabel.font = CourseSearchFilterCell.titleFont
+
+        if #available(iOS 13, *) {
+            self.titleLabel.textColor = .secondaryLabel
+            self.traitCollection.performAsCurrent {
+                self.layer.borderColor = UIColor.secondaryLabel.cgColor
+            }
+        } else {
+            self.layer.borderColor = UIColor.lightGray.cgColor
+            self.titleLabel.textColor = .lightGray
+        }
     }
 
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
@@ -42,9 +51,17 @@ class CourseSearchFilterCell: UICollectionViewCell {
     }
 
     private func configureAppearance(normalState: Bool) {
-        self.titleLabel.textColor = normalState ? UIColor.lightGray : UIColor.white
-        self.layer.backgroundColor = normalState ? UIColor.white.cgColor : Brand.default.colors.window.cgColor
-        self.layer.borderColor = normalState ? UIColor.lightGray.cgColor : Brand.default.colors.window.cgColor
+        if #available(iOS 13, *) {
+            self.titleLabel.textColor = normalState ? UIColor.secondaryLabel : UIColor.systemBackground
+            self.traitCollection.performAsCurrent {
+                self.layer.backgroundColor = normalState ? UIColor.systemBackground.cgColor : Brand.default.colors.window.cgColor
+                self.layer.borderColor = normalState ? UIColor.secondaryLabel.cgColor : Brand.default.colors.window.cgColor
+            }
+        } else {
+            self.titleLabel.textColor = normalState ? UIColor.lightGray : UIColor.white
+            self.layer.backgroundColor = normalState ? UIColor.white.cgColor : Brand.default.colors.window.cgColor
+            self.layer.borderColor = normalState ? UIColor.lightGray.cgColor : Brand.default.colors.window.cgColor
+        }
     }
 
     static func cellHeight() -> CGFloat {

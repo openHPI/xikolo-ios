@@ -137,7 +137,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="CDG-xq-PxM" firstAttribute="leading" secondItem="uJw-Tr-IWa" secondAttribute="leadingMargin" id="3hU-gW-MUs"/>
                                     <constraint firstItem="uJw-Tr-IWa" firstAttribute="leading" secondItem="ahl-aK-JAk" secondAttribute="leading" id="AGr-ux-Q84"/>
@@ -149,7 +149,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="k1U-9c-472" firstAttribute="trailing" secondItem="ljF-yT-E4j" secondAttribute="trailing" constant="16" id="3cf-aI-WyX"/>
@@ -230,10 +230,10 @@
             <objects>
                 <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Lar-wX-O6M" customClass="XikoloNavigationController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8qq-z9-0uF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="8qq-z9-0uF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

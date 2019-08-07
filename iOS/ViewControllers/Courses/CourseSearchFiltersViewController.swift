@@ -39,10 +39,25 @@ class CourseSearchFiltersViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
-        self.collectionView.backgroundColor = .white
+        if #available(iOS 13, *) {
+            self.view.backgroundColor = .systemBackground
+            self.collectionView.backgroundColor = .systemBackground
+        } else {
+            self.view.backgroundColor = .white
+            self.collectionView.backgroundColor = .white
+        }
 
         self.collectionView.register(R.nib.courseSearchFilterCell)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if #available(iOS 13, *) {
+            if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+                self.collectionView.reloadData()
+            }
+        }
     }
 
     func clearFilters() {

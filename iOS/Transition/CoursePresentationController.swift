@@ -16,6 +16,15 @@ final class CoursePresentationController: UIPresentationController {
         return dimmingView
     }()
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if #available(iOS 13, *) {
+            let userInterfaceLevel: UIUserInterfaceLevel = AppDelegate.instance().isFullScrren ? .base : .elevated
+            self.overrideTraitCollection = UITraitCollection(userInterfaceLevel: userInterfaceLevel)
+        }
+    }
+
     override func presentationTransitionWillBegin() {
         guard let containerView = self.containerView else {
             return

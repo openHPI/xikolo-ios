@@ -16,7 +16,15 @@ class CourseHeaderView: UICollectionReusableView {
         super.awakeFromNib()
         self.backgroundView.layer.masksToBounds = true
         self.backgroundView.layer.cornerRadius = self.backgroundView.frame.height / 2
-        self.backgroundView.backgroundColor = UIColor(white: 1.0, alpha: 0.9)
+
+        if #available(iOS 13, *) {
+            self.backgroundView.backgroundColor = UIColor.systemBackground
+            self.backgroundView.effect = UIBlurEffect(style: .regular)
+        } else {
+            self.backgroundView.backgroundColor = UIColor.white
+            self.backgroundView.effect = UIBlurEffect(style: .light)
+        }
+
         self.titleView.textColor = Brand.default.colors.secondary
     }
 

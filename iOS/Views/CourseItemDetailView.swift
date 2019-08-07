@@ -251,7 +251,6 @@ class DetailedDataView: UIStackView {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
         label.adjustsFontForContentSizeCategory = true
-        label.backgroundColor = .white
 
         let downloaded: Bool
         switch contentItem {
@@ -272,7 +271,12 @@ class DetailedDataView: UIStackView {
             downloaded = false
         }
 
-        label.textColor = downloaded || !isOffline ? .darkText : .lightGray
+        if #available(iOS 13, *) {
+            label.textColor = downloaded || !isOffline ? .label : .quaternaryLabel
+        } else {
+            label.textColor = downloaded || !isOffline ? .darkText : .lightGray
+        }
+
         label.sizeToFit()
         return label
     }

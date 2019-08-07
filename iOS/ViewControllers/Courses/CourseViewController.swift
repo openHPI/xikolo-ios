@@ -80,6 +80,8 @@ class CourseViewController: UIViewController {
 
         self.navigationController?.navigationBar.tintColor = .white
 
+        self.titleLabel.textAlignment = self.traitCollection.horizontalSizeClass == .compact ? .natural : .center
+
         if self.course != nil {
             self.updateView()
         }
@@ -241,22 +243,44 @@ class CourseViewController: UIViewController {
 
         var transparentBackground: UIImage
 
+        var backgroundRed: CGFloat = 0
+        var backgroundGreen: CGFloat = 0
+        var backgroundBlue: CGFloat = 0
+        var backgroundAlpha: CGFloat = 1
+        let backgroundColor: UIColor = {
+            if #available(iOS 13, *) {
+                return .systemBackground
+            } else {
+                return .white
+            }
+        }()
+
+        let result = backgroundColor.getRed(&backgroundRed, green: &backgroundGreen, blue: &backgroundBlue, alpha: &backgroundAlpha)
+
+
         // The background of a navigation bar switches from being translucent to transparent when a background image is applied.
         // Below, a background image is dynamically generated with the desired opacity.
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 1, height: 1),
                                                false,
                                                navigationController!.navigationBar.layer.contentsScale)
         let context = UIGraphicsGetCurrentContext()!
-        context.setFillColor(red: 1, green: 1, blue: 1, alpha: navigationBarAlpha)
+        context.setFillColor(red: backgroundRed, green: backgroundGreen, blue: backgroundBlue, alpha: backgroundAlpha * navigationBarAlpha)
         UIRectFill(CGRect(x: 0, y: 0, width: 1, height: 1))
         transparentBackground = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         self.navigationController?.navigationBar.setBackgroundImage(transparentBackground, for: .default)
         self.navigationController?.navigationBar.setBackgroundImage(transparentBackground, for: .compact)
 
-        let textColor = UIColor(white: 0.1, alpha: mappedProgress)
+        let textColor: UIColor = {
+            if #available(iOS 13, *) {
+                return .label
+            } else {
+                return UIColor(white: 0.1, alpha: mappedProgress)
+            }
+        }()
+
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: textColor,
+            NSAttributedString.Key.foregroundColor: textColor.withAlphaComponent(mappedProgress),
         ]
     }
 

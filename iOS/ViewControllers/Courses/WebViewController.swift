@@ -52,11 +52,20 @@ class WebViewController: UIViewController {
 
         self.progress.alpha = 0.0
 
+        TrackingHelper.shared.setCurrentTrackingCurrentAsCookie()
         self.loadURL()
 
         UIView.animate(withDuration: 0.25, delay: 0.5, options: .curveLinear, animations: {
             self.progress.alpha = CGFloat(1.0)
         }, completion: nil)
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: nil) { _ in
+            TrackingHelper.shared.setCurrentTrackingCurrentAsCookie()
+        }
     }
 
     override func removeFromParent() {
@@ -69,7 +78,7 @@ class WebViewController: UIViewController {
 
     private func loadURL() {
         guard let url = self.url else { return }
-        webView.loadRequest(NetworkHelper.request(for: url) as URLRequest)
+        self.webView.loadRequest(NetworkHelper.request(for: url) as URLRequest)
     }
 
 }

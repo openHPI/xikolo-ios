@@ -1,3 +1,6 @@
+• Bug fixes and general improvements
+
+Also in version 2.6:
 • The course search can now be refined by applying additional filters
 • If available, course items show the points which can be achieved
 • Teaser for courses can be viewed from the course detail page

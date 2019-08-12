@@ -1,3 +1,6 @@
+• Fehlerkorrekturen und allgemeine Verbesserungen
+
+Auch in Version 2.6:
 • Die Kurssuche kann nun durch zusätzliche Filter eingegrenzt werden
 • Falls vorhanden werden die erreichbaren Punkte für Kursinhalte angezeigt
 • Der Teaser-Clip kann über die Kursdetailseite angespielt werden

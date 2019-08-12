@@ -159,10 +159,12 @@ extension WebViewController: CourseAreaViewController {
 
         if let slug = course.slug, area == .discussions {
             self.url = Routes.courses.appendingPathComponents([slug, "pinboard"])
+            TrackingHelper.shared.createEvent(.visitedPinboard, inCourse: course)
         } else if area == .recap {
             var urlComponents = URLComponents(url: Routes.recap, resolvingAgainstBaseURL: false)
             urlComponents?.queryItems = [URLQueryItem(name: "course_id", value: course.id)]
             self.url = urlComponents?.url
+            TrackingHelper.shared.createEvent(.visitedRecap, inCourse: course)
         }
     }
 

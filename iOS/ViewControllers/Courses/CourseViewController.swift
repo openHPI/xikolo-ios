@@ -58,6 +58,13 @@ class CourseViewController: UIViewController {
 
     var area: CourseArea?
 
+    override var toolbarItems: [UIBarButtonItem]? {
+        get {
+            return self.courseAreaPageViewController?.viewControllers?.first?.toolbarItems
+        }
+        set {}
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

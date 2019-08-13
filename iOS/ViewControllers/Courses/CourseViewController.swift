@@ -62,6 +62,8 @@ class CourseViewController: UIViewController {
         get {
             return self.courseAreaPageViewController?.viewControllers?.first?.toolbarItems
         }
+        // we only want to use the toolbar items of the embedded view controllers
+        // swiftlint:disable:next unused_setter_value
         set {}
     }
 

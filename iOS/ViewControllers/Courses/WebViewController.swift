@@ -133,6 +133,10 @@ extension WebViewController: UIWebViewDelegate {
 
     func webViewDidStartLoad(_ webView: UIWebView) {
         NetworkIndicator.start()
+
+        if self.shouldShowToolbar {
+            self.updateToolbarButtons()
+        }
     }
 
     func webViewDidFinishLoad(_ webView: UIWebView) {

@@ -31,6 +31,7 @@ The following tools will be installed via CocoaPods:
 - clone this repository
 - run `bundle install`
 - run `bundle exec pod repo update` and `bundle exec pod install`
+- run `cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets`
 - open xikolo-ios.xcworkspace in Xcode
 - start one of the defined targets
 

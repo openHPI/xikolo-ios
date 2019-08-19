@@ -113,7 +113,7 @@ class CourseNavigationController: XikoloNavigationController {
         self.navigationBar.setBackgroundImage(transparentBackground, for: .default)
         self.navigationBar.setBackgroundImage(transparentBackground, for: .compact)
 
-        self.navigationController?.navigationBar.titleTextAttributes = [
+        self.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(mappedProgress),
         ]
     }

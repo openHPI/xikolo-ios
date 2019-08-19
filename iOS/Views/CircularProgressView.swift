@@ -98,7 +98,6 @@ class CircularProgressView: UIView {
     }
 
     func updateProgress(_ newValue: CGFloat?, animated: Bool = true) {
-        print("progress", newValue, self.backgroundColor == .clear, self.layer.backgroundColor == UIColor.clear.cgColor)
         if let progress = newValue {
             let pinnedProgress = self.pin(progress)
             self.progressLayer.indeterminateProgress = 1

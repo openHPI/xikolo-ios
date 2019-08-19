@@ -66,7 +66,7 @@ class CourseItemViewController: UIPageViewController {
             return viewController
         }
 
-        guard item.hasAvailableContent else {
+        guard item.hasAvailableContent, false else {
             let viewController = R.storyboard.courseLearnings.unavailableContentViewController()
             viewController?.configure(for: item)
             viewController?.delegate = self

@@ -25,6 +25,10 @@ class WebViewController: UIViewController {
         return progress
     }()
 
+    private lazy var backBarButton: UIBarButtonItem = {
+        return UIBarButtonItem(image: R.image.arrowRoundBack(), style: .plain, target: self, action: #selector(goBack))
+    }()
+
     weak var loginDelegate: LoginDelegate?
 
     var url: URL? {
@@ -33,6 +37,15 @@ class WebViewController: UIViewController {
                 self.loadURL()
             }
         }
+    }
+
+    private var shouldShowToolbar: Bool {
+        return self.courseArea == .discussions
+    }
+
+    private var webViewCanGoBack: Bool {
+        // UIWebView.canGoBack returns false values. So we check for the initial URL instead.
+        return self.webView.request?.url != self.url
     }
 
     override func awakeFromNib() {
@@ -55,15 +68,44 @@ class WebViewController: UIViewController {
 
         self.progress.alpha = 0.0
 
+        TrackingHelper.shared.setCurrentTrackingCurrentAsCookie()
         self.loadURL()
+
+        self.toolbarItems = [self.backBarButton]
 
         UIView.animate(withDuration: 0.25, delay: 0.5, options: .curveLinear, animations: {
             self.progress.alpha = CGFloat(1.0)
         }, completion: nil)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if self.shouldShowToolbar, !self.webView.isHidden {
+            self.navigationController?.setToolbarHidden(false, animated: animated)
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if self.shouldShowToolbar {
+            self.navigationController?.setToolbarHidden(true, animated: animated)
+        }
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: nil) { _ in
+            TrackingHelper.shared.setCurrentTrackingCurrentAsCookie()
+        }
+    }
+
     override func removeFromParent() {
         super.removeFromParent()
+
+        self.webView.delegate = nil
         if self.webView.isLoading {
             self.webView.stopLoading()
             NetworkIndicator.end()
@@ -72,7 +114,17 @@ class WebViewController: UIViewController {
 
     private func loadURL() {
         guard let url = self.url else { return }
-        webView.loadRequest(NetworkHelper.request(for: url) as URLRequest)
+        self.webView.loadRequest(NetworkHelper.request(for: url) as URLRequest)
+    }
+
+    private func updateToolbarButtons() {
+        self.backBarButton.isEnabled = self.webViewCanGoBack
+    }
+
+    @objc private func goBack() {
+        guard self.webViewCanGoBack else { return }
+        self.webView.goBack()
+        self.updateToolbarButtons()
     }
 
 }
@@ -81,11 +133,23 @@ extension WebViewController: UIWebViewDelegate {
 
     func webViewDidStartLoad(_ webView: UIWebView) {
         NetworkIndicator.start()
+
+        if self.shouldShowToolbar {
+            self.updateToolbarButtons()
+        }
     }
 
     func webViewDidFinishLoad(_ webView: UIWebView) {
         self.progress.isHidden = true
         self.webView.isHidden = false
+
+        if self.shouldShowToolbar {
+            self.updateToolbarButtons()
+            if self.navigationController?.toolbar.isHidden ?? false {
+                self.navigationController?.setToolbarHidden(false, animated: true)
+            }
+        }
+
         NetworkIndicator.end()
     }
 
@@ -166,10 +230,12 @@ extension WebViewController: CourseAreaViewController {
 
         if let slug = course.slug, area == .discussions {
             self.url = Routes.courses.appendingPathComponents([slug, "pinboard"])
+            TrackingHelper.shared.createEvent(.visitedPinboard, inCourse: course)
         } else if area == .recap {
             var urlComponents = URLComponents(url: Routes.recap, resolvingAgainstBaseURL: false)
             urlComponents?.queryItems = [URLQueryItem(name: "course_id", value: course.id)]
             self.url = urlComponents?.url
+            TrackingHelper.shared.createEvent(.visitedRecap, inCourse: course)
         }
     }
 

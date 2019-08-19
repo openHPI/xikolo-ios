@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import UIKit
 
 class CourseNavigationController: XikoloNavigationController {
@@ -15,6 +16,12 @@ class CourseNavigationController: XikoloNavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationBar.setBackgroundImage(UIImage(), for: .compact)
+        self.navigationBar.shadowImage = UIImage()
+        self.navigationBar.isTranslucent = true
+        self.navigationBar.tintColor = .white
 
         if let gestureRecognizer = self.pendingGestureRecognizer {
             self.view.addGestureRecognizer(gestureRecognizer)
@@ -50,6 +57,50 @@ class CourseNavigationController: XikoloNavigationController {
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         guard self.presentedViewController != nil else { return }
         super.dismiss(animated: flag, completion: completion)
+    }
+
+    func updateNavigationBar(forProgress progress: CGFloat) {
+        let headerHidden = self.traitCollection.verticalSizeClass == .compact
+        var mappedProgress = headerHidden ? 1.0 : progress
+        mappedProgress = max(0, min(mappedProgress, 1)) // clamping
+        mappedProgress = pow(mappedProgress, 3) // ease in
+        mappedProgress = min(mappedProgress, 0.995) // otherwise the bar switches to translucent
+
+        let navigationBarAlpha = mappedProgress
+
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = 0
+        var alpha: CGFloat = 1
+        Brand.default.colors.window.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        let tintColor = UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: (1 - mappedProgress * (1 - brightness)), alpha: alpha)
+        self.navigationBar.tintColor = tintColor
+
+        var transparentBackground: UIImage
+
+        var backgroundRed: CGFloat = 0
+        var backgroundGreen: CGFloat = 0
+        var backgroundBlue: CGFloat = 0
+        var backgroundAlpha: CGFloat = 1
+
+        ColorCompatibility.systemBackground.getRed(&backgroundRed, green: &backgroundGreen, blue: &backgroundBlue, alpha: &backgroundAlpha)
+
+        // The background of a navigation bar switches from being translucent to transparent when a background image is applied.
+        // Below, a background image is dynamically generated with the desired opacity.
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 1, height: 1),
+                                               false,
+                                               self.navigationBar.layer.contentsScale)
+        let context = UIGraphicsGetCurrentContext()!
+        context.setFillColor(red: backgroundRed, green: backgroundGreen, blue: backgroundBlue, alpha: backgroundAlpha * navigationBarAlpha)
+        UIRectFill(CGRect(x: 0, y: 0, width: 1, height: 1))
+        transparentBackground = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        self.navigationBar.setBackgroundImage(transparentBackground, for: .default)
+        self.navigationBar.setBackgroundImage(transparentBackground, for: .compact)
+
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(mappedProgress),
+        ]
     }
 
     func addDismissalGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {

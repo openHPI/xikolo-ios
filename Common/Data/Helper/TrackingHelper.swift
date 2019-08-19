@@ -18,6 +18,8 @@ public class TrackingHelper {
         // subpages
         case visitedItem = "VISITED_ITEM"
         case visitedAnnouncement = "VISITED_ANNOUNCEMENT_DETAIL"
+        case visitedPinboard = "VISITED_PINBOARD"
+        case visitedRecap = "VISITED_RECAP"
 
         // video playback
         case videoPlaybackPlay = "VIDEO_PLAY"
@@ -75,7 +77,7 @@ public class TrackingHelper {
         }
     }
 
-    private func defaultContext() -> [String: String] {
+    private func newDefaultContext() -> [String: String] {
         let screenSize = UIScreen.main.bounds.size
         let windowSize = self.delegate?.applicationWindowSize
 
@@ -113,6 +115,10 @@ public class TrackingHelper {
         return self.createEvent(verb, resourceType: .none, resourceId: "00000000-0000-0000-0000-000000000000", context: context)
     }
 
+    @discardableResult public func createEvent(_ verb: AnalyticsVerb, inCourse course: Course, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
+        return self.createEvent(verb, resourceType: .course, resourceId: course.id, context: context)
+    }
+
     @discardableResult public func createEvent(_ verb: AnalyticsVerb,
                                                resourceType: AnalyticsResourceType,
                                                resourceId: String,
@@ -128,7 +134,7 @@ public class TrackingHelper {
         let promise = Promise<Void, XikoloError>()
 
         DispatchQueue.main.async {
-            var trackingContext = self.defaultContext()
+            var trackingContext = self.newDefaultContext()
             for case let (key, value) as (String, String) in context {
                 trackingContext.updateValue(value, forKey: key)
             }
@@ -150,6 +156,28 @@ public class TrackingHelper {
         }
 
         return promise.future
+    }
+
+    public func setCurrentTrackingCurrentAsCookie() {
+        let trackingContext = self.newDefaultContext()
+        guard let trackingContextJSON = try? JSONEncoder().encode(trackingContext) else {
+            return
+        }
+
+        guard let trackingContextString = String(data: trackingContextJSON, encoding: .utf8) else {
+            return
+        }
+
+        let cookieProperties: [HTTPCookiePropertyKey: Any] = [
+            .domain: Routes.base.host ?? Brand.default.host,
+            .path: "/",
+            .name: "lanalytics-context",
+            .value: trackingContextString,
+        ]
+
+        if let cookie = HTTPCookie(properties: cookieProperties) {
+            HTTPCookieStorage.shared.setCookie(cookie)
+        }
     }
 
 }

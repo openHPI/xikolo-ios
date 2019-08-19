@@ -86,6 +86,8 @@ class CourseViewController: UIViewController {
         self.cornerView.layer.shadowRadius = 8.0
         self.cornerView.layer.shadowColor = UIColor.black.cgColor
 
+        self.titleLabel.textAlignment = self.traitCollection.horizontalSizeClass == .compact ? .natural : .center
+
         if self.course != nil {
             self.updateView()
         }

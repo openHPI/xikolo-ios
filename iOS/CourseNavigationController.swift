@@ -9,6 +9,7 @@ import UIKit
 class CourseNavigationController: XikoloNavigationController {
 
     private var pendingGestureRecognizer: UIGestureRecognizer?
+    private var lastNavigationBarProgress: CGFloat?
 
     var courseViewController: CourseViewController? {
         return self.viewControllers.first as? CourseViewController
@@ -38,6 +39,18 @@ class CourseNavigationController: XikoloNavigationController {
         return pageViewController?.viewControllers?.first
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if #available(iOS 13, *) {
+            if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+                if let lastNavigationBarProgress = self.lastNavigationBarProgress {
+                    self.updateNavigationBar(forProgress: lastNavigationBarProgress)
+                }
+            }
+        }
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -60,6 +73,8 @@ class CourseNavigationController: XikoloNavigationController {
     }
 
     func updateNavigationBar(forProgress progress: CGFloat) {
+        self.lastNavigationBarProgress = progress
+
         let headerHidden = self.traitCollection.verticalSizeClass == .compact
         var mappedProgress = headerHidden ? 1.0 : progress
         mappedProgress = max(0, min(mappedProgress, 1)) // clamping
@@ -78,22 +93,28 @@ class CourseNavigationController: XikoloNavigationController {
 
         var transparentBackground: UIImage
 
+        var backgroundRed: CGFloat = 0
+        var backgroundGreen: CGFloat = 0
+        var backgroundBlue: CGFloat = 0
+        var backgroundAlpha: CGFloat = 1
+
+        ColorCompatibility.systemBackground.getRed(&backgroundRed, green: &backgroundGreen, blue: &backgroundBlue, alpha: &backgroundAlpha)
+
         // The background of a navigation bar switches from being translucent to transparent when a background image is applied.
         // Below, a background image is dynamically generated with the desired opacity.
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 1, height: 1),
                                                false,
                                                self.navigationBar.layer.contentsScale)
         let context = UIGraphicsGetCurrentContext()!
-        context.setFillColor(red: 1, green: 1, blue: 1, alpha: navigationBarAlpha)
+        context.setFillColor(red: backgroundRed, green: backgroundGreen, blue: backgroundBlue, alpha: backgroundAlpha * navigationBarAlpha)
         UIRectFill(CGRect(x: 0, y: 0, width: 1, height: 1))
         transparentBackground = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         self.navigationBar.setBackgroundImage(transparentBackground, for: .default)
         self.navigationBar.setBackgroundImage(transparentBackground, for: .compact)
 
-        let textColor = UIColor(white: 0.1, alpha: mappedProgress)
         self.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: textColor,
+            NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(mappedProgress),
         ]
     }
 

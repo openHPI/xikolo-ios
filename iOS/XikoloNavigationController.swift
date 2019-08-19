@@ -9,8 +9,7 @@ class XikoloNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationBar.barTintColor = UIColor.white
-        self.navigationBar.isTranslucent = true
+
         self.navigationBar.shadowImage = UIImage()
 
         if #available(iOS 11.0, *) {
@@ -22,7 +21,10 @@ class XikoloNavigationController: UINavigationController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.hideShadowImage(inView: self.view)
+
+        if #available(iOS 11, *) {} else {
+            self.hideShadowImage(inView: self.view)
+        }
     }
 
     @discardableResult private func hideShadowImage(inView view: UIView, level: Int = 0) -> Bool {
@@ -30,7 +32,7 @@ class XikoloNavigationController: UINavigationController {
             let size = imageView.bounds.size.height
             if size <= 1 && size > 0 && imageView.subviews.isEmpty {
                 let forcedBackground = UIView(frame: imageView.bounds)
-                forcedBackground.backgroundColor = .white
+                forcedBackground.backgroundColor = ColorCompatibility.systemBackground
                 imageView.addSubview(forcedBackground)
                 forcedBackground.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                 return true

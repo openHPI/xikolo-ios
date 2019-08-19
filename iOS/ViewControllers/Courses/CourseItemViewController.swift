@@ -14,7 +14,6 @@ class CourseItemViewController: UIPageViewController {
     private lazy var progressLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize)
-        label.tintColor = UIColor.darkText
         return label
     }()
 
@@ -44,7 +43,7 @@ class CourseItemViewController: UIPageViewController {
         self.dataSource = self
         self.delegate = self
 
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = ColorCompatibility.systemBackground
         self.navigationItem.titleView = self.progressLabel
 
         guard let item = self.currentItem else { return }

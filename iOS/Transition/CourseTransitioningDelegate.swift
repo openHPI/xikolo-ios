@@ -16,7 +16,14 @@ class CourseTransitioningDelegate: NSObject, UIViewControllerTransitioningDelega
             self.dismissInteractionController = CourseInteractionController(for: courseNavigationController)
         }
 
-        return CoursePresentationController(presentedViewController: presented, presenting: presenting)
+        let presentationController = CoursePresentationController(presentedViewController: presented, presenting: presenting)
+
+        if #available(iOS 13, *) {
+            let userInterfaceLevel: UIUserInterfaceLevel = AppDelegate.instance().isFullScrren ? .base : .elevated
+            presentationController.overrideTraitCollection = UITraitCollection(userInterfaceLevel: userInterfaceLevel)
+        }
+
+        return presentationController
     }
 
     func animationController(forPresented presented: UIViewController,

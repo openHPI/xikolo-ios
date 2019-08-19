@@ -17,12 +17,16 @@ class CourseSearchFilterCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.borderColor = UIColor.lightGray.cgColor
+
         self.layer.borderWidth = 1
         self.layer.roundCorners(for: .default)
 
-        self.titleLabel.textColor = .lightGray
         self.titleLabel.font = CourseSearchFilterCell.titleFont
+        self.titleLabel.textColor = ColorCompatibility.secondaryLabel
+
+        self.traitCollection.performAsCurrent {
+            self.layer.borderColor = ColorCompatibility.secondaryLabel.cgColor
+        }
     }
 
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
@@ -42,9 +46,12 @@ class CourseSearchFilterCell: UICollectionViewCell {
     }
 
     private func configureAppearance(normalState: Bool) {
-        self.titleLabel.textColor = normalState ? UIColor.lightGray : UIColor.white
-        self.layer.backgroundColor = normalState ? UIColor.white.cgColor : Brand.default.colors.window.cgColor
-        self.layer.borderColor = normalState ? UIColor.lightGray.cgColor : Brand.default.colors.window.cgColor
+        self.titleLabel.textColor = normalState ? ColorCompatibility.secondaryLabel : ColorCompatibility.systemBackground
+
+        self.traitCollection.performAsCurrent {
+            self.layer.backgroundColor = normalState ? ColorCompatibility.systemBackground.cgColor : Brand.default.colors.window.cgColor
+            self.layer.borderColor = normalState ? ColorCompatibility.secondaryLabel.cgColor : Brand.default.colors.window.cgColor
+        }
     }
 
     static func cellHeight() -> CGFloat {

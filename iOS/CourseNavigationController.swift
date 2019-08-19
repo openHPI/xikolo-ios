@@ -9,6 +9,7 @@ import UIKit
 class CourseNavigationController: XikoloNavigationController {
 
     private var pendingGestureRecognizer: UIGestureRecognizer?
+    private var lastNavigationBarProgress: CGFloat?
 
     var courseViewController: CourseViewController? {
         return self.viewControllers.first as? CourseViewController
@@ -38,6 +39,18 @@ class CourseNavigationController: XikoloNavigationController {
         return pageViewController?.viewControllers?.first
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if #available(iOS 13, *) {
+            if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+                if let lastNavigationBarProgress = self.lastNavigationBarProgress {
+                    self.updateNavigationBar(forProgress: lastNavigationBarProgress)
+                }
+            }
+        }
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -60,6 +73,8 @@ class CourseNavigationController: XikoloNavigationController {
     }
 
     func updateNavigationBar(forProgress progress: CGFloat) {
+        self.lastNavigationBarProgress = progress
+
         let headerHidden = self.traitCollection.verticalSizeClass == .compact
         var mappedProgress = headerHidden ? 1.0 : progress
         mappedProgress = max(0, min(mappedProgress, 1)) // clamping

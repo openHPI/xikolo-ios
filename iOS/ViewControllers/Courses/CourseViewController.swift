@@ -217,7 +217,7 @@ class CourseViewController: UIViewController {
                 "service": activityType?.rawValue,
                 "completed": String(describing: completed),
             ]
-            TrackingHelper.shared.createEvent(.shareCourse, resourceType: .course, resourceId: self.course.id, context: context)
+            TrackingHelper.createEvent(.shareCourse, resourceType: .course, resourceId: self.course.id, on: self, context: context)
         }
 
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)

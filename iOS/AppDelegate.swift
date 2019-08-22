@@ -66,7 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // register tab bar delegate
         self.tabBarController?.delegate = self
 
-        TrackingHelper.shared.delegate = self
         AnnouncementHelper.shared.delegate = self
         UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
@@ -233,14 +232,6 @@ extension AppDelegate: AnnouncementHelperDelegate {
                 }
             }
         }
-    }
-
-}
-
-extension AppDelegate: TrackingHelperDelegate {
-
-    var applicationWindowSize: CGSize? {
-        return self.window?.frame.size
     }
 
 }

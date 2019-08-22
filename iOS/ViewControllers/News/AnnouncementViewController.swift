@@ -49,7 +49,7 @@ class AnnouncementViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AnnouncementHelper.shared.markAsVisited(self.announcement)
-        TrackingHelper.shared.createEvent(.visitedAnnouncement, resourceType: .announcement, resourceId: announcement.id)
+        TrackingHelper.createEvent(.visitedAnnouncement, resourceType: .announcement, resourceId: announcement.id, on: self)
     }
 
     func configure(for announcement: Announcement, showCourseTitle: Bool) {

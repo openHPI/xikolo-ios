@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B8E68230615E90027E370 /* SceneDelegate.swift */; };
 		36CCE9152A57516F7B4DCF67 /* Pods_Common_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404B6E3B7B07070C964CF6A2 /* Pods_Common_Tests.framework */; };
 		498CD6E73ECFB46C24208C01 /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 330DFF127FCB2215F2A56BA4 /* Pods_Common.framework */; };
 		5001321F215AAAEE0055016F /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
@@ -321,6 +322,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		023B8E68230615E90027E370 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0630F12AF742EF6C154CD071 /* Pods-Common.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.openhpi-ios-release.xcconfig"; path = "Pods/Target Support Files/Pods-Common/Pods-Common.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
 		10DFB61E34972A347EE799B8 /* Pods-Common.openhpi-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.openhpi-ios-debug.xcconfig"; path = "Pods/Target Support Files/Pods-Common/Pods-Common.openhpi-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		138E3C0577249A9F3ADFF8CF /* Pods-Common-Tests.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.openhpi-ios-release.xcconfig"; path = "Pods/Target Support Files/Pods-Common-Tests/Pods-Common-Tests.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
@@ -1150,6 +1152,7 @@
 				AB91831F1D6B091300018C1D /* Branding */,
 				F875A5161B5697640030F38C /* AppDelegate.swift */,
 				50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */,
+				023B8E68230615E90027E370 /* SceneDelegate.swift */,
 				5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */,
 				5040A63020797ED800E98351 /* CourseNavigationController.swift */,
 				509B10D0200790560042AA7D /* XikoloTabBarController.swift */,
@@ -2009,6 +2012,7 @@
 				50CF1FB320DCDBFC0011BFE9 /* DetailedCourseItemContent.swift in Sources */,
 				50CF1FB520DCDBFC0011BFE9 /* VideoPlayerControlView.swift in Sources */,
 				50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */,
+				023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */,
 				50CF1FB620DCDBFC0011BFE9 /* UserDefaults+contentPreload.swift in Sources */,
 				503988732166920400F9043B /* ShadowContainerView.swift in Sources */,
 				50CF1FB820DCDBFC0011BFE9 /* SlidesPersistenceManager.swift in Sources */,
@@ -3761,7 +3765,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WP53SSE8S6;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

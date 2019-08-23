@@ -53,7 +53,12 @@ extension CourseDateListViewController {
             return
         }
 
-        AppNavigator.show(course: course)
+        if #available(iOS 13.0, *) {
+            let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate
+            sceneDelegate?.appNavigator.show(course: course)
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
 }

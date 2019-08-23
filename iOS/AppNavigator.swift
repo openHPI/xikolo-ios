@@ -7,12 +7,18 @@ import Common
 import CoreSpotlight
 import UIKit
 
-enum AppNavigator {
+class AppNavigator {
 
-    private static weak var currentCourseNavigationController: CourseNavigationController?
-    private static let courseTransitioningDelegate = CourseTransitioningDelegate()
+    private weak var currentCourseNavigationController: CourseNavigationController?
+    private let courseTransitioningDelegate = CourseTransitioningDelegate()
+    
+    private weak var tabBarController: UITabBarController?
+    
+    init(tabBarController: UITabBarController) {
+        self.tabBarController = tabBarController
+    }
 
-    static func handle(userActivity: NSUserActivity) -> Bool {
+    @discardableResult func handle(userActivity: NSUserActivity) -> Bool {
         var activityURL: URL?
         if userActivity.activityType == CSSearchableItemActionType {
             // This activity represents an item indexed using Core Spotlight, so restore the context related to the unique identifier.
@@ -32,45 +38,45 @@ enum AppNavigator {
         return self.handle(url: url)
     }
 
-    static func handle(url: URL, on sourceViewController: UIViewController) -> Bool {
-        guard let url = self.sanitizedURL(for: url) else {
-            log.error("URL in Markdown or Markdownparser is broken")
-            return false
-        }
+    func handle(url: URL, on sourceViewController: UIViewController) -> Bool {
+    guard let url = self.sanitizedURL(for: url) else {
+        log.error("URL in Markdown or Markdownparser is broken")
+        return false
+    }
 
-        if self.handle(url: url) {
-            return true
-        }
-
-        guard url.host == Brand.default.host else {
-            log.debug("Can't open \(url) inside of the app because host is wrong")
-            return false
-        }
-
-        let webViewController = R.storyboard.webViewController.instantiateInitialViewController().require()
-        webViewController.url = url
-        sourceViewController.navigationController?.pushViewController(webViewController, animated: trueUnlessReduceMotionEnabled)
-
+    if self.handle(url: url) {
         return true
     }
 
-    static func handle(url: URL) -> Bool {
-        guard url.host == Brand.default.host else {
-            log.debug("Can't open \(url) inside of the app because host is wrong")
-            return false
-        }
-
-        switch url.pathComponents[safe: 1] {
-        case nil:
-            return true // url to base page, simply open the app
-        case "courses":
-            return self.handleCourseURL(url)
-        default:
-            return false
-        }
+    guard url.host == Brand.default.host else {
+        log.debug("Can't open \(url) inside of the app because host is wrong")
+        return false
     }
 
-    private static func sanitizedURL(for url: URL) -> URL? {
+    let webViewController = R.storyboard.webViewController.instantiateInitialViewController().require()
+    webViewController.url = url
+    sourceViewController.navigationController?.pushViewController(webViewController, animated: trueUnlessReduceMotionEnabled)
+
+    return true
+}
+
+    @discardableResult func handle(url: URL) -> Bool {
+    guard url.host == Brand.default.host else {
+        log.debug("Can't open \(url) inside of the app because host is wrong")
+        return false
+    }
+
+    switch url.pathComponents[safe: 1] {
+    case nil:
+        return true // url to base page, simply open the app
+    case "courses":
+        return self.handleCourseURL(url)
+    default:
+        return false
+    }
+}
+
+    private func sanitizedURL(for url: URL) -> URL? {
         guard url.host != nil else {
             // make relative URL relative to base route
             return Routes.base.appendingPathComponent(url.absoluteString)
@@ -84,7 +90,7 @@ enum AppNavigator {
         return url
     }
 
-    private static func handleCourseURL(_ url: URL) -> Bool {
+    private func handleCourseURL(_ url: URL) -> Bool {
         guard let slugOrId = url.pathComponents[safe: 2] else {
             return self.showCourseList()
         }
@@ -132,18 +138,34 @@ enum AppNavigator {
         return false
     }
 
-    @discardableResult static func showCourseList() -> Bool {
-        return AppDelegate.instance().switchToCourseListTab()
+    @discardableResult func showCourseList() -> Bool {
+        
+        if #available(iOS 13.0, *) {
+            self.tabBarController?.selectedIndex = 1
+            return true
+        } else {
+            // Fallback on earlier versions
+        }
+        return false
     }
 
     typealias CourseOpenAction = (CourseViewController) -> Void
     typealias CourseClosedAction = (CourseViewController, Bool) -> Void
 
-    static func navigate(to course: Course,
+    func navigate(to course: Course,
                          courseArea: CourseArea,
                          courseOpenAction: CourseOpenAction,
                          courseClosedAction: CourseClosedAction) {
-        let currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
+        
+        var currentlyPresentsCourse : Bool = false
+        if #available(iOS 13.0, *) {
+            currentlyPresentsCourse = self.currentCourseNavigationController?.view.window?.windowScene != nil
+        } else {
+            // Fallback on earlier versions
+            currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
+        }
+        
+        // MARK: breaks dual window mode?
         let someCourseViewController = self.currentCourseNavigationController?.courseViewController
 
         if let courseViewController = someCourseViewController, courseViewController.course.id == course.id, currentlyPresentsCourse {
@@ -178,12 +200,12 @@ enum AppNavigator {
         courseNavigationController.modalPresentationStyle = .custom
         courseNavigationController.modalPresentationCapturesStatusBarAppearance = true
 
-        rootViewController.present(courseNavigationController, animated: trueUnlessReduceMotionEnabled) {
+        self.tabBarController?.present(courseNavigationController, animated: trueUnlessReduceMotionEnabled) {
             CourseHelper.visit(course)
         }
     }
 
-    static func show(course: Course, with courseArea: CourseArea = .learnings) {
+    func show(course: Course, with courseArea: CourseArea = .learnings) {
         let courseOpenAction: CourseOpenAction = { courseViewController in
             courseViewController.area = courseArea
         }
@@ -199,7 +221,7 @@ enum AppNavigator {
         self.navigate(to: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
     }
 
-    static func show(item: CourseItem) {
+    func show(item: CourseItem) {
         guard let course = item.section?.course else { return }
 
         let courseOpenAction: CourseOpenAction = { courseViewController in
@@ -214,7 +236,7 @@ enum AppNavigator {
         self.navigate(to: course, courseArea: .learnings, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
     }
 
-    static func show(documentLocalization: DocumentLocalization) {
+    func show(documentLocalization: DocumentLocalization) {
         guard let course = documentLocalization.document.courses.first else { return }
 
         let courseOpenAction: CourseOpenAction = { courseViewController in

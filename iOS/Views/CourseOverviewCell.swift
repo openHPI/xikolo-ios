@@ -65,13 +65,23 @@ extension CourseOverviewCell: UICollectionViewDelegate {
 
         if numberOfAdditionalItems > 0, min(itemLimit, numberOfCoreDataItems) + numberOfAdditionalItems - 1 == indexPath.item {
             if numberOfCoreDataItems == 0 {
-                AppNavigator.showCourseList()
+                if #available(iOS 13.0, *) {
+                    let sceneDelegate = self.superview?.window?.windowScene?.delegate as! SceneDelegate
+                    sceneDelegate.appNavigator.showCourseList()
+                } else {
+                    // Fallback on earlier versions
+                }
             } else {
                 self.delegate?.openCourseList(for: self.configuration)
             }
         } else {
             let course = self.dataSource.object(at: indexPath)
-            AppNavigator.show(course: course)
+            if #available(iOS 13.0, *) {
+                                let sceneDelegate = self.superview?.window?.windowScene?.delegate as! SceneDelegate
+                                sceneDelegate.appNavigator.show(course: course)
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
 

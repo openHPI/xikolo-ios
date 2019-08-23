@@ -16,7 +16,7 @@ protocol DownloadedContentTypeListConfiguraton {
     static var navigationTitle: String { get }
 
     static func resultsController(for course: Course) -> NSFetchedResultsController<Manager.Resource>
-    static func show(_ object: Manager.Resource)
+    static func show(_ object: Manager.Resource, with appNavigator: AppNavigator)
 
 }
 
@@ -32,9 +32,9 @@ enum DownloadedStreamsListConfiguration: DownloadedContentTypeListConfiguraton {
         return CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.position")
     }
 
-    static func show(_ object: Video) {
+    static func show(_ object: Video, with appNavigator: AppNavigator) {
         guard let item = object.item else { return }
-        AppNavigator.show(item: item)
+        appNavigator.show(item: item)
     }
 
 }
@@ -51,9 +51,9 @@ enum DownloadedSlidesListConfiguration: DownloadedContentTypeListConfiguraton {
         return CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.position")
     }
 
-    static func show(_ object: Video) {
+    static func show(_ object: Video, with appNavigator: AppNavigator) {
         guard let item = object.item else { return }
-        AppNavigator.show(item: item)
+        appNavigator.show(item: item)
     }
 
 }
@@ -70,8 +70,8 @@ enum DownloadedDocumentsListConfiguration: DownloadedContentTypeListConfiguraton
         return CoreDataHelper.createResultsController(request, sectionNameKeyPath: "document.title")
     }
 
-    static func show(_ object: DocumentLocalization) {
-        AppNavigator.show(documentLocalization: object)
+    static func show(_ object: DocumentLocalization, with appNavigator: AppNavigator) {
+        appNavigator.show(documentLocalization: object)
     }
 
 }

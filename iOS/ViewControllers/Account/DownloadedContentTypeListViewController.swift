@@ -78,7 +78,13 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
             self.updateToolBarButtons()
         } else {
             let object = self.dataSource.object(at: indexPath)
-            Configuration.show(object)
+            if #available(iOS 13.0, *) {
+                let sceneDelegate = self.view.window?.windowScene?.delegate as! SceneDelegate
+                Configuration.show(object, with: sceneDelegate.appNavigator)
+
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
 

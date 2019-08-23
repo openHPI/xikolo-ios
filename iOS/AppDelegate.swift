@@ -25,17 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return SyncPushEngineManager(syncEngine: engine)
     }()
 
-    private var tabBarController: UITabBarController? {
-        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
-            let reason = "UITabBarController could not be found"
-            ErrorManager.shared.reportStoryboardError(reason: reason)
-            log.error(reason)
-            return nil
-        }
-
-        return tabBarController
-    }
-
     var window: UIWindow?
 
     static func instance() -> AppDelegate {
@@ -44,26 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.window?.tintColor = Brand.default.colors.window
-
+        
         CoreDataHelper.migrateModelToCommon()
-
-        // select start tab
-        self.tabBarController?.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
-        if UserProfileHelper.shared.isLoggedIn {
-            CourseHelper.syncAllCourses().onComplete { _ in
-                CourseDateHelper.syncAllCourseDates()
-            }
-        }
 
         // Configure Firebase
         FirebaseApp.configure()
-
-        // register tab bar delegate
-        self.tabBarController?.delegate = self
-
-        TrackingHelper.shared.delegate = self
-        AnnouncementHelper.shared.delegate = self
+        
         UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
         ErrorManager.shared.register(reporter: Crashlytics.sharedInstance())
@@ -99,18 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func application(_ application: UIApplication,
-                     continue userActivity: NSUserActivity,
-                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        return AppNavigator.handle(userActivity: userActivity)
-    }
-
-    func application(_ app: UIApplication,
-                     open url: URL,
-                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        return AppNavigator.handle(url: url)
-    }
-
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions
         // (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -139,104 +102,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.pushEngineManager.stopObserving()
         SpotlightHelper.shared.stopObserving()
     }
-
-}
-
-extension AppDelegate: UITabBarControllerDelegate {
-
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        guard !UserProfileHelper.shared.isLoggedIn else {
-            return true
-        }
-
-        guard let navigationController = viewController as? UINavigationController else {
-            log.info("Navigation controller not found")
-            return true
-        }
-
-        guard navigationController.viewControllers.first is DashboardViewController else {
-            return true
-        }
-
-        guard let loginNavigationController = R.storyboard.login.instantiateInitialViewController() else {
-            let reason = "Initial view controller of Login stroyboard in not of type UINavigationController"
-            ErrorManager.shared.reportStoryboardError(reason: reason)
-            log.error(reason)
-            return false
-        }
-
-        guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
-            let reason = "Could not find LoginViewController"
-            ErrorManager.shared.reportStoryboardError(reason: reason)
-            log.error(reason)
-            return false
-        }
-
-        loginViewController.delegate = self
-
-        tabBarController.present(loginNavigationController, animated: trueUnlessReduceMotionEnabled)
-
-        return false
-    }
-
-    func switchToCourseListTab() -> Bool {
-        guard let tabBarController = self.tabBarController else { return false }
-        tabBarController.selectedIndex = 1
-        return true
-    }
-
-}
-
-extension AppDelegate: LoginDelegate {
-
-    func didSuccessfullyLogin() {
-        self.tabBarController?.selectedIndex = 0
-    }
-
-}
-
-extension AppDelegate: AnnouncementHelperDelegate {
-
-    func updateUnreadAnnouncementsBadge() {
-        #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("-cleanTabBar") {
-            log.info("Don't show badge when making screenshots")
-            return
-        }
-        #endif
-
-        DispatchQueue.main.async {
-            guard let tabItem = self.tabBarController?.tabBar.items?[safe: 2] else {
-                log.warning("Failed to retrieve tab item for announcements")
-                return
-            }
-
-            guard UserProfileHelper.shared.isLoggedIn else {
-                tabItem.badgeValue = nil
-                return
-            }
-
-            CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                let fetchRequest = AnnouncementHelper.FetchRequest.unreadAnnouncements
-                do {
-                    let announcementCount = try context.count(for: fetchRequest)
-                    let badgeValue = announcementCount > 0 ? String(describing: announcementCount) : nil
-                    DispatchQueue.main.async {
-                        tabItem.badgeValue = badgeValue
-                    }
-                } catch {
-                    log.warning("Failed to retrieve unread announcement count")
-                }
-            }
-        }
-    }
-
-}
-
-extension AppDelegate: TrackingHelperDelegate {
-
-    var applicationWindowSize: CGSize? {
-        return self.window?.frame.size
+    
+    @available(iOS 13.0, *)
+    func application(_ application: UIApplication,
+                     configurationForConnecting connectingSceneSession: UISceneSession,
+                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        log.info("Entered application configurationForConnecting connectingSceneSession")
+        return UISceneConfiguration(name: "Default Configuration",
+                                    sessionRole: connectingSceneSession.role)
     }
 
 }

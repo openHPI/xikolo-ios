@@ -39,7 +39,12 @@ class CourseDateNextUpView: UIStackView {
 
     @objc func tappedOnView() {
         if let course = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value?.course {
-            AppNavigator.show(course: course)
+            if #available(iOS 13.0, *) {
+                let sceneDelegate = self.superview?.window?.windowScene?.delegate as! SceneDelegate
+                sceneDelegate.appNavigator.show(course: course)
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
 

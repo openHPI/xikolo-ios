@@ -15,6 +15,7 @@ class DocumentHeader: UITableViewHeaderFooterView {
     func configure(for document: Document) {
         self.titleLabel.text = document.title
         self.descriptionLabel.text = document.documentDescription?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        self.descriptionLabel.textColor = ColorCompatibility.secondaryLabel
         self.tagsLabel.text = document.tags.isEmpty ? nil : document.tags.joined(separator: " · ")
     }
 

@@ -27,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var isFullScrren: Bool {
+        return self.window?.frame == self.window?.screen.bounds
+    }
+
     static func instance() -> AppDelegate {
         let instance = UIApplication.shared.delegate as? AppDelegate
         return instance.require(hint: "Unable to find AppDelegate")

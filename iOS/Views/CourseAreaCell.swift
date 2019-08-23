@@ -19,14 +19,17 @@ class CourseAreaCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             self.titleView.font = CourseAreaCell.font(whenSelected: self.isSelected)
-            self.titleView.textColor = self.isSelected ? UIColor.black : UIColor.lightGray
+            self.titleView.textColor = self.isSelected ? ColorCompatibility.label : ColorCompatibility.secondaryLabel
+
             self.hightlightView.isHidden = !self.isSelected
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.titleView.textColor = .lightGray
+
+        self.titleView.textColor = ColorCompatibility.secondaryLabel
+
         self.hightlightView.backgroundColor = Brand.default.colors.primary
         self.hightlightView.isHidden = true
         self.hightlightView.layer.cornerRadius = self.hightlightView.bounds.height / 2

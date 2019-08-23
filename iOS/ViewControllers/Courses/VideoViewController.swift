@@ -34,7 +34,7 @@ class VideoViewController: UIViewController {
     private lazy var actionMenuButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
         button.isEnabled = false
-        button.tintColor = .lightGray
+        button.tintColor = ColorCompatibility.disabled
         return button
     }()
 
@@ -80,15 +80,16 @@ class VideoViewController: UIViewController {
         self.updateCornersOfVideoContainer(for: self.traitCollection)
 
         self.errorView.isHidden = true
+        self.errorView.layer.roundCorners(for: .default)
 
         self.videoActionsButton.isEnabled = false
-        self.videoActionsButton.tintColor = .lightGray
+        self.videoActionsButton.tintColor = ColorCompatibility.disabled
         self.videoProgressView.isHidden = true
-        self.videoDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
+        self.videoDownloadedIcon.tintColor = ColorCompatibility.disabled.withAlphaComponent(0.7)
         self.videoDownloadedIcon.isHidden = true
 
         self.slidesView.isHidden = true
-        self.slidesDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
+        self.slidesDownloadedIcon.tintColor = ColorCompatibility.disabled.withAlphaComponent(0.7)
 
         self.updateView(for: self.courseItem)
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
@@ -205,7 +206,7 @@ class VideoViewController: UIViewController {
 
         let hasUserActions = ReachabilityHelper.connection != .none || !video.userActions.isEmpty
         self.actionMenuButton.isEnabled = hasUserActions
-        self.actionMenuButton.tintColor = hasUserActions ? Brand.default.colors.primary : .lightGray
+        self.actionMenuButton.tintColor = hasUserActions ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
         let streamDownloadProgress = StreamPersistenceManager.shared.downloadProgress(for: video)
@@ -213,8 +214,9 @@ class VideoViewController: UIViewController {
         self.videoProgressView.updateProgress(streamDownloadProgress, animated: false)
         self.videoDownloadedIcon.isHidden = streamDownloadState != .downloaded
 
-        self.videoActionsButton.isEnabled = ReachabilityHelper.connection != .none || video.streamUserAction != nil
-        self.videoActionsButton.tintColor = ReachabilityHelper.connection != .none || video.streamUserAction != nil ? Brand.default.colors.primary : .lightGray
+        let isVideoActionsButtonEnabled = ReachabilityHelper.connection != .none || video.streamUserAction != nil
+        self.videoActionsButton.isEnabled = isVideoActionsButtonEnabled
+        self.videoActionsButton.tintColor = isVideoActionsButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         // show slides button
         self.slidesView.isHidden = (video.slidesURL == nil)
@@ -225,8 +227,9 @@ class VideoViewController: UIViewController {
         self.slidesDownloadedIcon.isHidden = !(slidesDownloadState == .downloaded)
 
         self.slidesButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.localSlidesBookmark != nil
-        self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none || video.slidesUserAction != nil
-        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none || video.slidesUserAction != nil ? Brand.default.colors.primary : .lightGray
+        let isSlidesActionButtonEnabled = ReachabilityHelper.connection != .none || video.slidesUserAction != nil
+        self.slidesActionsButton.isEnabled = isSlidesActionButtonEnabled
+        self.slidesActionsButton.tintColor = isSlidesActionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         // show description
         if let summary = video.summary {
@@ -361,7 +364,7 @@ class VideoViewController: UIViewController {
                 self.slidesButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.localSlidesBookmark != nil
                 let actionButtonEnabled = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil
                 self.slidesActionsButton.isEnabled = actionButtonEnabled
-                self.slidesActionsButton.tintColor = actionButtonEnabled ? Brand.default.colors.primary : .lightGray
+                self.slidesActionsButton.tintColor = actionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.systemGray4
             }
         }
     }

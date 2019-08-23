@@ -43,10 +43,10 @@ class DocumentLocalizationCell: UITableViewCell {
         self.isUserInteractionEnabled = isAvailable
 
         self.languageLabel.text = documentLocalization.languageCode
-        self.languageLabel.textColor = isAvailable ? UIColor.black : UIColor.lightGray
+        self.languageLabel.textColor = isAvailable ? ColorCompatibility.label : ColorCompatibility.disabled
 
         self.actionsButton.isEnabled = isAvailable
-        self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : UIColor.lightGray
+        self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         let downloadState = DocumentsPersistenceManager.shared.downloadState(for: documentLocalization)
         self.progressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded

@@ -22,7 +22,11 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
     init(forCourseId courseId: String, configuration: Configuration.Type) {
         self.courseId = courseId
 
-        super.init(style: .grouped)
+        if #available(iOS 13, *) {
+            super.init(style: .insetGrouped)
+        } else {
+            super.init(style: .grouped)
+        }
 
         // Workaround for hiding additional top offset of the table view caused by groped style
         // See: https://stackoverflow.com/a/18938763/7414898

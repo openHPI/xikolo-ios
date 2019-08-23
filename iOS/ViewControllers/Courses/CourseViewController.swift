@@ -77,9 +77,16 @@ class CourseViewController: UIViewController {
         self.headerImageView.backgroundColor = Brand.default.colors.secondary
 
         self.cornerView.layer.cornerRadius = self.cornerView.frame.height / 2
+
+        if #available(iOS 13, *) {
+            self.cornerView.layer.cornerCurve = .continuous
+        }
+
         self.cornerView.layer.shadowOpacity = 0.2
         self.cornerView.layer.shadowRadius = 8.0
         self.cornerView.layer.shadowColor = UIColor.black.cgColor
+
+        self.titleLabel.textAlignment = self.traitCollection.horizontalSizeClass == .compact ? .natural : .center
 
         if self.course != nil {
             self.updateView()

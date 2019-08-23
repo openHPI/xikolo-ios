@@ -59,6 +59,9 @@ class CircularProgressView: UIView {
     override func didMoveToWindow() {
         super.didMoveToWindow()
 
+        self.backgroundColor = .clear
+        self.progressLayer.backgroundColor = UIColor.clear.cgColor
+
         if let window = window {
             self.progressLayer.contentsScale = window.screen.scale
             self.progressLayer.setNeedsDisplay()
@@ -78,7 +81,6 @@ class CircularProgressView: UIView {
         self.progressLayer.indeterminateProgress = Defaults.indeterminateProgress
         self.indeterminateDuration = Defaults.indeterminateDuration
 
-        self.backgroundColor = .clear
         self.isUserInteractionEnabled = false
     }
 

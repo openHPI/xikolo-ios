@@ -17,7 +17,7 @@ class CourseDateNextUpView: UIStackView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.container.layer.cornerRadius = 6.0
+        self.container.layer.roundCorners(for: .default, masksToBounds: false)
 
         self.courseLabel.textColor = Brand.default.colors.secondary
         self.isHidden = true

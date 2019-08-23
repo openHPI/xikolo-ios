@@ -21,7 +21,7 @@ class CourseDateSummaryView: UIStackView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.container.layer.cornerRadius = 6.0
+        self.container.layer.roundCorners(for: .default, masksToBounds: false)
 
         self.todayCountLabel.backgroundColor = Brand.default.colors.secondary
         self.nextCountLabel.backgroundColor = Brand.default.colors.secondary

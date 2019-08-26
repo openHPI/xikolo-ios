@@ -135,7 +135,43 @@ class CourseViewController: UIViewController {
         guard self.isViewLoaded else { return }
         self.navigationItem.title = self.course.title
         self.titleLabel.text = self.course.title
-        self.headerImageView.sd_setImage(with: self.course.imageURL)
+        self.headerImageView.sd_setImage(with: self.course.imageURL) { [weak self] (image, _, _, _) in
+            let headerColor = self?.averageColorUnderStatusBar(withCourseVisual: image) ?? Brand.default.colors.secondary
+            self?.courseNavigationController?.adjustToUnderlyingColor(headerColor)
+        }
+    }
+
+    private func averageColorUnderStatusBar(withCourseVisual image: UIImage?) -> UIColor? {
+        guard let croppedImage = self.croppedImageUnderNavigationBar(withCourseVisual: image) else { return nil }
+
+        // copied from https://www.hackingwithswift.com/example-code/media/how-to-read-the-average-color-of-a-uiimage-using-ciareaaverage
+        let inputImage = CIImage(cgImage: croppedImage)
+        let extentVector = CIVector(x: inputImage.extent.origin.x, y: inputImage.extent.origin.y, z: inputImage.extent.size.width, w: inputImage.extent.size.height)
+
+        guard let filter = CIFilter(name: "CIAreaAverage", parameters: [kCIInputImageKey: inputImage, kCIInputExtentKey: extentVector]) else { return nil }
+        guard let outputImage = filter.outputImage else { return nil }
+
+        var bitmap = [UInt8](repeating: 0, count: 4)
+        let context = CIContext(options: [.workingColorSpace: kCFNull as Any])
+        context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: .RGBA8, colorSpace: nil)
+
+        return UIColor(red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
+    }
+
+    private func croppedImageUnderNavigationBar(withCourseVisual image: UIImage?) -> CGImage? {
+        guard let image = image else { return nil }
+
+        let topInset: CGFloat
+        if #available(iOS 11, *) {
+            topInset = self.view.safeAreaInsets.top
+        } else {
+            topInset = self.view.layoutMargins.top
+        }
+
+        let imageScale = image.size.width / self.view.bounds.width
+        let transform = CGAffineTransform(scaleX: imageScale, y: imageScale)
+        let subImageRect = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: max(topInset, 44)).applying(transform)
+        return image.cgImage?.cropping(to: subImageRect)
     }
 
     private func updateCourseAreaListContainerHeight() {

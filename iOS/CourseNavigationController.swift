@@ -118,6 +118,7 @@ class CourseNavigationController: XikoloNavigationController {
         var blue: CGFloat = 0
         color.getRed(&red, green: &green, blue: &blue, alpha: nil)
 
+        // Refers to this suggeted formula: https://www.w3.org/WAI/ER/WD-AERT/#color-contrast
         let brightnessValue = (red * 299 + green * 587 + blue * 114) / 1000 * 255
         let isBright = brightnessValue > 125
 

@@ -28,7 +28,9 @@ extension User: JSONAPIPullable {
     public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.name = try attributes.value(for: "name")
-        self.avatarURL = try attributes.value(for: "avatar_url")
+        
+        let avatarURLString = try attributes.value(for: "avatar_url") as String
+        self.avatarURL = URL(string: avatarURLString.trimmingCharacters(in: .whitespacesAndNewlines))
 
         let relationships = try object.value(for: "relationships") as JSON
         try self.updateRelationship(forKeyPath: \User.profile, forKey: "profile", fromObject: relationships, with: context)

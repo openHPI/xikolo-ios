@@ -32,7 +32,9 @@ extension LTIExercise: JSONAPIPullable {
         self.instructions = try attributes.value(for: "instructions")
         self.weight = try attributes.value(for: "weight")
         self.allowedAttempts = try attributes.value(for: "allowed_attempts")
-        self.launchURL = try attributes.value(for: "launch_url")
+        
+        let launchURLString = try attributes.value(for: "launch_url") as String
+        self.launchURL = URL(string: launchURLString.trimmingCharacters(in: .whitespacesAndNewlines))
     }
 
 }

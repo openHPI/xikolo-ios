@@ -35,9 +35,11 @@ extension Announcement: JSONAPIPullable {
         let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.text = try attributes.value(for: "text")
-        self.imageURL = try attributes.value(for: "image_url")
         self.publishedAt = try attributes.value(for: "published_at")
         self.visited = try attributes.value(for: "visited") || self.visited // announcements can't be set to 'not visited'
+        
+        let imageURLString = try attributes.value(for: "image_url") as String
+        self.imageURL = URL(string: imageURLString.trimmingCharacters(in: .whitespacesAndNewlines))
 
         if let relationships = try? object.value(for: "relationships") as JSON {
             try self.updateRelationship(forKeyPath: \Announcement.course, forKey: "course", fromObject: relationships, with: context)

@@ -135,7 +135,7 @@ class CourseViewController: UIViewController {
         guard self.isViewLoaded else { return }
         self.navigationItem.title = self.course.title
         self.titleLabel.text = self.course.title
-        self.headerImageView.sd_setImage(with: self.course.imageURL) { [weak self] (image, _, _, _) in
+        self.headerImageView.sd_setImage(with: self.course.imageURL) { [weak self] image, _, _, _ in
             let headerColor = self?.averageColorUnderStatusBar(withCourseVisual: image) ?? Brand.default.colors.secondary
             self?.courseNavigationController?.adjustToUnderlyingColor(headerColor)
         }
@@ -146,7 +146,10 @@ class CourseViewController: UIViewController {
 
         // copied from https://www.hackingwithswift.com/example-code/media/how-to-read-the-average-color-of-a-uiimage-using-ciareaaverage
         let inputImage = CIImage(cgImage: croppedImage)
-        let extentVector = CIVector(x: inputImage.extent.origin.x, y: inputImage.extent.origin.y, z: inputImage.extent.size.width, w: inputImage.extent.size.height)
+        let extentVector = CIVector(x: inputImage.extent.origin.x,
+                                    y: inputImage.extent.origin.y,
+                                    z: inputImage.extent.size.width,
+                                    w: inputImage.extent.size.height)
 
         guard let filter = CIFilter(name: "CIAreaAverage", parameters: [kCIInputImageKey: inputImage, kCIInputExtentKey: extentVector]) else { return nil }
         guard let outputImage = filter.outputImage else { return nil }

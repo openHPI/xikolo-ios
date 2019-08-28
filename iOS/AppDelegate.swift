@@ -25,8 +25,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return SyncPushEngineManager(syncEngine: engine)
     }()
 
+
+    @available(iOS, obsoleted: 13.0)
+    lazy var appNavigator = AppNavigator(tabBarController: (tabBarController)!)
+
+    @available(iOS, obsoleted: 13.0)
+    private var tabBarController: UITabBarController? {
+        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
+            let reason = "UITabBarController could not be found"
+            ErrorManager.shared.reportStoryboardError(reason: reason)
+            log.error(reason)
+            return nil
+        }
+
+        return tabBarController
+    }
+
     var window: UIWindow?
 
+//    TODO: Ooooops Typo "Screen"
     var isFullScrren: Bool {
         return self.window?.frame == self.window?.screen.bounds
     }
@@ -37,12 +54,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        if #available(iOS 13.0, *) { }
+        else {
+            self.window?.tintColor = Brand.default.colors.window
+        }
         
         CoreDataHelper.migrateModelToCommon()
 
+        if #available(iOS 13.0, *) { }
+        else {
+            // select start tab
+            self.tabBarController?.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
+            if UserProfileHelper.shared.isLoggedIn {
+                CourseHelper.syncAllCourses().onComplete { _ in
+                    CourseDateHelper.syncAllCourseDates()
+                }
+            }
+        }
+
         // Configure Firebase
         FirebaseApp.configure()
-        
+
+        if #available(iOS 13.0, *) { }
+        else {
+            // register tab bar delegate
+            self.tabBarController?.delegate = self
+
+            TrackingHelper.shared.delegate = self
+            AnnouncementHelper.shared.delegate = self
+        }
+
         UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
         ErrorManager.shared.register(reporter: Crashlytics.sharedInstance())
@@ -76,6 +117,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
 
         return true
+    }
+
+    @available(iOS, obsoleted: 13.0)
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        return appNavigator.handle(userActivity: userActivity)
+    }
+
+    @available(iOS, obsoleted: 13.0)
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        return appNavigator.handle(url: url)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -114,6 +169,109 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         log.info("Entered application configurationForConnecting connectingSceneSession")
         return UISceneConfiguration(name: "Default Configuration",
                                     sessionRole: connectingSceneSession.role)
+    }
+
+}
+
+@available(iOS, obsoleted: 13.0)
+extension AppDelegate: UITabBarControllerDelegate {
+
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard !UserProfileHelper.shared.isLoggedIn else {
+            return true
+        }
+
+        guard let navigationController = viewController as? UINavigationController else {
+            log.info("Navigation controller not found")
+            return true
+        }
+
+        guard navigationController.viewControllers.first is DashboardViewController else {
+            return true
+        }
+
+        guard let loginNavigationController = R.storyboard.login.instantiateInitialViewController() else {
+            let reason = "Initial view controller of Login stroyboard in not of type UINavigationController"
+            ErrorManager.shared.reportStoryboardError(reason: reason)
+            log.error(reason)
+            return false
+        }
+
+        guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
+            let reason = "Could not find LoginViewController"
+            ErrorManager.shared.reportStoryboardError(reason: reason)
+            log.error(reason)
+            return false
+        }
+
+        loginViewController.delegate = self
+
+        tabBarController.present(loginNavigationController, animated: trueUnlessReduceMotionEnabled)
+
+        return false
+    }
+
+    func switchToCourseListTab() -> Bool {
+        guard let tabBarController = self.tabBarController else { return false }
+        tabBarController.selectedIndex = 1
+        return true
+    }
+
+}
+
+@available(iOS, obsoleted: 13.0)
+extension AppDelegate: LoginDelegate {
+
+    func didSuccessfullyLogin() {
+        self.tabBarController?.selectedIndex = 0
+    }
+
+}
+
+@available(iOS, obsoleted: 13.0)
+extension AppDelegate: AnnouncementHelperDelegate {
+
+    func updateUnreadAnnouncementsBadge() {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-cleanTabBar") {
+            log.info("Don't show badge when making screenshots")
+            return
+        }
+        #endif
+
+        DispatchQueue.main.async {
+            guard let tabItem = self.tabBarController?.tabBar.items?[safe: 2] else {
+                log.warning("Failed to retrieve tab item for announcements")
+                return
+            }
+
+            guard UserProfileHelper.shared.isLoggedIn else {
+                tabItem.badgeValue = nil
+                return
+            }
+
+            CoreDataHelper.persistentContainer.performBackgroundTask { context in
+                let fetchRequest = AnnouncementHelper.FetchRequest.unreadAnnouncements
+                do {
+                    let announcementCount = try context.count(for: fetchRequest)
+                    let badgeValue = announcementCount > 0 ? String(describing: announcementCount) : nil
+                    DispatchQueue.main.async {
+                        tabItem.badgeValue = badgeValue
+                    }
+                } catch {
+                    log.warning("Failed to retrieve unread announcement count")
+                }
+            }
+        }
+    }
+
+}
+
+@available(iOS, obsoleted: 13.0)
+extension AppDelegate: TrackingHelperDelegate {
+
+    var applicationWindowSize: CGSize? {
+        return self.window?.frame.size
     }
 
 }

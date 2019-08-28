@@ -88,6 +88,8 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
 
             } else {
                 // Fallback on earlier versions
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                Configuration.show(object, with: appDelegate.appNavigator)
             }
         }
     }

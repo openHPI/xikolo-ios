@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return SyncPushEngineManager(syncEngine: engine)
     }()
 
-
     @available(iOS, obsoleted: 13.0)
     lazy var appNavigator = AppNavigator(tabBarController: (tabBarController)!)
 
@@ -43,8 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-//    TODO: Ooooops Typo "Screen"
-    var isFullScrren: Bool {
+    var isFullScreen: Bool {
         return self.window?.frame == self.window?.screen.bounds
     }
 
@@ -54,15 +52,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        if #available(iOS 13.0, *) { }
-        else {
+        if #available(iOS 13.0, *) {
+        } else {
             self.window?.tintColor = Brand.default.colors.window
         }
-        
+
         CoreDataHelper.migrateModelToCommon()
 
-        if #available(iOS 13.0, *) { }
-        else {
+        if #available(iOS 13.0, *) {
+        } else {
             // select start tab
             self.tabBarController?.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
             if UserProfileHelper.shared.isLoggedIn {
@@ -75,8 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Configure Firebase
         FirebaseApp.configure()
 
-        if #available(iOS 13.0, *) { }
-        else {
+        if #available(iOS 13.0, *) {
+        } else {
             // register tab bar delegate
             self.tabBarController?.delegate = self
 
@@ -161,7 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.pushEngineManager.stopObserving()
         SpotlightHelper.shared.stopObserving()
     }
-    
+
     @available(iOS 13.0, *)
     func application(_ application: UIApplication,
                      configurationForConnecting connectingSceneSession: UISceneSession,

@@ -86,24 +86,27 @@ class AnnouncementViewController: UIViewController {
     @IBAction private func tappedCourseTitle() {
         guard let course = announcement.course else { return }
         if #available(iOS 13.0, *) {
-            let sceneDelegate = self.view.window?.windowScene?.delegate as! SceneDelegate
+            guard let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate else { return }
             sceneDelegate.appNavigator.show(course: course)
         } else {
-            // Fallback on earlier versions
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            return appDelegate.appNavigator.show(course: course)
         }
     }
+
 }
 
 extension AnnouncementViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         if #available(iOS 13.0, *) {
-            let sceneDelegate = self.view.window?.windowScene?.delegate as! SceneDelegate
+            guard let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate else { return false }
             return sceneDelegate.appNavigator.handle(url: URL, on: self)
         } else {
-            // Fallback on earlier versions
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+            return appDelegate.appNavigator.handle(url: URL, on: self)
+
         }
-        return false
     }
 
 }

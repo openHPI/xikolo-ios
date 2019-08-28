@@ -8,11 +8,11 @@ import UIKit
 
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    
+
     var window: UIWindow?
-    
+
     lazy var appNavigator = AppNavigator(tabBarController: (tabBarController)!)
-    
+
     private var tabBarController: UITabBarController? {
         guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
             let reason = "UITabBarController could not be found"
@@ -23,39 +23,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         return tabBarController
     }
-    
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
-               options connectionOptions: UIScene.ConnectionOptions) {
+
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         #if DEBUG
         log.info("Entered scene willConnectTo session")
         #endif
-        
-        
+
         self.window?.tintColor = Brand.default.colors.window
-        
+
         self.tabBarController?.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
         if UserProfileHelper.shared.isLoggedIn {
             CourseHelper.syncAllCourses().onComplete { _ in
                 CourseDateHelper.syncAllCourseDates()
             }
         }
-        
+
         // register tab bar delegate
         self.tabBarController?.delegate = self as UITabBarControllerDelegate
-        
+
         TrackingHelper.shared.delegate = self
         AnnouncementHelper.shared.delegate = self
-        
-        
-        if (connectionOptions.userActivities.first ?? session.stateRestorationActivity) != nil{
+
+        if (connectionOptions.userActivities.first ?? session.stateRestorationActivity) != nil {
             log.info("Entered positive if clause")
-            
+
         }
         #if DEBUG
         log.info("Exiting scene willConnectTo session")
         #endif
     }
-    
+
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         self.appNavigator.handle(userActivity: userActivity)
     }

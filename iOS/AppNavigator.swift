@@ -10,10 +10,10 @@ import UIKit
 class AppNavigator {
 
     private weak var currentCourseNavigationController: CourseNavigationController?
-    private let courseTransitioningDelegate = CourseTransitioningDelegate()
-    
+    private weak var courseTransitioningDelegate: CourseTransitioningDelegate?
+
     private weak var tabBarController: UITabBarController?
-    
+
     init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
     }
@@ -139,33 +139,31 @@ class AppNavigator {
     }
 
     @discardableResult func showCourseList() -> Bool {
-        
-        if #available(iOS 13.0, *) {
-            self.tabBarController?.selectedIndex = 1
-            return true
-        } else {
-            // Fallback on earlier versions
-        }
-        return false
+
+        self.tabBarController?.selectedIndex = 1
+        return true
+//        if #available(iOS 13.0, *) {
+//            self.tabBarController?.selectedIndex = 1
+//            return true
+//        } else {
+//            // Fallback on earlier versions
+//
+//        }
+//        return false
     }
 
     typealias CourseOpenAction = (CourseViewController) -> Void
     typealias CourseClosedAction = (CourseViewController, Bool) -> Void
 
-    func navigate(to course: Course,
-                         courseArea: CourseArea,
-                         courseOpenAction: CourseOpenAction,
-                         courseClosedAction: CourseClosedAction) {
-        
-        var currentlyPresentsCourse : Bool = false
+    func navigate(to course: Course, courseArea: CourseArea, courseOpenAction: CourseOpenAction, courseClosedAction: CourseClosedAction) {
+
+        var currentlyPresentsCourse: Bool = false
         if #available(iOS 13.0, *) {
             currentlyPresentsCourse = self.currentCourseNavigationController?.view.window?.windowScene != nil
         } else {
-            // Fallback on earlier versions
             currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
         }
-        
-        // MARK: breaks dual window mode?
+
         let someCourseViewController = self.currentCourseNavigationController?.courseViewController
 
         if let courseViewController = someCourseViewController, courseViewController.course.id == course.id, currentlyPresentsCourse {
@@ -180,7 +178,7 @@ class AppNavigator {
         self.currentCourseNavigationController?.closeCourse()
         self.currentCourseNavigationController = nil
 
-        guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
+        guard (UIApplication.shared.keyWindow?.rootViewController) != nil else {
             let reason = "root view controller could not be found"
             log.error(reason)
             return

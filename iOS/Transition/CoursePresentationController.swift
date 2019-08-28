@@ -20,7 +20,7 @@ final class CoursePresentationController: UIPresentationController {
         super.traitCollectionDidChange(previousTraitCollection)
 
         if #available(iOS 13, *) {
-            let userInterfaceLevel: UIUserInterfaceLevel = AppDelegate.instance().isFullScrren ? .base : .elevated
+            let userInterfaceLevel: UIUserInterfaceLevel = AppDelegate.instance().isFullScreen ? .base : .elevated
             self.overrideTraitCollection = UITraitCollection(userInterfaceLevel: userInterfaceLevel)
         }
     }

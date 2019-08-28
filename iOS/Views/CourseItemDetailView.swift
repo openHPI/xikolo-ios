@@ -176,7 +176,7 @@ class DetailedDataView: UIStackView {
         let imageView = UIImageView(image: image)
         imageView.bounds = CGRect(x: 0, y: 0, width: 12, height: 14)
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = ColorCompatibility.secondaryLabel //.withAlphaComponent(0.7)
+        imageView.tintColor = ColorCompatibility.secondaryLabel // .withAlphaComponent(0.7)
 
         if #available(iOS 11, *) {
             imageView.adjustsImageSizeForAccessibilityContentSizeCategory = true

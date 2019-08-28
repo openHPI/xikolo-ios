@@ -119,10 +119,11 @@ class CourseListViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = self.dataSource.object(at: indexPath)
         if #available(iOS 13.0, *) {
-            let sceneDelegate = self.view.window?.windowScene?.delegate as! SceneDelegate
+            guard let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate else { return }
             sceneDelegate.appNavigator.show(course: course)
         } else {
-            // Fallback on earlier versions
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            return appDelegate.appNavigator.show(course: course)
         }
     }
 

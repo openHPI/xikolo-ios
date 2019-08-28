@@ -24,11 +24,11 @@ public struct DefaultStyleCollection: StyleCollection {
 
     public var baseStyle: Style {
         let foregroundColor: UIColor = {
-            if #available(iOS 13, *) {
+            /*if #available(iOS 13, *) {
                 return .label
-            } else {
+            } else { */
                 return .black
-            }
+            //}
         }()
 
         return [

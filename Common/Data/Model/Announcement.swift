@@ -37,7 +37,7 @@ extension Announcement: JSONAPIPullable {
         self.text = try attributes.value(for: "text")
         self.publishedAt = try attributes.value(for: "published_at")
         self.visited = try attributes.value(for: "visited") || self.visited // announcements can't be set to 'not visited'
-        
+
         let imageURLString = try attributes.value(for: "image_url") as String
         self.imageURL = URL(string: imageURLString.trimmingCharacters(in: .whitespacesAndNewlines))
 

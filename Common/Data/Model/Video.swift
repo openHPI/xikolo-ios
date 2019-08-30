@@ -66,16 +66,16 @@ extension Video: JSONAPIPullable {
         self.slidesStream = try attributes.value(for: "slides_stream")
         self.summary = try attributes.value(for: "summary")
         self.transcriptSize = try attributes.value(for: "transcript_size")
-        
+
         let audioURLString = try attributes.value(for: "audio_url") as String
         self.audioURL = URL(string: audioURLString.trimmingCharacters(in: .whitespacesAndNewlines))
-        
+
         let slidesURLString = try attributes.value(for: "slides_url") as String
         self.slidesURL = URL(string: slidesURLString.trimmingCharacters(in: .whitespacesAndNewlines))
-        
+
         let thumbnailURLString = try attributes.value(for: "thumbnail_url") as String
         self.thumbnailURL = URL(string: thumbnailURLString.trimmingCharacters(in: .whitespacesAndNewlines))
-        
+
         let transcriptURLString = try attributes.value(for: "transcript_url") as String
         self.transcriptURL = URL(string: transcriptURLString.trimmingCharacters(in: .whitespacesAndNewlines))
     }

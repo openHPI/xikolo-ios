@@ -8,37 +8,22 @@ import CoreData
 import Foundation
 import SyncEngine
 
-public class AnnouncementHelper {
+public enum AnnouncementHelper {
 
-    public static let shared = AnnouncementHelper()
-
-    public weak var delegate: AnnouncementHelperDelegate?
-
-    private init() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(coreDataChange(notification:)),
-                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
-                                               object: CoreDataHelper.viewContext)
-    }
-
-    @discardableResult public func syncAllAnnouncements() -> Future<SyncMultipleResult, XikoloError> {
+    @discardableResult public static func syncAllAnnouncements() -> Future<SyncMultipleResult, XikoloError> {
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "global", withValue: "true")
-        return XikoloSyncEngine().synchronize(withFetchRequest: Announcement.fetchRequest(), withQuery: query).onComplete { _ in
-            self.delegate?.updateUnreadAnnouncementsBadge()
-        }
+        return XikoloSyncEngine().synchronize(withFetchRequest: Announcement.fetchRequest(), withQuery: query)
     }
 
-    @discardableResult public func syncAnnouncements(for course: Course) -> Future<SyncMultipleResult, XikoloError> {
+    @discardableResult public static func syncAnnouncements(for course: Course) -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.announcements(forCourse: course)
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "course", withValue: course.id)
-        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
-            self.delegate?.updateUnreadAnnouncementsBadge()
-        }
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
-    @discardableResult public func markAllAsVisited() -> Future<Void, XikoloError> {
+    @discardableResult public static func markAllAsVisited() -> Future<Void, XikoloError> {
         guard UserProfileHelper.shared.isLoggedIn else {
             return Future(value: ())
         }
@@ -65,13 +50,12 @@ public class AnnouncementHelper {
             }
 
             promise.complete(result)
-            self.delegate?.updateUnreadAnnouncementsBadge()
         }
 
         return promise.future
     }
 
-    @discardableResult public func markAsVisited(_ item: Announcement) -> Future<Void, XikoloError> {
+    @discardableResult public static func markAsVisited(_ item: Announcement) -> Future<Void, XikoloError> {
         guard UserProfileHelper.shared.isLoggedIn && !item.visited else {
             return Future(value: ())
         }
@@ -87,21 +71,9 @@ public class AnnouncementHelper {
             announcement.visited = true
             announcement.objectState = .modified
             promise.complete(context.saveWithResult())
-            self.delegate?.updateUnreadAnnouncementsBadge()
         }
 
         return promise.future
     }
-
-    @objc private func coreDataChange(notification: Notification) {
-        guard notification.includesChanges(for: Enrollment.self, keys: [NSUpdatedObjectsKey, NSRefreshedObjectsKey]) else { return }
-        self.delegate?.updateUnreadAnnouncementsBadge()
-    }
-
-}
-
-public protocol AnnouncementHelperDelegate: AnyObject {
-
-    func updateUnreadAnnouncementsBadge()
 
 }

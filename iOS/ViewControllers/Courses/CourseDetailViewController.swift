@@ -213,7 +213,7 @@ class CourseDetailViewController: UIViewController {
             if let course = self?.course {
                 CourseHelper.syncCourse(course)
                 CourseDateHelper.syncCourseDates(for: course)
-                AnnouncementHelper.shared.syncAnnouncements(for: course)
+                AnnouncementHelper.syncAnnouncements(for: course)
             }
 
             DispatchQueue.main.async {

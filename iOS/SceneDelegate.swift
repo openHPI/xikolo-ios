@@ -9,10 +9,6 @@ import UIKit
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    var window: UIWindow?
-
-    lazy var appNavigator = AppNavigator(tabBarController: (tabBarController)!)
-
     private var tabBarController: UITabBarController? {
         guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
             let reason = "UITabBarController could not be found"
@@ -22,6 +18,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         return tabBarController
+    }
+
+    lazy var appNavigator = AppNavigator(tabBarController: self.tabBarController!)
+
+    var window: UIWindow?
+
+    var isFullScreen: Bool {
+        return self.window?.frame == self.window?.screen.bounds
     }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -39,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         // register tab bar delegate
-        self.tabBarController?.delegate = self as UITabBarControllerDelegate
+        self.tabBarController?.delegate = self
 
         TrackingHelper.shared.delegate = self
         AnnouncementHelper.shared.delegate = self

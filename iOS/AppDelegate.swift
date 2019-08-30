@@ -26,9 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     @available(iOS, obsoleted: 13.0)
-    lazy var appNavigator = AppNavigator(tabBarController: (tabBarController)!)
-
-    @available(iOS, obsoleted: 13.0)
     private var tabBarController: UITabBarController? {
         guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
             let reason = "UITabBarController could not be found"
@@ -40,11 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return tabBarController
     }
 
-    var window: UIWindow?
+    @available(iOS, obsoleted: 13.0)
+    lazy var appNavigator = AppNavigator(tabBarController: self.tabBarController!)
 
-    var isFullScreen: Bool {
-        return self.window?.frame == self.window?.screen.bounds
-    }
+    var window: UIWindow?
 
     static func instance() -> AppDelegate {
         let instance = UIApplication.shared.delegate as? AppDelegate
@@ -52,15 +48,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        if #available(iOS 13.0, *) {
-        } else {
-            self.window?.tintColor = Brand.default.colors.window
-        }
+        self.window?.tintColor = Brand.default.colors.window
 
         CoreDataHelper.migrateModelToCommon()
 
-        if #available(iOS 13.0, *) {
-        } else {
+        if #available(iOS 13.0, *) {} else {
             // select start tab
             self.tabBarController?.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
             if UserProfileHelper.shared.isLoggedIn {
@@ -73,8 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Configure Firebase
         FirebaseApp.configure()
 
-        if #available(iOS 13.0, *) {
-        } else {
+        if #available(iOS 13.0, *) {} else {
             // register tab bar delegate
             self.tabBarController?.delegate = self
 
@@ -121,14 +112,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        return appNavigator.handle(userActivity: userActivity)
+        return self.appNavigator.handle(userActivity: userActivity)
     }
 
     @available(iOS, obsoleted: 13.0)
     func application(_ app: UIApplication,
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        return appNavigator.handle(url: url)
+        return self.appNavigator.handle(url: url)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -165,8 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      configurationForConnecting connectingSceneSession: UISceneSession,
                      options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         log.info("Entered application configurationForConnecting connectingSceneSession")
-        return UISceneConfiguration(name: "Default Configuration",
-                                    sessionRole: connectingSceneSession.role)
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
 }

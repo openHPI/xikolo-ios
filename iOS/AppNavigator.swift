@@ -39,42 +39,42 @@ class AppNavigator {
     }
 
     func handle(url: URL, on sourceViewController: UIViewController) -> Bool {
-    guard let url = self.sanitizedURL(for: url) else {
-        log.error("URL in Markdown or Markdownparser is broken")
-        return false
-    }
+        guard let url = self.sanitizedURL(for: url) else {
+            log.error("URL in Markdown or Markdownparser is broken")
+            return false
+        }
 
-    if self.handle(url: url) {
+        if self.handle(url: url) {
+            return true
+        }
+
+        guard url.host == Brand.default.host else {
+            log.debug("Can't open \(url) inside of the app because host is wrong")
+            return false
+        }
+
+        let webViewController = R.storyboard.webViewController.instantiateInitialViewController().require()
+        webViewController.url = url
+        sourceViewController.navigationController?.pushViewController(webViewController, animated: trueUnlessReduceMotionEnabled)
+
         return true
     }
 
-    guard url.host == Brand.default.host else {
-        log.debug("Can't open \(url) inside of the app because host is wrong")
-        return false
-    }
-
-    let webViewController = R.storyboard.webViewController.instantiateInitialViewController().require()
-    webViewController.url = url
-    sourceViewController.navigationController?.pushViewController(webViewController, animated: trueUnlessReduceMotionEnabled)
-
-    return true
-}
-
     @discardableResult func handle(url: URL) -> Bool {
-    guard url.host == Brand.default.host else {
-        log.debug("Can't open \(url) inside of the app because host is wrong")
-        return false
-    }
+        guard url.host == Brand.default.host else {
+            log.debug("Can't open \(url) inside of the app because host is wrong")
+            return false
+        }
 
-    switch url.pathComponents[safe: 1] {
-    case nil:
-        return true // url to base page, simply open the app
-    case "courses":
-        return self.handleCourseURL(url)
-    default:
-        return false
+        switch url.pathComponents[safe: 1] {
+        case nil:
+            return true // url to base page, simply open the app
+        case "courses":
+            return self.handleCourseURL(url)
+        default:
+            return false
+        }
     }
-}
 
     private func sanitizedURL(for url: URL) -> URL? {
         guard url.host != nil else {

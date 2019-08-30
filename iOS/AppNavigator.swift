@@ -10,7 +10,7 @@ import UIKit
 class AppNavigator {
 
     private weak var currentCourseNavigationController: CourseNavigationController?
-    private let courseTransitioningDelegate = CourseTransitioningDelegate()
+    private let courseTransitioningDelegate = CourseTransitioningDelegate() // swiftlint:disable:this weak_delegate
 
     private weak var tabBarController: UITabBarController?
 
@@ -92,7 +92,8 @@ class AppNavigator {
 
     private func handleCourseURL(_ url: URL) -> Bool {
         guard let slugOrId = url.pathComponents[safe: 2] else {
-            return self.showCourseList()
+            self.showCourseList()
+            return true
         }
 
         let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: slugOrId)
@@ -138,18 +139,8 @@ class AppNavigator {
         return false
     }
 
-    @discardableResult func showCourseList() -> Bool {
-
+    func showCourseList() {
         self.tabBarController?.selectedIndex = 1
-        return true
-//        if #available(iOS 13.0, *) {
-//            self.tabBarController?.selectedIndex = 1
-//            return true
-//        } else {
-//            // Fallback on earlier versions
-//
-//        }
-//        return false
     }
 
     typealias CourseOpenAction = (CourseViewController) -> Void

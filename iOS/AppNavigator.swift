@@ -10,7 +10,7 @@ import UIKit
 class AppNavigator {
 
     private weak var currentCourseNavigationController: CourseNavigationController?
-    private weak var courseTransitioningDelegate: CourseTransitioningDelegate?
+    private let courseTransitioningDelegate = CourseTransitioningDelegate()
 
     private weak var tabBarController: UITabBarController?
 

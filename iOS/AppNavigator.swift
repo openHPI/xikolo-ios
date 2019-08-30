@@ -147,13 +147,7 @@ class AppNavigator {
     typealias CourseClosedAction = (CourseViewController, Bool) -> Void
 
     func navigate(to course: Course, courseArea: CourseArea, courseOpenAction: CourseOpenAction, courseClosedAction: CourseClosedAction) {
-        var currentlyPresentsCourse: Bool = false
-        if #available(iOS 13.0, *) {
-            currentlyPresentsCourse = self.currentCourseNavigationController?.view.window?.windowScene != nil
-        } else {
-            currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
-        }
-
+        let currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
         let someCourseViewController = self.currentCourseNavigationController?.courseViewController
 
         if let courseViewController = someCourseViewController, courseViewController.course.id == course.id, currentlyPresentsCourse {
@@ -167,12 +161,6 @@ class AppNavigator {
 
         self.currentCourseNavigationController?.closeCourse()
         self.currentCourseNavigationController = nil
-
-        guard (UIApplication.shared.keyWindow?.rootViewController) != nil else {
-            let reason = "root view controller could not be found"
-            log.error(reason)
-            return
-        }
 
         let courseNavigationController = R.storyboard.course.instantiateInitialViewController().require()
         let topViewController = courseNavigationController.topViewController.require(hint: "Top view controller required")

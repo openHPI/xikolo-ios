@@ -24,10 +24,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    var isFullScreen: Bool {
-        return self.window?.frame == self.window?.screen.bounds
-    }
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         #if DEBUG
         log.info("Entered scene willConnectTo session")

@@ -25,10 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        #if DEBUG
-        log.info("Entered scene willConnectTo session")
-        #endif
-
         self.window?.tintColor = Brand.default.colors.window
 
         self.tabBarController?.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
@@ -43,14 +39,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         TrackingHelper.shared.delegate = self
         AnnouncementHelper.shared.delegate = self
-
-        if (connectionOptions.userActivities.first ?? session.stateRestorationActivity) != nil {
-            log.info("Entered positive if clause")
-
-        }
-        #if DEBUG
-        log.info("Exiting scene willConnectTo session")
-        #endif
     }
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
@@ -63,7 +51,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
-        log.info("Trying to return userActivity")
         return scene.userActivity
     }
 }

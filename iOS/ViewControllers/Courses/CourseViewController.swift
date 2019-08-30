@@ -111,6 +111,15 @@ class CourseViewController: UIViewController {
         self.titleLabel.textAlignment = self.traitCollection.horizontalSizeClass == .compact ? .natural : .center
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: nil) { [weak self] _ in
+            let headerColor = self?.headerImageView.image.flatMap { self?.averageColorUnderStatusBar(withCourseVisual: $0) } ?? Brand.default.colors.secondary
+            self?.courseNavigationController?.adjustToUnderlyingColor(headerColor)
+        }
+    }
+
     func show(item: CourseItem, animated: Bool) {
         self.area = .learnings
 
@@ -144,7 +153,7 @@ class CourseViewController: UIViewController {
     private func averageColorUnderStatusBar(withCourseVisual image: UIImage?) -> UIColor? {
         guard let croppedImage = self.croppedImageUnderNavigationBar(withCourseVisual: image) else { return nil }
 
-        // copied from https://www.hackingwithswift.com/example-code/media/how-to-read-the-average-color-of-a-uiimage-using-ciareaaverage
+        // inspired by https://www.hackingwithswift.com/example-code/media/how-to-read-the-average-color-of-a-uiimage-using-ciareaaverage
         let inputImage = CIImage(cgImage: croppedImage)
         let extentVector = CIVector(x: inputImage.extent.origin.x,
                                     y: inputImage.extent.origin.y,
@@ -173,7 +182,8 @@ class CourseViewController: UIViewController {
 
         let imageScale = image.size.width / self.view.bounds.width
         let transform = CGAffineTransform(scaleX: imageScale, y: imageScale)
-        let subImageRect = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: max(topInset, 44)).applying(transform)
+        let y = (image.size.height - self.headerImageView.bounds.height * imageScale) / 2 / imageScale
+        let subImageRect = CGRect(x: 0, y: max(0, y), width: self.view.bounds.width, height: max(topInset, 44)).applying(transform)
         return image.cgImage?.cropping(to: subImageRect)
     }
 

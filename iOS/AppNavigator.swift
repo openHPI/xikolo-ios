@@ -156,7 +156,6 @@ class AppNavigator {
     typealias CourseClosedAction = (CourseViewController, Bool) -> Void
 
     func navigate(to course: Course, courseArea: CourseArea, courseOpenAction: CourseOpenAction, courseClosedAction: CourseClosedAction) {
-
         var currentlyPresentsCourse: Bool = false
         if #available(iOS 13.0, *) {
             currentlyPresentsCourse = self.currentCourseNavigationController?.view.window?.windowScene != nil

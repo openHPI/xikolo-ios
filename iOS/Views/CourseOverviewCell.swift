@@ -65,7 +65,7 @@ extension CourseOverviewCell: UICollectionViewDelegate {
 
         if numberOfAdditionalItems > 0, min(itemLimit, numberOfCoreDataItems) + numberOfAdditionalItems - 1 == indexPath.item {
             if numberOfCoreDataItems == 0 {
-                if #available(iOS 13.0, *) {
+                if #available(iOS 13.0, *) { // XXX
                     guard let sceneDelegate = self.superview?.window?.windowScene?.delegate as? SceneDelegate else { return }
                     sceneDelegate.appNavigator.showCourseList()
                 } else {
@@ -77,7 +77,7 @@ extension CourseOverviewCell: UICollectionViewDelegate {
             }
         } else {
             let course = self.dataSource.object(at: indexPath)
-            if #available(iOS 13.0, *) {
+            if #available(iOS 13.0, *) { // XXX
                 guard let sceneDelegate = self.superview?.window?.windowScene?.delegate as? SceneDelegate else { return }
                 sceneDelegate.appNavigator.show(course: course)
             } else {

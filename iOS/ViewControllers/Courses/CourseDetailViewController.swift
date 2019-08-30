@@ -263,13 +263,8 @@ extension CourseDetailViewController: LoginDelegate {
 extension CourseDetailViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        if #available(iOS 13.0, *) {
-            guard let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate else { return false }
-            return sceneDelegate.appNavigator.handle(url: URL, on: self)
-        } else {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
-            return appDelegate.appNavigator.handle(url: URL, on: self)
-        }
+        guard let appNavigator = self.appNavigator else { return false }
+        return appNavigator.handle(url: URL, on: self)
     }
 
 }

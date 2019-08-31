@@ -153,11 +153,8 @@ class CourseListViewController: UICollectionViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        if #available(iOS 11, *) {
-            // nothing to do here
-        } else {
-            self.collectionViewLayout.invalidateLayout()
-        }
+        super.viewWillTransition(to: size, with: coordinator)
+        self.collectionViewLayout.invalidateLayout()
     }
 
 }

@@ -34,7 +34,7 @@ extension LTIExercise: JSONAPIPullable {
         self.allowedAttempts = try attributes.value(for: "allowed_attempts")
 
         let launchURLString = try attributes.value(for: "launch_url") as String
-        self.launchURL = URL(string: launchURLString.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.launchURL = URL(string: launchURLString.removingWhitespaces())
     }
 
 }

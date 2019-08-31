@@ -107,7 +107,7 @@ extension Course: JSONAPIPullable {
         self.teaserStream = try attributes.value(for: "teaser_stream") ?? self.teaserStream
 
         let imageURLString = try attributes.value(for: "image_url") as String
-        self.imageURL = URL(string: imageURLString.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.imageURL = URL(string: imageURLString.removingWhitespaces())
 
         let categoryValues = try attributes.value(for: "classifiers.category") as [String]?
         self.categories = Course.arrayString(for: categoryValues)

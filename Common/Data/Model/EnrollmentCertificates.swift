@@ -14,13 +14,13 @@ public final class EnrollmentCertificates: NSObject, NSCoding, IncludedPullable 
 
     public required init(object: ResourceData) throws {
         let recordOfAchievementURLString = try object.value(for: "recordOfAchievement_url") as String
-        self.recordOfAchievement = URL(string: recordOfAchievementURLString.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.recordOfAchievement = URL(string: recordOfAchievementURLString.removingWhitespaces())
 
         let confirmationOfParticipationURLString = try object.value(for: "confirmationOfParticipation_url") as String
-        self.confirmationOfParticipation = URL(string: confirmationOfParticipationURLString.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.confirmationOfParticipation = URL(string: confirmationOfParticipationURLString.removingWhitespaces())
 
         let qualifiedCertificateURLString = try object.value(for: "qualifiedCertificate_url") as String
-        self.qualifiedCertificate = URL(string: qualifiedCertificateURLString.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.qualifiedCertificate = URL(string: qualifiedCertificateURLString.removingWhitespaces())
     }
 
     public required init(coder decoder: NSCoder) {

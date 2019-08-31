@@ -39,7 +39,7 @@ extension DocumentLocalization: JSONAPIPullable {
         self.revision = try attributes.value(for: "revision")
 
         let fileURLString = try attributes.value(for: "file_url") as String
-        self.fileURL = URL(string: fileURLString.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.fileURL = URL(string: fileURLString.removingWhitespaces())
     }
 
 }

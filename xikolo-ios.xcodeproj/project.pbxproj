@@ -273,6 +273,7 @@
 		700398C421A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */; };
 		7007E4132133FFB6005AC7A6 /* DownloadedContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */; };
 		70893B5621C3D1F600AF22E3 /* LTIHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70893B5521C3D1F600AF22E3 /* LTIHintViewController.swift */; };
+		82BE606C231957DE000353B4 /* String+removingWhitespaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE606B231957DE000353B4 /* String+removingWhitespaces.swift */; };
 		B4E079EB218791A600EA53F5 /* CertificateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E079EA218791A600EA53F5 /* CertificateCell.xib */; };
 		B4E079ED21879C9200EA53F5 /* CertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E079EC21879C9200EA53F5 /* CertificateCell.swift */; };
 		F88ADBF4AC545211C7BA4AF5 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58514D98E3A98476D78CB780 /* Pods_iOS.framework */; };
@@ -613,6 +614,7 @@
 		7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
+		82BE606B231957DE000353B4 /* String+removingWhitespaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+removingWhitespaces.swift"; sourceTree = "<group>"; };
 		A90587C31B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A90587C51B3BFC130095DB89 /* assets-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios.xcassets"; sourceTree = "<group>"; };
 		AB17C57E1DFCC5B50013BBCD /* PlatformEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEvent.swift; sourceTree = "<group>"; };
@@ -867,6 +869,7 @@
 				50D52163225FC50500C9860D /* Int+DispatchTimeInterval.swift */,
 				50EFACB01FFE3C0100169C35 /* Optional+require.swift */,
 				503585041F3AF6AA002A666C /* String+ascii.swift */,
+				82BE606B231957DE000353B4 /* String+removingWhitespaces.swift */,
 				50D65A0620DE17AE00DFD183 /* UIColor+hex.swift */,
 				50604592206BCF48009569D1 /* URL+URLQueryItem.swift */,
 				50046F6C216B53EB00D59073 /* Notification+CoreData.swift */,
@@ -2085,6 +2088,7 @@
 				50FA2E5120E4B26400656776 /* Date.swift in Sources */,
 				50FA2E0620E4B22E00656776 /* MarkdownHelper.swift in Sources */,
 				50FA2E3F20E4B25800656776 /* LTIExercise.swift in Sources */,
+				82BE606C231957DE000353B4 /* String+removingWhitespaces.swift in Sources */,
 				5001321F215AAAEE0055016F /* NetworkIndicator.swift in Sources */,
 				50911AF922414457000C2007 /* CourseClassifierSearchFilter.swift in Sources */,
 				50FA2E5220E4B26400656776 /* Date+Marshal.swift in Sources */,

@@ -109,7 +109,7 @@ public class UserProfileHelper {
 
     func postLoginStateChange() {
         let coursesFuture = CourseHelper.syncAllCourses().onSuccess { _ in
-            AnnouncementHelper.shared.syncAllAnnouncements()
+            AnnouncementHelper.syncAllAnnouncements()
         }
 
         if self.isLoggedIn {

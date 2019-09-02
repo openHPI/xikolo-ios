@@ -68,6 +68,8 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
             "section_id": video.item?.section?.id,
             "course_id": video.item?.section?.course?.id,
             "video_download_pref": String(describing: UserDefaults.standard.videoQualityForDownload.rawValue),
+            "free_space": String(describing: StreamPersistenceManager.systemFreeSize),
+            "total_space": String(describing: StreamPersistenceManager.systemSize),
         ]
     }
 

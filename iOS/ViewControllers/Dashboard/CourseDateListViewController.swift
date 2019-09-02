@@ -53,7 +53,7 @@ extension CourseDateListViewController {
             return
         }
 
-        AppNavigator.show(course: course)
+        self.appNavigator?.show(course: course)
     }
 
 }

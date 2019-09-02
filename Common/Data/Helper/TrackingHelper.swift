@@ -91,8 +91,6 @@ public class TrackingHelper {
             "build_version": UIApplication.appBuild,
             "screen_width": String(Int(screenSize.width)),
             "screen_height": String(Int(screenSize.height)),
-            "free_space": String(describing: self.systemFreeSize),
-            "total_space": String(describing: self.systemSize),
             "network": self.networkState,
         ]
 
@@ -178,34 +176,6 @@ public class TrackingHelper {
         if let cookie = HTTPCookie(properties: cookieProperties) {
             HTTPCookieStorage.shared.setCookie(cookie)
         }
-    }
-
-}
-
-extension TrackingHelper {
-
-    private var systemFreeSize: UInt64 {
-        return self.deviceData(for: .systemFreeSize) ?? 0
-    }
-
-    private var systemSize: UInt64 {
-        return self.deviceData(for: .systemSize) ?? 0
-    }
-
-    private func deviceData(for key: FileAttributeKey) -> UInt64? {
-        guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last else {
-            return nil
-        }
-
-        guard let deviceData = try? FileManager.default.attributesOfFileSystem(forPath: path) else {
-            return nil
-        }
-
-        guard let value = deviceData[key] as? NSNumber else {
-            return nil
-        }
-
-        return value.uint64Value
     }
 
 }

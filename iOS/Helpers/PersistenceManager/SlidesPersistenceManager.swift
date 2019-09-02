@@ -43,6 +43,8 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
         return [
             "section_id": video.item?.section?.id,
             "course_id": video.item?.section?.course?.id,
+            "free_space": String(describing: SlidesPersistenceManager.systemFreeSize),
+            "total_space": String(describing: SlidesPersistenceManager.systemSize),
         ]
     }
 

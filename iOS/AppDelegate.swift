@@ -70,7 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.tabBarController?.delegate = self
 
             TrackingHelper.shared.delegate = self
-            AnnouncementHelper.shared.delegate = self
         }
 
         UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
@@ -212,45 +211,6 @@ extension AppDelegate: LoginDelegate {
 
     func didSuccessfullyLogin() {
         self.tabBarController?.selectedIndex = 0
-    }
-
-}
-
-@available(iOS, obsoleted: 13.0)
-extension AppDelegate: AnnouncementHelperDelegate {
-
-    func updateUnreadAnnouncementsBadge() {
-        #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("-cleanTabBar") {
-            log.info("Don't show badge when making screenshots")
-            return
-        }
-        #endif
-
-        DispatchQueue.main.async {
-            guard let tabItem = self.tabBarController?.tabBar.items?[safe: 2] else {
-                log.warning("Failed to retrieve tab item for announcements")
-                return
-            }
-
-            guard UserProfileHelper.shared.isLoggedIn else {
-                tabItem.badgeValue = nil
-                return
-            }
-
-            CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                let fetchRequest = AnnouncementHelper.FetchRequest.unreadAnnouncements
-                do {
-                    let announcementCount = try context.count(for: fetchRequest)
-                    let badgeValue = announcementCount > 0 ? String(describing: announcementCount) : nil
-                    DispatchQueue.main.async {
-                        tabItem.badgeValue = badgeValue
-                    }
-                } catch {
-                    log.warning("Failed to retrieve unread announcement count")
-                }
-            }
-        }
     }
 
 }

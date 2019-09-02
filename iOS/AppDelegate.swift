@@ -189,11 +189,6 @@ extension AppDelegate: UITabBarControllerDelegate {
         return false
     }
 
-    func switchToCourseListTab() -> Bool {
-        self.tabBarController.selectedIndex = 1
-        return true
-    }
-
 }
 
 @available(iOS, obsoleted: 13.0)

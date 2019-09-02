@@ -87,11 +87,6 @@ extension SceneDelegate: UITabBarControllerDelegate {
         return false
     }
 
-    func switchToCourseListTab() -> Bool {
-        self.tabBarController.selectedIndex = 1
-        return true
-    }
-
 }
 
 @available(iOS 13.0, *)

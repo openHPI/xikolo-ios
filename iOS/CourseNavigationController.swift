@@ -8,8 +8,30 @@ import UIKit
 
 class CourseNavigationController: XikoloNavigationController {
 
+    enum BarTintStyle {
+        case light
+        case dark
+
+        var color: UIColor {
+            switch self {
+            case .light:
+                return .white
+            case .dark:
+                return .black
+            }
+        }
+    }
+
     private var pendingGestureRecognizer: UIGestureRecognizer?
     private var lastNavigationBarProgress: CGFloat?
+    private var barTintStyle: BarTintStyle = .light {
+        didSet {
+            self.setNeedsStatusBarAppearanceUpdate()
+            if let lastNavigationBarProgress = self.lastNavigationBarProgress {
+                self.updateNavigationBar(forProgress: lastNavigationBarProgress)
+            }
+        }
+    }
 
     var courseViewController: CourseViewController? {
         return self.viewControllers.first as? CourseViewController
@@ -26,6 +48,24 @@ class CourseNavigationController: XikoloNavigationController {
 
         if let gestureRecognizer = self.pendingGestureRecognizer {
             self.view.addGestureRecognizer(gestureRecognizer)
+        }
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        let headerHidden = self.traitCollection.verticalSizeClass == .compact
+        if (self.lastNavigationBarProgress ?? 0.0) >= 1.0 || headerHidden {
+            return .default
+        } else {
+            switch self.barTintStyle {
+            case .light:
+                return .lightContent
+            case .dark:
+                if #available(iOS 13, *) {
+                    return .darkContent
+                } else {
+                    return .default
+                }
+            }
         }
     }
 
@@ -72,6 +112,19 @@ class CourseNavigationController: XikoloNavigationController {
         super.dismiss(animated: flag, completion: completion)
     }
 
+    func adjustToUnderlyingColor(_ color: UIColor) {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        color.getRed(&red, green: &green, blue: &blue, alpha: nil)
+
+        // Refers to this suggeted formula: https://www.w3.org/WAI/ER/WD-AERT/#color-contrast
+        let brightnessValue = (red * 299 + green * 587 + blue * 114) / 1000 * 255
+        let isBright = brightnessValue > 125
+
+        self.barTintStyle = isBright ? .dark : .light
+    }
+
     func updateNavigationBar(forProgress progress: CGFloat) {
         self.lastNavigationBarProgress = progress
 
@@ -88,7 +141,15 @@ class CourseNavigationController: XikoloNavigationController {
         var brightness: CGFloat = 0
         var alpha: CGFloat = 1
         Brand.default.colors.window.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-        let tintColor = UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: (1 - mappedProgress * (1 - brightness)), alpha: alpha)
+
+        let tintColor: UIColor
+        switch self.barTintStyle {
+        case .light:
+            tintColor = UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: (1 - mappedProgress * (1 - brightness)), alpha: alpha)
+        case .dark:
+            tintColor = UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: mappedProgress * brightness, alpha: alpha)
+        }
+
         self.navigationBar.tintColor = tintColor
 
         var transparentBackground: UIImage

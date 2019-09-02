@@ -182,8 +182,8 @@ class CourseViewController: UIViewController {
 
         let imageScale = image.size.width / self.view.bounds.width
         let transform = CGAffineTransform(scaleX: imageScale, y: imageScale)
-        let y = (image.size.height - self.headerImageView.bounds.height * imageScale) / 2 / imageScale
-        let subImageRect = CGRect(x: 0, y: max(0, y), width: self.view.bounds.width, height: max(topInset, 44)).applying(transform)
+        let yOffset = (image.size.height - self.headerImageView.bounds.height * imageScale) / 2 / imageScale
+        let subImageRect = CGRect(x: 0, y: max(0, yOffset), width: self.view.bounds.width, height: max(topInset, 44)).applying(transform)
         return image.cgImage?.cropping(to: subImageRect)
     }
 

@@ -118,7 +118,7 @@ class CourseListViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = self.dataSource.object(at: indexPath)
-        AppNavigator.show(course: course)
+        self.appNavigator?.show(course: course)
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return SyncPushEngineManager(syncEngine: engine)
     }()
 
+    @available(iOS, obsoleted: 13.0)
     private var tabBarController: UITabBarController? {
         guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
             let reason = "UITabBarController could not be found"
@@ -36,11 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return tabBarController
     }
 
-    var window: UIWindow?
+    @available(iOS, obsoleted: 13.0)
+    lazy var appNavigator = AppNavigator(tabBarController: self.tabBarController!)
 
-    var isFullScrren: Bool {
-        return self.window?.frame == self.window?.screen.bounds
-    }
+    var window: UIWindow?
 
     static func instance() -> AppDelegate {
         let instance = UIApplication.shared.delegate as? AppDelegate
@@ -52,22 +52,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         CoreDataHelper.migrateModelToCommon()
 
-        // select start tab
-        self.tabBarController?.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
-        if UserProfileHelper.shared.isLoggedIn {
-            CourseHelper.syncAllCourses().onComplete { _ in
-                CourseDateHelper.syncAllCourseDates()
+        if #available(iOS 13.0, *) {} else {
+            // select start tab
+            self.tabBarController?.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
+            if UserProfileHelper.shared.isLoggedIn {
+                CourseHelper.syncAllCourses().onComplete { _ in
+                    CourseDateHelper.syncAllCourseDates()
+                }
             }
         }
 
         // Configure Firebase
         FirebaseApp.configure()
 
-        // register tab bar delegate
-        self.tabBarController?.delegate = self
+        if #available(iOS 13.0, *) {} else {
+            // register tab bar delegate
+            self.tabBarController?.delegate = self
 
-        TrackingHelper.shared.delegate = self
-        AnnouncementHelper.shared.delegate = self
+            TrackingHelper.shared.delegate = self
+            AnnouncementHelper.shared.delegate = self
+        }
+
         UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
         ErrorManager.shared.register(reporter: Crashlytics.sharedInstance())
@@ -103,16 +108,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    @available(iOS, obsoleted: 13.0)
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        return AppNavigator.handle(userActivity: userActivity)
+        return self.appNavigator.handle(userActivity: userActivity)
     }
 
+    @available(iOS, obsoleted: 13.0)
     func application(_ app: UIApplication,
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        return AppNavigator.handle(url: url)
+        return self.appNavigator.handle(url: url)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -144,8 +151,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SpotlightHelper.shared.stopObserving()
     }
 
+    @available(iOS 13.0, *)
+    func application(_ application: UIApplication,
+                     configurationForConnecting connectingSceneSession: UISceneSession,
+                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        log.info("Entered application configurationForConnecting connectingSceneSession")
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
+
 }
 
+@available(iOS, obsoleted: 13.0)
 extension AppDelegate: UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -191,6 +207,7 @@ extension AppDelegate: UITabBarControllerDelegate {
 
 }
 
+@available(iOS, obsoleted: 13.0)
 extension AppDelegate: LoginDelegate {
 
     func didSuccessfullyLogin() {
@@ -199,6 +216,7 @@ extension AppDelegate: LoginDelegate {
 
 }
 
+@available(iOS, obsoleted: 13.0)
 extension AppDelegate: AnnouncementHelperDelegate {
 
     func updateUnreadAnnouncementsBadge() {
@@ -237,6 +255,7 @@ extension AppDelegate: AnnouncementHelperDelegate {
 
 }
 
+@available(iOS, obsoleted: 13.0)
 extension AppDelegate: TrackingHelperDelegate {
 
     var applicationWindowSize: CGSize? {

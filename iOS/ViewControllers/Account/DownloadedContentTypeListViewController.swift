@@ -82,7 +82,7 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
             self.updateToolBarButtons()
         } else {
             let object = self.dataSource.object(at: indexPath)
-            Configuration.show(object)
+            Configuration.show(object, with: self.appNavigator)
         }
     }
 

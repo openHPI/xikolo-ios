@@ -43,19 +43,33 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
         return [
             "section_id": video.item?.section?.id,
             "course_id": video.item?.section?.course?.id,
+            "free_space": String(describing: SlidesPersistenceManager.systemFreeSize),
+            "total_space": String(describing: SlidesPersistenceManager.systemSize),
         ]
     }
 
     func didStartDownload(for resource: Video) {
-        TrackingHelper.shared.createEvent(.slidesDownloadStart, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
+        TrackingHelper.createEvent(.slidesDownloadStart,
+                                   resourceType: .video,
+                                   resourceId: resource.id,
+                                   on: nil,
+                                   context: self.trackingContext(for: resource))
     }
 
     func didCancelDownload(for resource: Video) {
-        TrackingHelper.shared.createEvent(.slidesDownloadCanceled, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
+        TrackingHelper.createEvent(.slidesDownloadCanceled,
+                                   resourceType: .video,
+                                   resourceId: resource.id,
+                                   on: nil,
+                                   context: self.trackingContext(for: resource))
     }
 
     func didFinishDownload(for resource: Video) {
-        TrackingHelper.shared.createEvent(.slidesDownloadFinished, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
+        TrackingHelper.createEvent(.slidesDownloadFinished,
+                                   resourceType: .video,
+                                   resourceId: resource.id,
+                                   on: nil,
+                                   context: self.trackingContext(for: resource))
     }
 
 }

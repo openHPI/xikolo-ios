@@ -30,7 +30,7 @@ class DashboardViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        TrackingHelper.shared.createEvent(.visitedDashboard)
+        TrackingHelper.createEvent(.visitedDashboard, on: self)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

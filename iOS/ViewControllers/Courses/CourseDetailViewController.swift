@@ -213,7 +213,7 @@ class CourseDetailViewController: UIViewController {
             if let course = self?.course {
                 CourseHelper.syncCourse(course)
                 CourseDateHelper.syncCourseDates(for: course)
-                AnnouncementHelper.shared.syncAnnouncements(for: course)
+                AnnouncementHelper.syncAnnouncements(for: course)
             }
 
             DispatchQueue.main.async {
@@ -263,7 +263,8 @@ extension CourseDetailViewController: LoginDelegate {
 extension CourseDetailViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        return !AppNavigator.handle(url: URL, on: self)
+        guard let appNavigator = self.appNavigator else { return false }
+        return !appNavigator.handle(url: URL, on: self)
     }
 
 }

@@ -78,6 +78,7 @@ extension Video: JSONAPIPullable {
 
         let transcriptURLString = try attributes.value(for: "transcript_url") as String
         self.transcriptURL = URL(string: transcriptURLString.removingWhitespaces())
+    }
 
 }
 }

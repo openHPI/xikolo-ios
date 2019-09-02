@@ -69,7 +69,7 @@ class AnnouncementListViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        TrackingHelper.shared.createEvent(.visitedAnnouncementList)
+        TrackingHelper.createEvent(.visitedAnnouncementList, on: self)
     }
 
     func setupEmptyState() {
@@ -104,7 +104,7 @@ class AnnouncementListViewController: UITableViewController {
 
         let markAllAsReadActionTitle = NSLocalizedString("announcement.alert.mark all as read", comment: "alert action title to mark all announcements as read")
         let markAllAsReadAction = UIAlertAction(title: markAllAsReadActionTitle, style: .default) { _ in
-            AnnouncementHelper.shared.markAllAsVisited()
+            AnnouncementHelper.markAllAsVisited()
         }
 
         alert.addAction(markAllAsReadAction)
@@ -141,9 +141,9 @@ extension AnnouncementListViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         if let course = self.course {
-            return AnnouncementHelper.shared.syncAnnouncements(for: course).asVoid()
+            return AnnouncementHelper.syncAnnouncements(for: course).asVoid()
         } else {
-            return AnnouncementHelper.shared.syncAllAnnouncements().asVoid()
+            return AnnouncementHelper.syncAllAnnouncements().asVoid()
         }
     }
 

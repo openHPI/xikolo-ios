@@ -118,7 +118,7 @@ class CourseListViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = self.dataSource.object(at: indexPath)
-        AppNavigator.show(course: course)
+        self.appNavigator?.show(course: course)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -153,11 +153,8 @@ class CourseListViewController: UICollectionViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        if #available(iOS 11, *) {
-            // nothing to do here
-        } else {
-            self.collectionViewLayout.invalidateLayout()
-        }
+        super.viewWillTransition(to: size, with: coordinator)
+        self.collectionViewLayout.invalidateLayout()
     }
 
 }

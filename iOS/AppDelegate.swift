@@ -60,17 +60,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     CourseDateHelper.syncAllCourseDates()
                 }
             }
+
+            // register tab bar delegate
+            self.tabBarController?.delegate = self
         }
 
         // Configure Firebase
         FirebaseApp.configure()
-
-        if #available(iOS 13.0, *) {} else {
-            // register tab bar delegate
-            self.tabBarController?.delegate = self
-
-            TrackingHelper.shared.delegate = self
-        }
 
         UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
@@ -211,15 +207,6 @@ extension AppDelegate: LoginDelegate {
 
     func didSuccessfullyLogin() {
         self.tabBarController?.selectedIndex = 0
-    }
-
-}
-
-@available(iOS, obsoleted: 13.0)
-extension AppDelegate: TrackingHelperDelegate {
-
-    var applicationWindowSize: CGSize? {
-        return self.window?.frame.size
     }
 
 }

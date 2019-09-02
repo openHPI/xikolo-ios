@@ -96,7 +96,7 @@ class CourseItemViewController: UIPageViewController {
             "section_id": item.section?.id,
             "course_id": item.section?.course?.id,
         ]
-        TrackingHelper.shared.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, context: context)
+        TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, on: self, context: context)
     }
 
 }

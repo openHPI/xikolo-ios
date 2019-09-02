@@ -36,8 +36,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // register tab bar delegate
         self.tabBarController?.delegate = self
-
-        TrackingHelper.shared.delegate = self
     }
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
@@ -105,15 +103,6 @@ extension SceneDelegate: LoginDelegate {
 
     func didSuccessfullyLogin() {
         self.tabBarController?.selectedIndex = 0
-    }
-
-}
-
-@available(iOS 13.0, *)
-extension SceneDelegate: TrackingHelperDelegate {
-
-    var applicationWindowSize: CGSize? {
-        return self.window?.frame.size
     }
 
 }

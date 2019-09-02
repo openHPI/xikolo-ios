@@ -58,8 +58,6 @@ class CourseListViewController: UICollectionViewController {
 
         self.setupSearchController()
         self.addFilterView()
-
-        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
 
     private func setupSearchController() {

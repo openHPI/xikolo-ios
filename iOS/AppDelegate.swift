@@ -26,19 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     @available(iOS, obsoleted: 13.0)
-    private var tabBarController: UITabBarController? {
-        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
-            let reason = "UITabBarController could not be found"
-            ErrorManager.shared.reportStoryboardError(reason: reason)
-            log.error(reason)
-            return nil
-        }
-
+    private lazy var tabBarController: UITabBarController = {
+        let tabBarController = XikoloTabBarController.make()
+        tabBarController.delegate = self
         return tabBarController
-    }
+    }()
 
     @available(iOS, obsoleted: 13.0)
-    lazy var appNavigator = AppNavigator(tabBarController: self.tabBarController!)
+    lazy var appNavigator = AppNavigator(tabBarController: self.tabBarController)
 
     var window: UIWindow?
 
@@ -48,21 +43,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.window?.tintColor = Brand.default.colors.window
-
         CoreDataHelper.migrateModelToCommon()
 
         if #available(iOS 13.0, *) {} else {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = self.tabBarController
+            self.window?.tintColor = Brand.default.colors.window
+            self.window?.makeKeyAndVisible()
+
             // select start tab
-            self.tabBarController?.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
+            self.tabBarController.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
             if UserProfileHelper.shared.isLoggedIn {
                 CourseHelper.syncAllCourses().onComplete { _ in
                     CourseDateHelper.syncAllCourseDates()
                 }
             }
-
-            // register tab bar delegate
-            self.tabBarController?.delegate = self
         }
 
         // Configure Firebase
@@ -194,19 +189,13 @@ extension AppDelegate: UITabBarControllerDelegate {
         return false
     }
 
-    func switchToCourseListTab() -> Bool {
-        guard let tabBarController = self.tabBarController else { return false }
-        tabBarController.selectedIndex = 1
-        return true
-    }
-
 }
 
 @available(iOS, obsoleted: 13.0)
 extension AppDelegate: LoginDelegate {
 
     func didSuccessfullyLogin() {
-        self.tabBarController?.selectedIndex = 0
+        self.tabBarController.selectedIndex = 0
     }
 
 }

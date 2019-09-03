@@ -14,6 +14,19 @@ class XikoloTabBarController: UITabBarController {
         let message: String?
     }
 
+    static func make() -> XikoloTabBarController {
+        let viewControllers = [
+            R.storyboard.tabDashboard.instantiateInitialViewController(),
+            R.storyboard.tabCourses.instantiateInitialViewController(),
+            R.storyboard.tabNews.instantiateInitialViewController(),
+            R.storyboard.tabAccount.instantiateInitialViewController(),
+        ]
+
+        let tabBarController = XikoloTabBarController()
+        tabBarController.viewControllers = viewControllers.compactMap { $0 }
+        return tabBarController
+    }
+
     private static let messageViewHeight: CGFloat = 16
     private static let messageLabelFontSize: CGFloat = 12
 
@@ -65,6 +78,8 @@ class XikoloTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.tabBar.isTranslucent = false
 
         self.messageLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: XikoloTabBarController.messageViewHeight)
         self.messageLabel.textAlignment = .center

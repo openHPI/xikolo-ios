@@ -96,6 +96,7 @@ extension Course: JSONAPIPullable {
         self.accessible = try attributes.value(for: "accessible")
         self.courseDescription = try attributes.value(for: "description") ?? self.courseDescription
         self.certificates = try attributes.value(for: "certificates")
+        self.imageURL = try attributes.failsafeURL(for: "image_url")
         self.teachers = try attributes.value(for: "teachers")
         self.language = try attributes.value(for: "language")
         self.startsAt = try attributes.value(for: "start_at")
@@ -105,9 +106,6 @@ extension Course: JSONAPIPullable {
         self.enrollable = try attributes.value(for: "enrollable")
         self.external = try attributes.value(for: "external")
         self.teaserStream = try attributes.value(for: "teaser_stream") ?? self.teaserStream
-
-        let imageURLString = try attributes.value(for: "image_url") as String
-        self.imageURL = URL(string: imageURLString.removingWhitespaces())
 
         let categoryValues = try attributes.value(for: "classifiers.category") as [String]?
         self.categories = Course.arrayString(for: categoryValues)

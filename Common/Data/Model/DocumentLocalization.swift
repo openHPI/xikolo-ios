@@ -36,10 +36,8 @@ extension DocumentLocalization: JSONAPIPullable {
         self.title = try attributes.value(for: "title")
         self.localizationDescription = try attributes.value(for: "description")
         self.languageCode = try attributes.value(for: "language")
+        self.fileURL = try attributes.failsafeURL(for: "file_url")
         self.revision = try attributes.value(for: "revision")
-
-        let fileURLString = try attributes.value(for: "file_url") as String
-        self.fileURL = URL(string: fileURLString.removingWhitespaces())
     }
 
 }

@@ -18,10 +18,7 @@ class DashboardViewController: UITableViewController {
 
         self.addRefreshControl()
         self.refresh()
-    }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(coreDataChange(notification:)),
                                                name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,

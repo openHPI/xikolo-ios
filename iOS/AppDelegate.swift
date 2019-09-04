@@ -53,39 +53,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             // select start tab
             self.tabBarController.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
-            if UserProfileHelper.shared.isLoggedIn {
-                CourseHelper.syncAllCourses().onComplete { _ in
-                    CourseDateHelper.syncAllCourseDates()
+
+            DispatchQueue.main.async {
+                if UserProfileHelper.shared.isLoggedIn {
+                    CourseHelper.syncAllCourses().onComplete { _ in
+                        CourseDateHelper.syncAllCourseDates()
+                    }
                 }
             }
         }
 
-        // Configure Firebase
-        FirebaseApp.configure()
+        DispatchQueue.main.async {
+            // Configure Firebase
+            FirebaseApp.configure()
 
-        UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
+            UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
-        ErrorManager.shared.register(reporter: Crashlytics.sharedInstance())
+            ErrorManager.shared.register(reporter: Crashlytics.sharedInstance())
 
-        // register resource to be pushed automatically
-        self.pushEngineManager.register(Announcement.self)
-        self.pushEngineManager.register(CourseItem.self)
-        self.pushEngineManager.register(Enrollment.self)
-        self.pushEngineManager.register(TrackingEvent.self)
-        self.pushEngineManager.startObserving()
+            // register resource to be pushed automatically
+            self.pushEngineManager.register(Announcement.self)
+            self.pushEngineManager.register(CourseItem.self)
+            self.pushEngineManager.register(Enrollment.self)
+            self.pushEngineManager.register(TrackingEvent.self)
+            self.pushEngineManager.startObserving()
 
-        UserProfileHelper.shared.migrateLegacyKeychain()
+            UserProfileHelper.shared.migrateLegacyKeychain()
 
-        StreamPersistenceManager.shared.restoreDownloads()
-        SlidesPersistenceManager.shared.restoreDownloads()
+            StreamPersistenceManager.shared.restoreDownloads()
+            SlidesPersistenceManager.shared.restoreDownloads()
 
-        SpotlightHelper.shared.startObserving()
+            SpotlightHelper.shared.startObserving()
 
-        do {
-            try ReachabilityHelper.startObserving()
-        } catch {
-            ErrorManager.shared.report(error)
-            log.error("Failed to start reachability notification")
+            do {
+                try ReachabilityHelper.startObserving()
+            } catch {
+                ErrorManager.shared.report(error)
+                log.error("Failed to start reachability notification")
+            }
         }
 
         #if DEBUG

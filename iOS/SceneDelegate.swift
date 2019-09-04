@@ -9,33 +9,30 @@ import UIKit
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    private var tabBarController: UITabBarController? {
-        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
-            let reason = "UITabBarController could not be found"
-            ErrorManager.shared.reportStoryboardError(reason: reason)
-            log.error(reason)
-            return nil
-        }
-
+    private lazy var tabBarController: UITabBarController = {
+        let tabBarController = XikoloTabBarController.make()
+        tabBarController.delegate = self
         return tabBarController
-    }
+    }()
 
-    lazy var appNavigator = AppNavigator(tabBarController: self.tabBarController!)
+    lazy var appNavigator = AppNavigator(tabBarController: self.tabBarController)
 
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        self.window?.tintColor = Brand.default.colors.window
+        if let windowScene = scene as? UIWindowScene {
+            self.window = UIWindow(windowScene: windowScene)
+            self.window?.rootViewController = self.tabBarController
+            self.window?.tintColor = Brand.default.colors.window
+            self.window?.makeKeyAndVisible()
+        }
 
-        self.tabBarController?.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
+        self.tabBarController.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
         if UserProfileHelper.shared.isLoggedIn {
             CourseHelper.syncAllCourses().onComplete { _ in
                 CourseDateHelper.syncAllCourseDates()
             }
         }
-
-        // register tab bar delegate
-        self.tabBarController?.delegate = self
     }
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
@@ -90,19 +87,13 @@ extension SceneDelegate: UITabBarControllerDelegate {
         return false
     }
 
-    func switchToCourseListTab() -> Bool {
-        guard let tabBarController = self.tabBarController else { return false }
-        tabBarController.selectedIndex = 1
-        return true
-    }
-
 }
 
 @available(iOS 13.0, *)
 extension SceneDelegate: LoginDelegate {
 
     func didSuccessfullyLogin() {
-        self.tabBarController?.selectedIndex = 0
+        self.tabBarController.selectedIndex = 0
     }
 
 }

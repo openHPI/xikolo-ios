@@ -59,25 +59,17 @@ extension Video: JSONAPIPullable {
     public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.audioSize = try attributes.value(for: "audio_size")
+        self.audioURL = try attributes.failsafeURL(for: "audio_url")
         self.duration = try attributes.value(for: "duration")
         self.lecturerStream = try attributes.value(for: "lecturer_stream")
         self.singleStream = try attributes.value(for: "single_stream")
+        self.slidesURL = try attributes.failsafeURL(for: "slides_url")
         self.slidesSize = try attributes.value(for: "slides_size")
         self.slidesStream = try attributes.value(for: "slides_stream")
         self.summary = try attributes.value(for: "summary")
+        self.thumbnailURL = try attributes.failsafeURL(for: "thumbnail_url")
+        self.transcriptURL = try attributes.failsafeURL(for: "transcript_url")
         self.transcriptSize = try attributes.value(for: "transcript_size")
-
-        let audioURLString = try attributes.value(for: "audio_url") as String
-        self.audioURL = URL(string: audioURLString.removingWhitespaces())
-
-        let slidesURLString = try attributes.value(for: "slides_url") as String
-        self.slidesURL = URL(string: slidesURLString.removingWhitespaces())
-
-        let thumbnailURLString = try attributes.value(for: "thumbnail_url") as String
-        self.thumbnailURL = URL(string: thumbnailURLString.removingWhitespaces())
-
-        let transcriptURLString = try attributes.value(for: "transcript_url") as String
-        self.transcriptURL = URL(string: transcriptURLString.removingWhitespaces())
     }
 
 }

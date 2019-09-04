@@ -13,14 +13,9 @@ public final class EnrollmentCertificates: NSObject, NSCoding, IncludedPullable 
     public var qualifiedCertificate: URL?
 
     public required init(object: ResourceData) throws {
-        let recordOfAchievementURLString = try object.value(for: "recordOfAchievement_url") as String
-        self.recordOfAchievement = URL(string: recordOfAchievementURLString.removingWhitespaces())
-
-        let confirmationOfParticipationURLString = try object.value(for: "confirmationOfParticipation_url") as String
-        self.confirmationOfParticipation = URL(string: confirmationOfParticipationURLString.removingWhitespaces())
-
-        let qualifiedCertificateURLString = try object.value(for: "qualifiedCertificate_url") as String
-        self.qualifiedCertificate = URL(string: qualifiedCertificateURLString.removingWhitespaces())
+        self.confirmationOfParticipation = try object.failsafeURL(for: "confirmation_of_participation")
+        self.recordOfAchievement = try object.failsafeURL(for: "record_of_achievement")
+        self.qualifiedCertificate = try object.failsafeURL(for: "qualified_certificate")
     }
 
     public required init(coder decoder: NSCoder) {

@@ -42,7 +42,6 @@ public struct BrandColors: Decodable {
         }
     }
 
-
     public var tertiary: UIColor {
         if #available(iOS 11, *) {
             return UIColor(named: "tertiary") ?? self.tertiaryFallback

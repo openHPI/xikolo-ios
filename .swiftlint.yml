@@ -112,3 +112,10 @@ custom_rules:
     name: "Whitespace Comment Start"
     message: "A comment should always start with a whitespace."
     severity: warning
+  nslog_prohibited: # rule identifier
+    included: ".*.swift" # regex that defines paths to include during linting. optional.
+    excluded: ".*(Tests|SnapshotHelper)\\.swift" # regex that defines paths to exclude during linting. optional
+    name: "Use log instead of using NSLog, print, or OSLog" # rule name. optional.
+    regex: 'NSLog|print\(' # matching pattern
+    message: "Incorrect logging" # violation message. optional.
+    severity: warning # violation severity. optional.

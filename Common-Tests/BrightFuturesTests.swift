@@ -7,7 +7,7 @@ import XCTest
 
 import BrightFutures
 
-class BrightFutures: XCTestCase {
+class BrightFuturesTests: XCTestCase {
 
     func testEarliestDeadlineChaining() {
         // given

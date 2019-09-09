@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable file_length
+
 import Common
 import SDWebImage
 import UIKit

@@ -15,7 +15,7 @@ extension Notification {
         return keys.map { key in
             guard let objects = self.userInfo?[key] as? Set<NSManagedObject>, !objects.isEmpty else { return false }
             return objects.contains { $0 is T }
-        }.reduce(false) { $0 || $1 }
+        }.contains(true)
     }
 
 }

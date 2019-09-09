@@ -28,9 +28,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         self.tabBarController.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
-        if UserProfileHelper.shared.isLoggedIn {
-            CourseHelper.syncAllCourses().onComplete { _ in
-                CourseDateHelper.syncAllCourseDates()
+
+        DispatchQueue.main.async {
+            if UserProfileHelper.shared.isLoggedIn {
+                CourseHelper.syncAllCourses().onComplete { _ in
+                    CourseDateHelper.syncAllCourseDates()
+                }
             }
         }
     }

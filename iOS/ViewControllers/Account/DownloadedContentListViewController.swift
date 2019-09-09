@@ -47,20 +47,16 @@ class DownloadedContentListViewController: UITableViewController {
         self.tableView?.emptyDataSetDelegate = nil
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(coreDataChange(notification:)),
-                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
-                                               object: CoreDataHelper.viewContext)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setupEmptyState()
         self.refresh()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(notification:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
     }
 
     override func viewDidLayoutSubviews() {

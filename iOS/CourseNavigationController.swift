@@ -91,22 +91,6 @@ class CourseNavigationController: XikoloNavigationController {
         }
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        guard let pageViewController = self.topViewController as? UIPageViewController else {
-            return
-        }
-
-        guard pageViewController.viewControllers?.first is VideoViewController else {
-            return
-        }
-
-        for view in self.view.subviews {
-            view.layer.masksToBounds = !self.navigationBar.isHidden
-        }
-    }
-
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         guard self.presentedViewController != nil else { return }
         super.dismiss(animated: flag, completion: completion)

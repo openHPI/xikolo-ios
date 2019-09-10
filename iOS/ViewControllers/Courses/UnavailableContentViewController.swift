@@ -41,7 +41,7 @@ class UnavailableContentViewController: UIViewController {
 
 }
 
-extension UnavailableContentViewController: CourseItemContentViewController {
+extension UnavailableContentViewController: CourseItemContentPresenter {
 
     var item: CourseItem? {
         return self.courseItem

@@ -83,7 +83,7 @@ class LTIHintViewController: UIViewController {
     }
 }
 
-extension LTIHintViewController: CourseItemContentViewController {
+extension LTIHintViewController: CourseItemContentPresenter {
 
     var item: CourseItem? {
         return self.courseItem

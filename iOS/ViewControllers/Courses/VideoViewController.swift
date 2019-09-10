@@ -582,7 +582,7 @@ extension VideoViewController: BMPlayerDelegate {
 
 }
 
-extension VideoViewController: CourseItemContentViewController {
+extension VideoViewController: CourseItemContentPresenter {
 
     var item: CourseItem? {
         return self.courseItem

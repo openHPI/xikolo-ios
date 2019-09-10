@@ -135,6 +135,10 @@ class CourseItemListViewController: UITableViewController {
         self.scrollDelegate?.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
     }
 
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.scrollDelegate?.scrollViewDidEndDecelerating(scrollView)
+    }
+
     private func updateFooterView() {
         guard self.course.startsAt?.inPast ?? true else {
             self.nextSectionStartLabel.isHidden = true

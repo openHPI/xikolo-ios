@@ -386,7 +386,14 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if decelerate { return }
+        self.snapToExtendedOrCollapsedHeaderPosition(with: scrollView)
+    }
 
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.snapToExtendedOrCollapsedHeaderPosition(with: scrollView)
+    }
+
+    private func snapToExtendedOrCollapsedHeaderPosition(with scrollView: UIScrollView) {
         let adjustedScrollOffset = scrollView.contentOffset.y + self.headerOffset
         if adjustedScrollOffset > self.headerHeight { return }
 

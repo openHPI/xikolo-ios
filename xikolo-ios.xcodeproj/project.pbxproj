@@ -11,6 +11,12 @@
 		36CCE9152A57516F7B4DCF67 /* Pods_Common_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404B6E3B7B07070C964CF6A2 /* Pods_Common_Tests.framework */; };
 		498CD6E73ECFB46C24208C01 /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 330DFF127FCB2215F2A56BA4 /* Pods_Common.framework */; };
 		5001321F215AAAEE0055016F /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
+		50044FBA232773F2004D1AD8 /* CourseLearningsWeb.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50044FB9232773F2004D1AD8 /* CourseLearningsWeb.storyboard */; };
+		50044FC32327815F004D1AD8 /* CourseLearningsLTI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50044FC52327815F004D1AD8 /* CourseLearningsLTI.storyboard */; };
+		50044FC82327816B004D1AD8 /* CourseLearningsUnavailable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50044FCA2327816B004D1AD8 /* CourseLearningsUnavailable.storyboard */; };
+		50044FCD23278F03004D1AD8 /* CourseLearningsProctored.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50044FCF23278F03004D1AD8 /* CourseLearningsProctored.storyboard */; };
+		50044FD223278F19004D1AD8 /* CourseLearningsRichtext.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50044FD423278F19004D1AD8 /* CourseLearningsRichtext.storyboard */; };
+		50044FD723278F25004D1AD8 /* CourseLearningsVideo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50044FD923278F25004D1AD8 /* CourseLearningsVideo.storyboard */; };
 		50046F6D216B53EB00D59073 /* Notification+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50046F6C216B53EB00D59073 /* Notification+CoreData.swift */; };
 		50046F6F216B938D00D59073 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50046F6E216B938D00D59073 /* LoadingButton.swift */; };
 		50046F71216BBAD200D59073 /* BrightFuture+earliest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50046F70216BBAD200D59073 /* BrightFuture+earliest.swift */; };
@@ -385,6 +391,17 @@
 		50022901205928E2003301A7 /* UserActionsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActionsDelegate.swift; sourceTree = "<group>"; };
 		50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+customView.swift"; sourceTree = "<group>"; };
 		5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+spinner.swift"; sourceTree = "<group>"; };
+		50044FB9232773F2004D1AD8 /* CourseLearningsWeb.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CourseLearningsWeb.storyboard; sourceTree = "<group>"; };
+		50044FC42327815F004D1AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseLearningsLTI.storyboard; sourceTree = "<group>"; };
+		50044FC723278164004D1AD8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseLearningsLTI.strings; sourceTree = "<group>"; };
+		50044FC92327816B004D1AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseLearningsUnavailable.storyboard; sourceTree = "<group>"; };
+		50044FCC23278172004D1AD8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseLearningsUnavailable.strings; sourceTree = "<group>"; };
+		50044FCE23278F03004D1AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseLearningsProctored.storyboard; sourceTree = "<group>"; };
+		50044FD123278F13004D1AD8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseLearningsProctored.strings; sourceTree = "<group>"; };
+		50044FD323278F19004D1AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseLearningsRichtext.storyboard; sourceTree = "<group>"; };
+		50044FD623278F1F004D1AD8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseLearningsRichtext.strings; sourceTree = "<group>"; };
+		50044FD823278F25004D1AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseLearningsVideo.storyboard; sourceTree = "<group>"; };
+		50044FDB23278F2C004D1AD8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseLearningsVideo.strings; sourceTree = "<group>"; };
 		50046F6C216B53EB00D59073 /* Notification+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+CoreData.swift"; sourceTree = "<group>"; };
 		50046F6E216B938D00D59073 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		50046F70216BBAD200D59073 /* BrightFuture+earliest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrightFuture+earliest.swift"; sourceTree = "<group>"; };
@@ -1402,6 +1419,12 @@
 				AB9AF2D81CF72EF100ED3EB0 /* TabAccount.storyboard */,
 				5040A61320795CB200E98351 /* Course.storyboard */,
 				50502E2D1FD04E56000A8D35 /* CourseLearnings.storyboard */,
+				50044FD923278F25004D1AD8 /* CourseLearningsVideo.storyboard */,
+				50044FD423278F19004D1AD8 /* CourseLearningsRichtext.storyboard */,
+				50044FC52327815F004D1AD8 /* CourseLearningsLTI.storyboard */,
+				50044FCA2327816B004D1AD8 /* CourseLearningsUnavailable.storyboard */,
+				50044FCF23278F03004D1AD8 /* CourseLearningsProctored.storyboard */,
+				50044FB9232773F2004D1AD8 /* CourseLearningsWeb.storyboard */,
 				5040A60420795BBE00E98351 /* CourseDetails.storyboard */,
 				50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */,
 				5054B2E42108B19500CE9067 /* CourseDocuments.storyboard */,
@@ -1650,7 +1673,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50044FCD23278F03004D1AD8 /* CourseLearningsProctored.storyboard in Resources */,
 				50CF1FF720DCDBFC0011BFE9 /* WebViewController.storyboard in Resources */,
+				50044FC82327816B004D1AD8 /* CourseLearningsUnavailable.storyboard in Resources */,
 				507DFF9A2153E397006DC140 /* InfoPlist.strings in Resources */,
 				508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */,
 				50CF1FF820DCDBFC0011BFE9 /* TabCourses.storyboard in Resources */,
@@ -1658,11 +1683,15 @@
 				50CF1FFA20DCDBFC0011BFE9 /* Course.storyboard in Resources */,
 				508AB2C02109F0A10079EAE5 /* DocumentHeader.xib in Resources */,
 				50CF1FFC20DCDBFC0011BFE9 /* CourseLearnings.storyboard in Resources */,
+				50044FC32327815F004D1AD8 /* CourseLearningsLTI.storyboard in Resources */,
 				5054B2E52108B19500CE9067 /* CourseDocuments.storyboard in Resources */,
 				50CF1FFF20DCDBFC0011BFE9 /* LaunchScreen.storyboard in Resources */,
 				50CF200020DCDBFC0011BFE9 /* TabAccount.storyboard in Resources */,
+				50044FBA232773F2004D1AD8 /* CourseLearningsWeb.storyboard in Resources */,
+				50044FD223278F19004D1AD8 /* CourseLearningsRichtext.storyboard in Resources */,
 				50146FCB2222875E00177E96 /* CourseSearchFilterCell.xib in Resources */,
 				50CF200120DCDBFC0011BFE9 /* CourseCertificates.storyboard in Resources */,
+				50044FD723278F25004D1AD8 /* CourseLearningsVideo.storyboard in Resources */,
 				50CF200220DCDBFC0011BFE9 /* CourseItemHeader.xib in Resources */,
 				5058578421344C75006A5D15 /* PseudoCourseCell.xib in Resources */,
 				50CF200320DCDBFC0011BFE9 /* assets-ios.xcassets in Resources */,
@@ -2232,6 +2261,51 @@
 				AB1C03541D92CCED0053B4E3 /* de */,
 			);
 			name = TabNews.storyboard;
+			sourceTree = "<group>";
+		};
+		50044FC52327815F004D1AD8 /* CourseLearningsLTI.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50044FC42327815F004D1AD8 /* Base */,
+				50044FC723278164004D1AD8 /* de */,
+			);
+			name = CourseLearningsLTI.storyboard;
+			sourceTree = "<group>";
+		};
+		50044FCA2327816B004D1AD8 /* CourseLearningsUnavailable.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50044FC92327816B004D1AD8 /* Base */,
+				50044FCC23278172004D1AD8 /* de */,
+			);
+			name = CourseLearningsUnavailable.storyboard;
+			sourceTree = "<group>";
+		};
+		50044FCF23278F03004D1AD8 /* CourseLearningsProctored.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50044FCE23278F03004D1AD8 /* Base */,
+				50044FD123278F13004D1AD8 /* de */,
+			);
+			name = CourseLearningsProctored.storyboard;
+			sourceTree = "<group>";
+		};
+		50044FD423278F19004D1AD8 /* CourseLearningsRichtext.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50044FD323278F19004D1AD8 /* Base */,
+				50044FD623278F1F004D1AD8 /* de */,
+			);
+			name = CourseLearningsRichtext.storyboard;
+			sourceTree = "<group>";
+		};
+		50044FD923278F25004D1AD8 /* CourseLearningsVideo.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50044FD823278F25004D1AD8 /* Base */,
+				50044FDB23278F2C004D1AD8 /* de */,
+			);
+			name = CourseLearningsVideo.storyboard;
 			sourceTree = "<group>";
 		};
 		5014E2FB1FCEDFFA007255B5 /* Login.storyboard */ = {

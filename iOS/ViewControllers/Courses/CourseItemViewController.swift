@@ -61,13 +61,13 @@ class CourseItemViewController: UIPageViewController {
 
     private func viewController(for item: CourseItem) -> (UIViewController & CourseItemContentViewController)? {
         guard !item.isProctoredInProctoredCourse else {
-            let viewController = R.storyboard.courseLearnings.proctoredItemViewController()
+            let viewController = R.storyboard.courseLearningsProctored.instantiateInitialViewController()
             viewController?.configure(for: item)
             return viewController
         }
 
         guard item.hasAvailableContent else {
-            let viewController = R.storyboard.courseLearnings.unavailableContentViewController()
+            let viewController = R.storyboard.courseLearningsUnavailable.instantiateInitialViewController()
             viewController?.configure(for: item)
             viewController?.delegate = self
             return viewController
@@ -75,13 +75,13 @@ class CourseItemViewController: UIPageViewController {
 
         switch item.contentType {
         case "video"?:
-            return R.storyboard.courseLearnings.videoViewController()
+            return R.storyboard.courseLearningsVideo.instantiateInitialViewController()
         case "rich_text"?:
-            return R.storyboard.courseLearnings.richtextViewController()
+            return R.storyboard.courseLearningsRichtext.instantiateInitialViewController()
         case "lti_exercise"?:
-            return R.storyboard.courseLearnings.ltiHintViewController()
+            return R.storyboard.courseLearningsLTI.instantiateInitialViewController()
         default:
-            return R.storyboard.courseLearnings.courseItemWebViewController()
+            return R.storyboard.courseLearningsWeb.instantiateInitialViewController()
         }
     }
 

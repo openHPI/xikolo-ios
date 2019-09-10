@@ -1,0 +1,6 @@
+
+/* Class = "UILabel"; text = "This item requires internet connection to load the content"; ObjectID = "9gi-0A-Kif"; */
+"9gi-0A-Kif.text" = "Für dieses Element wird eine Verbindung zum Internet benötigt.";
+
+/* Class = "UIButton"; normalTitle = "try again"; ObjectID = "yRv-HS-VLP"; */
+"yRv-HS-VLP.normalTitle" = "erneut versuchen";

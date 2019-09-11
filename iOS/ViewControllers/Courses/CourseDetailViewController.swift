@@ -12,7 +12,7 @@ import UIKit
 class CourseDetailViewController: UIViewController {
 
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var titleView: UILabel!
+    //@IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var languageView: UILabel!
     @IBOutlet private weak var dateView: UILabel!
@@ -42,6 +42,7 @@ class CourseDetailViewController: UIViewController {
 
         self.imageView.backgroundColor = Brand.default.colors.secondary
         self.imageView.layer.roundCorners(for: .default)
+        self.imageView.isHidden = true
 
         self.enrollmentButton.layer.roundCorners(for: .default)
 
@@ -71,14 +72,16 @@ class CourseDetailViewController: UIViewController {
     }
 
     private func updateView() {
-        self.titleView.text = self.course.title
+        //self.titleView.text = self.course.title
         self.languageView.text = self.course.localizedLanguage
         self.teacherView.text = self.course.teachers
         self.teacherView.textColor = Brand.default.colors.secondary
         self.teacherView.isHidden = !Brand.default.features.showCourseTeachers
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
-        self.imageView.sd_setImage(with: self.course.imageURL)
+        self.imageView.sd_setImage(with: self.course.teaserStream?.thumbnailURL) { [weak self] _,_,_,_ in
+                self?.imageView.isHidden = false
+            }
 
         // swiftlint:disable:next trailing_closure
         UIView.transition(with: self.teaserView, duration: 0.25, options: .curveEaseInOut, animations: {

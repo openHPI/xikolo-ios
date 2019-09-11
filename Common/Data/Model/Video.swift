@@ -73,4 +73,4 @@ extension Video: JSONAPIPullable {
     }
 
 }
-}
+

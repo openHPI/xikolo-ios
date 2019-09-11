@@ -114,7 +114,7 @@ class AppNavigator {
                 } else if courseArea == "announcements" {
                     self.show(course: course, with: .announcements)
                 } else {
-                    // We dont support this yet, so we should just open the url with some kind of browser
+                    // We don't support this yet, so we should just open the url with some kind of browser
                     log.info("Unable to open course area (\(courseArea ?? "")) for course (\(slugOrId)) inside the app")
                     canOpenInApp = false
                 }

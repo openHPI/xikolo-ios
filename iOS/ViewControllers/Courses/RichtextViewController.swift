@@ -80,7 +80,7 @@ extension RichtextViewController: UITextViewDelegate {
 
 }
 
-extension RichtextViewController: CourseItemContentViewController {
+extension RichtextViewController: CourseItemContentPresenter {
 
     var item: CourseItem? {
         return self.courseItem

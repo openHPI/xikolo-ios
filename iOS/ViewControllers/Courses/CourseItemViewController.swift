@@ -59,7 +59,7 @@ class CourseItemViewController: UIPageViewController {
         self.setViewControllers([newViewController], direction: .forward, animated: animated)
     }
 
-    private func viewController(for item: CourseItem) -> (UIViewController & CourseItemContentViewController)? {
+    private func viewController(for item: CourseItem) -> CourseItemContentViewController? {
         guard !item.isProctoredInProctoredCourse else {
             let viewController = R.storyboard.courseLearningsProctored.instantiateInitialViewController()
             viewController?.configure(for: item)

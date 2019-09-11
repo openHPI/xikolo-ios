@@ -42,7 +42,7 @@ class CourseItemWebViewController: WebViewController {
 
 }
 
-extension CourseItemWebViewController: CourseItemContentViewController {
+extension CourseItemWebViewController: CourseItemContentPresenter {
 
     var item: CourseItem? {
         return self.courseItem

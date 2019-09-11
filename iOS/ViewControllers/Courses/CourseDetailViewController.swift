@@ -19,8 +19,8 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet private weak var teacherView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
     @IBOutlet private weak var enrollmentButton: LoadingButton!
-    @IBOutlet private weak var statusView: UIView!
-    @IBOutlet private weak var statusLabel: UILabel!
+//    @IBOutlet private weak var statusView: UIView!
+//    @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var teaserView: UIVisualEffectView!
 
     private weak var delegate: CourseAreaViewControllerDelegate?
@@ -50,9 +50,9 @@ class CourseDetailViewController: UIViewController {
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self
 
-        self.statusView.layer.roundCorners(for: .inner)
-        self.statusView.backgroundColor = Brand.default.colors.secondary
-        self.statusLabel.backgroundColor = Brand.default.colors.secondary
+//        self.statusView.layer.roundCorners(for: .inner)
+//        self.statusView.backgroundColor = Brand.default.colors.secondary
+//        self.statusLabel.backgroundColor = Brand.default.colors.secondary
 
         self.teaserView.layer.roundCorners(for: .inner)
 
@@ -135,10 +135,10 @@ class CourseDetailViewController: UIViewController {
 
     private func refreshStatusView() {
         if self.course.hasEnrollment {
-            self.statusView.isHidden = false
-            self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
+//            self.statusView.isHidden = false
+//            self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
         } else {
-            self.statusView.isHidden = true
+//            self.statusView.isHidden = true
         }
     }
 

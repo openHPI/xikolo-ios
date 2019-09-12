@@ -12,9 +12,7 @@ class XikoloNavigationController: UINavigationController {
 
         self.navigationBar.shadowImage = UIImage()
 
-        if #available(iOS 11.0, *) {
-            // Nothing to do here
-        } else {
+        if #available(iOS 13.0, *) {} else {
             self.hideShadowImage(inView: self.view)
         }
     }
@@ -22,7 +20,7 @@ class XikoloNavigationController: UINavigationController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if #available(iOS 11, *) {} else {
+        if #available(iOS 13, *) {} else {
             self.hideShadowImage(inView: self.view)
         }
     }

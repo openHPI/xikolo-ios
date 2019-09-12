@@ -78,8 +78,8 @@ class WebViewController: UIViewController {
         }, completion: nil)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
         if self.shouldShowToolbar, !self.webView.isHidden {
             self.navigationController?.setToolbarHidden(false, animated: animated)
@@ -145,7 +145,10 @@ extension WebViewController: UIWebViewDelegate {
 
         if self.shouldShowToolbar {
             self.updateToolbarButtons()
-            if self.navigationController?.toolbar.isHidden ?? false {
+
+            let pageViewController = self.parent as? UIPageViewController
+            let isCurrentlyShownInCourse = pageViewController?.viewControllers?.first == self
+            if isCurrentlyShownInCourse, self.navigationController?.toolbar.isHidden ?? false {
                 self.navigationController?.setToolbarHidden(false, animated: true)
             }
         }

@@ -430,9 +430,12 @@ extension CourseViewController: UINavigationControllerDelegate {
             self.navigationController?.navigationBar.layoutIfNeeded()
         }, completion: { context in
             guard viewController == self else { return }
-            guard navigationController.viewControllers.count > 1 else { return }
-            guard context.isCancelled else { return }
-            self.courseNavigationController?.updateNavigationBar(forProgress: 1)
+
+            if navigationController.viewControllers.count > 1, context.isCancelled {
+                self.courseNavigationController?.updateNavigationBar(forProgress: 1)
+            } else if navigationController.viewControllers.count == 1 {
+                self.courseNavigationController?.updateNavigationBar(forProgress: progress)
+            }
         })
     }
 

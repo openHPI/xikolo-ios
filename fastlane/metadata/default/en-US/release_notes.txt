@@ -1,6 +1,8 @@
-• Bug fixes and general improvements
+• Adoption of Dark Mode on iOS 13
+• Support for multiple windows on iPads running iPadOS 13 or later
+• A refined look of the course presentation
 
-Also in version 2.6:
-• The course search can now be refined by applying additional filters
-• If available, course items show the points which can be achieved
-• Teaser for courses can be viewed from the course detail page
+Further small improvements:
+• A back button was added to the forum navigation
+• Optimized the app launch time a bit
+• Adjusted colors for high contrast mode

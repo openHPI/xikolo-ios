@@ -1,6 +1,8 @@
-• Fehlerkorrekturen und allgemeine Verbesserungen
+• Dunkelmodus für iOS 13
+• Unterstützung von mehreren App-Fenstern auf iPads mit iPadOS 13 oder neuer
+• Überarbeitete Kursansicht
 
-Auch in Version 2.6:
-• Die Kurssuche kann nun durch zusätzliche Filter eingegrenzt werden
-• Falls vorhanden werden die erreichbaren Punkte für Kursinhalte angezeigt
-• Der Teaser-Clip kann über die Kursdetailseite angespielt werden
+Weitere kleine Verbesserungen:
+• Zurück-Button für das Kurs-Forum
+• Verbesserte App-Startzeit
+• Angepasste Farben wenn die App im Modus mit erhöhten Kontrasten benutzt wird

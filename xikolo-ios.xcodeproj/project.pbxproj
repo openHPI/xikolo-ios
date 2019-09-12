@@ -41,6 +41,7 @@
 		5036A537211C0EC7003B0C6B /* RefreshableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036A536211C0EC7003B0C6B /* RefreshableViewController.swift */; };
 		5036A9B323190E4100F7A63F /* UIViewController+AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036A9B223190E4100F7A63F /* UIViewController+AppNavigator.swift */; };
 		5036A9B52319232800F7A63F /* UIWindow+FullScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036A9B42319232800F7A63F /* UIWindow+FullScreen.swift */; };
+		5036E32F23292C830074117C /* ScreenshotsDark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036E32E23292C830074117C /* ScreenshotsDark.swift */; };
 		503988732166920400F9043B /* ShadowContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503988722166920400F9043B /* ShadowContainerView.swift */; };
 		5039887521679A0600F9043B /* CourseItemCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5039887421679A0600F9043B /* CourseItemCellDelegate.swift */; };
 		5039887721679A3500F9043B /* PreloadableCourseItemContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5039887621679A3500F9043B /* PreloadableCourseItemContent.swift */; };
@@ -448,6 +449,7 @@
 		5036A536211C0EC7003B0C6B /* RefreshableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableViewController.swift; sourceTree = "<group>"; };
 		5036A9B223190E4100F7A63F /* UIViewController+AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AppNavigator.swift"; sourceTree = "<group>"; };
 		5036A9B42319232800F7A63F /* UIWindow+FullScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+FullScreen.swift"; sourceTree = "<group>"; };
+		5036E32E23292C830074117C /* ScreenshotsDark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsDark.swift; sourceTree = "<group>"; };
 		50371FF8204ECB8E006E9634 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		50371FFD20501388006E9634 /* CourseItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemDetailView.swift; sourceTree = "<group>"; };
 		503988722166920400F9043B /* ShadowContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowContainerView.swift; sourceTree = "<group>"; };
@@ -968,6 +970,7 @@
 				502E718820207C92007FC8C0 /* Navigator.swift */,
 				502E7178201B1C78007FC8C0 /* LoginHelper.swift */,
 				502E712D2018D8BF007FC8C0 /* Screenshots.swift */,
+				5036E32E23292C830074117C /* ScreenshotsDark.swift */,
 				502E712F2018D8BF007FC8C0 /* Info.plist */,
 				502E7171201A20C9007FC8C0 /* Credentials.plist */,
 			);
@@ -1949,6 +1952,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				502E712E2018D8BF007FC8C0 /* Screenshots.swift in Sources */,
+				5036E32F23292C830074117C /* ScreenshotsDark.swift in Sources */,
 				502E718920207C92007FC8C0 /* Navigator.swift in Sources */,
 				502E716C2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */,
 				502E7179201B1C78007FC8C0 /* LoginHelper.swift in Sources */,

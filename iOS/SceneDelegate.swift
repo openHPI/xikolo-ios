@@ -12,6 +12,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private lazy var tabBarController: UITabBarController = {
         let tabBarController = XikoloTabBarController.make()
         tabBarController.delegate = self
+
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-forceDarkMode") {
+            tabBarController.overrideUserInterfaceStyle = .dark
+        }
+        #endif
+
         return tabBarController
     }()
 

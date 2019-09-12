@@ -32,8 +32,7 @@ class Screenshots: XCTestCase {
 
         // Dashboard
         Navigator.goToTabBarItem(.dashboard)
-        sleep(5)
-        snapshot("2-Dashboard")
+        app.tables.cells["CourseOverview"].waitForExistence(timeout: 5)
 
         // Course item list
         // tap on first element in current courses view

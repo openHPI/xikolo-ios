@@ -27,7 +27,7 @@ public struct BrandColors: Decodable {
     private let tertiaryFallback: UIColor
 
     public var primary: UIColor {
-        if #available(iOS 11, *) {
+        if #available(iOS 13, *) {
             return UIColor(named: "primary") ?? self.primaryFallback
         } else {
             return self.primaryFallback
@@ -35,7 +35,7 @@ public struct BrandColors: Decodable {
     }
 
     public var secondary: UIColor {
-        if #available(iOS 11, *) {
+        if #available(iOS 13, *) {
             return UIColor(named: "secondary") ?? self.secondaryFallback
         } else {
             return self.secondaryFallback
@@ -43,7 +43,7 @@ public struct BrandColors: Decodable {
     }
 
     public var tertiary: UIColor {
-        if #available(iOS 11, *) {
+        if #available(iOS 13, *) {
             return UIColor(named: "tertiary") ?? self.tertiaryFallback
         } else {
             return self.tertiaryFallback

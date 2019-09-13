@@ -99,6 +99,14 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
         tableView.cellForRow(at: indexPath)?.selectedBackgroundView = nil
     }
 
+    override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+        self.isEditing = true
+    }
+
     private func fetchCourse(withID id: String) -> Course? {
         let request = CourseHelper.FetchRequest.course(withSlugOrId: id)
         return CoreDataHelper.viewContext.fetchSingle(request).value

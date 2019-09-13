@@ -278,6 +278,7 @@
 		50FA2E6420E51AD000656776 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50FA2E6520E51B3100656776 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50FA2E6620E51B7E00656776 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50FB7122232BBDC700359BB2 /* UIView+backgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB7121232BBDC700359BB2 /* UIView+backgroundColor.swift */; };
 		700398C021A437CD00FE9D81 /* FileManager+fileSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */; };
 		700398C221A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398C121A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift */; };
 		700398C421A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */; };
@@ -613,6 +614,7 @@
 		50FA2DEB20E4B1A800656776 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FA2DED20E4B1A800656776 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		50FA2DEE20E4B1A800656776 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50FB7121232BBDC700359BB2 /* UIView+backgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+backgroundColor.swift"; sourceTree = "<group>"; };
 		50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemWebViewController.swift; sourceTree = "<group>"; };
 		58514D98E3A98476D78CB780 /* Pods_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+fileSize.swift"; sourceTree = "<group>"; };
@@ -1309,6 +1311,7 @@
 				508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */,
 				50A2042622FAD324004371C0 /* UITraitCollection+performAsCurrent.swift */,
 				5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */,
+				50FB7121232BBDC700359BB2 /* UIView+backgroundColor.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
 				5036A9B223190E4100F7A63F /* UIViewController+AppNavigator.swift */,
 				5036A9B42319232800F7A63F /* UIWindow+FullScreen.swift */,
@@ -2030,6 +2033,7 @@
 				50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */,
 				50CF1F8320DCDBFC0011BFE9 /* XikoloTabBarController.swift in Sources */,
 				508AB2F021145A650079EAE5 /* CourseDateNextUpView.swift in Sources */,
+				50FB7122232BBDC700359BB2 /* UIView+backgroundColor.swift in Sources */,
 				50CF1F8420DCDBFC0011BFE9 /* UserDefaults+VideoQuality.swift in Sources */,
 				50CF1F8720DCDBFC0011BFE9 /* DownloadState.swift in Sources */,
 				50A2042722FAD324004371C0 /* UITraitCollection+performAsCurrent.swift in Sources */,

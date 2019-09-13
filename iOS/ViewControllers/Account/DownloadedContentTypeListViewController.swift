@@ -69,6 +69,12 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
         self.updateToolBarButtons()
         self.navigationController?.setToolbarHidden(!editing, animated: animated)
         self.navigationItem.setHidesBackButton(editing, animated: animated)
+
+        if !editing {
+            for cell in self.tableView.visibleCells {
+                cell.selectedBackgroundView = nil
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
@@ -80,6 +86,7 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.isEditing {
             self.updateToolBarButtons()
+            tableView.cellForRow(at: indexPath)?.selectedBackgroundView = UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground)
         } else {
             let object = self.dataSource.object(at: indexPath)
             Configuration.show(object, with: self.appNavigator)
@@ -89,6 +96,7 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard self.isEditing else { return }
         self.updateToolBarButtons()
+        tableView.cellForRow(at: indexPath)?.selectedBackgroundView = nil
     }
 
     private func fetchCourse(withID id: String) -> Course? {
@@ -163,6 +171,8 @@ extension DownloadedContentTypeListViewController: CoreDataTableViewDataSourceDe
     func configure(_ cell: UITableViewCell, for object: Resource) {
         cell.textLabel?.text = object[keyPath: Configuration.cellTitleKeyPath]
         cell.detailTextLabel?.text = Configuration.persistenceManager.formattedFileSize(for: object)
+        cell.accessoryType = .disclosureIndicator
+        cell.selectedBackgroundView = self.isEditing ? UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground) : nil
     }
 
     func titleForDefaultHeader(forSection section: Int) -> String? {

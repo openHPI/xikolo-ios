@@ -127,6 +127,7 @@ class CourseViewController: UIViewController {
         viewController.currentItem = item
 
         self.navigationController?.pushViewController(viewController, animated: animated)
+        self.navigationController?.navigationBar.tintColor = Brand.default.colors.window // otherwise the back button could not be visible
     }
 
     func show(documentLocalization: DocumentLocalization, animated: Bool) {
@@ -138,6 +139,7 @@ class CourseViewController: UIViewController {
         viewController.configure(for: url, filename: documentLocalization.filename)
 
         self.navigationController?.pushViewController(viewController, animated: animated)
+        self.navigationController?.navigationBar.tintColor = Brand.default.colors.window // otherwise the back button could not be visible
     }
 
     private func updateView() {

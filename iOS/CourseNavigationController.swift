@@ -53,7 +53,7 @@ class CourseNavigationController: XikoloNavigationController {
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         let headerHidden = self.traitCollection.verticalSizeClass == .compact
-        if (self.lastNavigationBarProgress ?? 0.0) >= 1.0 || headerHidden {
+        if (self.lastNavigationBarProgress ?? 0.0) >= 1.0 || headerHidden || self.viewControllers.count > 1 {
             return .default
         } else {
             switch self.barTintStyle {

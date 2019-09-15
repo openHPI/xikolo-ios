@@ -12,7 +12,6 @@ import UIKit
 class CourseDetailViewController: UIViewController {
 
     @IBOutlet private weak var scrollView: UIScrollView!
-    //@IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var languageView: UILabel!
     @IBOutlet private weak var dateView: UILabel!
@@ -72,7 +71,6 @@ class CourseDetailViewController: UIViewController {
     }
 
     private func updateView() {
-        //self.titleView.text = self.course.title
         self.languageView.text = self.course.localizedLanguage
         self.teacherView.text = self.course.teachers
         self.teacherView.textColor = Brand.default.colors.secondary

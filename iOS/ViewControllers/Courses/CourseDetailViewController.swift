@@ -49,7 +49,7 @@ class CourseDetailViewController: UIViewController {
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self
 
-        self.teaserView.layer.roundCorners(for: .inner)
+        self.teaserView.layer.roundCorners(for: .default)
 
         self.updateView()
 

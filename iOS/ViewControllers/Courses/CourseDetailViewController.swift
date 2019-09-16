@@ -21,6 +21,7 @@ class CourseDetailViewController: UIViewController {
 //    @IBOutlet private weak var statusView: UIView!
 //    @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var teaserView: UIVisualEffectView!
+    @IBOutlet var imageViewConstraints: [NSLayoutConstraint]!
 
     private weak var delegate: CourseAreaViewControllerDelegate?
     private var courseObserver: ManagedObjectObserver?
@@ -77,13 +78,16 @@ class CourseDetailViewController: UIViewController {
         self.teacherView.isHidden = !Brand.default.features.showCourseTeachers
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
-        self.imageView.sd_setImage(with: self.course.teaserStream?.thumbnailURL) { [weak self] _,_,_,_ in
-                self?.imageView.isHidden = false
-            }
+        self.imageView.sd_setImage(with: self.course.imageURL) 
+        if (self.course.teaserStream?.hlsURL != nil){
+            NSLayoutConstraint.activate(self.imageViewConstraints)
+        }
 
         // swiftlint:disable:next trailing_closure
         UIView.transition(with: self.teaserView, duration: 0.25, options: .curveEaseInOut, animations: {
             self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
+            self.imageView.isHidden = self.course.teaserStream?.hlsURL == nil
+            self.view.layoutIfNeeded()
         })
 
         if let description = self.course.courseDescription ?? self.course.abstract {

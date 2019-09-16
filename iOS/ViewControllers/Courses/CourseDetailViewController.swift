@@ -19,8 +19,6 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet private weak var descriptionView: UITextView!
     @IBOutlet private weak var enrollmentButton: LoadingButton!
     @IBOutlet private weak var enrollmentOptionsButton: UIButton!
-    //    @IBOutlet private weak var statusView: UIView!
-//    @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var teaserView: UIVisualEffectView!
     @IBOutlet private var imageViewConstraints: [NSLayoutConstraint]!
 
@@ -50,10 +48,6 @@ class CourseDetailViewController: UIViewController {
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self
-
-//        self.statusView.layer.roundCorners(for: .inner)
-//        self.statusView.backgroundColor = Brand.default.colors.secondary
-//        self.statusLabel.backgroundColor = Brand.default.colors.secondary
 
         self.teaserView.layer.roundCorners(for: .inner)
 

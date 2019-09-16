@@ -30,7 +30,7 @@ class CourseDetailViewController: UIViewController {
             self.courseObserver = ManagedObjectObserver(object: self.course) { [weak self] type in
                 guard type == .update else { return }
                 DispatchQueue.main.async {
-                    self?.updateView()
+                    self?.updateView(animated: true)
                 }
             }
         }
@@ -66,24 +66,30 @@ class CourseDetailViewController: UIViewController {
         CourseHelper.syncCourse(course)
     }
 
-    private func updateView() {
+    private func updateView(animated : Bool = false) {
         self.languageView.text = self.course.localizedLanguage
         self.teacherView.text = self.course.teachers
         self.teacherView.textColor = Brand.default.colors.secondary
         self.teacherView.isHidden = !Brand.default.features.showCourseTeachers
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
-        self.imageView.sd_setImage(with: self.course.imageURL) 
-        if self.course.teaserStream?.hlsURL != nil {
-            NSLayoutConstraint.activate(self.imageViewConstraints)
-        }
+        self.imageView.sd_setImage(with: self.course.imageURL)
 
-        // swiftlint:disable:next trailing_closure
-        UIView.transition(with: self.teaserView, duration: 0.25, options: .curveEaseInOut, animations: {
-            self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
-            self.imageView.isHidden = self.course.teaserStream?.hlsURL == nil
-            self.view.layoutIfNeeded()
-        })
+        DispatchQueue.main.async {
+            if self.course.teaserStream?.hlsURL != nil {
+                NSLayoutConstraint.activate(self.imageViewConstraints)
+            } else {
+                NSLayoutConstraint.deactivate(self.imageViewConstraints)
+            }
+
+            let animationDuration = animated ? 0.25 : 0
+            // swiftlint:disable:next trailing_closure
+            UIView.transition(with: self.teaserView, duration: animationDuration, options: .curveEaseInOut, animations: {
+                self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
+                self.imageView.isHidden = self.course.teaserStream?.hlsURL == nil
+                self.view.layoutIfNeeded()
+            })
+        }
 
         if let description = self.course.courseDescription ?? self.course.abstract {
             MarkdownHelper.attributedString(for: description).onSuccess(DispatchQueue.main.context) { attributedString in

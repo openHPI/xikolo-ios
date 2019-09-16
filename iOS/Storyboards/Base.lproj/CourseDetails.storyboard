@@ -29,20 +29,17 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bWt-KQ-kUh" userLabel="Scroll Content">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="319.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="183.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4b-Ar-94F">
-                                                <rect key="frame" x="16" y="8" width="343" height="128"/>
+                                                <rect key="frame" x="16" y="-104" width="343" height="104"/>
                                                 <gestureRecognizers/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="yRr-9M-GhG"/>
-                                                </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="7tN-Co-SGT" appends="YES" id="vZg-61-hYY"/>
                                                 </connections>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Kg8-BI-OgB">
-                                                <rect key="frame" x="16" y="144" width="343" height="45.5"/>
+                                                <rect key="frame" x="16" y="8" width="343" height="45.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teachers" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDY-g0-onI">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="18"/>
@@ -97,7 +94,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceU-6J-dNP" customClass="LoadingButton" customModule="iOS" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="205.5" width="343" height="44"/>
+                                                <rect key="frame" x="16" y="69.5" width="343" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Tko-U5-dpW"/>
                                                 </constraints>
@@ -115,8 +112,12 @@
                                                     <action selector="enroll:" destination="HmT-zz-ZfW" eventType="touchUpInside" id="ZbL-h0-Zga"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLk-sW-N3O">
+                                                <rect key="frame" x="323" y="69.5" width="28" height="44"/>
+                                                <state key="normal" image="dots"/>
+                                            </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Course Description" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f38-k8-QXv">
-                                                <rect key="frame" x="16" y="261.5" width="343" height="38"/>
+                                                <rect key="frame" x="16" y="125.5" width="343" height="38"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -131,25 +132,25 @@
                                                 </attributedString>
                                             </textView>
                                             <visualEffectView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvC-v7-Y56">
-                                                <rect key="frame" x="16" y="8" width="343" height="128"/>
+                                                <rect key="frame" x="16" y="-104" width="343" height="104"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="czj-JV-KCy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="128"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="104"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gv8-wz-Xhv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="128"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="104"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="R2T-Ms-x0b">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="128"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="104"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Mtr-1Z-WSI">
-                                                                        <rect key="frame" x="113" y="51" width="117.5" height="26"/>
+                                                                        <rect key="frame" x="113" y="39" width="117.5" height="26"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oub-Oh-OG2">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play Teaser" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkq-AG-0z2">
-                                                                                <rect key="frame" x="26" y="3" width="91.5" height="20.5"/>
+                                                                                <rect key="frame" x="26" y="2.5" width="91.5" height="21"/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -180,11 +181,14 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailingMargin" secondItem="f38-k8-QXv" secondAttribute="trailing" id="16n-JB-vX7"/>
+                                            <constraint firstItem="ceU-6J-dNP" firstAttribute="trailingMargin" secondItem="vLk-sW-N3O" secondAttribute="trailing" id="49M-3Z-qKM"/>
                                             <constraint firstItem="d4b-Ar-94F" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="4Un-7R-rJ1"/>
+                                            <constraint firstItem="ceU-6J-dNP" firstAttribute="bottom" secondItem="vLk-sW-N3O" secondAttribute="bottom" id="6jo-KV-0MB"/>
                                             <constraint firstItem="dvC-v7-Y56" firstAttribute="trailing" secondItem="d4b-Ar-94F" secondAttribute="trailing" id="Ifd-Y0-cXr"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="d4b-Ar-94F" secondAttribute="trailing" id="NKn-rm-ONe"/>
                                             <constraint firstItem="ceU-6J-dNP" firstAttribute="top" secondItem="Kg8-BI-OgB" secondAttribute="bottom" constant="16" id="O0h-VF-Iu9"/>
                                             <constraint firstItem="dvC-v7-Y56" firstAttribute="leading" secondItem="d4b-Ar-94F" secondAttribute="leading" id="PA5-wV-SJ3"/>
+                                            <constraint firstItem="d4b-Ar-94F" firstAttribute="height" secondItem="Mtr-1Z-WSI" secondAttribute="height" multiplier="4" id="RW4-4J-t2c"/>
                                             <constraint firstItem="f38-k8-QXv" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="XD8-IA-ZBW"/>
                                             <constraint firstItem="Kg8-BI-OgB" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="Yrn-YX-psz"/>
                                             <constraint firstItem="ceU-6J-dNP" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="bQf-3L-90u"/>
@@ -197,10 +201,12 @@
                                             <constraint firstItem="Kg8-BI-OgB" firstAttribute="top" secondItem="d4b-Ar-94F" secondAttribute="bottom" constant="8" symbolic="YES" id="tCH-UB-NHe"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="Kg8-BI-OgB" secondAttribute="trailing" id="tbX-dO-avP"/>
                                             <constraint firstItem="dvC-v7-Y56" firstAttribute="top" secondItem="d4b-Ar-94F" secondAttribute="top" id="tmC-RY-9MB"/>
+                                            <constraint firstItem="ceU-6J-dNP" firstAttribute="top" secondItem="vLk-sW-N3O" secondAttribute="top" id="u8B-OP-wQk"/>
                                             <constraint firstItem="DDY-g0-onI" firstAttribute="top" secondItem="d4b-Ar-94F" secondAttribute="bottom" constant="8" id="va9-lo-hm1"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
+                                                <exclude reference="i4Y-ou-QhK"/>
                                                 <exclude reference="tCH-UB-NHe"/>
                                             </mask>
                                         </variation>
@@ -249,6 +255,7 @@
                         <outlet property="dateView" destination="AX1-JO-2go" id="XMf-fO-Gyt"/>
                         <outlet property="descriptionView" destination="f38-k8-QXv" id="T3G-v3-30g"/>
                         <outlet property="enrollmentButton" destination="ceU-6J-dNP" id="89a-80-Bxe"/>
+                        <outlet property="enrollmentOptionsButton" destination="vLk-sW-N3O" id="u5U-AT-DmL"/>
                         <outlet property="imageView" destination="d4b-Ar-94F" id="Nnm-kT-fiS"/>
                         <outlet property="languageView" destination="3cX-gd-UHs" id="N9U-9N-r72"/>
                         <outlet property="scrollView" destination="MWe-9L-XSn" id="mKh-Ik-PH7"/>
@@ -270,6 +277,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="dots" width="28" height="28"/>
         <image name="play" width="26" height="26"/>
     </resources>
 </document>

@@ -18,10 +18,11 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet private weak var teacherView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
     @IBOutlet private weak var enrollmentButton: LoadingButton!
-//    @IBOutlet private weak var statusView: UIView!
+    @IBOutlet private weak var enrollmentOptionsButton: UIButton!
+    //    @IBOutlet private weak var statusView: UIView!
 //    @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var teaserView: UIVisualEffectView!
-    @IBOutlet var imageViewConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var imageViewConstraints: [NSLayoutConstraint]!
 
     private weak var delegate: CourseAreaViewControllerDelegate?
     private var courseObserver: ManagedObjectObserver?
@@ -119,15 +120,19 @@ class CourseDetailViewController: UIViewController {
         if self.course.hasEnrollment {
             self.enrollmentButton.backgroundColor = Brand.default.colors.primary.withAlphaComponent(0.2)
             self.enrollmentButton.tintColor = UIColor.darkGray
+             self.enrollmentOptionsButton.tintColor = UIColor.darkGray
         } else if ReachabilityHelper.connection != .none {
             self.enrollmentButton.backgroundColor = Brand.default.colors.primary
             self.enrollmentButton.tintColor = UIColor.white
+            self.enrollmentOptionsButton.tintColor = UIColor.white
         } else {
             self.enrollmentButton.backgroundColor = ColorCompatibility.secondarySystemBackground
             self.enrollmentButton.tintColor = ColorCompatibility.secondaryLabel
+            self.enrollmentOptionsButton.tintColor = ColorCompatibility.secondaryLabel
         }
 
         self.enrollmentButton.isEnabled = self.course.hasEnrollment || ReachabilityHelper.connection != .none
+        self.enrollmentOptionsButton.isHidden = !self.course.hasEnrollment
     }
 
     @objc func reachabilityChanged() {
@@ -208,7 +213,7 @@ class CourseDetailViewController: UIViewController {
             }
 
             DispatchQueue.main.async {
-                self?.refreshEnrollmentViews()
+                self?.refreshEnrollButton()
                 self?.delegate?.enrollmentStateDidChange(whenNewlyCreated: newlyCreated)
             }
         }.onFailure { [weak self] error in

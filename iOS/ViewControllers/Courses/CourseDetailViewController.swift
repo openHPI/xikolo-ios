@@ -74,7 +74,7 @@ class CourseDetailViewController: UIViewController {
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
         self.imageView.sd_setImage(with: self.course.imageURL) 
-        if (self.course.teaserStream?.hlsURL != nil){
+        if self.course.teaserStream?.hlsURL != nil {
             NSLayoutConstraint.activate(self.imageViewConstraints)
         }
 

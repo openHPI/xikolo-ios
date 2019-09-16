@@ -96,7 +96,7 @@ class CourseDetailViewController: UIViewController {
             }
         }
 
-        self.refreshEnrollmentViews()
+        self.refreshEnrollButton()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -104,11 +104,6 @@ class CourseDetailViewController: UIViewController {
             let loginViewController = typedInfo.destination.viewControllers.first as? LoginViewController
             loginViewController?.delegate = self
         }
-    }
-
-    private func refreshEnrollmentViews() {
-        self.refreshEnrollButton()
-        self.refreshStatusView()
     }
 
     private func refreshEnrollButton() {
@@ -133,15 +128,6 @@ class CourseDetailViewController: UIViewController {
         }
 
         self.enrollmentButton.isEnabled = self.course.hasEnrollment || ReachabilityHelper.connection != .none
-    }
-
-    private func refreshStatusView() {
-        if self.course.hasEnrollment {
-//            self.statusView.isHidden = false
-//            self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
-        } else {
-//            self.statusView.isHidden = true
-        }
     }
 
     @objc func reachabilityChanged() {

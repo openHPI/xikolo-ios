@@ -188,7 +188,6 @@
 		50CF200920DCDBFC0011BFE9 /* TabNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B6514B1D355B4A00624DBC /* TabNews.storyboard */; };
 		50CF200A20DCDBFC0011BFE9 /* TabDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */; };
 		50CF200C20DCDBFC0011BFE9 /* CourseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */; };
-		50CF200D20DCDBFC0011BFE9 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A60420795BBE00E98351 /* CourseDetails.storyboard */; };
 		50CF200E20DCDBFC0011BFE9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
 		50D52164225FC50500C9860D /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D52163225FC50500C9860D /* Int+DispatchTimeInterval.swift */; };
 		50D65A0C20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
@@ -282,6 +281,7 @@
 		700398C421A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */; };
 		7007E4132133FFB6005AC7A6 /* DownloadedContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */; };
 		70893B5621C3D1F600AF22E3 /* LTIHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70893B5521C3D1F600AF22E3 /* LTIHintViewController.swift */; };
+		82BE606D232FBB86000353B4 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82BE606F232FBB86000353B4 /* CourseDetails.storyboard */; };
 		B4E079EB218791A600EA53F5 /* CertificateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E079EA218791A600EA53F5 /* CertificateCell.xib */; };
 		B4E079ED21879C9200EA53F5 /* CertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E079EC21879C9200EA53F5 /* CertificateCell.swift */; };
 		F88ADBF4AC545211C7BA4AF5 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58514D98E3A98476D78CB780 /* Pods_iOS.framework */; };
@@ -456,7 +456,6 @@
 		503988782167A04200F9043B /* CourseItem+DetailedContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseItem+DetailedContent.swift"; sourceTree = "<group>"; };
 		503CEE932174EEE200F34694 /* CourseItem+AvailableContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseItem+AvailableContent.swift"; sourceTree = "<group>"; };
 		503CEE952177082D00F34694 /* ProcotoredItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcotoredItemViewController.swift; sourceTree = "<group>"; };
-		5040A60420795BBE00E98351 /* CourseDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseDetails.storyboard; sourceTree = "<group>"; };
 		5040A60920795BFD00E98351 /* WebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebViewController.storyboard; sourceTree = "<group>"; };
 		5040A61220795CB200E98351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Course.storyboard; sourceTree = "<group>"; };
 		5040A61520795CBA00E98351 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Course.strings; sourceTree = "<group>"; };
@@ -637,6 +636,8 @@
 		7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
+		82BE606E232FBB86000353B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseDetails.storyboard; sourceTree = "<group>"; };
+		82BE6071232FBB8C000353B4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDetails.strings; sourceTree = "<group>"; };
 		A90587C51B3BFC130095DB89 /* assets-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios.xcassets"; sourceTree = "<group>"; };
 		AB17C57E1DFCC5B50013BBCD /* PlatformEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEvent.swift; sourceTree = "<group>"; };
 		AB1C03501D92BF3F0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabCourses.strings; sourceTree = "<group>"; };
@@ -1425,7 +1426,7 @@
 				50044FCA2327816B004D1AD8 /* CourseLearningsUnavailable.storyboard */,
 				50044FCF23278F03004D1AD8 /* CourseLearningsProctored.storyboard */,
 				50044FB9232773F2004D1AD8 /* CourseLearningsWeb.storyboard */,
-				5040A60420795BBE00E98351 /* CourseDetails.storyboard */,
+				82BE606F232FBB86000353B4 /* CourseDetails.storyboard */,
 				50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */,
 				5054B2E42108B19500CE9067 /* CourseDocuments.storyboard */,
 				5040A60920795BFD00E98351 /* WebViewController.storyboard */,
@@ -1702,7 +1703,7 @@
 				50CF200A20DCDBFC0011BFE9 /* TabDashboard.storyboard in Resources */,
 				50CF200C20DCDBFC0011BFE9 /* CourseHeaderView.xib in Resources */,
 				506D7E1B2104B7730018D9E2 /* CourseCell.xib in Resources */,
-				50CF200D20DCDBFC0011BFE9 /* CourseDetails.storyboard in Resources */,
+				82BE606D232FBB86000353B4 /* CourseDetails.storyboard in Resources */,
 				50CF200E20DCDBFC0011BFE9 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2342,6 +2343,15 @@
 				507DFFA02153E41B006DC140 /* de */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		82BE606F232FBB86000353B4 /* CourseDetails.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				82BE606E232FBB86000353B4 /* Base */,
+				82BE6071232FBB8C000353B4 /* de */,
+			);
+			name = CourseDetails.storyboard;
 			sourceTree = "<group>";
 		};
 		AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */ = {

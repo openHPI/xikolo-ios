@@ -5,10 +5,11 @@
 
 import Common
 import UIKit
+import WebKit
 
 class WebViewController: UIViewController {
 
-    @IBOutlet private weak var webView: UIWebView!
+    private var webView: WKWebView!
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
@@ -44,8 +45,8 @@ class WebViewController: UIViewController {
     }
 
     private var webViewCanGoBack: Bool {
-        // UIWebView.canGoBack returns false values. So we check for the initial URL instead.
-        return self.webView.request?.url != self.url
+        // WKWebView.canGoBack returns false values. So we check for the initial URL instead.
+        return self.webView.url != self.url
     }
 
     override func awakeFromNib() {
@@ -62,13 +63,20 @@ class WebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.initializeWebView()
+
         self.webView.isHidden = true
-        self.webView.delegate = self
+        self.webView.navigationDelegate = self
         self.webView.scrollView.delegate = self
 
         self.progress.alpha = 0.0
 
-        TrackingHelper.setCurrentTrackingCurrentAsCookie(with: self)
+        if #available(iOS 11, *) {
+            if let cookie = TrackingHelper.trackingContextCookie(with: self) {
+                self.webView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie)
+            }
+        }
+
         self.loadURL()
 
         self.toolbarItems = [self.backBarButton]
@@ -77,6 +85,19 @@ class WebViewController: UIViewController {
             self.progress.alpha = CGFloat(1.0)
         }, completion: nil)
     }
+
+    func initializeWebView() {
+         // The manual initialization is necessary due to a bug in MSCoding in iOS 10
+         self.webView = WKWebView(frame: self.view.frame)
+         self.view.addSubview(webView)
+         self.webView.translatesAutoresizingMaskIntoConstraints = false
+         NSLayoutConstraint.activate([
+             self.webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+             self.webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+             self.webView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+             self.webView.topAnchor.constraint(equalTo: self.view.topAnchor),
+         ])
+     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -98,14 +119,18 @@ class WebViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: nil) { _ in
-            TrackingHelper.setCurrentTrackingCurrentAsCookie(with: self)
+            if #available(iOS 11, *) {
+                if let cookie = TrackingHelper.trackingContextCookie(with: self) {
+                    self.webView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie)
+                }
+            }
         }
     }
 
     override func removeFromParent() {
         super.removeFromParent()
 
-        self.webView.delegate = nil
+        self.webView.navigationDelegate = nil
         if self.webView.isLoading {
             self.webView.stopLoading()
             NetworkIndicator.end()
@@ -114,7 +139,7 @@ class WebViewController: UIViewController {
 
     private func loadURL() {
         guard let url = self.url else { return }
-        self.webView.loadRequest(NetworkHelper.request(for: url) as URLRequest)
+        self.webView.load(NetworkHelper.request(for: url) as URLRequest)
     }
 
     private func updateToolbarButtons() {
@@ -129,9 +154,9 @@ class WebViewController: UIViewController {
 
 }
 
-extension WebViewController: UIWebViewDelegate {
+extension WebViewController: WKNavigationDelegate {
 
-    func webViewDidStartLoad(_ webView: UIWebView) {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         NetworkIndicator.start()
 
         if self.shouldShowToolbar {
@@ -139,7 +164,7 @@ extension WebViewController: UIWebViewDelegate {
         }
     }
 
-    func webViewDidFinishLoad(_ webView: UIWebView) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.progress.isHidden = true
         self.webView.isHidden = false
 
@@ -156,56 +181,56 @@ extension WebViewController: UIWebViewDelegate {
         NetworkIndicator.end()
     }
 
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         NetworkIndicator.end()
     }
 
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
-        if let documentURL = Routes.isAppAuthenticationURL(for: request) {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if let documentURL = Routes.isAppAuthenticationURL(for: navigationAction.request) {
             let urlComponents = URLComponents(url: documentURL, resolvingAgainstBaseURL: false)
-            guard let queryItems = urlComponents?.queryItems else { return false }
+            guard let queryItems = urlComponents?.queryItems else { return decisionHandler(.cancel) }
 
             if let tokenItem = queryItems.first(where: { $0.name == "token" }) {
-                guard let token = tokenItem.value else { return false }
+                guard let token = tokenItem.value else { return decisionHandler(.cancel) }
 
                 UserProfileHelper.shared.didLogin(withToken: token)
                 self.loginDelegate?.didSuccessfullyLogin()
                 self.navigationController?.dismiss(animated: trueUnlessReduceMotionEnabled)
-                return false
+                return decisionHandler(.cancel)
             }
 
-            return true
-        } else if let documentURL = Routes.isSingleSignOnCallbackURL(for: request) {
+            return decisionHandler(.allow)
+        } else if let documentURL = Routes.isSingleSignOnCallbackURL(for: navigationAction.request) {
             let modifiedURL = Routes.addCallbackParameters(to: documentURL)
-            guard modifiedURL != documentURL else { return true }
+            guard modifiedURL != documentURL else { return decisionHandler(.allow) }
 
             DispatchQueue.global().async {
                 DispatchQueue.main.async {
-                    var newRequest = request
+                    var newRequest = navigationAction.request
                     newRequest.url = modifiedURL
-                    self.webView.loadRequest(newRequest)
+                    self.webView.load(newRequest)
                 }
             }
 
-            return false
+            return decisionHandler(.cancel)
         }
 
         let userIsLoggedIn = UserProfileHelper.shared.isLoggedIn
-        let headerIsPresent = request.allHTTPHeaderFields?.keys.contains(Routes.Header.authKey) ?? false
+        let headerIsPresent = navigationAction.request.allHTTPHeaderFields?.keys.contains(Routes.Header.authKey) ?? false
 
-        if userIsLoggedIn, !headerIsPresent, let url = request.url, url.host == Routes.base.host {
+        if userIsLoggedIn, !headerIsPresent, let url = navigationAction.request.url, url.host == Routes.base.host {
             DispatchQueue.global().async {
                 DispatchQueue.main.async {
-                    var newRequest = request
+                    var newRequest = navigationAction.request
                     newRequest.allHTTPHeaderFields = NetworkHelper.requestHeaders(for: url)
-                    self.webView.loadRequest(newRequest)
+                    self.webView.load(newRequest)
                 }
             }
 
-            return false
+            return decisionHandler(.cancel)
         }
 
-        return true
+        return decisionHandler(.allow)
     }
 }
 

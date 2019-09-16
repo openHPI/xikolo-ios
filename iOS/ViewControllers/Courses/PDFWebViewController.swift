@@ -5,11 +5,13 @@
 
 import Common
 import UIKit
+import WebKit
 
 class PDFWebViewController: UIViewController {
 
-    @IBOutlet private weak var webView: UIWebView!
     @IBOutlet private var shareButton: UIBarButtonItem!
+
+    private var webView: WKWebView!
 
     private lazy var progress: CircularProgressView = {
         let progress = CircularProgressView()
@@ -60,6 +62,7 @@ class PDFWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = nil
+        self.initializeWebView()
         self.webView.isHidden = true
         self.progress.alpha = 0.0
 
@@ -82,6 +85,19 @@ class PDFWebViewController: UIViewController {
         self.url = url
         self.filename = filename
     }
+
+    func initializeWebView() {
+        // The manual initialization is necessary due to a bug in NSCoding in iOS 10
+        self.webView = WKWebView(frame: self.view.frame)
+        self.view.addSubview(webView)
+        self.webView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            self.webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            self.webView.topAnchor.constraint(equalTo: view.topAnchor),
+        ])
+     }
 
     private func loadPDF(for url: URL) {
         var request = URLRequest(url: url)
@@ -134,7 +150,7 @@ extension PDFWebViewController: URLSessionDownloadDelegate {
             self.tempPDFFile = tmpFile
             let request = URLRequest(url: tmpFile.fileURL)
             DispatchQueue.main.async {
-                self.webView.loadRequest(request)
+                self.webView.load(request)
                 self.progress.isHidden = true
                 self.webView.isHidden = false
             }

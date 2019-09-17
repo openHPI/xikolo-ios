@@ -401,6 +401,9 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Only react when user interacts with the scroll view. WKWebView will trigger this when loading URLs.
+        guard scrollView.isDragging else { return }
+
         let headerHeight = self.headerHeight
         let adjustedScrollOffset = scrollView.contentOffset.y + self.headerOffset
         var headerOffset = max(0, min(adjustedScrollOffset, headerHeight))

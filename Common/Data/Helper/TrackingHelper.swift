@@ -156,14 +156,14 @@ public enum TrackingHelper {
         return promise.future
     }
 
-    public static func setCurrentTrackingCurrentAsCookie(with viewController: UIViewController?) {
+    public static func trackingContextCookie(with viewController: UIViewController?) -> HTTPCookie? {
         let trackingContext = self.newDefaultContext(for: viewController)
         guard let trackingContextJSON = try? JSONEncoder().encode(trackingContext) else {
-            return
+            return nil
         }
 
         guard let trackingContextString = String(data: trackingContextJSON, encoding: .utf8) else {
-            return
+            return nil
         }
 
         let cookieProperties: [HTTPCookiePropertyKey: Any] = [
@@ -173,9 +173,7 @@ public enum TrackingHelper {
             .value: trackingContextString,
         ]
 
-        if let cookie = HTTPCookie(properties: cookieProperties) {
-            HTTPCookieStorage.shared.setCookie(cookie)
-        }
+        return HTTPCookie(properties: cookieProperties)
     }
 
 }

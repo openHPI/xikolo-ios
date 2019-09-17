@@ -109,6 +109,9 @@ class CourseViewController: UIViewController {
         self.courseNavigationController?.updateNavigationBar(forProgress: self.headerOffset / self.headerHeight)
 
         self.titleLabel.textAlignment = self.traitCollection.horizontalSizeClass == .compact ? .natural : .center
+
+        // Fix size of title view
+        self.titleView.layoutIfNeeded()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

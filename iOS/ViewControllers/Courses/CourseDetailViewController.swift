@@ -108,12 +108,12 @@ class CourseDetailViewController: UIViewController {
 
         if self.course.hasEnrollment {
             self.enrollmentButton.backgroundColor = Brand.default.colors.primary.withAlphaComponent(0.2)
-            self.enrollmentButton.tintColor = UIColor.darkGray
-             self.enrollmentOptionsButton.tintColor = UIColor.darkGray
+            self.enrollmentButton.tintColor = ColorCompatibility.secondaryLabel
+            self.enrollmentOptionsButton.tintColor = ColorCompatibility.secondaryLabel
         } else if ReachabilityHelper.connection != .none {
             self.enrollmentButton.backgroundColor = Brand.default.colors.primary
-            self.enrollmentButton.tintColor = UIColor.white
-            self.enrollmentOptionsButton.tintColor = UIColor.white
+            self.enrollmentButton.tintColor = ColorCompatibility.systemBackground
+            self.enrollmentOptionsButton.tintColor = ColorCompatibility.systemBackground
         } else {
             self.enrollmentButton.backgroundColor = ColorCompatibility.secondarySystemBackground
             self.enrollmentButton.tintColor = ColorCompatibility.secondaryLabel

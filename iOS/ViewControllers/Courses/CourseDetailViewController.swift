@@ -12,16 +12,15 @@ import UIKit
 class CourseDetailViewController: UIViewController {
 
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var languageView: UILabel!
     @IBOutlet private weak var dateView: UILabel!
     @IBOutlet private weak var teacherView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
     @IBOutlet private weak var enrollmentButton: LoadingButton!
-    @IBOutlet private weak var statusView: UIView!
-    @IBOutlet private weak var statusLabel: UILabel!
+    @IBOutlet private weak var enrollmentOptionsButton: UIButton!
     @IBOutlet private weak var teaserView: UIVisualEffectView!
+    @IBOutlet private var imageViewConstraints: [NSLayoutConstraint]!
 
     private weak var delegate: CourseAreaViewControllerDelegate?
     private var courseObserver: ManagedObjectObserver?
@@ -31,7 +30,7 @@ class CourseDetailViewController: UIViewController {
             self.courseObserver = ManagedObjectObserver(object: self.course) { [weak self] type in
                 guard type == .update else { return }
                 DispatchQueue.main.async {
-                    self?.updateView()
+                    self?.updateView(animated: true)
                 }
             }
         }
@@ -42,6 +41,7 @@ class CourseDetailViewController: UIViewController {
 
         self.imageView.backgroundColor = Brand.default.colors.secondary
         self.imageView.layer.roundCorners(for: .default)
+        self.imageView.isHidden = true
 
         self.enrollmentButton.layer.roundCorners(for: .default)
 
@@ -49,11 +49,7 @@ class CourseDetailViewController: UIViewController {
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self
 
-        self.statusView.layer.roundCorners(for: .inner)
-        self.statusView.backgroundColor = Brand.default.colors.secondary
-        self.statusLabel.backgroundColor = Brand.default.colors.secondary
-
-        self.teaserView.layer.roundCorners(for: .inner)
+        self.teaserView.layer.roundCorners(for: .default)
 
         self.updateView()
 
@@ -70,8 +66,7 @@ class CourseDetailViewController: UIViewController {
         CourseHelper.syncCourse(course)
     }
 
-    private func updateView() {
-        self.titleView.text = self.course.title
+    private func updateView(animated: Bool = false) {
         self.languageView.text = self.course.localizedLanguage
         self.teacherView.text = self.course.teachers
         self.teacherView.textColor = Brand.default.colors.secondary
@@ -80,10 +75,21 @@ class CourseDetailViewController: UIViewController {
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
         self.imageView.sd_setImage(with: self.course.imageURL)
 
-        // swiftlint:disable:next trailing_closure
-        UIView.transition(with: self.teaserView, duration: 0.25, options: .curveEaseInOut, animations: {
-            self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
-        })
+        DispatchQueue.main.async {
+            if self.course.teaserStream?.hlsURL != nil {
+                NSLayoutConstraint.activate(self.imageViewConstraints)
+            } else {
+                NSLayoutConstraint.deactivate(self.imageViewConstraints)
+            }
+
+            let animationDuration = animated ? 0.25 : 0
+            // swiftlint:disable:next trailing_closure
+            UIView.transition(with: self.teaserView, duration: animationDuration, options: .curveEaseInOut, animations: {
+                self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
+                self.imageView.isHidden = self.course.teaserStream?.hlsURL == nil
+                self.view.layoutIfNeeded()
+            })
+        }
 
         if let description = self.course.courseDescription ?? self.course.abstract {
             MarkdownHelper.attributedString(for: description).onSuccess(DispatchQueue.main.context) { attributedString in
@@ -91,7 +97,7 @@ class CourseDetailViewController: UIViewController {
             }
         }
 
-        self.refreshEnrollmentViews()
+        self.refreshEnrollButton()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -99,11 +105,6 @@ class CourseDetailViewController: UIViewController {
             let loginViewController = typedInfo.destination.viewControllers.first as? LoginViewController
             loginViewController?.delegate = self
         }
-    }
-
-    private func refreshEnrollmentViews() {
-        self.refreshEnrollButton()
-        self.refreshStatusView()
     }
 
     private func refreshEnrollButton() {
@@ -119,24 +120,19 @@ class CourseDetailViewController: UIViewController {
         if self.course.hasEnrollment {
             self.enrollmentButton.backgroundColor = Brand.default.colors.primary.withAlphaComponent(0.2)
             self.enrollmentButton.tintColor = UIColor.darkGray
+             self.enrollmentOptionsButton.tintColor = UIColor.darkGray
         } else if ReachabilityHelper.connection != .none {
             self.enrollmentButton.backgroundColor = Brand.default.colors.primary
             self.enrollmentButton.tintColor = UIColor.white
+            self.enrollmentOptionsButton.tintColor = UIColor.white
         } else {
             self.enrollmentButton.backgroundColor = ColorCompatibility.secondarySystemBackground
             self.enrollmentButton.tintColor = ColorCompatibility.secondaryLabel
+            self.enrollmentOptionsButton.tintColor = ColorCompatibility.secondaryLabel
         }
 
         self.enrollmentButton.isEnabled = self.course.hasEnrollment || ReachabilityHelper.connection != .none
-    }
-
-    private func refreshStatusView() {
-        if self.course.hasEnrollment {
-            self.statusView.isHidden = false
-            self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
-        } else {
-            self.statusView.isHidden = true
-        }
+        self.enrollmentOptionsButton.isHidden = !self.course.hasEnrollment
     }
 
     @objc func reachabilityChanged() {
@@ -217,7 +213,7 @@ class CourseDetailViewController: UIViewController {
             }
 
             DispatchQueue.main.async {
-                self?.refreshEnrollmentViews()
+                self?.refreshEnrollButton()
                 self?.delegate?.enrollmentStateDidChange(whenNewlyCreated: newlyCreated)
             }
         }.onFailure { [weak self] error in

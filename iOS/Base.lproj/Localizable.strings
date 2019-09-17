@@ -216,7 +216,7 @@
 "empty-view.course-documents.title" = "No documents are available for this course";
 
 /* title of course enrollment button */
-"enrollment.button.enrolled.title" = "Enrollment options";
+"enrollment.button.enrolled.title" = "Enrolled";
 
 /* title of Course enrollment options button */
 "enrollment.button.not-enrolled.title" = "Enroll";

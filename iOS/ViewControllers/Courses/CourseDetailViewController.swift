@@ -66,7 +66,7 @@ class CourseDetailViewController: UIViewController {
         CourseHelper.syncCourse(course)
     }
 
-    private func updateView(animated : Bool = false) {
+    private func updateView(animated: Bool = false) {
         self.languageView.text = self.course.localizedLanguage
         self.teacherView.text = self.course.teachers
         self.teacherView.textColor = Brand.default.colors.secondary

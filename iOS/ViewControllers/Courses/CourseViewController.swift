@@ -156,10 +156,51 @@ class CourseViewController: UIViewController {
     }
 
     private func averageColorUnderStatusBar(withCourseVisual image: UIImage?) -> UIColor? {
-        guard let croppedImage = self.croppedImageUnderNavigationBar(withCourseVisual: image) else { return nil }
+        let croppedImages = [
+            self.croppedImageUnderNavigationBar(withCourseVisual: image, leading: true),
+            self.croppedImageUnderNavigationBar(withCourseVisual: image, leading: false),
+        ]
+
+        let averageColorValues = croppedImages.compactMap(self.averageColor(of: ))
+
+        if averageColorValues.isEmpty { return nil }
+
+        let initialValue: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = (0, 0, 0, 0)
+        let averageColorValue = averageColorValues.reduce(initialValue) { result, value in
+            return (
+                red: result.red + (value.red / CGFloat(averageColorValues.count)),
+                green: result.green + (value.green / CGFloat(averageColorValues.count)),
+                blue: result.blue + (value.blue / CGFloat(averageColorValues.count)),
+                alpha: result.alpha + (value.alpha / CGFloat(averageColorValues.count))
+            )
+        }
+
+        return UIColor(red: averageColorValue.red, green: averageColorValue.green, blue: averageColorValue.blue, alpha: averageColorValue.alpha)
+    }
+
+    private func croppedImageUnderNavigationBar(withCourseVisual image: UIImage?, leading: Bool) -> CGImage? {
+        guard let image = image else { return nil }
+
+        let topInset: CGFloat
+        if #available(iOS 11, *) {
+            topInset = self.view.safeAreaInsets.top
+        } else {
+            topInset = self.view.layoutMargins.top
+        }
+
+        let imageScale = image.size.width / self.view.bounds.width
+        let transform = CGAffineTransform(scaleX: imageScale, y: imageScale)
+        let xOffset = leading ? 0 : self.view.bounds.width * 0.75
+        let yOffset = (image.size.height - self.headerImageView.bounds.height * imageScale) / 2 / imageScale
+        let subImageRect = CGRect(x: xOffset, y: max(0, yOffset), width: self.view.bounds.width * 0.25, height: max(topInset, 44)).applying(transform)
+        return image.cgImage?.cropping(to: subImageRect)
+    }
+
+    private func averageColor(of image: CGImage?) -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)? {
+        guard let image = image else { return nil }
 
         // inspired by https://www.hackingwithswift.com/example-code/media/how-to-read-the-average-color-of-a-uiimage-using-ciareaaverage
-        let inputImage = CIImage(cgImage: croppedImage)
+        let inputImage = CIImage(cgImage: image)
         let extentVector = CIVector(x: inputImage.extent.origin.x,
                                     y: inputImage.extent.origin.y,
                                     z: inputImage.extent.size.width,
@@ -172,24 +213,7 @@ class CourseViewController: UIViewController {
         let context = CIContext(options: [.workingColorSpace: kCFNull as Any])
         context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: .RGBA8, colorSpace: nil)
 
-        return UIColor(red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
-    }
-
-    private func croppedImageUnderNavigationBar(withCourseVisual image: UIImage?) -> CGImage? {
-        guard let image = image else { return nil }
-
-        let topInset: CGFloat
-        if #available(iOS 11, *) {
-            topInset = self.view.safeAreaInsets.top
-        } else {
-            topInset = self.view.layoutMargins.top
-        }
-
-        let imageScale = image.size.width / self.view.bounds.width
-        let transform = CGAffineTransform(scaleX: imageScale, y: imageScale)
-        let yOffset = (image.size.height - self.headerImageView.bounds.height * imageScale) / 2 / imageScale
-        let subImageRect = CGRect(x: 0, y: max(0, yOffset), width: self.view.bounds.width, height: max(topInset, 44)).applying(transform)
-        return image.cgImage?.cropping(to: subImageRect)
+        return (red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
     }
 
     private func updateCourseAreaListContainerHeight() {

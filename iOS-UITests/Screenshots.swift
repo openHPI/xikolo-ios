@@ -32,7 +32,7 @@ class Screenshots: XCTestCase {
 
         // Dashboard
         Navigator.goToTabBarItem(.dashboard)
-        app.tables.cells["CourseOverview"].waitForExistence(timeout: 5)
+        sleep(5)
 
         // Course item list
         // tap on first element in current courses view
@@ -45,7 +45,7 @@ class Screenshots: XCTestCase {
 
         // tap on first video item
         app.tables.cells["CourseItemCell-video"].firstMatch.tap()
-        sleep(4)
+        sleep(10)
         snapshot("4-Video-Item")
     }
 

@@ -138,8 +138,22 @@ class WebViewController: UIViewController {
     }
 
     private func loadURL() {
-        guard let url = self.url else { return }
-        self.webView.load(NetworkHelper.request(for: url) as URLRequest)
+        guard let existingURL = self.url else { return }
+
+        let request = NetworkHelper.request(for: existingURL) as URLRequest
+        if existingURL == Routes.singleSignOn {
+            let dataStore = WKWebsiteDataStore.default()
+            dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+                dataStore.removeData(
+                    ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),
+                    for: records.filter { Brand.default.host.contains($0.displayName) },
+                    completionHandler: {
+                        self.webView.load(request)
+                })
+            }
+        } else {
+            self.webView.load(request)
+        }
     }
 
     private func updateToolbarButtons() {

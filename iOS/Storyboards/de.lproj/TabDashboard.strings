@@ -1,24 +1,6 @@
 
-/* Class = "UINavigationItem"; title = "My course dates"; ObjectID = "T9X-VC-shp"; */
-"T9X-VC-shp.title" = "Meine Termine";
+/* Class = "UINavigationItem"; title = "Dashboard"; ObjectID = "J9k-eB-Ug4"; */
+"J9k-eB-Ug4.title" = "Dashboard";
 
-/* Class = "UITabBarItem"; title = "Dashboard"; ObjectID = "eqp-FY-Bn8"; */
-"eqp-FY-Bn8.title" = "Dashboard";
-
-/* Class = "UILabel"; text = "ALL"; ObjectID = "5di-eg-Vd8"; */
-"5di-eg-Vd8.text" = "ALLE";
-
-/* Class = "UILabel"; text = "Course date overview"; ObjectID = "KhV-rK-PjH"; */
-"KhV-rK-PjH.text" = "Termin-Übersicht";
-
-/* Class = "UILabel"; text = "TODAY"; ObjectID = "fGm-6x-Gbt"; */
-"fGm-6x-Gbt.text" = "HEUTE";
-
-/* Class = "UINavigationItem"; title = "Dashboard"; ObjectID = "gqL-aL-4lP"; */
-"gqL-aL-4lP.title" = "Dashboard";
-
-/* Class = "UILabel"; text = "Next up"; ObjectID = "vkE-Xg-aPx"; */
-"vkE-Xg-aPx.text" = "Als nächstes";
-
-/* Class = "UILabel"; text = "NEXT 7 DAYS"; ObjectID = "xcV-YS-Dwa"; */
-"xcV-YS-Dwa.text" = "NÄCHSTE 7 TAGE";
+/* Class = "UITabBarItem"; title = "Dashboard"; ObjectID = "l4a-Ve-8dC"; */
+"l4a-Ve-8dC.title" = "Dashboard";

@@ -2366,8 +2366,7 @@
 				50A725932339188400DE8338 /* de */,
 			);
 			name = CourseDates.storyboard;
-			path = "/Users/max/Documents/code/xikolo-ios/iOS/Storyboards";
-			sourceTree = "<absolute>";
+			sourceTree = "<group>";
 		};
 		50A725962339188E00DE8338 /* CourseDateOverview.storyboard */ = {
 			isa = PBXVariantGroup;

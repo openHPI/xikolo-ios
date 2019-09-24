@@ -13,16 +13,14 @@ import UIKit
 class CourseDetailViewController: UIViewController {
 
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var titleView: UILabel!
-    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var teaserView: UIView!
+    @IBOutlet private weak var teaserImageView: UIImageView!
     @IBOutlet private weak var languageView: UILabel!
     @IBOutlet private weak var dateView: UILabel!
     @IBOutlet private weak var teacherView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
     @IBOutlet private weak var enrollmentButton: LoadingButton!
-    @IBOutlet private weak var statusView: UIView!
-    @IBOutlet private weak var statusLabel: UILabel!
-    @IBOutlet private weak var teaserView: UIVisualEffectView!
+    @IBOutlet private weak var enrollmentOptionsButton: UIButton!
 
     private weak var delegate: CourseAreaViewControllerDelegate?
     private var courseObserver: ManagedObjectObserver?
@@ -32,7 +30,7 @@ class CourseDetailViewController: UIViewController {
             self.courseObserver = ManagedObjectObserver(object: self.course) { [weak self] type in
                 guard type == .update else { return }
                 DispatchQueue.main.async {
-                    self?.updateView()
+                    self?.updateView(animated: true)
                 }
             }
         }
@@ -41,22 +39,21 @@ class CourseDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.imageView.backgroundColor = Brand.default.colors.secondary
+        self.teaserView.isHidden = true
+        self.teaserView.layer.roundCorners(for: .default)
+        self.teaserImageView.backgroundColor = Brand.default.colors.secondary
+
+        self.teacherView.textColor = Brand.default.colors.secondary
+        self.teacherView.isHidden = !Brand.default.features.showCourseTeachers
+
+        self.enrollmentButton.layer.roundCorners(for: .default)
 
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self
 
-        self.statusView.layer.cornerRadius = 4.0
-        self.statusView.layer.masksToBounds = true
-        self.statusView.backgroundColor = Brand.default.colors.secondary
-        self.statusLabel.backgroundColor = Brand.default.colors.secondary
-
-        self.teaserView.layer.cornerRadius = 4.0
-        self.teaserView.layer.masksToBounds = true
 
         self.updateView()
-        self.updateImageViewAppearence()
 
         self.addRefreshControl()
         self.refresh()
@@ -66,29 +63,21 @@ class CourseDetailViewController: UIViewController {
                                                name: Notification.Name.reachabilityChanged,
                                                object: nil)
 
+        self.scrollView.delegate = self
+
         CourseHelper.syncCourse(course)
     }
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-        if self.traitCollection.horizontalSizeClass != previousTraitCollection?.horizontalSizeClass {
-            self.updateImageViewAppearence()
-        }
-    }
-
-    private func updateView() {
-        self.titleView.text = self.course.title
+    private func updateView(animated: Bool = false) {
         self.languageView.text = self.course.localizedLanguage
         self.teacherView.text = self.course.teachers
-        self.teacherView.textColor = Brand.default.colors.secondary
-        self.teacherView.isHidden = !Brand.default.features.showCourseTeachers
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
-        self.imageView.sd_setImage(with: self.course.imageURL)
+        self.teaserImageView.sd_setImage(with: self.course.imageURL)
 
+        let animationDuration = animated ? 0.25 : 0
         // swiftlint:disable:next trailing_closure
-        UIView.transition(with: self.teaserView, duration: 0.25, options: .curveEaseInOut, animations: {
+        UIView.transition(with: self.teaserView, duration: animationDuration, options: .curveEaseInOut, animations: {
             self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
         })
 
@@ -98,13 +87,7 @@ class CourseDetailViewController: UIViewController {
             }
         }
 
-        self.refreshEnrollmentViews()
-    }
-
-    private func updateImageViewAppearence() {
-        let showEdgeToEdge = self.traitCollection.horizontalSizeClass != .regular
-        self.imageView.layer.cornerRadius = showEdgeToEdge ? 0 : 6.0
-        self.imageView.layer.masksToBounds = true
+        self.refreshEnrollButton()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -112,11 +95,6 @@ class CourseDetailViewController: UIViewController {
             let loginViewController = typedInfo.destination.viewControllers.first as? LoginViewController
             loginViewController?.delegate = self
         }
-    }
-
-    private func refreshEnrollmentViews() {
-        self.refreshEnrollButton()
-        self.refreshStatusView()
     }
 
     private func refreshEnrollButton() {
@@ -131,25 +109,20 @@ class CourseDetailViewController: UIViewController {
 
         if self.course.hasEnrollment {
             self.enrollmentButton.backgroundColor = Brand.default.colors.primary.withAlphaComponent(0.2)
-            self.enrollmentButton.tintColor = UIColor.darkGray
+            self.enrollmentButton.tintColor = ColorCompatibility.secondaryLabel
+            self.enrollmentOptionsButton.tintColor = ColorCompatibility.secondaryLabel
         } else if ReachabilityHelper.connection != .none {
             self.enrollmentButton.backgroundColor = Brand.default.colors.primary
-            self.enrollmentButton.tintColor = UIColor.white
+            self.enrollmentButton.tintColor = ColorCompatibility.systemBackground
+            self.enrollmentOptionsButton.tintColor = ColorCompatibility.systemBackground
         } else {
-            self.enrollmentButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-            self.enrollmentButton.tintColor = UIColor.darkText
+            self.enrollmentButton.backgroundColor = ColorCompatibility.secondarySystemBackground
+            self.enrollmentButton.tintColor = ColorCompatibility.secondaryLabel
+            self.enrollmentOptionsButton.tintColor = ColorCompatibility.secondaryLabel
         }
 
         self.enrollmentButton.isEnabled = self.course.hasEnrollment || ReachabilityHelper.connection != .none
-    }
-
-    private func refreshStatusView() {
-        if self.course.hasEnrollment {
-            self.statusView.isHidden = false
-            self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
-        } else {
-            self.statusView.isHidden = true
-        }
+        self.enrollmentOptionsButton.isHidden = !self.course.hasEnrollment
     }
 
     @objc func reachabilityChanged() {
@@ -224,17 +197,33 @@ class CourseDetailViewController: UIViewController {
             if let course = self?.course {
                 CourseHelper.syncCourse(course)
                 CourseDateHelper.syncCourseDates(for: course)
-                AnnouncementHelper.shared.syncAnnouncements(for: course)
+                AnnouncementHelper.syncAnnouncements(for: course)
             }
 
             DispatchQueue.main.async {
-                self?.refreshEnrollmentViews()
+                self?.refreshEnrollButton()
                 self?.delegate?.enrollmentStateDidChange(whenNewlyCreated: newlyCreated)
             }
         }.onFailure { [weak self] error in
             ErrorManager.shared.report(error)
             self?.enrollmentButton.shake()
         }
+    }
+
+}
+
+extension CourseDetailViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.delegate?.scrollViewDidScroll(scrollView)
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.delegate?.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.delegate?.scrollViewDidEndDecelerating(scrollView)
     }
 
 }
@@ -262,7 +251,8 @@ extension CourseDetailViewController: LoginDelegate {
 extension CourseDetailViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        return !AppNavigator.handle(url: URL, on: self)
+        guard let appNavigator = self.appNavigator else { return false }
+        return !appNavigator.handle(url: URL, on: self)
     }
 
 }

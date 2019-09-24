@@ -19,7 +19,7 @@ class CourseDateCell: UITableViewCell {
     }
 
     func configure(for courseDate: CourseDate) {
-        self.dateLabel.text = courseDate.defaultDateString
+        self.dateLabel.text = courseDate.formattedDateWithTimeZone
         self.courseLabel.text = courseDate.course?.title
         self.titleLabel.text = courseDate.contextAwareTitle
     }

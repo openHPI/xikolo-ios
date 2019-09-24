@@ -6,7 +6,7 @@
 import BrightFutures
 import UIKit
 
-public class TrackingHelper {
+public enum TrackingHelper {
 
     public enum AnalyticsVerb: String {
         // tabs
@@ -18,6 +18,8 @@ public class TrackingHelper {
         // subpages
         case visitedItem = "VISITED_ITEM"
         case visitedAnnouncement = "VISITED_ANNOUNCEMENT_DETAIL"
+        case visitedPinboard = "VISITED_PINBOARD"
+        case visitedRecap = "VISITED_RECAP"
 
         // video playback
         case videoPlaybackPlay = "VIDEO_PLAY"
@@ -58,13 +60,7 @@ public class TrackingHelper {
     }
     // swiftlint:enable redundant_string_enum_value
 
-    public static let shared = TrackingHelper()
-
-    public weak var delegate: TrackingHelperDelegate?
-
-    private init() {}
-
-    private var networkState: String {
+    private static var networkState: String {
         switch ReachabilityHelper.connection {
         case .wifi:
             return "wifi"
@@ -75,9 +71,9 @@ public class TrackingHelper {
         }
     }
 
-    private func defaultContext() -> [String: String] {
+    public static func newDefaultContext(for viewController: UIViewController?) -> [String: String] {
         let screenSize = UIScreen.main.bounds.size
-        let windowSize = self.delegate?.applicationWindowSize
+        let windowSize = viewController?.view.window?.frame.size
 
         var context = [
             "platform": UIApplication.platform,
@@ -89,8 +85,6 @@ public class TrackingHelper {
             "build_version": UIApplication.appBuild,
             "screen_width": String(Int(screenSize.width)),
             "screen_height": String(Int(screenSize.height)),
-            "free_space": String(describing: self.systemFreeSize),
-            "total_space": String(describing: self.systemSize),
             "network": self.networkState,
         ]
 
@@ -109,14 +103,24 @@ public class TrackingHelper {
         return context
     }
 
-    @discardableResult public func createEvent(_ verb: AnalyticsVerb, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
-        return self.createEvent(verb, resourceType: .none, resourceId: "00000000-0000-0000-0000-000000000000", context: context)
+    @discardableResult public static func createEvent(_ verb: AnalyticsVerb,
+                                                      on viewController: UIViewController?,
+                                                      context: [String: String?] = [:]) -> Future<Void, XikoloError> {
+        return self.createEvent(verb, resourceType: .none, resourceId: "00000000-0000-0000-0000-000000000000", on: viewController, context: context)
     }
 
-    @discardableResult public func createEvent(_ verb: AnalyticsVerb,
-                                               resourceType: AnalyticsResourceType,
-                                               resourceId: String,
-                                               context: [String: String?] = [:]) -> Future<Void, XikoloError> {
+    @discardableResult public static func createEvent(_ verb: AnalyticsVerb,
+                                                      inCourse course: Course,
+                                                      on viewController: UIViewController?,
+                                                      context: [String: String?] = [:]) -> Future<Void, XikoloError> {
+        return self.createEvent(verb, resourceType: .course, resourceId: course.id, on: viewController, context: context)
+    }
+
+    @discardableResult public static func createEvent(_ verb: AnalyticsVerb,
+                                                      resourceType: AnalyticsResourceType,
+                                                      resourceId: String,
+                                                      on viewController: UIViewController?,
+                                                      context: [String: String?] = [:]) -> Future<Void, XikoloError> {
         guard let userId = UserProfileHelper.shared.userId else {
             return Future(error: .trackingForUnknownUser)
         }
@@ -128,7 +132,7 @@ public class TrackingHelper {
         let promise = Promise<Void, XikoloError>()
 
         DispatchQueue.main.async {
-            var trackingContext = self.defaultContext()
+            var trackingContext = self.newDefaultContext(for: viewController)
             for case let (key, value) as (String, String) in context {
                 trackingContext.updateValue(value, forKey: key)
             }
@@ -152,38 +156,24 @@ public class TrackingHelper {
         return promise.future
     }
 
-}
-
-extension TrackingHelper {
-
-    private var systemFreeSize: UInt64 {
-        return self.deviceData(for: .systemFreeSize) ?? 0
-    }
-
-    private var systemSize: UInt64 {
-        return self.deviceData(for: .systemSize) ?? 0
-    }
-
-    private func deviceData(for key: FileAttributeKey) -> UInt64? {
-        guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last else {
+    public static func trackingContextCookie(with viewController: UIViewController?) -> HTTPCookie? {
+        let trackingContext = self.newDefaultContext(for: viewController)
+        guard let trackingContextJSON = try? JSONEncoder().encode(trackingContext) else {
             return nil
         }
 
-        guard let deviceData = try? FileManager.default.attributesOfFileSystem(forPath: path) else {
+        guard let trackingContextString = String(data: trackingContextJSON, encoding: .utf8) else {
             return nil
         }
 
-        guard let value = deviceData[key] as? NSNumber else {
-            return nil
-        }
+        let cookieProperties: [HTTPCookiePropertyKey: Any] = [
+            .domain: Routes.base.host ?? Brand.default.host,
+            .path: "/",
+            .name: "lanalytics-context",
+            .value: trackingContextString,
+        ]
 
-        return value.uint64Value
+        return HTTPCookie(properties: cookieProperties)
     }
-
-}
-
-public protocol TrackingHelperDelegate: AnyObject {
-
-    var applicationWindowSize: CGSize? { get }
 
 }

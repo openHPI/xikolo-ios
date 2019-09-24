@@ -22,9 +22,33 @@ public struct BrandColors: Decodable {
 
     private let windowColorChoice: WindowColorChoice
 
-    public let primary: UIColor
-    public let secondary: UIColor
-    public let tertiary: UIColor
+    private let primaryFallback: UIColor
+    private let secondaryFallback: UIColor
+    private let tertiaryFallback: UIColor
+
+    public var primary: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor(named: "primary") ?? self.primaryFallback
+        } else {
+            return self.primaryFallback
+        }
+    }
+
+    public var secondary: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor(named: "secondary") ?? self.secondaryFallback
+        } else {
+            return self.secondaryFallback
+        }
+    }
+
+    public var tertiary: UIColor {
+        if #available(iOS 13, *) {
+            return UIColor(named: "tertiary") ?? self.tertiaryFallback
+        } else {
+            return self.tertiaryFallback
+        }
+    }
 
     public let answerCorrect = UIColor(red: 140 / 255, green: 179 / 255, blue: 13 / 255, alpha: 1)
     public let answerIncorrect = UIColor(red: 214 / 255, green: 0 / 255, blue: 26 / 255, alpha: 1)
@@ -32,9 +56,9 @@ public struct BrandColors: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.primary = try container.decodeColor(forKey: .primary)
-        self.secondary = try container.decodeColor(forKey: .secondary)
-        self.tertiary = try container.decodeColor(forKey: .tertiary)
+        self.primaryFallback = try container.decodeColor(forKey: .primary)
+        self.secondaryFallback = try container.decodeColor(forKey: .secondary)
+        self.tertiaryFallback = try container.decodeColor(forKey: .tertiary)
         self.windowColorChoice = try container.decodeWindowColorChoice(forKey: .window)
     }
 

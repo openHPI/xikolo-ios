@@ -13,6 +13,8 @@ class AnnouncementListViewController: UITableViewController {
 
     private var dataSource: CoreDataTableViewDataSource<AnnouncementListViewController>!
 
+    weak var scrollDelegate: CourseAreaScrollDelegate?
+
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
@@ -22,19 +24,15 @@ class AnnouncementListViewController: UITableViewController {
 
     @IBOutlet private var actionButton: UIBarButtonItem!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(coreDataChange(notification:)),
-                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
-                                               object: CoreDataHelper.viewContext)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.addRefreshControl()
 
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(notification:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateUIAfterLoginStateChanged),
                                                name: UserProfileHelper.loginStateDidChangeNotification,
@@ -67,7 +65,7 @@ class AnnouncementListViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        TrackingHelper.shared.createEvent(.visitedAnnouncementList)
+        TrackingHelper.createEvent(.visitedAnnouncementList, on: self)
     }
 
     func setupEmptyState() {
@@ -84,6 +82,18 @@ class AnnouncementListViewController: UITableViewController {
         }
     }
 
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.scrollDelegate?.scrollViewDidScroll(scrollView)
+    }
+
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.scrollDelegate?.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+    }
+
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.scrollDelegate?.scrollViewDidEndDecelerating(scrollView)
+    }
+
     @objc private func updateUIAfterLoginStateChanged() {
         self.navigationItem.rightBarButtonItem = UserProfileHelper.shared.isLoggedIn ? self.actionButton : nil
     }
@@ -94,7 +104,7 @@ class AnnouncementListViewController: UITableViewController {
 
         let markAllAsReadActionTitle = NSLocalizedString("announcement.alert.mark all as read", comment: "alert action title to mark all announcements as read")
         let markAllAsReadAction = UIAlertAction(title: markAllAsReadActionTitle, style: .default) { _ in
-            AnnouncementHelper.shared.markAllAsVisited()
+            AnnouncementHelper.markAllAsVisited()
         }
 
         alert.addAction(markAllAsReadAction)
@@ -131,9 +141,9 @@ extension AnnouncementListViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         if let course = self.course {
-            return AnnouncementHelper.shared.syncAnnouncements(for: course).asVoid()
+            return AnnouncementHelper.syncAnnouncements(for: course).asVoid()
         } else {
-            return AnnouncementHelper.shared.syncAllAnnouncements().asVoid()
+            return AnnouncementHelper.syncAllAnnouncements().asVoid()
         }
     }
 
@@ -166,6 +176,7 @@ extension AnnouncementListViewController: CourseAreaViewController {
     func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
         assert(area == self.area)
         self.course = course
+        self.scrollDelegate = delegate
     }
 
 }

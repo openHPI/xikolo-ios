@@ -1,6 +1,8 @@
-• Fix setting playback speed correctly when opening videos
+• Adoption of Dark Mode on iOS 13
+• Support for multiple windows on iPads running iPadOS 13 or later
+• A refined look of the course presentation
 
-Also in version 2.5:
-• Improved course navigation: Swipe horizontally to jump between course items. This also works for course areas.
-• See all your earned certifcates in the account tab
-• Easily manage the downloaded content in the account tab
+Further small improvements:
+• A back button was added to the forum navigation
+• Optimized the app launch time a bit
+• Adjusted colors for high contrast mode

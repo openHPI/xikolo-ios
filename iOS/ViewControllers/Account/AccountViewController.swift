@@ -55,6 +55,13 @@ class AccountViewController: UITableViewController {
 
         self.updateUIAfterLoginStateChanged()
 
+        self.profileImage.layer.cornerRadius = self.profileImage.bounds.width / 2
+        self.profileImage.layer.borderWidth = 3.0
+
+        self.traitCollection.performAsCurrent {
+             self.profileImage.layer.borderColor = ColorCompatibility.systemBackground.cgColor
+        }
+
         // set copyright and app version info
         self.copyrightLabel.text = Brand.default.copyrightText
         self.poweredByLabel.text = Brand.default.poweredByText
@@ -96,6 +103,16 @@ class AccountViewController: UITableViewController {
 
         self.dataSource.reloadContent()
         self.tableView.reloadData()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if #available(iOS 13, *) {
+            if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+                self.profileImage.layer.borderColor = ColorCompatibility.systemBackground.cgColor
+            }
+        }
     }
 
     func updateProfileInfo() {

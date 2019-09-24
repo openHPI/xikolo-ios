@@ -10,6 +10,8 @@ import UIKit
 
 class AnnouncementViewController: UIViewController {
 
+    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
+
     @IBOutlet private weak var courseButton: UIButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
@@ -46,8 +48,8 @@ class AnnouncementViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        AnnouncementHelper.shared.markAsVisited(self.announcement)
-        TrackingHelper.shared.createEvent(.visitedAnnouncement, resourceType: .announcement, resourceId: announcement.id)
+        AnnouncementHelper.markAsVisited(self.announcement)
+        TrackingHelper.createEvent(.visitedAnnouncement, resourceType: .announcement, resourceId: announcement.id, on: self)
     }
 
     func configure(for announcement: Announcement, showCourseTitle: Bool) {
@@ -66,10 +68,7 @@ class AnnouncementViewController: UIViewController {
         self.titleLabel.text = self.announcement.title
 
         if let date = self.announcement.publishedAt {
-            let dateFormatter = DateFormatter.localizedFormatter()
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeStyle = .none
-            self.dateLabel.text = dateFormatter.string(from: date)
+            self.dateLabel.text = AnnouncementViewController.dateFormatter.string(from: date)
             self.dateLabel.isHidden = false
         } else {
             self.dateLabel.isHidden = true
@@ -86,7 +85,7 @@ class AnnouncementViewController: UIViewController {
 
     @IBAction private func tappedCourseTitle() {
         guard let course = announcement.course else { return }
-        AppNavigator.show(course: course)
+        self.appNavigator?.show(course: course)
     }
 
 }
@@ -94,7 +93,8 @@ class AnnouncementViewController: UIViewController {
 extension AnnouncementViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        return !AppNavigator.handle(url: URL, on: self)
+        guard let appNavigator = self.appNavigator else { return false }
+        return !appNavigator.handle(url: URL, on: self)
     }
 
 }

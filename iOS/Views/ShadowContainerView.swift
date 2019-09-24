@@ -14,12 +14,12 @@ class ShadowContainerView: UIView {
         self.layer.shadowRadius = 8.0
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 4)
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 6.0).cgPath
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: CALayer.CornerStyle.default.rawValue).cgPath
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 6.0).cgPath
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: CALayer.CornerStyle.default.rawValue).cgPath
     }
 
 }

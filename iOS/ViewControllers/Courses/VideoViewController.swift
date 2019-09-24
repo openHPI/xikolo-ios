@@ -31,7 +31,7 @@ class VideoViewController: UIViewController {
     private lazy var actionMenuButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
         button.isEnabled = false
-        button.tintColor = .lightGray
+        button.tintColor = ColorCompatibility.disabled
         return button
     }()
 
@@ -68,13 +68,13 @@ class VideoViewController: UIViewController {
         self.updateCornersOfVideoContainer(for: self.traitCollection)
 
         self.videoActionsButton.isEnabled = false
-        self.videoActionsButton.tintColor = .lightGray
+        self.videoActionsButton.tintColor = ColorCompatibility.disabled
         self.videoProgressView.isHidden = true
-        self.videoDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
+        self.videoDownloadedIcon.tintColor = ColorCompatibility.disabled.withAlphaComponent(0.7)
         self.videoDownloadedIcon.isHidden = true
 
         self.slidesView.isHidden = true
-        self.slidesDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
+        self.slidesDownloadedIcon.tintColor = ColorCompatibility.disabled.withAlphaComponent(0.7)
 
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
@@ -143,7 +143,7 @@ class VideoViewController: UIViewController {
 
         let hasUserActions = ReachabilityHelper.connection != .none || !video.userActions.isEmpty
         self.actionMenuButton.isEnabled = hasUserActions
-        self.actionMenuButton.tintColor = hasUserActions ? Brand.default.colors.primary : .lightGray
+        self.actionMenuButton.tintColor = hasUserActions ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
         let streamDownloadProgress = StreamPersistenceManager.shared.downloadProgress(for: video)
@@ -151,8 +151,9 @@ class VideoViewController: UIViewController {
         self.videoProgressView.updateProgress(streamDownloadProgress, animated: false)
         self.videoDownloadedIcon.isHidden = streamDownloadState != .downloaded
 
-        self.videoActionsButton.isEnabled = ReachabilityHelper.connection != .none || video.streamUserAction != nil
-        self.videoActionsButton.tintColor = ReachabilityHelper.connection != .none || video.streamUserAction != nil ? Brand.default.colors.primary : .lightGray
+        let isVideoActionsButtonEnabled = ReachabilityHelper.connection != .none || video.streamUserAction != nil
+        self.videoActionsButton.isEnabled = isVideoActionsButtonEnabled
+        self.videoActionsButton.tintColor = isVideoActionsButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         // show slides button
         self.slidesView.isHidden = (video.slidesURL == nil)
@@ -163,8 +164,9 @@ class VideoViewController: UIViewController {
         self.slidesDownloadedIcon.isHidden = !(slidesDownloadState == .downloaded)
 
         self.slidesButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.localSlidesBookmark != nil
-        self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none || video.slidesUserAction != nil
-        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none || video.slidesUserAction != nil ? Brand.default.colors.primary : .lightGray
+        let isSlidesActionButtonEnabled = ReachabilityHelper.connection != .none || video.slidesUserAction != nil
+        self.slidesActionsButton.isEnabled = isSlidesActionButtonEnabled
+        self.slidesActionsButton.tintColor = isSlidesActionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         // show description
         if let summary = video.summary {
@@ -266,7 +268,7 @@ class VideoViewController: UIViewController {
                 self.slidesButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.localSlidesBookmark != nil
                 let actionButtonEnabled = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil
                 self.slidesActionsButton.isEnabled = actionButtonEnabled
-                self.slidesActionsButton.tintColor = actionButtonEnabled ? Brand.default.colors.primary : .lightGray
+                self.slidesActionsButton.tintColor = actionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.systemGray4
             }
         }
     }
@@ -356,12 +358,12 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
 
     func didStartPlayback() {
         guard let video = self.video else { return }
-        TrackingHelper.shared.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
+        TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }
 
     func didPausePlayback() {
         guard let video = self.video else { return }
-        TrackingHelper.shared.createEvent(.videoPlaybackPause, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
+        TrackingHelper.createEvent(.videoPlaybackPause, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }
 
     func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {
@@ -372,7 +374,7 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         context["old_speed"] = String(oldRate)
         context["new_speed"] = String(newRate)
 
-        TrackingHelper.shared.createEvent(.videoPlaybackChangeSpeed, resourceType: .video, resourceId: video.id, context: context)
+        TrackingHelper.createEvent(.videoPlaybackChangeSpeed, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 
     func didSeek(from oldTime: TimeInterval, to newTime: TimeInterval) { // swiftlint:disable:this identifier_name
@@ -383,17 +385,17 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         context["new_current_time"] = String(newTime)
         context["old_current_time"] = String(oldTime)
 
-        TrackingHelper.shared.createEvent(.videoPlaybackSeek, resourceType: .video, resourceId: video.id, context: context)
+        TrackingHelper.createEvent(.videoPlaybackSeek, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 
     func didReachEndofPlayback() {
         guard let video = self.video else { return }
-        TrackingHelper.shared.createEvent(.videoPlaybackEnd, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
+        TrackingHelper.createEvent(.videoPlaybackEnd, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }
 
     func trackVideoClose() {
         guard let video = self.video else { return }
-        TrackingHelper.shared.createEvent(.videoPlaybackClose, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
+        TrackingHelper.createEvent(.videoPlaybackClose, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }
 
     func didChangeOrientation(to orientation: UIInterfaceOrientation) {
@@ -402,12 +404,12 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         let verb: TrackingHelper.AnalyticsVerb = orientation.isLandscape ? .videoPlaybackDeviceOrientationLandscape : .videoPlaybackDeviceOrientationPortrait
         var context = self.newTrackingContext
         context["current_orientation"] = nil
-        TrackingHelper.shared.createEvent(verb, resourceType: .video, resourceId: video.id, context: context)
+        TrackingHelper.createEvent(verb, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 
 }
 
-extension VideoViewController: CourseItemContentViewController {
+extension VideoViewController: CourseItemContentPresenter {
 
     var item: CourseItem? {
         return self.courseItem

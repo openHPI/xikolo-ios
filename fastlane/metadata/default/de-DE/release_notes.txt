@@ -1,6 +1,8 @@
-• Die Wiedergabegeschwindigkeit wird nun korrekt beim Startne von Videos gesetzt
+• Dunkelmodus für iOS 13
+• Unterstützung von mehreren App-Fenstern auf iPads mit iPadOS 13 oder neuer
+• Überarbeitete Kursansicht
 
-Auch in Version 2.5:
-• Verbesserte Navigation im Kurs: Wische nach links oder rechts um zwischen Kursinhalten zu wechseln. Das funktioniert auch für Kursbreiche.
-• Alle erhaltene Zertifikate können nun im Konto-Tab eingesehen werden
-• Heruntergeladene Kursinhalte können im Konto-Tab verwaltet werden
+Weitere kleine Verbesserungen:
+• Zurück-Button für das Kurs-Forum
+• Verbesserte App-Startzeit
+• Angepasste Farben wenn die App im Modus mit erhöhten Kontrasten benutzt wird

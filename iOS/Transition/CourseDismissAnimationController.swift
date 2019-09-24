@@ -5,7 +5,7 @@
 
 import UIKit
 
-class CourseDismissionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+class CourseDismissAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 
     private var propertyAnimator: UIViewPropertyAnimator?
 
@@ -18,7 +18,6 @@ class CourseDismissionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
     }
 
     func interruptibleAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {
-        // as per documentation, we need to return existing animator for ongoing transition
         if let propertyAnimator = self.propertyAnimator {
             return propertyAnimator
         }
@@ -37,8 +36,8 @@ class CourseDismissionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
         // in a different device orientation compared to the orientation the course was opened in
         toViewController.view.frame = transitionContext.finalFrame(for: toViewController)
 
-        let animationDuration = self.transitionDuration(using: transitionContext)
-        let animator = UIViewPropertyAnimator(duration: animationDuration, timingParameters: UICubicTimingParameters(animationCurve: .easeInOut))
+        let duration = transitionDuration(using: transitionContext)
+        let animator = UIViewPropertyAnimator(duration: duration, timingParameters: UICubicTimingParameters(animationCurve: .easeIn))
 
         animator.addAnimations {
             fromViewController.view.transform = CGAffineTransform(translationX: 0, y: transitionContext.containerView.bounds.height)

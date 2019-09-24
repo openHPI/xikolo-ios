@@ -216,7 +216,7 @@
 "empty-view.course-documents.title" = "No documents are available for this course";
 
 /* title of course enrollment button */
-"enrollment.button.enrolled.title" = "Enrollment options";
+"enrollment.button.enrolled.title" = "Enrolled";
 
 /* title of Course enrollment options button */
 "enrollment.button.not-enrolled.title" = "Enroll";
@@ -225,7 +225,7 @@
 "enrollment.options-alert.mask-as-completed-action.title" = "Mark as completed";
 
 /* message of enrollment alert */
-"enrollment.options-alert.message" = "You can mark a course as completed once you dont want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored.";
+"enrollment.options-alert.message" = "You can mark a course as completed once you don't want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored.";
 
 /* title of enrollment options alert */
 "enrollment.options-alert.title" = "Finished learning?";

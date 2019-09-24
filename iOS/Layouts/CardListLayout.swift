@@ -94,12 +94,15 @@ class CardListLayout: UICollectionViewLayout {
         let columnWidth = (self.contentWidth - CGFloat(max(0, numberOfColumns - 1)) * self.cellPadding) / CGFloat(numberOfColumns)
         let layoutInsets = self.layoutInsets(for: collectionView)
 
-        var xOffset = [CGFloat]()
-        var yOffset = [CGFloat]()
-        for columnIndex in 0 ..< numberOfColumns {
-            xOffset.append(layoutInsets.left + CGFloat(columnIndex) * (columnWidth + self.cellPadding))
-            yOffset.append(layoutInsets.top - self.linePadding)
+        let xOffsetForColumn: (Int) -> CGFloat
+        if UIView.userInterfaceLayoutDirection(for: collectionView.semanticContentAttribute) == .rightToLeft {
+            xOffsetForColumn = { collectionView.bounds.width - layoutInsets.right - CGFloat($0 + 1) * columnWidth - CGFloat($0) * self.cellPadding }
+        } else {
+            xOffsetForColumn = { layoutInsets.left + CGFloat($0) * (columnWidth + self.cellPadding) }
         }
+
+        let xOffset = (0 ..< numberOfColumns).map(xOffsetForColumn)
+        var yOffset = [CGFloat](repeating: layoutInsets.top - self.linePadding, count: numberOfColumns)
 
         var rowOffset: CGFloat = 0
         let numberOfSections = collectionView.numberOfSections

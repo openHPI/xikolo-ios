@@ -8,12 +8,7 @@ import UIKit
 
 class AnnouncementCell: UITableViewCell {
 
-    static var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter.localizedFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        return dateFormatter
-    }()
+    static var dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
 
     @IBOutlet private weak var courseLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -30,7 +25,8 @@ class AnnouncementCell: UITableViewCell {
         self.readStateLabel.textColor = Brand.default.colors.secondary
         self.readStateLabel.isHidden = !userIsLoggedIn || announcement.visited
         self.separatorView.isHidden = !userIsLoggedIn || announcement.visited
-        self.titleLabel.textColor = userIsLoggedIn && announcement.visited ? .gray : .black
+
+        self.titleLabel.textColor = userIsLoggedIn && announcement.visited ? ColorCompatibility.secondaryLabel : ColorCompatibility.label
 
         self.courseLabel.textColor = Brand.default.colors.secondary
         if let courseTitle = announcement.course?.title, showCourseTitle {

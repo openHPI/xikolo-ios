@@ -23,8 +23,17 @@ public struct DefaultStyleCollection: StyleCollection {
     }
 
     public var baseStyle: Style {
+        let foregroundColor: UIColor = {
+            if #available(iOS 13, *) {
+                return .label
+            } else {
+                return .black
+            }
+        }()
+
         return [
             .font: UIFont.systemFont(ofSize: UIFont.labelFontSize),
+            .foregroundColor: foregroundColor,
             .paragraphStyle: self.paragraphStyle,
         ]
     }

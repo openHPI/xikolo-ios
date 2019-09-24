@@ -58,6 +58,7 @@ excluded:
 - iOS-UITests/SnapshotHelper.swift
 - Common/R.generated.swift
 - iOS/R.generated.swift
+- fastlane/screenshots
 
 line_length: 160
 

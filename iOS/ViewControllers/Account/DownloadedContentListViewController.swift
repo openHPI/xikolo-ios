@@ -47,20 +47,16 @@ class DownloadedContentListViewController: UITableViewController {
         self.tableView?.emptyDataSetDelegate = nil
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(coreDataChange(notification:)),
-                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
-                                               object: CoreDataHelper.viewContext)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setupEmptyState()
         self.refresh()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(notification:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
     }
 
     override func viewDidLayoutSubviews() {
@@ -137,6 +133,7 @@ extension DownloadedContentListViewController { // Table view data source
         let data = Array(self.courseDownloads[indexPath.section].data)[indexPath.row]
         cell.textLabel?.text = data.key.title
         cell.detailTextLabel?.text = ByteCountFormatter.string(fromByteCount: Int64(data.value), countStyle: .file)
+        cell.selectedBackgroundView = self.isEditing ? UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground) : nil
         return cell
     }
 
@@ -151,6 +148,7 @@ extension DownloadedContentListViewController { // Table view data source
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard !self.isEditing else {
             self.updateToolBarButtons()
+            tableView.cellForRow(at: indexPath)?.selectedBackgroundView = UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground)
             return
         }
 
@@ -173,6 +171,7 @@ extension DownloadedContentListViewController { // Table view data source
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard self.isEditing else { return }
         self.updateToolBarButtons()
+        tableView.cellForRow(at: indexPath)?.selectedBackgroundView = nil
     }
 
 }
@@ -184,6 +183,12 @@ extension DownloadedContentListViewController { // editing
         self.updateToolBarButtons()
         self.navigationController?.setToolbarHidden(!editing, animated: animated)
         self.navigationItem.setHidesBackButton(editing, animated: animated)
+
+        if !editing {
+            for cell in self.tableView.visibleCells {
+                cell.selectedBackgroundView = nil
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
@@ -202,6 +207,14 @@ extension DownloadedContentListViewController { // editing
         }
 
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+        self.isEditing = true
     }
 
     private func fetchCourse(withID id: String) -> Course? {

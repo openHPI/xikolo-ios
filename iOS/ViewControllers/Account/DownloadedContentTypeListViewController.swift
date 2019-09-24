@@ -22,7 +22,11 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
     init(forCourseId courseId: String, configuration: Configuration.Type) {
         self.courseId = courseId
 
-        super.init(style: .grouped)
+        if #available(iOS 13, *) {
+            super.init(style: .insetGrouped)
+        } else {
+            super.init(style: .grouped)
+        }
 
         // Workaround for hiding additional top offset of the table view caused by groped style
         // See: https://stackoverflow.com/a/18938763/7414898
@@ -65,6 +69,12 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
         self.updateToolBarButtons()
         self.navigationController?.setToolbarHidden(!editing, animated: animated)
         self.navigationItem.setHidesBackButton(editing, animated: animated)
+
+        if !editing {
+            for cell in self.tableView.visibleCells {
+                cell.selectedBackgroundView = nil
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
@@ -76,15 +86,25 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.isEditing {
             self.updateToolBarButtons()
+            tableView.cellForRow(at: indexPath)?.selectedBackgroundView = UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground)
         } else {
             let object = self.dataSource.object(at: indexPath)
-            Configuration.show(object)
+            Configuration.show(object, with: self.appNavigator)
         }
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard self.isEditing else { return }
         self.updateToolBarButtons()
+        tableView.cellForRow(at: indexPath)?.selectedBackgroundView = nil
+    }
+
+    override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+        self.isEditing = true
     }
 
     private func fetchCourse(withID id: String) -> Course? {
@@ -159,6 +179,8 @@ extension DownloadedContentTypeListViewController: CoreDataTableViewDataSourceDe
     func configure(_ cell: UITableViewCell, for object: Resource) {
         cell.textLabel?.text = object[keyPath: Configuration.cellTitleKeyPath]
         cell.detailTextLabel?.text = Configuration.persistenceManager.formattedFileSize(for: object)
+        cell.accessoryType = .disclosureIndicator
+        cell.selectedBackgroundView = self.isEditing ? UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground) : nil
     }
 
     func titleForDefaultHeader(forSection section: Int) -> String? {

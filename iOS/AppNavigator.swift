@@ -7,12 +7,18 @@ import Common
 import CoreSpotlight
 import UIKit
 
-enum AppNavigator {
+class AppNavigator {
 
-    private static weak var currentCourseNavigationController: CourseNavigationController?
-    private static let courseTransitioningDelegate = CourseTransitioningDelegate()
+    private weak var currentCourseNavigationController: CourseNavigationController?
+    private let courseTransitioningDelegate = CourseTransitioningDelegate() // swiftlint:disable:this weak_delegate
 
-    static func handle(userActivity: NSUserActivity) -> Bool {
+    private weak var tabBarController: UITabBarController?
+
+    init(tabBarController: UITabBarController) {
+        self.tabBarController = tabBarController
+    }
+
+    @discardableResult func handle(userActivity: NSUserActivity) -> Bool {
         var activityURL: URL?
         if userActivity.activityType == CSSearchableItemActionType {
             // This activity represents an item indexed using Core Spotlight, so restore the context related to the unique identifier.
@@ -32,7 +38,7 @@ enum AppNavigator {
         return self.handle(url: url)
     }
 
-    static func handle(url: URL, on sourceViewController: UIViewController) -> Bool {
+    func handle(url: URL, on sourceViewController: UIViewController) -> Bool {
         guard let url = self.sanitizedURL(for: url) else {
             log.error("URL in Markdown or Markdownparser is broken")
             return false
@@ -54,7 +60,7 @@ enum AppNavigator {
         return true
     }
 
-    static func handle(url: URL) -> Bool {
+    @discardableResult func handle(url: URL) -> Bool {
         guard url.host == Brand.default.host else {
             log.debug("Can't open \(url) inside of the app because host is wrong")
             return false
@@ -70,7 +76,7 @@ enum AppNavigator {
         }
     }
 
-    private static func sanitizedURL(for url: URL) -> URL? {
+    private func sanitizedURL(for url: URL) -> URL? {
         guard url.host != nil else {
             // make relative URL relative to base route
             return Routes.base.appendingPathComponent(url.absoluteString)
@@ -84,9 +90,10 @@ enum AppNavigator {
         return url
     }
 
-    private static func handleCourseURL(_ url: URL) -> Bool {
+    private func handleCourseURL(_ url: URL) -> Bool {
         guard let slugOrId = url.pathComponents[safe: 2] else {
-            return self.showCourseList()
+            self.showCourseList()
+            return true
         }
 
         let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: slugOrId)
@@ -107,7 +114,7 @@ enum AppNavigator {
                 } else if courseArea == "announcements" {
                     self.show(course: course, with: .announcements)
                 } else {
-                    // We dont support this yet, so we should just open the url with some kind of browser
+                    // We don't support this yet, so we should just open the url with some kind of browser
                     log.info("Unable to open course area (\(courseArea ?? "")) for course (\(slugOrId)) inside the app")
                     canOpenInApp = false
                 }
@@ -132,17 +139,14 @@ enum AppNavigator {
         return false
     }
 
-    @discardableResult static func showCourseList() -> Bool {
-        return AppDelegate.instance().switchToCourseListTab()
+    func showCourseList() {
+        self.tabBarController?.selectedIndex = 1
     }
 
     typealias CourseOpenAction = (CourseViewController) -> Void
     typealias CourseClosedAction = (CourseViewController, Bool) -> Void
 
-    static func navigate(to course: Course,
-                         courseArea: CourseArea,
-                         courseOpenAction: CourseOpenAction,
-                         courseClosedAction: CourseClosedAction) {
+    func navigate(to course: Course, courseArea: CourseArea, courseOpenAction: CourseOpenAction, courseClosedAction: CourseClosedAction) {
         let currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
         let someCourseViewController = self.currentCourseNavigationController?.courseViewController
 
@@ -158,15 +162,6 @@ enum AppNavigator {
         self.currentCourseNavigationController?.closeCourse()
         self.currentCourseNavigationController = nil
 
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-        feedbackGenerator.prepare()
-
-        guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
-            let reason = "root view controller could not be found"
-            log.error(reason)
-            return
-        }
-
         let courseNavigationController = R.storyboard.course.instantiateInitialViewController().require()
         let topViewController = courseNavigationController.topViewController.require(hint: "Top view controller required")
         let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
@@ -181,14 +176,12 @@ enum AppNavigator {
         courseNavigationController.modalPresentationStyle = .custom
         courseNavigationController.modalPresentationCapturesStatusBarAppearance = true
 
-        feedbackGenerator.impactOccurred()
-
-        rootViewController.present(courseNavigationController, animated: trueUnlessReduceMotionEnabled) {
+        self.tabBarController?.present(courseNavigationController, animated: trueUnlessReduceMotionEnabled) {
             CourseHelper.visit(course)
         }
     }
 
-    static func show(course: Course, with courseArea: CourseArea = .learnings) {
+    func show(course: Course, with courseArea: CourseArea = .learnings) {
         let courseOpenAction: CourseOpenAction = { courseViewController in
             courseViewController.area = courseArea
         }
@@ -204,7 +197,7 @@ enum AppNavigator {
         self.navigate(to: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
     }
 
-    static func show(item: CourseItem) {
+    func show(item: CourseItem) {
         guard let course = item.section?.course else { return }
 
         let courseOpenAction: CourseOpenAction = { courseViewController in
@@ -219,7 +212,7 @@ enum AppNavigator {
         self.navigate(to: course, courseArea: .learnings, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
     }
 
-    static func show(documentLocalization: DocumentLocalization) {
+    func show(documentLocalization: DocumentLocalization) {
         guard let course = documentLocalization.document.courses.first else { return }
 
         let courseOpenAction: CourseOpenAction = { courseViewController in

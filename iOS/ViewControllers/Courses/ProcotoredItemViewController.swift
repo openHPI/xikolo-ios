@@ -26,7 +26,7 @@ class ProctoredItemViewController: UIViewController {
 
 }
 
-extension ProctoredItemViewController: CourseItemContentViewController {
+extension ProctoredItemViewController: CourseItemContentPresenter {
 
     var item: CourseItem? {
         return self.courseItem

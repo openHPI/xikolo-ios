@@ -28,9 +28,10 @@ class CourseItemHeader: UITableViewHeaderFooterView {
     func configure(for section: CourseSection, inOfflineMode: Bool) {
         self.section = section
         self.titleView.text = section.title
+        self.titleView.textColor = ColorCompatibility.secondaryLabel
         self.actionsButton.isHidden = !section.hasUserActions
         self.actionsButton.isEnabled = !inOfflineMode || !section.userActions.isEmpty
-        self.actionsButton.tintColor = !inOfflineMode || !section.userActions.isEmpty ? Brand.default.colors.primary : .lightGray
+        self.actionsButton.tintColor = !inOfflineMode || !section.userActions.isEmpty ? Brand.default.colors.primary : ColorCompatibility.secondaryLabel
     }
 
     @IBAction private func tappedActionsButton(_ sender: UIButton) {

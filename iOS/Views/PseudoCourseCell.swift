@@ -20,7 +20,7 @@ class PseudoCourseCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.cardView.layer.cornerRadius = 6.0
+        self.cardView.layer.roundCorners(for: .default, masksToBounds: false)
         self.actionLabel.textColor = Brand.default.colors.window
     }
 

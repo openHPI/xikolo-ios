@@ -142,12 +142,14 @@ platform :ios do
         snapshot(
           scheme: "#{flavor}-iOS-UITests",
           output_directory: "#{fastlane_dir}/screenshots/#{flavor}",
+          derived_data_path: "#{fastlane_dir}/screenshots/DerivedData/#{flavor}",
           languages: ["en-US"],
         )
       else
         snapshot(
           scheme: "#{flavor}-iOS-UITests",
           output_directory: "#{fastlane_dir}/screenshots/#{flavor}",
+          derived_data_path: "#{fastlane_dir}/screenshots/DerivedData/#{flavor}",
         )
       end
     end

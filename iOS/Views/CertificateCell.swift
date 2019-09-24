@@ -17,8 +17,7 @@ class CertificateCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        let cornerRadius: CGFloat = 6.0
-        self.shadowView.layer.cornerRadius = cornerRadius
+        self.shadowView.layer.roundCorners(for: .default, masksToBounds: false)
     }
 
     func configure(_ name: String, explanation: String?, url: URL?, stateOfCertificate: String) {
@@ -28,11 +27,11 @@ class CertificateCell: UICollectionViewCell {
 
         let achieved = url != nil
         self.isUserInteractionEnabled = achieved
-        let cardColor = achieved ? Brand.default.colors.primary : UIColor(white: 0.75, alpha: 1.0)
+        let cardColor = achieved ? Brand.default.colors.primary : ColorCompatibility.systemGray3
         self.shadowView.backgroundColor = cardColor
         self.titleLabel.backgroundColor = cardColor
         self.statusLabel.backgroundColor = cardColor
-        let textColor = achieved ? UIColor.white : UIColor.darkText
+        let textColor = achieved ? UIColor.white : ColorCompatibility.label
         self.titleLabel.textColor = textColor
         self.statusLabel.textColor = textColor
     }

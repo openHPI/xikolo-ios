@@ -24,6 +24,15 @@ class LoginViewController: UIViewController, WKUIDelegate {
         super.viewDidLoad()
         self.loginButton.backgroundColor = Brand.default.colors.primary
         self.registerButton.backgroundColor = Brand.default.colors.primary.withAlphaComponent(0.2)
+        self.registerButton.tintColor = ColorCompatibility.systemGray2
+
+        self.loginButton.layer.roundCorners(for: .default)
+        self.registerButton.layer.roundCorners(for: .default)
+        self.singleSignOnButton.layer.roundCorners(for: .default)
+
+        self.loginButton.layer.roundCorners(for: .default)
+        self.registerButton.layer.roundCorners(for: .default)
+        self.singleSignOnButton.layer.roundCorners(for: .default)
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(adjustViewForKeyboardShow(_:)),
@@ -93,12 +102,6 @@ class LoginViewController: UIViewController, WKUIDelegate {
         if let typedInfo = R.segue.loginViewController.showSSOWebView(segue: segue) {
             typedInfo.destination.loginDelegate = self.delegate
             typedInfo.destination.url = Routes.singleSignOn
-
-            // Delete all cookies since cookies are not shared among applications in iOS.
-            let cookieStorage = HTTPCookieStorage.shared
-            for cookie in cookieStorage.cookies ?? [] {
-                cookieStorage.deleteCookie(cookie)
-            }
         }
     }
 

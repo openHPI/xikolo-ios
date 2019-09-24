@@ -115,6 +115,13 @@ extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
+        let leftPadding = collectionView.layoutMargins.left
+        let rightPadding = collectionView.layoutMargins.right
+
+        guard collectionView.traitCollection.horizontalSizeClass != .compact else {
+            return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
+        }
+
         let numberOfItemsInSection = self.collectionView(collectionView, numberOfItemsInSection: section)
         var widthOfCells: CGFloat = 0
         for index in 0 ..< numberOfItemsInSection {
@@ -123,11 +130,9 @@ extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
             widthOfCells += itemSize.width
         }
 
-        let cellGaps: CGFloat = ((collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing ?? 0) * CGFloat(numberOfItemsInSection - 1)
-        widthOfCells += cellGaps
-        let leftPadding: CGFloat = collectionView.layoutMargins.left
-        let rightPadding: CGFloat = collectionView.layoutMargins.right
-        let horizontalPadding = max(0, (collectionView.frame.size.width - widthOfCells) / 2 - leftPadding - rightPadding)
+        let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout
+        let cellGaps = (flowLayout?.minimumInteritemSpacing ?? 0) * CGFloat(numberOfItemsInSection - 1)
+        let horizontalPadding = max(0, (collectionView.frame.size.width - widthOfCells - cellGaps) / 2 - leftPadding - rightPadding)
 
         return UIEdgeInsets(top: 0, left: leftPadding + horizontalPadding, bottom: 0, right: rightPadding + horizontalPadding)
     }

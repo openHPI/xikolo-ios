@@ -350,3 +350,31 @@ extension PersistenceManager {
     func didFinishDownload(for resource: Resource) {}
 
 }
+
+extension PersistenceManager {
+
+    static var systemFreeSize: UInt64 {
+        return self.deviceData(for: .systemFreeSize) ?? 0
+    }
+
+    static var systemSize: UInt64 {
+        return self.deviceData(for: .systemSize) ?? 0
+    }
+
+    private static func deviceData(for key: FileAttributeKey) -> UInt64? {
+        guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last else {
+            return nil
+        }
+
+        guard let deviceData = try? FileManager.default.attributesOfFileSystem(forPath: path) else {
+            return nil
+        }
+
+        guard let value = deviceData[key] as? NSNumber else {
+            return nil
+        }
+
+        return value.uint64Value
+    }
+
+}

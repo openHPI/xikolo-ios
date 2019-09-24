@@ -74,12 +74,13 @@ class RichtextViewController: UIViewController {
 extension RichtextViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        return !AppNavigator.handle(url: URL, on: self)
+        guard let appNavigator = self.appNavigator else { return false }
+        return !appNavigator.handle(url: URL, on: self)
     }
 
 }
 
-extension RichtextViewController: CourseItemContentViewController {
+extension RichtextViewController: CourseItemContentPresenter {
 
     var item: CourseItem? {
         return self.courseItem

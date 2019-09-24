@@ -13,7 +13,7 @@ class Screenshots: XCTestCase {
         self.continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["-cleanStatusBar", "-cleanTabBar"]
+        app.launchArguments = ["-cleanStatusBar"]
         setupSnapshot(app)
         app.launch()
     }
@@ -33,7 +33,6 @@ class Screenshots: XCTestCase {
         // Dashboard
         Navigator.goToTabBarItem(.dashboard)
         sleep(5)
-        snapshot("2-Dashboard")
 
         // Course item list
         // tap on first element in current courses view
@@ -46,7 +45,7 @@ class Screenshots: XCTestCase {
 
         // tap on first video item
         app.tables.cells["CourseItemCell-video"].firstMatch.tap()
-        sleep(4)
+        sleep(10)
         snapshot("4-Video-Item")
     }
 

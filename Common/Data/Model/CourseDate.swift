@@ -18,19 +18,14 @@ public final class CourseDate: NSManagedObject {
         return NSFetchRequest<CourseDate>(entityName: "CourseDate")
     }
 
-    private static let defaultDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter.localizedFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        return dateFormatter
-    }()
+    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .short)
 
-    public var defaultDateString: String? {
+    public var formattedDateWithTimeZone: String? {
         guard let date = self.date else {
             return nil
         }
 
-        var dateText = CourseDate.defaultDateFormatter.string(from: date)
+        var dateText = CourseDate.dateFormatter.string(from: date)
         if let timeZoneAbbreviation = TimeZone.current.abbreviation() {
             dateText += " (\(timeZoneAbbreviation))"
         }

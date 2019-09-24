@@ -40,6 +40,8 @@ class LTIHintViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.startButton.layer.roundCorners(for: .default)
+
         self.updateView()
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
     }
@@ -81,7 +83,7 @@ class LTIHintViewController: UIViewController {
     }
 }
 
-extension LTIHintViewController: CourseItemContentViewController {
+extension LTIHintViewController: CourseItemContentPresenter {
 
     var item: CourseItem? {
         return self.courseItem

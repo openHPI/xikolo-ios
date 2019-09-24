@@ -73,7 +73,7 @@ class CourseListViewController: UICollectionViewController {
         } else {
             searchController.searchBar.searchBarStyle = .minimal
             searchController.searchBar.isTranslucent = false
-            searchController.searchBar.backgroundColor = .white
+            searchController.searchBar.backgroundColor = ColorCompatibility.systemBackground
             searchController.searchBar.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
             self.collectionView?.addSubview(searchController.searchBar)
             self.searchController = searchController
@@ -118,7 +118,7 @@ class CourseListViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = self.dataSource.object(at: indexPath)
-        AppNavigator.show(course: course)
+        self.appNavigator?.show(course: course)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -153,11 +153,8 @@ class CourseListViewController: UICollectionViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        if #available(iOS 11, *) {
-            // nothing to do here
-        } else {
-            self.collectionViewLayout.invalidateLayout()
-        }
+        super.viewWillTransition(to: size, with: coordinator)
+        self.collectionViewLayout.invalidateLayout()
     }
 
 }
@@ -239,7 +236,7 @@ extension CourseListViewController: UISearchControllerDelegate {
             // on iOS 10 the search bar's backgorund will not overlap with the status bar, so we need the cover the status bar manually
             let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: UIApplication.shared.statusBarFrame.height)
             let statusBarBackground = UIView(frame: frame)
-            statusBarBackground.backgroundColor = .white
+            statusBarBackground.backgroundColor = ColorCompatibility.systemBackground
             self.view.addSubview(statusBarBackground)
             statusBarBackground.autoresizingMask = [.flexibleWidth]
             self.statusBarBackground = statusBarBackground

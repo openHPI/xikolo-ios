@@ -25,16 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return SyncPushEngineManager(syncEngine: engine)
     }()
 
-    private var tabBarController: UITabBarController? {
-        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
-            let reason = "UITabBarController could not be found"
-            ErrorManager.shared.reportStoryboardError(reason: reason)
-            log.error(reason)
-            return nil
-        }
-
+    @available(iOS, obsoleted: 13.0)
+    private lazy var tabBarController: UITabBarController = {
+        let tabBarController = XikoloTabBarController.make()
+        tabBarController.delegate = self
         return tabBarController
-    }
+    }()
+
+    @available(iOS, obsoleted: 13.0)
+    lazy var appNavigator = AppNavigator(tabBarController: self.tabBarController)
 
     var window: UIWindow?
 
@@ -44,49 +43,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.window?.tintColor = Brand.default.colors.window
-
         CoreDataHelper.migrateModelToCommon()
 
-        // select start tab
-        self.tabBarController?.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
-        if UserProfileHelper.shared.isLoggedIn {
-            CourseHelper.syncAllCourses().onComplete { _ in
-                CourseDateHelper.syncAllCourseDates()
+        if #available(iOS 13.0, *) {} else {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = self.tabBarController
+            self.window?.tintColor = Brand.default.colors.window
+            self.window?.makeKeyAndVisible()
+
+            // select start tab
+            self.tabBarController.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
+
+            DispatchQueue.main.async {
+                if UserProfileHelper.shared.isLoggedIn {
+                    CourseHelper.syncAllCourses().onComplete { _ in
+                        CourseDateHelper.syncAllCourseDates()
+                    }
+                }
             }
         }
 
-        // Configure Firebase
-        FirebaseApp.configure()
+        DispatchQueue.main.async {
+            // Configure Firebase
+            FirebaseApp.configure()
 
-        // register tab bar delegate
-        self.tabBarController?.delegate = self
+            UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
-        TrackingHelper.shared.delegate = self
-        AnnouncementHelper.shared.delegate = self
-        UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
+            ErrorManager.shared.register(reporter: Crashlytics.sharedInstance())
 
-        ErrorManager.shared.register(reporter: Crashlytics.sharedInstance())
+            // register resource to be pushed automatically
+            self.pushEngineManager.register(Announcement.self)
+            self.pushEngineManager.register(CourseItem.self)
+            self.pushEngineManager.register(Enrollment.self)
+            self.pushEngineManager.register(TrackingEvent.self)
+            self.pushEngineManager.startObserving()
 
-        // register resource to be pushed automatically
-        self.pushEngineManager.register(Announcement.self)
-        self.pushEngineManager.register(CourseItem.self)
-        self.pushEngineManager.register(Enrollment.self)
-        self.pushEngineManager.register(TrackingEvent.self)
-        self.pushEngineManager.startObserving()
+            UserProfileHelper.shared.migrateLegacyKeychain()
 
-        UserProfileHelper.shared.migrateLegacyKeychain()
+            StreamPersistenceManager.shared.restoreDownloads()
+            SlidesPersistenceManager.shared.restoreDownloads()
 
-        StreamPersistenceManager.shared.restoreDownloads()
-        SlidesPersistenceManager.shared.restoreDownloads()
+            SpotlightHelper.shared.startObserving()
 
-        SpotlightHelper.shared.startObserving()
-
-        do {
-            try ReachabilityHelper.startObserving()
-        } catch {
-            ErrorManager.shared.report(error)
-            log.error("Failed to start reachability notification")
+            do {
+                try ReachabilityHelper.startObserving()
+            } catch {
+                ErrorManager.shared.report(error)
+                log.error("Failed to start reachability notification")
+            }
         }
 
         #if DEBUG
@@ -99,16 +103,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    @available(iOS, obsoleted: 13.0)
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        return AppNavigator.handle(userActivity: userActivity)
+        return self.appNavigator.handle(userActivity: userActivity)
     }
 
+    @available(iOS, obsoleted: 13.0)
     func application(_ app: UIApplication,
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        return AppNavigator.handle(url: url)
+        return self.appNavigator.handle(url: url)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -140,8 +146,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SpotlightHelper.shared.stopObserving()
     }
 
+    @available(iOS 13.0, *)
+    func application(_ application: UIApplication,
+                     configurationForConnecting connectingSceneSession: UISceneSession,
+                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        log.info("Entered application configurationForConnecting connectingSceneSession")
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
+
 }
 
+@available(iOS, obsoleted: 13.0)
 extension AppDelegate: UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -179,64 +194,13 @@ extension AppDelegate: UITabBarControllerDelegate {
         return false
     }
 
-    func switchToCourseListTab() -> Bool {
-        guard let tabBarController = self.tabBarController else { return false }
-        tabBarController.selectedIndex = 1
-        return true
-    }
-
 }
 
+@available(iOS, obsoleted: 13.0)
 extension AppDelegate: LoginDelegate {
 
     func didSuccessfullyLogin() {
-        self.tabBarController?.selectedIndex = 0
-    }
-
-}
-
-extension AppDelegate: AnnouncementHelperDelegate {
-
-    func updateUnreadAnnouncementsBadge() {
-        #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("-cleanTabBar") {
-            log.info("Don't show badge when making screenshots")
-            return
-        }
-        #endif
-
-        DispatchQueue.main.async {
-            guard let tabItem = self.tabBarController?.tabBar.items?[safe: 2] else {
-                log.warning("Failed to retrieve tab item for announcements")
-                return
-            }
-
-            guard UserProfileHelper.shared.isLoggedIn else {
-                tabItem.badgeValue = nil
-                return
-            }
-
-            CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                let fetchRequest = AnnouncementHelper.FetchRequest.unreadAnnouncements
-                do {
-                    let announcementCount = try context.count(for: fetchRequest)
-                    let badgeValue = announcementCount > 0 ? String(describing: announcementCount) : nil
-                    DispatchQueue.main.async {
-                        tabItem.badgeValue = badgeValue
-                    }
-                } catch {
-                    log.warning("Failed to retrieve unread announcement count")
-                }
-            }
-        }
-    }
-
-}
-
-extension AppDelegate: TrackingHelperDelegate {
-
-    var applicationWindowSize: CGSize? {
-        return self.window?.frame.size
+        self.tabBarController.selectedIndex = 0
     }
 
 }

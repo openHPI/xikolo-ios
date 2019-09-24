@@ -84,19 +84,21 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
             "section_id": video.item?.section?.id,
             "course_id": video.item?.section?.course?.id,
             "video_download_pref": String(describing: UserDefaults.standard.videoQualityForDownload.rawValue),
+            "free_space": String(describing: StreamPersistenceManager.systemFreeSize),
+            "total_space": String(describing: StreamPersistenceManager.systemSize),
         ]
     }
 
     func didStartDownload(for resource: Video) {
-        TrackingHelper.shared.createEvent(.videoDownloadStart, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
+        TrackingHelper.createEvent(.videoDownloadStart, resourceType: .video, resourceId: resource.id, on: nil, context: self.trackingContext(for: resource))
     }
 
     func didCancelDownload(for resource: Video) {
-        TrackingHelper.shared.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
+        TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: resource.id, on: nil, context: self.trackingContext(for: resource))
     }
 
     func didFinishDownload(for resource: Video) {
-        TrackingHelper.shared.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
+        TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resource.id, on: nil, context: self.trackingContext(for: resource))
     }
 
 }

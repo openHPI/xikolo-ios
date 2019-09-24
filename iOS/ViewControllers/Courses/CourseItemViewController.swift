@@ -14,7 +14,6 @@ class CourseItemViewController: UIPageViewController {
     private lazy var progressLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize)
-        label.tintColor = UIColor.darkText
         return label
     }()
 
@@ -44,7 +43,7 @@ class CourseItemViewController: UIPageViewController {
         self.dataSource = self
         self.delegate = self
 
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = ColorCompatibility.systemBackground
         self.navigationItem.titleView = self.progressLabel
 
         guard let item = self.currentItem else { return }
@@ -60,15 +59,15 @@ class CourseItemViewController: UIPageViewController {
         self.setViewControllers([newViewController], direction: .forward, animated: animated)
     }
 
-    private func viewController(for item: CourseItem) -> (UIViewController & CourseItemContentViewController)? {
+    private func viewController(for item: CourseItem) -> CourseItemContentViewController? {
         guard !item.isProctoredInProctoredCourse else {
-            let viewController = R.storyboard.courseLearnings.proctoredItemViewController()
+            let viewController = R.storyboard.courseLearningsProctored.instantiateInitialViewController()
             viewController?.configure(for: item)
             return viewController
         }
 
         guard item.hasAvailableContent else {
-            let viewController = R.storyboard.courseLearnings.unavailableContentViewController()
+            let viewController = R.storyboard.courseLearningsUnavailable.instantiateInitialViewController()
             viewController?.configure(for: item)
             viewController?.delegate = self
             return viewController
@@ -76,13 +75,13 @@ class CourseItemViewController: UIPageViewController {
 
         switch item.contentType {
         case "video"?:
-            return R.storyboard.courseLearnings.videoViewController()
+            return R.storyboard.courseLearningsVideo.instantiateInitialViewController()
         case "rich_text"?:
-            return R.storyboard.courseLearnings.richtextViewController()
+            return R.storyboard.courseLearningsRichtext.instantiateInitialViewController()
         case "lti_exercise"?:
-            return R.storyboard.courseLearnings.ltiHintViewController()
+            return R.storyboard.courseLearningsLTI.instantiateInitialViewController()
         default:
-            return R.storyboard.courseLearnings.courseItemWebViewController()
+            return R.storyboard.courseLearningsWeb.instantiateInitialViewController()
         }
     }
 
@@ -97,7 +96,7 @@ class CourseItemViewController: UIPageViewController {
             "section_id": item.section?.id,
             "course_id": item.section?.course?.id,
         ]
-        TrackingHelper.shared.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, context: context)
+        TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, on: self, context: context)
     }
 
 }

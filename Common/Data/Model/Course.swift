@@ -55,7 +55,7 @@ public final class Course: NSManagedObject {
     }
 
     public static func localize(language: String) -> String? {
-        let locale = NSLocale(localeIdentifier: Brand.default.locale.identifier)
+        let locale = NSLocale(localeIdentifier: Locale.supportedCurrent.identifier)
         switch language {
         case "cn":
             return locale.displayName(forKey: NSLocale.Key.languageCode, value: "zh-cn")
@@ -96,7 +96,7 @@ extension Course: JSONAPIPullable {
         self.accessible = try attributes.value(for: "accessible")
         self.courseDescription = try attributes.value(for: "description") ?? self.courseDescription
         self.certificates = try attributes.value(for: "certificates")
-        self.imageURL = try attributes.value(for: "image_url")
+        self.imageURL = try attributes.failsafeURL(for: "image_url")
         self.teachers = try attributes.value(for: "teachers")
         self.language = try attributes.value(for: "language")
         self.startsAt = try attributes.value(for: "start_at")

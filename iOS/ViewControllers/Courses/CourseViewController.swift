@@ -4,12 +4,25 @@
 //
 
 import Common
+import SDWebImage
 import UIKit
 
 class CourseViewController: UIViewController {
 
-    @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var titleView: UIView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var headerImageView: UIImageView!
+    @IBOutlet private weak var cornerView: UIView!
     @IBOutlet private weak var courseAreaListContainerHeight: NSLayoutConstraint!
+    @IBOutlet private weak var headerImageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var headerImageTopSuperviewConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var headerImageTopSafeAreaConstraint: NSLayoutConstraint!
+
+    private var headerOffset: CGFloat = 0 {
+        didSet {
+            self.updateHeaderConstraints()
+        }
+    }
 
     private var courseAreaViewController: UIViewController?
     private var courseAreaListViewController: CourseAreaListViewController? {
@@ -27,6 +40,14 @@ class CourseViewController: UIViewController {
 
     private var courseObserver: ManagedObjectObserver?
 
+    private var headerHeight: CGFloat {
+        return self.headerImageHeightConstraint.constant + self.titleView.frame.height
+    }
+
+    private var courseNavigationController: CourseNavigationController? {
+        return self.navigationController as? CourseNavigationController
+    }
+
     var course: Course! {
         didSet {
             self.updateView()
@@ -41,8 +62,37 @@ class CourseViewController: UIViewController {
 
     var area: CourseArea?
 
+    override var toolbarItems: [UIBarButtonItem]? {
+        get {
+            return self.courseAreaPageViewController?.viewControllers?.first?.toolbarItems
+        }
+        // we only want to use the toolbar items of the embedded view controllers
+        // swiftlint:disable:next unused_setter_value
+        set {}
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.headerImageView.backgroundColor = Brand.default.colors.secondary
+
+        self.cornerView.layer.cornerRadius = self.cornerView.frame.height / 2
+
+        if #available(iOS 13, *) {
+            self.cornerView.layer.cornerCurve = .continuous
+        }
+
+        self.cornerView.layer.shadowOpacity = 0.2
+        self.cornerView.layer.shadowRadius = 8.0
+        self.cornerView.layer.shadowColor = UIColor.black.cgColor
+
+        self.titleLabel.textAlignment = self.traitCollection.horizontalSizeClass == .compact ? .natural : .center
+
+        if self.course != nil {
+            self.updateView()
+        }
+
+        self.navigationController?.delegate = self
 
         self.decideContent()
 
@@ -54,6 +104,27 @@ class CourseViewController: UIViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         self.updateCourseAreaListContainerHeight()
         self.courseAreaListViewController?.reloadData()
+
+        self.updateHeaderConstraints()
+        self.courseNavigationController?.updateNavigationBar(forProgress: self.headerOffset / self.headerHeight)
+
+        self.titleLabel.textAlignment = self.traitCollection.horizontalSizeClass == .compact ? .natural : .center
+
+        // Fix size of title view
+        self.titleView.layoutIfNeeded()
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            // Fix size of title view
+            self?.titleView.setNeedsLayout()
+            self?.titleView.layoutIfNeeded()
+        }) { [weak self] _ in
+            let headerColor = self?.headerImageView.image.flatMap { self?.averageColorUnderStatusBar(withCourseVisual: $0) } ?? Brand.default.colors.secondary
+            self?.courseNavigationController?.adjustToUnderlyingColor(headerColor)
+        }
     }
 
     func show(item: CourseItem, animated: Bool) {
@@ -63,6 +134,7 @@ class CourseViewController: UIViewController {
         viewController.currentItem = item
 
         self.navigationController?.pushViewController(viewController, animated: animated)
+        self.navigationController?.navigationBar.tintColor = Brand.default.colors.window // otherwise the back button could not be visible
     }
 
     func show(documentLocalization: DocumentLocalization, animated: Bool) {
@@ -74,19 +146,78 @@ class CourseViewController: UIViewController {
         viewController.configure(for: url, filename: documentLocalization.filename)
 
         self.navigationController?.pushViewController(viewController, animated: animated)
+        self.navigationController?.navigationBar.tintColor = Brand.default.colors.window // otherwise the back button could not be visible
     }
 
     private func updateView() {
-        self.titleView.text = self.course.title
-
-        if let titleView = self.navigationItem.titleView, let text = self.titleView.text {
-            let font = self.titleView.font ?? UIFont.systemFont(ofSize: 14, weight: .medium)
-            let titleWidth = NSString(string: text).size(withAttributes: [.font: font]).width
-            var frame = titleView.frame
-            frame.size.width = titleWidth + 2
-            titleView.frame = frame
-            titleView.setNeedsLayout()
+        guard self.isViewLoaded else { return }
+        self.navigationItem.title = self.course.title
+        self.titleLabel.text = self.course.title
+        self.headerImageView.sd_setImage(with: self.course.imageURL) { [weak self] image, _, _, _ in
+            let headerColor = self?.averageColorUnderStatusBar(withCourseVisual: image) ?? Brand.default.colors.secondary
+            self?.courseNavigationController?.adjustToUnderlyingColor(headerColor)
         }
+    }
+
+    private func averageColorUnderStatusBar(withCourseVisual image: UIImage?) -> UIColor? {
+        let croppedImages = [
+            self.croppedImageUnderNavigationBar(withCourseVisual: image, leading: true),
+            self.croppedImageUnderNavigationBar(withCourseVisual: image, leading: false),
+        ]
+
+        let averageColorValues = croppedImages.compactMap(self.averageColor(of: ))
+
+        if averageColorValues.isEmpty { return nil }
+
+        let initialValue: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = (0, 0, 0, 0)
+        let averageColorValue = averageColorValues.reduce(initialValue) { result, value in
+            return (
+                red: result.red + (value.red / CGFloat(averageColorValues.count)),
+                green: result.green + (value.green / CGFloat(averageColorValues.count)),
+                blue: result.blue + (value.blue / CGFloat(averageColorValues.count)),
+                alpha: result.alpha + (value.alpha / CGFloat(averageColorValues.count))
+            )
+        }
+
+        return UIColor(red: averageColorValue.red, green: averageColorValue.green, blue: averageColorValue.blue, alpha: averageColorValue.alpha)
+    }
+
+    private func croppedImageUnderNavigationBar(withCourseVisual image: UIImage?, leading: Bool) -> CGImage? {
+        guard let image = image else { return nil }
+
+        let topInset: CGFloat
+        if #available(iOS 11, *) {
+            topInset = self.view.safeAreaInsets.top
+        } else {
+            topInset = self.view.layoutMargins.top
+        }
+
+        let imageScale = image.size.width / self.view.bounds.width
+        let transform = CGAffineTransform(scaleX: imageScale, y: imageScale)
+        let xOffset = leading ? 0 : self.view.bounds.width * 0.75
+        let yOffset = (image.size.height - self.headerImageView.bounds.height * imageScale) / 2 / imageScale
+        let subImageRect = CGRect(x: xOffset, y: max(0, yOffset), width: self.view.bounds.width * 0.25, height: max(topInset, 44)).applying(transform)
+        return image.cgImage?.cropping(to: subImageRect)
+    }
+
+    private func averageColor(of image: CGImage?) -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)? {
+        guard let image = image else { return nil }
+
+        // inspired by https://www.hackingwithswift.com/example-code/media/how-to-read-the-average-color-of-a-uiimage-using-ciareaaverage
+        let inputImage = CIImage(cgImage: image)
+        let extentVector = CIVector(x: inputImage.extent.origin.x,
+                                    y: inputImage.extent.origin.y,
+                                    z: inputImage.extent.size.width,
+                                    w: inputImage.extent.size.height)
+
+        guard let filter = CIFilter(name: "CIAreaAverage", parameters: [kCIInputImageKey: inputImage, kCIInputExtentKey: extentVector]) else { return nil }
+        guard let outputImage = filter.outputImage else { return nil }
+
+        var bitmap = [UInt8](repeating: 0, count: 4)
+        let context = CIContext(options: [.workingColorSpace: kCFNull as Any])
+        context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: .RGBA8, colorSpace: nil)
+
+        return (red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
     }
 
     private func updateCourseAreaListContainerHeight() {
@@ -112,10 +243,6 @@ class CourseViewController: UIViewController {
         self.area = area
 
         guard self.viewIfLoaded != nil else { return }
-
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-        feedbackGenerator.prepare()
-        feedbackGenerator.impactOccurred()
 
         self.updateContainerView()
 
@@ -172,10 +299,17 @@ class CourseViewController: UIViewController {
                 "service": activityType?.rawValue,
                 "completed": String(describing: completed),
             ]
-            TrackingHelper.shared.createEvent(.shareCourse, resourceType: .course, resourceId: self.course.id, context: context)
+            TrackingHelper.createEvent(.shareCourse, resourceType: .course, resourceId: self.course.id, on: self, context: context)
         }
 
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    private func updateHeaderConstraints() {
+        let shouldHideHeader = self.traitCollection.verticalSizeClass == .compact
+        let offset = shouldHideHeader ? self.headerHeight : self.headerOffset
+        self.headerImageTopSuperviewConstraint.constant = offset * -1
+        self.headerImageTopSafeAreaConstraint.constant = offset * -1
     }
 
 }
@@ -264,6 +398,81 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
         } else {
             self.courseAreaListViewController?.refresh(animated: trueUnlessReduceMotionEnabled)
         }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Only react when user interacts with the scroll view. WKWebView will trigger this when loading URLs.
+        guard scrollView.isDragging else { return }
+
+        let headerHeight = self.headerHeight
+        let adjustedScrollOffset = scrollView.contentOffset.y + self.headerOffset
+        var headerOffset = max(0, min(adjustedScrollOffset, headerHeight))
+        headerOffset = self.traitCollection.verticalSizeClass == .compact ? headerHeight : headerOffset
+
+        self.headerOffset = headerOffset
+
+        if adjustedScrollOffset >= 0, // for pull to refresh
+            adjustedScrollOffset <= headerHeight, // over scrolling
+            self.traitCollection.verticalSizeClass != .compact {
+            scrollView.contentOffset = .zero
+        }
+
+        self.courseNavigationController?.updateNavigationBar(forProgress: headerOffset / headerHeight)
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if decelerate { return }
+        self.snapToExtendedOrCollapsedHeaderPosition(with: scrollView)
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.snapToExtendedOrCollapsedHeaderPosition(with: scrollView)
+    }
+
+    private func snapToExtendedOrCollapsedHeaderPosition(with scrollView: UIScrollView) {
+        let adjustedScrollOffset = scrollView.contentOffset.y + self.headerOffset
+        if adjustedScrollOffset > self.headerHeight { return }
+
+        let snapThreshold: CGFloat = 0.3
+        let snapUpwards = adjustedScrollOffset / self.headerHeight > snapThreshold
+
+        self.headerOffset = snapUpwards ? self.headerHeight : 0
+
+        UIView.animate(withDuration: 0.25) {
+            self.courseNavigationController?.updateNavigationBar(forProgress: snapUpwards ? 1 : 0)
+            self.view.layoutIfNeeded()
+        }
+    }
+
+}
+
+extension CourseViewController: UINavigationControllerDelegate {
+
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        let progress: CGFloat = {
+            guard viewController == self else { return 1 }
+
+            let headerOffset = self.headerImageTopSuperviewConstraint.constant * -1
+            return headerOffset / self.headerHeight
+        }()
+
+        guard let transitionController = navigationController.transitionCoordinator, animated else {
+            self.courseNavigationController?.updateNavigationBar(forProgress: progress)
+            return
+        }
+
+        transitionController.animate(alongsideTransition: { context in
+            self.courseNavigationController?.updateNavigationBar(forProgress: progress)
+            self.navigationController?.navigationBar.layoutIfNeeded()
+        }, completion: { context in
+            guard viewController == self else { return }
+
+            if navigationController.viewControllers.count > 1, context.isCancelled {
+                self.courseNavigationController?.updateNavigationBar(forProgress: 1)
+            } else if navigationController.viewControllers.count == 1 {
+                self.courseNavigationController?.updateNavigationBar(forProgress: progress)
+            }
+        })
     }
 
 }

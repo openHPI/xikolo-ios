@@ -16,12 +16,12 @@ public final class VideoStream: NSObject, NSCoding, IncludedPullable {
     public var thumbnailURL: URL?
 
     public required init(object: ResourceData) throws {
-        self.hdURL = try object.value(for: "hd_url")
-        self.sdURL = try object.value(for: "sd_url")
-        self.hlsURL = try object.value(for: "hls_url")
+        self.hdURL = try object.failsafeURL(for: "hd_url")
+        self.sdURL = try object.failsafeURL(for: "sd_url")
+        self.hlsURL = try object.failsafeURL(for: "hls_url")
         self.hdSize = try object.value(for: "hd_size")
         self.sdSize = try object.value(for: "sd_size")
-        self.thumbnailURL = try object.value(for: "thumbnail_url")
+        self.thumbnailURL = try object.failsafeURL(for: "thumbnail_url")
     }
 
     public required init(coder decoder: NSCoder) {

@@ -17,7 +17,7 @@ class CourseDateNextUpView: UIStackView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.container.layer.cornerRadius = 6.0
+        self.container.layer.roundCorners(for: .default, masksToBounds: false)
 
         self.courseLabel.textColor = Brand.default.colors.secondary
         self.isHidden = true
@@ -28,7 +28,7 @@ class CourseDateNextUpView: UIStackView {
 
     func loadData() {
         if let courseDate = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value {
-            self.dateLabel.text = courseDate.defaultDateString
+            self.dateLabel.text = courseDate.formattedDateWithTimeZone
             self.courseLabel.text = courseDate.course?.title
             self.titleLabel.text = courseDate.contextAwareTitle
             self.isHidden = false
@@ -39,7 +39,13 @@ class CourseDateNextUpView: UIStackView {
 
     @objc func tappedOnView() {
         if let course = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value?.course {
-            AppNavigator.show(course: course)
+            if #available(iOS 13.0, *) { // XXX
+                guard let sceneDelegate = self.superview?.window?.windowScene?.delegate as? SceneDelegate else { return }
+                sceneDelegate.appNavigator.show(course: course)
+            } else {
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                appDelegate.appNavigator.show(course: course)
+            }
         }
     }
 

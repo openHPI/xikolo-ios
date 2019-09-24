@@ -18,10 +18,7 @@ class DashboardViewController: UITableViewController {
 
         self.addRefreshControl()
         self.refresh()
-    }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(coreDataChange(notification:)),
                                                name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
@@ -30,7 +27,7 @@ class DashboardViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        TrackingHelper.shared.createEvent(.visitedDashboard)
+        TrackingHelper.createEvent(.visitedDashboard, on: self)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -81,7 +78,11 @@ extension DashboardViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         let courseFuture = CourseHelper.syncAllCourses()
-        if Brand.default.features.showCourseDatesOnDashboard {
+
+        // This view controller is always loaded even if the user is not logged in due to the fact
+        // that the view controller is embedded in a UITabBarController. So we have to check the
+        // login state of user in order to avoid a failing API request
+        if Brand.default.features.showCourseDatesOnDashboard && UserProfileHelper.shared.isLoggedIn {
             return courseFuture.flatMap { _ in
                 return CourseDateHelper.syncAllCourseDates()
             }.asVoid()

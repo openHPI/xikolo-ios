@@ -189,13 +189,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G4F-0n-P0h" userLabel="Scroll Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="286"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="368.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="md3-Kq-rrt">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="266"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="md3-Kq-rrt">
+                                                <rect key="frame" x="20" y="0.0" width="374" height="348.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="814-Ab-T59">
-                                                        <rect key="frame" x="0.0" y="0.0" width="74" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="28"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                         <state key="normal" title="Course Title"/>
@@ -212,22 +212,26 @@
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKc-IX-3d8">
-                                                        <rect key="frame" x="0.0" y="36" width="240" height="128"/>
+                                                        <rect key="frame" x="0.0" y="36" width="374" height="210.5"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dpz-xF-XPZ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="240.00000000000011" height="128"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dpz-xF-XPZ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="210.5"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="dpz-xF-XPZ" secondAttribute="height" multiplier="16:9" id="VYW-nq-IKP"/>
+                                                                </constraints>
                                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="eKc-IX-3d8" secondAttribute="height" multiplier="15:8" id="Xeo-SU-xVc"/>
-                                                            <constraint firstItem="dpz-xF-XPZ" firstAttribute="centerX" secondItem="eKc-IX-3d8" secondAttribute="centerX" id="o3c-r6-7Fo"/>
-                                                            <constraint firstItem="dpz-xF-XPZ" firstAttribute="centerY" secondItem="eKc-IX-3d8" secondAttribute="centerY" id="uI1-PW-INa"/>
+                                                            <constraint firstItem="dpz-xF-XPZ" firstAttribute="top" secondItem="eKc-IX-3d8" secondAttribute="top" id="0gn-PZ-pjD"/>
+                                                            <constraint firstAttribute="trailing" secondItem="dpz-xF-XPZ" secondAttribute="trailing" id="1sK-bE-lj3"/>
+                                                            <constraint firstItem="dpz-xF-XPZ" firstAttribute="leading" secondItem="eKc-IX-3d8" secondAttribute="leading" id="Cym-Rr-j2i"/>
+                                                            <constraint firstAttribute="bottom" secondItem="dpz-xF-XPZ" secondAttribute="bottom" id="g2H-xL-gMT"/>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcement Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjt-zb-hgL">
-                                                        <rect key="frame" x="0.0" y="172" width="175.5" height="24"/>
+                                                        <rect key="frame" x="0.0" y="254.5" width="374" height="24"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                         <nil key="highlightedColor"/>
@@ -241,7 +245,7 @@
                                                         </attributedString>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1R-Ej-QPw">
-                                                        <rect key="frame" x="0.0" y="204" width="28.5" height="16"/>
+                                                        <rect key="frame" x="0.0" y="286.5" width="374" height="16"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                         <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -256,7 +260,7 @@
                                                         </attributedString>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Announcement Text" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rzo-V0-2VV">
-                                                        <rect key="frame" x="0.0" y="228" width="163" height="38"/>
+                                                        <rect key="frame" x="0.0" y="310.5" width="374" height="38"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -272,9 +276,6 @@
                                                     </textView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="eKc-IX-3d8" firstAttribute="leading" secondItem="814-Ab-T59" secondAttribute="trailingMargin" constant="-66" id="BVz-y9-QFD"/>
-                                                    <constraint firstItem="jjt-zb-hgL" firstAttribute="top" secondItem="dpz-xF-XPZ" secondAttribute="bottom" constant="7.9664429530202483" id="DK3-j6-zcL"/>
-                                                    <constraint firstItem="jjt-zb-hgL" firstAttribute="top" secondItem="eKc-IX-3d8" secondAttribute="bottom" constant="8" id="JLB-bx-Ja5"/>
                                                     <constraint firstItem="814-Ab-T59" firstAttribute="top" secondItem="md3-Kq-rrt" secondAttribute="top" id="ONB-E2-Cle"/>
                                                     <constraint firstItem="814-Ab-T59" firstAttribute="leading" secondItem="md3-Kq-rrt" secondAttribute="leadingMargin" id="rM3-iL-Nqw"/>
                                                 </constraints>

@@ -68,7 +68,7 @@ class AnnouncementViewController: UIViewController {
         self.titleLabel.text = self.announcement.title
 
         if let date = self.announcement.publishedAt {
-            self.dateLabel.text = AnnouncementViewController.dateFormatter.string(from: date)
+            self.dateLabel.text = Self.dateFormatter.string(from: date)
             self.dateLabel.isHidden = false
         } else {
             self.dateLabel.isHidden = true

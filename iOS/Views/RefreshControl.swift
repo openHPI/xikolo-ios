@@ -30,7 +30,7 @@ class RefreshControl: UIRefreshControl {
     }
 
     @objc func callAction() {
-        let deadline = RefreshControl.minimumSpinningTime.fromNow
+        let deadline = Self.minimumSpinningTime.fromNow
         self.action().onSuccess { _ in
             self.postAction()
         }.earliest(at: deadline).onComplete(ImmediateOnMainExecutionContext) { _ in

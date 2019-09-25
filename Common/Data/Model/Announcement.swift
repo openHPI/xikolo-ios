@@ -40,7 +40,7 @@ extension Announcement: JSONAPIPullable {
         self.visited = try attributes.value(for: "visited") || self.visited // announcements can't be set to 'not visited'
 
         if let relationships = try? object.value(for: "relationships") as JSON {
-            try self.updateRelationship(forKeyPath: \Announcement.course, forKey: "course", fromObject: relationships, with: context)
+            try self.updateRelationship(forKeyPath: \Self.course, forKey: "course", fromObject: relationships, with: context)
         }
     }
 

@@ -10,7 +10,7 @@ import SyncEngine
 public enum VideoHelper {
 
     @discardableResult static func syncVideo(_ video: Video) -> Future<SyncSingleResult, XikoloError> {
-        let fetchRequest = VideoHelper.FetchRequest.video(withId: video.id)
+        let fetchRequest = Self.FetchRequest.video(withId: video.id)
         let query = SingleResourceQuery(resource: video)
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }

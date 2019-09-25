@@ -31,7 +31,7 @@ extension User: JSONAPIPullable {
         self.avatarURL = try attributes.failsafeURL(for: "avatar_url")
 
         let relationships = try object.value(for: "relationships") as JSON
-        try self.updateRelationship(forKeyPath: \User.profile, forKey: "profile", fromObject: relationships, with: context)
+        try self.updateRelationship(forKeyPath: \Self.profile, forKey: "profile", fromObject: relationships, with: context)
     }
 
 }

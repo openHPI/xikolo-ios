@@ -65,7 +65,7 @@ public final class Course: NSManagedObject {
     }
 
     public var localizedLanguage: String? {
-        return self.language.flatMap(Course.localize)
+        return self.language.flatMap(Self.localize)
     }
 
     public var url: URL? {
@@ -108,15 +108,15 @@ extension Course: JSONAPIPullable {
         self.teaserStream = try attributes.value(for: "teaser_stream") ?? self.teaserStream
 
         let categoryValues = try attributes.value(for: "classifiers.category") as [String]?
-        self.categories = Course.arrayString(for: categoryValues)
+        self.categories = Self.arrayString(for: categoryValues)
 
         let topicValues = try attributes.value(for: "classifiers.topic") as [String]?
-        self.topics = Course.arrayString(for: topicValues)
+        self.topics = Self.arrayString(for: topicValues)
 
         self.order = NSNumber(value: abs(self.startsAt?.timeIntervalSinceNow ?? TimeInterval.infinity))
 
         if let relationships = try? object.value(for: "relationships") as JSON {
-            try self.updateRelationship(forKeyPath: \Course.enrollment,
+            try self.updateRelationship(forKeyPath: \Self.enrollment,
                                         forKey: "user_enrollment",
                                         fromObject: relationships,
                                         with: context)

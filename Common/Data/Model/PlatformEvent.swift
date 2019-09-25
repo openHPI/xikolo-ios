@@ -35,7 +35,7 @@ extension PlatformEvent: JSONAPIPullable {
         self.type = try attributes.value(for: "type")
 
         let relationships = try object.value(for: "relationships") as JSON
-        try self.updateRelationship(forKeyPath: \PlatformEvent.course, forKey: "course", fromObject: relationships, with: context)
+        try self.updateRelationship(forKeyPath: \Self.course, forKey: "course", fromObject: relationships, with: context)
     }
 
 }

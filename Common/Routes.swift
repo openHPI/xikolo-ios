@@ -37,28 +37,28 @@ public enum Routes {
 
     public static let base = URL(string: "https://" + Brand.default.host).require(hint: "Invalid base URL")
 
-    static let api = Routes.base.appendingPathComponents(["api", "v2"])
+    static let api = Self.base.appendingPathComponents(["api", "v2"])
     private static let apiVersion = "3"
 
-    static let authenticate = Routes.api.appendingPathComponent("authenticate")
-    public static let register = Routes.base.appendingPathComponents(["account", "new"]).appendingInAppParameter()
+    static let authenticate = Self.api.appendingPathComponent("authenticate")
+    public static let register = Self.base.appendingPathComponents(["account", "new"]).appendingInAppParameter()
     public static let singleSignOn: URL? = {
         guard let platformTitle = Brand.default.singleSignOn?.platformTitle else { return nil }
-        return Routes.base
+        return Self.base
             .appendingPathComponents(["auth", platformTitle])
             .appendingInAppParameter()
             .appendingQueryItem(URLQueryItem(name: "redirect_to", value: "/auth/" + platformTitle))
     }()
 
-    public static let courses = Routes.base.appendingPathComponent("courses")
-    public static let recap = Routes.base.appendingPathComponent("learn")
+    public static let courses = Self.base.appendingPathComponent("courses")
+    public static let recap = Self.base.appendingPathComponent("learn")
 
     public static var imprint = Brand.default.imprintURL.appendingInAppParameter()
     public static let privacy = Brand.default.privacyURL.appendingInAppParameter()
     public static let github = URL(string: "https://github.com/openHPI/xikolo-ios").require(hint: "Invalid GitHub URL")
 
     public static var localizedForgotPasswordURL: URL {
-        let url = Routes.base.appendingPathComponents(["account", "reset", "new"])
+        let url = Self.base.appendingPathComponents(["account", "reset", "new"])
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
 
         var queryItems = [Routes.QueryItem.inApp]

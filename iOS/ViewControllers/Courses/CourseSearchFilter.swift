@@ -95,6 +95,6 @@ enum CourseSearchFilter: CaseIterable {
     }
 
     static var availableCases: [CourseSearchFilter] {
-        return CourseSearchFilter.allCases.filter { $0.isAvailable }
+        return Self.allCases.filter { $0.isAvailable }
     }
 }

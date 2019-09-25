@@ -72,7 +72,7 @@ class LTIHintViewController: UIViewController {
 
         let format = NSLocalizedString("course-item.max-points", comment: "maximum points for course item")
         let number = NSNumber(value: self.courseItem.maxPoints)
-        self.pointsView.text = LTIHintViewController.pointsFormatter.string(from: number).flatMap { String.localizedStringWithFormat(format, $0) }
+        self.pointsView.text = Self.pointsFormatter.string(from: number).flatMap { String.localizedStringWithFormat(format, $0) }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

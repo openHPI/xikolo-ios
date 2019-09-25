@@ -25,7 +25,7 @@ public final class CourseDate: NSManagedObject {
             return nil
         }
 
-        var dateText = CourseDate.dateFormatter.string(from: date)
+        var dateText = Self.dateFormatter.string(from: date)
         if let timeZoneAbbreviation = TimeZone.current.abbreviation() {
             dateText += " (\(timeZoneAbbreviation))"
         }
@@ -67,7 +67,7 @@ extension CourseDate: JSONAPIPullable {
         self.date = try attributes.value(for: "date")
 
         let relationships = try object.value(for: "relationships") as JSON
-        try self.updateRelationship(forKeyPath: \CourseDate.course, forKey: "course", fromObject: relationships, with: context)
+        try self.updateRelationship(forKeyPath: \Self.course, forKey: "course", fromObject: relationships, with: context)
     }
 
 }

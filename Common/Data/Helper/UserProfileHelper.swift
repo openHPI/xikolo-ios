@@ -119,7 +119,7 @@ public class UserProfileHelper {
         }
 
         DispatchQueue.main.async {
-            NotificationCenter.default.post(name: UserProfileHelper.loginStateDidChangeNotification, object: nil)
+            NotificationCenter.default.post(name: Self.loginStateDidChangeNotification, object: nil)
         }
     }
 

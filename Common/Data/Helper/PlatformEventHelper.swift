@@ -10,7 +10,7 @@ import SyncEngine
 enum PlatformEventHelper {
 
     @discardableResult static func syncAllPlatformEvents() -> Future<SyncMultipleResult, XikoloError> {
-        let fetchRequest = PlatformEventHelper.FetchRequest.allPlatformEvents
+        let fetchRequest = Self.FetchRequest.allPlatformEvents
         let query = MultipleResourcesQuery(type: PlatformEvent.self)
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }

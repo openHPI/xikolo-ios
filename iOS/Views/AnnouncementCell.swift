@@ -41,7 +41,7 @@ class AnnouncementCell: UITableViewCell {
         self.titleLabel.text = announcement.title
 
         if let date = announcement.publishedAt {
-            self.dateLabel.text = AnnouncementCell.dateFormatter.string(from: date)
+            self.dateLabel.text = Self.dateFormatter.string(from: date)
             self.dateLabel.isHidden = false
         } else {
             self.dateLabel.isHidden = true

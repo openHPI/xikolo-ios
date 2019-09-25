@@ -193,7 +193,7 @@ extension CourseCell {
 extension CourseCell {
 
     static func heightForOverviewList(forWidth width: CGFloat) -> CGFloat {
-        var height: CGFloat = CourseCell.cardInset
+        var height: CGFloat = Self.cardInset
         height += width / 2 // image
         height += self.cardBottomOffsetForOverviewList
         return height

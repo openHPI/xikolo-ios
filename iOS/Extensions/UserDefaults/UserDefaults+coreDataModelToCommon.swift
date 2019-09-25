@@ -11,10 +11,10 @@ extension UserDefaults {
 
     var didMigrateCoreDataModelToCommon: Bool {
         get {
-            return self.bool(forKey: UserDefaults.migrateCoreDataModelToCommonKey)
+            return self.bool(forKey: Self.migrateCoreDataModelToCommonKey)
         }
         set {
-            self.set(newValue, forKey: UserDefaults.migrateCoreDataModelToCommonKey)
+            self.set(newValue, forKey: Self.migrateCoreDataModelToCommonKey)
         }
     }
 

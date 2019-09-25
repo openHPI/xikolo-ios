@@ -10,7 +10,7 @@ import SyncEngine
 public enum UserHelper {
 
     @discardableResult public static func syncMe() -> Future<SyncSingleResult, XikoloError> {
-        let fetchRequest = UserHelper.FetchRequest.user(withId: UserProfileHelper.shared.userId ?? "")
+        let fetchRequest = Self.FetchRequest.user(withId: UserProfileHelper.shared.userId ?? "")
         var query = SingleResourceQuery(type: User.self, id: "me")
         query.include("profile")
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)

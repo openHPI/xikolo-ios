@@ -15,7 +15,7 @@ public enum CourseDateHelper {
     }
 
     @discardableResult public static func syncCourseDates(for course: Course) -> Future<SyncMultipleResult, XikoloError> {
-        let fetchRequest = CourseDateHelper.FetchRequest.courseDates(for: course)
+        let fetchRequest = Self.FetchRequest.courseDates(for: course)
         var query = MultipleResourcesQuery(type: CourseDate.self)
         query.addFilter(forKey: "course", withValue: course.id)
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)

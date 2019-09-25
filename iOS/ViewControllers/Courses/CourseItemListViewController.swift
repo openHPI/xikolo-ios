@@ -91,7 +91,7 @@ class CourseItemListViewController: UITableViewController {
     }
 
     func preloadCourseContent() {
-        CourseItemListViewController.contentToBePreloaded.traverse { contentType in
+        Self.contentToBePreloaded.traverse { contentType in
             return contentType.preloadContent(forCourse: self.course)
         }.onComplete { _ in
             self.isPreloading = false
@@ -151,10 +151,10 @@ class CourseItemListViewController: UITableViewController {
             return
         }
 
-        var dateText = CourseItemListViewController.dateFormatter.string(from: sectionStartDate)
+        var dateText = Self.dateFormatter.string(from: sectionStartDate)
         dateText = dateText.replacingOccurrences(of: " ", with: "\u{00a0}") // replace spaces with non-breaking spaces
 
-        var timeText = CourseItemListViewController.timeFormatter.string(from: sectionStartDate)
+        var timeText = Self.timeFormatter.string(from: sectionStartDate)
         timeText = timeText.replacingOccurrences(of: " ", with: "\u{00a0}") // replace spaces with non-breaking spaces
         if let timeZoneAbbreviation = TimeZone.current.abbreviation() {
             timeText += " (\(timeZoneAbbreviation))"
@@ -209,7 +209,7 @@ extension CourseItemListViewController: RefreshableViewController {
     }
 
     func refreshingAction() -> Future<Void, XikoloError> {
-        self.isPreloading = self.preloadingWanted && !CourseItemListViewController.contentToBePreloaded.isEmpty
+        self.isPreloading = self.preloadingWanted && !Self.contentToBePreloaded.isEmpty
         return CourseItemHelper.syncCourseItems(forCourse: self.course).asVoid()
     }
 
@@ -238,7 +238,7 @@ extension CourseItemListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDe
 extension CourseItemListViewController: CourseItemCellDelegate {
 
     func isPreloading(for contentType: String?) -> Bool {
-        return self.isPreloading && CourseItemListViewController.contentToBePreloaded.contains { $0.contentType == contentType }
+        return self.isPreloading && Self.contentToBePreloaded.contains { $0.contentType == contentType }
     }
 
 }

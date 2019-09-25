@@ -64,7 +64,7 @@ extension Quiz: JSONAPIPullable {
         self.showWelcomePage = try attributes.value(for: "show_welcome_page")
 
 //        let relationships = try object.value(for: "relationships") as JSON
-//        try self.updateRelationship(forKeyPath: \Quiz.questions, forKey: "questions", fromObject: relationships, including: includes, inContext: context)
+//        try self.updateRelationship(forKeyPath: \Self.questions, forKey: "questions", fromObject: relationships, including: includes, inContext: context)
     }
 
 }

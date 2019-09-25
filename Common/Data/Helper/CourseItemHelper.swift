@@ -10,7 +10,7 @@ import SyncEngine
 public enum CourseItemHelper {
 
     public static func syncCourseItems(forSection section: CourseSection) -> Future<SyncMultipleResult, XikoloError> {
-        let fetchRequest = CourseItemHelper.FetchRequest.orderedCourseItems(forSection: section)
+        let fetchRequest = Self.FetchRequest.orderedCourseItems(forSection: section)
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "section", withValue: section.id)
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
@@ -23,7 +23,7 @@ public enum CourseItemHelper {
 
                 CoreDataHelper.persistentContainer.performBackgroundTask { context in
                     let courseSection = context.typedObject(with: sectionObjectId) as CourseSection
-                    let courseItemsFuture = CourseItemHelper.syncCourseItems(forSection: courseSection)
+                    let courseItemsFuture = Self.syncCourseItems(forSection: courseSection)
                     promise.completeWith(courseItemsFuture)
                 }
 
@@ -34,7 +34,7 @@ public enum CourseItemHelper {
 
     @discardableResult public static func syncCourseItems(forCourse course: Course,
                                                           withContentType type: String) -> Future<SyncMultipleResult, XikoloError> {
-        let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forCourse: course, withContentType: type)
+        let fetchRequest = Self.FetchRequest.courseItems(forCourse: course, withContentType: type)
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "course", withValue: course.id)
         query.addFilter(forKey: "content_type", withValue: type)
@@ -44,7 +44,7 @@ public enum CourseItemHelper {
 
     @discardableResult public static func syncCourseItems(forSection section: CourseSection,
                                                           withContentType type: String) -> Future<SyncMultipleResult, XikoloError> {
-        let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forSection: section, withContentType: type)
+        let fetchRequest = Self.FetchRequest.courseItems(forSection: section, withContentType: type)
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "section", withValue: section.id)
         query.addFilter(forKey: "content_type", withValue: type)
@@ -53,7 +53,7 @@ public enum CourseItemHelper {
     }
 
     @discardableResult public static func syncCourseItemWithContent(_ courseItem: CourseItem) -> Future<SyncSingleResult, XikoloError> {
-        let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
+        let fetchRequest = Self.FetchRequest.courseItem(withId: courseItem.id)
         var query = SingleResourceQuery(resource: courseItem)
         query.include("content")
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)

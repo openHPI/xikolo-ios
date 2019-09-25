@@ -4,40 +4,44 @@
 //
 
 import Common
-import CoreData
 import UIKit
 
-class CourseOverviewCell: UITableViewCell {
+class CourseOverviewViewController: UIViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var collectionViewHeight: NSLayoutConstraint!
+    @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    
+    private var dataSource: CoreDataCollectionViewDataSource<CourseOverviewViewController>!
 
-    private var configuration: CourseListConfiguration!
-    private var dataSource: CoreDataCollectionViewDataSource<CourseOverviewCell>!
+    var configuration: CourseListConfiguration!
 
-    weak var delegate: CourseOverviewDelegate?
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.collectionView.register(R.nib.courseCell)
-        self.collectionView.register(R.nib.pseudoCourseCell)
-        self.collectionView.delegate = self
-    }
-
-    func configure(for configuration: CourseListConfiguration) {
-        self.configuration = configuration
-        self.titleLabel.text = configuration.title
-        self.configureCollectionView(for: configuration)
-    }
-
-    private func configureCollectionView(for configuration: CourseListConfiguration) {
+    private func configureCollectionView() {
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
         self.dataSource = CoreDataCollectionViewDataSource(self.collectionView,
-                                                           fetchedResultsControllers: configuration.resultsControllers,
+                                                           fetchedResultsControllers: self.configuration.resultsControllers,
                                                            cellReuseIdentifier: reuseIdentifier,
                                                            delegate: self)
 
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.titleLabel.text = self.configuration.title
+
+        self.collectionView.register(R.nib.courseCell)
+        self.collectionView.register(R.nib.pseudoCourseCell)
+        self.configureCollectionView()
+
+        self.updateCollectionViewHeight()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let typedInfo = R.segue.courseOverviewViewController.showCourseList(segue: segue) {
+            typedInfo.destination.configuration = self.configuration
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -47,16 +51,15 @@ class CourseOverviewCell: UITableViewCell {
 
     @objc private func updateCollectionViewHeight() {
         let courseCellWidth = CourseCell.minimalWidth(for: self.collectionView.traitCollection)
-        let boundsWidth = max(self.superview?.bounds.width ?? 0, self.collectionView.bounds.width)
-        let availableWidth = boundsWidth - self.collectionView.layoutMargins.left - self.collectionView.layoutMargins.right
+        let availableWidth = self.view.bounds.width - self.view.layoutMargins.left - self.view.layoutMargins.right
         let preferredWidth = min(availableWidth * 0.9, courseCellWidth)
         let height = CourseCell.heightForOverviewList(forWidth: preferredWidth)
-        self.collectionViewHeight.constant = ceil(height)
+        self.collectionViewHeightConstraint.constant = ceil(height)
     }
 
 }
 
-extension CourseOverviewCell: UICollectionViewDelegate {
+extension CourseOverviewViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let numberOfCoreDataItems = self.dataSource.numberOfCoreDataItems(inSection: indexPath.section)
@@ -65,31 +68,19 @@ extension CourseOverviewCell: UICollectionViewDelegate {
 
         if numberOfAdditionalItems > 0, min(itemLimit, numberOfCoreDataItems) + numberOfAdditionalItems - 1 == indexPath.item {
             if numberOfCoreDataItems == 0 {
-                if #available(iOS 13.0, *) { // XXX
-                    guard let sceneDelegate = self.superview?.window?.windowScene?.delegate as? SceneDelegate else { return }
-                    sceneDelegate.appNavigator.showCourseList()
-                } else {
-                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-                    appDelegate.appNavigator.showCourseList()
-                }
+                self.appNavigator?.showCourseList()
             } else {
-                self.delegate?.openCourseList(for: self.configuration)
+                self.performSegue(withIdentifier: R.segue.courseOverviewViewController.showCourseList, sender: nil)
             }
         } else {
             let course = self.dataSource.object(at: indexPath)
-            if #available(iOS 13.0, *) { // XXX
-                guard let sceneDelegate = self.superview?.window?.windowScene?.delegate as? SceneDelegate else { return }
-                sceneDelegate.appNavigator.show(course: course)
-            } else {
-                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-                appDelegate.appNavigator.show(course: course)
-            }
+            self.appNavigator?.show(course: course)
         }
     }
 
 }
 
-extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
+extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -133,7 +124,7 @@ extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
 
 }
 
-extension CourseOverviewCell: CoreDataCollectionViewDataSourceDelegate {
+extension CourseOverviewViewController: CoreDataCollectionViewDataSourceDelegate {
 
     typealias HeaderView = UICollectionReusableView
 
@@ -179,11 +170,5 @@ extension CourseOverviewCell: CoreDataCollectionViewDataSourceDelegate {
         cell?.configure(for: style, configuration: self.configuration)
         return cell
     }
-
-}
-
-protocol CourseOverviewDelegate: AnyObject {
-
-    func openCourseList(for configuration: CourseListConfiguration)
 
 }

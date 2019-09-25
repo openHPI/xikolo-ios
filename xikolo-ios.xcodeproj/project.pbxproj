@@ -127,7 +127,7 @@
 		50CF1F7920DCDBFC0011BFE9 /* CertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesListViewController.swift */; };
 		50CF1F7A20DCDBFC0011BFE9 /* CourseItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */; };
 		50CF1F7B20DCDBFC0011BFE9 /* CourseArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D91643207D080000DDB6E1 /* CourseArea.swift */; };
-		50CF1F7D20DCDBFC0011BFE9 /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9A3D8C1E61CE2500384B1E /* CourseDetailViewController.swift */; };
+		50CF1F7D20DCDBFC0011BFE9 /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9A3D8C1E61CE2500384B1E /* CourseDetailsViewController.swift */; };
 		50CF1F8020DCDBFC0011BFE9 /* XikoloNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */; };
 		50CF1F8120DCDBFC0011BFE9 /* UserActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022901205928E2003301A7 /* UserActionsDelegate.swift */; };
 		50CF1F8320DCDBFC0011BFE9 /* XikoloTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B10D0200790560042AA7D /* XikoloTabBarController.swift */; };
@@ -669,7 +669,7 @@
 		AB91F9E41CED029B00007D06 /* CourseItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemCell.swift; sourceTree = "<group>"; };
 		AB947CE11E19E1EC009888B0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+enable.swift"; sourceTree = "<group>"; };
-		AB9A3D8C1E61CE2500384B1E /* CourseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
+		AB9A3D8C1E61CE2500384B1E /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
 		AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		AB9AF2D11CF72D9D00ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabCourses.storyboard; sourceTree = "<group>"; };
 		AB9AF2D61CF72E8E00ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabDashboard.storyboard; sourceTree = "<group>"; };
@@ -1233,7 +1233,7 @@
 				50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */,
 				503CEE952177082D00F34694 /* ProcotoredItemViewController.swift */,
 				50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */,
-				AB9A3D8C1E61CE2500384B1E /* CourseDetailViewController.swift */,
+				AB9A3D8C1E61CE2500384B1E /* CourseDetailsViewController.swift */,
 				70F379CE205B643400149C3B /* CertificatesListViewController.swift */,
 				5054B2E62108B30E00CE9067 /* DocumentListViewController.swift */,
 				50D91643207D080000DDB6E1 /* CourseArea.swift */,
@@ -2032,7 +2032,7 @@
 				50CF1F7B20DCDBFC0011BFE9 /* CourseArea.swift in Sources */,
 				50146FCF2222C8B900177E96 /* CourseSearchFilter.swift in Sources */,
 				508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */,
-				50CF1F7D20DCDBFC0011BFE9 /* CourseDetailViewController.swift in Sources */,
+				50CF1F7D20DCDBFC0011BFE9 /* CourseDetailsViewController.swift in Sources */,
 				503CEE962177082D00F34694 /* ProcotoredItemViewController.swift in Sources */,
 				50CF1F8020DCDBFC0011BFE9 /* XikoloNavigationController.swift in Sources */,
 				50CF1F8120DCDBFC0011BFE9 /* UserActionsDelegate.swift in Sources */,

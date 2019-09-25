@@ -51,7 +51,6 @@ class CourseDetailsViewController: UIViewController {
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self
 
-
         self.updateView()
 
         self.addRefreshControl()

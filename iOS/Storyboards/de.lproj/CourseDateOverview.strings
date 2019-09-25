@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "TODAY"; ObjectID = "0UM-vv-4OH"; */
+"0UM-vv-4OH.text" = "HEUTE";
+
+/* Class = "UILabel"; text = "ALL"; ObjectID = "2wZ-Gq-hfe"; */
+"2wZ-Gq-hfe.text" = "ALLE";
+
+/* Class = "UILabel"; text = "Course date overview"; ObjectID = "8gI-pn-L8I"; */
+"8gI-pn-L8I.text" = "Termin-Übersicht";
+
+/* Class = "UILabel"; text = "NEXT 7 DAYS"; ObjectID = "ftB-Ap-hHB"; */
+"ftB-Ap-hHB.text" = "NÄCHSTE 7 TAGE";
+
+/* Class = "UILabel"; text = "Next up"; ObjectID = "v6H-XX-Fq4"; */
+"v6H-XX-Fq4.text" = "Als nächstes";

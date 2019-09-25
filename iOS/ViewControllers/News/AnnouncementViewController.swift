@@ -16,6 +16,7 @@ class AnnouncementViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
+    @IBOutlet private weak var announcementImageView: UIImageView!
 
     private var announcementObserver: ManagedObjectObserver?
 
@@ -37,6 +38,10 @@ class AnnouncementViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.announcementImageView.isHidden = true
+        self.announcementImageView.layer.roundCorners(for: .default)
+        self.announcementImageView.backgroundColor = Brand.default.colors.secondary
 
         self.courseButton.tintColor = Brand.default.colors.secondary
         self.courseButton.titleLabel?.adjustsFontForContentSizeCategory = true
@@ -63,6 +68,11 @@ class AnnouncementViewController: UIViewController {
             self.courseButton.isHidden = false
         } else {
             self.courseButton.isHidden = true
+        }
+
+        if ((self.announcement.imageURL) != nil) {
+            self.announcementImageView.sd_setImage(with: self.announcement.imageURL)
+            self.announcementImageView.isHidden = false
         }
 
         self.titleLabel.text = self.announcement.title

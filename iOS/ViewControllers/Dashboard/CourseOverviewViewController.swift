@@ -11,7 +11,7 @@ class CourseOverviewViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
-    
+
     private var dataSource: CoreDataCollectionViewDataSource<CourseOverviewViewController>!
 
     var configuration: CourseListConfiguration!
@@ -22,7 +22,6 @@ class CourseOverviewViewController: UIViewController {
                                                            fetchedResultsControllers: self.configuration.resultsControllers,
                                                            cellReuseIdentifier: reuseIdentifier,
                                                            delegate: self)
-
     }
 
     override func viewDidLoad() {

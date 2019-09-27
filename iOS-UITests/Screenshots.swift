@@ -37,8 +37,8 @@ class Screenshots: XCTestCase {
         // Course item list
         // tap on first element in current courses view
         // course cell must be accessibility element (.isAccessibilityElement = true)
-        let currentCoursesOverview = app.tables.cells["CourseOverview"].firstMatch
-        let firstCurrentCourse = currentCoursesOverview.otherElements["CourseCell"].firstMatch
+        let currentCoursesOverview = app.collectionViews.firstMatch
+        let firstCurrentCourse = currentCoursesOverview.cells.firstMatch.firstMatch
         firstCurrentCourse.tap()
         sleep(5)
         snapshot("3-Course-Items")

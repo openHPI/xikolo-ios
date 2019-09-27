@@ -9,7 +9,7 @@ import Common
 import SDWebImage
 import UIKit
 
-class CourseDetailViewController: UIViewController {
+class CourseDetailsViewController: UIViewController {
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var teaserView: UIView!
@@ -51,7 +51,6 @@ class CourseDetailViewController: UIViewController {
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self
 
-
         self.updateView()
 
         self.addRefreshControl()
@@ -90,7 +89,7 @@ class CourseDetailViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let typedInfo = R.segue.courseDetailViewController.showLogin(segue: segue) {
+        if let typedInfo = R.segue.courseDetailsViewController.showLogin(segue: segue) {
             let loginViewController = typedInfo.destination.viewControllers.first as? LoginViewController
             loginViewController?.delegate = self
         }
@@ -136,7 +135,7 @@ class CourseDetailViewController: UIViewController {
                 self.showEnrollmentOptions()
             }
         } else {
-            self.performSegue(withIdentifier: R.segue.courseDetailViewController.showLogin, sender: nil)
+            self.performSegue(withIdentifier: R.segue.courseDetailsViewController.showLogin, sender: nil)
         }
     }
 
@@ -213,7 +212,7 @@ class CourseDetailViewController: UIViewController {
 
 }
 
-extension CourseDetailViewController: UIScrollViewDelegate {
+extension CourseDetailsViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.delegate?.scrollViewDidScroll(scrollView)
@@ -229,7 +228,7 @@ extension CourseDetailViewController: UIScrollViewDelegate {
 
 }
 
-extension CourseDetailViewController: RefreshableViewController {
+extension CourseDetailsViewController: RefreshableViewController {
 
     var refreshableScrollView: UIScrollView {
         return self.scrollView
@@ -241,7 +240,7 @@ extension CourseDetailViewController: RefreshableViewController {
 
 }
 
-extension CourseDetailViewController: LoginDelegate {
+extension CourseDetailsViewController: LoginDelegate {
 
     func didSuccessfullyLogin() {
         self.createEnrollment()
@@ -249,7 +248,7 @@ extension CourseDetailViewController: LoginDelegate {
 
 }
 
-extension CourseDetailViewController: UITextViewDelegate {
+extension CourseDetailsViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         guard let appNavigator = self.appNavigator else { return false }
@@ -258,7 +257,7 @@ extension CourseDetailViewController: UITextViewDelegate {
 
 }
 
-extension CourseDetailViewController: CourseAreaViewController {
+extension CourseDetailsViewController: CourseAreaViewController {
 
     var area: CourseArea {
         return .courseDetails

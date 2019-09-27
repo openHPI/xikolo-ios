@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable file_length
+
 import Common
 import SDWebImage
 import UIKit
@@ -117,14 +119,18 @@ class CourseViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
-        coordinator.animate(alongsideTransition: { [weak self] _ in
+        let animationBlock: (UIViewControllerTransitionCoordinatorContext) -> Void = { [weak self] _ in
             // Fix size of title view
             self?.titleView.setNeedsLayout()
             self?.titleView.layoutIfNeeded()
-        }) { [weak self] _ in
+        }
+
+        let completionBlock: (UIViewControllerTransitionCoordinatorContext) -> Void = { [weak self] _ in
             let headerColor = self?.headerImageView.image.flatMap { self?.averageColorUnderStatusBar(withCourseVisual: $0) } ?? Brand.default.colors.secondary
             self?.courseNavigationController?.adjustToUnderlyingColor(headerColor)
         }
+
+        coordinator.animate(alongsideTransition: animationBlock, completion: completionBlock)
     }
 
     func show(item: CourseItem, animated: Bool) {
@@ -200,6 +206,7 @@ class CourseViewController: UIViewController {
         return image.cgImage?.cropping(to: subImageRect)
     }
 
+    // swiftlint:disable:next large_tuple
     private func averageColor(of image: CGImage?) -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)? {
         guard let image = image else { return nil }
 
@@ -291,7 +298,7 @@ class CourseViewController: UIViewController {
     }
 
     @IBAction private func shareCourse(_ sender: UIBarButtonItem) {
-        let activityItems = ([self.course.title, self.course.url] as [Any?]).compactMap { $0 }
+        let activityItems = [self.course as Any]
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = sender
         activityViewController.completionWithItemsHandler = { activityType, completed, _, _ in

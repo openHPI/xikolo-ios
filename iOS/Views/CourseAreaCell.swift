@@ -34,6 +34,10 @@ class CourseAreaCell: UICollectionViewCell {
         self.hightlightView.isHidden = true
         self.hightlightView.layer.cornerRadius = self.hightlightView.bounds.height / 2
         self.hightlightView.clipsToBounds = true
+
+        if #available(iOS 13, *) {
+            self.hightlightView.layer.cornerCurve = .continuous
+        }
     }
 
     func configure(for content: CourseArea) {

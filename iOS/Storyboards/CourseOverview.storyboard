@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nqh-d5-nYg">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Course Overview View Controller-->
+        <scene sceneID="bbC-ur-Abw">
+            <objects>
+                <viewController id="nqh-d5-nYg" customClass="CourseOverviewViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="dqL-Ck-wyy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="i6y-8o-FhA">
+                                <rect key="frame" x="0.0" y="35" width="414" height="250"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="5AS-Kt-uDc"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="OKN-Ym-5jE">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="nqh-d5-nYg" id="x3h-Ee-w2h"/>
+                                    <outlet property="delegate" destination="nqh-d5-nYg" id="xcx-3h-rgC"/>
+                                </connections>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Overview Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45R-pL-NFp">
+                                <rect key="frame" x="20" y="0.0" width="374" height="39"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <nil key="highlightedColor"/>
+                                <attributedString key="userComments">
+                                    <fragment content="#bc-ignore!">
+                                        <attributes>
+                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="45R-pL-NFp" firstAttribute="top" secondItem="dqL-Ck-wyy" secondAttribute="top" id="4tC-Ov-N66"/>
+                            <constraint firstItem="i6y-8o-FhA" firstAttribute="leading" secondItem="dqL-Ck-wyy" secondAttribute="leading" id="MHw-bV-jNo"/>
+                            <constraint firstAttribute="trailing" secondItem="i6y-8o-FhA" secondAttribute="trailing" id="W8d-4S-0kq"/>
+                            <constraint firstItem="i6y-8o-FhA" firstAttribute="top" secondItem="45R-pL-NFp" secondAttribute="bottom" constant="-4" id="i0e-gr-Vsb"/>
+                            <constraint firstItem="45R-pL-NFp" firstAttribute="leading" secondItem="dqL-Ck-wyy" secondAttribute="leadingMargin" id="no7-oi-GQd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="45R-pL-NFp" secondAttribute="trailing" id="oit-Ok-mZ5"/>
+                            <constraint firstAttribute="bottom" secondItem="i6y-8o-FhA" secondAttribute="bottom" constant="16" id="qOv-Io-ODb"/>
+                        </constraints>
+                    </view>
+                    <size key="freeformSize" width="414" height="301"/>
+                    <connections>
+                        <outlet property="collectionView" destination="i6y-8o-FhA" id="TI5-j8-aGd"/>
+                        <outlet property="collectionViewHeightConstraint" destination="5AS-Kt-uDc" id="gVW-Dm-AI3"/>
+                        <outlet property="titleLabel" destination="45R-pL-NFp" id="6sQ-3u-XOo"/>
+                        <segue destination="q7o-xz-oks" kind="show" identifier="showCourseList" id="V2p-CO-Stb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RtX-mt-xMM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2701" y="-469"/>
+        </scene>
+        <!--CourseListViewController-->
+        <scene sceneID="Dwm-d1-LpF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TabCourses" referencedIdentifier="CourseListViewController" id="q7o-xz-oks" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="pAa-HY-eOs"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bbd-Uh-xu0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2097" y="-469"/>
+        </scene>
+    </scenes>
+</document>

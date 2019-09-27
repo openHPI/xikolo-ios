@@ -141,18 +141,18 @@ class WebViewController: UIViewController {
         guard let existingURL = self.url else { return }
 
         let request = NetworkHelper.request(for: existingURL) as URLRequest
+        let completion: () -> Void = { self.webView.load(request) }
         if existingURL == Routes.singleSignOn {
             let dataStore = WKWebsiteDataStore.default()
             dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
                 dataStore.removeData(
                     ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),
                     for: records.filter { Brand.default.host.contains($0.displayName) },
-                    completionHandler: {
-                        self.webView.load(request)
-                })
+                    completionHandler: completion
+                )
             }
         } else {
-            self.webView.load(request)
+            completion()
         }
     }
 

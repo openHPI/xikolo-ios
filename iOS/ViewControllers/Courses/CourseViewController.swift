@@ -97,6 +97,7 @@ class CourseViewController: UIViewController {
         self.navigationController?.delegate = self
 
         self.decideContent()
+        self.updateHeaderConstraints()
 
         SpotlightHelper.shared.setUserActivity(for: self.course)
         ErrorManager.shared.remember(self.course.id, forKey: "course_id")

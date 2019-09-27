@@ -298,7 +298,7 @@ class CourseViewController: UIViewController {
     }
 
     @IBAction private func shareCourse(_ sender: UIBarButtonItem) {
-        let activityItems = ([self.course.title, self.course.url] as [Any?]).compactMap { $0 }
+        let activityItems = [self.course as Any]
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = sender
         activityViewController.completionWithItemsHandler = { activityType, completed, _, _ in

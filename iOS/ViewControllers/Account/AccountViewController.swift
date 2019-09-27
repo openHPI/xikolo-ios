@@ -33,7 +33,7 @@ class AccountViewController: UITableViewController {
                 self.userObserver = ManagedObjectObserver(object: user) { [weak self] type in
                     guard type == .update else { return }
                     DispatchQueue.main.async {
-                        self?.updateProfileInfo()
+                        self?.updateProfileInfo(animated: true)
                     }
                 }
             } else {
@@ -42,7 +42,7 @@ class AccountViewController: UITableViewController {
 
             if self.user != oldValue {
                 DispatchQueue.main.async {
-                    self.updateProfileInfo()
+                    self.updateProfileInfo(animated: false)
                 }
             }
         }
@@ -115,30 +115,30 @@ class AccountViewController: UITableViewController {
         }
     }
 
-    func updateProfileInfo() {
+    func updateProfileInfo(animated: Bool) {
         let profileViews: [UIView] = [self.profileImage, self.nameView, self.emailView]
+        let animationDuration: TimeInterval = animated ? 0.25 : 0.0
 
         if let userProfile = self.user?.profile {
             self.profileImage.sd_setImage(with: self.user?.avatarURL, placeholderImage: R.image.avatar())
-            self.nameView.text = userProfile.fullName
-            self.emailView.text = userProfile.email
 
             for view in profileViews {
-                view.alpha = 0
                 view.isHidden = false
             }
 
-            UIView.animate(withDuration: 0.25, animations: {
+            UIView.animate(withDuration: animationDuration, animations: {
+                self.nameView.text = userProfile.fullName
+                self.emailView.text = userProfile.email
                 self.view.layoutIfNeeded()
             }, completion: { _ in
-                UIView.animate(withDuration: 0.25) {
+                UIView.animate(withDuration: animationDuration) {
                     for view in profileViews {
                         view.alpha = 1
                     }
                 }
             })
         } else {
-            UIView.animate(withDuration: 0.25, animations: {
+            UIView.animate(withDuration: animationDuration, animations: {
                 for view in profileViews {
                     view.alpha = 0
                 }
@@ -147,7 +147,7 @@ class AccountViewController: UITableViewController {
                     view.isHidden = true
                 }
 
-                UIView.animate(withDuration: 0.25) {
+                UIView.animate(withDuration: animationDuration) {
                     self.view.layoutIfNeeded()
                 }
             })

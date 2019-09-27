@@ -57,14 +57,12 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="rAi-Wx-UwB" firstAttribute="top" secondItem="os6-Mo-QoL" secondAttribute="top" id="F0n-HG-LAU"/>
-                                    <constraint firstItem="rAi-Wx-UwB" firstAttribute="width" secondItem="gLA-j7-JpP" secondAttribute="width" id="IPq-Pk-TYu"/>
-                                    <constraint firstItem="rAi-Wx-UwB" firstAttribute="leading" secondItem="os6-Mo-QoL" secondAttribute="leading" id="jRa-Mu-4hc"/>
-                                    <constraint firstItem="rAi-Wx-UwB" firstAttribute="trailing" secondItem="os6-Mo-QoL" secondAttribute="trailing" id="k9Z-CI-qOW"/>
-                                    <constraint firstItem="rAi-Wx-UwB" firstAttribute="bottom" secondItem="os6-Mo-QoL" secondAttribute="bottom" id="rej-sj-gEd"/>
+                                    <constraint firstItem="rAi-Wx-UwB" firstAttribute="top" secondItem="Wt0-K6-9aK" secondAttribute="top" id="F0n-HG-LAU"/>
+                                    <constraint firstItem="rAi-Wx-UwB" firstAttribute="width" secondItem="Wt0-K6-9aK" secondAttribute="width" id="IPq-Pk-TYu"/>
+                                    <constraint firstItem="rAi-Wx-UwB" firstAttribute="leading" secondItem="Wt0-K6-9aK" secondAttribute="leading" id="jRa-Mu-4hc"/>
+                                    <constraint firstItem="rAi-Wx-UwB" firstAttribute="trailing" secondItem="Wt0-K6-9aK" secondAttribute="trailing" id="k9Z-CI-qOW"/>
+                                    <constraint firstItem="rAi-Wx-UwB" firstAttribute="bottom" secondItem="Wt0-K6-9aK" secondAttribute="bottom" id="rej-sj-gEd"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="os6-Mo-QoL"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="gLA-j7-JpP"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -88,6 +86,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tab bar items/dashboard" width="24" height="24"/>
+        <image name="tab bar items/dashboard" width="28" height="28"/>
     </resources>
 </document>

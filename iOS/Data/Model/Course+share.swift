@@ -9,15 +9,17 @@ import UIKit
 
 extension Course: UIActivityItemSource {
 
-    public func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any  {
+    public func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
         return self.url as Any
     }
 
-    public func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+    public func activityViewController(_ activityViewController: UIActivityViewController,
+                                       itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
         return self.url
     }
 
-    public func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
+    public func activityViewController(_ activityViewController: UIActivityViewController,
+                                       subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
         return self.title ?? ""
     }
 

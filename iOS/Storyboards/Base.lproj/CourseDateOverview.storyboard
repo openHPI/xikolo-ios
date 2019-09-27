@@ -366,15 +366,5 @@
             </objects>
             <point key="canvasLocation" x="668" y="142"/>
         </scene>
-        <!--CourseDates-->
-        <scene sceneID="zHO-Yb-JkL">
-            <objects>
-                <viewControllerPlaceholder storyboardName="CourseDates" id="eD2-BU-dDn" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="B0y-qp-vJB"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XJj-B8-htK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1278" y="64"/>
-        </scene>
     </scenes>
 </document>

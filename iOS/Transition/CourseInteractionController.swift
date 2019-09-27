@@ -31,10 +31,10 @@ class CourseInteractionController: UIPercentDrivenInteractiveTransition {
         let translation = gestureRecognizer.translation(in: view)
         let verticalMovement = translation.y / view.bounds.height
         let dragPercentage = max(0.0, min(verticalMovement, 1.0))
-        let shouldFinishByDragging = dragPercentage > CourseInteractionController.dragPercentageThreshold
+        let shouldFinishByDragging = dragPercentage > Self.dragPercentageThreshold
 
         let velocity = gestureRecognizer.velocity(in: view)
-        let shouldFinishByFlicking = velocity.y > CourseInteractionController.flickVelocityThreshold
+        let shouldFinishByFlicking = velocity.y > Self.flickVelocityThreshold
 
         switch gestureRecognizer.state {
         case .began:

@@ -12,7 +12,7 @@ public enum DocumentHelper {
     public static func syncDocuments(forCourse course: Course) -> Future<Void, XikoloError> {
         let courseObjectId = course.objectID
 
-        let fetchRequest = DocumentHelper.FetchRequest.documents(forCourse: course)
+        let fetchRequest = Self.FetchRequest.documents(forCourse: course)
         var query = MultipleResourcesQuery(type: Document.self)
         query.addFilter(forKey: "course", withValue: course.id)
         query.include("localizations")

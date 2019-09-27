@@ -66,12 +66,12 @@ extension CourseItem: JSONAPIPullable {
         self.visited = try attributes.value(for: "visited") || self.visited  // course items can't be set to 'not visited'
 
         let relationships = try object.value(for: "relationships") as JSON
-        try self.updateRelationship(forKeyPath: \CourseItem.section,
+        try self.updateRelationship(forKeyPath: \Self.section,
                                     forKey: "section",
                                     fromObject: relationships,
                                     with: context)
 
-        try self.updateAbstractRelationship(forKeyPath: \CourseItem.content,
+        try self.updateAbstractRelationship(forKeyPath: \Self.content,
                                             forKey: "content",
                                             fromObject: relationships,
                                             with: context) { container in

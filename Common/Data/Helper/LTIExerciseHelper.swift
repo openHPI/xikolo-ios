@@ -10,7 +10,7 @@ import SyncEngine
 enum LTIExerciseHelper {
 
     @discardableResult static func syncLTIExercise(_ ltiExercise: LTIExercise) -> Future<SyncSingleResult, XikoloError> {
-        let fetchRequest = LTIExerciseHelper.FetchRequest.ltiExercise(withId: ltiExercise.id)
+        let fetchRequest = Self.FetchRequest.ltiExercise(withId: ltiExercise.id)
         let query = SingleResourceQuery(resource: ltiExercise)
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }

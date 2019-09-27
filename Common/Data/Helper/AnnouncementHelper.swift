@@ -17,7 +17,7 @@ public enum AnnouncementHelper {
     }
 
     @discardableResult public static func syncAnnouncements(for course: Course) -> Future<SyncMultipleResult, XikoloError> {
-        let fetchRequest = AnnouncementHelper.FetchRequest.announcements(forCourse: course)
+        let fetchRequest = Self.FetchRequest.announcements(forCourse: course)
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "course", withValue: course.id)
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)

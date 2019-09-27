@@ -41,9 +41,9 @@ class LoadingButton: UIButton {
     func startAnimation() {
         let hideTitleLabel: () -> Void = { [weak self] in self?.titleLabel?.layer.opacity = 0.0 }
         let showSpinner: () -> Void = { [weak self] in self?.spinner.alpha = 1.0 }
-        UIView.animate(withDuration: LoadingButton.animationTime, delay: 0, options: .curveEaseIn, animations: hideTitleLabel) { [weak self] _ in
+        UIView.animate(withDuration: Self.animationTime, delay: 0, options: .curveEaseIn, animations: hideTitleLabel) { [weak self] _ in
             self?.titleLabel?.isHidden = true
-            UIView.animate(withDuration: LoadingButton.animationTime, delay: 0, options: .curveEaseOut, animations: showSpinner)
+            UIView.animate(withDuration: Self.animationTime, delay: 0, options: .curveEaseOut, animations: showSpinner)
         }
     }
 
@@ -52,8 +52,8 @@ class LoadingButton: UIButton {
         let showTitleLabel: () -> Void = { [weak self] in self?.titleLabel?.layer.opacity = 1.0 }
         self.titleLabel?.layer.opacity = 0.0
         self.titleLabel?.isHidden = false
-        UIView.animate(withDuration: LoadingButton.animationTime, delay: 0, options: .curveEaseIn, animations: hideSpinner) { _ in
-            UIView.animate(withDuration: LoadingButton.animationTime, delay: 0, options: .curveEaseOut, animations: showTitleLabel)
+        UIView.animate(withDuration: Self.animationTime, delay: 0, options: .curveEaseIn, animations: hideSpinner) { _ in
+            UIView.animate(withDuration: Self.animationTime, delay: 0, options: .curveEaseOut, animations: showTitleLabel)
         }
     }
 

@@ -259,10 +259,10 @@ class DetailedDataView: UIStackView {
         let downloaded: Bool
         switch contentItem {
         case let .text(readingTime: readingTime):
-            label.text = DetailedDataView.readingTimeFormatter.string(from: readingTime)
+            label.text = Self.readingTimeFormatter.string(from: readingTime)
             downloaded = true
         case let .stream(duration: duration):
-            label.text = DetailedDataView.videoDurationFormatter.string(from: duration)
+            label.text = Self.videoDurationFormatter.string(from: duration)
             downloaded = downloadState == .downloaded
         case .slides:
             label.text = NSLocalizedString("course-item.video.slides.label", comment: "Shown in course content list")
@@ -270,7 +270,7 @@ class DetailedDataView: UIStackView {
         case let .points(maxPoints: maxPoints):
             let format = NSLocalizedString("course-item.max-points", comment: "maximum points for course item")
             let number = NSNumber(value: maxPoints)
-            let formattedNumber = DetailedDataView.pointsFormatter.string(from: number)
+            let formattedNumber = Self.pointsFormatter.string(from: number)
             label.text = formattedNumber.flatMap { String.localizedStringWithFormat(format, $0) }
             downloaded = false
         }

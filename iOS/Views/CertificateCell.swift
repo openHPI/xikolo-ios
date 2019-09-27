@@ -81,7 +81,7 @@ extension CertificateCell {
     }
 
     static func height(for certificate: Course.Certificate, forWidth width: CGFloat, delegate: CertificateCellDelegate) -> CGFloat {
-        let cardMargin = CertificateCell.cardInset
+        let cardMargin = Self.cardInset
         let cardPadding: CGFloat = 16
         let cardWidth = width - 2 * cardMargin
         let textWidth = cardWidth - 2 * cardPadding

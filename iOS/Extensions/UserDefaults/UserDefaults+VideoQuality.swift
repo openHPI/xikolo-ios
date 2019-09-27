@@ -36,12 +36,12 @@ extension UserDefaults {
 
     var videoQualityForDownload: VideoQuality {
         get {
-            let rawValue = self.integer(forKey: UserDefaults.videoQualityDownloadKey)
+            let rawValue = self.integer(forKey: Self.videoQualityDownloadKey)
             guard let value = VideoQuality(rawValue: rawValue) else { return .low }
             return value
         }
         set {
-            self.set(newValue.rawValue, forKey: UserDefaults.videoQualityDownloadKey)
+            self.set(newValue.rawValue, forKey: Self.videoQualityDownloadKey)
         }
     }
 
@@ -53,12 +53,12 @@ extension UserDefaults {
 
     var videoQualityOnCellular: VideoQuality {
         get {
-            let rawValue = self.integer(forKey: UserDefaults.videoQualityCellularKey)
+            let rawValue = self.integer(forKey: Self.videoQualityCellularKey)
             guard let value = VideoQuality(rawValue: rawValue) else { return .high }
             return value
         }
         set {
-            self.set(newValue.rawValue, forKey: UserDefaults.videoQualityCellularKey)
+            self.set(newValue.rawValue, forKey: Self.videoQualityCellularKey)
         }
     }
 
@@ -70,12 +70,12 @@ extension UserDefaults {
 
     var videoQualityOnWifi: VideoQuality {
         get {
-            let rawValue = self.integer(forKey: UserDefaults.videoQualityWifiKey)
+            let rawValue = self.integer(forKey: Self.videoQualityWifiKey)
             guard let value = VideoQuality(rawValue: rawValue) else { return .high }
             return value
         }
         set {
-            self.set(newValue.rawValue, forKey: UserDefaults.videoQualityWifiKey)
+            self.set(newValue.rawValue, forKey: Self.videoQualityWifiKey)
         }
     }
 

@@ -18,7 +18,7 @@ class CourseAreaCell: UICollectionViewCell {
 
     override var isSelected: Bool {
         didSet {
-            self.titleView.font = CourseAreaCell.font(whenSelected: self.isSelected)
+            self.titleView.font = Self.font(whenSelected: self.isSelected)
             self.titleView.textColor = self.isSelected ? ColorCompatibility.label : ColorCompatibility.secondaryLabel
 
             self.hightlightView.isHidden = !self.isSelected

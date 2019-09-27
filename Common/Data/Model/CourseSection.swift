@@ -48,6 +48,6 @@ extension CourseSection: JSONAPIPullable {
         self.endsAt = try attributes.value(for: "end_at")
 
         let relationships = try object.value(for: "relationships") as JSON
-        try self.updateRelationship(forKeyPath: \CourseSection.course, forKey: "course", fromObject: relationships, with: context)
+        try self.updateRelationship(forKeyPath: \Self.course, forKey: "course", fromObject: relationships, with: context)
     }
 }

@@ -11,12 +11,12 @@ extension UserDefaults {
 
     var contentPreloadSetting: CourseItemContentPreloadSetting {
         get {
-            let rawValue = self.integer(forKey: UserDefaults.contentPreloadSettingKey)
+            let rawValue = self.integer(forKey: Self.contentPreloadSettingKey)
             guard let value = CourseItemContentPreloadSetting(rawValue: rawValue) else { return .wifiOnly }
             return value
         }
         set {
-            self.set(newValue.rawValue, forKey: UserDefaults.contentPreloadSettingKey)
+            self.set(newValue.rawValue, forKey: Self.contentPreloadSettingKey)
         }
     }
 

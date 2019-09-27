@@ -47,7 +47,7 @@ extension Enrollment: JSONAPIPullable {
         self.createdAt = try attributes.value(for: "created_at")
 
         if let relationships = try? object.value(for: "relationships") as JSON {
-            try self.updateRelationship(forKeyPath: \Enrollment.course, forKey: "course", fromObject: relationships, with: context)
+            try self.updateRelationship(forKeyPath: \Self.course, forKey: "course", fromObject: relationships, with: context)
         }
     }
 

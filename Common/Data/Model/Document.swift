@@ -47,7 +47,7 @@ extension Document: JSONAPIPullable {
         self.tags = try attributes.value(for: "tags")
 
         if let relationships = try? object.value(for: "relationships") as JSON {
-            try self.updateRelationship(forKeyPath: \Document.localizations,
+            try self.updateRelationship(forKeyPath: \Self.localizations,
                                         forKey: "localizations",
                                         fromObject: relationships,
                                         with: context)

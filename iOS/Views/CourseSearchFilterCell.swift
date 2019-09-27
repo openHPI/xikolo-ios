@@ -21,7 +21,7 @@ class CourseSearchFilterCell: UICollectionViewCell {
         self.layer.borderWidth = 1
         self.layer.roundCorners(for: .default)
 
-        self.titleLabel.font = CourseSearchFilterCell.titleFont
+        self.titleLabel.font = Self.titleFont
         self.titleLabel.textColor = ColorCompatibility.secondaryLabel
 
         self.traitCollection.performAsCurrent {
@@ -37,7 +37,7 @@ class CourseSearchFilterCell: UICollectionViewCell {
     func configure(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) {
         let isNormalState = selectedOptions?.isEmpty ?? true
         self.configureAppearance(normalState: isNormalState)
-        self.titleLabel.text = CourseSearchFilterCell.title(for: filter, with: selectedOptions)
+        self.titleLabel.text = Self.title(for: filter, with: selectedOptions)
     }
 
     func configureForClearButton() {
@@ -55,7 +55,7 @@ class CourseSearchFilterCell: UICollectionViewCell {
     }
 
     static func cellHeight() -> CGFloat {
-        return CourseSearchFilterCell.titleFont.lineHeight + 2 * CourseSearchFilterCell.padding + 2
+        return Self.titleFont.lineHeight + 2 * Self.padding + 2
     }
 
     private static func title(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) -> String? {

@@ -77,7 +77,7 @@ public enum EnrollmentHelper {
     }
 
     public static func syncEnrollments() -> Future<SyncMultipleResult, XikoloError> {
-        let fetchRequest = EnrollmentHelper.FetchRequest.allEnrollments()
+        let fetchRequest = Self.FetchRequest.allEnrollments()
         let query = MultipleResourcesQuery(type: Enrollment.self)
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }

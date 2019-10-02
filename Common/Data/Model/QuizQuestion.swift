@@ -45,7 +45,7 @@ final class QuizQuestion: NSManagedObject {
             return false
         }
 
-        return !self.options.contains { $0.correct }
+        return self.options.contains { $0.correct }
     }
 
 }

@@ -48,7 +48,7 @@ public class SyncPushEngineManager {
         let shouldCheckForChangesToPush = [NSUpdatedObjectsKey, NSInsertedObjectsKey, NSRefreshedObjectsKey].map { key in
             guard let objects = note.userInfo?[key] as? Set<NSManagedObject>, !objects.isEmpty else { return false }
             return objects.contains { $0 is Pushable }
-        }.reduce(false) { $0 || $1 }
+        }.contains(true)
 
         if shouldCheckForChangesToPush {
             self.pushEngines.forEach { $0.check() }

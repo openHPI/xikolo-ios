@@ -252,19 +252,19 @@ class VideoViewController: UIViewController {
         if let localFileLocation = StreamPersistenceManager.shared.localFileLocation(for: video),
             AVURLAsset(url: localFileLocation).assetCache?.isPlayableOffline ?? false {
             videoURL = localFileLocation
-            self.playerControlView.setOffline(true)
+            self.playerControlView.isOffline = true
         } else if let streamURL = video.streamURLForDownload {
             videoURL = streamURL
-            self.playerControlView.setOffline(false)
+            self.playerControlView.isOffline = false
         } else if let hdURL = video.singleStream?.hdURL, ReachabilityHelper.connection == .wifi {
             videoURL = hdURL
-            self.playerControlView.setOffline(false)
+            self.playerControlView.isOffline = false
         } else if let sdURL = video.singleStream?.sdURL {
             videoURL = sdURL
-            self.playerControlView.setOffline(false)
+            self.playerControlView.isOffline = false
         } else {
             self.errorView.isHidden = false
-            self.playerControlView.setOffline(false)
+            self.playerControlView.isOffline = false
             return
         }
 
@@ -480,7 +480,7 @@ extension VideoViewController { // Video tracking
             "current_speed": String(self.playerControlView.playRate),
             "current_orientation": UIDevice.current.orientation.isLandscape ? "landscape" : "portrait",
             "current_quality": "hls",
-            "current_source": self.playerControlView.offlineLabel.isHidden ? "online" : "offline",
+            "current_source": self.playerControlView.isOffline ? "online" : "offline",
         ]
 
         if let currentTime = self.player?.avPlayer?.currentTime().seconds {

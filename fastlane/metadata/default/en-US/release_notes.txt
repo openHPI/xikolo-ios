@@ -1,8 +1,9 @@
+• Fix bug when submitting quizzes
+
+Also in version 2.7:
 • Adoption of Dark Mode on iOS 13
 • Support for multiple windows on iPads running iPadOS 13 or later
 • A refined look of the course presentation
-
-Further small improvements:
 • A back button was added to the forum navigation
 • Optimized the app launch time a bit
 • Adjusted colors for high contrast mode

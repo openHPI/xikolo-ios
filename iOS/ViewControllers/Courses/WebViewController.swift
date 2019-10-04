@@ -229,6 +229,10 @@ extension WebViewController: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
 
+        if navigationAction.request.httpMethod == "POST" {
+            return decisionHandler(.allow)
+        }
+
         let userIsLoggedIn = UserProfileHelper.shared.isLoggedIn
         let headerIsPresent = navigationAction.request.allHTTPHeaderFields?.keys.contains(Routes.Header.authKey) ?? false
 

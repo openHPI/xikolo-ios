@@ -3,28 +3,16 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import AVFoundation
 import BMPlayer
-import Foundation
 import UIKit
-
-class CustomBMPlayer: BMPlayer {
-
-    weak var videoController: VideoViewController?
-
-    override func seek(_ to: TimeInterval, completion: (() -> Void)? = nil) { // swiftlint:disable:this identifier_name
-        let from = self.playerLayer?.player?.currentTime().seconds
-        super.seek(to, completion: completion)
-        self.videoController?.trackVideoSeek(from: from, to: to)
-    }
-
-}
 
 class VideoPlayerControlView: BMPlayerControlView {
 
     private(set) var playRate: Float = UserDefaults.standard.playbackRate
     var isOffline: Bool = false {
         didSet {
-            self.offlineLabel.isHidden = !isOffline
+            self.offlineLabel.isHidden = false //!isOffline
         }
     }
 
@@ -71,11 +59,20 @@ class VideoPlayerControlView: BMPlayerControlView {
         return label
     }()
 
+    private lazy var mediaOptionsButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.addTarget(self, action: #selector(showMediaSelection), for: .touchUpInside)
+        button.setImage(R.image.videoPlayer.options(), for: .normal)
+        button.tintColor = UIColor(white: 1.0, alpha: 0.9)
+        return button
+    }()
+
     private let topRightStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
         stackView.alignment = .center
+        stackView.spacing = 0
         return stackView
     }()
 
@@ -87,24 +84,30 @@ class VideoPlayerControlView: BMPlayerControlView {
 
         self.topMaskView.addSubview(self.topRightStackView)
         self.topRightStackView.addArrangedSubview(self.offlineLabel)
+        self.topRightStackView.addArrangedSubview(self.mediaOptionsButton)
 
         self.offlineLabel.snp.makeConstraints { make in
             make.width.equalTo(50)
             make.height.equalTo(20)
         }
 
-        self.topRightStackView.snp.makeConstraints { make in
-            make.top.equalTo(self.topMaskView.snp.top).offset(16)
-            make.leading.equalTo(self.titleLabel.snp.trailing).offset(8)
-            make.trailing.equalTo(self.topMaskView.snp.trailing).offset(-20)
+        self.mediaOptionsButton.snp.makeConstraints { make in
+            make.width.equalTo(44)
+            make.height.equalTo(50)
         }
 
-        self.titleLabel.isHidden = true
+        self.topRightStackView.snp.makeConstraints { make in
+            make.top.equalTo(self.topMaskView.snp.top) //.offset(16)
+            make.leading.equalTo(self.titleLabel.snp.trailing).offset(8)
+            make.trailing.equalTo(self.topMaskView.snp.trailing) //.offset(-1)
+        }
+
+        self.titleLabel.isHidden = false //true
 
         if UIDevice.current.userInterfaceIdiom == .pad {
             self.backButton.removeFromSuperview()
             self.titleLabel.snp.makeConstraints { make in
-                make.top.equalTo(self.topMaskView.snp.top).offset(16)
+                make.centerY.equalTo(self.topRightStackView.snp.centerY)
                 make.leading.equalTo(self.topMaskView.snp.leading).offset(20)
             }
         }
@@ -148,9 +151,8 @@ class VideoPlayerControlView: BMPlayerControlView {
     }
 
     func changeOrientation(to orientation: UIDeviceOrientation) {
-        self.backButton.isHidden = !orientation.isLandscape
-
         if UIDevice.current.userInterfaceIdiom == .phone {
+            self.backButton.isHidden = !orientation.isLandscape
             self.titleLabel.isHidden = !orientation.isLandscape
         }
     }
@@ -203,6 +205,67 @@ class VideoPlayerControlView: BMPlayerControlView {
         self.iPadFullScreenButton.isSelected.toggle()
         self.titleLabel.isHidden = !self.iPadFullScreenButton.isSelected
         self.videoController?.setiPadFullScreenMode(self.iPadFullScreenButton.isSelected)
+    }
+
+    @objc private func showMediaSelection() {
+        let mediaSelectionViewController = MediaSelectionViewController(delegate: self)
+
+        let navigationController = UINavigationController()
+        navigationController.viewControllers = [mediaSelectionViewController]
+        navigationController.modalPresentationStyle = .popover
+        navigationController.navigationBar.barStyle = .blackOpaque
+        navigationController.navigationBar.barTintColor = UIColor(white: 0.1, alpha: 1.0)
+        navigationController.navigationBar.tintColor = .white
+        navigationController.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.white,
+        ]
+
+        let popoverPresentationController = navigationController.popoverPresentationController
+        popoverPresentationController?.delegate = self
+        popoverPresentationController?.backgroundColor = UIColor(white: 0.15, alpha: 1.0)
+        popoverPresentationController?.permittedArrowDirections = .up
+        popoverPresentationController?.sourceView = self.mediaOptionsButton
+        popoverPresentationController?.sourceRect = self.mediaOptionsButton.bounds
+
+        self.videoController?.present(navigationController, animated: trueUnlessReduceMotionEnabled) {
+            self.cancelAutoFadeOutAnimation()
+        }
+    }
+
+}
+
+extension VideoPlayerControlView: MediaSelectionDelegate {
+
+    var currentMediaSelection: AVMediaSelection? {
+        return self.videoController?.player?.avPlayer?.currentItem?.currentMediaSelection
+    }
+
+    func select(_ option: AVMediaSelectionOption?, in group: AVMediaSelectionGroup) {
+        self.videoController?.player?.avPlayer?.currentItem?.select(option, in: group)
+    }
+
+    func didCloseMediaSelection() {
+        self.autoFadeOutControlViewWithAnimation()
+    }
+
+}
+
+extension VideoPlayerControlView: UIPopoverPresentationControllerDelegate {
+
+    public func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        self.autoFadeOutControlViewWithAnimation()
+    }
+
+    @available(iOS, obsoleted: 13.0)
+    public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        if #available(iOS 13, *) {
+            return .automatic
+        } else {
+            // The underlying view controller should not be removed when the media selection menu is present.
+            // Therefore, we use `UIModalPresentationStyle.overFullScreen` for compact horizontal size classes.
+            return traitCollection.horizontalSizeClass == .compact ? .overFullScreen : .popover
+        }
+
     }
 
 }

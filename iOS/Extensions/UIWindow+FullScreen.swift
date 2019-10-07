@@ -7,8 +7,12 @@ import UIKit
 
 extension UIWindow {
 
-    var isFullScreen: Bool {
+    var isFrameFullScreen: Bool {
         return self.frame == self.screen.bounds
+    }
+
+    func isFullScreen(withSize size: CGSize) -> Bool {
+        return self.screen.bounds.size == size
     }
 
 }

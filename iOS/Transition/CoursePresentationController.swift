@@ -20,7 +20,16 @@ final class CoursePresentationController: UIPresentationController {
         super.traitCollectionDidChange(previousTraitCollection)
 
         if #available(iOS 13, *) {
-            let userInterfaceLevel: UIUserInterfaceLevel = self.containerView?.window?.isFullScreen == true ? .base : .elevated
+            let userInterfaceLevel: UIUserInterfaceLevel = self.containerView?.window?.isFrameFullScreen == true ? .base : .elevated
+            self.overrideTraitCollection = UITraitCollection(userInterfaceLevel: userInterfaceLevel)
+        }
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        if #available(iOS 13, *) {
+            let userInterfaceLevel: UIUserInterfaceLevel = self.containerView?.window?.isFullScreen(withSize: size) ?? true ? .base : .elevated
             self.overrideTraitCollection = UITraitCollection(userInterfaceLevel: userInterfaceLevel)
         }
     }

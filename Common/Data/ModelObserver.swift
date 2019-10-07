@@ -16,9 +16,9 @@ public final class ManagedObjectObserver {
     public init?(object: NSManagedObject, changeHandler: @escaping (ChangeType) -> Void) {
         guard let moc = object.managedObjectContext else { return nil }
         self.objectHasBeenDeleted = NSPredicate(value: true).evaluate(with: object)
-        self.token = moc.addObjectsDidChangeNotificationObserver { [unowned self] note in
-            guard let changeType = self.changeType(of: object, in: note) else { return }
-            self.objectHasBeenDeleted = changeType == .delete
+        self.token = moc.addObjectsDidChangeNotificationObserver { [weak self] note in
+            guard let changeType = self?.changeType(of: object, in: note) else { return }
+            self?.objectHasBeenDeleted = changeType == .delete
             changeHandler(changeType)
         }
     }

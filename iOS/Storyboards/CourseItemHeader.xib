@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,7 +23,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ny-cH-9gM">
-                            <rect key="frame" x="299" y="0.0" width="44" height="44"/>
+                            <rect key="frame" x="307" y="0.0" width="44" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="dHh-TF-eov"/>
                             </constraints>
@@ -36,7 +36,7 @@
                     <constraints>
                         <constraint firstItem="5ny-cH-9gM" firstAttribute="top" secondItem="a5M-nR-7iH" secondAttribute="top" priority="999" id="9EZ-Lh-HQy"/>
                         <constraint firstAttribute="bottom" secondItem="5ny-cH-9gM" secondAttribute="bottom" id="L9i-uV-hI6"/>
-                        <constraint firstAttribute="trailing" secondItem="5ny-cH-9gM" secondAttribute="trailing" id="ZCR-ST-oQD"/>
+                        <constraint firstAttribute="trailing" secondItem="5ny-cH-9gM" secondAttribute="trailing" constant="-8" id="ZCR-ST-oQD"/>
                         <constraint firstItem="rvi-Ly-v5e" firstAttribute="leading" secondItem="a5M-nR-7iH" secondAttribute="leadingMargin" constant="8" id="cik-ND-LcY"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="44" id="fbt-Ee-Wkc"/>
                         <constraint firstItem="rvi-Ly-v5e" firstAttribute="top" secondItem="a5M-nR-7iH" secondAttribute="top" priority="999" constant="13" id="fxT-Mw-Gij"/>

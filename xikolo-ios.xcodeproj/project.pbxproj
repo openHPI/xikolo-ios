@@ -21,6 +21,10 @@
 		50046F6F216B938D00D59073 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50046F6E216B938D00D59073 /* LoadingButton.swift */; };
 		50046F71216BBAD200D59073 /* BrightFuture+earliest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50046F70216BBAD200D59073 /* BrightFuture+earliest.swift */; };
 		50051B2D2338C10000221558 /* CourseDateOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50051B2C2338C10000221558 /* CourseDateOverviewViewController.swift */; };
+		500B2F6E23471639008197FF /* MediaSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B2F6D23471639008197FF /* MediaSelectionViewController.swift */; };
+		500B2F7023471667008197FF /* MediaSelectionOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B2F6F23471667008197FF /* MediaSelectionOptionCell.swift */; };
+		500B2F72234716B6008197FF /* MediaSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B2F71234716B6008197FF /* MediaSelectionDelegate.swift */; };
+		500B2F7423472A48008197FF /* CustomBMPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B2F7323472A48008197FF /* CustomBMPlayer.swift */; };
 		500B907F2254B854000B0D05 /* DownloadedContentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */; };
 		5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011EF02212AEC3800B1D7F1 /* DocumentLocalizationCell.swift */; };
 		5012913422BA64DC00AAB58B /* CALayer+roundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5012913322BA64DC00AAB58B /* CALayer+roundedCorners.swift */; };
@@ -416,6 +420,10 @@
 		50082B5E20BFDAC900B4511C /* DownloadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadState.swift; sourceTree = "<group>"; };
 		50082B6420C0358C00B4511C /* xikolo 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 6.xcdatamodel"; sourceTree = "<group>"; };
 		500A257D20824C2500EB7AE4 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		500B2F6D23471639008197FF /* MediaSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSelectionViewController.swift; sourceTree = "<group>"; };
+		500B2F6F23471667008197FF /* MediaSelectionOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSelectionOptionCell.swift; sourceTree = "<group>"; };
+		500B2F71234716B6008197FF /* MediaSelectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSelectionDelegate.swift; sourceTree = "<group>"; };
+		500B2F7323472A48008197FF /* CustomBMPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBMPlayer.swift; sourceTree = "<group>"; };
 		500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedContentHelper.swift; sourceTree = "<group>"; };
 		5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SafeCastable.swift"; sourceTree = "<group>"; };
 		5011EF02212AEC3800B1D7F1 /* DocumentLocalizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentLocalizationCell.swift; sourceTree = "<group>"; };
@@ -849,7 +857,6 @@
 				507CC05A21788487008819FE /* PillView.swift */,
 				508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */,
 				5011EF02212AEC3800B1D7F1 /* DocumentLocalizationCell.swift */,
-				50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */,
 				50371FF8204ECB8E006E9634 /* CircularProgressView.swift */,
 				B4E079EC21879C9200EA53F5 /* CertificateCell.swift */,
 			);
@@ -934,6 +941,18 @@
 				50082B5E20BFDAC900B4511C /* DownloadState.swift */,
 			);
 			path = PersistenceManager;
+			sourceTree = "<group>";
+		};
+		500B2F6C23471600008197FF /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				500B2F7323472A48008197FF /* CustomBMPlayer.swift */,
+				50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */,
+				500B2F6D23471639008197FF /* MediaSelectionViewController.swift */,
+				500B2F6F23471667008197FF /* MediaSelectionOptionCell.swift */,
+				500B2F71234716B6008197FF /* MediaSelectionDelegate.swift */,
+			);
+			path = VideoPlayer;
 			sourceTree = "<group>";
 		};
 		5011292320DA453500EE9050 /* Utilities */ = {
@@ -1186,6 +1205,7 @@
 				24B651471D3551C400624DBC /* Views */,
 				5040A616207977DC00E98351 /* Transition */,
 				24B6514F1D35959C00624DBC /* Helpers */,
+				500B2F6C23471600008197FF /* VideoPlayer */,
 				AB91831F1D6B091300018C1D /* Branding */,
 				F875A5161B5697640030F38C /* AppDelegate.swift */,
 				023B8E68230615E90027E370 /* SceneDelegate.swift */,
@@ -2001,6 +2021,7 @@
 				50CF1F5020DCDBFC0011BFE9 /* CourseDismissAnimationController.swift in Sources */,
 				503578942195BF1500982093 /* Accessibility.swift in Sources */,
 				502902E021BABA79004B1B43 /* AccountViewControllerDataSource.swift in Sources */,
+				500B2F72234716B6008197FF /* MediaSelectionDelegate.swift in Sources */,
 				5058578621351CBD006A5D15 /* PseudoCourseCell.swift in Sources */,
 				5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */,
 				50CF1F5120DCDBFC0011BFE9 /* PersistenceManager.swift in Sources */,
@@ -2052,6 +2073,7 @@
 				7007E4132133FFB6005AC7A6 /* DownloadedContentListViewController.swift in Sources */,
 				50CF1F8B20DCDBFC0011BFE9 /* AnnouncementCell.swift in Sources */,
 				500B907F2254B854000B0D05 /* DownloadedContentHelper.swift in Sources */,
+				500B2F7023471667008197FF /* MediaSelectionOptionCell.swift in Sources */,
 				50CF1F9120DCDBFC0011BFE9 /* VideoStreamingSettingsViewController.swift in Sources */,
 				5019CE922171F21D0001805E /* CourseItemContentViewController.swift in Sources */,
 				5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */,
@@ -2094,6 +2116,7 @@
 				50CF1FD020DCDBFC0011BFE9 /* CourseItemWebViewController.swift in Sources */,
 				50CF1FD320DCDBFC0011BFE9 /* Video+Preloading.swift in Sources */,
 				5036A9B52319232800F7A63F /* UIWindow+FullScreen.swift in Sources */,
+				500B2F7423472A48008197FF /* CustomBMPlayer.swift in Sources */,
 				700398C021A437CD00FE9D81 /* FileManager+fileSize.swift in Sources */,
 				50CF1FD520DCDBFC0011BFE9 /* Video+Download.swift in Sources */,
 				50911AF7223E29A9000C2007 /* DefaultTableViewCell.swift in Sources */,
@@ -2116,6 +2139,7 @@
 				5039887721679A3500F9043B /* PreloadableCourseItemContent.swift in Sources */,
 				50B71B88212AC61C008CE681 /* DocumentsPersistenceManager.swift in Sources */,
 				50CF1FEC20DCDBFC0011BFE9 /* StreamPersistenceManager.swift in Sources */,
+				500B2F6E23471639008197FF /* MediaSelectionViewController.swift in Sources */,
 				508B9FA8211D7A600090BD16 /* RefreshControl.swift in Sources */,
 				50BC011B217755B500F38B30 /* UnavailableContentViewController.swift in Sources */,
 			);

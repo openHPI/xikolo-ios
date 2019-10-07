@@ -68,8 +68,9 @@ class VideoViewController: UIViewController {
     private var videoPlayerConfigured = false
     private var didViewAppear = false
 
-    private var player: CustomBMPlayer?
     private let playerControlView = VideoPlayerControlView()
+
+    var player: CustomBMPlayer?
 
     override func viewDidLoad() {
         super.viewDidLoad()

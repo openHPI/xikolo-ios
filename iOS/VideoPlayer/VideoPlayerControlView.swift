@@ -12,7 +12,7 @@ class VideoPlayerControlView: BMPlayerControlView {
     private(set) var playRate: Float = UserDefaults.standard.playbackRate
     var isOffline: Bool = false {
         didSet {
-            self.offlineLabel.isHidden = false //!isOffline
+            self.offlineLabel.isHidden = !isOffline
         }
     }
 
@@ -97,12 +97,12 @@ class VideoPlayerControlView: BMPlayerControlView {
         }
 
         self.topRightStackView.snp.makeConstraints { make in
-            make.top.equalTo(self.topMaskView.snp.top) //.offset(16)
+            make.top.equalTo(self.topMaskView.snp.top)
             make.leading.equalTo(self.titleLabel.snp.trailing).offset(8)
-            make.trailing.equalTo(self.topMaskView.snp.trailing) //.offset(-1)
+            make.trailing.equalTo(self.topMaskView.snp.trailing)
         }
 
-        self.titleLabel.isHidden = false //true
+        self.titleLabel.isHidden = true
 
         if UIDevice.current.userInterfaceIdiom == .pad {
             self.backButton.removeFromSuperview()

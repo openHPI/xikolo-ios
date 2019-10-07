@@ -33,7 +33,7 @@ extension CoreDataTableViewDataSourceDelegate {
 
 }
 
-class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate> : NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>: NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
 
     typealias Object = Delegate.Object
     typealias Cell = Delegate.Cell

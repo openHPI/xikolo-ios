@@ -84,7 +84,7 @@ PODS:
 
 DEPENDENCIES:
   - BartyCrouch (from `https://github.com/Flinesoft/BartyCrouch.git`, tag `3.13.0`)
-  - BMPlayer (from `https://github.com/openHPI/bmplayer.git`, commit `3cf7dd96b031172f2290da09e8bffbc2a3bade4e`)
+  - BMPlayer (from `https://github.com/openHPI/bmplayer.git`, commit `e4e312b5dfd3cf46f90097db9eae6f45636b44c3`)
   - BrightFutures (~> 8.0)
   - Crashlytics (~> 3.12.0)
   - Down (~> 0.5)
@@ -130,7 +130,7 @@ EXTERNAL SOURCES:
     :git: https://github.com/Flinesoft/BartyCrouch.git
     :tag: 3.13.0
   BMPlayer:
-    :commit: 3cf7dd96b031172f2290da09e8bffbc2a3bade4e
+    :commit: e4e312b5dfd3cf46f90097db9eae6f45636b44c3
     :git: https://github.com/openHPI/bmplayer.git
   HTMLStyler:
     :path: "./Frameworks/HTMLStyler"
@@ -142,7 +142,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Flinesoft/BartyCrouch.git
     :tag: 3.13.0
   BMPlayer:
-    :commit: 3cf7dd96b031172f2290da09e8bffbc2a3bade4e
+    :commit: e4e312b5dfd3cf46f90097db9eae6f45636b44c3
     :git: https://github.com/openHPI/bmplayer.git
 
 SPEC CHECKSUMS:
@@ -173,6 +173,6 @@ SPEC CHECKSUMS:
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
   SyncEngine: 0b941e576dfb5073344d043fbc70919c42c32435
 
-PODFILE CHECKSUM: 00aecf20cc0045b24913cf5d0a251d60554bec8d
+PODFILE CHECKSUM: 8c4d6d2bf3e3cb676628153d2b93d4397f0f20e5
 
 COCOAPODS: 1.7.5

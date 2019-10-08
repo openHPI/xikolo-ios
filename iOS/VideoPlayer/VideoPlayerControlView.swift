@@ -4,6 +4,7 @@
 //
 
 import AVFoundation
+import AVKit
 import BMPlayer
 import UIKit
 
@@ -59,6 +60,17 @@ class VideoPlayerControlView: BMPlayerControlView {
         return label
     }()
 
+    private lazy var pictureInPictureButton: UIButton = {
+        let button = UIButton()
+        let startPipImage = AVPictureInPictureController.pictureInPictureButtonStartImage(compatibleWith: nil).withRenderingMode(.alwaysTemplate)
+        button.setImage(startPipImage, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(togglePictureInPictureMode), for: .touchUpInside)
+        button.isHidden = !AVPictureInPictureController.isPictureInPictureSupported()
+        button.isEnabled = false
+        return button
+    }()
+
     private lazy var mediaOptionsButton: UIButton = {
         let button = UIButton(type: .custom)
         button.addTarget(self, action: #selector(showMediaSelection), for: .touchUpInside)
@@ -82,13 +94,29 @@ class VideoPlayerControlView: BMPlayerControlView {
         // update top bar
         self.chooseDefitionView.removeFromSuperview()
 
+        let offlineLabelWrapper = UIView()
+        offlineLabelWrapper.addSubview(self.offlineLabel)
+
         self.topMaskView.addSubview(self.topRightStackView)
-        self.topRightStackView.addArrangedSubview(self.offlineLabel)
+        self.topRightStackView.addArrangedSubview(offlineLabelWrapper)
+        self.topRightStackView.addArrangedSubview(self.pictureInPictureButton)
         self.topRightStackView.addArrangedSubview(self.mediaOptionsButton)
 
         self.offlineLabel.snp.makeConstraints { make in
             make.width.equalTo(50)
             make.height.equalTo(20)
+        }
+
+        offlineLabelWrapper.snp.makeConstraints { make in
+            make.leading.equalTo(self.offlineLabel.snp.leading).offset(-8)
+            make.trailing.equalTo(self.offlineLabel.snp.trailing).offset(8)
+            make.top.equalTo(self.offlineLabel.snp.top)
+            make.bottom.equalTo(self.offlineLabel.snp.bottom)
+        }
+
+        self.pictureInPictureButton.snp.makeConstraints { make in
+            make.width.equalTo(44)
+            make.height.equalTo(50)
         }
 
         self.mediaOptionsButton.snp.makeConstraints { make in
@@ -150,6 +178,10 @@ class VideoPlayerControlView: BMPlayerControlView {
         self.playButton.addTarget(self, action: #selector(tapPlayButton), for: .touchUpInside)
     }
 
+    override func adaptToPictureInPicturePossible(_ pictureInPicturePossible: Bool) {
+        self.pictureInPictureButton.isEnabled = pictureInPicturePossible
+    }
+
     func changeOrientation(to orientation: UIDeviceOrientation) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             self.backButton.isHidden = !orientation.isLandscape
@@ -205,6 +237,11 @@ class VideoPlayerControlView: BMPlayerControlView {
         self.iPadFullScreenButton.isSelected.toggle()
         self.titleLabel.isHidden = !self.iPadFullScreenButton.isSelected
         self.videoController?.setiPadFullScreenMode(self.iPadFullScreenButton.isSelected)
+    }
+
+    @objc private func togglePictureInPictureMode() {
+        guard let player = self.player as? CustomBMPlayer else { return }
+        player.togglePictureInPictureMode()
     }
 
     @objc private func showMediaSelection() {
@@ -265,7 +302,6 @@ extension VideoPlayerControlView: UIPopoverPresentationControllerDelegate {
             // Therefore, we use `UIModalPresentationStyle.overFullScreen` for compact horizontal size classes.
             return traitCollection.horizontalSizeClass == .compact ? .overFullScreen : .popover
         }
-
     }
 
 }

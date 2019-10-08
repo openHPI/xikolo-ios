@@ -178,6 +178,25 @@ class VideoPlayerControlView: BMPlayerControlView {
         self.playButton.addTarget(self, action: #selector(tapPlayButton), for: .touchUpInside)
     }
 
+    override func autoFadeOutControlViewWithAnimation() {
+        guard self.player?.isPlaying == true else {
+            cancelAutoFadeOutAnimation()
+            return
+        }
+
+        super.autoFadeOutControlViewWithAnimation()
+    }
+
+    override func onTapGestureTapped(_ gesture: UITapGestureRecognizer) {
+        if let customPlayer = self.player as? CustomBMPlayer {
+            if customPlayer.pictureInPictureController?.isPictureInPictureActive ?? false {
+                return
+            }
+        }
+
+        super.onTapGestureTapped(gesture)
+    }
+
     override func adaptToPictureInPicturePossible(_ pictureInPicturePossible: Bool) {
         self.pictureInPictureButton.isEnabled = pictureInPicturePossible
     }

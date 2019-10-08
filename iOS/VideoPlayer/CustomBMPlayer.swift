@@ -12,7 +12,7 @@ class CustomBMPlayer: BMPlayer {
 
     weak var videoController: VideoViewController?
 
-    private var pictureInPictureController: AVPictureInPictureController?
+    private(set) var pictureInPictureController: AVPictureInPictureController?
 
     override func seek(_ to: TimeInterval, completion: (() -> Void)? = nil) { // swiftlint:disable:this identifier_name
         let from = self.playerLayer?.player?.currentTime().seconds
@@ -64,5 +64,19 @@ extension CustomBMPlayer: AVPictureInPictureControllerDelegate {
         // You may want to update the video scrubber position.
         completionHandler(true)
     }
+
+    public func pictureInPictureControllerWillStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
+        self.controlView.controlViewAnimation(isShow: false)
+    }
+
+    public func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController,
+                                           failedToStartPictureInPictureWithError error: Error) {
+        self.controlView.controlViewAnimation(isShow: !self.isPlaying)
+    }
+
+    public func pictureInPictureControllerDidStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
+        self.controlView.controlViewAnimation(isShow: !self.isPlaying)
+    }
+
 
 }

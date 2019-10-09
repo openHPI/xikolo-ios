@@ -13,6 +13,7 @@ class CustomBMPlayer: BMPlayer {
     weak var videoController: VideoViewController?
 
     private(set) var pictureInPictureController: AVPictureInPictureController?
+    private var pictureInPictureObservation: NSKeyValueObservation?
 
     override func seek(_ to: TimeInterval, completion: (() -> Void)? = nil) { // swiftlint:disable:this identifier_name
         let from = self.playerLayer?.player?.currentTime().seconds
@@ -20,18 +21,7 @@ class CustomBMPlayer: BMPlayer {
         self.videoController?.trackVideoSeek(from: from, to: to)
     }
 
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard context == &playerViewControllerKVOContext else {
-            return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
-
-        if keyPath == "pictureInPicturePossible" {
-            let pictureInPicturePossible = self.pictureInPictureController?.isPictureInPicturePossible ?? false
-            self.controlView.adaptToPictureInPicturePossible(pictureInPicturePossible)
-        }
-    }
-
-    override func reactOnPlayerStateChange(state: BMPlayerState)  {
+    override func reactOnPlayerStateChange(state: BMPlayerState) {
         self.setupPictureInPictureViewController()
     }
 
@@ -42,7 +32,10 @@ class CustomBMPlayer: BMPlayer {
 
         self.pictureInPictureController = AVPictureInPictureController(playerLayer: playerLayer)
         self.pictureInPictureController?.delegate = self
-        self.pictureInPictureController?.addObserver(self, forKeyPath: "pictureInPicturePossible", options: [.new, .initial], context: &playerViewControllerKVOContext)
+
+        self.pictureInPictureObservation = self.pictureInPictureController?.observe(\.isPictureInPicturePossible, options: [.initial, .new]) { [weak self] _, change in
+            self?.controlView.adaptToPictureInPicturePossible(change.newValue ?? false)
+        }
     }
 
     func togglePictureInPictureMode() {
@@ -59,7 +52,8 @@ class CustomBMPlayer: BMPlayer {
 
 extension CustomBMPlayer: AVPictureInPictureControllerDelegate {
 
-    public func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
+    public func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController,
+                                           restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         // Update video controls of main player to reflect the current state of the video playback.
         // You may want to update the video scrubber position.
         completionHandler(true)
@@ -77,6 +71,5 @@ extension CustomBMPlayer: AVPictureInPictureControllerDelegate {
     public func pictureInPictureControllerDidStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
         self.controlView.controlViewAnimation(isShow: !self.isPlaying)
     }
-
 
 }

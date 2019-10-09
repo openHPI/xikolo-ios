@@ -6,9 +6,13 @@
 import AVFoundation
 import AVKit
 import BMPlayer
+import Common
 import UIKit
 
 class VideoPlayerControlView: BMPlayerControlView {
+
+    @available(iOS 11, *)
+    private lazy var routeDetector = AVRouteDetector()
 
     private(set) var playRate: Float = UserDefaults.standard.playbackRate
     var isOffline: Bool = false {
@@ -60,6 +64,17 @@ class VideoPlayerControlView: BMPlayerControlView {
         return label
     }()
 
+    @available(iOS 11, *)
+    private lazy var airPlayButton: AVRoutePickerView = {
+        let view = AVRoutePickerView()
+        view.tintColor = .white
+        view.activeTintColor = Brand.default.colors.window
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
+        view.isHidden = true
+        return view
+    }()
+
     private lazy var pictureInPictureButton: UIButton = {
         let button = UIButton()
         let startPipImage = AVPictureInPictureController.pictureInPictureButtonStartImage(compatibleWith: nil).withRenderingMode(.alwaysTemplate)
@@ -90,6 +105,18 @@ class VideoPlayerControlView: BMPlayerControlView {
 
     weak var videoController: VideoViewController?
 
+    override func prepareUI(for resource: BMPlayerResource, selectedIndex index: Int) {
+        super.prepareUI(for: resource, selectedIndex: index)
+
+        if #available(iOS 11, *) {
+            self.routeDetector.isRouteDetectionEnabled = true
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(handleMultipleRoutes),
+                                                   name: .AVRouteDetectorMultipleRoutesDetectedDidChange,
+                                                   object: nil)
+        }
+    }
+
     override func customizeUIComponents() { // swiftlint:disable:this function_body_length
         // update top bar
         self.chooseDefinitionView.removeFromSuperview()
@@ -99,6 +126,11 @@ class VideoPlayerControlView: BMPlayerControlView {
 
         self.topMaskView.addSubview(self.topRightStackView)
         self.topRightStackView.addArrangedSubview(offlineLabelWrapper)
+
+        if #available(iOS 11, *) {
+            self.topRightStackView.addArrangedSubview(self.airPlayButton)
+        }
+
         self.topRightStackView.addArrangedSubview(self.pictureInPictureButton)
         self.topRightStackView.addArrangedSubview(self.mediaOptionsButton)
 
@@ -112,6 +144,13 @@ class VideoPlayerControlView: BMPlayerControlView {
             make.trailing.equalTo(self.offlineLabel.snp.trailing).offset(8)
             make.top.equalTo(self.offlineLabel.snp.top)
             make.bottom.equalTo(self.offlineLabel.snp.bottom)
+        }
+
+        if #available(iOS 11, *) {
+            self.airPlayButton.snp.makeConstraints { make in
+                make.width.equalTo(44)
+                make.height.equalTo(50)
+            }
         }
 
         self.pictureInPictureButton.snp.makeConstraints { make in
@@ -288,6 +327,16 @@ class VideoPlayerControlView: BMPlayerControlView {
         }
     }
 
+    @objc
+    @available(iOS 11, *)
+    private func handleMultipleRoutes() {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.25) {
+                self.airPlayButton.isHidden = !self.routeDetector.multipleRoutesDetected
+            }
+        }
+    }
+
 }
 
 extension VideoPlayerControlView: MediaSelectionDelegate {
@@ -321,6 +370,20 @@ extension VideoPlayerControlView: UIPopoverPresentationControllerDelegate {
             // Therefore, we use `UIModalPresentationStyle.overFullScreen` for compact horizontal size classes.
             return traitCollection.horizontalSizeClass == .compact ? .overFullScreen : .popover
         }
+    }
+
+}
+
+extension VideoPlayerControlView: AVRoutePickerViewDelegate {
+
+    @available(iOS 11, *)
+    public func routePickerViewWillBeginPresentingRoutes(_ routePickerView: AVRoutePickerView) {
+        self.cancelAutoFadeOutAnimation()
+    }
+
+    @available(iOS 11, *)
+    public func routePickerViewDidEndPresentingRoutes(_ routePickerView: AVRoutePickerView) {
+        self.autoFadeOutControlViewWithAnimation()
     }
 
 }

@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable type_body_length
+
 import AVFoundation
 import AVKit
 import BMPlayer

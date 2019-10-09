@@ -33,7 +33,8 @@ class CustomBMPlayer: BMPlayer {
         self.pictureInPictureController = AVPictureInPictureController(playerLayer: playerLayer)
         self.pictureInPictureController?.delegate = self
 
-        self.pictureInPictureObservation = self.pictureInPictureController?.observe(\.isPictureInPicturePossible, options: [.initial, .new]) { [weak self] _, change in
+        self.pictureInPictureObservation = self.pictureInPictureController?.observe(\.isPictureInPicturePossible,
+                                                                                    options: [.initial, .new]) { [weak self] _, change in
             self?.controlView.adaptToPictureInPicturePossible(change.newValue ?? false)
         }
     }

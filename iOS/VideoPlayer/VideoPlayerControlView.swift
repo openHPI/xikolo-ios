@@ -92,7 +92,7 @@ class VideoPlayerControlView: BMPlayerControlView {
 
     override func customizeUIComponents() { // swiftlint:disable:this function_body_length
         // update top bar
-        self.chooseDefitionView.removeFromSuperview()
+        self.chooseDefinitionView.removeFromSuperview()
 
         let offlineLabelWrapper = UIView()
         offlineLabelWrapper.addSubview(self.offlineLabel)

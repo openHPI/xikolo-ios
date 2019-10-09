@@ -180,10 +180,7 @@ class VideoViewController: UIViewController {
         player.videoController = self
         self.videoContainer.addSubview(player)
         player.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
+            make.edges.equalToSuperview()
         }
 
         self.player = player

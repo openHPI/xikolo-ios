@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fka-gm-6EA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fka-gm-6EA">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -96,7 +97,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="smallSystem"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -110,7 +111,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="smallSystem"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -124,7 +125,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="smallSystem"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -160,11 +161,11 @@
                                 <rect key="frame" x="20" y="315.5" width="374" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m1w-3a-r50" id="HiQ-tr-oIt">
-                                    <rect key="frame" x="0.0" y="0.0" width="342.5" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="TFS-M6-7DR">
-                                            <rect key="frame" x="20" y="0.0" width="314.5" height="43.5"/>
+                                            <rect key="frame" x="20" y="0.0" width="315" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
@@ -227,6 +228,7 @@
                         <segue destination="SN4-Xn-n1e" kind="show" identifier="ShowStreamingSettings" id="saZ-vE-K8F"/>
                         <segue destination="PYC-Vo-6CG" kind="show" identifier="ShowDownloadedContent" id="Phq-AU-qN0"/>
                         <segue destination="qKI-ZD-LTA" kind="show" identifier="ShowCertificates" id="EO4-Pa-ial"/>
+                        <segue destination="qyy-Fc-AvL" kind="presentation" identifier="sendFeedback" id="SMF-3P-01I"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tvc-XL-inH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -377,11 +379,11 @@
                                 <rect key="frame" x="20" y="90.5" width="374" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="orD-T9-U9b" id="oen-4E-MMQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="342.5" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Grr-E2-2Yb">
-                                            <rect key="frame" x="20" y="0.0" width="314.5" height="43.5"/>
+                                            <rect key="frame" x="20" y="0.0" width="315" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
@@ -407,6 +409,112 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEE-HW-igx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2633" y="1730"/>
+        </scene>
+        <!--Feedback View Controller-->
+        <scene sceneID="Fhl-wB-i2U">
+            <objects>
+                <viewController id="jsg-eT-U36" customClass="FeedbackViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="ibd-oH-ATa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vpn-tL-qhl">
+                                <rect key="frame" x="30" y="45" width="354" height="752"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="HYs-MV-hkj">
+                                        <rect key="frame" x="0.0" y="11" width="354" height="730"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of your issue" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HWH-Oy-IiH">
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                                <connections>
+                                                    <action selector="issueTitleReturn2:" destination="jsg-eT-U36" eventType="editingDidEndOnExit" id="yUr-xN-fsC"/>
+                                                    <action selector="issueTitleReturn:" destination="jsg-eT-U36" eventType="editingDidEnd" id="HtB-84-4Lq"/>
+                                                    <action selector="issueTitleTextField:" destination="jsg-eT-U36" eventType="editingDidEnd" id="Djh-q8-d1J"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your e-mail address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GNs-9a-3CV">
+                                                <rect key="frame" x="0.0" y="53" width="354" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                                <connections>
+                                                    <action selector="mailAddressReturn:" destination="jsg-eT-U36" eventType="editingDidEnd" id="1zK-RR-WEA"/>
+                                                    <action selector="mailAddressTextField:" destination="jsg-eT-U36" eventType="editingDidEnd" id="g8B-uh-NFc"/>
+                                                </connections>
+                                            </textField>
+                                            <segmentedControl multipleTouchEnabled="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xEy-ih-lc9">
+                                                <rect key="frame" x="0.0" y="106" width="354" height="32"/>
+                                                <segments>
+                                                    <segment title="technical"/>
+                                                    <segment title="course-specific"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="choseFeedback:" destination="jsg-eT-U36" eventType="valueChanged" id="Vhr-XU-bJF"/>
+                                                    <action selector="indexSelected:" destination="jsg-eT-U36" eventType="valueChanged" id="zaU-OY-p83"/>
+                                                </connections>
+                                            </segmentedControl>
+                                            <pickerView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iov-0H-y8m">
+                                                <rect key="frame" x="0.0" y="156" width="354" height="216"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="jsg-eT-U36" id="LbH-MS-DiV"/>
+                                                    <outlet property="delegate" destination="jsg-eT-U36" id="J17-kp-mfa"/>
+                                                </connections>
+                                            </pickerView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="4" contentMode="scaleAspectFit" pagingEnabled="YES" text="Your issue" translatesAutoresizingMaskIntoConstraints="NO" id="h4n-8W-gOJ">
+                                                <rect key="frame" x="0.0" y="391" width="354" height="339"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <viewLayoutGuide key="safeArea" id="stC-iK-ILn"/>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                            </textView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="HYs-MV-hkj" firstAttribute="leading" secondItem="arJ-Zr-9oa" secondAttribute="leading" id="26m-2p-8hC"/>
+                                    <constraint firstItem="HYs-MV-hkj" firstAttribute="top" secondItem="arJ-Zr-9oa" secondAttribute="top" constant="22" id="8D6-6m-eMx"/>
+                                    <constraint firstAttribute="trailing" secondItem="HYs-MV-hkj" secondAttribute="trailing" id="Ne5-f3-Jz8"/>
+                                    <constraint firstItem="HYs-MV-hkj" firstAttribute="centerX" secondItem="Vpn-tL-qhl" secondAttribute="centerX" id="Umh-yz-Y49"/>
+                                    <constraint firstItem="HYs-MV-hkj" firstAttribute="bottom" secondItem="arJ-Zr-9oa" secondAttribute="bottom" id="Vlb-Im-eZF"/>
+                                    <constraint firstAttribute="bottom" secondItem="HYs-MV-hkj" secondAttribute="bottom" id="diH-5J-T3v"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="iHC-F8-2bU"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="arJ-Zr-9oa"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Xik-D5-G8F" firstAttribute="bottom" secondItem="Vpn-tL-qhl" secondAttribute="bottom" constant="11" id="5vq-WX-R0s"/>
+                            <constraint firstItem="Vpn-tL-qhl" firstAttribute="centerX" secondItem="ibd-oH-ATa" secondAttribute="centerX" id="C5V-5i-qWl"/>
+                            <constraint firstItem="Xik-D5-G8F" firstAttribute="top" secondItem="Vpn-tL-qhl" secondAttribute="top" constant="11" id="h4o-lH-3v0"/>
+                            <constraint firstItem="Vpn-tL-qhl" firstAttribute="leading" secondItem="Xik-D5-G8F" secondAttribute="leading" constant="30" id="xcI-7c-4CP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Xik-D5-G8F"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="FNx-Ar-HTo">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="54m-MB-W3g">
+                            <connections>
+                                <action selector="cancel:" destination="jsg-eT-U36" id="pLx-cm-S5c"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="send" id="a9u-pb-kEa">
+                            <connections>
+                                <action selector="send:" destination="jsg-eT-U36" id="d1A-qq-cW2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="coursePicker" destination="iov-0H-y8m" id="NcY-7t-pUg"/>
+                        <outlet property="issueTitleTextField" destination="HWH-Oy-IiH" id="OPa-8e-PA8"/>
+                        <outlet property="issueTypeSegmentedControl" destination="xEy-ih-lc9" id="D2Z-Hb-ayq"/>
+                        <outlet property="mailAddressTextField" destination="GNs-9a-3CV" id="eWl-sE-D21"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RHk-fh-v6K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4298.5507246376819" y="1719.6428571428571"/>
         </scene>
         <!--Downloaded Content-->
         <scene sceneID="j5i-Fd-hFt">
@@ -447,7 +555,7 @@
                                 <rect key="frame" x="20" y="89.5" width="374" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n3F-od-leQ" id="RzY-yu-pcF">
-                                    <rect key="frame" x="0.0" y="0.0" width="342.5" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="AV1-oE-Ib5">
@@ -461,7 +569,7 @@
                                             </attributedString>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="1ji-mW-icQ">
-                                            <rect key="frame" x="290.5" y="12" width="44" height="20.5"/>
+                                            <rect key="frame" x="291" y="12" width="44" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -508,10 +616,28 @@
             </objects>
             <point key="canvasLocation" x="1946" y="1730"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="RJr-JQ-xRi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qyy-Fc-AvL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7NY-3I-0y5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jsg-eT-U36" kind="relationship" relationship="rootViewController" id="S1o-RN-fGW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XDD-I8-a1Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3389.8550724637685" y="1719.6428571428571"/>
+        </scene>
     </scenes>
     <resources>
         <image name="avatar" width="500" height="500"/>
-        <image name="profile header" width="1000" height="659"/>
+        <image name="profile header" width="1734" height="808"/>
         <image name="tab bar items/account" width="28" height="28"/>
     </resources>
 </document>

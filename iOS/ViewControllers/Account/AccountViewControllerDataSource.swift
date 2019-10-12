@@ -49,9 +49,7 @@ class AccountViewControllerDataSource: NSObject {
 
     private lazy var sendFeedbackItem: DataSourceItem = {
         let title = NSLocalizedString("settings.cell-title.app-feedback", comment: "cell title for app feedback")
-        return ActionItem(title: title) { viewController in
-            viewController.sendFeedbackMail()
-        }
+        return SegueItem(title: title, segueIdentifier: R.segue.accountViewController.sendFeedback)
     }()
 
     private lazy var logoutItem: DataSourceItem = {
@@ -90,11 +88,9 @@ class AccountViewControllerDataSource: NSObject {
             ]),
         ]
 
-        if MFMailComposeViewController.canSendMail() {
-            sections.append(DataSourceSection(items: [
-                self.sendFeedbackItem,
-            ]))
-        }
+        sections.append(DataSourceSection(items: [
+            self.sendFeedbackItem,
+        ]))
 
         if UserProfileHelper.shared.isLoggedIn {
             sections += [

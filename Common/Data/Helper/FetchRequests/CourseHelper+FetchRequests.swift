@@ -108,6 +108,12 @@ extension CourseHelper {
             return request
         }
 
+        public static var visibleCourses: NSFetchRequest<Course> {
+            let request = Course.fetchRequest() as NSFetchRequest<Course>;                   request.sortDescriptors =
+                       [NSSortDescriptor(keyPath: \Course.title, ascending: true)]
+                   return request
+               }
+
         public static var upcomingCourses: NSFetchRequest<Course> {
             let request = self.visibleCoursesRequest
             request.predicate = self.upcomingCoursesPredicate

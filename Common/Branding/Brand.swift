@@ -8,7 +8,7 @@ import UIKit
 
 public struct Brand: Decodable {
 
-    private enum CodingKeys: CodingKey {
+    public enum CodingKeys: CodingKey {
         case host
         case imprintURL
         case privacyURL
@@ -28,8 +28,8 @@ public struct Brand: Decodable {
         return try! decoder.decode(Brand.self, from: data!) // swiftlint:disable:this force_try
     }()
 
-    private let copyrightName: String
-
+    public let copyrightName: String
+    
     public let host: String
     let imprintURL: URL
     let privacyURL: URL

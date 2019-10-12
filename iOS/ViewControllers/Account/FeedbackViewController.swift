@@ -14,25 +14,34 @@ class FeedbackViewController: UIViewController,  UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var mailAddressTextField: UITextField!
     @IBOutlet weak var coursePicker: UIPickerView!
     @IBOutlet weak var issueTypeSegmentedControl: UISegmentedControl!
+
     @IBAction func indexSelected(_ sender: Any) {
         if (issueTypeSegmentedControl.selectedSegmentIndex == 1){
             coursePicker.isHidden = false
         }
+        else {
+            coursePicker.isHidden = true
+        }
     }
+
     @IBAction func choseFeedback(_ sender: Any) {
         coursePicker.isHidden = false
     }
+
     @IBAction func issueTitleReturn(_ sender: UITextField) {
         let issueTitle = issueTitleTextField.text
         print ("issueTitle =", issueTitle ?? "")
     }
+
     @IBAction func mailAddressReturn(_ sender: UITextField) {
         let mailAddress = mailAddressTextField.text
         print ("mailAddress =", mailAddress ?? "")
     }
+
     @IBAction func cancel(_ sender: Any) {
         self.dismiss(animated: trueUnlessReduceMotionEnabled)
     }
+
     @IBAction func send(_ sender: Any) {
         self.dismiss(animated: trueUnlessReduceMotionEnabled)
     }
@@ -49,21 +58,30 @@ class FeedbackViewController: UIViewController,  UIPickerViewDelegate, UIPickerV
         let titles = result?.compactMap { $0.title } ?? []
         return titles.count
     }
+
     func numberOfComponents(in coursePicker: UIPickerView) -> Int {
         return 1
     }
+
     func pickerView(_ coursePicker: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let result = CoreDataHelper.viewContext.fetchMultiple(CourseHelper.FetchRequest.visibleCourses).value
         let titles = result?.compactMap { $0.title } ?? []
         return titles[row]
     }
 
+    var course: Course?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         coursePicker.isHidden = true
 
-//        if Brand.copyrightName = "sap" {
-//            issueTypeSegmentedControl.insertSegment(withTitle: "reactivation", at: 2, animated: false)
-//        }
+        if (Brand.default.host == "open.sap.com") {
+            issueTypeSegmentedControl.insertSegment(withTitle: "reactivation", at: 2, animated: false)
+        }
+
+        if let course = course {
+            issueTypeSegmentedControl.removeAllSegments()
+            issueTypeSegmentedControl.insertSegment(withTitle: course.title, at: 0, animated: false)
+        }
 }
 }

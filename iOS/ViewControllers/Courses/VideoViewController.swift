@@ -130,6 +130,8 @@ class VideoViewController: UIViewController {
         }
 
         self.isFirstAppearance = false
+
+        self.player?.automaticallyStopPicutureinPictureModeIfNecessary()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -287,6 +289,7 @@ class VideoViewController: UIViewController {
 
     @IBAction private func openSlides() {
         self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
+        self.player?.automaticallyStartPicutureinPictureModeIfPossible()
     }
 
     @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {

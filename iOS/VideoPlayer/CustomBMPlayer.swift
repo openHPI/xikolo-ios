@@ -14,6 +14,7 @@ class CustomBMPlayer: BMPlayer {
 
     private(set) var pictureInPictureController: AVPictureInPictureController?
     private var pictureInPictureObservation: NSKeyValueObservation?
+    private var pictureInPictureWasStartedAutomatically = false
 
     override func seek(_ to: TimeInterval, completion: (() -> Void)? = nil) { // swiftlint:disable:this identifier_name
         let from = self.playerLayer?.player?.currentTime().seconds
@@ -47,6 +48,22 @@ class CustomBMPlayer: BMPlayer {
         } else {
             pictureInPictureController.startPictureInPicture()
         }
+    }
+
+    func automaticallyStartPicutureinPictureModeIfPossible() {
+        guard let pictureInPictureController = self.pictureInPictureController else { return }
+        guard self.isPlaying else { return }
+        if pictureInPictureController.isPictureInPictureActive { return }
+        pictureInPictureController.startPictureInPicture()
+        self.pictureInPictureWasStartedAutomatically = true
+    }
+
+    func automaticallyStopPicutureinPictureModeIfNecessary() {
+        guard let pictureInPictureController = self.pictureInPictureController else { return }
+        guard pictureInPictureController.isPictureInPictureActive else { return }
+        guard self.pictureInPictureWasStartedAutomatically else { return }
+        pictureInPictureController.stopPictureInPicture()
+        self.pictureInPictureWasStartedAutomatically = false
     }
 
 }

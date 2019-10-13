@@ -229,7 +229,6 @@ class VideoViewController: UIViewController {
         self.slidesProgressView.updateProgress(slidesDownloadProgress, animated: false)
         self.slidesDownloadedIcon.isHidden = !(slidesDownloadState == .downloaded)
 
-        self.slidesButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.localSlidesBookmark != nil
         let isSlidesActionButtonEnabled = ReachabilityHelper.connection != .none || video.slidesUserAction != nil
         self.slidesActionsButton.isEnabled = isSlidesActionButtonEnabled
         self.slidesActionsButton.tintColor = isSlidesActionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
@@ -287,11 +286,7 @@ class VideoViewController: UIViewController {
     }
 
     @IBAction private func openSlides() {
-        if let video = self.video, SlidesPersistenceManager.shared.localFileLocation(for: video) != nil || ReachabilityHelper.connection != .none {
-            self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
-        } else {
-            log.info("Tapped open slides button without internet, which shouldn't be possible")
-        }
+        self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
     }
 
     @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
@@ -364,7 +359,6 @@ class VideoViewController: UIViewController {
                 self.slidesProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
                 self.slidesProgressView.updateProgress(SlidesPersistenceManager.shared.downloadProgress(for: video))
                 self.slidesDownloadedIcon.isHidden = !(downloadState == .downloaded)
-                self.slidesButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.localSlidesBookmark != nil
                 let actionButtonEnabled = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil
                 self.slidesActionsButton.isEnabled = actionButtonEnabled
                 self.slidesActionsButton.tintColor = actionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.systemGray4

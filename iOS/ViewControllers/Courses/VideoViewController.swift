@@ -40,6 +40,8 @@ class VideoViewController: UIViewController {
 
     private var courseItemObserver: ManagedObjectObserver?
 
+    private var isFirstAppearance = true
+
     var courseItem: CourseItem! {
         didSet {
             self.courseItemObserver = ManagedObjectObserver(object: self.courseItem) { [weak self] type in
@@ -121,10 +123,13 @@ class VideoViewController: UIViewController {
         self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.didViewAppear = true
 
-        if let player = self.player, !player.isPlaying {
+        // Autoplay logic
+        if let player = self.player, !player.isPlaying, self.isFirstAppearance {
             player.play()
             self.trackVideoPlay()
         }
+
+        self.isFirstAppearance = false
     }
 
     override func viewWillDisappear(_ animated: Bool) {

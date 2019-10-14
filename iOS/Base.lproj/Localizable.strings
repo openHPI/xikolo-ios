@@ -41,6 +41,9 @@
 /* title of recap view of course view */
 "course-area.view.recap.title" = "Recap";
 
+/* title of progress view of course view */
+"course-area.view.progress.title" = "Progress";
+
 /* status 'completed' of a course */
 "course-cell.status.completed" = "completed";
 

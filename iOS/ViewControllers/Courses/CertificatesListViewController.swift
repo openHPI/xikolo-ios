@@ -5,7 +5,6 @@
 
 import BrightFutures
 import Common
-import DZNEmptyDataSet
 import SafariServices
 import UIKit
 
@@ -130,21 +129,15 @@ extension CertificatesListViewController: RefreshableViewController {
 
 }
 
-extension CertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CertificatesListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title = NSLocalizedString("empty-view.certificates.no-certificates.title", comment: "title for empty certificates list")
-        return NSAttributedString(string: title)
-    }
-
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: "")
+    var titleText: String? {
+        return NSLocalizedString("empty-view.certificates.no-certificates.title", comment: "title for empty certificates list")
     }
 
     func setupEmptyState() {
-        self.collectionView?.emptyDataSetSource = self
-        self.collectionView?.emptyDataSetDelegate = self
-        self.collectionView?.reloadEmptyDataSet()
+        self.collectionView?.emptyStateDataSource = self
+        self.collectionView?.emptyStateDelegate = self
     }
 
 }

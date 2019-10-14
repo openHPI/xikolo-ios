@@ -6,7 +6,6 @@
 import BrightFutures
 import Common
 import CoreData
-import DZNEmptyDataSet
 import UIKit
 
 class AnnouncementListViewController: UITableViewController {
@@ -14,11 +13,6 @@ class AnnouncementListViewController: UITableViewController {
     private var dataSource: CoreDataTableViewDataSource<AnnouncementListViewController>!
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
-
-    deinit {
-        self.tableView?.emptyDataSetSource = nil
-        self.tableView?.emptyDataSetDelegate = nil
-    }
 
     var course: Course?
 
@@ -69,10 +63,9 @@ class AnnouncementListViewController: UITableViewController {
     }
 
     func setupEmptyState() {
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
-        tableView.reloadEmptyDataSet()
+        self.tableView.emptyStateDataSource = self
+        self.tableView.emptyStateDelegate = self
+        self.tableView.tableFooterView = UIView()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -149,21 +142,19 @@ extension AnnouncementListViewController: RefreshableViewController {
 
 }
 
-extension AnnouncementListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension AnnouncementListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title = NSLocalizedString("empty-view.announcements.title", comment: "title for empty announcement list")
-        return NSAttributedString(string: title)
+    var titleText: String? {
+        return NSLocalizedString("empty-view.announcements.title", comment: "title for empty announcement list")
     }
 
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description = NSLocalizedString("empty-view.announcements.description", comment: "description for empty announcement list")
-        return NSAttributedString(string: description)
+    var detailText: String {
+        return NSLocalizedString("empty-view.announcements.description", comment: "description for empty announcement list")
     }
 
-    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-        self.refresh()
-    }
+//    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+//        self.refresh()
+//    }
 
 }
 

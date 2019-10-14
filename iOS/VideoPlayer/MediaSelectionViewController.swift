@@ -4,7 +4,6 @@
 //
 
 import AVFoundation
-import DZNEmptyDataSet
 import UIKit
 
 class MediaSelectionViewController: UITableViewController {
@@ -25,11 +24,6 @@ class MediaSelectionViewController: UITableViewController {
         self.tableView.allowsMultipleSelection = true
     }
 
-    deinit {
-        self.tableView?.emptyDataSetSource = nil
-        self.tableView?.emptyDataSetDelegate = nil
-    }
-
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -42,8 +36,7 @@ class MediaSelectionViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
         self.tableView.register(MediaSelectionOptionCell.self, forCellReuseIdentifier: MediaSelectionOptionCell.identifier)
 
-        self.tableView.emptyDataSetSource = self
-        self.tableView.reloadEmptyDataSet()
+        self.tableView.emptyStateDataSource = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -189,11 +182,10 @@ extension MediaSelectionViewController {
 
 }
 
-extension MediaSelectionViewController: DZNEmptyDataSetSource {
+extension MediaSelectionViewController: EmptyStateDataSource {
 
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title = NSLocalizedString("empty-view.media-option-selection.title", comment: "title for empty media selection list")
-        return NSAttributedString(string: title)
+    var titleText: String? {
+        return NSLocalizedString("empty-view.media-option-selection.title", comment: "title for empty media selection list")
     }
 
 }

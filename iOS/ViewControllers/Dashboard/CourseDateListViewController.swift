@@ -6,17 +6,11 @@
 import BrightFutures
 import Common
 import CoreData
-import DZNEmptyDataSet
 import UIKit
 
 class CourseDateListViewController: UITableViewController {
 
     private var dataSource: CoreDataTableViewDataSource<CourseDateListViewController>!
-
-    deinit {
-        self.tableView?.emptyDataSetSource = nil
-        self.tableView?.emptyDataSetDelegate = nil
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +29,9 @@ class CourseDateListViewController: UITableViewController {
     }
 
     func setupEmptyState() {
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
-        tableView.reloadEmptyDataSet()
+        self.tableView.emptyStateDataSource = self
+        self.tableView.emptyStateDelegate = self
+        self.tableView.tableFooterView = UIView()
     }
 
 }
@@ -76,28 +69,14 @@ extension CourseDateListViewController: RefreshableViewController {
 
 }
 
-extension CourseDateListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CourseDateListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
-    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        guard let tableHeaderView = self.tableView.tableHeaderView else {
-            return 0
-        }
-
-        // DZNEmptyDataSet has some undefined behavior for the verticalOffset when using a custom tableView header.
-        // Dividing it again by 2 will do the trick.
-        return tableHeaderView.frame.height / 2 / 2
+    var titleText: String? {
+        return NSLocalizedString("empty-view.course-dates.no-dates.title", comment: "title for empty course dates list if logged in")
     }
 
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title = NSLocalizedString("empty-view.course-dates.no-dates.title",
-                                      comment: "title for empty course dates list if logged in")
-        return NSAttributedString(string: title)
-    }
-
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description = NSLocalizedString("empty-view.course-dates.no-dates.description",
-                                            comment: "description for empty course dates list if logged in")
-        return NSAttributedString(string: description)
+    var detailText: String? {
+        return NSLocalizedString("empty-view.course-dates.no-dates.description", comment: "description for empty course dates list if logged in")
     }
 
 }

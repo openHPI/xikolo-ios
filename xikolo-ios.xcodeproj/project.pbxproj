@@ -35,6 +35,10 @@
 		5019CE902171E9390001805E /* CourseItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019CE8F2171E9390001805E /* CourseItemViewController.swift */; };
 		5019CE922171F21D0001805E /* CourseItemContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019CE912171F21D0001805E /* CourseItemContentViewController.swift */; };
 		50253A2B22BA2F2A00FB63FD /* UICollectionViewFlowLayout+RTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50253A2A22BA2F2A00FB63FD /* UICollectionViewFlowLayout+RTL.swift */; };
+		50272508235466FA00815914 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50272507235466FA00815914 /* EmptyState.swift */; };
+		5027250A235473F600815914 /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50272509235473F600815914 /* Swizzler.swift */; };
+		5027250C2354756800815914 /* UITableView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027250B2354756800815914 /* UITableView+EmptyState.swift */; };
+		5027250E2354780C00815914 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027250D2354780C00815914 /* EmptyStateView.swift */; };
 		502902E021BABA79004B1B43 /* AccountViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502902DF21BABA79004B1B43 /* AccountViewControllerDataSource.swift */; };
 		502E712E2018D8BF007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
 		502E716C2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
@@ -110,6 +114,7 @@
 		50B31DFF22C4C570007DDDA4 /* BrightFuturesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */; };
 		50B71B88212AC61C008CE681 /* DocumentsPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */; };
 		50BC011B217755B500F38B30 /* UnavailableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */; };
+		50C21DE823549D4A00D7A1A6 /* UICollectionView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C21DE723549D4A00D7A1A6 /* UICollectionView+EmptyState.swift */; };
 		50CF1F4620DCDBFC0011BFE9 /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
 		50CF1F4E20DCDBFC0011BFE9 /* RichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichtextViewController.swift */; };
 		50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
@@ -445,6 +450,10 @@
 		5019CE912171F21D0001805E /* CourseItemContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemContentViewController.swift; sourceTree = "<group>"; };
 		501D083B1FA209F900D1B1E9 /* xikolo 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 5.xcdatamodel"; sourceTree = "<group>"; };
 		50253A2A22BA2F2A00FB63FD /* UICollectionViewFlowLayout+RTL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+RTL.swift"; sourceTree = "<group>"; };
+		50272507235466FA00815914 /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
+		50272509235473F600815914 /* Swizzler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
+		5027250B2354756800815914 /* UITableView+EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyState.swift"; sourceTree = "<group>"; };
+		5027250D2354780C00815914 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		502902DF21BABA79004B1B43 /* AccountViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewControllerDataSource.swift; sourceTree = "<group>"; };
 		502E712B2018D8BF007FC8C0 /* iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		502E712D2018D8BF007FC8C0 /* Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
@@ -563,6 +572,7 @@
 		50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsPersistenceManager.swift; sourceTree = "<group>"; };
 		50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableContentViewController.swift; sourceTree = "<group>"; };
 		50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crashlytics.swift; sourceTree = "<group>"; };
+		50C21DE723549D4A00D7A1A6 /* UICollectionView+EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+EmptyState.swift"; sourceTree = "<group>"; };
 		50C4700521BA801C00F50A1A /* xikolo 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 8.xcdatamodel"; sourceTree = "<group>"; };
 		50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDateHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
@@ -988,6 +998,18 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		50272506235466B100815914 /* EmptyState */ = {
+			isa = PBXGroup;
+			children = (
+				50272507235466FA00815914 /* EmptyState.swift */,
+				50272509235473F600815914 /* Swizzler.swift */,
+				5027250B2354756800815914 /* UITableView+EmptyState.swift */,
+				50C21DE723549D4A00D7A1A6 /* UICollectionView+EmptyState.swift */,
+				5027250D2354780C00815914 /* EmptyStateView.swift */,
+			);
+			path = EmptyState;
+			sourceTree = "<group>";
+		};
 		502E71652018DC2B007FC8C0 /* iOS-UITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1324,6 +1346,7 @@
 		AB95897A1DC4A3C400586137 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				50272506235466B100815914 /* EmptyState */,
 				5057ED7E1FE3D91B0096095B /* UserDefaults */,
 				5012913322BA64DC00AAB58B /* CALayer+roundedCorners.swift */,
 				700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */,
@@ -1828,7 +1851,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
-				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/SimulatorStatusMagic/SimulatorStatusMagic.framework",
@@ -1847,7 +1869,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMPlayer.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimulatorStatusMagic.framework",
@@ -2056,6 +2077,7 @@
 				50CF1F7A20DCDBFC0011BFE9 /* CourseItemListViewController.swift in Sources */,
 				50CF1F7B20DCDBFC0011BFE9 /* CourseArea.swift in Sources */,
 				50146FCF2222C8B900177E96 /* CourseSearchFilter.swift in Sources */,
+				5027250C2354756800815914 /* UITableView+EmptyState.swift in Sources */,
 				508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */,
 				50CF1F7D20DCDBFC0011BFE9 /* CourseDetailsViewController.swift in Sources */,
 				503CEE962177082D00F34694 /* ProcotoredItemViewController.swift in Sources */,
@@ -2067,6 +2089,7 @@
 				50FB7122232BBDC700359BB2 /* UIView+backgroundColor.swift in Sources */,
 				50CF1F8420DCDBFC0011BFE9 /* UserDefaults+VideoQuality.swift in Sources */,
 				50CF1F8720DCDBFC0011BFE9 /* DownloadState.swift in Sources */,
+				5027250E2354780C00815914 /* EmptyStateView.swift in Sources */,
 				50A2042722FAD324004371C0 /* UITraitCollection+performAsCurrent.swift in Sources */,
 				50CF1F8820DCDBFC0011BFE9 /* CourseDateCell.swift in Sources */,
 				50CF1F8A20DCDBFC0011BFE9 /* DownloadSettingsViewController.swift in Sources */,
@@ -2097,6 +2120,7 @@
 				50CF1FB320DCDBFC0011BFE9 /* DetailedCourseItemContent.swift in Sources */,
 				50CF1FB520DCDBFC0011BFE9 /* VideoPlayerControlView.swift in Sources */,
 				50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */,
+				5027250A235473F600815914 /* Swizzler.swift in Sources */,
 				023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */,
 				50CF1FB620DCDBFC0011BFE9 /* UserDefaults+contentPreload.swift in Sources */,
 				503988732166920400F9043B /* ShadowContainerView.swift in Sources */,
@@ -2113,6 +2137,7 @@
 				5019CE902171E9390001805E /* CourseItemViewController.swift in Sources */,
 				5044C8E321A8105C006490CE /* UIAlertViewController+downloadedContent.swift in Sources */,
 				50CF1FCD20DCDBFC0011BFE9 /* UIAlertViewController+cancel.swift in Sources */,
+				50272508235466FA00815914 /* EmptyState.swift in Sources */,
 				50CF1FD020DCDBFC0011BFE9 /* CourseItemWebViewController.swift in Sources */,
 				50CF1FD320DCDBFC0011BFE9 /* Video+Preloading.swift in Sources */,
 				5036A9B52319232800F7A63F /* UIWindow+FullScreen.swift in Sources */,
@@ -2134,6 +2159,7 @@
 				50CF1FE620DCDBFC0011BFE9 /* RichText+Preloading.swift in Sources */,
 				50146FC92221829500177E96 /* CourseSearchFiltersViewController.swift in Sources */,
 				503CEE942174EEE200F34694 /* CourseItem+AvailableContent.swift in Sources */,
+				50C21DE823549D4A00D7A1A6 /* UICollectionView+EmptyState.swift in Sources */,
 				50CF1FE820DCDBFC0011BFE9 /* UIView+SafeCastable.swift in Sources */,
 				50CF1FEB20DCDBFC0011BFE9 /* CircularProgressView.swift in Sources */,
 				5039887721679A3500F9043B /* PreloadableCourseItemContent.swift in Sources */,

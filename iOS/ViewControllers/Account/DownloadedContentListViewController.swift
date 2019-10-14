@@ -6,7 +6,6 @@
 import BrightFutures
 import Common
 import CoreData
-import DZNEmptyDataSet
 import Foundation
 import UIKit
 
@@ -42,11 +41,6 @@ class DownloadedContentListViewController: UITableViewController {
         }
     }
 
-    deinit {
-        self.tableView?.emptyDataSetSource = nil
-        self.tableView?.emptyDataSetDelegate = nil
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -65,10 +59,9 @@ class DownloadedContentListViewController: UITableViewController {
     }
 
     private func setupEmptyState() {
-        self.tableView.emptyDataSetSource = self
-        self.tableView.emptyDataSetDelegate = self
+        self.tableView.emptyStateDataSource = self
+        self.tableView.emptyStateDelegate = self
         self.tableView.tableFooterView = UIView()
-        self.tableView.reloadEmptyDataSet()
     }
 
     @discardableResult
@@ -285,16 +278,14 @@ extension DownloadedContentListViewController { // editing
 
 }
 
-extension DownloadedContentListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension DownloadedContentListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title = NSLocalizedString("empty-view.account.download.no-downloads.title", comment: "title for empty download list")
-        return NSAttributedString(string: title)
+    var titleText: String? {
+        return NSLocalizedString("empty-view.account.download.no-downloads.title", comment: "title for empty download list")
     }
 
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description = NSLocalizedString("empty-view.account.download.no-downloads.description", comment: "description for empty download list")
-        return NSAttributedString(string: description)
+    var detailText: String? {
+        return NSLocalizedString("empty-view.account.download.no-downloads.description", comment: "description for empty download list")
     }
 
 }

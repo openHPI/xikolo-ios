@@ -6,7 +6,6 @@
 import BrightFutures
 import Common
 import CoreData
-import DZNEmptyDataSet
 import UIKit
 
 class CourseItemListViewController: UITableViewController {
@@ -30,11 +29,6 @@ class CourseItemListViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-    }
-
-    deinit {
-        self.tableView?.emptyDataSetSource = nil
-        self.tableView?.emptyDataSetDelegate = nil
     }
 
     override func viewDidLoad() {
@@ -81,9 +75,8 @@ class CourseItemListViewController: UITableViewController {
     }
 
     func setupEmptyState() {
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
-        tableView.reloadEmptyDataSet()
+        self.tableView.emptyStateDataSource = self
+        self.tableView.emptyStateDelegate = self
     }
 
     @objc func reachabilityChanged() {
@@ -222,16 +215,15 @@ extension CourseItemListViewController: RefreshableViewController {
 
 }
 
-extension CourseItemListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CourseItemListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title = NSLocalizedString("empty-view.course-content.title", comment: "title for empty course content list")
-        return NSAttributedString(string: title)
+    var titleText: String? {
+        return NSLocalizedString("empty-view.course-content.title", comment: "title for empty course content list")
     }
 
-    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-        self.refresh()
-    }
+//    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+//        self.refresh()
+//    }
 
 }
 

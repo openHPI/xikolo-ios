@@ -15,36 +15,10 @@ extension UICollectionView: EmptyStateProtocol {
         Swizzler.swizzleMethods(for: self, originalSelector: originalSelector, swizzledSelector: swizzledSelector)
     }
 
-    /// The object that acts as the delegate of the empty state view.
-    public weak var emptyStateDelegate: EmptyStateDelegate? {
-        get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.emptyStateDelegate) as? EmptyStateDelegate
-        }
-
-        set {
-            if let newValue = newValue {
-                objc_setAssociatedObject(self, &AssociatedKeys.emptyStateDelegate, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            }
-        }
-    }
-
-    /// The object that acts as the data source of the empty state view.
-    public weak var emptyStateDataSource: EmptyStateDataSource? {
-        get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.emptyStateDataSource) as? EmptyStateDataSource
-        }
-
-        set {
-            if let newValue = newValue {
-                objc_setAssociatedObject(self, &AssociatedKeys.emptyStateDataSource, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            }
-        }
-    }
-
     @objc private dynamic func swizzledReload() {
         swizzledReload()
 
-        if numberOfItems == 0 && self.subviews.count > 1 {
+        if !self.hasItemsToDisplay && self.subviews.count > 1 {
             self.backgroundView = emptyStateView
             if let emptyStateView = emptyStateView as? EmptyStateView {
                 emptyStateView.titleLabel.text = self.emptyStateDataSource?.titleText
@@ -62,4 +36,19 @@ extension UICollectionView: EmptyStateProtocol {
             self.backgroundView = nil
         }
     }
+
+    var hasItemsToDisplay: Bool {
+        guard let numberOfSections = self.dataSource?.numberOfSections?(in: self) else {
+            return false
+        }
+
+        for section in 0..<numberOfSections {
+            if self.dataSource?.collectionView(self, numberOfItemsInSection: section) != 0 {
+                return true
+            }
+        }
+
+        return false
+    }
+
 }

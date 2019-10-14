@@ -41,7 +41,7 @@ struct AssociatedKeys {
 protocol EmptyStateProtocol: AnyObject {
     static func configure()
 
-    var numberOfItems: Int { get }
+    var hasItemsToDisplay: Bool { get }
     var emptyStateDelegate: EmptyStateDelegate? { get set }
     var emptyStateDataSource: EmptyStateDataSource? { get set }
     var emptyStateView: UIView { get set }
@@ -63,22 +63,30 @@ extension EmptyStateProtocol {
         }
     }
 
-    var numberOfItems: Int {
-        var items = 0
-        let numberOfSections = getNumberOfSections()
-        for section in 0..<numberOfSections {
-            items += getNumberOfItems(in: section)
+    /// The object that acts as the delegate of the empty state view.
+    public weak var emptyStateDelegate: EmptyStateDelegate? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.emptyStateDelegate) as? EmptyStateDelegate
         }
-        return items
+
+        set {
+            if let newValue = newValue {
+                objc_setAssociatedObject(self, &AssociatedKeys.emptyStateDelegate, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+        }
     }
 
-    private func getNumberOfSections() -> Int {
-        return (self as? UITableView).flatMap { $0.dataSource?.numberOfSections?(in: $0) } ??
-            (self as? UICollectionView).flatMap { $0.dataSource?.numberOfSections?(in: $0) } ?? 1
+    /// The object that acts as the data source of the empty state view.
+    public weak var emptyStateDataSource: EmptyStateDataSource? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.emptyStateDataSource) as? EmptyStateDataSource
+        }
+
+        set {
+            if let newValue = newValue {
+                objc_setAssociatedObject(self, &AssociatedKeys.emptyStateDataSource, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+        }
     }
 
-    private func getNumberOfItems(in section: Int) -> Int {
-        return (self as? UITableView).flatMap { $0.dataSource?.tableView($0, numberOfRowsInSection: section) } ??
-            (self as? UICollectionView).flatMap { $0.dataSource?.collectionView($0, numberOfItemsInSection: section) } ?? 1
-    }
 }

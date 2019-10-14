@@ -19,19 +19,9 @@ extension UICollectionView: EmptyStateProtocol {
         swizzledReload()
 
         if !self.hasItemsToDisplay && self.subviews.count > 1 {
+            self.emptyStateView.titleLabel.text = self.emptyStateDataSource?.emptyStateTitleText
+            self.emptyStateView.detailLabel.text = self.emptyStateDataSource?.emptyStateDetailText
             self.backgroundView = emptyStateView
-            if let emptyStateView = emptyStateView as? EmptyStateView {
-                emptyStateView.titleLabel.text = self.emptyStateDataSource?.emptyStateTitleText
-                emptyStateView.detailLabel.text = self.emptyStateDataSource?.emptyStateDetailText
-            } else {
-                emptyStateView.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    emptyStateView.heightAnchor.constraint(equalTo: heightAnchor),
-                    emptyStateView.widthAnchor.constraint(equalTo: widthAnchor),
-                    emptyStateView.centerYAnchor.constraint(equalTo: centerYAnchor),
-                    emptyStateView.centerXAnchor.constraint(equalTo: centerXAnchor)
-                ])
-            }
         } else {
             self.backgroundView = nil
         }

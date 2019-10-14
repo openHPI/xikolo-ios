@@ -40,15 +40,15 @@ struct AssociatedKeys {
 protocol EmptyStateProtocol: AnyObject {
     var emptyStateDelegate: EmptyStateDelegate? { get set }
     var emptyStateDataSource: EmptyStateDataSource? { get set }
-    var emptyStateView: UIView { get set }
+    var emptyStateView: EmptyStateView { get set }
     var hasItemsToDisplay: Bool { get }
 }
 
 extension EmptyStateProtocol {
 
-    var emptyStateView: UIView {
+    var emptyStateView: EmptyStateView {
         get {
-            guard let emptyStateView = objc_getAssociatedObject(self, &AssociatedKeys.emptyStateView) as? UIView else {
+            guard let emptyStateView = objc_getAssociatedObject(self, &AssociatedKeys.emptyStateView) as? EmptyStateView else {
                 let emptyStateView = EmptyStateView()
                 self.emptyStateView = emptyStateView
                 return emptyStateView

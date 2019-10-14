@@ -53,10 +53,8 @@ final class EmptyStateView: UIView {
                                                    relatedBy: .equal,
                                                    toItem: self,
                                                    attribute: .centerY,
-                                                   multiplier: 2/3,
+                                                   multiplier: 2 / 3,
                                                    constant: 0)
-
-
 
         NSLayoutConstraint.activate([
             centerYConstraint,

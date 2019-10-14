@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-public protocol EmptyStateDelegate: class {
+public protocol EmptyStateDelegate: AnyObject {
 
 }
 
@@ -14,9 +14,8 @@ public extension EmptyStateDelegate {
 
 }
 
-
 /// This protocol provides the table view object with the information it needs to construct and modify a `EmptyStateView`.
-public protocol EmptyStateDataSource: class {
+public protocol EmptyStateDataSource: AnyObject {
 
     var emptyStateTitleText: String { get }
     var emptyStateDetailText: String? { get }
@@ -30,7 +29,7 @@ public extension EmptyStateDataSource {
 
 }
 
-struct AssociatedKeys {
+enum AssociatedKeys {
     static var emptyStateDelegate = "emptyStateDelegate"
     static var emptyStateDataSource = "emptyStateDataSource"
     static var emptyStateView = "emptyStateView"
@@ -53,6 +52,7 @@ extension EmptyStateProtocol {
                 self.emptyStateView = emptyStateView
                 return emptyStateView
             }
+
             return emptyStateView
         }
         set {

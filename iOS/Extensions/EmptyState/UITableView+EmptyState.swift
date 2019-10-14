@@ -42,6 +42,3 @@ extension UITableView: EmptyStateProtocol {
     }
 
 }
-
-
-

@@ -62,12 +62,6 @@ class AnnouncementListViewController: UITableViewController {
         TrackingHelper.createEvent(.visitedAnnouncementList, on: self)
     }
 
-    func setupEmptyState() {
-        self.tableView.emptyStateDataSource = self
-        self.tableView.emptyStateDelegate = self
-        self.tableView.tableFooterView = UIView()
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let announcement = (sender as? Announcement).require(hint: "Sender must be Announcement")
         if let typedInfo = R.segue.announcementListViewController.showAnnouncement(segue: segue) {
@@ -148,13 +142,19 @@ extension AnnouncementListViewController: EmptyStateDataSource, EmptyStateDelega
         return NSLocalizedString("empty-view.announcements.title", comment: "title for empty announcement list")
     }
 
-    var emptyStateDetailText: String {
+    var emptyStateDetailText: String? {
         return NSLocalizedString("empty-view.announcements.description", comment: "description for empty announcement list")
     }
 
 //    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
 //        self.refresh()
 //    }
+
+    func setupEmptyState() {
+        self.tableView.emptyStateDataSource = self
+        self.tableView.emptyStateDelegate = self
+        self.tableView.tableFooterView = UIView()
+    }
 
 }
 

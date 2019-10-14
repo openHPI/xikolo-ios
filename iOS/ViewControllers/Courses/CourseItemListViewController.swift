@@ -74,11 +74,6 @@ class CourseItemListViewController: UITableViewController {
         self.refresh()
     }
 
-    func setupEmptyState() {
-        self.tableView.emptyStateDataSource = self
-        self.tableView.emptyStateDelegate = self
-    }
-
     @objc func reachabilityChanged() {
         self.inOfflineMode = ReachabilityHelper.connection == .none
     }
@@ -224,6 +219,11 @@ extension CourseItemListViewController: EmptyStateDataSource, EmptyStateDelegate
 //    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
 //        self.refresh()
 //    }
+
+    func setupEmptyState() {
+        self.tableView.emptyStateDataSource = self
+        self.tableView.emptyStateDelegate = self
+    }
 
 }
 

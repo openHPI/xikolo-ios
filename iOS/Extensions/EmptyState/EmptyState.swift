@@ -41,6 +41,8 @@ protocol EmptyStateProtocol: AnyObject {
     var emptyStateDataSource: EmptyStateDataSource? { get set }
     var emptyStateView: EmptyStateView { get set }
     var hasItemsToDisplay: Bool { get }
+
+    func reloadEmptyState()
 }
 
 extension EmptyStateProtocol {
@@ -65,7 +67,6 @@ extension EmptyStateProtocol {
         get {
             return objc_getAssociatedObject(self, &AssociatedKeys.emptyStateDelegate) as? EmptyStateDelegate
         }
-
         set {
             if let newValue = newValue {
                 objc_setAssociatedObject(self, &AssociatedKeys.emptyStateDelegate, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
@@ -78,10 +79,10 @@ extension EmptyStateProtocol {
         get {
             return objc_getAssociatedObject(self, &AssociatedKeys.emptyStateDataSource) as? EmptyStateDataSource
         }
-
         set {
             if let newValue = newValue {
                 objc_setAssociatedObject(self, &AssociatedKeys.emptyStateDataSource, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                self.reloadEmptyState()
             }
         }
     }

@@ -31,12 +31,6 @@ class AvailableCertificatesListViewController: UITableViewController {
         }
     }
 
-    private func setupEmptyState() {
-        self.tableView.emptyStateDataSource = self
-        self.tableView.emptyStateDelegate = self
-        self.tableView.tableFooterView = UIView()
-    }
-
     private func refresh() {
         self.reloadData().onSuccess { certificates in
             self.certificates = certificates
@@ -109,6 +103,12 @@ extension AvailableCertificatesListViewController: EmptyStateDataSource, EmptySt
 
     var emptyStateDetailText: String? {
         return NSLocalizedString("empty-view.account.certificates.no-certificates.description", comment: "description for empty certificates list")
+    }
+
+    func setupEmptyState() {
+        self.tableView.emptyStateDataSource = self
+        self.tableView.emptyStateDelegate = self
+        self.tableView.tableFooterView = UIView()
     }
 
 }

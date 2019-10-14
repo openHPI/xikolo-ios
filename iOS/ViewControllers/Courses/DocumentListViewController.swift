@@ -71,12 +71,6 @@ class DocumentListViewController: UITableViewController {
         self.scrollDelegate?.scrollViewDidEndDecelerating(scrollView)
     }
 
-    func setupEmptyState() {
-        self.tableView.emptyStateDataSource = self
-        self.tableView.emptyStateDelegate = self
-        self.tableView.tableFooterView = UIView()
-    }
-
     @objc func reachabilityChanged() {
         self.inOfflineMode = ReachabilityHelper.connection == .none
     }
@@ -170,5 +164,11 @@ extension DocumentListViewController: EmptyStateDataSource, EmptyStateDelegate {
 //    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
 //        self.refresh()
 //    }
+
+    func setupEmptyState() {
+        self.tableView.emptyStateDataSource = self
+        self.tableView.emptyStateDelegate = self
+        self.tableView.tableFooterView = UIView()
+    }
 
 }

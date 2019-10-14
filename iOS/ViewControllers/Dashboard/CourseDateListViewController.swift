@@ -28,12 +28,6 @@ class CourseDateListViewController: UITableViewController {
         self.setupEmptyState()
     }
 
-    func setupEmptyState() {
-        self.tableView.emptyStateDataSource = self
-        self.tableView.emptyStateDelegate = self
-        self.tableView.tableFooterView = UIView()
-    }
-
 }
 
 extension CourseDateListViewController {
@@ -77,6 +71,12 @@ extension CourseDateListViewController: EmptyStateDataSource, EmptyStateDelegate
 
     var emptyStateDetailText: String? {
         return NSLocalizedString("empty-view.course-dates.no-dates.description", comment: "description for empty course dates list if logged in")
+    }
+
+    func setupEmptyState() {
+        self.tableView.emptyStateDataSource = self
+        self.tableView.emptyStateDelegate = self
+        self.tableView.tableFooterView = UIView()
     }
 
 }

@@ -58,12 +58,6 @@ class DownloadedContentListViewController: UITableViewController {
         self.tableView.resizeTableHeaderView()
     }
 
-    private func setupEmptyState() {
-        self.tableView.emptyStateDataSource = self
-        self.tableView.emptyStateDelegate = self
-        self.tableView.tableFooterView = UIView()
-    }
-
     @discardableResult
     private func refresh() -> Future<[[DownloadedContentHelper.DownloadItem]], XikoloError> {
         return DownloadedContentHelper.downloadedItemForAllCourses().onSuccess { itemsArray in
@@ -286,6 +280,12 @@ extension DownloadedContentListViewController: EmptyStateDataSource, EmptyStateD
 
     var emptyStateDetailText: String? {
         return NSLocalizedString("empty-view.account.download.no-downloads.description", comment: "description for empty download list")
+    }
+
+    func setupEmptyState() {
+        self.tableView.emptyStateDataSource = self
+        self.tableView.emptyStateDelegate = self
+        self.tableView.tableFooterView = UIView()
     }
 
 }

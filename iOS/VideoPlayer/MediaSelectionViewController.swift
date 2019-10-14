@@ -36,7 +36,7 @@ class MediaSelectionViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
         self.tableView.register(MediaSelectionOptionCell.self, forCellReuseIdentifier: MediaSelectionOptionCell.identifier)
 
-        self.tableView.emptyStateDataSource = self
+        self.setupEmptyState()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -186,6 +186,10 @@ extension MediaSelectionViewController: EmptyStateDataSource {
 
     var emptyStateTitleText: String {
         return NSLocalizedString("empty-view.media-option-selection.title", comment: "title for empty media selection list")
+    }
+
+    func setupEmptyState() {
+        self.tableView.emptyStateDataSource = self
     }
 
 }

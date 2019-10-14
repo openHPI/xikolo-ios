@@ -16,15 +16,8 @@ extension UICollectionView: EmptyStateProtocol {
     }
 
     @objc private dynamic func swizzledReload() {
-        swizzledReload()
-
-        if !self.hasItemsToDisplay && self.subviews.count > 1 {
-            self.emptyStateView.titleLabel.text = self.emptyStateDataSource?.emptyStateTitleText
-            self.emptyStateView.detailLabel.text = self.emptyStateDataSource?.emptyStateDetailText
-            self.backgroundView = emptyStateView
-        } else {
-            self.backgroundView = nil
-        }
+        self.swizzledReload()
+        self.reloadEmptyState()
     }
 
     var hasItemsToDisplay: Bool {
@@ -39,6 +32,16 @@ extension UICollectionView: EmptyStateProtocol {
         }
 
         return false
+    }
+
+    func reloadEmptyState() {
+        if self.hasItemsToDisplay {
+            self.backgroundView = nil
+        } else {
+            self.emptyStateView.titleLabel.text = self.emptyStateDataSource?.emptyStateTitleText
+            self.emptyStateView.detailLabel.text = self.emptyStateDataSource?.emptyStateDetailText
+            self.backgroundView = self.emptyStateView
+        }
     }
 
 }

@@ -41,31 +41,14 @@ extension UICollectionView: EmptyStateProtocol {
         }
     }
 
-    /// The original value before enable/disable scrolling.
-    var originalScrollingValue: Bool {
-        get {
-            return (objc_getAssociatedObject(self, &AssociatedKeys.originalScrollingValue) as? Bool) ?? isScrollEnabled
-        }
-
-        set {
-            objc_setAssociatedObject(self, &AssociatedKeys.originalScrollingValue, newValue, .OBJC_ASSOCIATION_COPY)
-        }
-    }
-
     @objc private dynamic func swizzledReload() {
         swizzledReload()
 
-        guard emptyStateDataSource != nil else { return }
-
         if numberOfItems == 0 && self.subviews.count > 1 {
-            originalScrollingValue = isScrollEnabled
-            isScrollEnabled = emptyStateDelegate?.enableScrollForEmptyState() ?? true
-
-            backgroundView = emptyStateView
+            self.backgroundView = emptyStateView
             if let emptyStateView = emptyStateView as? EmptyStateView {
-                let datasource = self.emptyStateDataSource
-                emptyStateView.titleLabel.text = datasource?.titleText
-                emptyStateView.detailLabel.text = datasource?.detailText
+                emptyStateView.titleLabel.text = self.emptyStateDataSource?.titleText
+                emptyStateView.detailLabel.text = self.emptyStateDataSource?.detailText
             } else {
                 emptyStateView.translatesAutoresizingMaskIntoConstraints = false
                 NSLayoutConstraint.activate([
@@ -76,8 +59,7 @@ extension UICollectionView: EmptyStateProtocol {
                 ])
             }
         } else {
-            removeEmptyView()
-            isScrollEnabled = originalScrollingValue
+            self.backgroundView = nil
         }
     }
 }

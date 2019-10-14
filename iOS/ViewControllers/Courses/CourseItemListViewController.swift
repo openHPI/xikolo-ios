@@ -217,7 +217,7 @@ extension CourseItemListViewController: RefreshableViewController {
 
 extension CourseItemListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
-    var titleText: String? {
+    var emptyStateTitleText: String {
         return NSLocalizedString("empty-view.course-content.title", comment: "title for empty course content list")
     }
 

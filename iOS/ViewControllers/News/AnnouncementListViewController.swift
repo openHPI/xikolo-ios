@@ -144,11 +144,11 @@ extension AnnouncementListViewController: RefreshableViewController {
 
 extension AnnouncementListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
-    var titleText: String? {
+    var emptyStateTitleText: String {
         return NSLocalizedString("empty-view.announcements.title", comment: "title for empty announcement list")
     }
 
-    var detailText: String {
+    var emptyStateDetailText: String {
         return NSLocalizedString("empty-view.announcements.description", comment: "description for empty announcement list")
     }
 

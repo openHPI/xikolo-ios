@@ -71,11 +71,11 @@ extension CourseDateListViewController: RefreshableViewController {
 
 extension CourseDateListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
-    var titleText: String? {
+    var emptyStateTitleText: String {
         return NSLocalizedString("empty-view.course-dates.no-dates.title", comment: "title for empty course dates list if logged in")
     }
 
-    var detailText: String? {
+    var emptyStateDetailText: String? {
         return NSLocalizedString("empty-view.course-dates.no-dates.description", comment: "description for empty course dates list if logged in")
     }
 

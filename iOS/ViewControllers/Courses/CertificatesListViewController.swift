@@ -131,7 +131,7 @@ extension CertificatesListViewController: RefreshableViewController {
 
 extension CertificatesListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
-    var titleText: String? {
+    var emptyStateTitleText: String {
         return NSLocalizedString("empty-view.certificates.no-certificates.title", comment: "title for empty certificates list")
     }
 

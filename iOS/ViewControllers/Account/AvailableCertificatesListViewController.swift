@@ -103,11 +103,11 @@ class AvailableCertificatesListViewController: UITableViewController {
 
 extension AvailableCertificatesListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
-    var titleText: String? {
+    var emptyStateTitleText: String {
         return NSLocalizedString("empty-view.account.certificates.no-certificates.title", comment: "title for empty certificates list")
     }
 
-    var detailText: String? {
+    var emptyStateDetailText: String? {
         return NSLocalizedString("empty-view.account.certificates.no-certificates.description", comment: "description for empty certificates list")
     }
 

@@ -184,7 +184,7 @@ extension MediaSelectionViewController {
 
 extension MediaSelectionViewController: EmptyStateDataSource {
 
-    var titleText: String? {
+    var emptyStateTitleText: String {
         return NSLocalizedString("empty-view.media-option-selection.title", comment: "title for empty media selection list")
     }
 

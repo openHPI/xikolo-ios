@@ -163,7 +163,7 @@ extension DocumentListViewController: UserActionsDelegate {
 
 extension DocumentListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
-    var titleText: String? {
+    var emptyStateTitleText: String {
         return NSLocalizedString("empty-view.course-documents.title", comment: "title for empty course documents list")
     }
 

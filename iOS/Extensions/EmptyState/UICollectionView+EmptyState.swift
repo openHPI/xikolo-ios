@@ -21,8 +21,8 @@ extension UICollectionView: EmptyStateProtocol {
         if !self.hasItemsToDisplay && self.subviews.count > 1 {
             self.backgroundView = emptyStateView
             if let emptyStateView = emptyStateView as? EmptyStateView {
-                emptyStateView.titleLabel.text = self.emptyStateDataSource?.titleText
-                emptyStateView.detailLabel.text = self.emptyStateDataSource?.detailText
+                emptyStateView.titleLabel.text = self.emptyStateDataSource?.emptyStateTitleText
+                emptyStateView.detailLabel.text = self.emptyStateDataSource?.emptyStateDetailText
             } else {
                 emptyStateView.translatesAutoresizingMaskIntoConstraints = false
                 NSLayoutConstraint.activate([

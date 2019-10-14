@@ -18,16 +18,15 @@ public extension EmptyStateDelegate {
 /// This protocol provides the table view object with the information it needs to construct and modify a `EmptyStateView`.
 public protocol EmptyStateDataSource: class {
 
-    var titleText: String? { get }
-    var detailText: String? { get }
+    var emptyStateTitleText: String { get }
+    var emptyStateDetailText: String? { get }
 
 }
 
 // MARK: - EmptyStateDataSource Default
 public extension EmptyStateDataSource {
 
-    var titleText: String? { nil }
-    var detailText: String? { nil }
+    var emptyStateDetailText: String? { nil }
 
 }
 

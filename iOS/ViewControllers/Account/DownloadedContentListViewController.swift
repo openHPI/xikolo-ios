@@ -280,11 +280,11 @@ extension DownloadedContentListViewController { // editing
 
 extension DownloadedContentListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
-    var titleText: String? {
+    var emptyStateTitleText: String {
         return NSLocalizedString("empty-view.account.download.no-downloads.title", comment: "title for empty download list")
     }
 
-    var detailText: String? {
+    var emptyStateDetailText: String? {
         return NSLocalizedString("empty-view.account.download.no-downloads.description", comment: "description for empty download list")
     }
 

@@ -66,7 +66,6 @@ extension UICollectionView: EmptyStateProtocol {
                 let datasource = self.emptyStateDataSource
                 emptyStateView.titleLabel.text = datasource?.titleText
                 emptyStateView.detailLabel.text = datasource?.detailText
-//                emptyStateView.image = datasource?.imageForEmptyDataSet()
             } else {
                 emptyStateView.translatesAutoresizingMaskIntoConstraints = false
                 NSLayoutConstraint.activate([

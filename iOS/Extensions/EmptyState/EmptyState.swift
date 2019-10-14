@@ -22,34 +22,16 @@ public extension EmptyStateDelegate {
 /// This protocol provides the table view object with the information it needs to construct and modify a `EmptyStateView`.
 public protocol EmptyStateDataSource: class {
 
-    /// Asks the data source for the description of the `EmptyStateView`.
-    ///
-    /// - Returns: An instance of UIImage as icon of the `EmptyStateView`.
-    func imageForEmptyDataSet() -> UIImage?
-
     var titleText: String? { get }
     var detailText: String? { get }
-
-    /// Ask the data source for a custom view to be used as Empty State View.
-    ///
-    /// - Returns: The custom view to be used.
-    func customViewForEmptyState() -> UIView?
 
 }
 
 // MARK: - EmptyStateDataSource Default
 public extension EmptyStateDataSource {
 
-    func imageForEmptyDataSet() -> UIImage? {
-        return nil
-    }
-
     var titleText: String? { nil }
     var detailText: String? { nil }
-
-    func customViewForEmptyState() -> UIView? {
-        return nil
-    }
 
 }
 
@@ -74,21 +56,20 @@ protocol EmptyStateProtocol: AnyObject {
 extension EmptyStateProtocol {
 
     func removeEmptyView() {
-        if emptyStateView.superview != nil {
-            emptyStateView.removeFromSuperview()
+        if self.emptyStateView.superview != nil {
+            self.emptyStateView.removeFromSuperview()
         }
     }
 
     var emptyStateView: UIView {
         get {
             guard let emptyStateView = objc_getAssociatedObject(self, &AssociatedKeys.emptyStateView) as? UIView else {
-                let emptyStateView = emptyStateDataSource?.customViewForEmptyState() ?? EmptyStateView()
+                let emptyStateView = EmptyStateView()
                 self.emptyStateView = emptyStateView
                 return emptyStateView
             }
             return emptyStateView
         }
-
         set {
             objc_setAssociatedObject(self, &AssociatedKeys.emptyStateView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }

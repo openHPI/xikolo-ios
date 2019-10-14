@@ -8,7 +8,7 @@ import UIKit
 
 extension UITableView: EmptyStateProtocol {
 
-    static func configure() {
+    static func enableEmptyStates() {
         let originalSelector = #selector(reloadData)
         let swizzledSelector = #selector(swizzledReload)
 

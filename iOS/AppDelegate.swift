@@ -45,9 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         CoreDataHelper.migrateModelToCommon()
 
-        UICollectionView.configure()
-        UITableView.configure()
-
         if #available(iOS 13.0, *) {} else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             self.window?.rootViewController = self.tabBarController
@@ -102,6 +99,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             SDStatusBarManager.sharedInstance().enableOverrides()
         }
         #endif
+
+        UICollectionView.enableEmptyStates()
+        UITableView.enableEmptyStates()
 
         return true
     }

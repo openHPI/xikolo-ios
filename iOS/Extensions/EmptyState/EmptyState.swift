@@ -38,12 +38,10 @@ struct AssociatedKeys {
 
 /// This protocol provides the basic needed to override emptyViewState on anyclass that supports it
 protocol EmptyStateProtocol: AnyObject {
-    static func configure()
-
-    var hasItemsToDisplay: Bool { get }
     var emptyStateDelegate: EmptyStateDelegate? { get set }
     var emptyStateDataSource: EmptyStateDataSource? { get set }
     var emptyStateView: UIView { get set }
+    var hasItemsToDisplay: Bool { get }
 }
 
 extension EmptyStateProtocol {

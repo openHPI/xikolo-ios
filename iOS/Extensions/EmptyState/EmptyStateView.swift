@@ -12,7 +12,7 @@ final class EmptyStateView: UIView {
         let stackView = UIStackView(arrangedSubviews: [self.titleLabel, self.detailLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.alignment = .center
+        stackView.alignment = .fill
         stackView.distribution = .fill
 
         if #available(iOS 11, *) {
@@ -28,6 +28,7 @@ final class EmptyStateView: UIView {
         let label = UILabel()
         label.textColor = ColorCompatibility.secondaryLabel
         label.font = UIFont.preferredFont(forTextStyle: .title3)
+        label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
@@ -36,6 +37,7 @@ final class EmptyStateView: UIView {
         let label = UILabel()
         label.textColor = ColorCompatibility.secondaryLabel
         label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()

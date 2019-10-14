@@ -45,6 +45,7 @@ final class EmptyStateView: UIView {
     override public func didMoveToSuperview() {
         super.didMoveToSuperview()
 
+        self.preservesSuperviewLayoutMargins = true
         self.addSubview(self.stackView)
 
         let centerYConstraint = NSLayoutConstraint(item: self.stackView,
@@ -55,19 +56,13 @@ final class EmptyStateView: UIView {
                                                    multiplier: 2/3,
                                                    constant: 0)
 
-        if #available(iOS 11, *) {
-            NSLayoutConstraint.activate([
-                centerYConstraint,
-                self.stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: self.leadingAnchor, multiplier: 1),
-                self.stackView.trailingAnchor.constraint(equalToSystemSpacingAfter: self.trailingAnchor, multiplier: 1),
-            ])
-        } else {
-            NSLayoutConstraint.activate([
-                centerYConstraint,
-                self.stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-                self.stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 16),
-            ])
-        }
+
+
+        NSLayoutConstraint.activate([
+            centerYConstraint,
+            self.stackView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 0),
+            self.stackView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: 0),
+        ])
     }
 
 }

@@ -95,7 +95,7 @@ class AvailableCertificatesListViewController: UITableViewController {
 
 }
 
-extension AvailableCertificatesListViewController: EmptyStateDataSource, EmptyStateDelegate {
+extension AvailableCertificatesListViewController: EmptyStateDataSource {
 
     var emptyStateTitleText: String {
         return NSLocalizedString("empty-view.account.certificates.no-certificates.title", comment: "title for empty certificates list")
@@ -107,7 +107,6 @@ extension AvailableCertificatesListViewController: EmptyStateDataSource, EmptySt
 
     func setupEmptyState() {
         self.tableView.emptyStateDataSource = self
-        self.tableView.emptyStateDelegate = self
         self.tableView.tableFooterView = UIView()
     }
 

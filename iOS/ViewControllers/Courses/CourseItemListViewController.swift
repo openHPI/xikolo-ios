@@ -216,9 +216,9 @@ extension CourseItemListViewController: EmptyStateDataSource, EmptyStateDelegate
         return NSLocalizedString("empty-view.course-content.title", comment: "title for empty course content list")
     }
 
-//    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-//        self.refresh()
-//    }
+    func didTapOnEmptyStateView() {
+        self.refresh()
+    }
 
     func setupEmptyState() {
         self.tableView.emptyStateDataSource = self

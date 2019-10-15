@@ -73,6 +73,10 @@ extension CourseDateListViewController: EmptyStateDataSource, EmptyStateDelegate
         return NSLocalizedString("empty-view.course-dates.no-dates.description", comment: "description for empty course dates list if logged in")
     }
 
+    func didTapOnEmptyStateView() {
+        self.refresh()
+    }
+
     func setupEmptyState() {
         self.tableView.emptyStateDataSource = self
         self.tableView.emptyStateDelegate = self

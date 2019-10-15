@@ -161,9 +161,9 @@ extension DocumentListViewController: EmptyStateDataSource, EmptyStateDelegate {
         return NSLocalizedString("empty-view.course-documents.title", comment: "title for empty course documents list")
     }
 
-//    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-//        self.refresh()
-//    }
+    func didTapOnEmptyStateView() {
+        self.refresh()
+    }
 
     func setupEmptyState() {
         self.tableView.emptyStateDataSource = self

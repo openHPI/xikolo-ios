@@ -272,7 +272,7 @@ extension DownloadedContentListViewController { // editing
 
 }
 
-extension DownloadedContentListViewController: EmptyStateDataSource, EmptyStateDelegate {
+extension DownloadedContentListViewController: EmptyStateDataSource {
 
     var emptyStateTitleText: String {
         return NSLocalizedString("empty-view.account.download.no-downloads.title", comment: "title for empty download list")
@@ -284,7 +284,6 @@ extension DownloadedContentListViewController: EmptyStateDataSource, EmptyStateD
 
     func setupEmptyState() {
         self.tableView.emptyStateDataSource = self
-        self.tableView.emptyStateDelegate = self
         self.tableView.tableFooterView = UIView()
     }
 

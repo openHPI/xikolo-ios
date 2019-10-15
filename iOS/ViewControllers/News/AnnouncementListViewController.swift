@@ -146,9 +146,9 @@ extension AnnouncementListViewController: EmptyStateDataSource, EmptyStateDelega
         return NSLocalizedString("empty-view.announcements.description", comment: "description for empty announcement list")
     }
 
-//    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-//        self.refresh()
-//    }
+    func didTapOnEmptyStateView() {
+        self.refresh()
+    }
 
     func setupEmptyState() {
         self.tableView.emptyStateDataSource = self

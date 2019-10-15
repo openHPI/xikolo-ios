@@ -135,6 +135,10 @@ extension CertificatesListViewController: EmptyStateDataSource, EmptyStateDelega
         return NSLocalizedString("empty-view.certificates.no-certificates.title", comment: "title for empty certificates list")
     }
 
+    func didTapOnEmptyStateView() {
+        self.refresh()
+    }
+
     func setupEmptyState() {
         self.collectionView?.emptyStateDataSource = self
         self.collectionView?.emptyStateDelegate = self

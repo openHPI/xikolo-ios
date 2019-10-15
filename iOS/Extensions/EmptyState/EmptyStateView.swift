@@ -42,6 +42,8 @@ final class EmptyStateView: UIView {
         return label
     }()
 
+    var tapHandler: (() -> Void)?
+
     override public func didMoveToSuperview() {
         super.didMoveToSuperview()
 
@@ -61,6 +63,13 @@ final class EmptyStateView: UIView {
             self.stackView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 0),
             self.stackView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: 0),
         ])
+
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        self.addGestureRecognizer(gestureRecognizer)
+    }
+
+    @objc func handleTap() {
+        self.tapHandler?()
     }
 
 }

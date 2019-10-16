@@ -9,6 +9,8 @@ import UIKit
 
 class MediaSelectionViewController: UITableViewController {
 
+    private let mediaCharacteristics: [AVMediaCharacteristic] = [.audible, .legible]
+
     private weak var delegate: MediaSelectionDelegate?
 
     init(delegate: MediaSelectionDelegate) {
@@ -65,12 +67,12 @@ class MediaSelectionViewController: UITableViewController {
 
             if let selectedMediaOption = self.delegate?.currentMediaSelection?.selectedMediaOption(in: mediaSelectionGroup) {
                 if let index = mediaSelectionGroup.options.firstIndex(of: selectedMediaOption) {
-                    let row = self.allowsEmptySelection(in: section) ? index + 1 : index
+                    let row = self.allowsEmptySelection(inSection: section) ? index + 1 : index
                     let indexPath = IndexPath(row: row, section: section)
                     self.tableView.selectRow(at: indexPath, animated: animated, scrollPosition: .none)
                 }
             } else {
-                if self.allowsEmptySelection(in: section) {
+                if self.allowsEmptySelection(inSection: section) {
                     let indexPath = IndexPath(row: 0, section: section)
                     self.tableView.selectRow(at: indexPath, animated: animated, scrollPosition: .none)
                 }
@@ -85,18 +87,12 @@ class MediaSelectionViewController: UITableViewController {
 extension MediaSelectionViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        let audioOptionAvailable = !(self.mediaSelectionGroup(forSection: 0)?.options.isEmpty ?? true)
-        let subtitleOptionAvailable = !(self.mediaSelectionGroup(forSection: 1)?.options.isEmpty ?? true)
-
-        var numberOfSections = 0
-        if audioOptionAvailable { numberOfSections += 1 }
-        if subtitleOptionAvailable { numberOfSections += 1 }
-        return numberOfSections
+        return self.mediaCharacteristics.filter { self.multipleOptionAvailable(forMediaCharacteristic: $0) }.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let mediaSelectionGroup = self.mediaSelectionGroup(forSection: section) else { return 1 }
-        return self.allowsEmptySelection(in: section) ? mediaSelectionGroup.options.count + 1 : mediaSelectionGroup.options.count
+        return self.allowsEmptySelection(inSection: section) ? mediaSelectionGroup.options.count + 1 : mediaSelectionGroup.options.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -106,11 +102,11 @@ extension MediaSelectionViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
+        switch self.mediaCharacteristic(forSection: section) {
+        case .audible:
             return NSLocalizedString("media-option-selection.section.title.audio",
                                      comment: "section title for audio in the media option selection")
-        case 1:
+        case .legible:
             return NSLocalizedString("media-option-selection.section.title.subtitles",
                                      comment: "section title for subtitles and closed captions in the media option selection")
         default:
@@ -118,19 +114,12 @@ extension MediaSelectionViewController {
         }
     }
 
-    private func mediaCharacteristic(forSection section: Int) -> AVMediaCharacteristic? {
-        switch section {
-        case 0:
-            return .audible
-        case 1:
-            return .legible
-        default:
-            return nil
-        }
+    private func mediaCharacteristic(forSection section: Int) -> AVMediaCharacteristic {
+        return self.mediaCharacteristics.filter { self.multipleOptionAvailable(forMediaCharacteristic: $0) }[section]
     }
 
     private func mediaSelectionGroup(forSection section: Int) -> AVMediaSelectionGroup? {
-        guard let mediaCharacteristic = self.mediaCharacteristic(forSection: section) else { return nil }
+        let mediaCharacteristic = self.mediaCharacteristic(forSection: section)
         return self.mediaSelectionGroup(forMediaCharacteristic: mediaCharacteristic)
     }
 
@@ -138,9 +127,19 @@ extension MediaSelectionViewController {
         return self.delegate?.currentMediaSelection?.asset?.mediaSelectionGroup(forMediaCharacteristic: mediaCharacteristic)
     }
 
-    private func allowsEmptySelection(in section: Int) -> Bool {
-        guard let mediaSelectionGroup = self.mediaSelectionGroup(forSection: section) else { return false }
-        return mediaSelectionGroup.allowsEmptySelection && section == 1
+    private func multipleOptionAvailable(forMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) -> Bool {
+        guard let mediaSelectionGroup = self.mediaSelectionGroup(forMediaCharacteristic: mediaCharacteristic) else { return false }
+        return self.allowsEmptySelection(forMediaCharacteristic: mediaCharacteristic) || mediaSelectionGroup.options.count > 1
+    }
+
+    private func allowsEmptySelection(inSection section: Int) -> Bool {
+        let mediaCharacteristic = self.mediaCharacteristic(forSection: section)
+        return self.allowsEmptySelection(forMediaCharacteristic: mediaCharacteristic)
+    }
+
+    private func allowsEmptySelection(forMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) -> Bool {
+        guard let mediaSelectionGroup = self.mediaSelectionGroup(forMediaCharacteristic: mediaCharacteristic) else { return false }
+        return mediaSelectionGroup.allowsEmptySelection && mediaCharacteristic == .legible
     }
 
     private func titleForOption(at indexPath: IndexPath) -> String {
@@ -149,7 +148,7 @@ extension MediaSelectionViewController {
                                      comment: "cell title for an unknonw option in the media option selection")
         }
 
-        let allowsEmptySelection = self.allowsEmptySelection(in: indexPath.section)
+        let allowsEmptySelection = self.allowsEmptySelection(inSection: indexPath.section)
         if allowsEmptySelection, indexPath.row == 0 {
             return NSLocalizedString("media-option-selection.cell.title.off",
                                      comment: "cell title for the off option in the media option selection")
@@ -176,7 +175,7 @@ extension MediaSelectionViewController {
             self.tableView.deselectRow(at: indexPathToDeselect, animated: trueUnlessReduceMotionEnabled)
         }
 
-        let allowsEmptySelection = self.allowsEmptySelection(in: indexPath.section)
+        let allowsEmptySelection = self.allowsEmptySelection(inSection: indexPath.section)
         if allowsEmptySelection, indexPath.row == 0 {
             self.delegate?.select(nil, in: mediaSelectionGroup)
             self.tableView.selectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled, scrollPosition: .none)

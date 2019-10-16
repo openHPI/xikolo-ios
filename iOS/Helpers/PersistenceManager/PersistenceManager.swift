@@ -35,6 +35,7 @@ protocol PersistenceManager: AnyObject {
 
     // configuration
     func downloadTask(with url: URL, for resource: Resource, on session: Session) -> URLSessionTask?
+    func startSupplementaryDownloads(for task: URLSessionTask, with resourceIdentifier: String) -> Bool
     func resourceModificationAfterStartingDownload(for resource: Resource)
     func resourceModificationAfterDeletingDownload(for resource: Resource)
 
@@ -210,6 +211,7 @@ extension PersistenceManager {
 
     // MARK: callbacks
 
+    // swiftlint:disable:next function_body_length
     func didCompleteDownloadTask(_ task: URLSessionTask, with error: Error?) {
         guard let resourceId = self.activeDownloads.removeValue(forKey: task) else { return }
 
@@ -251,14 +253,20 @@ extension PersistenceManager {
                         log.error("Failed to complete download for '\(Self.downloadType)' resource '\(resourceId)': \(error)")
                     }
                 } else {
-                    userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloaded.rawValue
+                    let started = self.startSupplementaryDownloads(for: task, with: resourceId)
 
-                    let fetchRequest = self.fetchRequest
-                    fetchRequest.predicate = NSPredicate(format: "id == %@", resourceId)
-                    fetchRequest.fetchLimit = 1
+                    if started {
+                        userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloading.rawValue
+                    } else {
+                        userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloaded.rawValue
 
-                    if let resource = context.fetchSingle(fetchRequest).value {
-                        self.didFinishDownload(for: resource)
+                        let fetchRequest = self.fetchRequest
+                        fetchRequest.predicate = NSPredicate(format: "id == %@", resourceId)
+                        fetchRequest.fetchLimit = 1
+
+                        if let resource = context.fetchSingle(fetchRequest).value {
+                            self.didFinishDownload(for: resource)
+                        }
                     }
                 }
 
@@ -325,6 +333,7 @@ extension PersistenceManager {
 
     // MARK: configurations
 
+    func startSupplementaryDownloads(for task: URLSessionTask, with resourceIdentifier: String) -> Bool { return false }
     func resourceModificationAfterStartingDownload(for resource: Resource) {}
     func resourceModificationAfterDeletingDownload(for resource: Resource) {}
 

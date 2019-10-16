@@ -100,6 +100,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         #endif
 
+        UICollectionView.enableEmptyStates()
+        UITableView.enableEmptyStates()
+
         return true
     }
 

@@ -6,7 +6,6 @@
 import BrightFutures
 import Common
 import CoreData
-import DZNEmptyDataSet
 import UIKit
 
 class DocumentListViewController: UITableViewController {
@@ -70,13 +69,6 @@ class DocumentListViewController: UITableViewController {
 
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         self.scrollDelegate?.scrollViewDidEndDecelerating(scrollView)
-    }
-
-    func setupEmptyState() {
-        self.tableView.emptyDataSetSource = self
-        self.tableView.emptyDataSetDelegate = self
-        self.tableView.tableFooterView = UIView()
-        self.tableView.reloadEmptyDataSet()
     }
 
     @objc func reachabilityChanged() {
@@ -163,15 +155,20 @@ extension DocumentListViewController: UserActionsDelegate {
 
 }
 
-extension DocumentListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension DocumentListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title = NSLocalizedString("empty-view.course-documents.title", comment: "title for empty course documents list")
-        return NSAttributedString(string: title)
+    var emptyStateTitleText: String {
+        return NSLocalizedString("empty-view.course-documents.title", comment: "title for empty course documents list")
     }
 
-    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+    func didTapOnEmptyStateView() {
         self.refresh()
+    }
+
+    func setupEmptyState() {
+        self.tableView.emptyStateDataSource = self
+        self.tableView.emptyStateDelegate = self
+        self.tableView.tableFooterView = UIView()
     }
 
 }

@@ -10,7 +10,6 @@ public protocol EmptyStateDelegate: AnyObject {
     func didTapOnEmptyStateView()
 }
 
-
 /// This protocol provides the table view object with the information it needs to construct and modify a `EmptyStateView`.
 public protocol EmptyStateDataSource: AnyObject {
 
@@ -48,9 +47,7 @@ extension EmptyStateProtocol {
         get {
             guard let emptyStateView = objc_getAssociatedObject(self, &AssociatedKeys.emptyStateView) as? EmptyStateView else {
                 let emptyStateView = EmptyStateView()
-                emptyStateView.tapHandler = { [weak self] in
-                    self?.emptyStateDelegate?.didTapOnEmptyStateView()
-                }
+                emptyStateView.tapHandler = { [weak self] in self?.emptyStateDelegate?.didTapOnEmptyStateView() }
                 self.emptyStateView = emptyStateView
                 return emptyStateView
             }

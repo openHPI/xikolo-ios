@@ -58,10 +58,10 @@ class CustomBMPlayer: BMPlayer {
         self.pictureInPictureWasStartedAutomatically = true
     }
 
-    func automaticallyStopPicutureinPictureModeIfNecessary() {
+    func automaticallyStopPicutureinPictureModeIfNecessary(force: Bool = false) {
         guard let pictureInPictureController = self.pictureInPictureController else { return }
         guard pictureInPictureController.isPictureInPictureActive else { return }
-        guard self.pictureInPictureWasStartedAutomatically else { return }
+        guard self.pictureInPictureWasStartedAutomatically || force else { return }
         pictureInPictureController.stopPictureInPicture()
         self.pictureInPictureWasStartedAutomatically = false
     }

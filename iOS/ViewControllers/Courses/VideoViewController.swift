@@ -155,6 +155,7 @@ class VideoViewController: UIViewController {
         }
 
         if self.didViewAppear {
+            self.player?.automaticallyStopPicutureinPictureModeIfNecessary(force: true)
             self.trackVideoClose()
         }
     }

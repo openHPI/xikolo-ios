@@ -11,21 +11,25 @@ import SyncEngine
 public final class CourseProgress: NSManagedObject {
 
     @NSManaged public var id: String
+    
     @NSManaged public var mainExercisesAvailable: Int
     @NSManaged public var mainExercisesTaken: Int
-    @NSManaged public var mainPointsPossible: Float
-    @NSManaged public var mainPointsScored: Float
+    @NSManaged public var mainPointsPossible: Double
+    @NSManaged public var mainPointsScored: Double
+
     @NSManaged public var selftestExercisesAvailable: Int
     @NSManaged public var selftestExercisesTaken: Int
-    @NSManaged public var selftestPointsPossible: Float
-    @NSManaged public var selftestPointsScored: Float
+    @NSManaged public var selftestPointsPossible: Double
+    @NSManaged public var selftestPointsScored: Double
+
     @NSManaged public var bonusExercisesAvailable: Int
     @NSManaged public var bonusExercisesTaken: Int
-    @NSManaged public var bonusPointsPossible: Float
-    @NSManaged public var bonusPointsScored: Float
+    @NSManaged public var bonusPointsPossible: Double
+    @NSManaged public var bonusPointsScored: Double
+
     @NSManaged public var itemsAvailable: Int
     @NSManaged public var itemsVisited: Int
-    @NSManaged public var visitsPercentage: Float
+    @NSManaged public var visitsPercentage: Double
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseProgress> {
         return NSFetchRequest<CourseProgress>(entityName: "CourseProgress")

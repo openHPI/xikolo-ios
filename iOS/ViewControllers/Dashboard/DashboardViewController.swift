@@ -16,17 +16,17 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
 
         if Brand.default.features.showCourseDatesOnDashboard {
-            let dateOverview = R.storyboard.courseDateOverview.instantiateInitialViewController().require()
-            self.addContentController(dateOverview)
+            let dateOverviewViewController = R.storyboard.courseDateOverview.instantiateInitialViewController().require()
+            self.addContentController(dateOverviewViewController)
         }
 
-        let viewConntroler = R.storyboard.courseOverview.instantiateInitialViewController().require()
-        viewConntroler.configuration = .currentCourses
-        self.addContentController(viewConntroler)
+        let currentCoursesViewController = R.storyboard.courseOverview.instantiateInitialViewController().require()
+        currentCoursesViewController.configuration = .currentCourses
+        self.addContentController(currentCoursesViewController)
 
-        let viewConntroler2 = R.storyboard.courseOverview.instantiateInitialViewController().require()
-        viewConntroler2.configuration = .completedCourses
-        self.addContentController(viewConntroler2)
+        let completedCoursesViewController = R.storyboard.courseOverview.instantiateInitialViewController().require()
+        completedCoursesViewController.configuration = .completedCourses
+        self.addContentController(completedCoursesViewController)
 
         self.addRefreshControl()
         self.refresh()

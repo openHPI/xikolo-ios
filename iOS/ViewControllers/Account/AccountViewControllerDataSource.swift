@@ -48,7 +48,7 @@ class AccountViewControllerDataSource: NSObject {
     }()
 
     private lazy var sendFeedbackItem: DataSourceItem = {
-        let title = NSLocalizedString("settings.cell-title.app-feedback", comment: "cell title for app feedback")
+        let title = NSLocalizedString("settings.cell-title.app-helpdesk", comment: "cell title for helpdesk")
         return SegueItem(title: title, segueIdentifier: R.segue.accountViewController.sendFeedback)
     }()
 

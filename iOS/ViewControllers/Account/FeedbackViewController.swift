@@ -14,6 +14,14 @@ class FeedbackViewController: UIViewController,  UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var mailAddressTextField: UITextField!
     @IBOutlet weak var coursePicker: UIPickerView!
     @IBOutlet weak var issueTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var issueText: UITextView!
+
+    //self.navigationItem.rightBarButtonItem?.isEnabled
+
+    private lazy var courseTitles: [String] = {
+        let result = CoreDataHelper.viewContext.fetchMultiple(CourseHelper.FetchRequest.visibleCourses).value
+        return result?.compactMap { $0.title } ?? []
+    }()
 
     @IBAction func indexSelected(_ sender: Any) {
         if (issueTypeSegmentedControl.selectedSegmentIndex == 1){
@@ -24,18 +32,14 @@ class FeedbackViewController: UIViewController,  UIPickerViewDelegate, UIPickerV
         }
     }
 
-    @IBAction func choseFeedback(_ sender: Any) {
-        coursePicker.isHidden = false
-    }
-
     @IBAction func issueTitleReturn(_ sender: UITextField) {
         let issueTitle = issueTitleTextField.text
-        print ("issueTitle =", issueTitle ?? "")
+        print ("issueTitle =", issueTitle)
     }
 
     @IBAction func mailAddressReturn(_ sender: UITextField) {
         let mailAddress = mailAddressTextField.text
-        print ("mailAddress =", mailAddress ?? "")
+        print ("mailAddress =", mailAddress!)
     }
 
     @IBAction func cancel(_ sender: Any) {
@@ -54,9 +58,7 @@ class FeedbackViewController: UIViewController,  UIPickerViewDelegate, UIPickerV
     }
 
     func pickerView(_ coursePicker: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        let result = CoreDataHelper.viewContext.fetchMultiple(CourseHelper.FetchRequest.visibleCourses).value
-        let titles = result?.compactMap { $0.title } ?? []
-        return titles.count
+        return self.courseTitles.count
     }
 
     func numberOfComponents(in coursePicker: UIPickerView) -> Int {
@@ -64,9 +66,7 @@ class FeedbackViewController: UIViewController,  UIPickerViewDelegate, UIPickerV
     }
 
     func pickerView(_ coursePicker: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let result = CoreDataHelper.viewContext.fetchMultiple(CourseHelper.FetchRequest.visibleCourses).value
-        let titles = result?.compactMap { $0.title } ?? []
-        return titles[row]
+        return self.courseTitles[row]
     }
 
     var course: Course?
@@ -75,7 +75,7 @@ class FeedbackViewController: UIViewController,  UIPickerViewDelegate, UIPickerV
         super.viewDidLoad()
         coursePicker.isHidden = true
 
-        if (Brand.default.host == "open.sap.com") {
+        if (Brand.default.features.enableReactivation) {
             issueTypeSegmentedControl.insertSegment(withTitle: "reactivation", at: 2, animated: false)
         }
 

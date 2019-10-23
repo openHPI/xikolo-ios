@@ -38,6 +38,8 @@
 	</dict>
 	<key>features</key>
 	<dict>
+		<key>enableReactivation</key>
+		<false/>
 		<key>enableDocuments</key>
 		<true/>
 		<key>enableRecap</key>

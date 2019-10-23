@@ -273,7 +273,7 @@
 "settings.app.version.label" = "Version";
 
 /* cell title for app feedback */
-"settings.cell-title.app-feedback" = "Send App Feedback";
+"settings.cell-title.app-helpdesk" = "Helpdesk";
 
 /* cell title for certificates */
 "settings.cell-title.certificates" = "Certificates";

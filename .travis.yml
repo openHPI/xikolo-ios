@@ -1,6 +1,7 @@
 language: objective-c
 osx_image: xcode11
 xcode_workspace: xikolo-ios.xcworkspace
+cache: cocoapods
 
 env:
   - CHECK_LOCALIZATION=1

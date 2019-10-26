@@ -517,7 +517,7 @@
         <scene sceneID="zeb-jN-C21">
             <objects>
                 <tableViewController id="l2c-fE-ju1" customClass="HelpdeskViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="FWD-EI-Pg5">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="FWD-EI-Pg5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <view key="tableHeaderView" contentMode="scaleAspectFit" id="0X5-zw-iYv">
@@ -604,43 +604,22 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Type" id="uow-c8-Cf3">
+                            <tableViewSection id="uow-c8-Cf3">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="iod-Ci-Miz">
-                                        <rect key="frame" x="20" y="367.5" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iod-Ci-Miz" id="bnD-2V-gxb">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <segmentedControl multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BTZ-Zx-T89">
-                                                    <rect key="frame" x="10" y="5.5" width="354" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <segments>
-                                                        <segment title="technical"/>
-                                                        <segment title="course-specific"/>
-                                                    </segments>
-                                                    <connections>
-                                                        <action selector="indexSelected:" destination="l2c-fE-ju1" eventType="valueChanged" id="S8Y-fc-DLH"/>
-                                                        <action selector="indexSelected:" destination="jsg-eT-U36" eventType="valueChanged" id="Yn0-CU-8eU"/>
-                                                    </connections>
-                                                </segmentedControl>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="iLZ-Wk-p4c">
-                                        <rect key="frame" x="20" y="411" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="347.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iLZ-Wk-p4c" translatesAutoresizingMaskIntoConstraints="NO" id="yag-1O-rf5">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqm-FG-FoJ">
+                                                <pickerView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqm-FG-FoJ">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="216"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </pickerView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mqm-FG-FoJ" firstAttribute="centerX" secondItem="yag-1O-rf5" secondAttribute="centerX" id="23A-6S-7do"/>
+                                                <constraint firstItem="mqm-FG-FoJ" firstAttribute="centerY" secondItem="yag-1O-rf5" secondAttribute="centerY" id="dTH-Nr-AHt"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -648,13 +627,13 @@
                             <tableViewSection headerTitle="Your Issue" id="Kr0-w1-KaR">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dRf-Zv-2xu">
-                                        <rect key="frame" x="20" y="510.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="447" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dRf-Zv-2xu" id="BbS-hH-4Ez">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" misplaced="YES" scrollEnabled="NO" text="Your issue" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KcN-el-VIf">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" misplaced="YES" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KcN-el-VIf">
                                                     <rect key="frame" x="20" y="20" width="334" height="28"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -696,7 +675,6 @@
                         <outlet property="issueText" destination="KcN-el-VIf" id="Qrg-8L-pN9"/>
                         <outlet property="issueTextCell" destination="dRf-Zv-2xu" id="8gs-4O-LH0"/>
                         <outlet property="issueTitleTextField" destination="HJJ-fU-Fdn" id="C7s-ys-qMg"/>
-                        <outlet property="issueTypeSegmentedControl" destination="BTZ-Zx-T89" id="dJm-mg-p1Z"/>
                         <outlet property="mailAddressTextField" destination="Fs0-LO-E4J" id="762-oQ-FUZ"/>
                         <outlet property="pickerCell" destination="iLZ-Wk-p4c" id="9Bl-5Y-oiJ"/>
                     </connections>

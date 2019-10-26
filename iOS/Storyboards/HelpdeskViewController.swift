@@ -13,25 +13,27 @@ class HelpdeskViewController: UITableViewController {
     @IBOutlet weak var issueTitleTextField: UITextField!
     @IBOutlet weak var mailAddressTextField: UITextField!
     @IBOutlet weak var coursePicker: UIPickerView!
-    @IBOutlet weak var issueTypeSegmentedControl: UISegmentedControl!
+    //@IBOutlet weak var issueTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var issueText: UITextView!
     @IBOutlet weak var pickerCell: UITableViewCell!
     @IBOutlet var HelpdeskTableView: UITableView!
     @IBOutlet weak var issueTextCell: UITableViewCell!
+    lazy var issueTypeSegmentedControl : UISegmentedControl = {
+        let items = ["technical", "course-specific"]
+        var issueTypeSegmentedControl = UISegmentedControl.init(items: items)
+        if (Brand.default.features.enableReactivation) {
+            issueTypeSegmentedControl.insertSegment(withTitle: "reactivation", at: 2, animated: false)
+        }
+        issueTypeSegmentedControl.selectedSegmentIndex = 0
+        issueTypeSegmentedControl.addTarget(self, action: #selector(indexSelected(_:)), for: .valueChanged)
+        return issueTypeSegmentedControl
+    }()
 
     @IBAction func indexSelected(_ sender: Any) {
-        if (issueTypeSegmentedControl.selectedSegmentIndex == 1){
-            pickerCell.sizeToFit()
-            pickerCell.isHidden = false
-            coursePicker.isHidden = false
-            //self.HelpdeskTableView.numberOfRows(inSection: 2)
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
         }
-        else {
-            coursePicker.isHidden = true
-            pickerCell.isHidden = true
-            //self.HelpdeskTableView.numberOfRows(inSection: 2)
-        }
-    }
+
 
     @IBAction func onValueChange(_ sender: Any) {
         if ((mailAddressTextField.text != nil) && (mailAddressTextField.text != "") && (issueTitleTextField.text != nil) && (issueTitleTextField.text != "") &&
@@ -57,23 +59,27 @@ class HelpdeskViewController: UITableViewController {
     var course: Course?
     var user: User?
 
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        var num: Int
-//        if ((issueTypeSegmentedControl.selectedSegmentIndex == 1) && (section == 2)) {
-//            num = 2
-//            }
-//        else {
-//            num = 1
-//            }
-//        return num
-//    }
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        var height: CGFloat = 43.5
-//        if ((indexPath.section == 2) && (indexPath.row == 1)){
-//        height = 216.0
-//        }
-//        return height
-//    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 2 {
+            return issueTypeSegmentedControl.selectedSegmentIndex == 1 ? 216.0 : 0
+        }
+        return super.tableView(tableView, heightForRowAt: indexPath)
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section == 2 else { return nil }
+        var view = UIView()
+        view.addSubview(issueTypeSegmentedControl)
+        view.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 48)
+        issueTypeSegmentedControl.frame = CGRect(x: 0, y: 13, width: view.bounds.width, height: 31)
+        issueTypeSegmentedControl.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        return view
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard section == 2 else { return super.tableView(tableView, heightForHeaderInSection: section) }
+        return 48
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,15 +87,8 @@ class HelpdeskViewController: UITableViewController {
     self.navigationItem.rightBarButtonItem!.isEnabled = false
         HelpdeskTableView.delegate = self
         coursePicker.delegate = self
+        coursePicker.dataSource = self
         issueText.delegate = self
-
-        coursePicker.isHidden = true
-        pickerCell.isHidden = true
-        pickerCell.sizeToFit()
-
-        if (Brand.default.features.enableReactivation) {
-            issueTypeSegmentedControl.insertSegment(withTitle: "reactivation", at: 2, animated: false)
-        }
 
         if (user != nil) {
             HelpdeskTableView.deleteSections([1], with: UITableView.RowAnimation(rawValue: 0)!)
@@ -100,15 +99,24 @@ class HelpdeskViewController: UITableViewController {
             issueTypeSegmentedControl.insertSegment(withTitle: course.title, at: 0, animated: false)
         }
     }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-
     override func viewDidLayoutSubviews() {
            super.viewDidLayoutSubviews()
            self.tableView.resizeTableHeaderView()
        }
+}
+
+extension HelpdeskViewController: UIPickerViewDataSource {
+    func pickerView(_ coursePicker: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+         return self.courseTitles[row]
+     }
+
+    func pickerView(_ coursePicker: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.courseTitles.count
+    }
+
+    func numberOfComponents(in coursePicker: UIPickerView) -> Int {
+        return 1
+    }
 }
 
 extension HelpdeskViewController: UIPickerViewDelegate {
@@ -117,19 +125,6 @@ extension HelpdeskViewController: UIPickerViewDelegate {
                     inComponent component: Int){
         let issueCourse = row
         print ("issueCourse =", issueCourse)
-    }
-
-    func pickerView(_ coursePicker: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-         return self.courseTitles[row]
-     }
-
-    func pickerView(_ coursePicker: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.courseTitles.count
-        //+2 to start without a chosen type
-    }
-
-    func numberOfComponents(in coursePicker: UIPickerView) -> Int {
-        return 1
     }
 }
 

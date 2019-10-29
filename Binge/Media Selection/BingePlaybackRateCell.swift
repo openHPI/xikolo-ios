@@ -1,9 +1,6 @@
 //
-//  BingePlaybackRateCell.swift
-//  Binge
-//
-//  Created by Max Bothe on 24.01.19.
-//  Copyright © 2019 Hasso-Plattener-Institut. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import UIKit
@@ -64,4 +61,3 @@ class BingePlaybackRateCell: UITableViewCell {
     }
 
 }
-

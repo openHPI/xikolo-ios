@@ -1,9 +1,6 @@
 //
-//  Accessiblity.swift
-//  Binge
-//
-//  Created by Max Bothe on 20.04.19.
-//  Copyright © 2019 Hasso-Plattener-Institut. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import UIKit

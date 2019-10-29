@@ -1,9 +1,6 @@
 //
-//  BingeLoadingIndicatorView.swift
-//  Binge
-//
-//  Created by Max Bothe on 25.01.19.
-//  Copyright © 2019 Hasso-Plattener-Institut. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import UIKit
@@ -33,7 +30,7 @@ class BingeLoadingIndicator: UIView {
     @IBInspectable var duration: CFTimeInterval = 1.0
 
     private var loadingIndicatorLayer: BingeLoadingIndicatorLayer {
-        return self.layer as! BingeLoadingIndicatorLayer
+        return self.layer as! BingeLoadingIndicatorLayer // swiftlint:disable:this force_cast
     }
 
     override static var layerClass: AnyClass {

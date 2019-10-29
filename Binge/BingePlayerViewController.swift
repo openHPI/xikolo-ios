@@ -1,9 +1,6 @@
 //
-//  BingeVideoViewController.swift
-//  Binge
-//
-//  Created by Max Bothe on 21.01.19.
-//  Copyright © 2019 Hasso-Plattener-Institut. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import AVFoundation
@@ -122,7 +119,6 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
-
     public var preferredPeakBitRate: Double? {
         didSet {
             guard let preferredPeakBitRate = self.preferredPeakBitRate else { return }
@@ -225,7 +221,13 @@ public class BingePlayerViewController: UIViewController {
             self.controlsContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             self.volumeIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             self.volumeIndicator.topAnchor.constraint(equalTo: view.topAnchor),
-            NSLayoutConstraint(item: self.volumeIndicator, attribute: .width, relatedBy: .equal, toItem: self.playerView, attribute: .width, multiplier: 0.5, constant: 0),
+            NSLayoutConstraint(item: self.volumeIndicator,
+                               attribute: .width,
+                               relatedBy: .equal,
+                               toItem: self.playerView,
+                               attribute: .width,
+                               multiplier: 0.5,
+                               constant: 0),
             self.loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             self.loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             self.loadingIndicator.heightAnchor.constraint(equalToConstant: 55),
@@ -247,7 +249,7 @@ public class BingePlayerViewController: UIViewController {
             self.controlsViewController.view.leadingAnchor.constraint(equalTo: controlsContainer.leadingAnchor),
             self.controlsViewController.view.trailingAnchor.constraint(equalTo: controlsContainer.trailingAnchor),
             self.controlsViewController.view.topAnchor.constraint(equalTo: controlsContainer.topAnchor),
-            self.controlsViewController.view.bottomAnchor.constraint(equalTo: controlsContainer.bottomAnchor)
+            self.controlsViewController.view.bottomAnchor.constraint(equalTo: controlsContainer.bottomAnchor),
         ])
 
         self.controlsViewController.didMove(toParent: self)
@@ -277,7 +279,10 @@ public class BingePlayerViewController: UIViewController {
         }
 
         if #available(iOS 11, *) {
-            NotificationCenter.default.addObserver(self, selector: #selector(handleMultipleRoutes), name: .AVRouteDetectorMultipleRoutesDetectedDidChange, object: nil)
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(handleMultipleRoutes),
+                                                   name: .AVRouteDetectorMultipleRoutesDetectedDidChange,
+                                                   object: nil)
         }
     }
 
@@ -300,7 +305,7 @@ public class BingePlayerViewController: UIViewController {
         self.cleanUpPlayerPeriodicTimeObserver()
     }
 
-    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
         if self.shouldEnterFullScreenModeInLandscapeOrientation {
@@ -317,7 +322,7 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &playerViewControllerKVOContext else {
             return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
@@ -428,8 +433,7 @@ public class BingePlayerViewController: UIViewController {
         let interval = CMTime(seconds: 1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
 
         // Use a weak self variable to avoid a retain cycle in the block.
-        self.timeObserverToken = self.player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) {
-            [weak self] time in
+        self.timeObserverToken = self.player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) { [weak self] time in
             guard let item = self?.player.currentItem else { return }
             let currentTime = CMTimeGetSeconds(time)
             let totalTime = CMTimeGetSeconds(item.duration)
@@ -451,13 +455,14 @@ public class BingePlayerViewController: UIViewController {
 
         UIView.transition(with: self.controlsContainer,
                           duration: 0.25,
-                          options: [.transitionCrossDissolve, .curveEaseInOut], animations: { [weak self] in
+                          options: [.transitionCrossDissolve, .curveEaseInOut],
+                          animations: { [weak self] in
             self?.controlsContainer.isHidden = false
             self?.setNeedsStatusBarAppearanceUpdate()
             if #available(iOS 11, *) {
                 self?.setNeedsUpdateOfHomeIndicatorAutoHidden()
             }
-        }, completion: { [weak self] finished in
+        }, completion: { [weak self] _ in
             guard self?.layoutState != .remote else { return }
             if self?.didPlayToEnd ?? false { return }
             self?.autoHideControlsOverlay()
@@ -469,7 +474,8 @@ public class BingePlayerViewController: UIViewController {
 
         UIView.transition(with: self.view,
                           duration: 0.25,
-                          options: [.transitionCrossDissolve, .curveEaseInOut], animations: { [weak self] in
+                          options: [.transitionCrossDissolve, .curveEaseInOut],
+                          animations: { [weak self] in
             self?.controlsContainer.isHidden = true
             self?.setNeedsStatusBarAppearanceUpdate()
             if #available(iOS 11, *) {
@@ -496,7 +502,10 @@ public class BingePlayerViewController: UIViewController {
 
         self.pictureInPictureController = AVPictureInPictureController(playerLayer: self.playerView.playerLayer)
         self.pictureInPictureController?.delegate = self
-        self.pictureInPictureController?.addObserver(self, forKeyPath: "pictureInPicturePossible", options: [.new, .initial], context: &playerViewControllerKVOContext)
+        self.pictureInPictureController?.addObserver(self,
+                                                     forKeyPath: "pictureInPicturePossible",
+                                                     options: [.new, .initial],
+                                                     context: &playerViewControllerKVOContext)
     }
 
     public func automaticallyStartPicutureinPictureModeIfPossible() {
@@ -530,24 +539,24 @@ public class BingePlayerViewController: UIViewController {
     private func setupMediaPlayerCommands() {
         let commandCenter = MPRemoteCommandCenter.shared()
 
-        commandCenter.playCommand.addTarget { [weak self] event in
+        commandCenter.playCommand.addTarget { [weak self] _ in
             self?.startPlayback()
             return .success
         }
 
-        commandCenter.pauseCommand.addTarget { [weak self] event in
+        commandCenter.pauseCommand.addTarget { [weak self] _ in
             self?.pausePlayback()
             return .success
         }
 
         commandCenter.skipForwardCommand.preferredIntervals = [NSNumber(value: 5)]
-        commandCenter.skipForwardCommand.addTarget { [weak self] event in
+        commandCenter.skipForwardCommand.addTarget { [weak self] _ in
             self?.seekForwards()
             return .success
         }
 
         commandCenter.skipBackwardCommand.preferredIntervals = [NSNumber(value: 5)]
-        commandCenter.skipBackwardCommand.addTarget { [weak self] event in
+        commandCenter.skipBackwardCommand.addTarget { [weak self] _ in
             self?.seekBackwards()
             return .success
         }
@@ -707,9 +716,10 @@ extension BingePlayerViewController {
     private func showVolumeIndicator() {
         UIView.transition(with: self.volumeIndicator,
                           duration: 0.25,
-                          options: [.transitionCrossDissolve, .curveEaseInOut], animations: { [weak self] in
+                          options: [.transitionCrossDissolve, .curveEaseInOut],
+                          animations: { [weak self] in
             self?.volumeIndicator.alpha = 1
-        }, completion: { [weak self] finished in
+        }, completion: { [weak self] _ in
             self?.autoHideVolumenIndicator()
         })
     }
@@ -720,7 +730,8 @@ extension BingePlayerViewController {
             guard let indicator = self?.volumeIndicator else { return }
             UIView.transition(with: indicator,
                               duration: 0.25,
-                              options: [.transitionCrossDissolve, .curveEaseInOut], animations: { [weak self] in
+                              options: [.transitionCrossDissolve, .curveEaseInOut],
+                              animations: { [weak self] in
                 self?.volumeIndicator.alpha = 0.001
             }, completion: nil)
         }
@@ -740,7 +751,8 @@ extension BingePlayerViewController {
             guard let view = self?.view else { return }
             UIView.transition(with: view,
                               duration: 0.25,
-                              options: [.transitionCrossDissolve, .curveEaseInOut], animations: { [weak self] in
+                              options: [.transitionCrossDissolve, .curveEaseInOut],
+                              animations: { [weak self] in
                 self?.controlsContainer.isHidden = true
                 self?.setNeedsStatusBarAppearanceUpdate()
                 if #available(iOS 11, *) {
@@ -771,7 +783,8 @@ extension BingePlayerViewController: UIPopoverPresentationControllerDelegate {
 
 extension BingePlayerViewController: AVPictureInPictureControllerDelegate {
 
-    public func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
+    public func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController,
+                                           restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         //Update video controls of main player to reflect the current state of the video playback.
         //You may want to update the video scrubber position.
         print("restoreUserInterfaceForPictureInPictureStopWithCompletionHandler")

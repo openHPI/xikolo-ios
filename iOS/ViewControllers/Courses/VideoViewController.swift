@@ -197,7 +197,7 @@ class VideoViewController: UIViewController {
         self.show(video: video)
     }
 
-    private func show(video: Video) { // swiftlint:disable:this function_body_length
+    private func show(video: Video) {
         self.video = video
 
         let hasUserActions = ReachabilityHelper.connection != .none || !video.userActions.isEmpty
@@ -504,7 +504,7 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         TrackingHelper.createEvent(.videoPlaybackChangeSpeed, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 
-    func didSeek(from oldTime: TimeInterval, to newTime: TimeInterval) { // swiftlint:disable:this identifier_name
+    func didSeek(from oldTime: TimeInterval, to newTime: TimeInterval) {
         guard let video = self.video else { return }
 
         var context = self.newTrackingContext

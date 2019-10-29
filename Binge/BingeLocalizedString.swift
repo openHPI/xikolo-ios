@@ -1,14 +1,11 @@
 //
-//  BingeLocalizedString.swift
-//  Binge
-//
-//  Created by Max Bothe on 14.02.19.
-//  Copyright © 2019 Hasso-Plattener-Institut. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 
-class BingeLocalizer {
+class BingeLocalizer { // swiftlint:disable:this convenience_type
 
     static func localizedString(_ key: String, comment: String) -> String {
         let bundle = Bundle(for: BingeLocalizer.self)

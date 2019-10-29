@@ -1,9 +1,6 @@
 //
-//  BingePlayerView.swift
-//  Binge
-//
-//  Created by Max Bothe on 21.01.19.
-//  Copyright © 2019 Hasso-Plattener-Institut. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import AVFoundation
@@ -16,7 +13,7 @@ class BingePlayerView: UIView {
     }
 
     var playerLayer: AVPlayerLayer {
-        return layer as! AVPlayerLayer
+        return layer as! AVPlayerLayer // swiftlint:disable:this force_cast
     }
 
     var player: AVPlayer? {

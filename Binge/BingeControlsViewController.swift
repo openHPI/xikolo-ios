@@ -1,9 +1,6 @@
 //
-//  BingeControlsViewController.swift
-//  Binge
-//
-//  Created by Max Bothe on 21.01.19.
-//  Copyright © 2019 Hasso-Plattener-Institut. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import AVFoundation
@@ -250,9 +247,11 @@ class BingeControlsViewController: UIViewController {
         parent.addSubview(self.titleView)
         parent.addSubview(self.topBarRightStackView)
         self.topBarRightStackView.addArrangedSubview(self.pictureInPictureButton)
+
         if #available(iOS 11, *) {
             self.topBarRightStackView.addArrangedSubview(self.airPlayButton)
         }
+
         self.topBarRightStackView.addArrangedSubview(self.settingsButton)
 
         parent.addSubview(self.playPauseButton)
@@ -326,12 +325,24 @@ class BingeControlsViewController: UIViewController {
             self.playPauseButton.heightAnchor.constraint(equalToConstant: 66),
             self.playPauseButton.widthAnchor.constraint(equalToConstant: 66),
 
-            NSLayoutConstraint(item: self.seekForwardButton, attribute: .centerX, relatedBy: .equal, toItem: parentMargins, attribute: .centerX, multiplier: 1.5, constant: 0),
+            NSLayoutConstraint(item: self.seekForwardButton,
+                               attribute: .centerX,
+                               relatedBy: .equal,
+                               toItem: parentMargins,
+                               attribute: .centerX,
+                               multiplier: 1.5,
+                               constant: 0),
             self.seekForwardButton.centerYAnchor.constraint(equalTo: self.playPauseButton.centerYAnchor),
             self.seekForwardButton.heightAnchor.constraint(equalToConstant: 44),
             self.seekForwardButton.widthAnchor.constraint(equalToConstant: 44),
 
-            NSLayoutConstraint(item: self.seekBackwardButton, attribute: .centerX, relatedBy: .equal, toItem: parentMargins, attribute: .centerX, multiplier: 0.5, constant: 0),
+            NSLayoutConstraint(item: self.seekBackwardButton,
+                               attribute: .centerX,
+                               relatedBy: .equal,
+                               toItem: parentMargins,
+                               attribute: .centerX,
+                               multiplier: 0.5,
+                               constant: 0),
             self.seekBackwardButton.centerYAnchor.constraint(equalTo: self.playPauseButton.centerYAnchor),
             self.seekBackwardButton.heightAnchor.constraint(equalToConstant: 44),
             self.seekBackwardButton.widthAnchor.constraint(equalToConstant: 44),
@@ -461,7 +472,6 @@ extension AVAsset {
         return urlAsset.url.isFileURL
     }
 }
-
 
 extension UIImage {
 

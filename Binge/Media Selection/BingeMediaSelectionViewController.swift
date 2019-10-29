@@ -1,9 +1,6 @@
 //
-//  BingeMediaSelectionViewController.swift
-//  Binge
-//
-//  Created by Max Bothe on 21.01.19.
-//  Copyright © 2019 Hasso-Plattener-Institut. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import AVFoundation
@@ -79,8 +76,7 @@ class BingeMediaSelectionViewController: UITableViewController {
 
 // UITableViewDataSource
 
-extension BingeMediaSelectionViewController  {
-
+extension BingeMediaSelectionViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.mediaCharacteristics.filter { self.multipleOptionAvailable(forMediaCharacteristic: $0) }.count + 1

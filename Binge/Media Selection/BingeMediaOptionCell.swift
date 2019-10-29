@@ -1,13 +1,16 @@
 //
-//  Created for xikolo-ios under MIT license.
-//  Copyright © HPI. All rights reserved.
+//  BingeMediaOptionCell.swift
+//  Binge
+//
+//  Created by Max Bothe on 21.01.19.
+//  Copyright © 2019 Hasso-Plattener-Institut. All rights reserved.
 //
 
 import UIKit
 
-class MediaSelectionOptionCell: UITableViewCell {
+class BingeMediaOptionCell: UITableViewCell {
 
-    static let identifier = "MediaSelectionOptionCell"
+    static let identifier = "BingeMediaOptionCell"
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)

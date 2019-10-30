@@ -81,6 +81,12 @@ public class BingePlayerViewController: UIViewController {
                 NotificationCenter.default.addObserver(self, selector: #selector(reachedPlaybackEnd), name: .AVPlayerItemDidPlayToEndTime, object: item)
             }
 
+            if self.asset == nil || self.initiallyShowControls {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    self.showControlsOverlay()
+                }
+            }
+
             self.updateMediaPlayerInfoCenter()
             self.setupMediaPlayerCommands()
         }
@@ -180,7 +186,7 @@ public class BingePlayerViewController: UIViewController {
     @available(iOS 11, *)
     private lazy var routeDetector = AVRouteDetector()
 
-    public var wantsAutoPlay = false
+    public var initiallyShowControls = true
     public var startProgress: Float?
 
     public var playbackRate: Float = 1.0 {
@@ -345,7 +351,10 @@ public class BingePlayerViewController: UIViewController {
             self.controlsViewController.adaptToBufferChange(availableTime: availableTime, totalTime: totalTime)
         } else if keyPath == "player.currentItem.status" {
             guard let item = self.player.currentItem else {
-                self.showControlsOverlay()
+                if playerWasConfigured {
+                    self.showControlsOverlay()
+                }
+
                 return
             }
 
@@ -364,13 +373,13 @@ public class BingePlayerViewController: UIViewController {
                     self.player.seek(to: newTime)
                 }
 
-                if self.wantsAutoPlay {
-                    self.startPlayback()
-                } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                        self.showControlsOverlay()
-                    }
-                }
+//                if self.initiallyHideControls {
+//                    self.startPlayback()
+//                } else {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+//                        self.showControlsOverlay()
+//                    }
+//                }
 
                 self.playerWasConfigured = true
             }

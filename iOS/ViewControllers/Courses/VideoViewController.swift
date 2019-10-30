@@ -77,7 +77,6 @@ class VideoViewController: UIViewController {
 
     private var playerViewController: BingePlayerViewController? {
         didSet {
-            self.playerViewController?.wantsAutoPlay = true
 //            self.playerViewController?.playbackRate = configuration.playbackRate
             self.playerViewController?.delegate = self
         }

@@ -10,16 +10,16 @@ import Common
 extension BingePlayerViewController {
 
     func configure(for video: Video) {
+        self.initiallyShowControls = false
+        self.assetTitle = video.item?.title
+        self.assetSubtitle = video.item?.section?.course?.title
+        self.preferredPeakBitRate = video.preferredPeakBitRate()
+
         if let offlinePlayableAsset = self.offlinePlayableAsset(for: video) {
             self.asset = offlinePlayableAsset
         } else if let fallbackURL = video.streamURLForDownload ?? video.singleStream?.hdURL ?? video.singleStream?.sdURL {
             self.asset = AVURLAsset(url: fallbackURL)
         }
-
-        self.wantsAutoPlay = false
-        self.assetTitle = video.item?.title
-        self.assetSubtitle = video.item?.section?.course?.title
-        self.preferredPeakBitRate = video.preferredPeakBitRate()
     }
 
     private func offlinePlayableAsset(for video: Video) -> AVURLAsset? {

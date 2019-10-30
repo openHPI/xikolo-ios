@@ -621,6 +621,8 @@ extension BingePlayerViewController: BingeControlDelegate {
     }
 
     public func startPlayback() {
+        guard self.player.timeControlStatus == .paused else { return }
+
         try? AVAudioSession.sharedInstance().setActive(true)
 
         if self.didPlayToEnd {

@@ -132,12 +132,12 @@ class VideoViewController: UIViewController {
         self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.didViewAppear = true
 
-        // Autoplay logic
-        // TODO
-//        if let player = self.player, !player.isPlaying, self.isFirstAppearance {
-//            player.play()
+        // Autoplay logic. Because this ViewController lives in a UIPageController which preloads the adjacent view controllers
+        if self.isFirstAppearance {
+            self.playerViewController?.startPlayback()
+            // TODO
 //            self.trackVideoPlay()
-//        }
+        }
 
         self.isFirstAppearance = false
 
@@ -247,7 +247,7 @@ class VideoViewController: UIViewController {
 
         self.playerViewController?.configure(for: video)
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-        try? AVAudioSession.sharedInstance().setActive(true)
+//        try? AVAudioSession.sharedInstance().setActive(true)
 
 //        // determine video url (local file, currently downloading or remote)
 //        var videoURL: URL
@@ -389,7 +389,7 @@ class VideoViewController: UIViewController {
 
     @objc func reachabilityChanged() {
         self.updateView(for: self.courseItem)
-        self.updatePreferredVideoBitrate()
+        self.playerViewController?.preferredPeakBitRate = self.video?.preferredPeakBitRate()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -449,19 +449,18 @@ class VideoViewController: UIViewController {
         }
     }
 
-    private func updatePreferredVideoBitrate() {
-        if let video = self.video, StreamPersistenceManager.shared.localFileLocation(for: video) == nil {
-            let videoQuaility: VideoQuality
-            if ReachabilityHelper.connection == .wifi {
-                videoQuaility = UserDefaults.standard.videoQualityOnWifi
-            } else {
-                videoQuaility = UserDefaults.standard.videoQualityOnCellular
-            }
-
-            // TODO
-//            self.player?.avPlayer?.currentItem?.preferredPeakBitRate = Double(videoQuaility.rawValue)
-        }
-    }
+//    private func updatePreferredVideoBitrate() {
+//        if let video = self.video, StreamPersistenceManager.shared.localFileLocation(for: video) == nil {
+//            let videoQuaility: VideoQuality
+//            if ReachabilityHelper.connection == .wifi {
+//                videoQuaility = UserDefaults.standard.videoQualityOnWifi
+//            } else {
+//                videoQuaility = UserDefaults.standard.videoQualityOnCellular
+//            }
+//
+//            self.playerViewController?.avPlayer?.currentItem?.preferredPeakBitRate = Double(videoQuaility.rawValue)
+//        }
+//    }
 
 }
 

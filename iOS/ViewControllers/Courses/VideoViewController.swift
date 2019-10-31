@@ -105,6 +105,9 @@ class VideoViewController: UIViewController {
         self.updateView(for: self.courseItem)
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
 
+        // Add pan gesture recognizer to video container to prevent an accidental course item switch or course dismissal
+        self.videoContainer.addGestureRecognizer(UIPanGestureRecognizer())
+
         // register notification observer
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,

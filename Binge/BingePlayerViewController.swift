@@ -592,13 +592,13 @@ public class BingePlayerViewController: UIViewController {
             return .success
         }
 
-        commandCenter.skipForwardCommand.preferredIntervals = [NSNumber(value: 5)]
+        commandCenter.skipForwardCommand.preferredIntervals = [NSNumber(value: 10)]
         commandCenter.skipForwardCommand.addTarget { [weak self] _ in
             self?.seekForwards()
             return .success
         }
 
-        commandCenter.skipBackwardCommand.preferredIntervals = [NSNumber(value: 5)]
+        commandCenter.skipBackwardCommand.preferredIntervals = [NSNumber(value: 10)]
         commandCenter.skipBackwardCommand.addTarget { [weak self] _ in
             self?.seekBackwards()
             return .success

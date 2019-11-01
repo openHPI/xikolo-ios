@@ -20,7 +20,7 @@ class BingeControlsViewController: UIViewController {
 
     private lazy var timeSlider: BingeTimeSlider = {
         let slider = BingeTimeSlider()
-        slider.isContinuous = false
+        slider.isContinuous = true
         slider.minimumTrackTintColor = .red
         slider.maximumTrackTintColor = .clear
         slider.tintColor = .red
@@ -33,7 +33,7 @@ class BingeControlsViewController: UIViewController {
 
         slider.setThumbImage(UIImage.bingeImage(named: "thumb-small"), for: .normal)
         slider.setThumbImage(UIImage.bingeImage(named: "thumb-big"), for: .highlighted)
-        slider.addTarget(self, action: #selector(changeProgress), for: .valueChanged)
+        slider.addTarget(self, action: #selector(changeProgress(sender:event:)), for: .valueChanged)
 
         return slider
     }()
@@ -395,8 +395,15 @@ class BingeControlsViewController: UIViewController {
         self.delegate.seekBackwards()
     }
 
-    @objc private func changeProgress(sender: UISlider) {
-        self.delegate.seekTo(progress: Double(sender.value))
+    @objc private func changeProgress(sender: UISlider, event: UIEvent) {
+        switch event.allTouches?.first?.phase {
+        case .began:
+            self.delegate.stopAutoHideOfControlsView()
+        case .ended:
+            self.delegate.seekTo(progress: Double(sender.value))
+        default:
+            break
+        }
     }
 
     @objc private func toggleFullScreenMode() {

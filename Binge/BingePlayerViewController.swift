@@ -634,6 +634,10 @@ extension BingePlayerViewController: BingeMediaSelectionDelegate {
 
 extension BingePlayerViewController: BingeControlDelegate {
 
+    func stopAutoHideOfControlsView() {
+        self.controlsOverlayDispatchWorkItem?.cancel()
+    }
+
     func showMediaSelection(for sourceView: UIView) {
         self.controlsOverlayDispatchWorkItem?.cancel()
 

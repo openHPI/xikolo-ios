@@ -411,6 +411,15 @@ class BingeControlsViewController: UIViewController {
         self.titleView.text = title
     }
 
+    func setTintColor(_ color: UIColor) {
+        self.timeSlider.tintColor = color
+        self.timeSlider.minimumTrackTintColor = color
+
+        if #available(iOS 11, *) {
+            self.airPlayButton.activeTintColor = color
+        }
+    }
+
     func adaptToItem(_ item: AVPlayerItem) {
         let duration = item.duration
         let isValidDuration = duration.isNumeric && duration.value != 0

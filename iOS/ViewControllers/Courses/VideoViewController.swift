@@ -78,6 +78,7 @@ class VideoViewController: UIViewController {
         didSet {
 //            self.playerViewController?.playbackRate = configuration.playbackRate
             self.playerViewController?.delegate = self
+            self.playerViewController?.tintColor = Brand.default.colors.window
         }
     }
 

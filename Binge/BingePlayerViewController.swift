@@ -115,6 +115,12 @@ public class BingePlayerViewController: UIViewController {
 
     public var assetSubtitle: String?
 
+    public var tintColor: UIColor = .red {
+        didSet {
+            self.controlsViewController.setTintColor(self.tintColor)
+        }
+    }
+
     private var playerWasConfigured = false
     private var didPlayToEnd = false
 

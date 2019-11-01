@@ -696,11 +696,11 @@ extension BingePlayerViewController: BingeControlDelegate {
     }
 
     func seekForwards() {
-        self.seekBy(offset: 5)
+        self.seekBy(offset: 10)
     }
 
     func seekBackwards() {
-        self.seekBy(offset: -5)
+        self.seekBy(offset: -10)
     }
 
     private func seekBy(offset: TimeInterval) {

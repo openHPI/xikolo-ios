@@ -13,7 +13,6 @@ class HelpdeskViewController: UITableViewController {
     @IBOutlet weak var issueTitleTextField: UITextField!
     @IBOutlet weak var mailAddressTextField: UITextField!
     @IBOutlet weak var coursePicker: UIPickerView!
-    //@IBOutlet weak var issueTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var issueText: UITextView!
     @IBOutlet weak var pickerCell: UITableViewCell!
     @IBOutlet var HelpdeskTableView: UITableView!
@@ -31,19 +30,13 @@ class HelpdeskViewController: UITableViewController {
     }()
 
     @IBAction func indexSelected(_ sender: Any) {
-            self.tableView.beginUpdates()
-            self.tableView.endUpdates()
-        }
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
+    }
 
 
     @IBAction func onValueChange(_ sender: Any) {
-        guard (mailAddressTextField.text != nil) && (mailAddressTextField.text != "") else { self.navigationItem.rightBarButtonItem!.isEnabled = false
-            return
-        }
-        guard (issueTitleTextField.text != nil) && (issueTitleTextField.text != "") else { self.navigationItem.rightBarButtonItem!.isEnabled = false
-            return
-        }
-        guard (issueText.text != nil) && (issueText.text != "") else { self.navigationItem.rightBarButtonItem!.isEnabled = false
+        guard (issueText.text != nil) && (issueText.text != "") && (issueTitleTextField.text != nil) && (issueTitleTextField.text != "") && (mailAddressTextField.text != nil) && (mailAddressTextField.text != "") else { self.navigationItem.rightBarButtonItem!.isEnabled = false
             return
         }
         if  (issueTypeSegmentedControl.selectedSegmentIndex == 1 &&
@@ -61,13 +54,23 @@ class HelpdeskViewController: UITableViewController {
 
     @IBAction func send(_ sender: Any) {
         self.dismiss(animated: trueUnlessReduceMotionEnabled)
-        print (issueTitleTextField.text!, mailAddressTextField.text!, issueText.text!)
+        print (issueTitleTextField.text!, mailAddressTextField.text!, issueText.text!,
+               issueTypeSegmentedControl.titleForSegment(at: issueTypeSegmentedControl.selectedSegmentIndex)!)
+        if issueTypeSegmentedControl.selectedSegmentIndex == 1 {
+            print (self.titles()[coursePicker.selectedRow(inComponent: 0)])
+        }
     }
 
-    private lazy var courseTitles: [String] = {
+    private lazy var courses: [Course] = {
         let result = CoreDataHelper.viewContext.fetchMultiple(CourseHelper.FetchRequest.visibleCourses).value
-        return result?.compactMap { $0.title } ?? []
+        return result ?? []
     }()
+
+    private lazy var titles = { () -> [String] in
+        var result = [""]
+        result += (self.courses.compactMap { $0.title })
+        return result
+    }
     
     var course: Course?
     var user: User?
@@ -96,14 +99,16 @@ class HelpdeskViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    self.navigationItem.rightBarButtonItem!.isEnabled = false
+        self.navigationItem.rightBarButtonItem!.isEnabled = false
         HelpdeskTableView.delegate = self
         coursePicker.delegate = self
         coursePicker.dataSource = self
         issueText.delegate = self
 
-        if (user != nil) {
+        if let user = user {
             HelpdeskTableView.deleteSections([1], with: UITableView.RowAnimation(rawValue: 0)!)
+            self.tableView.beginUpdates()
+                 self.tableView.endUpdates()
         }
 
         if let course = course {
@@ -112,18 +117,18 @@ class HelpdeskViewController: UITableViewController {
         }
     }
     override func viewDidLayoutSubviews() {
-           super.viewDidLayoutSubviews()
-           self.tableView.resizeTableHeaderView()
-       }
+        super.viewDidLayoutSubviews()
+        self.tableView.resizeTableHeaderView()
+    }
 }
 
 extension HelpdeskViewController: UIPickerViewDataSource {
     func pickerView(_ coursePicker: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-         return self.courseTitles[row]
-     }
+        return self.titles()[row]
+    }
 
     func pickerView(_ coursePicker: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.courseTitles.count
+        return self.titles().count
     }
 
     func numberOfComponents(in coursePicker: UIPickerView) -> Int {
@@ -135,8 +140,6 @@ extension HelpdeskViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView,
                     didSelectRow row: Int,
                     inComponent component: Int){
-        let issueCourse = row
-        print ("issueCourse =", issueCourse)
         self.onValueChange((Any).self)
     }
 }

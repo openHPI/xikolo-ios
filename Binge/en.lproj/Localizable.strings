@@ -1,20 +1,21 @@
+
 /* error message for assets for which the playback cannot be started */
 "error-view.message" = "Error: Could not find video stream";
 
-/* navigation bar title for the media option selection */
-"media-option-selection.navigation-bar.title" = "Audio & Subtitles";
-
-/* section title for playback rate in the media option selection */
-"media-option-selection.section.title.playback-rate" = "Playback Rate";
-
-/* section title for audio in the media option selection */
-"media-option-selection.section.title.audio" = "Audio";
-
-/* section title for subtitles and closed captions in the media option selection */
-"media-option-selection.section.title.subtitles" = "Subtitles & CC";
+/* cell title for the off option in the media option selection */
+"media-option-selection.cell.title.off" = "Off";
 
 /* cell title for an unknonw option in the media option selection */
 "media-option-selection.cell.title.unknown" = "Unknown";
 
-/* cell title for the off option in the media option selection */
-"media-option-selection.cell.title.off" = "Off";
+/* navigation bar title for the media option selection */
+"media-option-selection.navigation-bar.title" = "Audio & Subtitles";
+
+/* section title for audio in the media option selection */
+"media-option-selection.section.title.audio" = "Audio";
+
+/* section title for playback rate in the media option selection */
+"media-option-selection.section.title.playback-rate" = "Playback Rate";
+
+/* section title for subtitles and closed captions in the media option selection */
+"media-option-selection.section.title.subtitles" = "Subtitles & CC";

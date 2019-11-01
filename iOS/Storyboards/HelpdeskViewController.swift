@@ -26,6 +26,7 @@ class HelpdeskViewController: UITableViewController {
         }
         issueTypeSegmentedControl.selectedSegmentIndex = 0
         issueTypeSegmentedControl.addTarget(self, action: #selector(indexSelected(_:)), for: .valueChanged)
+        issueTypeSegmentedControl.addTarget(self, action: #selector(onValueChange(_:)), for: .valueChanged)
         return issueTypeSegmentedControl
     }()
 
@@ -36,9 +37,21 @@ class HelpdeskViewController: UITableViewController {
 
 
     @IBAction func onValueChange(_ sender: Any) {
-        if ((mailAddressTextField.text != nil) && (mailAddressTextField.text != "") && (issueTitleTextField.text != nil) && (issueTitleTextField.text != "") &&
-            (issueText.text != nil) && (issueText.text != "")){
+        guard (mailAddressTextField.text != nil) && (mailAddressTextField.text != "") else { self.navigationItem.rightBarButtonItem!.isEnabled = false
+            return
+        }
+        guard (issueTitleTextField.text != nil) && (issueTitleTextField.text != "") else { self.navigationItem.rightBarButtonItem!.isEnabled = false
+            return
+        }
+        guard (issueText.text != nil) && (issueText.text != "") else { self.navigationItem.rightBarButtonItem!.isEnabled = false
+            return
+        }
+        if  (issueTypeSegmentedControl.selectedSegmentIndex == 1 &&
+            coursePicker.selectedRow(inComponent: 0) != 0) || issueTypeSegmentedControl.selectedSegmentIndex != 1{
             self.navigationItem.rightBarButtonItem!.isEnabled = true
+        }
+        else { self.navigationItem.rightBarButtonItem!.isEnabled = false
+            return
         }
     }
 
@@ -68,7 +81,7 @@ class HelpdeskViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 2 else { return nil }
-        var view = UIView()
+        let view = UIView()
         view.addSubview(issueTypeSegmentedControl)
         view.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 48)
         issueTypeSegmentedControl.frame = CGRect(x: 0, y: 13, width: view.bounds.width, height: 31)
@@ -83,7 +96,6 @@ class HelpdeskViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     self.navigationItem.rightBarButtonItem!.isEnabled = false
         HelpdeskTableView.delegate = self
         coursePicker.delegate = self
@@ -125,6 +137,7 @@ extension HelpdeskViewController: UIPickerViewDelegate {
                     inComponent component: Int){
         let issueCourse = row
         print ("issueCourse =", issueCourse)
+        self.onValueChange((Any).self)
     }
 }
 

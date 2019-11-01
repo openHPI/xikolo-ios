@@ -97,7 +97,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="message" size="11"/>
+                                                        <font key="NSFont" metaFont="label" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -111,7 +111,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="message" size="11"/>
+                                                        <font key="NSFont" metaFont="label" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -125,7 +125,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="message" size="11"/>
+                                                        <font key="NSFont" metaFont="label" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -614,6 +614,9 @@
                                             <subviews>
                                                 <pickerView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqm-FG-FoJ">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="216"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="374" id="Ueg-9m-agi"/>
+                                                    </constraints>
                                                 </pickerView>
                                             </subviews>
                                             <constraints>
@@ -804,7 +807,7 @@
     </scenes>
     <resources>
         <image name="avatar" width="500" height="500"/>
-        <image name="profile header" width="1734" height="808"/>
+        <image name="profile header" width="1000" height="659"/>
         <image name="tab bar items/account" width="28" height="28"/>
     </resources>
 </document>

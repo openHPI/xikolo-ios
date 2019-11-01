@@ -17,30 +17,15 @@ class HelpdeskViewController: UITableViewController {
     @IBOutlet weak var pickerCell: UITableViewCell!
     @IBOutlet var HelpdeskTableView: UITableView!
     @IBOutlet weak var issueTextCell: UITableViewCell!
-    lazy var issueTypeSegmentedControl : UISegmentedControl = {
-        let items = ["technical", "course-specific"]
-        var issueTypeSegmentedControl = UISegmentedControl.init(items: items)
-        if (Brand.default.features.enableReactivation) {
-            issueTypeSegmentedControl.insertSegment(withTitle: "reactivation", at: 2, animated: false)
-        }
-        issueTypeSegmentedControl.selectedSegmentIndex = 0
-        issueTypeSegmentedControl.addTarget(self, action: #selector(indexSelected(_:)), for: .valueChanged)
-        issueTypeSegmentedControl.addTarget(self, action: #selector(onValueChange(_:)), for: .valueChanged)
-        return issueTypeSegmentedControl
-    }()
-
     @IBAction func indexSelected(_ sender: Any) {
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
     }
-
-
     @IBAction func onValueChange(_ sender: Any) {
         guard (issueText.text != nil) && (issueText.text != "") && (issueTitleTextField.text != nil) && (issueTitleTextField.text != "") && (mailAddressTextField.text != nil) && (mailAddressTextField.text != "") else { self.navigationItem.rightBarButtonItem!.isEnabled = false
             return
         }
-        if  (issueTypeSegmentedControl.selectedSegmentIndex == 1 &&
-            coursePicker.selectedRow(inComponent: 0) != 0) || issueTypeSegmentedControl.selectedSegmentIndex != 1{
+        if coursePicker.selectedRow(inComponent: 0) != 0 || issueTypeSegmentedControl.selectedSegmentIndex != 1{
             self.navigationItem.rightBarButtonItem!.isEnabled = true
         }
         else { self.navigationItem.rightBarButtonItem!.isEnabled = false
@@ -57,21 +42,27 @@ class HelpdeskViewController: UITableViewController {
         print (issueTitleTextField.text!, mailAddressTextField.text!, issueText.text!,
                issueTypeSegmentedControl.titleForSegment(at: issueTypeSegmentedControl.selectedSegmentIndex)!)
         if issueTypeSegmentedControl.selectedSegmentIndex == 1 {
-            print (self.titles()[coursePicker.selectedRow(inComponent: 0)])
+            print (self.courses[coursePicker.selectedRow(inComponent: 0)-1].title)
         }
     }
+
+    lazy var issueTypeSegmentedControl : UISegmentedControl = {
+        let items = ["technical", "course-specific"]
+        var issueTypeSegmentedControl = UISegmentedControl.init(items: items)
+        if (Brand.default.features.enableReactivation) {
+            issueTypeSegmentedControl.insertSegment(withTitle: "reactivation", at: 2, animated: false)
+        }
+        issueTypeSegmentedControl.selectedSegmentIndex = 0
+        issueTypeSegmentedControl.addTarget(self, action: #selector(indexSelected(_:)), for: .valueChanged)
+        issueTypeSegmentedControl.addTarget(self, action: #selector(onValueChange(_:)), for: .valueChanged)
+        return issueTypeSegmentedControl
+    }()
 
     private lazy var courses: [Course] = {
         let result = CoreDataHelper.viewContext.fetchMultiple(CourseHelper.FetchRequest.visibleCourses).value
         return result ?? []
     }()
 
-    private lazy var titles = { () -> [String] in
-        var result = [""]
-        result += (self.courses.compactMap { $0.title })
-        return result
-    }
-    
     var course: Course?
     var user: User?
 
@@ -124,11 +115,15 @@ class HelpdeskViewController: UITableViewController {
 
 extension HelpdeskViewController: UIPickerViewDataSource {
     func pickerView(_ coursePicker: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.titles()[row]
+        if row == 0 {
+            return ""
+        } else {
+            return self.courses[row-1].title
+        }
     }
 
     func pickerView(_ coursePicker: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.titles().count
+        return self.courses.count + 1
     }
 
     func numberOfComponents(in coursePicker: UIPickerView) -> Int {

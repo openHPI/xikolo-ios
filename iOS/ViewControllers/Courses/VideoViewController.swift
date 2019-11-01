@@ -135,6 +135,8 @@ class VideoViewController: UIViewController {
             self.playerViewController?.startPlayback()
             // TODO
 //            self.trackVideoPlay()
+        } else {
+            self.playerViewController?.showControlsOverlay()
         }
 
         self.isFirstAppearance = false

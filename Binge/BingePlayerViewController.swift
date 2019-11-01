@@ -483,7 +483,7 @@ public class BingePlayerViewController: UIViewController {
         self.timeObserverToken = nil
     }
 
-    private func showControlsOverlay() {
+    public func showControlsOverlay() {
         guard self.controlsContainer.isHidden else { return }
         if self.pictureInPictureController?.isPictureInPictureActive ?? false { return }
 

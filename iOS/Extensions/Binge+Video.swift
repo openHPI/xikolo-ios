@@ -19,6 +19,8 @@ extension BingePlayerViewController {
             self.asset = offlinePlayableAsset
         } else if let fallbackURL = video.streamURLForDownload ?? video.singleStream?.hdURL ?? video.singleStream?.sdURL {
             self.asset = AVURLAsset(url: fallbackURL)
+        } else {
+            self.asset = nil
         }
     }
 

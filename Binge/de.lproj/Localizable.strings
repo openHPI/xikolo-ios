@@ -1,0 +1,20 @@
+/* error message for assets for which the playback cannot be started */
+"error-view.message" = "Fehler: Video-Stream konnte nicht gefunden werden";
+
+/* navigation bar title for the media option selection */
+"media-option-selection.navigation-bar.title" = "Audio & Untertitel";
+
+/* section title for playback rate in the media option selection */
+"media-option-selection.section.title.playback-rate" = "Wiedergabegeschwindigkeit";
+
+/* section title for audio in the media option selection */
+"media-option-selection.section.title.audio" = "Audio";
+
+/* section title for subtitles and closed captions in the media option selection */
+"media-option-selection.section.title.subtitles" = "Untertitel & CC";
+
+/* cell title for an unknonw option in the media option selection */
+"media-option-selection.cell.title.unknown" = "Unbekannt";
+
+/* cell title for the off option in the media option selection */
+"media-option-selection.cell.title.off" = "Aus";

@@ -1,3 +1,6 @@
+/* error message for assets for which the playback cannot be started */
+"error-view.message" = "Error: Could not find video stream";
+
 /* navigation bar title for the media option selection */
 "media-option-selection.navigation-bar.title" = "Audio & Subtitles";
 

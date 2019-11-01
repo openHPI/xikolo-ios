@@ -46,6 +46,19 @@ public class BingePlayerViewController: UIViewController {
         return indicator
     }()
 
+    private lazy var errorView: UIView = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        label.text = BingeLocalizedString("error-view.message", comment: "error message for assets for which the playback cannot be started")
+        label.textColor = .white
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.isHidden = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
     private lazy var controlsContainer = BingeClickThroughView()
     private lazy var controlsViewController = BingeControlsViewController(delegate: self)
 
@@ -70,7 +83,7 @@ public class BingePlayerViewController: UIViewController {
                 NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: item)
             }
 
-            if let asset = self.asset {
+            if let asset = self.asset, asset.isPlayable {
                 let item = AVPlayerItem(asset: asset, automaticallyLoadedAssetKeys: BingePlayerViewController.assetKeysRequiredToPlay)
                 self.player.replaceCurrentItem(with: item)
 
@@ -79,12 +92,14 @@ public class BingePlayerViewController: UIViewController {
                 }
 
                 NotificationCenter.default.addObserver(self, selector: #selector(reachedPlaybackEnd), name: .AVPlayerItemDidPlayToEndTime, object: item)
-            }
 
-            if self.asset == nil || self.initiallyShowControls {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                    self.showControlsOverlay()
+                if self.initiallyShowControls {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        self.showControlsOverlay()
+                    }
                 }
+            } else {
+                self.showErrorView()
             }
 
             self.updateMediaPlayerInfoCenter()
@@ -210,11 +225,19 @@ public class BingePlayerViewController: UIViewController {
         view.backgroundColor = .black
         view.addSubview(self.playerView)
         view.addSubview(self.controlsContainer)
+        view.addSubview(self.errorView)
         view.addSubview(self.volumeIndicator)
         view.addSubview(self.loadingIndicator)
 
         self.controlsContainer.isHidden = true
         self.controlsContainer.translatesAutoresizingMaskIntoConstraints = false
+
+        let layoutGuide: UILayoutGuide
+        if #available(iOS 11, *) {
+            layoutGuide = view.safeAreaLayoutGuide
+        } else {
+            layoutGuide = view.layoutMarginsGuide
+        }
 
         NSLayoutConstraint.activate([
             self.playerView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -225,6 +248,10 @@ public class BingePlayerViewController: UIViewController {
             self.controlsContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             self.controlsContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             self.controlsContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            self.errorView.topAnchor.constraint(equalTo: layoutGuide.topAnchor),
+            self.errorView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor),
+            self.errorView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor),
+            self.errorView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor),
             self.volumeIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             self.volumeIndicator.topAnchor.constraint(equalTo: view.topAnchor),
             NSLayoutConstraint(item: self.volumeIndicator,
@@ -478,11 +505,12 @@ public class BingePlayerViewController: UIViewController {
         })
     }
 
-    private func hideControlsOverlay() {
+    private func hideControlsOverlay(animated: Bool = true) {
         self.controlsOverlayDispatchWorkItem?.cancel()
 
+        let animationDuration = animated ? 0.25 : 0.0
         UIView.transition(with: self.view,
-                          duration: 0.25,
+                          duration: animationDuration,
                           options: [.transitionCrossDissolve, .curveEaseInOut],
                           animations: { [weak self] in
             self?.controlsContainer.isHidden = true
@@ -630,6 +658,7 @@ extension BingePlayerViewController: BingeControlDelegate {
     }
 
     public func startPlayback() {
+        guard self.asset?.isPlayable ?? false else { return }
         guard self.player.timeControlStatus == .paused else { return }
 
         try? AVAudioSession.sharedInstance().setActive(true)
@@ -713,6 +742,12 @@ extension BingePlayerViewController: BingeControlDelegate {
         } else {
             pictureInPictureController.startPictureInPicture()
         }
+    }
+
+    func showErrorView() {
+        self.hideControlsOverlay(animated: false)
+        self.loadingIndicator.isHidden = true
+        self.errorView.isHidden = false
     }
 
     func dismissPlayer() {

@@ -16,7 +16,6 @@ import UIKit
 class VideoViewController: UIViewController {
 
     @IBOutlet private weak var videoContainer: UIView!
-    @IBOutlet private weak var errorView: UIView!
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
 
@@ -89,9 +88,6 @@ class VideoViewController: UIViewController {
 
 //        self.layoutPlayer()
         self.updateCornersOfVideoContainer(for: self.traitCollection)
-
-        self.errorView.isHidden = true
-        self.errorView.layer.roundCorners(for: .default)
 
         self.videoActionsButton.isEnabled = false
         self.videoActionsButton.tintColor = ColorCompatibility.disabled

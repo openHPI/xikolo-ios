@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -409,109 +408,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEE-HW-igx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2633" y="1730"/>
-        </scene>
-        <!--Feedback View Controller-->
-        <scene sceneID="Fhl-wB-i2U">
-            <objects>
-                <viewController id="jsg-eT-U36" customClass="FeedbackViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="ibd-oH-ATa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vpn-tL-qhl">
-                                <rect key="frame" x="30" y="33" width="354" height="818"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="HYs-MV-hkj">
-                                        <rect key="frame" x="0.0" y="22" width="354" height="796"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of your issue" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HWH-Oy-IiH">
-                                                <rect key="frame" x="0.0" y="0.0" width="354" height="100"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" textContentType="name"/>
-                                                <connections>
-                                                    <action selector="issueTitleReturn:" destination="jsg-eT-U36" eventType="editingDidEnd" id="HtB-84-4Lq"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your e-mail address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GNs-9a-3CV">
-                                                <rect key="frame" x="0.0" y="119" width="354" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" textContentType="email"/>
-                                                <connections>
-                                                    <action selector="mailAddressReturn:" destination="jsg-eT-U36" eventType="editingDidEnd" id="1zK-RR-WEA"/>
-                                                </connections>
-                                            </textField>
-                                            <segmentedControl multipleTouchEnabled="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xEy-ih-lc9">
-                                                <rect key="frame" x="0.0" y="172" width="354" height="32"/>
-                                                <segments>
-                                                    <segment title="technical"/>
-                                                    <segment title="course-specific"/>
-                                                </segments>
-                                                <connections>
-                                                    <action selector="indexSelected:" destination="jsg-eT-U36" eventType="valueChanged" id="zaU-OY-p83"/>
-                                                </connections>
-                                            </segmentedControl>
-                                            <pickerView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iov-0H-y8m">
-                                                <rect key="frame" x="0.0" y="222" width="354" height="216"/>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="jsg-eT-U36" id="LbH-MS-DiV"/>
-                                                    <outlet property="delegate" destination="jsg-eT-U36" id="J17-kp-mfa"/>
-                                                </connections>
-                                            </pickerView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="4" contentMode="scaleAspectFit" pagingEnabled="YES" text="Your issue" translatesAutoresizingMaskIntoConstraints="NO" id="h4n-8W-gOJ">
-                                                <rect key="frame" x="0.0" y="457" width="354" height="339"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <viewLayoutGuide key="safeArea" id="stC-iK-ILn"/>
-                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
-                                            </textView>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="HYs-MV-hkj" firstAttribute="leading" secondItem="arJ-Zr-9oa" secondAttribute="leading" id="26m-2p-8hC"/>
-                                    <constraint firstItem="HYs-MV-hkj" firstAttribute="top" secondItem="arJ-Zr-9oa" secondAttribute="top" constant="22" id="8D6-6m-eMx"/>
-                                    <constraint firstAttribute="trailing" secondItem="HYs-MV-hkj" secondAttribute="trailing" id="Ne5-f3-Jz8"/>
-                                    <constraint firstItem="HYs-MV-hkj" firstAttribute="centerX" secondItem="Vpn-tL-qhl" secondAttribute="centerX" id="Umh-yz-Y49"/>
-                                    <constraint firstItem="HYs-MV-hkj" firstAttribute="bottom" secondItem="arJ-Zr-9oa" secondAttribute="bottom" id="Vlb-Im-eZF"/>
-                                    <constraint firstAttribute="bottom" secondItem="HYs-MV-hkj" secondAttribute="bottom" id="diH-5J-T3v"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="iHC-F8-2bU"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="arJ-Zr-9oa"/>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Xik-D5-G8F" firstAttribute="bottom" secondItem="Vpn-tL-qhl" secondAttribute="bottom" constant="11" id="5vq-WX-R0s"/>
-                            <constraint firstItem="Vpn-tL-qhl" firstAttribute="centerX" secondItem="ibd-oH-ATa" secondAttribute="centerX" id="C5V-5i-qWl"/>
-                            <constraint firstItem="Xik-D5-G8F" firstAttribute="top" secondItem="Vpn-tL-qhl" secondAttribute="top" constant="11" id="h4o-lH-3v0"/>
-                            <constraint firstItem="Vpn-tL-qhl" firstAttribute="leading" secondItem="Xik-D5-G8F" secondAttribute="leading" constant="30" id="xcI-7c-4CP"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Xik-D5-G8F"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="FNx-Ar-HTo">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="54m-MB-W3g">
-                            <connections>
-                                <action selector="cancel:" destination="jsg-eT-U36" id="pLx-cm-S5c"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="send" id="a9u-pb-kEa">
-                            <connections>
-                                <action selector="send:" destination="jsg-eT-U36" id="d1A-qq-cW2"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="coursePicker" destination="iov-0H-y8m" id="NcY-7t-pUg"/>
-                        <outlet property="issueText" destination="h4n-8W-gOJ" id="2sb-mb-AFT"/>
-                        <outlet property="issueTitleTextField" destination="HWH-Oy-IiH" id="OPa-8e-PA8"/>
-                        <outlet property="issueTypeSegmentedControl" destination="xEy-ih-lc9" id="D2Z-Hb-ayq"/>
-                        <outlet property="mailAddressTextField" destination="GNs-9a-3CV" id="eWl-sE-D21"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RHk-fh-v6K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4184" y="2519"/>
         </scene>
         <!--Helpdesk View Controller-->
         <scene sceneID="zeb-jN-C21">

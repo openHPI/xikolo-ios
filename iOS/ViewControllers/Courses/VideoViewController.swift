@@ -40,6 +40,8 @@ class VideoViewController: UIViewController {
 
     private var courseItemObserver: ManagedObjectObserver?
 
+    private var isFirstAppearance = true
+
     var courseItem: CourseItem! {
         didSet {
             self.courseItemObserver = ManagedObjectObserver(object: self.courseItem) { [weak self] type in
@@ -121,10 +123,15 @@ class VideoViewController: UIViewController {
         self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.didViewAppear = true
 
-        if let player = self.player, !player.isPlaying {
+        // Autoplay logic
+        if let player = self.player, !player.isPlaying, self.isFirstAppearance {
             player.play()
             self.trackVideoPlay()
         }
+
+        self.isFirstAppearance = false
+
+        self.player?.automaticallyStopPicutureinPictureModeIfNecessary()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -148,6 +155,7 @@ class VideoViewController: UIViewController {
         }
 
         if self.didViewAppear {
+            self.player?.automaticallyStopPicutureinPictureModeIfNecessary(force: true)
             self.trackVideoClose()
         }
     }
@@ -224,7 +232,6 @@ class VideoViewController: UIViewController {
         self.slidesProgressView.updateProgress(slidesDownloadProgress, animated: false)
         self.slidesDownloadedIcon.isHidden = !(slidesDownloadState == .downloaded)
 
-        self.slidesButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.localSlidesBookmark != nil
         let isSlidesActionButtonEnabled = ReachabilityHelper.connection != .none || video.slidesUserAction != nil
         self.slidesActionsButton.isEnabled = isSlidesActionButtonEnabled
         self.slidesActionsButton.tintColor = isSlidesActionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
@@ -282,11 +289,8 @@ class VideoViewController: UIViewController {
     }
 
     @IBAction private func openSlides() {
-        if let video = self.video, SlidesPersistenceManager.shared.localFileLocation(for: video) != nil || ReachabilityHelper.connection != .none {
-            self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
-        } else {
-            log.info("Tapped open slides button without internet, which shouldn't be possible")
-        }
+        self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
+        self.player?.automaticallyStartPicutureinPictureModeIfPossible()
     }
 
     @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
@@ -359,7 +363,6 @@ class VideoViewController: UIViewController {
                 self.slidesProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
                 self.slidesProgressView.updateProgress(SlidesPersistenceManager.shared.downloadProgress(for: video))
                 self.slidesDownloadedIcon.isHidden = !(downloadState == .downloaded)
-                self.slidesButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.localSlidesBookmark != nil
                 let actionButtonEnabled = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil
                 self.slidesActionsButton.isEnabled = actionButtonEnabled
                 self.slidesActionsButton.tintColor = actionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.systemGray4
@@ -548,7 +551,7 @@ extension VideoViewController: BMPlayerDelegate {
     func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
         if state == .playedToTheEnd {
             self.trackVideoEnd()
-        } else if state == .bufferFinished {
+        } else if state == .bufferFinished, player.isPlaying {
             player.avPlayer?.rate = self.playerControlView.playRate
         }
     }

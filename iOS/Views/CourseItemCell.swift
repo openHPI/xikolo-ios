@@ -36,8 +36,6 @@ class CourseItemCell: UITableViewCell {
         let isAvailableInOfflineMode = courseItem.content?.isAvailableOffline ?? false
         let isAvailable = !inOfflineMode || isAvailableInOfflineMode
 
-        self.isUserInteractionEnabled = isAvailable
-
         self.titleView.text = courseItem.title
         self.titleView.textColor = isAvailable ? ColorCompatibility.label : ColorCompatibility.disabled
 

@@ -74,7 +74,7 @@ class DateLabelHelperTests: XCTestCase {
         let labelText = DateLabelHelper.labelFor(startDate: distantFuture, endDate: nil, withStyle: .who)
 
         // then
-        XCTAssertEqual(labelText, "Comming soon")
+        XCTAssertEqual(labelText, "Coming soon")
     }
 
     func testWithOnlyEndDate() {
@@ -85,7 +85,7 @@ class DateLabelHelperTests: XCTestCase {
         let labelText = DateLabelHelper.labelFor(startDate: nil, endDate: distantFuture, withStyle: .normal)
 
         // then
-        XCTAssertEqual(labelText, "Comming soon")
+        XCTAssertEqual(labelText, "Coming soon")
     }
 
     func testWithNoDates() {
@@ -93,7 +93,7 @@ class DateLabelHelperTests: XCTestCase {
         let labelText = DateLabelHelper.labelFor(startDate: nil, endDate: nil, withStyle: .normal)
 
         // then
-        XCTAssertEqual(labelText, "Comming soon")
+        XCTAssertEqual(labelText, "Coming soon")
     }
 
 }

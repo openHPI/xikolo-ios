@@ -14,6 +14,7 @@ class CustomBMPlayer: BMPlayer {
 
     private(set) var pictureInPictureController: AVPictureInPictureController?
     private var pictureInPictureObservation: NSKeyValueObservation?
+    private var pictureInPictureWasStartedAutomatically = false
 
     override func seek(_ to: TimeInterval, completion: (() -> Void)? = nil) { // swiftlint:disable:this identifier_name
         let from = self.playerLayer?.player?.currentTime().seconds
@@ -23,6 +24,26 @@ class CustomBMPlayer: BMPlayer {
 
     override func reactOnPlayerStateChange(state: BMPlayerState) {
         self.setupPictureInPictureViewController()
+    }
+
+    override func reactOnPlayRateChange(rate: Float) {
+        guard let pictureInPictureController = self.pictureInPictureController else { return }
+        guard pictureInPictureController.isPictureInPictureActive else { return }
+        guard let videoViewController = self.delegate as? VideoViewController else { return }
+
+        if rate == 0.0 {
+            if self.isPlaying {
+                self.playerLayer?.isPlaying = false
+                self.playerLayer?.pause()
+                videoViewController.trackVideoPause()
+            }
+        } else {
+            if !self.isPlaying {
+                self.playerLayer?.isPlaying = true
+                self.playerLayer?.play()
+                videoViewController.trackVideoPlay()
+            }
+        }
     }
 
     private func setupPictureInPictureViewController() {
@@ -49,6 +70,22 @@ class CustomBMPlayer: BMPlayer {
         }
     }
 
+    func automaticallyStartPicutureinPictureModeIfPossible() {
+        guard let pictureInPictureController = self.pictureInPictureController else { return }
+        guard self.isPlaying else { return }
+        if pictureInPictureController.isPictureInPictureActive { return }
+        pictureInPictureController.startPictureInPicture()
+        self.pictureInPictureWasStartedAutomatically = true
+    }
+
+    func automaticallyStopPicutureinPictureModeIfNecessary(force: Bool = false) {
+        guard let pictureInPictureController = self.pictureInPictureController else { return }
+        guard pictureInPictureController.isPictureInPictureActive else { return }
+        guard self.pictureInPictureWasStartedAutomatically || force else { return }
+        pictureInPictureController.stopPictureInPicture()
+        self.pictureInPictureWasStartedAutomatically = false
+    }
+
 }
 
 extension CustomBMPlayer: AVPictureInPictureControllerDelegate {
@@ -71,6 +108,10 @@ extension CustomBMPlayer: AVPictureInPictureControllerDelegate {
 
     public func pictureInPictureControllerDidStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
         self.controlView.controlViewAnimation(isShow: !self.isPlaying)
+
+        if self.window == nil {
+            self.videoController?.trackVideoClose()
+        }
     }
 
 }

@@ -6,7 +6,6 @@
 import BrightFutures
 import Common
 import CoreData
-import DZNEmptyDataSet
 import Foundation
 import UIKit
 
@@ -42,11 +41,6 @@ class DownloadedContentListViewController: UITableViewController {
         }
     }
 
-    deinit {
-        self.tableView?.emptyDataSetSource = nil
-        self.tableView?.emptyDataSetDelegate = nil
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -62,13 +56,6 @@ class DownloadedContentListViewController: UITableViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.tableView.resizeTableHeaderView()
-    }
-
-    private func setupEmptyState() {
-        self.tableView.emptyDataSetSource = self
-        self.tableView.emptyDataSetDelegate = self
-        self.tableView.tableFooterView = UIView()
-        self.tableView.reloadEmptyDataSet()
     }
 
     @discardableResult
@@ -285,16 +272,19 @@ extension DownloadedContentListViewController { // editing
 
 }
 
-extension DownloadedContentListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension DownloadedContentListViewController: EmptyStateDataSource {
 
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title = NSLocalizedString("empty-view.account.download.no-downloads.title", comment: "title for empty download list")
-        return NSAttributedString(string: title)
+    var emptyStateTitleText: String {
+        return NSLocalizedString("empty-view.account.download.no-downloads.title", comment: "title for empty download list")
     }
 
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description = NSLocalizedString("empty-view.account.download.no-downloads.description", comment: "description for empty download list")
-        return NSAttributedString(string: description)
+    var emptyStateDetailText: String? {
+        return NSLocalizedString("empty-view.account.download.no-downloads.description", comment: "description for empty download list")
+    }
+
+    func setupEmptyState() {
+        self.tableView.emptyStateDataSource = self
+        self.tableView.tableFooterView = UIView()
     }
 
 }

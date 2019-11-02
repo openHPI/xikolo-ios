@@ -12,7 +12,7 @@
 "course-date-formatting.not-started.beginning %@" = "Beginning %@";
 
 /* course start at unknown date */
-"course-date-formatting.not-started.coming soon" = "Comming soon";
+"course-date-formatting.not-started.coming soon" = "Coming soon";
 
 /* Self-paced course */
 "course-date-formatting.self-paced" = "Self-paced";

@@ -97,7 +97,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="label" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -111,7 +111,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="label" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -125,7 +125,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="label" size="11"/>
+                                                        <font key="NSFont" metaFont="message" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -548,17 +548,17 @@
                             </constraints>
                         </view>
                         <sections>
-                            <tableViewSection headerTitle="title" id="nus-Iv-Ng5">
+                            <tableViewSection headerTitle="Title of your issue" id="nus-Iv-Ng5">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="xBa-aT-gEl">
-                                        <rect key="frame" x="20" y="168.5" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="xBa-aT-gEl">
+                                        <rect key="frame" x="20" y="168.5" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xBa-aT-gEl" id="f70-Vy-7ih">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HJJ-fU-Fdn">
-                                                    <rect key="frame" x="20" y="8" width="362" height="28"/>
+                                                <textField opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title of your issue" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HJJ-fU-Fdn">
+                                                    <rect key="frame" x="20" y="8" width="362" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="name"/>
                                                     <connections>
@@ -576,17 +576,17 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Email Address" id="gbn-6Q-irY" userLabel="mail">
+                            <tableViewSection headerTitle="Your e-mail address" id="gbn-6Q-irY" userLabel="mail">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Pca-l0-Jeu">
-                                        <rect key="frame" x="20" y="268" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="Pca-l0-Jeu">
+                                        <rect key="frame" x="20" y="268.5" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pca-l0-Jeu" id="Pbq-Zh-Qlu">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fs0-LO-E4J">
-                                                    <rect key="frame" x="20" y="8" width="354" height="28"/>
+                                                <textField opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your e-mail address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fs0-LO-E4J">
+                                                    <rect key="frame" x="20" y="8" width="354" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                                                     <connections>
@@ -607,7 +607,7 @@
                             <tableViewSection id="uow-c8-Cf3">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="iLZ-Wk-p4c">
-                                        <rect key="frame" x="20" y="347.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="348.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iLZ-Wk-p4c" translatesAutoresizingMaskIntoConstraints="NO" id="yag-1O-rf5">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -630,7 +630,7 @@
                             <tableViewSection headerTitle="Your Issue" id="Kr0-w1-KaR">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dRf-Zv-2xu">
-                                        <rect key="frame" x="20" y="447" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="448" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dRf-Zv-2xu" id="BbS-hH-4Ez">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -673,7 +673,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="HelpdeskTableView" destination="FWD-EI-Pg5" id="rXy-39-5bu"/>
                         <outlet property="coursePicker" destination="mqm-FG-FoJ" id="kW9-IM-Yta"/>
                         <outlet property="issueText" destination="KcN-el-VIf" id="Qrg-8L-pN9"/>
                         <outlet property="issueTextCell" destination="dRf-Zv-2xu" id="8gs-4O-LH0"/>
@@ -807,7 +806,7 @@
     </scenes>
     <resources>
         <image name="avatar" width="500" height="500"/>
-        <image name="profile header" width="1000" height="659"/>
+        <image name="profile header" width="1734" height="808"/>
         <image name="tab bar items/account" width="28" height="28"/>
     </resources>
 </document>

@@ -251,6 +251,15 @@
 /* Title for button for selecting all items in a list */
 "global.list.selection.select all" = "Alle auswählen";
 
+/* helpdesk topic course-specific */
+"helpdesk.topic.course-specific" = "Kursspezifische Frage";
+
+/* helpdesk topic reactivation */
+"helpdesk.topic.reactivation" = "Reaktivierung";
+
+/* helpdesk topic                 technical */
+"helpdesk.topic.technical" = "Technische Frage";
+
 /* cell title for the off option in the media option selection */
 "media-option-selection.cell.title.off" = "Aus";
 
@@ -272,8 +281,8 @@
 /* label for app version */
 "settings.app.version.label" = "Version";
 
-/* cell title for app feedback */
-"settings.cell-title.app-feedback" = "App-Feedback senden";
+/* cell title for helpdesk */
+"settings.cell-title.app-helpdesk" = "Helpdesk";
 
 /* cell title for certificates */
 "settings.cell-title.certificates" = "Leistungsnachweise";

@@ -57,12 +57,13 @@ class HelpdeskViewController: UITableViewController {
 
     lazy var issueTypeSegmentedControl: UISegmentedControl = {
         let items = [
-            NSLocalizedString("helpdesk.topic.technical", comment: "helpdesk topic                 technical"),
-            NSLocalizedString("helpdesk.topic.course-specific", comment: "helpdesk topic course-specific")
+            NSLocalizedString("helpdesk.topic.technical", comment: "helpdesk topic technical"),
+            NSLocalizedString("helpdesk.topic.course-specific", comment: "helpdesk topic course-specific"),
         ]
         var issueTypeSegmentedControl = UISegmentedControl(items: items)
         if Brand.default.features.enableReactivation {
-            issueTypeSegmentedControl.insertSegment(withTitle: NSLocalizedString("helpdesk.topic.reactivation", comment: "helpdesk topic reactivation"), at: 1, animated: false)
+            let string = NSLocalizedString("helpdesk.topic.reactivation", comment: "helpdesk topic reactivation")
+            issueTypeSegmentedControl.insertSegment(withTitle: string, at: 1, animated: false)
         }
 
         issueTypeSegmentedControl.selectedSegmentIndex = 0

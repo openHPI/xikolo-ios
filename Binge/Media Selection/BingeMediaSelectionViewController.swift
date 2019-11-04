@@ -149,14 +149,14 @@ extension BingeMediaSelectionViewController {
 
     private func titleForOption(at indexPath: IndexPath) -> String {
         guard let mediaSelectionGroup = self.mediaSelectionGroup(forSection: indexPath.section) else {
-            return NSLocalizedString("media-option-selection.cell.title.unknown",
-                                     comment: "cell title for an unknonw option in the media option selection")
+            return BingeLocalizedString("media-option-selection.cell.title.unknown",
+                                        comment: "cell title for an unknonw option in the media option selection")
         }
 
         let allowsEmptySelection = self.allowsEmptySelection(inSection: indexPath.section)
         if allowsEmptySelection, indexPath.row == 0 {
-            return NSLocalizedString("media-option-selection.cell.title.off",
-                                     comment: "cell title for the off option in the media option selection")
+            return BingeLocalizedString("media-option-selection.cell.title.off",
+                                        comment: "cell title for the off option in the media option selection")
         }
 
         let row = allowsEmptySelection ? indexPath.row - 1 : indexPath.row

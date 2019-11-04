@@ -210,7 +210,7 @@ class BingeControlsViewController: UIViewController {
         return button
     }()
 
-    private let delegate: BingeControlDelegate & AVRoutePickerViewDelegate
+    private weak var delegate: (BingeControlDelegate & AVRoutePickerViewDelegate)?
 
     init(delegate: BingeControlDelegate & AVRoutePickerViewDelegate) {
         self.delegate = delegate
@@ -371,46 +371,46 @@ class BingeControlsViewController: UIViewController {
 
     @objc private func togglePictureInPictureMode() {
         print("Tap on pip button")
-        self.delegate.togglePictureInPictureMode()
+        self.delegate?.togglePictureInPictureMode()
     }
 
     @objc private func showMediaSelection() {
-        self.delegate.showMediaSelection(for: self.settingsButton)
+        self.delegate?.showMediaSelection(for: self.settingsButton)
     }
 
     @objc private func playPauseVideo() {
         if self.playPauseButton.isSelected {
-            self.delegate.pausePlayback()
+            self.delegate?.pausePlayback()
         } else {
-            self.delegate.startPlayback()
+            self.delegate?.startPlayback()
         }
     }
 
     @objc private func seekForwards() {
-        self.delegate.seekForwards()
+        self.delegate?.seekForwards()
     }
 
     @objc private func seekBackwards() {
-        self.delegate.seekBackwards()
+        self.delegate?.seekBackwards()
     }
 
     @objc private func changeProgress(sender: UISlider, event: UIEvent) {
         switch event.allTouches?.first?.phase {
         case .began:
-            self.delegate.stopAutoHideOfControlsView()
+            self.delegate?.stopAutoHideOfControlsView()
         case .ended:
-            self.delegate.seekTo(progress: Double(sender.value))
+            self.delegate?.seekTo(progress: Double(sender.value))
         default:
             break
         }
     }
 
     @objc private func toggleFullScreenMode() {
-        self.delegate.toggleFullScreenMode()
+        self.delegate?.toggleFullScreenMode()
     }
 
     @objc private func dismissPlayer() {
-        self.delegate.dismissPlayer()
+        self.delegate?.dismissPlayer()
     }
 
     func setTitle(_ title: String?) {

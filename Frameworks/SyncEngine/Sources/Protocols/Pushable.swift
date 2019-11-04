@@ -5,7 +5,7 @@
 
 import CoreData
 
-public protocol Pushable: ResourceTypeRepresentable, IncludedPushable, NSFetchRequestResult, Validatable {
+public protocol Pushable: ResourceTypeRepresentable, IncludedPushable, Validatable, AnyObject {
 
     static func resourceData(attributes: [String: Any], relationships: [String: AnyObject]?) -> Result<Data, SyncError>
 
@@ -19,6 +19,16 @@ public protocol Pushable: ResourceTypeRepresentable, IncludedPushable, NSFetchRe
 
 public extension Pushable {
 
+    func markAsUnchanged() { }
+
+    func resourceRelationships() -> [String: AnyObject]? {
+        return nil
+    }
+
+}
+
+extension Pushable where Self: NSManagedObject {
+
     public var objectState: ObjectState {
         get {
             return ObjectState(rawValue: self.objectStateValue) ?? .unchanged
@@ -26,10 +36,6 @@ public extension Pushable {
         set {
             self.objectStateValue = newValue.rawValue
         }
-    }
-
-    func resourceRelationships() -> [String: AnyObject]? {
-        return nil
     }
 
 }

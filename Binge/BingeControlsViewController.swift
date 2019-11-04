@@ -285,7 +285,6 @@ class BingeControlsViewController: UIViewController {
             self.timeSlider.leadingAnchor.constraint(equalTo: self.bufferProgressView.leadingAnchor),
             self.timeSlider.trailingAnchor.constraint(equalTo: self.bufferProgressView.trailingAnchor),
             self.timeSlider.centerYAnchor.constraint(equalTo: self.bufferProgressView.centerYAnchor),
-            self.timeSlider.heightAnchor.constraint(equalToConstant: 2),
 
             self.totalTimeView.leadingAnchor.constraint(equalTo: self.bufferProgressView.trailingAnchor, constant: padding),
             self.totalTimeView.bottomAnchor.constraint(equalTo: parentMargins.bottomAnchor),

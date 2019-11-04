@@ -41,6 +41,7 @@ class HelpdeskViewController: UITableViewController {
         return issueTypeSegmentedControl
     }()
 
+    // TODO: not needed (yet)
 //    var course: Course?
 //    var user: User?
 
@@ -59,6 +60,7 @@ class HelpdeskViewController: UITableViewController {
             self.tableView.endUpdates()
         }
 
+        // TODO: do in lazy init
 //        if let course = course {
 //            issueTypeSegmentedControl.removeAllSegments()
 //            issueTypeSegmentedControl.insertSegment(withTitle: course.title, at: 0, animated: false)
@@ -95,15 +97,15 @@ class HelpdeskViewController: UITableViewController {
         return super.tableView(tableView, heightForHeaderInSection: section)
     }
 
-    // TODO
+    // TODO: better naming
     @IBAction private func indexSelected() {
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
     }
 
-    // TODO
+    // TODO: better naming
     @IBAction private func onValueChange() {
-        // TODO
+        // TODO: optional chaining + simplification
         guard (issueText.text != nil) &&
             (!issueText.text!.isEmpty) &&
             (issueTitleTextField.text != nil) &&
@@ -171,7 +173,7 @@ extension HelpdeskViewController: UITextViewDelegate {
     func textViewDidChange(_ tableView: UITextView) {
         self.onValueChange()
 
-        // TODO
+        // TODO: possible to simplify?
         UIView.setAnimationsEnabled(false)
         self.issueText.sizeToFit()
         self.issueTextCell.sizeToFit()

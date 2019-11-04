@@ -76,12 +76,7 @@ public extension SyncEngine {
 
     private func buildCreateRequest<Resource>(forQuery query: MultipleResourcesQuery<Resource>,
                                               forResource resource: Resource) -> Result<URLRequest, SyncError> where Resource: Pushable {
-        switch resource.resourceData() {
-        case let .success(resourceData):
-            return self.buildCreateRequest(forQuery: query, withData: resourceData)
-        case let .failure(error):
-            return .failure(error)
-        }
+        return resource.resourceData().flatMap { self.buildCreateRequest(forQuery: query, withData: $0) }
     }
 
     private func buildCreateRequest<Resource>(forQuery query: MultipleResourcesQuery<Resource>,
@@ -198,13 +193,11 @@ public extension SyncEngine {
                     return
                 }
 
-                switch Resource.validateServerResponse(resourceData) {
-                case .success:
-                    let result = NetworkResult(resourceData: resourceData, headers: urlResponse.allHeaderFields)
-                    promise.success(result)
-                case let .failure(error):
-                    promise.failure(error)
+                let result = Resource.validateServerResponse(resourceData).map {
+                    return NetworkResult(resourceData: resourceData, headers: urlResponse.allHeaderFields)
                 }
+
+                promise.complete(result)
             } catch {
                 promise.failure(.api(.serialization(.jsonSerialization(error))))
             }

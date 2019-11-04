@@ -434,7 +434,11 @@ public class BingePlayerViewController: UIViewController {
     }
 
     override public var prefersStatusBarHidden: Bool {
-        return self.controlsContainer.isHidden //&& self.traitCollection.verticalSizeClass == .regular
+        if #available(iOS 11, *) {
+            return self.controlsContainer.isHidden
+        } else {
+            return true
+        }
     }
 
     override public var prefersHomeIndicatorAutoHidden: Bool {

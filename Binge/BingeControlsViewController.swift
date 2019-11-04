@@ -461,9 +461,9 @@ class BingeControlsViewController: UIViewController {
     func adaptToLayoutState(_ state: LayoutState, allowFullScreenMode: Bool, isStandAlone: Bool) {
         let hideFullScreenButton = state == .remote || !allowFullScreenMode || isStandAlone
         self.fullScreenButton.isHidden = hideFullScreenButton
-        self.fullScreenButton.isSelected = state == .fullscreen
+        self.fullScreenButton.isSelected = state == .fullScreen
         self.closeButton.isHidden = !isStandAlone
-        self.titleView.isHidden = state != .fullscreen
+        self.titleView.isHidden = state != .fullScreen
     }
 
     func adaptToPictureInPicturePossible(_ pictureInPicturePossible: Bool) {

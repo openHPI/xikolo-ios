@@ -10,9 +10,9 @@ import UIKit
 
 private var playerViewControllerKVOContext = 0
 
-public enum LayoutState {
+public enum LayoutState: String {
     case inline
-    case fullscreen
+    case fullScreen
     case remote
     case pictureInPicture
 }
@@ -124,7 +124,12 @@ public class BingePlayerViewController: UIViewController {
     private var playerWasConfigured = false
     private var didPlayToEnd = false
 
-    private var _layoutState: LayoutState = .inline
+    private var _layoutState: LayoutState = .inline {
+        didSet {
+            self.delegate?.didChangeLayout(from: oldValue, to: self._layoutState)
+        }
+    }
+
     public var layoutState: LayoutState {
         get {
             return self._layoutState
@@ -132,8 +137,8 @@ public class BingePlayerViewController: UIViewController {
         set {
             let newLayoutState: LayoutState = {
                 if self.isStandAlone, newValue == .inline {
-                    return .fullscreen
-                } else if !self.allowFullScreenMode, newValue == .fullscreen {
+                    return .fullScreen
+                } else if !self.allowFullScreenMode, newValue == .fullScreen {
                     return .inline
                 } else {
                     return newValue
@@ -162,15 +167,13 @@ public class BingePlayerViewController: UIViewController {
                                                        allowFullScreenMode: self.allowFullScreenMode,
                                                        isStandAlone: self.isStandAlone)
 
-        self.volumeIndicator.isHidden = self.layoutState != .fullscreen
+        self.volumeIndicator.isHidden = self.layoutState != .fullScreen
 
         if self.layoutState == .pictureInPicture {
             self.hideControlsOverlay()
         } else if self.layoutState == .remote {
             self.showControlsOverlay()
         }
-
-        self.delegate?.didChangeLayoutState(to: self.layoutState)
 
 //        guard !self.isStandAlone else { return }
 //
@@ -333,7 +336,7 @@ public class BingePlayerViewController: UIViewController {
                                                        isStandAlone: self.isStandAlone)
 
         if self.shouldEnterFullScreenModeInLandscapeOrientation, UIDevice.current.orientation.isLandscape {
-            self.layoutState = .fullscreen
+            self.layoutState = .fullScreen
         }
 
         self.setupPlayerPeriodicTimeObserver()
@@ -349,8 +352,8 @@ public class BingePlayerViewController: UIViewController {
 
         if self.shouldEnterFullScreenModeInLandscapeOrientation {
             if self.layoutState == .inline, size.width >= size.height {
-                self.layoutState = .fullscreen
-            } else if self.layoutState == .fullscreen, size.width < size.height {
+                self.layoutState = .fullScreen
+            } else if self.layoutState == .fullScreen, size.width < size.height {
                 self.layoutState = .inline
             }
         }
@@ -416,7 +419,6 @@ public class BingePlayerViewController: UIViewController {
 
                 self.playerWasConfigured = true
             }
-
         } else if keyPath == "pictureInPicturePossible" {
             let pictureInPicturePossible = self.pictureInPictureController?.isPictureInPicturePossible ?? false
             self.controlsViewController.adaptToPictureInPicturePossible(pictureInPicturePossible)
@@ -737,11 +739,11 @@ extension BingePlayerViewController: BingeControlDelegate {
     }
 
     func toggleFullScreenMode() {
-        if self.shouldEnterFullScreenModeInLandscapeOrientation, self.layoutState == .fullscreen, UIDevice.current.orientation.isLandscape {
+        if self.shouldEnterFullScreenModeInLandscapeOrientation, self.layoutState == .fullScreen, UIDevice.current.orientation.isLandscape {
             let value = UIDeviceOrientation.portrait.rawValue
             UIDevice.current.setValue(value, forKey: "orientation")
         } else if self.layoutState == .inline {
-            self.layoutState = .fullscreen
+            self.layoutState = .fullScreen
         } else {
             self.layoutState = .inline
         }

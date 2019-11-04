@@ -170,17 +170,17 @@ class VideoViewController: UIViewController {
     }
 
     override var childForStatusBarStyle: UIViewController? {
-        guard self.playerViewController?.layoutState == .fullscreen else { return nil }
+        guard self.playerViewController?.layoutState == .fullScreen else { return nil }
         return self.playerViewController
     }
 
     override var childForStatusBarHidden: UIViewController? {
-        guard self.playerViewController?.layoutState == .fullscreen else { return nil }
+        guard self.playerViewController?.layoutState == .fullScreen else { return nil }
         return self.playerViewController
     }
 
     override var childForHomeIndicatorAutoHidden: UIViewController? {
-        guard self.playerViewController?.layoutState == .fullscreen else { return nil }
+        guard self.playerViewController?.layoutState == .fullScreen else { return nil }
         return self.playerViewController
     }
 
@@ -474,6 +474,7 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
             "current_quality": "hls",
             "current_source": self.currentSourceValue(for: self.playerViewController?.asset),
             "current_time": self.playerViewController?.currentTime.map({ String($0) }),
+            "current_layout": self.playerViewController?.layoutState.rawValue,
         ]
     }
 
@@ -534,8 +535,15 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         TrackingHelper.createEvent(verb, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 
-    func didChangeLayoutState(to state: LayoutState) {
-        self.videoIsShownInFullScreen = state == .fullscreen
+    func didChangeLayout(from oldLayout: LayoutState, to newLayout: LayoutState) {
+        self.videoIsShownInFullScreen = newLayout == .fullScreen
+
+        guard let video = self.video else { return }
+        var context = self.newTrackingContext
+        context["current_layout"] = nil
+        context["new_current_layout"] = oldLayout.rawValue
+        context["old_current_layout"] = newLayout.rawValue
+        TrackingHelper.createEvent(.videoPlaybackChangeLayout, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 
 }

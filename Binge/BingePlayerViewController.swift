@@ -557,7 +557,7 @@ public class BingePlayerViewController: UIViewController {
 
     public func automaticallyStartPicutureinPictureModeIfPossible() {
         guard let pictureInPictureController = self.pictureInPictureController else { return }
-        guard self.player.rate != 0 else { return }
+        if self.player.timeControlStatus == .paused { return }
         if pictureInPictureController.isPictureInPictureActive { return }
         pictureInPictureController.startPictureInPicture()
         self.pictureInPictureWasStartedAutomatically = true
@@ -690,7 +690,7 @@ extension BingePlayerViewController: BingeControlDelegate {
     }
 
     public func pausePlayback() {
-        guard self.player.timeControlStatus != .paused else { return }
+        if self.player.timeControlStatus == .paused { return }
 
         self.player.pause()
         self.controlsOverlayDispatchWorkItem?.cancel()

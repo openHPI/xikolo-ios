@@ -21,7 +21,7 @@ class BingePlayerView: UIView {
             return playerLayer.player
         }
         set {
-            playerLayer.player = newValue
+            self.playerLayer.player = newValue
         }
     }
 

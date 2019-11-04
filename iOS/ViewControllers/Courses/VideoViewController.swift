@@ -131,11 +131,9 @@ class VideoViewController: UIViewController {
         self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.didViewAppear = true
 
-        // Autoplay logic. Because this ViewController lives in a UIPageController which preloads the adjacent view controllers
+        // Autoplay logic
         if self.isFirstAppearance {
             self.playerViewController?.startPlayback()
-            // TODO
-//            self.trackVideoPlay()
         } else {
             self.playerViewController?.showControlsOverlay()
         }
@@ -161,8 +159,8 @@ class VideoViewController: UIViewController {
         let pageViewControllerDismissed = pageViewController.parent?.presentingViewController == nil
         guard isNotPresentedInPageViewController || pageViewControllerDismissed else { return }
 
-        if let playerViewController = self.playerViewController {
-            playerViewController.pausePlayback()
+        if isNotPresentedInPageViewController && !pageViewControllerDismissed {
+            self.playerViewController?.pausePlayback()
         }
 
         if self.didViewAppear {
@@ -491,6 +489,8 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
 
     func didPausePlayback() {
         guard let video = self.video else { return }
+        guard let pageViewController = self.parent as? UIPageViewController else { return }
+        guard pageViewController.viewControllers?.contains(self) ?? false else { return } // view controller should be currently presented
         TrackingHelper.createEvent(.videoPlaybackPause, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }
 

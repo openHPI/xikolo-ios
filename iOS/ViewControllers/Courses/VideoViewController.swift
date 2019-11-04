@@ -61,22 +61,11 @@ class VideoViewController: UIViewController {
         }
     }
 
-//    private var videoIsFullScreen: Bool {
-//        let videoIsFullScreenOnihone = UIDevice.current.userInterfaceIdiom == .phone && UIDevice.current.orientation.isLandscape
-//        return videoIsFullScreenOnihone || self.videoIsFullScreenOniPad
-//    }
-
     private var video: Video?
-//    private var videoPlayerConfigured = false
     private var didViewAppear = false
-
-//    private let playerControlView = VideoPlayerControlView()
-//
-//    var player: CustomBMPlayer?
 
     private var playerViewController: BingePlayerViewController? {
         didSet {
-//            self.playerViewController?.playbackRate = configuration.playbackRate
             self.playerViewController?.delegate = self
             self.playerViewController?.tintColor = Brand.default.colors.window
         }
@@ -87,7 +76,6 @@ class VideoViewController: UIViewController {
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
 
-//        self.layoutPlayer()
         self.updateCornersOfVideoContainer(for: self.traitCollection)
 
         self.videoActionsButton.isEnabled = false
@@ -184,10 +172,6 @@ class VideoViewController: UIViewController {
         return self.playerViewController
     }
 
-//    func setiPadFullScreenMode(_ isFullScreen: Bool) {
-//        self.videoIsFullScreen = isFullScreen
-//    }
-
     private func updateView(for courseItem: CourseItem) {
         self.titleView.text = courseItem.title
 
@@ -235,9 +219,6 @@ class VideoViewController: UIViewController {
             self.descriptionView.isHidden = true
         }
 
-//        // configure video player
-//        if self.videoPlayerConfigured { return }
-
         // don't reconfigure video player
         guard self.playerViewController?.asset == nil else { return }
 
@@ -246,42 +227,6 @@ class VideoViewController: UIViewController {
 
         self.playerViewController?.configure(for: video)
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-//        try? AVAudioSession.sharedInstance().setActive(true)
-
-//        // determine video url (local file, currently downloading or remote)
-//        var videoURL: URL
-//        if let localFileLocation = StreamPersistenceManager.shared.localFileLocation(for: video),
-//            AVURLAsset(url: localFileLocation).assetCache?.isPlayableOffline ?? false {
-//            videoURL = localFileLocation
-//            self.playerControlView.isOffline = true
-//        } else if let streamURL = video.streamURLForDownload {
-//            videoURL = streamURL
-//            self.playerControlView.isOffline = false
-//        } else if let hdURL = video.singleStream?.hdURL, ReachabilityHelper.connection == .wifi {
-//            videoURL = hdURL
-//            self.playerControlView.isOffline = false
-//        } else if let sdURL = video.singleStream?.sdURL {
-//            videoURL = sdURL
-//            self.playerControlView.isOffline = false
-//        } else {
-//            self.errorView.isHidden = false
-//            self.playerControlView.isOffline = false
-//            return
-//        }
-//
-//        self.videoPlayerConfigured = true
-//        self.errorView.isHidden = true
-//
-//        let asset = BMPlayerResource(url: videoURL, name: self.courseItem?.title ?? "")
-//        self.player?.setVideo(resource: asset)
-//        self.updatePreferredVideoBitrate()
-//        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-//        try? AVAudioSession.sharedInstance().setActive(true)
-//
-//        if let player = self.player, !player.isPlaying, self.isBeingPresented {
-//            player.play()
-//            self.trackVideoPlay()
-//        }
     }
 
     @IBAction private func openSlides() {
@@ -405,7 +350,6 @@ class VideoViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
 
         self.updateUIForFullScreenMode(false)
-//        self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
     }
 
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -426,11 +370,6 @@ class VideoViewController: UIViewController {
     private func updateUIForFullScreenMode(_ animated: Bool) {
         DispatchQueue.main.async {
             self.toggleControlBars(animated)
-//            self.setNeedsStatusBarAppearanceUpdate()
-//
-//            if #available(iOS 11.0, *) {
-//                self.setNeedsUpdateOfHomeIndicatorAutoHidden()
-//            }
 
             if self.videoIsShownInFullScreen {
                 NSLayoutConstraint.activate(self.fullScreenContraints)
@@ -447,19 +386,6 @@ class VideoViewController: UIViewController {
             })
         }
     }
-
-//    private func updatePreferredVideoBitrate() {
-//        if let video = self.video, StreamPersistenceManager.shared.localFileLocation(for: video) == nil {
-//            let videoQuaility: VideoQuality
-//            if ReachabilityHelper.connection == .wifi {
-//                videoQuaility = UserDefaults.standard.videoQualityOnWifi
-//            } else {
-//                videoQuaility = UserDefaults.standard.videoQualityOnCellular
-//            }
-//
-//            self.playerViewController?.avPlayer?.currentItem?.preferredPeakBitRate = Double(videoQuaility.rawValue)
-//        }
-//    }
 
 }
 

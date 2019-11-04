@@ -174,16 +174,6 @@ public class BingePlayerViewController: UIViewController {
         } else if self.layoutState == .remote {
             self.showControlsOverlay()
         }
-
-//        guard !self.isStandAlone else { return }
-//
-//        if let fullscreenPresenter = self.fullscreenPresenter, self.layoutState != .fullscreen {
-//            fullscreenPresenter.close()
-//            self.fullscreenPresenter = nil
-//        } else if self.layoutState == .fullscreen {
-//            self.fullscreenPresenter = BingeFullScreenPresenter(for: self)
-//            self.fullscreenPresenter?.open()
-//        }
     }
 
     public var allowFullScreenMode: Bool = true {
@@ -204,8 +194,6 @@ public class BingePlayerViewController: UIViewController {
         guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
         return !self.isStandAlone && self.allowFullScreenMode && self.phonesWillAutomaticallyEnterFullScreenModeInLandscapeOrientation
     }
-
-//    private var fullscreenPresenter: BingeFullScreenPresenter?
 
     @available(iOS 11, *)
     private lazy var routeDetector = AVRouteDetector()
@@ -417,14 +405,6 @@ public class BingePlayerViewController: UIViewController {
                     let newTime = CMTimeMultiplyByFloat64(item.duration, multiplier: pinnedProgress)
                     self.player.seek(to: newTime)
                 }
-
-//                if self.initiallyHideControls {
-//                    self.startPlayback()
-//                } else {
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-//                        self.showControlsOverlay()
-//                    }
-//                }
 
                 self.playerWasConfigured = true
             }
@@ -761,7 +741,6 @@ extension BingePlayerViewController: BingeControlDelegate {
     func togglePictureInPictureMode() {
         guard let pictureInPictureController = self.pictureInPictureController else { return }
 
-        print("is possible \(pictureInPictureController.isPictureInPicturePossible)")
         if pictureInPictureController.isPictureInPictureActive {
             pictureInPictureController.stopPictureInPicture()
         } else {
@@ -844,12 +823,6 @@ extension BingePlayerViewController: UIPopoverPresentationControllerDelegate {
         self.autoHideControlsOverlay()
     }
 
-    public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        // The underlying view controller should not be removed when the media selection menu is present.
-        // Therefore, we use `UIModalPresentationStyle.overFullScreen` for compact horizontal size classes.
-        return traitCollection.horizontalSizeClass == .compact ? .overFullScreen : .popover
-    }
-
 }
 
 extension BingePlayerViewController: AVPictureInPictureControllerDelegate {
@@ -858,35 +831,21 @@ extension BingePlayerViewController: AVPictureInPictureControllerDelegate {
                                            restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         //Update video controls of main player to reflect the current state of the video playback.
         //You may want to update the video scrubber position.
-        print("restoreUserInterfaceForPictureInPictureStopWithCompletionHandler")
         completionHandler(true)
     }
 
     public func pictureInPictureControllerWillStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
         //Handle PIP will start event
-        print("pictureInPictureControllerWillStartPictureInPicture")
         self.layoutState = .pictureInPicture
-    }
-
-    public func pictureInPictureControllerDidStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
-        //Handle PIP did start event
-        print("pictureInPictureControllerDidStartPictureInPicture")
     }
 
     public func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, failedToStartPictureInPictureWithError error: Error) {
         //Handle PIP failed to start event
-        print("failedToStartPictureInPictureWithError")
         self.layoutState = .inline
-    }
-
-    public func pictureInPictureControllerWillStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
-        //Handle PIP will stop event
-        print("pictureInPictureControllerWillStopPictureInPicture")
     }
 
     public func pictureInPictureControllerDidStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
         //Handle PIP did start event
-        print("pictureInPictureControllerDidStopPictureInPicture")
         self.layoutState = .inline
     }
 

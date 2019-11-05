@@ -85,6 +85,7 @@
 		507D723E233780AD00DADE06 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D723D233780AD00DADE06 /* DashboardViewController.swift */; };
 		507D7240233784CE00DADE06 /* CourseOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 507D723F233784CE00DADE06 /* CourseOverview.storyboard */; };
 		507DFF9A2153E397006DC140 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 507DFF9C2153E397006DC140 /* InfoPlist.strings */; };
+		507F7FD4237029F20031DC0B /* FixedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FD3237029F20031DC0B /* FixedTextView.swift */; };
 		508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */; };
 		508AB2C02109F0A10079EAE5 /* DocumentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */; };
 		508AB2C22109F0DE0079EAE5 /* DocumentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */; };
@@ -539,6 +540,7 @@
 		507D723F233784CE00DADE06 /* CourseOverview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseOverview.storyboard; sourceTree = "<group>"; };
 		507DFF9F2153E411006DC140 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		507DFFA02153E41B006DC140 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		507F7FD3237029F20031DC0B /* FixedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedTextView.swift; sourceTree = "<group>"; };
 		508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFWebViewController.storyboard; sourceTree = "<group>"; };
 		508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentHeader.xib; sourceTree = "<group>"; };
 		508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHeader.swift; sourceTree = "<group>"; };
@@ -1237,6 +1239,7 @@
 				5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */,
 				5040A63020797ED800E98351 /* CourseNavigationController.swift */,
 				509B10D0200790560042AA7D /* XikoloTabBarController.swift */,
+				507F7FD3237029F20031DC0B /* FixedTextView.swift */,
 				F80D679A1B98751700E27520 /* Localizable.strings */,
 				50CF202D20DCE6680011BFE9 /* Info.plist */,
 				507DFF9C2153E397006DC140 /* InfoPlist.strings */,
@@ -2114,6 +2117,7 @@
 				50CF1FA520DCDBFC0011BFE9 /* CourseViewController.swift in Sources */,
 				508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift in Sources */,
 				508FF44621AB42B200801530 /* UITableViewController+resizeViews.swift in Sources */,
+				507F7FD4237029F20031DC0B /* FixedTextView.swift in Sources */,
 				50CF1FA620DCDBFC0011BFE9 /* CourseCell.swift in Sources */,
 				82D13D0C235726E70006A0D9 /* HelpdeskViewController.swift in Sources */,
 				50CF1FA820DCDBFC0011BFE9 /* CourseAreaListViewController.swift in Sources */,

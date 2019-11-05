@@ -62,9 +62,14 @@ public class BingePlayerViewController: UIViewController {
     private lazy var controlsContainer = BingeClickThroughView()
     private lazy var controlsViewController = BingeControlsViewController(delegate: self)
 
-    @objc dynamic lazy var player = AVPlayer()
+    private var timeObserverToken: Any?
+    private var timeStatusObservation: NSKeyValueObservation?
+    private var loadedTimeRangesObservation: NSKeyValueObservation?
+    private var statusObservation: NSKeyValueObservation?
+    private var outputVolumeObservation: NSKeyValueObservation?
+    private var pictureInPicturePossibleObservation: NSKeyValueObservation?
 
-    var timeObserverToken: Any?
+    @objc dynamic lazy var player = AVPlayer()
 
     static let assetKeysRequiredToPlay = [
         "playable",
@@ -296,17 +301,27 @@ public class BingePlayerViewController: UIViewController {
             self.routeDetector.isRouteDetectionEnabled = true
         }
 
-        self.addObserver(self, forKeyPath: "player.timeControlStatus", options: [.new, .initial], context: &playerViewControllerKVOContext)
-        self.addObserver(self, forKeyPath: "player.currentItem.loadedTimeRanges", options: [.new, .initial], context: &playerViewControllerKVOContext)
-        self.addObserver(self, forKeyPath: "player.currentItem.status", options: [.new, .initial], context: &playerViewControllerKVOContext)
-
-        AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: [.new], context: &playerViewControllerKVOContext)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChanged), name: AVAudioSession.routeChangeNotification, object: nil)
-
         if self.isAirPlayActivated {
             self.layoutState = .remote
         }
+
+        self.timeStatusObservation = self.observe(\.player.timeControlStatus, options: [.new, .initial]) { _, _ in
+            self.reactOnTimeControlStatusChange()
+        }
+
+        self.loadedTimeRangesObservation = self.observe(\.player.currentItem?.loadedTimeRanges, options: [.new, .initial]) { _, _ in
+            self.reactOnLoadedTimeRangesChange()
+        }
+
+        self.statusObservation = self.observe(\.player.currentItem?.status, options: [.new, .initial]) { _, _ in
+            self.reactOnStatusChange()
+        }
+
+        self.outputVolumeObservation = AVAudioSession.sharedInstance().observe(\.outputVolume, options: [.new]) { _, _ in
+            self.showVolumeIndicator()
+        }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChanged), name: AVAudioSession.routeChangeNotification, object: nil)
 
         if #available(iOS 11, *) {
             NotificationCenter.default.addObserver(self,
@@ -361,61 +376,6 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        guard context == &playerViewControllerKVOContext else {
-            return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
-
-        if keyPath == "player.timeControlStatus" {
-            let status = self.player.timeControlStatus
-            self.loadingIndicator.isHidden = status != .waitingToPlayAtSpecifiedRate
-            self.controlsViewController.adaptToTimeControlStatus(status)
-            self.updateMediaPlayerInfoCenter()
-            self.autoHideControlsOverlay()
-
-            if self.player.timeControlStatus == .playing, self.player.rate != self.playbackRate {
-                self.player.rate = self.playbackRate
-            }
-        } else if keyPath == "player.currentItem.loadedTimeRanges" {
-            guard let item = self.player.currentItem else { return }
-            guard let timeRange = item.loadedTimeRanges.first?.timeRangeValue else { return }
-            let availableTime = CMTimeGetSeconds(CMTimeAdd(timeRange.start, timeRange.duration))
-            let totalTime = CMTimeGetSeconds(item.duration)
-            self.controlsViewController.adaptToBufferChange(availableTime: availableTime, totalTime: totalTime)
-        } else if keyPath == "player.currentItem.status" {
-            guard let item = self.player.currentItem else {
-                if playerWasConfigured {
-                    self.showControlsOverlay()
-                }
-
-                return
-            }
-
-            guard item.status == .readyToPlay else {
-                return
-            }
-
-            self.controlsViewController.adaptToItem(item)
-            self.updateMediaPlayerInfoCenter()
-            self.setupPictureInPictureViewController()
-
-            if !self.playerWasConfigured {
-                if let progress = self.startProgress, !item.duration.isIndefinite {
-                    let pinnedProgress = max(0, min(Float64(progress), 1))
-                    let newTime = CMTimeMultiplyByFloat64(item.duration, multiplier: pinnedProgress)
-                    self.player.seek(to: newTime)
-                }
-
-                self.playerWasConfigured = true
-            }
-        } else if keyPath == "pictureInPicturePossible" {
-            let pictureInPicturePossible = self.pictureInPictureController?.isPictureInPicturePossible ?? false
-            self.controlsViewController.adaptToPictureInPicturePossible(pictureInPicturePossible)
-        } else if keyPath == "outputVolume" {
-            self.showVolumeIndicator()
-        }
-    }
-
     override public var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -434,6 +394,58 @@ public class BingePlayerViewController: UIViewController {
 
     override public var prefersHomeIndicatorAutoHidden: Bool {
         return self.controlsContainer.isHidden
+    }
+
+    private func reactOnTimeControlStatusChange() {
+        self.loadingIndicator.isHidden = self.player.timeControlStatus != .waitingToPlayAtSpecifiedRate
+        self.controlsViewController.adaptToTimeControlStatus(self.player.timeControlStatus)
+        self.updateMediaPlayerInfoCenter()
+        self.autoHideControlsOverlay()
+
+        if self.player.timeControlStatus == .playing, self.player.rate != self.playbackRate {
+            self.player.rate = self.playbackRate
+        }
+    }
+
+    private func reactOnLoadedTimeRangesChange() {
+        guard let item = self.player.currentItem else { return }
+        guard let timeRange = item.loadedTimeRanges.first?.timeRangeValue else { return }
+        let availableTime = CMTimeGetSeconds(CMTimeAdd(timeRange.start, timeRange.duration))
+        let totalTime = CMTimeGetSeconds(item.duration)
+        self.controlsViewController.adaptToBufferChange(availableTime: availableTime, totalTime: totalTime)
+    }
+
+    private func reactOnStatusChange() {
+        guard let item = self.player.currentItem else {
+            if playerWasConfigured {
+                self.showControlsOverlay()
+            }
+
+            return
+        }
+
+        guard item.status == .readyToPlay else {
+            return
+        }
+
+        self.controlsViewController.adaptToItem(item)
+        self.updateMediaPlayerInfoCenter()
+        self.setupPictureInPictureViewController()
+
+        if !self.playerWasConfigured {
+            if let progress = self.startProgress, !item.duration.isIndefinite {
+                let pinnedProgress = max(0, min(Float64(progress), 1))
+                let newTime = CMTimeMultiplyByFloat64(item.duration, multiplier: pinnedProgress)
+                self.player.seek(to: newTime)
+            }
+
+            self.playerWasConfigured = true
+        }
+    }
+
+    private func reactOnPictureInPicturePossibleChange() {
+        let pictureInPicturePossible = self.pictureInPictureController?.isPictureInPicturePossible ?? false
+        self.controlsViewController.adaptToPictureInPicturePossible(pictureInPicturePossible)
     }
 
     @objc private func audioRouteChanged() {
@@ -540,10 +552,10 @@ public class BingePlayerViewController: UIViewController {
 
         self.pictureInPictureController = AVPictureInPictureController(playerLayer: self.playerView.playerLayer)
         self.pictureInPictureController?.delegate = self
-        self.pictureInPictureController?.addObserver(self,
-                                                     forKeyPath: "pictureInPicturePossible",
-                                                     options: [.new, .initial],
-                                                     context: &playerViewControllerKVOContext)
+
+        self.pictureInPicturePossibleObservation = self.pictureInPictureController?.observe(\.isPictureInPicturePossible, options: [.new, .initial]) { _, _ in
+            self.reactOnPictureInPicturePossibleChange()
+        }
     }
 
     public func automaticallyStartPicutureinPictureModeIfPossible() {

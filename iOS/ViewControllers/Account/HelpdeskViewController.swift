@@ -107,7 +107,7 @@ class HelpdeskViewController: UITableViewController {
     @IBAction private func onValueChange() {
         // TODO: optional chaining + simplification
         guard (issueText.text != nil) &&
-            (!issueText.text!.isEmpty) &&
+            !(issueText.text?.isEmpty ?? true) &&
             (issueTitleTextField.text != nil) &&
             (!issueTitleTextField.text!.isEmpty) &&
             (mailAddressTextField.text != nil) &&

@@ -847,17 +847,14 @@ extension BingePlayerViewController: AVPictureInPictureControllerDelegate {
     }
 
     public func pictureInPictureControllerWillStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
-        //Handle PIP will start event
         self.layoutState = .pictureInPicture
     }
 
     public func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, failedToStartPictureInPictureWithError error: Error) {
-        //Handle PIP failed to start event
         self.layoutState = .inline
     }
 
     public func pictureInPictureControllerDidStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
-        //Handle PIP did start event
         self.layoutState = .inline
     }
 

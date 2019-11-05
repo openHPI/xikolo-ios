@@ -296,20 +296,20 @@ public class BingePlayerViewController: UIViewController {
             self.layoutState = .remote
         }
 
-        self.timeStatusObservation = self.observe(\.player.timeControlStatus, options: [.new, .initial]) { _, _ in
-            self.reactOnTimeControlStatusChange()
+        self.timeStatusObservation = self.observe(\.player.timeControlStatus, options: [.new, .initial]) { [weak self] _, _ in
+            self?.reactOnTimeControlStatusChange()
         }
 
-        self.loadedTimeRangesObservation = self.observe(\.player.currentItem?.loadedTimeRanges, options: [.new, .initial]) { _, _ in
-            self.reactOnLoadedTimeRangesChange()
+        self.loadedTimeRangesObservation = self.observe(\.player.currentItem?.loadedTimeRanges, options: [.new, .initial]) { [weak self] _, _ in
+            self?.reactOnLoadedTimeRangesChange()
         }
 
-        self.statusObservation = self.observe(\.player.currentItem?.status, options: [.new, .initial]) { _, _ in
-            self.reactOnStatusChange()
+        self.statusObservation = self.observe(\.player.currentItem?.status, options: [.new, .initial]) { [weak self] _, _ in
+            self?.reactOnStatusChange()
         }
 
-        self.outputVolumeObservation = AVAudioSession.sharedInstance().observe(\.outputVolume, options: [.new]) { _, _ in
-            self.showVolumeIndicator()
+        self.outputVolumeObservation = AVAudioSession.sharedInstance().observe(\.outputVolume, options: [.new]) { [weak self] _, _ in
+            self?.showVolumeIndicator()
         }
 
         NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChanged), name: AVAudioSession.routeChangeNotification, object: nil)
@@ -557,8 +557,8 @@ public class BingePlayerViewController: UIViewController {
         self.pictureInPictureController = AVPictureInPictureController(playerLayer: self.playerView.playerLayer)
         self.pictureInPictureController?.delegate = self
 
-        self.pictureInPicturePossibleObservation = self.pictureInPictureController?.observe(\.isPictureInPicturePossible, options: [.new, .initial]) { _, _ in
-            self.reactOnPictureInPicturePossibleChange()
+        self.pictureInPicturePossibleObservation = self.pictureInPictureController?.observe(\.isPictureInPicturePossible, options: [.new, .initial]) { [weak self] _, _ in
+            self?.reactOnPictureInPicturePossibleChange()
         }
     }
 

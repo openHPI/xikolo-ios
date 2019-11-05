@@ -6,6 +6,7 @@
 import UIKit
 
 public protocol BingePlayerDelegate: AnyObject {
+
     func didStartPlayback()
     func didPausePlayback()
     func didChangePlaybackRate(from oldRate: Float, to newRate: Float)
@@ -13,9 +14,11 @@ public protocol BingePlayerDelegate: AnyObject {
     func didReachEndofPlayback()
     func didChangeLayout(from oldLayout: LayoutState, to newLayout: LayoutState)
     func didChangeOrientation(to orientation: UIInterfaceOrientation)
+
 }
 
 public extension BingePlayerDelegate {
+
     func didStartPlayback() {}
     func didPausePlayback() {}
     func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {}
@@ -23,4 +26,5 @@ public extension BingePlayerDelegate {
     func didReachEndofPlayback() {}
     func didChangeLayout(from oldLayout: LayoutState, to newLayout: LayoutState) {}
     func didChangeOrientation(to orientation: UIInterfaceOrientation) {}
+
 }

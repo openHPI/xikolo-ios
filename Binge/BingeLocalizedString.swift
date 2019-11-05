@@ -5,7 +5,8 @@
 
 import Foundation
 
-class BingeLocalizer { // swiftlint:disable:this convenience_type
+// swiftlint:disable:next convenience_type
+class BingeLocalizer {
 
     static func localizedString(_ key: String, comment: String) -> String {
         let bundle = Bundle(for: BingeLocalizer.self)
@@ -14,6 +15,7 @@ class BingeLocalizer { // swiftlint:disable:this convenience_type
 
 }
 
+// swiftlint:disable:next identifier_name
 func BingeLocalizedString(_ key: String, comment: String) -> String {
     return BingeLocalizer.localizedString(key, comment: comment)
 }

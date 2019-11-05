@@ -27,6 +27,7 @@ class BingeLoadingIndicator: UIView {
         }
     }
 
+    // swiftlint:disable:next valid_ibinspectable
     @IBInspectable var duration: CFTimeInterval = 1.0
 
     private var loadingIndicatorLayer: BingeLoadingIndicatorLayer {

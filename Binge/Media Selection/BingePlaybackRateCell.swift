@@ -35,7 +35,7 @@ class BingePlaybackRateCell: UITableViewCell {
         self.textLabel?.textColor = .white
         self.textLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 15, weight: .regular)
         self.textLabel?.adjustsFontForContentSizeCategory = true
-        self.backgroundColor = UIColor(white: 0.1, alpha: 1.0) //.clear
+        self.backgroundColor = UIColor(white: 0.1, alpha: 1.0)
         self.tintColor = .white
         self.selectionStyle = .none
         self.accessoryView = self.stepper

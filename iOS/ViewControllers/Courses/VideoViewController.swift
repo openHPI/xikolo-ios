@@ -8,9 +8,7 @@
 import AVFoundation
 import AVKit
 import Binge
-//import BMPlayer
 import Common
-//import NVActivityIndicatorView
 import UIKit
 
 class VideoViewController: UIViewController {
@@ -395,11 +393,11 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         return [
             "section_id": self.video?.item?.section?.id,
             "course_id": self.video?.item?.section?.course?.id,
-            "current_speed": (self.playerViewController?.playbackRate).map({ String($0) }),
+            "current_speed": (self.playerViewController?.playbackRate).map { String($0) },
             "current_orientation": UIApplication.shared.statusBarOrientation.isLandscape ? "landscape" : "portrait",
             "current_quality": "hls",
             "current_source": self.currentSourceValue(for: self.playerViewController?.asset),
-            "current_time": self.playerViewController?.currentTime.map({ String($0) }),
+            "current_time": self.playerViewController?.currentTime.map { String($0) },
             "current_layout": self.playerViewController?.layoutState.rawValue,
         ]
     }

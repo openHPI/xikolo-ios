@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable file_length type_body_length
+
 import AVFoundation
 import AVKit
 import UIKit
@@ -123,7 +125,7 @@ class BingeControlsViewController: UIViewController {
     private lazy var airPlayButton: AVRoutePickerView = {
         let view = AVRoutePickerView()
         view.tintColor = .white
-        view.activeTintColor = .red // TODO: change?
+        view.activeTintColor = .red
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self.delegate
         view.isHidden = true
@@ -259,7 +261,7 @@ class BingeControlsViewController: UIViewController {
         parent.addSubview(self.seekBackwardButton)
     }
 
-    private func addConstraints(with parent: UIView) {
+    private func addConstraints(with parent: UIView) { // swiftlint:disable:this function_body_length
         let padding: CGFloat = 12
         let parentMargins: UILayoutGuide = {
             if #available(iOS 11, *) {

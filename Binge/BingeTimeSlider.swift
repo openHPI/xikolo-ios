@@ -11,7 +11,15 @@ class BingeTimeSlider: UISlider {
         let trackHeight: CGFloat = 2
         let superRect = super.trackRect(forBounds: bounds)
         let heightDelta = trackHeight - superRect.height
-        return CGRect(x: superRect.origin.x, y: superRect.origin.y - heightDelta / 2 - 1, width: superRect.width, height: trackHeight)
+
+        let additionalOffsetY: CGFloat
+        if #available(iOS 11, *) {
+            additionalOffsetY = -1
+        } else {
+            additionalOffsetY = -0.5
+        }
+
+        return CGRect(x: superRect.origin.x, y: superRect.origin.y - heightDelta / 2 + additionalOffsetY, width: superRect.width, height: trackHeight)
     }
 
     override open func thumbRect(forBounds bounds: CGRect, trackRect rect: CGRect, value: Float) -> CGRect {

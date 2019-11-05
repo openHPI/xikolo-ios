@@ -6,6 +6,7 @@
 import UIKit
 
 protocol BingeControlDelegate: AnyObject {
+
     func startPlayback()
     func pausePlayback()
     func seekTo(progress: Double)
@@ -18,4 +19,5 @@ protocol BingeControlDelegate: AnyObject {
     func showMediaSelection(for sourceView: UIView)
 
     func dismissPlayer()
+
 }

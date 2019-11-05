@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable file_length type_body_length
+
 import AVFoundation
 import AVKit
 import MediaPlayer
@@ -102,6 +104,7 @@ public class BingePlayerViewController: UIViewController {
         return self.parent == nil && self.presentingViewController != nil
     }
 
+    // swiftlint:disable:next identifier_name
     private var shouldEnterFullScreenModeInLandscapeOrientation: Bool {
         guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
         return !self.isStandAlone && self.allowFullScreenMode && self.phonesWillAutomaticallyEnterFullScreenModeInLandscapeOrientation
@@ -196,6 +199,7 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
+    // swiftlint:disable:next identifier_name
     public var phonesWillAutomaticallyEnterFullScreenModeInLandscapeOrientation = true
 
     public var initiallyShowControls = true
@@ -213,7 +217,7 @@ public class BingePlayerViewController: UIViewController {
 
     public weak var delegate: BingePlayerDelegate?
 
-    override public func loadView() {
+    override public func loadView() { // swiftlint:disable:this function_body_length
         let view = UIView()
         view.backgroundColor = .black
         view.addSubview(self.playerView)
@@ -557,7 +561,8 @@ public class BingePlayerViewController: UIViewController {
         self.pictureInPictureController = AVPictureInPictureController(playerLayer: self.playerView.playerLayer)
         self.pictureInPictureController?.delegate = self
 
-        self.pictureInPicturePossibleObservation = self.pictureInPictureController?.observe(\.isPictureInPicturePossible, options: [.new, .initial]) { [weak self] _, _ in
+        self.pictureInPicturePossibleObservation = self.pictureInPictureController?.observe(\.isPictureInPicturePossible,
+                                                                                            options: [.new, .initial]) { [weak self] _, _ in
             self?.reactOnPictureInPicturePossibleChange()
         }
     }
@@ -627,7 +632,7 @@ public class BingePlayerViewController: UIViewController {
 
 }
 
-extension BingePlayerViewController: BingeMediaSelectionDelegate {
+extension BingePlayerViewController: BingeMediaSelectionDataSource, BingeMediaSelectionDelegate {
 
     var currentMediaSelection: AVMediaSelection? {
         return self.player.currentItem?.currentMediaSelection
@@ -845,8 +850,6 @@ extension BingePlayerViewController: AVPictureInPictureControllerDelegate {
 
     public func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController,
                                            restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
-        //Update video controls of main player to reflect the current state of the video playback.
-        //You may want to update the video scrubber position.
         completionHandler(true)
     }
 

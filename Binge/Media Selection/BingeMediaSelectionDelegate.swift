@@ -4,10 +4,10 @@
 //
 
 import AVFoundation
-import UIKit
 
-protocol BingeMediaSelectionDelegate: AnyObject { // TODO: split into delegate and datasource
-    var currentMediaSelection: AVMediaSelection? { get }
+protocol BingeMediaSelectionDelegate: AnyObject {
+
     func select(_ option: AVMediaSelectionOption?, in group: AVMediaSelectionGroup)
     func didCloseMediaSelection()
+
 }

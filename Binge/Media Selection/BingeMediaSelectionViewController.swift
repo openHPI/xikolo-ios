@@ -10,9 +10,9 @@ class BingeMediaSelectionViewController: UITableViewController {
 
     private let mediaCharacteristics: [AVMediaCharacteristic] = [.audible, .legible]
 
-    private weak var delegate: (BingeMediaSelectionDelegate & BingePlaybackRateDelegate)?
+    private weak var delegate: (BingeMediaSelectionDataSource & BingeMediaSelectionDelegate & BingePlaybackRateDelegate)?
 
-    init(delegate: BingeMediaSelectionDelegate & BingePlaybackRateDelegate) {
+    init(delegate: BingeMediaSelectionDataSource & BingeMediaSelectionDelegate & BingePlaybackRateDelegate) {
         self.delegate = delegate
 
         if #available(iOS 13, *) {

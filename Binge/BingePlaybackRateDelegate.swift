@@ -4,6 +4,9 @@
 //
 
 protocol BingePlaybackRateDelegate: AnyObject {
+
     var currentRate: Float { get }
-    func changeRate(to: Float)
+
+    func changeRate(to rate: Float)
+
 }

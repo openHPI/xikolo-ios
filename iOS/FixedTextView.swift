@@ -11,8 +11,7 @@ class FixedTextView: UITextView {
     required init?(coder: NSCoder) {
         if #available(iOS 13.2, *) {
             super.init(coder: coder)
-        }
-        else {
+        } else {
             super.init(frame: .zero, textContainer: nil)
             self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             self.contentMode = .scaleToFill

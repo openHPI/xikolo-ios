@@ -153,6 +153,8 @@ class VideoViewController: UIViewController {
             self.playerViewController?.automaticallyStopPicutureinPictureModeIfNecessary(force: true)
             self.trackVideoClose()
         }
+
+        self.didViewAppear = false
     }
 
     override var childForStatusBarStyle: UIViewController? {

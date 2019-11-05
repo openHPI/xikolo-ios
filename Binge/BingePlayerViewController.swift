@@ -299,6 +299,20 @@ public class BingePlayerViewController: UIViewController {
         if self.isAirPlayActivated {
             self.layoutState = .remote
         }
+    }
+
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.controlsViewController.adaptToLayoutState(self.layoutState,
+                                                       allowFullScreenMode: self.allowFullScreenMode,
+                                                       isStandAlone: self.isStandAlone)
+
+        if self.shouldEnterFullScreenModeInLandscapeOrientation, UIDevice.current.orientation.isLandscape {
+            self.layoutState = .fullScreen
+        }
+
+        self.setupPlayerPeriodicTimeObserver()
 
         self.timeStatusObservation = self.observe(\.player.timeControlStatus, options: [.new, .initial]) { [weak self] _, _ in
             self?.reactOnTimeControlStatusChange()
@@ -326,23 +340,20 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
-    override public func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        self.controlsViewController.adaptToLayoutState(self.layoutState,
-                                                       allowFullScreenMode: self.allowFullScreenMode,
-                                                       isStandAlone: self.isStandAlone)
-
-        if self.shouldEnterFullScreenModeInLandscapeOrientation, UIDevice.current.orientation.isLandscape {
-            self.layoutState = .fullScreen
-        }
-
-        self.setupPlayerPeriodicTimeObserver()
-    }
-
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
         self.cleanUpPlayerPeriodicTimeObserver()
+        self.timeStatusObservation?.invalidate()
+        self.loadedTimeRangesObservation?.invalidate()
+        self.statusObservation?.invalidate()
+        self.outputVolumeObservation?.invalidate()
+
+        NotificationCenter.default.removeObserver(self, name: AVAudioSession.routeChangeNotification, object: nil)
+
+        if #available(iOS 11, *) {
+            NotificationCenter.default.removeObserver(self, name: .AVRouteDetectorMultipleRoutesDetectedDidChange, object: nil)
+        }
     }
 
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

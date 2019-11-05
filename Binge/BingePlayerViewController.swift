@@ -82,6 +82,35 @@ public class BingePlayerViewController: UIViewController {
     private var volumeIndicatorDispatchWorkItem: DispatchWorkItem?
     private var controlsOverlayDispatchWorkItem: DispatchWorkItem?
 
+    private var playerWasConfigured = false
+    private var didPlayToEnd = false
+
+    private var _layoutState: LayoutState = .inline {
+        didSet {
+            self.delegate?.didChangeLayout(from: oldValue, to: self._layoutState)
+        }
+    }
+
+    @available(iOS 11, *)
+    private lazy var routeDetector = AVRouteDetector()
+
+    private var shouldShowControls: Bool {
+        return [LayoutState.inline, .fullScreen].contains(self.layoutState)
+    }
+
+    private var isStandAlone: Bool {
+        return self.parent == nil && self.presentingViewController != nil
+    }
+
+    private var shouldEnterFullScreenModeInLandscapeOrientation: Bool {
+        guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
+        return !self.isStandAlone && self.allowFullScreenMode && self.phonesWillAutomaticallyEnterFullScreenModeInLandscapeOrientation
+    }
+
+    private var isAirPlayActivated: Bool {
+        return AVAudioSession.sharedInstance().currentRoute.outputs.contains { return $0.portType == .airPlay }
+    }
+
     public var asset: AVAsset? {
         didSet {
             if let item = self.player.currentItem {
@@ -126,15 +155,6 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
-    private var playerWasConfigured = false
-    private var didPlayToEnd = false
-
-    private var _layoutState: LayoutState = .inline {
-        didSet {
-            self.delegate?.didChangeLayout(from: oldValue, to: self._layoutState)
-        }
-    }
-
     public var layoutState: LayoutState {
         get {
             return self._layoutState
@@ -167,20 +187,6 @@ public class BingePlayerViewController: UIViewController {
         return self.player.currentItem?.currentTime().seconds
     }
 
-    private func adaptToLayoutState() {
-        self.controlsViewController.adaptToLayoutState(self.layoutState,
-                                                       allowFullScreenMode: self.allowFullScreenMode,
-                                                       isStandAlone: self.isStandAlone)
-
-        self.volumeIndicator.isHidden = self.layoutState != .fullScreen
-
-        if self.layoutState == .pictureInPicture {
-            self.hideControlsOverlay()
-        } else if self.layoutState == .remote {
-            self.showControlsOverlay()
-        }
-    }
-
     public var allowFullScreenMode: Bool = true {
         didSet {
             self.layoutState = self._layoutState
@@ -190,18 +196,7 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
-    private var isStandAlone: Bool {
-        return self.parent == nil && self.presentingViewController != nil
-    }
-
     public var phonesWillAutomaticallyEnterFullScreenModeInLandscapeOrientation = true
-    private var shouldEnterFullScreenModeInLandscapeOrientation: Bool {
-        guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
-        return !self.isStandAlone && self.allowFullScreenMode && self.phonesWillAutomaticallyEnterFullScreenModeInLandscapeOrientation
-    }
-
-    @available(iOS 11, *)
-    private lazy var routeDetector = AVRouteDetector()
 
     public var initiallyShowControls = true
     public var startProgress: Float?
@@ -217,10 +212,6 @@ public class BingePlayerViewController: UIViewController {
     }
 
     public weak var delegate: BingePlayerDelegate?
-
-    private var isAirPlayActivated: Bool {
-        return AVAudioSession.sharedInstance().currentRoute.outputs.contains { return $0.portType == .airPlay }
-    }
 
     override public func loadView() {
         let view = UIView()
@@ -396,8 +387,22 @@ public class BingePlayerViewController: UIViewController {
         return self.controlsContainer.isHidden
     }
 
+    private func adaptToLayoutState() {
+        self.controlsViewController.adaptToLayoutState(self.layoutState,
+                                                       allowFullScreenMode: self.allowFullScreenMode,
+                                                       isStandAlone: self.isStandAlone)
+
+        self.volumeIndicator.isHidden = self.layoutState != .fullScreen
+
+        if self.layoutState == .pictureInPicture {
+            self.hideControlsOverlay()
+        } else if self.layoutState == .remote {
+            self.showControlsOverlay()
+        }
+    }
+
     private func reactOnTimeControlStatusChange() {
-        self.loadingIndicator.isHidden = self.player.timeControlStatus != .waitingToPlayAtSpecifiedRate
+        self.loadingIndicator.isHidden = self.player.timeControlStatus != .waitingToPlayAtSpecifiedRate && self.shouldShowControls
         self.controlsViewController.adaptToTimeControlStatus(self.player.timeControlStatus)
         self.updateMediaPlayerInfoCenter()
         self.autoHideControlsOverlay()
@@ -452,9 +457,8 @@ public class BingePlayerViewController: UIViewController {
         self.layoutState = self.isAirPlayActivated ? .remote : .inline
     }
 
-    @objc
     @available(iOS 11, *)
-    private func handleMultipleRoutes() {
+    @objc private func handleMultipleRoutes() {
         self.controlsViewController.adaptToMultiRouteOutput(for: self.routeDetector.multipleRoutesDetected)
     }
 
@@ -466,7 +470,7 @@ public class BingePlayerViewController: UIViewController {
     }
 
     @objc private func toggleControlOverlay() {
-        guard self.layoutState != .remote, self.layoutState != .pictureInPicture else { return }
+        guard self.shouldShowControls else { return }
 
         if self.controlsContainer.isHidden {
             self.showControlsOverlay()

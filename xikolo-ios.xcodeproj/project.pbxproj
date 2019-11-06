@@ -353,6 +353,7 @@
 		0262E6C423729C29007C9057 /* ExerciseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseProgress.swift; sourceTree = "<group>"; };
 		0262E6C62372C797007C9057 /* VisitProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgress.swift; sourceTree = "<group>"; };
 		0262E6C82372CBD5007C9057 /* SectionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgress.swift; sourceTree = "<group>"; };
+		0262E6CA2372DE6C007C9057 /* xikolo 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 9.xcdatamodel"; sourceTree = "<group>"; };
 		0270F4A9234CBD15008A1FD1 /* CourseProgress.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CourseProgress.storyboard; sourceTree = "<group>"; };
 		0270F4AB234CBFBC008A1FD1 /* CourseProgressListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgressListViewController.swift; sourceTree = "<group>"; };
 		02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgress.swift; sourceTree = "<group>"; };
@@ -4884,6 +4885,7 @@
 		24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0262E6CA2372DE6C007C9057 /* xikolo 9.xcdatamodel */,
 				50C4700521BA801C00F50A1A /* xikolo 8.xcdatamodel */,
 				5054B2DB21086CF600CE9067 /* xikolo 7.xcdatamodel */,
 				50082B6420C0358C00B4511C /* xikolo 6.xcdatamodel */,
@@ -4893,7 +4895,7 @@
 				ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */,
 				24597D251CC6CA0D00FB5338 /* xikolo.xcdatamodel */,
 			);
-			currentVersion = 50C4700521BA801C00F50A1A /* xikolo 8.xcdatamodel */;
+			currentVersion = 0262E6CA2372DE6C007C9057 /* xikolo 9.xcdatamodel */;
 			path = xikolo.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

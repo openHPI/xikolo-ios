@@ -20,7 +20,7 @@ class CourseProgressListViewController: UITableViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-
+        CourseProgressHelper.syncProgress(forCourse: self.course)
 
     }
 
@@ -41,7 +41,7 @@ class CourseProgressListViewController: UITableViewController {
 extension CourseProgressListViewController: CourseAreaViewController {
 
     var area: CourseArea {
-        return .certificates
+        return .progress
     }
 
     func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
@@ -49,4 +49,12 @@ extension CourseProgressListViewController: CourseAreaViewController {
         self.course = course
         self.scrollDelegate = delegate
     }
+}
+
+extension CourseProgressListViewController: RefreshableViewController {
+
+    func refreshingAction() -> Future<Void, XikoloError> {
+        return CourseProgressHelper.syncProgress(forCourse: self.course).asVoid()
+    }
+
 }

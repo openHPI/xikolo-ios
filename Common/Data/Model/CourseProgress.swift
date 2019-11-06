@@ -35,6 +35,5 @@ extension CourseProgress: JSONAPIPullable {
         self.selftestProgress = try attributes.value(for: "selftest_exercises")
         self.bonusProgress = try attributes.value(for: "bonus_exercises")
         self.visitProgress = try attributes.value(for: "visits")
-
     }
 }

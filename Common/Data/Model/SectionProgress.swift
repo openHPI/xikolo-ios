@@ -12,6 +12,7 @@ public final class SectionProgress: NSManagedObject {
 
     @NSManaged public var id: String
 
+    @NSManaged public var title: String
     @NSManaged public var mainProgress: ExerciseProgress
     @NSManaged public var selftestProgress: ExerciseProgress
     @NSManaged public var bonusProgress: ExerciseProgress

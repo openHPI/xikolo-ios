@@ -132,7 +132,7 @@ extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
 
         let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout
         let cellGaps = (flowLayout?.minimumInteritemSpacing ?? 0) * CGFloat(numberOfItemsInSection - 1)
-        let horizontalPadding = max(0, (collectionView.frame.size.width - widthOfCells - cellGaps) / 2 - leftPadding - rightPadding)
+        let horizontalPadding = max(0, (collectionView.frame.size.width - widthOfCells - cellGaps - leftPadding - rightPadding) / 2)
 
         return UIEdgeInsets(top: 0, left: leftPadding + horizontalPadding, bottom: 0, right: rightPadding + horizontalPadding)
     }

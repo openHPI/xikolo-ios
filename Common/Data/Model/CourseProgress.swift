@@ -11,25 +11,11 @@ import SyncEngine
 public final class CourseProgress: NSManagedObject {
 
     @NSManaged public var id: String
-    
-    @NSManaged public var mainExercisesAvailable: Int
-    @NSManaged public var mainExercisesTaken: Int
-    @NSManaged public var mainPointsPossible: Double
-    @NSManaged public var mainPointsScored: Double
 
-    @NSManaged public var selftestExercisesAvailable: Int
-    @NSManaged public var selftestExercisesTaken: Int
-    @NSManaged public var selftestPointsPossible: Double
-    @NSManaged public var selftestPointsScored: Double
-
-    @NSManaged public var bonusExercisesAvailable: Int
-    @NSManaged public var bonusExercisesTaken: Int
-    @NSManaged public var bonusPointsPossible: Double
-    @NSManaged public var bonusPointsScored: Double
-
-    @NSManaged public var itemsAvailable: Int
-    @NSManaged public var itemsVisited: Int
-    @NSManaged public var visitsPercentage: Double
+    @NSManaged public var mainProgress: ExerciseProgress
+    @NSManaged public var selftestProgress: ExerciseProgress
+    @NSManaged public var bonusProgress: ExerciseProgress
+    @NSManaged public var visitPrograss: Visits
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseProgress> {
         return NSFetchRequest<CourseProgress>(entityName: "CourseProgress")
@@ -43,29 +29,19 @@ extension CourseProgress: JSONAPIPullable {
     }
 
     public func update(from object: ResourceData, with context: SynchronizationContext) throws {
-        let attributes = try object.value(for: "attributes") as JSON
+        let data = try object.value(for: "data") as JSON
+        let attributes = try data.value(for: "attributes") as JSON
 
         let mainExercise = try attributes.value(for: "main_exercise") as JSON
-        self.mainExercisesAvailable = try mainExercise.value(for: "exercise_available")
-        self.mainExercisesTaken = try mainExercise.value(for: "exercise_taken")
-        self.mainPointsPossible = try mainExercise.value(for: "points_possible")
-        self.mainPointsScored = try mainExercise.value(for: "points_scored")
+        try mainProgress.update(object: mainExercise)
 
         let selftestExercise = try attributes.value(for: "selftest_exercises") as JSON
-        self.selftestExercisesAvailable = try selftestExercise.value(for: "exercise_available")
-        self.selftestExercisesTaken = try selftestExercise.value(for: "exercise_taken")
-        self.selftestPointsPossible = try selftestExercise.value(for: "points_possible")
-        self.selftestPointsScored = try selftestExercise.value(for: "points_scored")
+        try selftestProgress.update(object: selftestExercise)
 
         let bonusExercise = try attributes.value(for: "bonus_exercises") as JSON
-        self.bonusExercisesAvailable = try bonusExercise.value(for: "exercise_available")
-        self.bonusExercisesTaken = try bonusExercise.value(for: "exercise_taken")
-        self.bonusPointsPossible = try bonusExercise.value(for: "points_possible")
-        self.bonusPointsScored = try bonusExercise.value(for: "points_scored")
+        try bonusProgress.update(object: bonusExercise)
 
         let visits = try attributes.value(for: "visits") as JSON
-        self.itemsAvailable = try visits.value(for: "items_available")
-        self.itemsVisited = try visits.value(for: "items_visited")
-        self.visitsPercentage = try visits.value(for: "visits_percentage")
+        try visitPrograss.update(object: visits)
     }
 }

@@ -29,10 +29,10 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bWt-KQ-kUh" userLabel="Scroll Content">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="261.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="273.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Kg8-BI-OgB">
-                                                <rect key="frame" x="16" y="8" width="343" height="233.5"/>
+                                                <rect key="frame" x="16" y="20" width="343" height="233.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYk-1J-FHM">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="82"/>
@@ -214,7 +214,7 @@
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="Kg8-BI-OgB" secondAttribute="bottom" constant="20" symbolic="YES" id="YIE-Mv-URs"/>
                                             <constraint firstItem="Kg8-BI-OgB" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="Yrn-YX-psz"/>
-                                            <constraint firstItem="Kg8-BI-OgB" firstAttribute="top" secondItem="bWt-KQ-kUh" secondAttribute="topMargin" id="m0f-hv-Xbt"/>
+                                            <constraint firstItem="Kg8-BI-OgB" firstAttribute="top" secondItem="bWt-KQ-kUh" secondAttribute="top" constant="20" symbolic="YES" id="m0f-hv-Xbt"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="Kg8-BI-OgB" secondAttribute="trailing" id="tbX-dO-avP"/>
                                         </constraints>
                                     </view>

@@ -33,6 +33,11 @@ class CourseOverviewViewController: UIViewController {
         self.configureCollectionView()
 
         self.updateCollectionViewHeight()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateCollectionViewHeight),
+                                               name: UIContentSizeCategory.didChangeNotification,
+                                               object: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

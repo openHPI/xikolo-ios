@@ -6,7 +6,6 @@
 import BrightFutures
 import Common
 import CoreData
-import DZNEmptyDataSet
 import UIKit
 
 class AvailableCertificatesListViewController: UITableViewController {
@@ -21,11 +20,6 @@ class AvailableCertificatesListViewController: UITableViewController {
 
     var courseID: String!
 
-    deinit {
-        self.tableView?.emptyDataSetSource = nil
-        self.tableView?.emptyDataSetDelegate = nil
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,13 +29,6 @@ class AvailableCertificatesListViewController: UITableViewController {
         EnrollmentHelper.syncEnrollments().onSuccess { _ in
             self.refresh()
         }
-    }
-
-    private func setupEmptyState() {
-        self.tableView.emptyDataSetSource = self
-        self.tableView.emptyDataSetDelegate = self
-        self.tableView.tableFooterView = UIView()
-        self.tableView.reloadEmptyDataSet()
     }
 
     private func refresh() {
@@ -108,18 +95,19 @@ class AvailableCertificatesListViewController: UITableViewController {
 
 }
 
-extension AvailableCertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension AvailableCertificatesListViewController: EmptyStateDataSource {
 
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title = NSLocalizedString("empty-view.account.certificates.no-certificates.title",
-                                      comment: "title for empty certificates list")
-        return NSAttributedString(string: title)
+    var emptyStateTitleText: String {
+        return NSLocalizedString("empty-view.account.certificates.no-certificates.title", comment: "title for empty certificates list")
     }
 
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description = NSLocalizedString("empty-view.account.certificates.no-certificates.description",
-                                            comment: "description for empty certificates list")
-        return NSAttributedString(string: description)
+    var emptyStateDetailText: String? {
+        return NSLocalizedString("empty-view.account.certificates.no-certificates.description", comment: "description for empty certificates list")
+    }
+
+    func setupEmptyState() {
+        self.tableView.emptyStateDataSource = self
+        self.tableView.tableFooterView = UIView()
     }
 
 }

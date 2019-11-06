@@ -155,6 +155,7 @@ class VideoViewController: UIViewController {
         }
 
         if self.didViewAppear {
+            self.player?.automaticallyStopPicutureinPictureModeIfNecessary(force: true)
             self.trackVideoClose()
         }
     }
@@ -550,7 +551,7 @@ extension VideoViewController: BMPlayerDelegate {
     func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
         if state == .playedToTheEnd {
             self.trackVideoEnd()
-        } else if state == .bufferFinished {
+        } else if state == .bufferFinished, player.isPlaying {
             player.avPlayer?.rate = self.playerControlView.playRate
         }
     }

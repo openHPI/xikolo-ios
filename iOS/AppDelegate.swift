@@ -53,14 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             // select start tab
             self.tabBarController.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
-
-            DispatchQueue.main.async {
-                if UserProfileHelper.shared.isLoggedIn {
-                    CourseHelper.syncAllCourses().onComplete { _ in
-                        CourseDateHelper.syncAllCourseDates()
-                    }
-                }
-            }
         }
 
         DispatchQueue.main.async {
@@ -99,6 +91,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             SDStatusBarManager.sharedInstance().enableOverrides()
         }
         #endif
+
+        UICollectionView.enableEmptyStates()
+        UITableView.enableEmptyStates()
 
         return true
     }

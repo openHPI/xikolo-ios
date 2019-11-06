@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import CoreData
+
 public protocol JSONAPIPushable: Pushable, JSONAPIValidatable { }
 
 extension JSONAPIPushable {
@@ -10,7 +12,7 @@ extension JSONAPIPushable {
     public func resourceData() -> Result<Data, SyncError> {
         do {
             var data: [String: Any] = [ "type": Self.type ]
-            if let newResource = self as? ResourceRepresentable, self.objectState != .new {
+            if let newResource = self as? ResourceRepresentable, let managedObject = self as? (Pushable & NSManagedObject), managedObject.objectState != .new {
                 data["id"] = newResource.id
             }
 

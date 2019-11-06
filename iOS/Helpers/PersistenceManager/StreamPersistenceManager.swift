@@ -24,6 +24,9 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
     var progresses: [String: Double] = [:]
     var didRestorePersistenceManager: Bool = false
 
+    private var assetTitlesForRecourseIdentifiers: [String: String] = [:]
+    private var mediaSelectionForDownloadTask: [AVAssetDownloadTask: AVMediaSelection] = [:]
+
     lazy var persistentContainerQueue = self.createPersistenceContainerQueue()
     lazy var session: AVAssetDownloadURLSession = {
         let sessionIdentifier = "asset-download"
@@ -47,12 +50,40 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
         let asset = AVURLAsset(url: url)
         let options = [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: UserDefaults.standard.videoQualityForDownload.rawValue]
 
+        // Supplementary downloads (likes subtitles) must have the same asset title when creating the download tasks.
+        // Therefore, we store the used title for later usage.
+        self.assetTitlesForRecourseIdentifiers[resource.id] = assetTitle
+
+        // Using `aggregateAssetDownloadTask(with:mediaSelections:assetTitle:assetArtworkData:options:)` results in downloaded assets
+        // that fail to start the playback without an Internet connection. So we are using the consecutive approach introduced in iOS 10.
         return session.makeAssetDownloadTask(asset: asset, assetTitle: assetTitle, assetArtworkData: resource.posterImageData, options: options)
     }
 
     func startDownload(for video: Video) {
         guard let url = video.streamURLForDownload else { return }
         self.startDownload(with: url, for: video)
+    }
+
+    func startSupplementaryDownloads(for task: URLSessionTask, with resourceIdentifier: String) -> Bool {
+        guard let assetDownloadTask = task as? AVAssetDownloadTask else { return false }
+        guard let (mediaSelectionGroup, mediaSelectionOption) = self.nextMediaSelection(assetDownloadTask.urlAsset) else { return false }
+        guard let originalMediaSelection = self.mediaSelectionForDownloadTask[assetDownloadTask] else { return false }
+        guard let assetTitle = self.assetTitlesForRecourseIdentifiers[resourceIdentifier] else { return false }
+
+        guard let mediaSelection = originalMediaSelection.mutableCopy() as? AVMutableMediaSelection else { return false }
+        mediaSelection.select(mediaSelectionOption, in: mediaSelectionGroup)
+
+        // Must have the same asset title as the original download task.
+        guard let task = self.session.makeAssetDownloadTask(asset: assetDownloadTask.urlAsset,
+                                                            assetTitle: assetTitle,
+                                                            assetArtworkData: nil,
+                                                            options: [AVAssetDownloadTaskMediaSelectionKey: mediaSelection]) else { return false }
+
+        task.taskDescription = resourceIdentifier
+        self.activeDownloads[task] = resourceIdentifier
+        task.resume()
+
+        return true
     }
 
     func resourceModificationAfterStartingDownload(for resource: Video) {
@@ -83,6 +114,31 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
 
     func didFinishDownload(for resource: Video) {
         TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resource.id, on: nil, context: self.trackingContext(for: resource))
+    }
+
+    private func nextMediaSelection(_ asset: AVURLAsset) -> (mediaSelectionGroup: AVMediaSelectionGroup, mediaSelectionOption: AVMediaSelectionOption)? {
+        guard let assetCache = asset.assetCache else { return nil }
+
+        let mediaCharacteristics = [AVMediaCharacteristic.audible, AVMediaCharacteristic.legible]
+
+        for mediaCharacteristic in mediaCharacteristics {
+            if let mediaSelectionGroup = asset.mediaSelectionGroup(forMediaCharacteristic: mediaCharacteristic) {
+                let savedOptions = assetCache.mediaSelectionOptions(in: mediaSelectionGroup)
+
+                if savedOptions.count < mediaSelectionGroup.options.count {
+                    // There are still media options left to download.
+                    for option in mediaSelectionGroup.options {
+                        if !savedOptions.contains(option) && option.mediaType != AVMediaType.closedCaption {
+                            // This option has not been download.
+                            return (mediaSelectionGroup, option)
+                        }
+                    }
+                }
+            }
+        }
+
+        // At this point all media options have been downloaded.
+        return nil
     }
 
 }
@@ -154,6 +210,10 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
         userInfo[DownloadNotificationKey.downloadProgress] = percentComplete
 
         NotificationCenter.default.post(name: DownloadProgress.didChangeNotification, object: nil, userInfo: userInfo)
+    }
+
+    func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didResolve resolvedMediaSelection: AVMediaSelection) {
+        self.mediaSelectionForDownloadTask[assetDownloadTask] = resolvedMediaSelection
     }
 
 }

@@ -5,12 +5,13 @@
 
 import BrightFutures
 import Common
-import DZNEmptyDataSet
 import SafariServices
 import UIKit
+import CoreData
 
 class CourseProgressListViewController: UITableViewController {
 
+    private var dataSource: CoreDataTableViewDataSource<CourseProgressListViewController>!
     var course: Course!
 
     // array available sections and corresponding points
@@ -18,11 +19,25 @@ class CourseProgressListViewController: UITableViewController {
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
-        CourseProgressHelper.syncProgress(forCourse: self.course)
 
+        self.addRefreshControl()
+
+        // setup table view data
+        let request: NSFetchRequest<SectionProgress>
+        request = SectionProgressHelper.FetchRequest.sectionProgresses(forCourse: course)
+
+        let reuseIdentifier = R.reuseIdentifier.sectionProgressCell.identifier
+        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
+        self.dataSource = CoreDataTableViewDataSource(self.tableView,
+                                                      fetchedResultsController: resultsController,
+                                                      cellReuseIdentifier: reuseIdentifier,
+                                                      delegate: self)
+
+        self.refresh()
     }
+
+
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.scrollDelegate?.scrollViewDidScroll(scrollView)
@@ -55,6 +70,14 @@ extension CourseProgressListViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         return CourseProgressHelper.syncProgress(forCourse: self.course).asVoid()
+    }
+
+}
+
+extension CourseProgressListViewController: CoreDataTableViewDataSourceDelegate {
+
+    func configure(_ cell: UITableViewCell, for object: SectionProgress) {
+        cell.textLabel?.text = object.title
     }
 
 }

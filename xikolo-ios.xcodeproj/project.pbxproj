@@ -11,6 +11,7 @@
 		0262E6C523729C29007C9057 /* ExerciseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C423729C29007C9057 /* ExerciseProgress.swift */; };
 		0262E6C72372C797007C9057 /* VisitProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C62372C797007C9057 /* VisitProgress.swift */; };
 		0262E6C92372CBD5007C9057 /* SectionProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C82372CBD5007C9057 /* SectionProgress.swift */; };
+		0262E6CC23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6CB23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift */; };
 		0270F4AA234CBD15008A1FD1 /* CourseProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0270F4A9234CBD15008A1FD1 /* CourseProgress.storyboard */; };
 		0270F4AC234CBFBC008A1FD1 /* CourseProgressListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270F4AB234CBFBC008A1FD1 /* CourseProgressListViewController.swift */; };
 		02FE3EAE235502C300E3ECB4 /* CourseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */; };
@@ -360,6 +361,7 @@
 		0262E6C62372C797007C9057 /* VisitProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgress.swift; sourceTree = "<group>"; };
 		0262E6C82372CBD5007C9057 /* SectionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgress.swift; sourceTree = "<group>"; };
 		0262E6CA2372DE6C007C9057 /* xikolo 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 9.xcdatamodel"; sourceTree = "<group>"; };
+		0262E6CB23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SectionProgressHelper+FetchRequest.swift"; sourceTree = "<group>"; };
 		0270F4A9234CBD15008A1FD1 /* CourseProgress.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CourseProgress.storyboard; sourceTree = "<group>"; };
 		0270F4AB234CBFBC008A1FD1 /* CourseProgressListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgressListViewController.swift; sourceTree = "<group>"; };
 		02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgress.swift; sourceTree = "<group>"; };
@@ -1107,6 +1109,7 @@
 				50F57D391FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift */,
 				50F57D1F1FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift */,
 				507F7FD92372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift */,
+				0262E6CB23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift */,
 				5054B2E22108836300CE9067 /* DocumentHelper+FetchRequests.swift */,
 				5054B2E82108BF9B00CE9067 /* DocumentLocalizationHelper+FetchRequest.swift */,
 				700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */,
@@ -2221,6 +2224,7 @@
 				50FA2E5D20E4B26400656776 /* UIColor+hex.swift in Sources */,
 				50FA2E1F20E4B24300656776 /* UserProfileHelper.swift in Sources */,
 				50FA2E0E20E4B24300656776 /* CoreDataHelper.swift in Sources */,
+				0262E6CC23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift in Sources */,
 				50FA2E3720E4B25800656776 /* Course.swift in Sources */,
 				50FA2E2C20E4B24A00656776 /* VideoHelper+FetchRequests.swift in Sources */,
 				50FA2E1920E4B24300656776 /* PeerAssessmentHelper.swift in Sources */,

@@ -15,6 +15,9 @@ public final class CourseProgress: NSManagedObject {
     @NSManaged public var bonusProgress: ExerciseProgress
     @NSManaged public var visitProgress: VisitProgress
 
+    @NSManaged public var sectionProgresses: Set<SectionProgress>
+
+
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseProgress> {
         return NSFetchRequest<CourseProgress>(entityName: "CourseProgress")
     }
@@ -33,5 +36,12 @@ extension CourseProgress: JSONAPIPullable {
         self.selftestProgress = try attributes.value(for: "selftest_exercises")
         self.bonusProgress = try attributes.value(for: "bonus_exercises")
         self.visitProgress = try attributes.value(for: "visits")
+
+        if let relationships = try? object.value(for: "relationships") as JSON {
+            try self.updateRelationship(forKeyPath: \Self.sectionProgresses,
+                                        forKey: "section_progresses",
+                                        fromObject: relationships,
+                                        with: context)
+        }
     }
 }

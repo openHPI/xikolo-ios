@@ -38,8 +38,6 @@ class VideoViewController: UIViewController {
 
     private var courseItemObserver: ManagedObjectObserver?
 
-    private var isFirstAppearance = true
-
     var courseItem: CourseItem! {
         didSet {
             self.courseItemObserver = ManagedObjectObserver(object: self.courseItem) { [weak self] type in
@@ -61,11 +59,20 @@ class VideoViewController: UIViewController {
 
     private var video: Video?
     private var didViewAppear = false
+    private var isFirstAppearance = true
 
     private var playerViewController: BingePlayerViewController? {
         didSet {
             self.playerViewController?.delegate = self
             self.playerViewController?.tintColor = Brand.default.colors.window
+        }
+    }
+
+    private var isInForeground: Bool {
+        if #available(iOS 13, *) {
+            return [UIScene.ActivationState.foregroundActive, .foregroundInactive].contains(self.view.window?.windowScene?.activationState)
+        } else {
+            return [UIApplication.State.active, .inactive].contains(UIApplication.shared.applicationState)
         }
     }
 
@@ -155,6 +162,27 @@ class VideoViewController: UIViewController {
         }
 
         self.didViewAppear = false
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let typedInfo = R.segue.videoViewController.showSlides(segue: segue), let video = video {
+            if let url = SlidesPersistenceManager.shared.localFileLocation(for: video) ?? video.slidesURL {
+                typedInfo.destination.configure(for: url, filename: self.courseItem.title)
+            }
+        } else if let typedInfo = R.segue.videoViewController.embedPlayer(segue: segue) {
+            self.playerViewController = typedInfo.destination
+        }
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        self.updateUIForFullScreenMode(false)
+    }
+
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        self.updateCornersOfVideoContainer(for: newCollection)
     }
 
     override var childForStatusBarStyle: UIViewController? {
@@ -285,7 +313,7 @@ class VideoViewController: UIViewController {
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
-    @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
+    @objc private func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
         guard let downloadType = notification.userInfo?[DownloadNotificationKey.downloadType] as? String,
             let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
             let downloadStateRawValue = notification.userInfo?[DownloadNotificationKey.downloadState] as? String,
@@ -311,7 +339,7 @@ class VideoViewController: UIViewController {
         }
     }
 
-    @objc func handleAssetDownloadProgressNotification(_ notification: Notification) {
+    @objc private func handleAssetDownloadProgressNotification(_ notification: Notification) {
         guard let downloadType = notification.userInfo?[DownloadNotificationKey.downloadType] as? String,
             let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
             let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
@@ -331,30 +359,9 @@ class VideoViewController: UIViewController {
         }
     }
 
-    @objc func reachabilityChanged() {
+    @objc private func reachabilityChanged() {
         self.updateView(for: self.courseItem)
         self.playerViewController?.preferredPeakBitRate = self.video?.preferredPeakBitRate()
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let typedInfo = R.segue.videoViewController.showSlides(segue: segue), let video = video {
-            if let url = SlidesPersistenceManager.shared.localFileLocation(for: video) ?? video.slidesURL {
-                typedInfo.destination.configure(for: url, filename: self.courseItem.title)
-            }
-        } else if let typedInfo = R.segue.videoViewController.embedPlayer(segue: segue) {
-            self.playerViewController = typedInfo.destination
-        }
-    }
-
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-
-        self.updateUIForFullScreenMode(false)
-    }
-
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.willTransition(to: newCollection, with: coordinator)
-        self.updateCornersOfVideoContainer(for: newCollection)
     }
 
     private func toggleControlBars(_ animated: Bool) {
@@ -454,6 +461,7 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
 
     func didChangeOrientation(to orientation: UIInterfaceOrientation) {
         guard let video = self.video else { return }
+        guard self.isInForeground else { return }
 
         let verb: TrackingHelper.AnalyticsVerb = orientation.isLandscape ? .videoPlaybackDeviceOrientationLandscape : .videoPlaybackDeviceOrientationPortrait
         var context = self.newTrackingContext

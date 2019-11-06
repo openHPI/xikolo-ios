@@ -369,16 +369,7 @@ public class BingePlayerViewController: UIViewController {
 
         coordinator.animateAlongsideTransition(in: nil, animation: nil) { _ in
             let currentOrientation = UIApplication.shared.statusBarOrientation
-
-            if #available(iOS 13, *) {
-                if [UIScene.ActivationState.foregroundActive, .foregroundInactive].contains(self.view.window?.windowScene?.activationState) {
-                    self.delegate?.didChangeOrientation(to: currentOrientation)
-                }
-            } else {
-                if [UIApplication.State.active, .inactive].contains(UIApplication.shared.applicationState) {
-                    self.delegate?.didChangeOrientation(to: currentOrientation)
-                }
-            }
+            self.delegate?.didChangeOrientation(to: currentOrientation)
         }
     }
 

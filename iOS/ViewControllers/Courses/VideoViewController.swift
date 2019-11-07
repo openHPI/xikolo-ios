@@ -7,15 +7,13 @@
 
 import AVFoundation
 import AVKit
-import BMPlayer
+import Binge
 import Common
-import NVActivityIndicatorView
 import UIKit
 
 class VideoViewController: UIViewController {
 
     @IBOutlet private weak var videoContainer: UIView!
-    @IBOutlet private weak var errorView: UIView!
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
 
@@ -29,7 +27,7 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var slidesProgressView: CircularProgressView!
     @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
-    @IBOutlet private var iPadFullScreenContraints: [NSLayoutConstraint]!
+    @IBOutlet private var fullScreenContraints: [NSLayoutConstraint]!
 
     private lazy var actionMenuButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
@@ -39,8 +37,6 @@ class VideoViewController: UIViewController {
     }()
 
     private var courseItemObserver: ManagedObjectObserver?
-
-    private var isFirstAppearance = true
 
     var courseItem: CourseItem! {
         didSet {
@@ -54,36 +50,38 @@ class VideoViewController: UIViewController {
         }
     }
 
-    private var videoIsFullScreenOniPad = false {
+    private var videoIsShownInFullScreen = false {
         didSet {
-            guard self.videoIsFullScreenOniPad != oldValue else { return }
+            guard self.videoIsShownInFullScreen != oldValue else { return }
             self.updateUIForFullScreenMode(trueUnlessReduceMotionEnabled)
         }
     }
 
-    private var videoIsFullScreen: Bool {
-        let videoIsFullScreenOnihone = UIDevice.current.userInterfaceIdiom == .phone && UIDevice.current.orientation.isLandscape
-        return videoIsFullScreenOnihone || self.videoIsFullScreenOniPad
+    private var video: Video?
+    private var didViewAppear = false
+    private var isFirstAppearance = true
+
+    private var playerViewController: BingePlayerViewController? {
+        didSet {
+            self.playerViewController?.delegate = self
+            self.playerViewController?.tintColor = Brand.default.colors.window
+        }
     }
 
-    private var video: Video?
-    private var videoPlayerConfigured = false
-    private var didViewAppear = false
-
-    private let playerControlView = VideoPlayerControlView()
-
-    var player: CustomBMPlayer?
+    private var isInForeground: Bool {
+        if #available(iOS 13, *) {
+            return [UIScene.ActivationState.foregroundActive, .foregroundInactive].contains(self.view.window?.windowScene?.activationState)
+        } else {
+            return [UIApplication.State.active, .inactive].contains(UIApplication.shared.applicationState)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
 
-        self.layoutPlayer()
         self.updateCornersOfVideoContainer(for: self.traitCollection)
-
-        self.errorView.isHidden = true
-        self.errorView.layer.roundCorners(for: .default)
 
         self.videoActionsButton.isEnabled = false
         self.videoActionsButton.tintColor = ColorCompatibility.disabled
@@ -96,6 +94,9 @@ class VideoViewController: UIViewController {
 
         self.updateView(for: self.courseItem)
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
+
+        // Add pan gesture recognizer to video container to prevent an accidental course item switch or course dismissal
+        self.videoContainer.addGestureRecognizer(UIPanGestureRecognizer())
 
         // register notification observer
         let notificationCenter = NotificationCenter.default
@@ -124,14 +125,15 @@ class VideoViewController: UIViewController {
         self.didViewAppear = true
 
         // Autoplay logic
-        if let player = self.player, !player.isPlaying, self.isFirstAppearance {
-            player.play()
-            self.trackVideoPlay()
+        if self.isFirstAppearance {
+            self.playerViewController?.startPlayback()
+        } else {
+            self.playerViewController?.showControlsOverlay()
         }
 
         self.isFirstAppearance = false
 
-        self.player?.automaticallyStopPicutureinPictureModeIfNecessary()
+        self.playerViewController?.automaticallyStopPicutureinPictureModeIfNecessary()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -150,53 +152,52 @@ class VideoViewController: UIViewController {
         let pageViewControllerDismissed = pageViewController.parent?.presentingViewController == nil
         guard isNotPresentedInPageViewController || pageViewControllerDismissed else { return }
 
-        if let player = self.player, player.isPlaying {
-            player.pause()
+        if isNotPresentedInPageViewController && !pageViewControllerDismissed {
+            self.playerViewController?.pausePlayback()
         }
 
         if self.didViewAppear {
-            self.player?.automaticallyStopPicutureinPictureModeIfNecessary(force: true)
+            self.playerViewController?.automaticallyStopPicutureinPictureModeIfNecessary(force: true)
             self.trackVideoClose()
         }
+
+        self.didViewAppear = false
     }
 
-    override var prefersStatusBarHidden: Bool {
-        return self.videoIsFullScreen
-    }
-
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return .fade
-    }
-
-    override var prefersHomeIndicatorAutoHidden: Bool {
-        return self.videoIsFullScreen
-    }
-
-    func layoutPlayer() {
-        self.playerControlView.videoController = self
-
-        BMPlayerConf.topBarShowInCase = .always
-        BMPlayerConf.loaderType = NVActivityIndicatorType.ballScale
-        BMPlayerConf.enableVolumeGestures = false
-        BMPlayerConf.enableBrightnessGestures = false
-        BMPlayerConf.enablePlaytimeGestures = true
-        BMPlayerConf.shouldAutoPlay = false
-
-        self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
-        let player = CustomBMPlayer(customControlView: self.playerControlView)
-        player.delegate = self
-        player.videoController = self
-        self.videoContainer.addSubview(player)
-        player.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let typedInfo = R.segue.videoViewController.showSlides(segue: segue), let video = video {
+            if let url = SlidesPersistenceManager.shared.localFileLocation(for: video) ?? video.slidesURL {
+                typedInfo.destination.configure(for: url, filename: self.courseItem.title)
+            }
+        } else if let typedInfo = R.segue.videoViewController.embedPlayer(segue: segue) {
+            self.playerViewController = typedInfo.destination
         }
-
-        self.player = player
-        self.videoContainer.layoutIfNeeded()
     }
 
-    func setiPadFullScreenMode(_ isFullScreen: Bool) {
-        self.videoIsFullScreenOniPad = isFullScreen
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        self.updateUIForFullScreenMode(false)
+    }
+
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        self.updateCornersOfVideoContainer(for: newCollection)
+    }
+
+    override var childForStatusBarStyle: UIViewController? {
+        guard self.playerViewController?.layoutState == .fullScreen else { return nil }
+        return self.playerViewController
+    }
+
+    override var childForStatusBarHidden: UIViewController? {
+        guard self.playerViewController?.layoutState == .fullScreen else { return nil }
+        return self.playerViewController
+    }
+
+    override var childForHomeIndicatorAutoHidden: UIViewController? {
+        guard self.playerViewController?.layoutState == .fullScreen else { return nil }
+        return self.playerViewController
     }
 
     private func updateView(for courseItem: CourseItem) {
@@ -207,7 +208,7 @@ class VideoViewController: UIViewController {
         self.show(video: video)
     }
 
-    private func show(video: Video) { // swiftlint:disable:this function_body_length
+    private func show(video: Video) {
         self.video = video
 
         let hasUserActions = ReachabilityHelper.connection != .none || !video.userActions.isEmpty
@@ -246,51 +247,19 @@ class VideoViewController: UIViewController {
             self.descriptionView.isHidden = true
         }
 
-        // configure video player
-        if self.videoPlayerConfigured { return }
+        // don't reconfigure video player
+        guard self.playerViewController?.asset == nil else { return }
 
         // pull latest change for video content item
         video.managedObjectContext?.refresh(video, mergeChanges: true)
 
-        // determine video url (local file, currently downloading or remote)
-        var videoURL: URL
-        if let localFileLocation = StreamPersistenceManager.shared.localFileLocation(for: video),
-            AVURLAsset(url: localFileLocation).assetCache?.isPlayableOffline ?? false {
-            videoURL = localFileLocation
-            self.playerControlView.isOffline = true
-        } else if let streamURL = video.streamURLForDownload {
-            videoURL = streamURL
-            self.playerControlView.isOffline = false
-        } else if let hdURL = video.singleStream?.hdURL, ReachabilityHelper.connection == .wifi {
-            videoURL = hdURL
-            self.playerControlView.isOffline = false
-        } else if let sdURL = video.singleStream?.sdURL {
-            videoURL = sdURL
-            self.playerControlView.isOffline = false
-        } else {
-            self.errorView.isHidden = false
-            self.playerControlView.isOffline = false
-            return
-        }
-
-        self.videoPlayerConfigured = true
-        self.errorView.isHidden = true
-
-        let asset = BMPlayerResource(url: videoURL, name: self.courseItem?.title ?? "")
-        self.player?.setVideo(resource: asset)
-        self.updatePreferredVideoBitrate()
+        self.playerViewController?.configure(for: video)
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-        try? AVAudioSession.sharedInstance().setActive(true)
-
-        if let player = self.player, !player.isPlaying, self.isBeingPresented {
-            player.play()
-            self.trackVideoPlay()
-        }
     }
 
     @IBAction private func openSlides() {
         self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
-        self.player?.automaticallyStartPicutureinPictureModeIfPossible()
+        self.playerViewController?.automaticallyStartPicutureinPictureModeIfPossible()
     }
 
     @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
@@ -344,7 +313,7 @@ class VideoViewController: UIViewController {
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
-    @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
+    @objc private func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
         guard let downloadType = notification.userInfo?[DownloadNotificationKey.downloadType] as? String,
             let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
             let downloadStateRawValue = notification.userInfo?[DownloadNotificationKey.downloadState] as? String,
@@ -370,7 +339,7 @@ class VideoViewController: UIViewController {
         }
     }
 
-    @objc func handleAssetDownloadProgressNotification(_ notification: Notification) {
+    @objc private func handleAssetDownloadProgressNotification(_ notification: Notification) {
         guard let downloadType = notification.userInfo?[DownloadNotificationKey.downloadType] as? String,
             let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
             let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
@@ -390,37 +359,17 @@ class VideoViewController: UIViewController {
         }
     }
 
-    @objc func reachabilityChanged() {
+    @objc private func reachabilityChanged() {
         self.updateView(for: self.courseItem)
-        self.updatePreferredVideoBitrate()
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let typedInfo = R.segue.videoViewController.showSlides(segue: segue), let video = video {
-            if let url = SlidesPersistenceManager.shared.localFileLocation(for: video) ?? video.slidesURL {
-                typedInfo.destination.configure(for: url, filename: self.courseItem.title)
-            }
-        }
-    }
-
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-
-        self.updateUIForFullScreenMode(false)
-        self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
-    }
-
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.willTransition(to: newCollection, with: coordinator)
-        self.updateCornersOfVideoContainer(for: newCollection)
+        self.playerViewController?.preferredPeakBitRate = self.video?.preferredPeakBitRate()
     }
 
     private func toggleControlBars(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(self.videoIsFullScreen, animated: animated)
+        self.navigationController?.setNavigationBarHidden(self.videoIsShownInFullScreen, animated: animated)
     }
 
     private func updateCornersOfVideoContainer(for traitCollection: UITraitCollection) {
-        let shouldRoundCorners = traitCollection.horizontalSizeClass == .regular && !self.videoIsFullScreenOniPad
+        let shouldRoundCorners = traitCollection.horizontalSizeClass == .regular && !self.videoIsShownInFullScreen
         self.videoContainer.layer.cornerRadius = shouldRoundCorners ? 6 : 0
         self.videoContainer.layer.masksToBounds = shouldRoundCorners
     }
@@ -428,16 +377,11 @@ class VideoViewController: UIViewController {
     private func updateUIForFullScreenMode(_ animated: Bool) {
         DispatchQueue.main.async {
             self.toggleControlBars(animated)
-            self.setNeedsStatusBarAppearanceUpdate()
 
-            if #available(iOS 11.0, *) {
-                self.setNeedsUpdateOfHomeIndicatorAutoHidden()
-            }
-
-            if self.videoIsFullScreenOniPad {
-                NSLayoutConstraint.activate(self.iPadFullScreenContraints)
+            if self.videoIsShownInFullScreen {
+                NSLayoutConstraint.activate(self.fullScreenContraints)
             } else {
-                NSLayoutConstraint.deactivate(self.iPadFullScreenContraints)
+                NSLayoutConstraint.deactivate(self.fullScreenContraints)
             }
 
             let animationDuration = animated ? 0.25 : 0
@@ -450,75 +394,62 @@ class VideoViewController: UIViewController {
         }
     }
 
-    private func updatePreferredVideoBitrate() {
-        if let video = self.video, StreamPersistenceManager.shared.localFileLocation(for: video) == nil {
-            let videoQuaility: VideoQuality
-            if ReachabilityHelper.connection == .wifi {
-                videoQuaility = UserDefaults.standard.videoQualityOnWifi
-            } else {
-                videoQuaility = UserDefaults.standard.videoQualityOnCellular
-            }
-
-            self.player?.avPlayer?.currentItem?.preferredPeakBitRate = Double(videoQuaility.rawValue)
-        }
-    }
-
 }
 
-extension VideoViewController { // Video tracking
+extension VideoViewController: BingePlayerDelegate { // Video tracking
 
     private var newTrackingContext: [String: String?] {
-        var context = [
+        return [
             "section_id": self.video?.item?.section?.id,
             "course_id": self.video?.item?.section?.course?.id,
-            "current_speed": String(self.playerControlView.playRate),
-            "current_orientation": UIDevice.current.orientation.isLandscape ? "landscape" : "portrait",
+            "current_speed": (self.playerViewController?.playbackRate).map { String($0) },
+            "current_orientation": UIApplication.shared.statusBarOrientation.isLandscape ? "landscape" : "portrait",
             "current_quality": "hls",
-            "current_source": self.playerControlView.isOffline ? "online" : "offline",
+            "current_source": self.currentSourceValue(for: self.playerViewController?.asset),
+            "current_time": self.playerViewController?.currentTime.map { String($0) },
+            "current_layout": self.playerViewController?.layoutState.rawValue,
         ]
-
-        if let currentTime = self.player?.avPlayer?.currentTime().seconds {
-            context["currentTime"] = String(describing: currentTime)
-        }
-
-        return context
     }
 
-    func trackVideoPlay() {
+    private func currentSourceValue(for asset: AVAsset?) -> String? {
+        guard let urlAsset = self.playerViewController?.asset as? AVURLAsset else { return nil }
+        return urlAsset.url.isFileURL ? "offline" : "online"
+    }
+
+    func didStartPlayback() {
         guard let video = self.video else { return }
         TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }
 
-    func trackVideoPause() {
+    func didPausePlayback() {
         guard let video = self.video else { return }
+        guard let pageViewController = self.parent as? UIPageViewController else { return }
+        guard pageViewController.viewControllers?.contains(self) ?? false else { return } // view controller should be currently presented
         TrackingHelper.createEvent(.videoPlaybackPause, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }
 
-    func trackVideoPlayRateChange(oldPlayRate: Float, newPlayRate: Float) {
+    func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {
         guard let video = self.video else { return }
 
         var context = self.newTrackingContext
         context["current_speed"] = nil
-        context["old_speed"] = String(oldPlayRate)
-        context["new_speed"] = String(newPlayRate)
+        context["old_speed"] = String(oldRate)
+        context["new_speed"] = String(newRate)
         TrackingHelper.createEvent(.videoPlaybackChangeSpeed, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 
-    func trackVideoSeek(from: TimeInterval?, to: TimeInterval) { // swiftlint:disable:this identifier_name
+    func didSeek(from oldTime: TimeInterval, to newTime: TimeInterval) {
         guard let video = self.video else { return }
 
         var context = self.newTrackingContext
         context["current_time"] = nil
-        context["new_current_time"] = String(to)
-
-        if let from = from {
-            context["old_current_time"] = String(from)
-        }
+        context["new_current_time"] = String(newTime)
+        context["old_current_time"] = String(oldTime)
 
         TrackingHelper.createEvent(.videoPlaybackSeek, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 
-    func trackVideoEnd() {
+    func didReachEndofPlayback() {
         guard let video = self.video else { return }
         TrackingHelper.createEvent(.videoPlaybackEnd, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }
@@ -528,50 +459,25 @@ extension VideoViewController { // Video tracking
         TrackingHelper.createEvent(.videoPlaybackClose, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }
 
-    func trackVideoOrientationChangePortrait() {
+    func didChangeOrientation(to orientation: UIInterfaceOrientation) {
         guard let video = self.video else { return }
+        guard self.isInForeground else { return }
 
+        let verb: TrackingHelper.AnalyticsVerb = orientation.isLandscape ? .videoPlaybackDeviceOrientationLandscape : .videoPlaybackDeviceOrientationPortrait
         var context = self.newTrackingContext
         context["current_orientation"] = nil
-        TrackingHelper.createEvent(.videoPlaybackDeviceOrientationPortrait, resourceType: .video, resourceId: video.id, on: self, context: context)
+        TrackingHelper.createEvent(verb, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 
-    func trackVideoOrientationChangeLandscape() {
+    func didChangeLayout(from oldLayout: LayoutState, to newLayout: LayoutState) {
+        self.videoIsShownInFullScreen = newLayout == .fullScreen
+
         guard let video = self.video else { return }
-
         var context = self.newTrackingContext
-        context["current_orientation"] = nil
-        TrackingHelper.createEvent(.videoPlaybackDeviceOrientationLandscape, resourceType: .video, resourceId: video.id, on: self, context: context)
-    }
-
-}
-
-extension VideoViewController: BMPlayerDelegate {
-
-    func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
-        if state == .playedToTheEnd {
-            self.trackVideoEnd()
-        } else if state == .bufferFinished, player.isPlaying {
-            player.avPlayer?.rate = self.playerControlView.playRate
-        }
-    }
-
-    func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {}
-
-    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {}
-
-    func bmPlayer(player: BMPlayer, playerIsPlaying playing: Bool) {
-        if playing {
-            player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
-        }
-    }
-
-    func bmPlayer(player: BMPlayer, playerOrientChanged isFullscreen: Bool) {
-        if UIDevice.current.orientation.isLandscape {
-            self.trackVideoOrientationChangeLandscape()
-        } else {
-            self.trackVideoOrientationChangePortrait()
-        }
+        context["current_layout"] = nil
+        context["new_current_layout"] = oldLayout.rawValue
+        context["old_current_layout"] = newLayout.rawValue
+        TrackingHelper.createEvent(.videoPlaybackChangeLayout, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 
 }

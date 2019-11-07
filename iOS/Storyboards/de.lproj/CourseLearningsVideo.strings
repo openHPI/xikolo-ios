@@ -1,12 +1,9 @@
 
-/* Class = "UILabel"; text = "Error: Could not find video stream"; ObjectID = "XUY-uY-wln"; */
-"XUY-uY-wln.text" = "Fehler: Video-Stream konnte nicht gefunden werden";
+/* Class = "UIButton"; normalTitle = "Slides"; ObjectID = "C3L-1P-Ygi"; */
+"C3L-1P-Ygi.normalTitle" = "Folien";
 
-/* Class = "UIButton"; normalTitle = "Video"; ObjectID = "wDv-C9-ciX"; */
-"wDv-C9-ciX.normalTitle" = "Video";
+/* Class = "UILabel"; text = "Learning Material"; ObjectID = "gL1-59-90u"; */
+"gL1-59-90u.text" = "Lernmaterial";
 
-/* Class = "UIButton"; normalTitle = "Slides"; ObjectID = "xZ7-yy-Tyb"; */
-"xZ7-yy-Tyb.normalTitle" = "Folien";
-
-/* Class = "UILabel"; text = "Learning Material"; ObjectID = "zsg-Td-Qxk"; */
-"zsg-Td-Qxk.text" = "Lernmaterial";
+/* Class = "UIButton"; normalTitle = "Video"; ObjectID = "hGH-WC-Iys"; */
+"hGH-WC-Iys.normalTitle" = "Video";

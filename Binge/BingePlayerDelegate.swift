@@ -7,6 +7,7 @@ import UIKit
 
 public protocol BingePlayerDelegate: AnyObject {
 
+    func didConfigure()
     func didStartPlayback()
     func didPausePlayback()
     func didChangePlaybackRate(from oldRate: Float, to newRate: Float)
@@ -19,6 +20,7 @@ public protocol BingePlayerDelegate: AnyObject {
 
 public extension BingePlayerDelegate {
 
+    func didConfigure() {}
     func didStartPlayback() {}
     func didPausePlayback() {}
     func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {}

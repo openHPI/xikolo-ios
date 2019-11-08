@@ -28,6 +28,21 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
     @IBOutlet private var fullScreenContraints: [NSLayoutConstraint]!
+    private var adjustedVideoContainerRatioConstraint: NSLayoutConstraint? {
+        didSet {
+            if let oldConstraint = oldValue {
+                self.videoContainer.removeConstraint(oldConstraint)
+            }
+
+            if let newConstraint = self.adjustedVideoContainerRatioConstraint {
+                self.videoContainer.addConstraint(newConstraint)
+            }
+
+            UIView.animate(withDuration: 0.25) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
 
     private lazy var actionMenuButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
@@ -394,6 +409,26 @@ class VideoViewController: UIViewController {
         }
     }
 
+    private func adaptVideoContainerToVideoSize() {
+        guard let videoSize = self.playerViewController?.videoSize else { return }
+
+        let newRatio = videoSize.width / videoSize.height
+        let oldRatio = self.adjustedVideoContainerRatioConstraint?.multiplier
+
+        if newRatio.isNaN { return }
+        if newRatio == oldRatio { return }
+
+        let constraint = NSLayoutConstraint(item: self.videoContainer as Any,
+                                            attribute: .width,
+                                            relatedBy: .equal,
+                                            toItem: self.videoContainer,
+                                            attribute: .height,
+                                            multiplier: newRatio,
+                                            constant: 0)
+        constraint.priority = .required - 1
+        self.adjustedVideoContainerRatioConstraint = constraint
+    }
+
 }
 
 extension VideoViewController: BingePlayerDelegate { // Video tracking
@@ -414,6 +449,10 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
     private func currentSourceValue(for asset: AVAsset?) -> String? {
         guard let urlAsset = self.playerViewController?.asset as? AVURLAsset else { return nil }
         return urlAsset.url.isFileURL ? "offline" : "online"
+    }
+
+    func didConfigure() {
+        self.adaptVideoContainerToVideoSize()
     }
 
     func didStartPlayback() {

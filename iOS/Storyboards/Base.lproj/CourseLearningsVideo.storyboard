@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="233"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="b3I-76-iXF" secondAttribute="height" multiplier="16:9" priority="999" id="aws-YL-SNr"/>
+                                    <constraint firstAttribute="width" secondItem="b3I-76-iXF" secondAttribute="height" multiplier="16:9" priority="750" id="aws-YL-SNr"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="R1m-Qw-wA4" kind="embed" identifier="EmbedPlayer" id="XmU-pm-wMn"/>

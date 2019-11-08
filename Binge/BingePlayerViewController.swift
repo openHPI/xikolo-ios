@@ -215,6 +215,10 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
+    public var videoSize: CGSize {
+        return self.playerView.playerLayer.videoRect.size
+    }
+
     public weak var delegate: BingePlayerDelegate?
 
     override public func loadView() { // swiftlint:disable:this function_body_length
@@ -451,6 +455,7 @@ public class BingePlayerViewController: UIViewController {
             }
 
             self.playerWasConfigured = true
+            self.delegate?.didConfigure()
         }
     }
 

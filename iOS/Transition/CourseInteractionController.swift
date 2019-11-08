@@ -27,6 +27,12 @@ class CourseInteractionController: UIPercentDrivenInteractiveTransition {
     }
 
     @objc func handleGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+        if self.navigationController.viewControllers.count > 1 {
+            self.interactionInProgress = false
+            self.cancel()
+            return
+        }
+
         let view = gestureRecognizer.view!
         let translation = gestureRecognizer.translation(in: view)
         let verticalMovement = translation.y / view.bounds.height

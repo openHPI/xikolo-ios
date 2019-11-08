@@ -8,7 +8,7 @@ import UIKit
 class CourseInteractionController: UIPercentDrivenInteractiveTransition {
 
     static let dragPercentageThreshold: CGFloat = 0.5
-    static let flickVelocityThreshold: CGFloat = 300
+    static let flickVelocityThreshold: CGFloat = 600
 
     var interactionInProgress = false
 

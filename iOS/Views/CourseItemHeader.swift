@@ -10,20 +10,9 @@ class CourseItemHeader: UITableViewHeaderFooterView {
 
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var actionsButton: UIButton!
-    @IBOutlet private weak var leadingTitleViewConstraint: NSLayoutConstraint!
 
     private var section: CourseSection?
     weak var delegate: UserActionsDelegate?
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        if #available(iOS 11, *) {
-            self.leadingTitleViewConstraint.constant = 8
-        } else {
-            self.leadingTitleViewConstraint.constant = 2
-        }
-
-    }
 
     func configure(for section: CourseSection, inOfflineMode: Bool) {
         self.section = section

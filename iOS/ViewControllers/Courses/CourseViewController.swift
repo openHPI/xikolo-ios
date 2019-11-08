@@ -106,7 +106,6 @@ class CourseViewController: UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         self.updateCourseAreaListContainerHeight()
-        self.courseAreaListViewController?.reloadData()
 
         self.updateHeaderConstraints()
         self.courseNavigationController?.updateNavigationBar(forProgress: self.headerOffset / self.headerHeight)
@@ -255,7 +254,7 @@ class CourseViewController: UIViewController {
         self.updateContainerView()
 
         if updateCourseAreaSelection {
-            self.courseAreaListViewController?.refresh(animated: trueUnlessReduceMotionEnabled)
+            self.courseAreaListViewController?.refresh()
         }
     }
 
@@ -391,7 +390,7 @@ extension CourseViewController: UIPageViewControllerDelegate {
         }
 
         self.area = currentCourseAreaViewController.area
-        self.courseAreaListViewController?.refresh(animated: trueUnlessReduceMotionEnabled)
+        self.courseAreaListViewController?.refresh()
     }
 
 }
@@ -399,12 +398,10 @@ extension CourseViewController: UIPageViewControllerDelegate {
 extension CourseViewController: CourseAreaViewControllerDelegate {
 
     func enrollmentStateDidChange(whenNewlyCreated newlyCreated: Bool) {
-        self.courseAreaListViewController?.reloadData()
-
         if newlyCreated {
             self.decideContent()
         } else {
-            self.courseAreaListViewController?.refresh(animated: trueUnlessReduceMotionEnabled)
+            self.courseAreaListViewController?.refresh()
         }
     }
 

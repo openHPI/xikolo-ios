@@ -122,8 +122,8 @@ class CourseViewController: UIViewController {
 
         let animationBlock: (UIViewControllerTransitionCoordinatorContext) -> Void = { [weak self] _ in
             // Fix size of title view
-            self?.titleView.setNeedsLayout()
-            self?.titleView.layoutIfNeeded()
+            self?.view.setNeedsLayout()
+            self?.view.layoutIfNeeded()
         }
 
         let completionBlock: (UIViewControllerTransitionCoordinatorContext) -> Void = { [weak self] _ in

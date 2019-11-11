@@ -3,7 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import AVKit
+import AVFoundation
+import Binge
 import BrightFutures
 import Common
 import SDWebImage
@@ -141,11 +142,15 @@ class CourseDetailsViewController: UIViewController {
 
     @IBAction private func playTeaser() {
         guard let url = self.course.teaserStream?.hlsURL else { return }
-        let player = AVPlayer(url: url)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
+
+        let playerViewController = BingePlayerViewController()
+        playerViewController.tintColor = Brand.default.colors.window
+        playerViewController.initiallyShowControls = false
+        playerViewController.modalPresentationStyle = .fullScreen
+        playerViewController.asset = AVURLAsset(url: url)
+
         self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
-            playerViewController.player?.play()
+            playerViewController.startPlayback()
         }
     }
 

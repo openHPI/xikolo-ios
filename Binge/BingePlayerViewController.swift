@@ -411,6 +411,8 @@ public class BingePlayerViewController: UIViewController {
             self.hideControlsOverlay()
         } else if self.layoutState == .remote {
             self.showControlsOverlay()
+        } else if self.layoutState == .inline, self.player.timeControlStatus == .paused {
+            self.showControlsOverlay()
         }
     }
 

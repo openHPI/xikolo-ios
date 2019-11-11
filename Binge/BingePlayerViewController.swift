@@ -96,7 +96,7 @@ public class BingePlayerViewController: UIViewController {
     @available(iOS 11, *)
     private lazy var routeDetector = AVRouteDetector()
 
-    private var shouldShowControls: Bool {
+    private var shouldToggleControls: Bool {
         return [LayoutState.inline, .fullScreen].contains(self.layoutState)
     }
 
@@ -296,10 +296,6 @@ public class BingePlayerViewController: UIViewController {
         tapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
         self.view.addGestureRecognizer(tapGestureRecognizer)
 
-        if #available(iOS 11, *) {
-            self.routeDetector.isRouteDetectionEnabled = true
-        }
-
         if self.isAirPlayActivated {
             self.layoutState = .remote
         }
@@ -341,6 +337,8 @@ public class BingePlayerViewController: UIViewController {
                                                    selector: #selector(handleMultipleRoutes),
                                                    name: .AVRouteDetectorMultipleRoutesDetectedDidChange,
                                                    object: nil)
+
+            self.routeDetector.isRouteDetectionEnabled = true
         }
     }
 
@@ -357,6 +355,7 @@ public class BingePlayerViewController: UIViewController {
 
         if #available(iOS 11, *) {
             NotificationCenter.default.removeObserver(self, name: .AVRouteDetectorMultipleRoutesDetectedDidChange, object: nil)
+            self.routeDetector.isRouteDetectionEnabled = false
         }
     }
 
@@ -412,7 +411,8 @@ public class BingePlayerViewController: UIViewController {
     }
 
     private func reactOnTimeControlStatusChange() {
-        self.loadingIndicator.isHidden = self.player.timeControlStatus != .waitingToPlayAtSpecifiedRate && self.shouldShowControls
+        let showLoadingIndicatorInLayoutState = [LayoutState.inline, .fullScreen].contains(self.layoutState)
+        self.loadingIndicator.isHidden = self.player.timeControlStatus != .waitingToPlayAtSpecifiedRate || !showLoadingIndicatorInLayoutState
         self.controlsViewController.adaptToTimeControlStatus(self.player.timeControlStatus)
         self.updateMediaPlayerInfoCenter()
         self.autoHideControlsOverlay()
@@ -481,7 +481,7 @@ public class BingePlayerViewController: UIViewController {
     }
 
     @objc private func toggleControlOverlay() {
-        guard self.shouldShowControls else { return }
+        guard self.shouldToggleControls else { return }
 
         if self.controlsContainer.isHidden {
             self.showControlsOverlay()
@@ -821,7 +821,7 @@ extension BingePlayerViewController {
     private func autoHideControlsOverlay(withDelay delay: TimeInterval = 5.0) {
         guard self.player.timeControlStatus == .playing else { return }
         guard self.presentedViewController == nil else { return } // Shows media selection options
-        guard self.layoutState != .remote else { return }
+        guard self.shouldToggleControls else { return }
 
         self.controlsOverlayDispatchWorkItem?.cancel()
 

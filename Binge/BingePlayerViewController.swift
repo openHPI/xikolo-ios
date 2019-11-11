@@ -100,6 +100,8 @@ public class BingePlayerViewController: UIViewController {
         return [LayoutState.inline, .fullScreen].contains(self.layoutState)
     }
 
+    /// Determines if the player view controller is present as a child view controller or as in standalone mode (modal)
+    /// - Important: Only call on main thread
     private var isStandAlone: Bool {
         return self.parent == nil && self.presentingViewController != nil
     }
@@ -163,19 +165,21 @@ public class BingePlayerViewController: UIViewController {
             return self._layoutState
         }
         set {
-            let newLayoutState: LayoutState = {
-                if self.isStandAlone, newValue == .inline {
-                    return .fullScreen
-                } else if !self.allowFullScreenMode, newValue == .fullScreen {
-                    return .inline
-                } else {
-                    return newValue
-                }
-            }()
+            DispatchQueue.main.async {
+                let newLayoutState: LayoutState = {
+                    if self.isStandAlone, newValue == .inline {
+                        return .fullScreen
+                    } else if !self.allowFullScreenMode, newValue == .fullScreen {
+                        return .inline
+                    } else {
+                        return newValue
+                    }
+                }()
 
-            guard newLayoutState != self._layoutState else { return }
-            self._layoutState = newLayoutState
-            self.adaptToLayoutState()
+                guard newLayoutState != self._layoutState else { return }
+                self._layoutState = newLayoutState
+                self.adaptToLayoutState()
+            }
         }
     }
 

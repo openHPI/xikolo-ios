@@ -107,7 +107,7 @@ class CourseDetailsViewController: UIViewController {
         self.enrollmentButton.setTitle(buttonTitle, for: .normal)
 
         if self.course.hasEnrollment {
-            self.enrollmentButton.backgroundColor = Brand.default.colors.primary.withAlphaComponent(0.2)
+            self.enrollmentButton.backgroundColor = Brand.default.colors.primaryLight
             self.enrollmentButton.tintColor = ColorCompatibility.secondaryLabel
             self.enrollmentOptionsButton.tintColor = ColorCompatibility.secondaryLabel
         } else if ReachabilityHelper.connection != .none {

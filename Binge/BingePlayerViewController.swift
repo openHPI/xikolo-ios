@@ -214,8 +214,6 @@ public class BingePlayerViewController: UIViewController {
             if self.player.timeControlStatus == .playing, self.player.rate != self.playbackRate {
                 self.player.rate = self.playbackRate
             }
-
-            self.delegate?.didChangePlaybackRate(from: oldValue, to: self.playbackRate)
         }
     }
 
@@ -887,6 +885,7 @@ extension BingePlayerViewController: BingePlaybackRateDelegate {
     }
 
     func changeRate(to rate: Float) {
+        self.delegate?.didChangePlaybackRate(from: self.playbackRate, to: rate)
         self.playbackRate = rate
     }
 

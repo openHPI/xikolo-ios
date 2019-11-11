@@ -468,6 +468,8 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
     }
 
     func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {
+        UserDefaults.standard.playbackRate = newRate
+
         guard let video = self.video else { return }
 
         var context = self.newTrackingContext

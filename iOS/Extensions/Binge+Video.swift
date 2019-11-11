@@ -15,6 +15,10 @@ extension BingePlayerViewController {
         self.assetSubtitle = video.item?.section?.course?.title
         self.preferredPeakBitRate = video.preferredPeakBitRate()
 
+        if UserDefaults.standard.playbackRate > 0 {
+            self.playbackRate = UserDefaults.standard.playbackRate
+        }
+
         if let offlinePlayableAsset = self.offlinePlayableAsset(for: video) {
             self.asset = offlinePlayableAsset
         } else if let fallbackURL = video.streamURLForDownload ?? video.singleStream?.hdURL ?? video.singleStream?.sdURL {

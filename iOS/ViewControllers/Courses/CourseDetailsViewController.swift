@@ -144,9 +144,15 @@ class CourseDetailsViewController: UIViewController {
         guard let url = self.course.teaserStream?.hlsURL else { return }
 
         let playerViewController = BingePlayerViewController()
+        playerViewController.delegate = self
         playerViewController.tintColor = Brand.default.colors.window
         playerViewController.initiallyShowControls = false
         playerViewController.modalPresentationStyle = .fullScreen
+
+        if UserDefaults.standard.playbackRate > 0 {
+            playerViewController.playbackRate = UserDefaults.standard.playbackRate
+        }
+
         playerViewController.asset = AVURLAsset(url: url)
 
         self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
@@ -258,6 +264,14 @@ extension CourseDetailsViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         guard let appNavigator = self.appNavigator else { return false }
         return !appNavigator.handle(url: URL, on: self)
+    }
+
+}
+
+extension CourseDetailsViewController: BingePlayerDelegate {
+
+    func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {
+        UserDefaults.standard.playbackRate = newRate
     }
 
 }

@@ -5,11 +5,8 @@
 
 import AVFoundation
 
-protocol MediaSelectionDelegate: AnyObject {
+protocol BingeMediaSelectionDataSource: AnyObject {
 
     var currentMediaSelection: AVMediaSelection? { get }
-
-    func select(_ option: AVMediaSelectionOption?, in group: AVMediaSelectionGroup)
-    func didCloseMediaSelection()
 
 }

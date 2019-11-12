@@ -69,6 +69,11 @@ class CourseNavigationController: XikoloNavigationController {
         }
     }
 
+    override var childForStatusBarStyle: UIViewController? {
+        let pageViewController = self.topViewController as? UIPageViewController
+        return pageViewController?.viewControllers?.first
+    }
+
     override var childForStatusBarHidden: UIViewController? {
         let pageViewController = self.topViewController as? UIPageViewController
         return pageViewController?.viewControllers?.first

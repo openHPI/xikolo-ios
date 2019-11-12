@@ -215,9 +215,6 @@
 /* title for empty course documents list */
 "empty-view.course-documents.title" = "Für diesen Kurs sind keine Dokumente verfügbar";
 
-/* title for empty media selection list */
-"empty-view.media-option-selection.title" = "Keine Optionen verfügbar";
-
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Eingeschrieben";
 

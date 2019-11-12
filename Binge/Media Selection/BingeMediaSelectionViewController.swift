@@ -6,13 +6,13 @@
 import AVFoundation
 import UIKit
 
-class MediaSelectionViewController: UITableViewController {
+class BingeMediaSelectionViewController: UITableViewController {
 
     private let mediaCharacteristics: [AVMediaCharacteristic] = [.audible, .legible]
 
-    private weak var delegate: MediaSelectionDelegate?
+    private weak var delegate: (BingeMediaSelectionDataSource & BingeMediaSelectionDelegate & BingePlaybackRateDelegate)?
 
-    init(delegate: MediaSelectionDelegate) {
+    init(delegate: BingeMediaSelectionDataSource & BingeMediaSelectionDelegate & BingePlaybackRateDelegate) {
         self.delegate = delegate
 
         if #available(iOS 13, *) {
@@ -33,12 +33,11 @@ class MediaSelectionViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("media-option-selection.navigation-bar.title",
-                                                      comment: "navigation bar title for the media option selection")
+        self.navigationItem.title = BingeLocalizedString("media-option-selection.navigation-bar.title",
+                                                         comment: "navigation bar title for the media option selection")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
-        self.tableView.register(MediaSelectionOptionCell.self, forCellReuseIdentifier: MediaSelectionOptionCell.identifier)
-
-        self.setupEmptyState()
+        self.tableView.register(BingePlaybackRateCell.self, forCellReuseIdentifier: BingePlaybackRateCell.identifier)
+        self.tableView.register(BingeMediaOptionCell.self, forCellReuseIdentifier: BingeMediaOptionCell.identifier)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -77,10 +76,10 @@ class MediaSelectionViewController: UITableViewController {
 
 // UITableViewDataSource
 
-extension MediaSelectionViewController {
+extension BingeMediaSelectionViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.mediaCharacteristics.filter { self.multipleOptionAvailable(forMediaCharacteristic: $0) }.count
+        return self.mediaCharacteristics.filter { self.multipleOptionAvailable(forMediaCharacteristic: $0) }.count + 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,30 +88,43 @@ extension MediaSelectionViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MediaSelectionOptionCell.identifier, for: indexPath)
-        cell.textLabel?.text = self.titleForOption(at: indexPath)
+        let identifier = indexPath.section == 0 ? BingePlaybackRateCell.identifier : BingeMediaOptionCell.identifier
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+
+        if let playbackRateCell = cell as? BingePlaybackRateCell {
+            playbackRateCell.delegate = self.delegate
+        } else {
+            cell.textLabel?.text = self.titleForOption(at: indexPath)
+        }
+
         return cell
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return BingeLocalizedString("media-option-selection.section.title.playback-rate",
+                                        comment: "section title for playback rate in the media option selection")
+        }
+
         switch self.mediaCharacteristic(forSection: section) {
-        case .audible:
-            return NSLocalizedString("media-option-selection.section.title.audio",
-                                     comment: "section title for audio in the media option selection")
-        case .legible:
-            return NSLocalizedString("media-option-selection.section.title.subtitles",
-                                     comment: "section title for subtitles and closed captions in the media option selection")
+        case .audible?:
+            return BingeLocalizedString("media-option-selection.section.title.audio",
+                                        comment: "section title for audio in the media option selection")
+        case .legible?:
+            return BingeLocalizedString("media-option-selection.section.title.subtitles",
+                                        comment: "section title for subtitles and closed captions in the media option selection")
         default:
             return nil
         }
     }
 
-    private func mediaCharacteristic(forSection section: Int) -> AVMediaCharacteristic {
-        return self.mediaCharacteristics.filter { self.multipleOptionAvailable(forMediaCharacteristic: $0) }[section]
+    private func mediaCharacteristic(forSection section: Int) -> AVMediaCharacteristic? {
+        if section == 0 { return nil }
+        return self.mediaCharacteristics.filter { self.multipleOptionAvailable(forMediaCharacteristic: $0) }[section - 1]
     }
 
     private func mediaSelectionGroup(forSection section: Int) -> AVMediaSelectionGroup? {
-        let mediaCharacteristic = self.mediaCharacteristic(forSection: section)
+        guard let mediaCharacteristic = self.mediaCharacteristic(forSection: section) else { return nil }
         return self.mediaSelectionGroup(forMediaCharacteristic: mediaCharacteristic)
     }
 
@@ -126,7 +138,7 @@ extension MediaSelectionViewController {
     }
 
     private func allowsEmptySelection(inSection section: Int) -> Bool {
-        let mediaCharacteristic = self.mediaCharacteristic(forSection: section)
+        guard let mediaCharacteristic = self.mediaCharacteristic(forSection: section) else { return false }
         return self.allowsEmptySelection(forMediaCharacteristic: mediaCharacteristic)
     }
 
@@ -137,14 +149,14 @@ extension MediaSelectionViewController {
 
     private func titleForOption(at indexPath: IndexPath) -> String {
         guard let mediaSelectionGroup = self.mediaSelectionGroup(forSection: indexPath.section) else {
-            return NSLocalizedString("media-option-selection.cell.title.unknown",
-                                     comment: "cell title for an unknonw option in the media option selection")
+            return BingeLocalizedString("media-option-selection.cell.title.unknown",
+                                        comment: "cell title for an unknonw option in the media option selection")
         }
 
         let allowsEmptySelection = self.allowsEmptySelection(inSection: indexPath.section)
         if allowsEmptySelection, indexPath.row == 0 {
-            return NSLocalizedString("media-option-selection.cell.title.off",
-                                     comment: "cell title for the off option in the media option selection")
+            return BingeLocalizedString("media-option-selection.cell.title.off",
+                                        comment: "cell title for the off option in the media option selection")
         }
 
         let row = allowsEmptySelection ? indexPath.row - 1 : indexPath.row
@@ -156,7 +168,7 @@ extension MediaSelectionViewController {
 
 // UITableViewDelegate
 
-extension MediaSelectionViewController {
+extension BingeMediaSelectionViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let mediaSelectionGroup = self.mediaSelectionGroup(forSection: indexPath.section) else { return }
@@ -177,18 +189,6 @@ extension MediaSelectionViewController {
             self.delegate?.select(mediaSelectionGroup.options[row], in: mediaSelectionGroup)
             self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         }
-    }
-
-}
-
-extension MediaSelectionViewController: EmptyStateDataSource {
-
-    var emptyStateTitleText: String {
-        return NSLocalizedString("empty-view.media-option-selection.title", comment: "title for empty media selection list")
-    }
-
-    func setupEmptyState() {
-        self.tableView.emptyStateDataSource = self
     }
 
 }

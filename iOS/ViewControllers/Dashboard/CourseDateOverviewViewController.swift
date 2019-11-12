@@ -26,6 +26,7 @@ class CourseDateOverviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.updateWidthConstraints()
         self.summaryContainer.layer.roundCorners(for: .default, masksToBounds: false)
         self.nextUpContainer.layer.roundCorners(for: .default, masksToBounds: false)
 
@@ -53,9 +54,7 @@ class CourseDateOverviewViewController: UIViewController {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        let cellWidth = CourseCell.minimalWidth(for: self.traitCollection)
-        self.summaryWidthConstraint.constant = cellWidth - 2 * CourseCell.cardInset
-        self.nextUpWidthConstraint.constant = cellWidth - 2 * CourseCell.cardInset
+        self.updateWidthConstraints()
     }
 
     func loadData() {
@@ -81,11 +80,17 @@ class CourseDateOverviewViewController: UIViewController {
         }
     }
 
-    @objc func tappedOnSummary() {
+    private func updateWidthConstraints() {
+        let cellWidth = CourseCell.minimalWidth(for: self.traitCollection)
+        self.summaryWidthConstraint.constant = cellWidth - 2 * CourseCell.cardInset
+        self.nextUpWidthConstraint.constant = cellWidth - 2 * CourseCell.cardInset
+    }
+
+    @objc private func tappedOnSummary() {
         self.performSegue(withIdentifier: R.segue.courseDateOverviewViewController.showCourseDates, sender: nil)
     }
 
-    @objc func tappedOnNextUp() {
+    @objc private func tappedOnNextUp() {
         guard let course = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value?.course else { return }
         self.appNavigator?.show(course: course)
     }

@@ -32,7 +32,7 @@ public struct DefaultStyleCollection: StyleCollection {
         }()
 
         return [
-            .font: UIFont.systemFont(ofSize: UIFont.labelFontSize),
+            .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize)),
             .foregroundColor: foregroundColor,
             .paragraphStyle: self.paragraphStyle,
         ]
@@ -44,36 +44,36 @@ public struct DefaultStyleCollection: StyleCollection {
             let paragraphStyle = self.paragraphStyle
             paragraphStyle.paragraphSpacingBefore = UIFont.labelFontSize
             return [
-                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.30, weight: .bold),
+                .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.30, weight: .bold)),
                 .paragraphStyle: paragraphStyle,
             ]
         case .headline2:
             return [
-                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.25, weight: .bold)
+                .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.25, weight: .bold)),
             ]
         case .headline3:
             return [
-                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.20, weight: .bold)
+                .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.20, weight: .bold)),
             ]
         case .headline4:
             return [
-                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.15, weight: .bold)
+                .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.15, weight: .bold)),
             ]
         case .headline5:
             return [
-                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.10, weight: .bold)
+                .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.10, weight: .bold)),
             ]
         case .headline6:
             return [
-                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.05, weight: .bold)
+                .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.05, weight: .bold)),
             ]
         case .bold:
             return [
-                .font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+                .font: self.makeDynamicFont(for: .boldSystemFont(ofSize: UIFont.labelFontSize)),
             ]
         case .italic:
             return [
-                .font: UIFont.italicSystemFont(ofSize: UIFont.labelFontSize)
+                .font: self.makeDynamicFont(for: .italicSystemFont(ofSize: UIFont.labelFontSize)),
             ]
         case let .link(url):
             return [
@@ -81,8 +81,18 @@ public struct DefaultStyleCollection: StyleCollection {
                 .foregroundColor: self.tintColor,
             ]
         case .code:
+            let font: UIFont = {
+                if #available(iOS 12, *) {
+                    return .monospacedSystemFont(ofSize: UIFont.labelFontSize, weight: .regular)
+                } else if let courierNew = UIFont(name: "Courier New", size: UIFont.labelFontSize) {
+                    return courierNew
+                } else {
+                    return .systemFont(ofSize: UIFont.labelFontSize)
+                }
+            }()
+
             return [
-                .font: UIFont(name: "Courier New", size: UIFont.labelFontSize) as Any,
+                .font: self.makeDynamicFont(for: font),
             ]
         case .listItem(style: _, depth: _):
             let paragraphStyle = self.paragraphStyle
@@ -114,6 +124,14 @@ public struct DefaultStyleCollection: StyleCollection {
             return attributedString
         default:
             return nil
+        }
+    }
+
+    private func makeDynamicFont(for font: UIFont) -> UIFont {
+        if #available(iOS 11, *) {
+            return UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
+        } else {
+            return font
         }
     }
 

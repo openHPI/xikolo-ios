@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="CourseItemHeader" customModule="iOS" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CourseItemHeader" customModule="iOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5M-nR-7iH">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5M-nR-7iH">
                     <rect key="frame" x="16" y="6" width="343" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvi-Ly-v5e">
-                            <rect key="frame" x="16" y="13" width="30" height="18"/>
+                            <rect key="frame" x="4" y="13" width="30" height="18"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                             <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -37,7 +37,9 @@
                         <constraint firstItem="5ny-cH-9gM" firstAttribute="top" secondItem="a5M-nR-7iH" secondAttribute="top" priority="999" id="9EZ-Lh-HQy"/>
                         <constraint firstAttribute="bottom" secondItem="5ny-cH-9gM" secondAttribute="bottom" id="L9i-uV-hI6"/>
                         <constraint firstAttribute="trailing" secondItem="5ny-cH-9gM" secondAttribute="trailing" constant="-8" id="ZCR-ST-oQD"/>
-                        <constraint firstItem="rvi-Ly-v5e" firstAttribute="leading" secondItem="a5M-nR-7iH" secondAttribute="leadingMargin" constant="8" id="cik-ND-LcY"/>
+                        <constraint firstItem="rvi-Ly-v5e" firstAttribute="leading" secondItem="a5M-nR-7iH" secondAttribute="leading" constant="4" id="cik-ND-LcY">
+                            <variation key="widthClass=regular" constant="0.0"/>
+                        </constraint>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="44" id="fbt-Ee-Wkc"/>
                         <constraint firstItem="rvi-Ly-v5e" firstAttribute="top" secondItem="a5M-nR-7iH" secondAttribute="top" priority="999" constant="13" id="fxT-Mw-Gij"/>
                         <constraint firstItem="5ny-cH-9gM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rvi-Ly-v5e" secondAttribute="trailing" constant="8" symbolic="YES" id="jwU-Q8-Yd1"/>
@@ -54,7 +56,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="actionsButton" destination="5ny-cH-9gM" id="ZJg-tr-CwL"/>
-                <outlet property="leadingTitleViewConstraint" destination="cik-ND-LcY" id="CPd-mT-sOj"/>
                 <outlet property="titleView" destination="rvi-Ly-v5e" id="teD-Tq-1Uh"/>
             </connections>
             <point key="canvasLocation" x="35.5" y="53"/>

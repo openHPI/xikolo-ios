@@ -510,6 +510,14 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         TrackingHelper.createEvent(verb, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 
+    func didChangeSubtitles(from oldLanguageCode: String?, to newLanguageCode: String?) {
+        guard let video = self.video else { return }
+        var context = self.newTrackingContext
+        context["old_subtitle_language"] = oldLanguageCode ?? "off"
+        context["new_subtitle_language"] = newLanguageCode ?? "off"
+        TrackingHelper.createEvent(.videoPlaybackChangeSubtitle, resourceType: .video, resourceId: video.id, on: self, context: context)
+    }
+
     func didChangeLayout(from oldLayout: LayoutState, to newLayout: LayoutState) {
         self.videoIsShownInFullScreen = newLayout == .fullScreen
 

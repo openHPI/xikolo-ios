@@ -92,7 +92,13 @@ class HelpdeskViewController: UITableViewController {
     }
 
     @IBAction private func issueAttributeChanged() {
-        self.navigationItem.rightBarButtonItem?.isEnabled = HelpdeskTicketHelper.validate(title: issueTitleTextField.text, email: mailAddressTextField.text, report: issueText.text, typeIndex : self.issueTypeSegmentedControl.selectedSegmentIndex, courseIndex : coursePicker.selectedRow(inComponent: 0), numberOfSegments : self.issueTypeSegmentedControl.numberOfSegments)
+        //TODO
+        self.navigationItem.rightBarButtonItem?.isEnabled = HelpdeskTicketHelper.validate(title: issueTitleTextField.text,
+                                                                                          email: mailAddressTextField.text,
+                                                                                          report: issueText.text,
+                                                                                          typeIndex: self.issueTypeSegmentedControl.selectedSegmentIndex,
+                                                                                          courseIndex : coursePicker.selectedRow(inComponent: 0),
+                                                                                          numberOfSegments : self.issueTypeSegmentedControl.numberOfSegments)
     }
 
     @IBAction private func cancel() {
@@ -100,21 +106,24 @@ class HelpdeskViewController: UITableViewController {
     }
 
     @IBAction private func send() {
+        guard let title = issueTitleTextField.text else { return }
+
         let selectedTopic = issueTypeSegmentedControl.titleForSegment(at: issueTypeSegmentedControl.selectedSegmentIndex)
         let topic : HelpdeskTicket.Topic
-        let course : Course = self.courses[coursePicker.selectedRow(inComponent: 0) - 1]
         switch selectedTopic {
+            //selectedIndex
         case "technical":
             topic = .technical
         case "reactivation":
             topic = .reactivation
         case "course-specific":
+            let course : Course = self.courses[coursePicker.selectedRow(inComponent: 0) - 1]
             topic = .courseSpecific(course: course)
         default :
             topic = .technical
         }
 
-        let ticket = HelpdeskTicket(title: issueTitleTextField.text ?? "", email: mailAddressTextField.text ?? "", topic: topic, report: issueText.text ?? "")
+        let ticket = HelpdeskTicket(title: title, email: mailAddressTextField.text ?? "", topic: topic, report: issueText.text ?? "")
 
         if let resourceData = ticket.resourceData().value {
             print(String(data: resourceData, encoding: .utf8))

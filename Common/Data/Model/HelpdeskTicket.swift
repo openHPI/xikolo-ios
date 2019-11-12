@@ -9,17 +9,26 @@ import SyncEngine
 public class HelpdeskTicket {
 
     public enum Topic {
-           case technical
-           case reactivation
-           case courseSpecific(course: Course)
-       }
+        case technical
+        case reactivation
+        case courseSpecific(course: Course)
 
-    let title: String?
-    let email: String?
-    let report: String?
+        var identifier: String {
+            switch self {
+            case .technical:
+                return "technical"
+            case .reactivation:
+                return "reactivation"
+            case .courseSpecific(_):
+                return "course"
+            }
+        }
+    }
+
+    let title: String
+    let email: String
+    let report: String
     let topic: Topic
-    let data: String?
-    //let url: URL?
     //let language: String
 
     public init(title: String, email: String, topic: Topic, report: String) {
@@ -28,9 +37,11 @@ public class HelpdeskTicket {
         self.email = email
         self.report = report
         self.topic = topic
-        self.data = ""
-        //self.url = url
         //self.language = language
+    }
+
+    private var currentTrackingData: String {
+        return "platform: \(UIApplication.platform), os version: \(UIApplication.osVersion), device: \(UIApplication.device) app name: \(UIApplication.appName), app version: \(UIApplication.appVersion), app build: \(UIApplication.appBuild)"
     }
 
 }
@@ -47,16 +58,15 @@ extension HelpdeskTicket: JSONAPIPushable {
     public static var type: String {
         return "tickets"
     }
-
+    
+    //comuted property language
     public func resourceAttributes() -> [String : Any] {
-        let data = "platform: \(UIApplication.platform), os version: \(UIApplication.osVersion), device: \(UIApplication.device) app name: \(UIApplication.appName), app version: \(UIApplication.appVersion), app build: \(UIApplication.appBuild)"
         return [
-            "title": self.title ?? "",
-            "email": self.email ?? "",
-            "report" : self.report ?? "",
-            "topic": self.topic,
-            "data": data,
-            //"url": self.url ?? "",
+            "title": self.title,
+            "email": self.email,
+            "report" : self.report,
+            "topic": self.topic.identifier,
+            "data": self.currentTrackingData,
             //"language": self.language
         ]
     }

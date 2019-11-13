@@ -523,8 +523,8 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         guard let video = self.video else { return }
         var context = self.newTrackingContext
         context["current_layout"] = nil
-        context["new_current_layout"] = oldLayout.rawValue
-        context["old_current_layout"] = newLayout.rawValue
+        context["new_layout"] = oldLayout.rawValue
+        context["old_layout"] = newLayout.rawValue
         TrackingHelper.createEvent(.videoPlaybackChangeLayout, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 

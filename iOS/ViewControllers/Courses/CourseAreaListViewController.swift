@@ -13,22 +13,25 @@ class CourseAreaListViewController: UICollectionViewController {
 
     private var selectedIndexPath: IndexPath? {
         didSet {
-            let numberOfItems = self.collectionView?.numberOfItems(inSection: 0) ?? 0
-
-            if let oldIndexPath = oldValue, oldIndexPath.item < numberOfItems {
-                self.collectionView?.reloadItems(at: [oldIndexPath])
+            if let oldIndexPath = oldValue {
+                self.collectionView?.deselectItem(at: oldIndexPath, animated: trueUnlessReduceMotionEnabled)
             }
 
-            if let newIndexPath = self.selectedIndexPath, newIndexPath.item < numberOfItems {
-                self.collectionView?.reloadItems(at: [newIndexPath])
-                self.collectionView?.scrollToItem(at: newIndexPath, at: .centeredHorizontally, animated: trueUnlessReduceMotionEnabled)
+            if let newIndexPath = self.selectedIndexPath {
+                self.collectionView?.selectItem(at: newIndexPath, animated: trueUnlessReduceMotionEnabled, scrollPosition: .centeredHorizontally)
             }
         }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.collectionView.allowsMultipleSelection = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.collectionViewLayout.invalidateLayout()
+        self.collectionView.selectItem(at: self.selectedIndexPath, animated: animated, scrollPosition: .centeredHorizontally)
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -45,13 +48,18 @@ class CourseAreaListViewController: UICollectionViewController {
 
         if let cell = cell as? CourseAreaCell, let content = self.delegate?.accessibleAreas[safe: indexPath.item] {
             cell.configure(for: content)
-            cell.isSelected = indexPath == self.selectedIndexPath
         }
 
         return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let selectedIndexPaths = collectionView.indexPathsForSelectedItems else { return }
+
+        for selectedIndexPath in selectedIndexPaths where selectedIndexPath != indexPath {
+            collectionView.deselectItem(at: selectedIndexPath, animated: true)
+        }
+
         guard let selectedIndexPath = self.selectedIndexPath, indexPath != selectedIndexPath else { return }
         guard let content = self.delegate?.accessibleAreas[safe: indexPath.item] else { return }
 
@@ -80,11 +88,8 @@ class CourseAreaListViewController: UICollectionViewController {
         }
     }
 
-    func reloadData() {
+    func refresh() {
         self.collectionView?.reloadData()
-    }
-
-    func refresh(animated: Bool) {
         self.selectedIndexPath = {
             guard let content = self.delegate?.selectedArea else { return nil }
             guard let index = self.delegate?.accessibleAreas.firstIndex(of: content) else { return nil }

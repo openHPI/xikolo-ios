@@ -5,9 +5,9 @@
 
 import UIKit
 
-class MediaSelectionOptionCell: UITableViewCell {
+class BingeMediaOptionCell: UITableViewCell {
 
-    static let identifier = "MediaSelectionOptionCell"
+    static let identifier = "BingeMediaOptionCell"
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)

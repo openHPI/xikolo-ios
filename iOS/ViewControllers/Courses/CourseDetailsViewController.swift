@@ -3,7 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import AVKit
+import AVFoundation
+import Binge
 import BrightFutures
 import Common
 import SDWebImage
@@ -106,7 +107,7 @@ class CourseDetailsViewController: UIViewController {
         self.enrollmentButton.setTitle(buttonTitle, for: .normal)
 
         if self.course.hasEnrollment {
-            self.enrollmentButton.backgroundColor = Brand.default.colors.primary.withAlphaComponent(0.2)
+            self.enrollmentButton.backgroundColor = Brand.default.colors.primaryLight
             self.enrollmentButton.tintColor = ColorCompatibility.secondaryLabel
             self.enrollmentOptionsButton.tintColor = ColorCompatibility.secondaryLabel
         } else if ReachabilityHelper.connection != .none {
@@ -141,11 +142,21 @@ class CourseDetailsViewController: UIViewController {
 
     @IBAction private func playTeaser() {
         guard let url = self.course.teaserStream?.hlsURL else { return }
-        let player = AVPlayer(url: url)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
+
+        let playerViewController = BingePlayerViewController()
+        playerViewController.delegate = self
+        playerViewController.tintColor = Brand.default.colors.window
+        playerViewController.initiallyShowControls = false
+        playerViewController.modalPresentationStyle = .fullScreen
+
+        if UserDefaults.standard.playbackRate > 0 {
+            playerViewController.playbackRate = UserDefaults.standard.playbackRate
+        }
+
+        playerViewController.asset = AVURLAsset(url: url)
+
         self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
-            playerViewController.player?.play()
+            playerViewController.startPlayback()
         }
     }
 
@@ -253,6 +264,14 @@ extension CourseDetailsViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         guard let appNavigator = self.appNavigator else { return false }
         return !appNavigator.handle(url: URL, on: self)
+    }
+
+}
+
+extension CourseDetailsViewController: BingePlayerDelegate {
+
+    func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {
+        UserDefaults.standard.playbackRate = newRate
     }
 
 }

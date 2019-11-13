@@ -218,9 +218,6 @@
 /* title for empty course documents list */
 "empty-view.course-documents.title" = "No documents are available for this course";
 
-/* title for empty media selection list */
-"empty-view.media-option-selection.title" = "No options available";
-
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Enrolled";
 
@@ -253,21 +250,6 @@
 
 /* Title for button for selecting all items in a list */
 "global.list.selection.select all" = "Select all";
-
-/* cell title for the off option in the media option selection */
-"media-option-selection.cell.title.off" = "Off";
-
-/* cell title for an unknonw option in the media option selection */
-"media-option-selection.cell.title.unknown" = "Unbekannt";
-
-/* navigation bar title for the media option selection */
-"media-option-selection.navigation-bar.title" = "Audio & Subtitles";
-
-/* section title for audio in the media option selection */
-"media-option-selection.section.title.audio" = "Audio";
-
-/* section title for subtitles and closed captions in the media option selection */
-"media-option-selection.section.title.subtitles" = "Subtitles & CC";
 
 /* label for app build */
 "settings.app.build.label" = "Build";

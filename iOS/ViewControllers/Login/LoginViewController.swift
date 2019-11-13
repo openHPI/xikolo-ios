@@ -23,8 +23,8 @@ class LoginViewController: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loginButton.backgroundColor = Brand.default.colors.primary
-        self.registerButton.backgroundColor = Brand.default.colors.primary.withAlphaComponent(0.2)
-        self.registerButton.tintColor = ColorCompatibility.systemGray2
+        self.registerButton.backgroundColor = Brand.default.colors.primaryLight
+        self.registerButton.tintColor = ColorCompatibility.secondaryLabel
 
         self.loginButton.layer.roundCorners(for: .default)
         self.registerButton.layer.roundCorners(for: .default)

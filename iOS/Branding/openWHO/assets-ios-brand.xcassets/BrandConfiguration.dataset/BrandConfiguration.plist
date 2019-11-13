@@ -24,6 +24,8 @@
 		<string>#9164A7</string>
 		<key>tertiary</key>
 		<string>#A7CA6C</string>
+		<key>primaryLight</key>
+		<string>#B6D5E9</string>
 		<key>window</key>
 		<string>primary</string>
 	</dict>

@@ -30,6 +30,8 @@ public enum TrackingHelper {
         case videoPlaybackDeviceOrientationPortrait = "VIDEO_PORTRAIT"
         case videoPlaybackDeviceOrientationLandscape = "VIDEO_LANDSCAPE"
         case videoPlaybackChangeSpeed = "VIDEO_CHANGE_SPEED"
+        case videoPlaybackChangeSubtitle = "VIDEO_SUBTITLE"
+        case videoPlaybackChangeLayout = "VIDEO_CHANGE_LAYOUT"
 
         // video download
         case videoDownloadStart = "DOWNLOADED_HLS_VIDEO"

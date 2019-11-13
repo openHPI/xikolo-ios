@@ -19,7 +19,7 @@ class DownloadedContentListViewController: UITableViewController {
     struct CourseDownload {
         var id: String
         var title: String
-        var data: [DownloadedContentHelper.ContentType: UInt64] = [:]
+        var byteCounts: [DownloadedContentHelper.ContentType: UInt64] = [:]
 
         init(id: String, title: String) {
             self.id = id
@@ -67,7 +67,7 @@ class DownloadedContentListViewController: UITableViewController {
             for downloadItem in downloadItems {
                 let courseId = downloadItem.courseID
                 var courseDownload = downloadedCourseList[courseId, default: CourseDownload(id: courseId, title: downloadItem.courseTitle ?? "")]
-                courseDownload.data[downloadItem.contentType, default: 0] += downloadItem.fileSize ?? 0
+                courseDownload.byteCounts[downloadItem.contentType, default: 0] += downloadItem.fileSize ?? 0
                 downloadedCourseList[downloadItem.courseID] = courseDownload
             }
 
@@ -78,10 +78,7 @@ class DownloadedContentListViewController: UITableViewController {
     }
 
     private func updateTotalFileSizeLabel() {
-        let fileSize = self.courseDownloads.reduce(0) { result, courseDownload -> UInt64 in
-            return result + self.aggregatedFileSize(for: courseDownload)
-        }
-
+        let fileSize = self.courseDownloads.map(self.aggregatedFileSize).reduce(0, +)
         let format = NSLocalizedString("settings.downloads.total size: %@", comment: "total size label")
         let formattedFileSize = ByteCountFormatter.string(fromByteCount: Int64(fileSize), countStyle: .file)
         self.totalFileSizeLabel.text = String.localizedStringWithFormat(format, formattedFileSize)
@@ -89,9 +86,7 @@ class DownloadedContentListViewController: UITableViewController {
     }
 
     private func aggregatedFileSize(for courseDownload: CourseDownload) -> UInt64 {
-        return courseDownload.data.reduce(0) { result, data -> UInt64 in
-            return result + data.value
-        }
+        return courseDownload.byteCounts.values.reduce(0, +)
     }
 
     @objc private func coreDataChange(notification: Notification) {
@@ -112,20 +107,22 @@ extension DownloadedContentListViewController { // Table view data source
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.courseDownloads[section].data.count
+        return self.courseDownloads[section].byteCounts.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.downloadTypeCell, for: indexPath).require()
-        let data = Array(self.courseDownloads[indexPath.section].data)[indexPath.row]
-        cell.textLabel?.text = data.key.title
-        cell.detailTextLabel?.text = ByteCountFormatter.string(fromByteCount: Int64(data.value), countStyle: .file)
+        let downloadType = self.downloadType(for: indexPath)
+        let byteCount = self.courseDownloads[indexPath.section].byteCounts[downloadType]
+        cell.textLabel?.text = downloadType.title
+        cell.detailTextLabel?.text = byteCount.flatMap { ByteCountFormatter.string(fromByteCount: Int64($0), countStyle: .file) }
         cell.selectedBackgroundView = self.isEditing ? UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground) : nil
         return cell
     }
 
     private func downloadType(for indexPath: IndexPath) -> DownloadedContentHelper.ContentType {
-        return self.courseDownloads[indexPath.section].data.map { $0.key }[indexPath.row]
+        let byteCountKeys = self.courseDownloads[indexPath.section].byteCounts.keys
+        return DownloadedContentHelper.ContentType.allCases.filter(byteCountKeys.contains)[indexPath.row]
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

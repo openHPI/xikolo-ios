@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="gg3-tJ-2Uw">
-                            <rect key="frame" x="0.0" y="99.5" width="414" height="177"/>
+                            <rect key="frame" x="0.0" y="363" width="414" height="177"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="utq-Vj-3Sd">
@@ -68,22 +68,135 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sectionProgressCell" textLabel="i8G-sB-DVZ" style="IBUITableViewCellStyleDefault" id="9j7-9Q-VqX">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sectionProgressCell" textLabel="i8G-sB-DVZ" rowHeight="307" style="IBUITableViewCellStyleDefault" id="9j7-9Q-VqX" customClass="SectionProgressCell" customModule="iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="307"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9j7-9Q-VqX" id="kaM-h8-iLQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="307"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i8G-sB-DVZ">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" preservesSuperviewLayoutMargins="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8G-sB-DVZ">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="307"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dqd-GA-YDp">
+                                            <rect key="frame" x="0.0" y="-37" width="414" height="368.5"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVT-IC-q5L">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="csQ-yV-t9K">
+                                                    <rect key="frame" x="0.0" y="20.5" width="414" height="116"/>
+                                                    <subviews>
+                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iqt-7q-bwt">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="2"/>
+                                                        </progressView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JY1-oa-E0n">
+                                                            <rect key="frame" x="0.0" y="2" width="414" height="114"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TAk-o4-ccM">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="114" height="114"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPn-QS-jlX">
+                                                                    <rect key="frame" x="114" y="0.0" width="258" height="114"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAf-Wh-lVZ">
+                                                                    <rect key="frame" x="372" y="0.0" width="42" height="114"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uo0-0l-RkL">
+                                                    <rect key="frame" x="0.0" y="136.5" width="414" height="116"/>
+                                                    <subviews>
+                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="We3-CV-Eft">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="2"/>
+                                                        </progressView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3b-Bx-360">
+                                                            <rect key="frame" x="0.0" y="2" width="414" height="114"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J8w-1H-NdP">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="114" height="114"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxN-QV-QUj">
+                                                                    <rect key="frame" x="114" y="0.0" width="42" height="114"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAL-hH-dmE">
+                                                                    <rect key="frame" x="156" y="0.0" width="258" height="114"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gZi-n0-JrB">
+                                                    <rect key="frame" x="0.0" y="252.5" width="414" height="116"/>
+                                                    <subviews>
+                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="713-5o-XTd">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="2"/>
+                                                        </progressView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyv-NL-lYK">
+                                                            <rect key="frame" x="0.0" y="2" width="414" height="114"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NL4-hH-ldz">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="114" height="114"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcy-Sw-ezK">
+                                                                    <rect key="frame" x="114" y="0.0" width="42" height="114"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bN3-m5-b3B">
+                                                                    <rect key="frame" x="156" y="0.0" width="258" height="114"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bonusProgressImageView" destination="NL4-hH-ldz" id="OWW-pO-oDW"/>
+                                    <outlet property="bonusProgressPercentageScored" destination="bN3-m5-b3B" id="PGS-QN-TaM"/>
+                                    <outlet property="bonusProgressPointsScored" destination="Bcy-Sw-ezK" id="DfJ-b2-d4r"/>
+                                    <outlet property="bonusProgressStackView" destination="gZi-n0-JrB" id="J7D-5C-jcl"/>
+                                    <outlet property="bonusProgressView" destination="713-5o-XTd" id="BSM-l2-8he"/>
+                                    <outlet property="mainProgressImageView" destination="TAk-o4-ccM" id="JiS-bf-Xz6"/>
+                                    <outlet property="mainProgressPercentageScored" destination="oAf-Wh-lVZ" id="uIN-XF-3Ie"/>
+                                    <outlet property="mainProgressPointsScored" destination="KPn-QS-jlX" id="GTw-zY-57r"/>
+                                    <outlet property="mainProgressStackView" destination="csQ-yV-t9K" id="vsm-Do-uEC"/>
+                                    <outlet property="mainProgressView" destination="iqt-7q-bwt" id="HoN-JI-Jsy"/>
+                                    <outlet property="sectionProgressTitle" destination="bVT-IC-q5L" id="l5I-aQ-zAL"/>
+                                    <outlet property="selfTestProgressImageView" destination="J8w-1H-NdP" id="7Dq-Ld-MEb"/>
+                                    <outlet property="selfTestProgressPercentageScored" destination="dAL-hH-dmE" id="FZV-dS-EzO"/>
+                                    <outlet property="selfTestProgressPointsScored" destination="xxN-QV-QUj" id="O5p-hK-Rs9"/>
+                                    <outlet property="selfTestProgressStackView" destination="uo0-0l-RkL" id="dQR-kE-qsG"/>
+                                    <outlet property="selfTestProgressView" destination="We3-CV-Eft" id="Vlp-L5-Xaz"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

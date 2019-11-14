@@ -76,8 +76,9 @@ extension CourseProgressListViewController: RefreshableViewController {
 
 extension CourseProgressListViewController: CoreDataTableViewDataSourceDelegate {
 
-    func configure(_ cell: UITableViewCell, for object: SectionProgress) {
-        cell.textLabel?.text = object.title
+    func configure(_ cell: SectionProgressCell, for object: SectionProgress) {
+        cell.configure(for: object, showCourseTitle: self.course == nil)
+        //cell.textLabel?.text = object.title
     }
 
 }

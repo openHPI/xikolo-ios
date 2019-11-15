@@ -17,6 +17,7 @@ class XikoloTabBarController: UITabBarController {
     static func make() -> XikoloTabBarController {
         let viewControllers = [
             R.storyboard.tabDashboard.instantiateInitialViewController(),
+            R.storyboard.tabChannels.instantiateInitialViewController(),
             R.storyboard.tabCourses.instantiateInitialViewController(),
             R.storyboard.tabNews.instantiateInitialViewController(),
             R.storyboard.tabAccount.instantiateInitialViewController(),

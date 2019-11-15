@@ -154,7 +154,9 @@ class CourseListViewController: UICollectionViewController {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        self.collectionViewLayout.invalidateLayout()
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.collectionViewLayout.invalidateLayout()
+        }
     }
 
 }
@@ -175,7 +177,7 @@ extension CourseListViewController: CardListLayoutDelegate {
     }
 
     var heightForHeader: CGFloat {
-        guard self.configuration == .allCourses || self.dataSource.isSearching else {
+        guard self.configuration.shouldShowHeader || self.dataSource.isSearching else {
             return 0 // Don't show header for these configurations
         }
 
@@ -278,8 +280,7 @@ extension CourseListViewController: UISearchControllerDelegate {
 extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
 
     func configure(_ cell: CourseCell, for object: Course) {
-        let filtered = self.configuration != .allCourses
-        cell.configure(object, for: .courseList(filtered: filtered))
+        cell.configure(object, for: .courseList(configuration: self.configuration))
     }
 
     func configureHeaderView(_ headerView: CourseHeaderView, sectionInfo: NSFetchedResultsSectionInfo) {

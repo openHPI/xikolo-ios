@@ -91,6 +91,35 @@ extension ChannelListViewController: CardListLayoutDelegate {
 
 }
 
+extension ChannelListViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 400, height: 400)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        var leftPadding = collectionView.layoutMargins.left - CourseCell.cardInset
+        var rightPadding = collectionView.layoutMargins.right - CourseCell.cardInset
+
+        if #available(iOS 11.0, *) {
+            leftPadding -= collectionView.safeAreaInsets.left
+            rightPadding -= collectionView.safeAreaInsets.right
+        }
+
+        return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
+    }
+
+
+}
+
 extension ChannelListViewController: CoreDataCollectionViewDataSourceDelegate {
 
     typealias HeaderView = UICollectionReusableView

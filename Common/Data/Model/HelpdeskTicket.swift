@@ -26,22 +26,32 @@ public class HelpdeskTicket {
     }
 
     let title: String
-    let email: String
+    let mail: String
     let report: String
     let topic: Topic
-    //let language: String
 
-    public init(title: String, email: String, topic: Topic, report: String) {
-                //url: URL?, language : String
+    public init(title: String, mail: String, topic: Topic, report: String) {
         self.title = title
-        self.email = email
+        self.mail = mail
         self.report = report
         self.topic = topic
-        //self.language = language
+    }
+
+    public static func validate(title: String?, email: String?, report: String?, topic: Int, course: Int) -> Bool {
+        let issueTitleGiven = !(title?.isEmpty ?? true)
+        let mailAddressGiven = !(email?.isEmpty ?? true)
+        let issueReportGiven = !(report?.isEmpty ?? true)
+        let notCourseSpecificTopic = Brand.default.features.enableReactivation && (topic != 2) || !Brand.default.features.enableReactivation && topic != 1
+        let courseSelected = course != 0
+        return (notCourseSpecificTopic || courseSelected) && mailAddressGiven && issueReportGiven && issueTitleGiven
     }
 
     private var currentTrackingData: String {
         return "platform: \(UIApplication.platform), os version: \(UIApplication.osVersion), device: \(UIApplication.device) app name: \(UIApplication.appName), app version: \(UIApplication.appVersion), app build: \(UIApplication.appBuild)"
+    }
+
+    private var appLanguage: String {
+        return Locale.supportedCurrent.identifier
     }
 
 }
@@ -59,15 +69,14 @@ extension HelpdeskTicket: JSONAPIPushable {
         return "tickets"
     }
     
-    //comuted property language
     public func resourceAttributes() -> [String : Any] {
         return [
             "title": self.title,
-            "email": self.email,
+            "mail": self.mail,
             "report" : self.report,
             "topic": self.topic.identifier,
             "data": self.currentTrackingData,
-            //"language": self.language
+            "language": self.appLanguage,
         ]
     }
 

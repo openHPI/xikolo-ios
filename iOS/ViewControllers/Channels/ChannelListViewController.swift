@@ -15,9 +15,9 @@ class ChannelListViewController: UICollectionViewController {
     override func viewDidLoad() {
         self.collectionView?.register(R.nib.channelCell)
 
-        if let channelListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
-            channelListLayout.delegate = self
-        }
+//        if let channelListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
+//            channelListLayout.delegate = self
+//        }
 
         super.viewDidLoad()
 
@@ -71,35 +71,43 @@ class ChannelListViewController: UICollectionViewController {
 
 }
 
-extension ChannelListViewController: CardListLayoutDelegate {
-
-    var cardInset: CGFloat {
-        return ChannelCell.cardInset
-    }
-
-    func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
-        return ChannelCell.minimalWidth(for: traitCollection)
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        heightForCellAtIndexPath indexPath: IndexPath,
-                        withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
-
-        let channel = self.dataSource.object(at: indexPath)
-        return ceil(ChannelCell.heightForChannelList(forWidth: boundingWidth, for: channel))
-    }
-
-}
+//extension ChannelListViewController: CardListLayoutDelegate {
+//
+//    var cardInset: CGFloat {
+//        return ChannelCell.cardInset
+//    }
+//
+//    func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
+//        return ChannelCell.minimalWidth(for: traitCollection)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView,
+//                        heightForCellAtIndexPath indexPath: IndexPath,
+//                        withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
+//
+//        let channel = self.dataSource.object(at: indexPath)
+//        return ceil(ChannelCell.heightForChannelList(forWidth: boundingWidth, for: channel))
+//    }
+//
+//}
 
 extension ChannelListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return 0
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
+
+        let boundingWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
+        let channel = self.dataSource.object(at: indexPath)
+        let height = ceil(ChannelCell.heightForChannelList(forWidth: boundingWidth, for: channel))
+
+        return CGSize(width: boundingWidth, height: height)
+
         return CGSize(width: 400, height: 400)
     }
 
@@ -114,9 +122,8 @@ extension ChannelListViewController: UICollectionViewDelegateFlowLayout {
             rightPadding -= collectionView.safeAreaInsets.right
         }
 
-        return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
+        return UIEdgeInsets(top: 0, left: leftPadding, bottom: collectionView.layoutMargins.bottom, right: rightPadding)
     }
-
 
 }
 

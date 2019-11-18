@@ -11,7 +11,10 @@ extension ChannelHelper {
 
        public static var orderedChannels: NSFetchRequest<Channel> {
             let request: NSFetchRequest<Channel> = Channel.fetchRequest()
-            request.sortDescriptors = [NSSortDescriptor(keyPath: \Channel.position, ascending: true)]
+            request.sortDescriptors = [
+                NSSortDescriptor(keyPath: \Channel.position, ascending: true),
+                NSSortDescriptor(keyPath: \Channel.title, ascending: true),
+            ]
             return request
         }
 

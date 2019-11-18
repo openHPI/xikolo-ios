@@ -81,7 +81,7 @@ extension ChannelCell {
 
     static func heightForChannelList(forWidth width: CGFloat, for channel: Channel) -> CGFloat {
         let cardWidth = width - 2 * self.cardInset
-        let imageHeight = cardWidth * 0.8
+        let imageHeight = min(cardWidth * 0.8, 480)
 
         let titleHeight = channel.title?.height(forTextStyle: .title2, boundingWidth: cardWidth) ?? 0
         let descriptionHeight = UIFont.preferredFont(forTextStyle: .subheadline).lineHeight * 3

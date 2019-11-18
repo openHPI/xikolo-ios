@@ -21,7 +21,7 @@ class ChannelListViewController: UICollectionViewController {
 
         super.viewDidLoad()
 
-        self.addRefreshControl()
+//        self.addRefreshControl()
 
         let reuseIdentifier = R.reuseIdentifier.channelCell.identifier
         let request = ChannelHelper.FetchRequest.orderedChannels
@@ -48,17 +48,19 @@ class ChannelListViewController: UICollectionViewController {
         }
     }
 
-    // TODO: needed?
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        self.adjustScrollDirection(for: self.collectionView.bounds.size)
         self.collectionViewLayout.invalidateLayout()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: nil) { _ in
+
+        self.adjustScrollDirection(for: size)
+        coordinator.animate(alongsideTransition: { _  in
             self.collectionViewLayout.invalidateLayout()
-        }
+        })
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,6 +69,11 @@ class ChannelListViewController: UICollectionViewController {
         } else {
             super.prepare(for: segue, sender: sender)
         }
+    }
+
+    private func adjustScrollDirection(for size: CGSize) {
+        let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        flowLayout?.scrollDirection = self.traitCollection.horizontalSizeClass == .regular && size.width > size.height ? .horizontal : .vertical
     }
 
 }
@@ -102,13 +109,17 @@ extension ChannelListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
 
-        let boundingWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
+
+        var boundingWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
+
+        if self.traitCollection.horizontalSizeClass == .regular, collectionView.bounds.width > collectionView.bounds.height {
+            boundingWidth = min(600, boundingWidth)
+        }
+
         let channel = self.dataSource.object(at: indexPath)
         let height = ceil(ChannelCell.heightForChannelList(forWidth: boundingWidth, for: channel))
 
         return CGSize(width: boundingWidth, height: height)
-
-        return CGSize(width: 400, height: 400)
     }
 
     func collectionView(_ collectionView: UICollectionView,

@@ -35,7 +35,7 @@ enum CourseListConfiguration {
         case .completedCourses:
             return .never
         case .coursesInChannel:
-            return .automatic
+            return .never
         }
     }
 
@@ -110,5 +110,13 @@ enum CourseListConfiguration {
 //
 //        return nil
 //    }
+
+    func colorWithFallback(to fallbackColor: UIColor) -> UIColor {
+        if case let .coursesInChannel(channel) = self { // TODO: chain?
+            return channel.colorWithFallback(to: fallbackColor)
+        }
+
+        return fallbackColor
+    }
 
 }

@@ -284,7 +284,7 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
     }
 
     func configureHeaderView(_ headerView: CourseHeaderView, sectionInfo: NSFetchedResultsSectionInfo) {
-        headerView.configure(sectionInfo)
+        headerView.configure(sectionInfo, for: self.configuration)
     }
 
     func searchPredicate(forSearchText searchText: String) -> NSPredicate? {

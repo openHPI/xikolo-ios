@@ -39,6 +39,14 @@ class CourseCell: UICollectionViewCell {
 //            return nil
 //        }
 
+        func colorWithFallback(to fallbackColor: UIColor) -> UIColor {
+            if case let .courseList(configuration) = self { // TODO: chain?
+                return configuration.colorWithFallback(to: fallbackColor)
+            }
+
+            return fallbackColor
+        }
+
 //        static func == (lhs: Configuration, rhs: Configuration) -> Bool {
 //            switch (lhs, rhs) {
 //            case (.courseOverview, .courseOverview):
@@ -70,11 +78,11 @@ class CourseCell: UICollectionViewCell {
         self.shadowView.layer.roundCorners(for: .default, masksToBounds: false)
 
         self.courseImage.layer.roundCorners(for: .default)
-        self.courseImage.backgroundColor = Brand.default.colors.secondary
+//        self.courseImage.backgroundColor = Brand.default.colors.secondary
 
         self.statusView.layer.roundCorners(for: .default)
-        self.statusView.backgroundColor = Brand.default.colors.secondary
-        self.statusLabel.backgroundColor = Brand.default.colors.secondary
+//        self.statusView.backgroundColor = Brand.default.colors.secondary
+//        self.statusLabel.backgroundColor = Brand.default.colors.secondary
 
         let gradient = CAGradientLayer()
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
@@ -83,7 +91,7 @@ class CourseCell: UICollectionViewCell {
         self.gradientView.layer.insertSublayer(gradient, at: 0)
         self.gradientView.layer.roundCorners(for: .default)
 
-        self.teacherLabel.textColor = Brand.default.colors.secondary
+//        self.teacherLabel.textColor = Brand.default.colors.secondary
     }
 
     override func layoutSubviews() {
@@ -92,6 +100,13 @@ class CourseCell: UICollectionViewCell {
     }
 
     func configure(_ course: Course, for configuration: Configuration) {
+        let accentColor = configuration.colorWithFallback(to: Brand.default.colors.secondary)
+
+        self.courseImage.backgroundColor = accentColor
+        self.statusView.backgroundColor = accentColor
+        self.statusLabel.backgroundColor = accentColor
+        self.teacherLabel.textColor = accentColor
+
         self.courseImage.image = nil // Avoid old images on cell reuse when new image can not be loaded
         self.courseImage.alpha = course.hidden ? 0.5 : 1.0
         self.gradientView.isHidden = true

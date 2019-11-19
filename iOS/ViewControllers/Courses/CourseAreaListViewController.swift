@@ -34,6 +34,13 @@ class CourseAreaListViewController: UICollectionViewController {
         self.collectionView.selectItem(at: self.selectedIndexPath, animated: animated, scrollPosition: .centeredHorizontally)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available(iOS 11, *) {} else {
+            self.collectionViewLayout.invalidateLayout()
+        }
+    }
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

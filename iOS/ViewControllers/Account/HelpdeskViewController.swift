@@ -8,7 +8,7 @@ import CoreData
 import Foundation
 import UIKit
 
-class HelpdeskViewController: UITableViewController {
+class HelpdeskViewController: UITableViewController, UIAdaptivePresentationControllerDelegate {
 
     @IBOutlet private weak var issueTitleTextField: UITextField!
     @IBOutlet private weak var mailAddressTextField: UITextField!
@@ -95,6 +95,14 @@ class HelpdeskViewController: UITableViewController {
         return header
     }
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 && UserProfileHelper.shared.isLoggedIn {
+            return nil
+        }
+        else {
+            return super.tableView(tableView, titleForHeaderInSection: section)
+        }
+    }
 
     @IBAction private func issueTopicChanged() {
         self.tableView.beginUpdates()
@@ -104,8 +112,7 @@ class HelpdeskViewController: UITableViewController {
     @IBAction private func issueAttributeChanged() {
 //        let topic : HelpdeskTicket.Topic
 //        let selectedIndex = self.issueTypeSegmentedControl.selectedSegmentIndex
-//        var courseTitle = ""
-//        var course : Course
+//        var course : Course? = nil
 //        switch selectedIndex {
 //        case 0:
 //            topic = .technical
@@ -116,24 +123,28 @@ class HelpdeskViewController: UITableViewController {
 //            }
 //            else {
 //                //way of avoiding forced unwrap?
-//                courseTitle = self.courses[coursePicker.selectedRow(inComponent: 0) - 1].title ?? ""
-//                course = (self.courses[coursePicker.selectedRow(inComponent: 0) - 1]) ?? nil
+//                course = self.courses[coursePicker.selectedRow(inComponent: 0) - 1]
 //                topic = .courseSpecific(course: course!)
 //            }
 //        case 2:
 //            //way of avoiding forced unwrap?
-//            course = self.courses[coursePicker.selectedRow(inComponent: 0) - 1] ?? ""
-//            course = (self.courses[coursePicker.selectedRow(inComponent: 0) - 1]) ?? nil
+//            course = self.courses[coursePicker.selectedRow(inComponent: 0) - 1]
 //            topic = .courseSpecific(course: course!)
 //        default :
 //            topic = .technical
 //        }
-//        let ticketIsValid = HelpdeskTicketHelper.validate(title: issueTitleTextField.text,
+//        let ticketIsValid = HelpdeskTicket.validate(title: issueTitleTextField.text,
 //                                                          email: mailAddressTextField.text,
 //                                                          report: reportTextView.text,
 //                                                          topic: topic,
 //                                                          course: course
 //                                                          )
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = true
+        } else {
+            // Fallback on earlier versions
+        }
+
         let mail = UserProfileHelper.shared.isLoggedIn ? self.user?.profile?.email : mailAddressTextField.text
         let ticketIsValid = HelpdeskTicket.validate(title: issueTitleTextField.text,
                                                                   email: mail,
@@ -176,7 +187,6 @@ class HelpdeskViewController: UITableViewController {
 
         //scroll to top
         self.onFailureLabel.isHidden = false
-        //self.onFailureLabel.sizeToFit()
         self.tableView.resizeTableHeaderView()
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
@@ -186,7 +196,6 @@ class HelpdeskViewController: UITableViewController {
 //            self.dismiss(animated: trueUnlessReduceMotionEnabled)
 //        }.onFailure { _ in
 //            //scroll to top, show error notification
-//            self.tableView.scrollsToTop = true
 //            print("error")
 //        }
     }

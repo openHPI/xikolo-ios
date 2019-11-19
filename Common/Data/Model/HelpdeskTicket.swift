@@ -46,6 +46,15 @@ public class HelpdeskTicket {
         return (notCourseSpecificTopic || courseSelected) && mailAddressGiven && issueReportGiven && issueTitleGiven
     }
 
+//    public static func validate(title: String?, email: String?, report: String?, topic: HelpdeskTicket.Topic, course: Course?) -> Bool {
+//        let issueTitleGiven = !(title?.isEmpty ?? true)
+//        let mailAddressGiven = !(email?.isEmpty ?? true)
+//        let issueReportGiven = !(report?.isEmpty ?? true)
+//        let notCourseSpecificTopic = (topic.identifier != "course")
+//        let courseSelected = course != nil
+//        return (notCourseSpecificTopic || courseSelected) && mailAddressGiven && issueReportGiven && issueTitleGiven
+//    }
+
     private var currentTrackingData: String {
         return "platform: \(UIApplication.platform), os version: \(UIApplication.osVersion), device: \(UIApplication.device) app name: \(UIApplication.appName), app version: \(UIApplication.appVersion), app build: \(UIApplication.appBuild)"
     }

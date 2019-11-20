@@ -22,7 +22,6 @@
 		50046F71216BBAD200D59073 /* BrightFuture+earliest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50046F70216BBAD200D59073 /* BrightFuture+earliest.swift */; };
 		50051B2D2338C10000221558 /* CourseDateOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50051B2C2338C10000221558 /* CourseDateOverviewViewController.swift */; };
 		50092A82237D671900A1503F /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A81237D671900A1503F /* Channel.swift */; };
-		50092A84237D6A9600A1503F /* TabChannels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50092A83237D6A9600A1503F /* TabChannels.storyboard */; };
 		50092A86237D7EA000A1503F /* ChannelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A85237D7EA000A1503F /* ChannelHelper.swift */; };
 		50092A89237D825900A1503F /* ChannelHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A88237D825900A1503F /* ChannelHelper+FetchRequests.swift */; };
 		50092A8C237D889700A1503F /* ChannelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A8B237D889700A1503F /* ChannelListViewController.swift */; };
@@ -67,6 +66,7 @@
 		5044C8E521A85488006490CE /* DownloadedContentTypeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5044C8E421A85488006490CE /* DownloadedContentTypeListViewController.swift */; };
 		50467FED238425B40084D7F6 /* ChannelHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50467FEC238425B40084D7F6 /* ChannelHeaderView.xib */; };
 		50467FEF238548D20084D7F6 /* ChannelHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50467FEE238548D20084D7F6 /* ChannelHeaderView.swift */; };
+		50467FF0238596710084D7F6 /* TabChannels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50467FF2238596710084D7F6 /* TabChannels.storyboard */; };
 		5046BD0A212B4DC700B9F2CD /* DocumentLocalization+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046BD09212B4DC700B9F2CD /* DocumentLocalization+Download.swift */; };
 		504D83FA215B57D4006F2447 /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83F9215B57D4006F2447 /* ErrorReporter.swift */; };
 		504D83FC215B64EC006F2447 /* APIStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83FB215B64EC006F2447 /* APIStatus.swift */; };
@@ -464,7 +464,6 @@
 		50082B5E20BFDAC900B4511C /* DownloadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadState.swift; sourceTree = "<group>"; };
 		50082B6420C0358C00B4511C /* xikolo 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 6.xcdatamodel"; sourceTree = "<group>"; };
 		50092A81237D671900A1503F /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		50092A83237D6A9600A1503F /* TabChannels.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabChannels.storyboard; sourceTree = "<group>"; };
 		50092A85237D7EA000A1503F /* ChannelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHelper.swift; sourceTree = "<group>"; };
 		50092A87237D80E300A1503F /* xikolo 9a.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 9a.xcdatamodel"; sourceTree = "<group>"; };
 		50092A88237D825900A1503F /* ChannelHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelHelper+FetchRequests.swift"; sourceTree = "<group>"; };
@@ -538,6 +537,8 @@
 		5044C8E421A85488006490CE /* DownloadedContentTypeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedContentTypeListViewController.swift; sourceTree = "<group>"; };
 		50467FEC238425B40084D7F6 /* ChannelHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelHeaderView.xib; sourceTree = "<group>"; };
 		50467FEE238548D20084D7F6 /* ChannelHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeaderView.swift; sourceTree = "<group>"; };
+		50467FF1238596710084D7F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabChannels.storyboard; sourceTree = "<group>"; };
+		50467FF42385967A0084D7F6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabChannels.strings; sourceTree = "<group>"; };
 		5046BD09212B4DC700B9F2CD /* DocumentLocalization+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentLocalization+Download.swift"; sourceTree = "<group>"; };
 		504D83F9215B57D4006F2447 /* ErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReporter.swift; sourceTree = "<group>"; };
 		504D83FB215B64EC006F2447 /* APIStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStatus.swift; sourceTree = "<group>"; };
@@ -1596,7 +1597,7 @@
 				50A725962339188E00DE8338 /* CourseDateOverview.storyboard */,
 				507D723F233784CE00DADE06 /* CourseOverview.storyboard */,
 				50A725912339188000DE8338 /* CourseDates.storyboard */,
-				50092A83237D6A9600A1503F /* TabChannels.storyboard */,
+				50467FF2238596710084D7F6 /* TabChannels.storyboard */,
 				AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */,
 				24B6514B1D355B4A00624DBC /* TabNews.storyboard */,
 				AB9AF2D81CF72EF100ED3EB0 /* TabAccount.storyboard */,
@@ -1913,7 +1914,7 @@
 				B4E079EB218791A600EA53F5 /* CertificateCell.xib in Resources */,
 				50CF1FFA20DCDBFC0011BFE9 /* Course.storyboard in Resources */,
 				508AB2C02109F0A10079EAE5 /* DocumentHeader.xib in Resources */,
-				50092A84237D6A9600A1503F /* TabChannels.storyboard in Resources */,
+				50467FF0238596710084D7F6 /* TabChannels.storyboard in Resources */,
 				50CF1FFC20DCDBFC0011BFE9 /* CourseLearnings.storyboard in Resources */,
 				50044FC32327815F004D1AD8 /* CourseLearningsLTI.storyboard in Resources */,
 				5054B2E52108B19500CE9067 /* CourseDocuments.storyboard in Resources */,
@@ -2596,6 +2597,15 @@
 				5040A61520795CBA00E98351 /* de */,
 			);
 			name = Course.storyboard;
+			sourceTree = "<group>";
+		};
+		50467FF2238596710084D7F6 /* TabChannels.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50467FF1238596710084D7F6 /* Base */,
+				50467FF42385967A0084D7F6 /* de */,
+			);
+			name = TabChannels.storyboard;
 			sourceTree = "<group>";
 		};
 		50502E2D1FD04E56000A8D35 /* CourseLearnings.storyboard */ = {

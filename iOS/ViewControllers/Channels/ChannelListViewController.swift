@@ -23,6 +23,12 @@ class ChannelListViewController: UICollectionViewController {
 
 //        self.addRefreshControl()
 
+        if #available(iOS 11, *) {
+            self.navigationItem.largeTitleDisplayMode = .always
+        }
+
+        self.adjustScrollDirection(for: self.collectionView.bounds.size)
+
         let reuseIdentifier = R.reuseIdentifier.channelCell.identifier
         let request = ChannelHelper.FetchRequest.orderedChannels
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)

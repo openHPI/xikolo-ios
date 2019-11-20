@@ -35,7 +35,7 @@ enum CourseListConfiguration {
         case .completedCourses:
             return .never
         case .coursesInChannel:
-            return .never
+            return .automatic
         }
     }
 

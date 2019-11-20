@@ -232,12 +232,13 @@ class CardListLayout: UICollectionViewLayout {
             return layoutAttributes
         } else {
             guard let collectionView = collectionView else { return nil }
-            
-            let frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 44)
+
+            let height = self.delegate?.heightForGlobalHeader ?? 0
+            let frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: height)
             let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
             layoutAttributes.frame = frame
             layoutAttributes.isHidden = false
-            layoutAttributes.zIndex = 2
+//            layoutAttributes.zIndex = 2
             return layoutAttributes
         }
 

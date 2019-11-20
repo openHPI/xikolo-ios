@@ -205,7 +205,9 @@ extension CourseListViewController: CardListLayoutDelegate {
             return 0 // Don't show header for these configurations
         }
 
-        return 56
+        guard case let .coursesInChannel(channel) = self.configuration else { return 0 }
+
+        return ChannelHeaderView.height(forWidth: collectionView.bounds.width, layoutMargins: self.view.layoutMargins, channel: channel)
     }
 
     func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
@@ -343,9 +345,13 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
     func collectionView(_ collectionView: UICollectionView, viewForAddtionalSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView? {
         guard kind == R.nib.channelHeaderView.name else { return nil }
 
-        let view =  collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                         withReuseIdentifier: R.nib.channelHeaderView.name,
-                                                                         for: indexPath)
+        guard let view =  collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                          withReuseIdentifier: R.nib.channelHeaderView.name,
+                                                                          for: indexPath) as? ChannelHeaderView else { return nil }
+
+        guard case let .coursesInChannel(channel) = self.configuration else { return nil }
+
+        view.configure(for: channel)
 
         return view
     }

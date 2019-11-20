@@ -10,18 +10,39 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3cN-yh-Dzf">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="301"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" id="3cN-yh-Dzf" customClass="ChannelHeaderView" customModule="iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="373"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Jeh-F8-sXq">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="341.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="400" id="CuF-Qs-dC3"/>
+                        <constraint firstAttribute="width" secondItem="Jeh-F8-sXq" secondAttribute="height" multiplier="10:8" priority="999" id="wGx-Y3-mhd"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLH-4Y-N1Q">
+                    <rect key="frame" x="16" y="353.5" width="343" height="19.5"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailingMargin" secondItem="qLH-4Y-N1Q" secondAttribute="trailing" id="53M-Mx-bs9"/>
+                <constraint firstItem="Jeh-F8-sXq" firstAttribute="top" secondItem="3cN-yh-Dzf" secondAttribute="top" id="9kq-II-Exe"/>
+                <constraint firstItem="qLH-4Y-N1Q" firstAttribute="top" secondItem="Jeh-F8-sXq" secondAttribute="bottom" constant="12" id="KUa-Iz-dI7"/>
+                <constraint firstItem="Jeh-F8-sXq" firstAttribute="leading" secondItem="Rcb-Xt-Bsx" secondAttribute="leading" id="Z6V-fq-Prw"/>
+                <constraint firstItem="Rcb-Xt-Bsx" firstAttribute="trailing" secondItem="Jeh-F8-sXq" secondAttribute="trailing" id="aAl-SW-Bfe"/>
+                <constraint firstAttribute="bottom" secondItem="qLH-4Y-N1Q" secondAttribute="bottom" id="gZo-Ir-N1V"/>
+                <constraint firstItem="qLH-4Y-N1Q" firstAttribute="leading" secondItem="3cN-yh-Dzf" secondAttribute="leadingMargin" id="ykI-qj-SFo"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="Rcb-Xt-Bsx"/>
-            <point key="canvasLocation" x="115.21739130434783" y="191.85267857142856"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="qLH-4Y-N1Q" id="MFh-Bi-Ou8"/>
+                <outlet property="imageView" destination="Jeh-F8-sXq" id="wI8-Hp-Y6D"/>
+            </connections>
+            <point key="canvasLocation" x="115.21739130434783" y="215.95982142857142"/>
         </collectionReusableView>
-        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" id="M54-JY-yEt">
-            <rect key="frame" x="0.0" y="0.0" width="110" height="200"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <viewLayoutGuide key="safeArea" id="uIx-T4-r48"/>
-            <point key="canvasLocation" x="-150" y="-53"/>
-        </stackView>
     </objects>
 </document>

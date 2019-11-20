@@ -33,7 +33,7 @@ class CourseListViewController: UICollectionViewController {
                                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
 
-        if case .coursesInChannel(_) = self.configuration {
+        if case .coursesInChannel = self.configuration {
             self.collectionView?.register(UINib(resource: R.nib.channelHeaderView),
                                           forSupplementaryViewOfKind: R.nib.channelHeaderView.name,
                                           withReuseIdentifier: R.nib.channelHeaderView.name)
@@ -190,22 +190,16 @@ extension CourseListViewController: CardListLayoutDelegate {
         return ceil(CourseHeaderView.height)
     }
 
+    var kindForGlobalHeader: String? {
+        guard case .coursesInChannel = self.configuration else { return nil }
+        return R.nib.channelHeaderView.name
+    }
+
     var heightForGlobalHeader: CGFloat {
-        let searchController: UISearchController? = {
-            if #available(iOS 11, *){
-                return self.navigationItem.searchController
-            } else {
-                return self.searchController
-            }
-        }()
+        guard case let .coursesInChannel(channel) = self.configuration else { return 0 } // Don't show global header
 
-        let isSearchControllerFocused = (self.filterContainerHeightConstraint?.constant ?? 0) > 0
-
-        guard self.configuration.shouldShowGlobalHeader, !(self.dataSource.isSearching || isSearchControllerFocused) else {
-            return 0 // Don't show header for these configurations
-        }
-
-        guard case let .coursesInChannel(channel) = self.configuration else { return 0 }
+        let isSearchControllerFocused = self.filterContainerHeightConstraint?.constant != 0
+        if self.dataSource.isSearching || isSearchControllerFocused { return 0 } // Don't show global header
 
         return ChannelHeaderView.height(forWidth: collectionView.bounds.width, layoutMargins: self.view.layoutMargins, channel: channel)
     }
@@ -342,12 +336,14 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
         searchHeaderView.configure(withText: String.localizedStringWithFormat(format, numberOfSearchResults))
     }
 
-    func collectionView(_ collectionView: UICollectionView, viewForAddtionalSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView? {
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForAddtionalSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView? {
         guard kind == R.nib.channelHeaderView.name else { return nil }
 
-        guard let view =  collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                          withReuseIdentifier: R.nib.channelHeaderView.name,
-                                                                          for: indexPath) as? ChannelHeaderView else { return nil }
+        guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: R.nib.channelHeaderView.name,
+                                                                         for: indexPath) as? ChannelHeaderView else { return nil }
 
         guard case let .coursesInChannel(channel) = self.configuration else { return nil }
 

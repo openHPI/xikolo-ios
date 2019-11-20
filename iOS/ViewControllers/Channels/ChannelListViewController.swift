@@ -43,7 +43,6 @@ class ChannelListViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let channel = self.dataSource.object(at: indexPath)
         self.performSegue(withIdentifier: R.segue.channelListViewController.showCourseList, sender: channel)
-//        self.appNavigator?.show(course: course)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -64,6 +63,8 @@ class ChannelListViewController: UICollectionViewController {
         super.viewWillTransition(to: size, with: coordinator)
 
         self.adjustScrollDirection(for: size)
+
+        // swiftlint:disable:next trailing_closure
         coordinator.animate(alongsideTransition: { _  in
             self.collectionViewLayout.invalidateLayout()
         })
@@ -84,26 +85,6 @@ class ChannelListViewController: UICollectionViewController {
 
 }
 
-//extension ChannelListViewController: CardListLayoutDelegate {
-//
-//    var cardInset: CGFloat {
-//        return ChannelCell.cardInset
-//    }
-//
-//    func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
-//        return ChannelCell.minimalWidth(for: traitCollection)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView,
-//                        heightForCellAtIndexPath indexPath: IndexPath,
-//                        withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
-//
-//        let channel = self.dataSource.object(at: indexPath)
-//        return ceil(ChannelCell.heightForChannelList(forWidth: boundingWidth, for: channel))
-//    }
-//
-//}
-
 extension ChannelListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
@@ -114,7 +95,6 @@ extension ChannelListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
-
 
         var boundingWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
 
@@ -161,4 +141,3 @@ extension ChannelListViewController: RefreshableViewController {
     }
 
 }
-

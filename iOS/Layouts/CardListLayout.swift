@@ -11,6 +11,7 @@ protocol CardListLayoutDelegate: AnyObject {
     var topInset: CGFloat { get }
     var cardInset: CGFloat { get }
     var heightForHeader: CGFloat { get }
+    var kindForGlobalHeader: String? { get }
     var heightForGlobalHeader: CGFloat { get }
 
     func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat
@@ -36,6 +37,10 @@ extension CardListLayoutDelegate {
 
     var heightForHeader: CGFloat {
         return 0
+    }
+
+    var kindForGlobalHeader: String? {
+        return nil
     }
 
     var heightForGlobalHeader: CGFloat {
@@ -88,6 +93,7 @@ class CardListLayout: UICollectionViewLayout {
         return CGSize(width: self.contentWidth, height: self.contentHeight)
     }
 
+    // swiftlint:disable:next function_body_length
     override func prepare() {
         super.prepare()
 
@@ -185,9 +191,8 @@ class CardListLayout: UICollectionViewLayout {
             }
         }
 
-        if let globalHeaderHeight = self.delegate?.heightForGlobalHeader, globalHeaderHeight > 0 {
-            // TODO: extract R.nib.channelHeaderView.name
-            if let headerLayoutAttributes = self.layoutAttributesForSupplementaryView(ofKind: R.nib.channelHeaderView.name, at: IndexPath(item: 0, section: 0)) {
+        if let globalHeaderKind = self.delegate?.kindForGlobalHeader, let globalHeaderHeight = self.delegate?.heightForGlobalHeader, globalHeaderHeight > 0 {
+            if let headerLayoutAttributes = self.layoutAttributesForSupplementaryView(ofKind: globalHeaderKind, at: IndexPath(item: 0, section: 0)) {
                 layoutAttributes.append(headerLayoutAttributes)
             }
         }
@@ -237,11 +242,8 @@ class CardListLayout: UICollectionViewLayout {
             let frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: height)
             let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
             layoutAttributes.frame = frame
-            layoutAttributes.isHidden = false
-//            layoutAttributes.zIndex = 2
             return layoutAttributes
         }
-
 
     }
 

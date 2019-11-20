@@ -90,19 +90,6 @@ enum CourseListConfiguration {
         }
     }
 
-    var shouldShowGlobalHeader: Bool {
-        switch self {
-        case .allCourses:
-            return false
-        case .currentCourses:
-            return false
-        case .completedCourses:
-            return false
-        case .coursesInChannel:
-            return true
-        }
-    }
-
     var containsOnlyEnrolledCourses: Bool {
         switch self {
         case .allCourses:
@@ -116,16 +103,8 @@ enum CourseListConfiguration {
         }
     }
 
-//    var color: UIColor? {
-//        if case let .coursesInChannel(channel) = self { // TODO: chain?
-//            return channel.color
-//        }
-//
-//        return nil
-//    }
-
     func colorWithFallback(to fallbackColor: UIColor) -> UIColor {
-        if case let .coursesInChannel(channel) = self { // TODO: chain?
+        if case let .coursesInChannel(channel) = self {
             return channel.colorWithFallback(to: fallbackColor)
         }
 

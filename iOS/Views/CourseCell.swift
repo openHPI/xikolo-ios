@@ -31,33 +31,14 @@ class CourseCell: UICollectionViewCell {
             }
         }
 
-//        var color: UIColor? {
-//            if case let .courseList(configuration) = self { // TODO: chain?
-//                return configuration.color
-//            }
-//
-//            return nil
-//        }
-
         func colorWithFallback(to fallbackColor: UIColor) -> UIColor {
-            if case let .courseList(configuration) = self { // TODO: chain?
+            if case let .courseList(configuration) = self {
                 return configuration.colorWithFallback(to: fallbackColor)
             }
 
             return fallbackColor
         }
 
-//        static func == (lhs: Configuration, rhs: Configuration) -> Bool {
-//            switch (lhs, rhs) {
-//            case (.courseOverview, .courseOverview):
-//                return true
-//            case let (.courseList(filtered: lhsFiltered), .courseList(filtered: rhsFiltered)):
-//                return lhsFiltered == rhsFiltered
-//            default:
-//                return false
-//            }
-//
-//        }
     }
 
     @IBOutlet private weak var shadowView: UIView!
@@ -76,13 +57,8 @@ class CourseCell: UICollectionViewCell {
         self.accessibilityIdentifier = "CourseCell"
 
         self.shadowView.layer.roundCorners(for: .default, masksToBounds: false)
-
         self.courseImage.layer.roundCorners(for: .default)
-//        self.courseImage.backgroundColor = Brand.default.colors.secondary
-
         self.statusView.layer.roundCorners(for: .default)
-//        self.statusView.backgroundColor = Brand.default.colors.secondary
-//        self.statusLabel.backgroundColor = Brand.default.colors.secondary
 
         let gradient = CAGradientLayer()
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
@@ -90,8 +66,6 @@ class CourseCell: UICollectionViewCell {
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.gradientView.frame.size.width, height: self.gradientView.frame.size.height)
         self.gradientView.layer.insertSublayer(gradient, at: 0)
         self.gradientView.layer.roundCorners(for: .default)
-
-//        self.teacherLabel.textColor = Brand.default.colors.secondary
     }
 
     override func layoutSubviews() {

@@ -33,6 +33,12 @@ class CourseListViewController: UICollectionViewController {
                                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
 
+        if case .coursesInChannel(_) = self.configuration {
+            self.collectionView?.register(UINib(resource: R.nib.channelHeaderView),
+                                          forSupplementaryViewOfKind: R.nib.channelHeaderView.name,
+                                          withReuseIdentifier: R.nib.channelHeaderView.name)
+        }
+
         if let courseListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
             courseListLayout.delegate = self
         }
@@ -184,6 +190,24 @@ extension CourseListViewController: CardListLayoutDelegate {
         return ceil(CourseHeaderView.height)
     }
 
+    var heightForGlobalHeader: CGFloat {
+        let searchController: UISearchController? = {
+            if #available(iOS 11, *){
+                return self.navigationItem.searchController
+            } else {
+                return self.searchController
+            }
+        }()
+
+        let isSearchControllerFocused = (self.filterContainerHeightConstraint?.constant ?? 0) > 0
+
+        guard self.configuration.shouldShowGlobalHeader, !(self.dataSource.isSearching || isSearchControllerFocused) else {
+            return 0 // Don't show header for these configurations
+        }
+
+        return 56
+    }
+
     func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
         return CourseCell.minimalWidth(for: traitCollection)
     }
@@ -314,6 +338,16 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
     func configureSearchHeaderView(_ searchHeaderView: CourseHeaderView, numberOfSearchResults: Int) {
         let format = NSLocalizedString("%d courses found", tableName: "Common", comment: "<number> of courses found #bc-ignore!")
         searchHeaderView.configure(withText: String.localizedStringWithFormat(format, numberOfSearchResults))
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForAddtionalSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView? {
+        guard kind == R.nib.channelHeaderView.name else { return nil }
+
+        let view =  collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: R.nib.channelHeaderView.name,
+                                                                         for: indexPath)
+
+        return view
     }
 
 }

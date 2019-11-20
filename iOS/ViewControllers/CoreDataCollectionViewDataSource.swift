@@ -28,6 +28,7 @@ protocol CoreDataCollectionViewDataSourceDelegate: AnyObject {
     func numberOfAddtionalSections() -> Int
     func numberOfAdditonalItems(for numberOfAdditonalItems: Int, inSection section: Int) -> Int
     func collectionView(_ collectionView: UICollectionView, additionalCellForItemAt indexPath: IndexPath) -> UICollectionViewCell?
+    func collectionView(_ collectionView: UICollectionView, viewForAddtionalSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView?
 
 }
 
@@ -62,6 +63,10 @@ extension CoreDataCollectionViewDataSourceDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, additionalCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
+        return nil
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForAddtionalSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView? {
         return nil
     }
 
@@ -407,9 +412,9 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             }
 
             return view
-        } else {
-            return UICollectionReusableView()
         }
+
+        return self.delegate?.collectionView(collectionView, viewForAddtionalSupplementaryElementOfKind: kind, at: indexPath) ?? UICollectionReusableView()
     }
 
     func search(withText searchText: String?) {

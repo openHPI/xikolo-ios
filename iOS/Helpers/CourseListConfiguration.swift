@@ -90,6 +90,19 @@ enum CourseListConfiguration {
         }
     }
 
+    var shouldShowGlobalHeader: Bool {
+        switch self {
+        case .allCourses:
+            return false
+        case .currentCourses:
+            return false
+        case .completedCourses:
+            return false
+        case .coursesInChannel:
+            return true
+        }
+    }
+
     var containsOnlyEnrolledCourses: Bool {
         switch self {
         case .allCourses:

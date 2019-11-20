@@ -11,6 +11,7 @@ protocol CardListLayoutDelegate: AnyObject {
     var topInset: CGFloat { get }
     var cardInset: CGFloat { get }
     var heightForHeader: CGFloat { get }
+    var heightForGlobalHeader: CGFloat { get }
 
     func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat
     func collectionView(_ collectionView: UICollectionView,
@@ -34,6 +35,10 @@ extension CardListLayoutDelegate {
     }
 
     var heightForHeader: CGFloat {
+        return 0
+    }
+
+    var heightForGlobalHeader: CGFloat {
         return 0
     }
 
@@ -101,8 +106,10 @@ class CardListLayout: UICollectionViewLayout {
             xOffsetForColumn = { layoutInsets.left + CGFloat($0) * (columnWidth + self.cellPadding) }
         }
 
+        let globalHeaderHeight = self.delegate?.heightForGlobalHeader ?? 0
+
         let xOffset = (0 ..< numberOfColumns).map(xOffsetForColumn)
-        var yOffset = [CGFloat](repeating: layoutInsets.top - self.linePadding, count: numberOfColumns)
+        var yOffset = [CGFloat](repeating: layoutInsets.top - self.linePadding + globalHeaderHeight, count: numberOfColumns)
 
         var rowOffset: CGFloat = 0
         let numberOfSections = collectionView.numberOfSections
@@ -178,6 +185,13 @@ class CardListLayout: UICollectionViewLayout {
             }
         }
 
+        if let globalHeaderHeight = self.delegate?.heightForGlobalHeader, globalHeaderHeight > 0 {
+            // TODO: extract R.nib.channelHeaderView.name
+            if let headerLayoutAttributes = self.layoutAttributesForSupplementaryView(ofKind: R.nib.channelHeaderView.name, at: IndexPath(item: 0, section: 0)) {
+                layoutAttributes.append(headerLayoutAttributes)
+            }
+        }
+
         return layoutAttributes
     }
 
@@ -187,36 +201,47 @@ class CardListLayout: UICollectionViewLayout {
 
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String,
                                                        at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        guard let headerHeight = self.delegate?.heightForHeader, headerHeight > 0 else { return nil }
-        guard elementKind == UICollectionView.elementKindSectionHeader else { return nil }
+        if elementKind == UICollectionView.elementKindSectionHeader {
+            guard let headerHeight = self.delegate?.heightForHeader, headerHeight > 0 else { return nil }
 
-        guard let sectionRange = self.sectionRange[indexPath.section] else { return nil }
-        guard let collectionView = collectionView else { return nil }
+            guard let sectionRange = self.sectionRange[indexPath.section] else { return nil }
+            guard let collectionView = collectionView else { return nil }
 
-        let contentOffsetY: CGFloat
-        if #available(iOS 11.0, *) {
-            contentOffsetY = collectionView.contentOffset.y + collectionView.safeAreaInsets.top
+            let contentOffsetY: CGFloat
+            if #available(iOS 11.0, *) {
+                contentOffsetY = collectionView.contentOffset.y + collectionView.safeAreaInsets.top
+            } else {
+                let navigationBarHeight = (self.delegate as? UIViewController)?.topLayoutGuide.length ?? 64
+                contentOffsetY = collectionView.contentOffset.y + navigationBarHeight
+            }
+
+            let offsetY: CGFloat
+            if contentOffsetY < sectionRange.minimum {
+                offsetY = sectionRange.minimum
+            } else if contentOffsetY > sectionRange.maximum - headerHeight {
+                offsetY = sectionRange.maximum - headerHeight
+            } else {
+                offsetY = contentOffsetY
+            }
+
+            let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: headerHeight)
+            let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
+            layoutAttributes.frame = frame
+            layoutAttributes.isHidden = false
+            layoutAttributes.zIndex = 1
+            return layoutAttributes
         } else {
-            let navigationBarHeight = (self.delegate as? UIViewController)?.topLayoutGuide.length ?? 64
-            contentOffsetY = collectionView.contentOffset.y + navigationBarHeight
+            guard let collectionView = collectionView else { return nil }
+            
+            let frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 44)
+            let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
+            layoutAttributes.frame = frame
+            layoutAttributes.isHidden = false
+            layoutAttributes.zIndex = 2
+            return layoutAttributes
         }
 
-        let offsetY: CGFloat
-        if contentOffsetY < sectionRange.minimum {
-            offsetY = sectionRange.minimum
-        } else if contentOffsetY > sectionRange.maximum - headerHeight {
-            offsetY = sectionRange.maximum - headerHeight
-        } else {
-            offsetY = contentOffsetY
-        }
 
-        let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: headerHeight)
-        let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
-        layoutAttributes.frame = frame
-        layoutAttributes.isHidden = false
-        layoutAttributes.zIndex = 1
-
-        return layoutAttributes
     }
 
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {

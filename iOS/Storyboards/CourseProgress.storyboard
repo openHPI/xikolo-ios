@@ -104,6 +104,7 @@
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="Course item icons/homework" translatesAutoresizingMaskIntoConstraints="NO" id="TAk-o4-ccM">
                                                                     <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
+                                                                    <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" secondItem="TAk-o4-ccM" secondAttribute="width" multiplier="25:25" id="fDk-vA-XzB"/>
                                                                     </constraints>
@@ -155,6 +156,7 @@
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="Course item icons/quiz" translatesAutoresizingMaskIntoConstraints="NO" id="3bD-os-LIm">
                                                                     <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
+                                                                    <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" secondItem="3bD-os-LIm" secondAttribute="width" multiplier="25:25" id="mLN-E2-0hQ"/>
                                                                     </constraints>
@@ -206,6 +208,7 @@
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="Course item icons/bonus quiz" translatesAutoresizingMaskIntoConstraints="NO" id="65J-Ab-xu3">
                                                                     <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
+                                                                    <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" secondItem="65J-Ab-xu3" secondAttribute="width" multiplier="25:25" id="TTB-O8-Tkx"/>
                                                                     </constraints>

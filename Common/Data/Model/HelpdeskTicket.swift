@@ -19,7 +19,7 @@ public class HelpdeskTicket {
                 return "technical"
             case .reactivation:
                 return "reactivation"
-            case .courseSpecific(_):
+            case .courseSpecific:
                 return "course"
             }
         }
@@ -37,26 +37,14 @@ public class HelpdeskTicket {
         self.topic = topic
     }
 
-    public static func validate(title: String?, email: String?, report: String?, topic: Int, course: Int) -> Bool {
-        let issueTitleGiven = !(title?.isEmpty ?? true)
-        let mailAddressGiven = !(email?.isEmpty ?? true)
-        let issueReportGiven = !(report?.isEmpty ?? true)
-        let notCourseSpecificTopic = Brand.default.features.enableReactivation && (topic != 2) || !Brand.default.features.enableReactivation && topic != 1
-        let courseSelected = course != 0
-        return (notCourseSpecificTopic || courseSelected) && mailAddressGiven && issueReportGiven && issueTitleGiven
-    }
-
-//    public static func validate(title: String?, email: String?, report: String?, topic: HelpdeskTicket.Topic, course: Course?) -> Bool {
-//        let issueTitleGiven = !(title?.isEmpty ?? true)
-//        let mailAddressGiven = !(email?.isEmpty ?? true)
-//        let issueReportGiven = !(report?.isEmpty ?? true)
-//        let notCourseSpecificTopic = (topic.identifier != "course")
-//        let courseSelected = course != nil
-//        return (notCourseSpecificTopic || courseSelected) && mailAddressGiven && issueReportGiven && issueTitleGiven
-//    }
-
     private var currentTrackingData: String {
-        return "platform: \(UIApplication.platform), os version: \(UIApplication.osVersion), device: \(UIApplication.device) app name: \(UIApplication.appName), app version: \(UIApplication.appVersion), app build: \(UIApplication.appBuild)"
+        let platform = "platform: \(UIApplication.platform)"
+        let osVersion = "os version: \(UIApplication.osVersion)"
+        let device = "device: \(UIApplication.device)"
+        let appName = "app name: \(UIApplication.appName)"
+        let appVersion = "app version: \(UIApplication.appVersion)"
+        let appBuild = "app build: \(UIApplication.appBuild)"
+        return platform + "," +  osVersion + "," + device + "," + appName + "," + appVersion + "," + appBuild
     }
 
     private var appLanguage: String {
@@ -77,23 +65,22 @@ extension HelpdeskTicket: JSONAPIPushable {
     public static var type: String {
         return "tickets"
     }
-    
-    public func resourceAttributes() -> [String : Any] {
+
+    public func resourceAttributes() -> [String: Any] {
         return [
             "title": self.title,
             "mail": self.mail,
-            "report" : self.report,
+            "report": self.report,
             "topic": self.topic.identifier,
             "data": self.currentTrackingData,
             "language": self.appLanguage,
         ]
     }
 
-    public func resourceRelationships() -> [String : AnyObject]? {
+    public func resourceRelationships() -> [String: AnyObject]? {
         if case let Topic.courseSpecific(course) = self.topic {
-            return [ "course" : course as AnyObject ]
-        }
-        else { return nil }
+            return [ "course": course as AnyObject ]
+        } else { return nil }
     }
 
 }

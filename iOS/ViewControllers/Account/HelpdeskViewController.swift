@@ -41,7 +41,17 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         return issueTypeSegmentedControl
     }()
 
-    var user : User?
+    var hasValidInput: Bool {
+        guard let issueTitle = self.issueTitleTextField.text, !issueTitle.isEmpty else { return false }
+        guard let mailAddress = self.mailAddressTextField.text, !mailAddress.isEmpty else { return false }
+        guard let issueReport = self.reportTextView.text, !issueReport.isEmpty else { return false }
+
+        let selectedCourseIndex = self.issueTypeSegmentedControl.selectedSegmentIndex
+        let reactivationEnabled = Brand.default.features.enableReactivation
+        let notCourseSpecificTopic = reactivationEnabled && (selectedCourseIndex != 2) || !reactivationEnabled && selectedCourseIndex != 1
+        let courseSelected = self.coursePicker.selectedRow(inComponent: 0) != 0
+        return notCourseSpecificTopic || courseSelected
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +66,17 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
 
         self.onFailureLabel.isHidden = true
 
+        if UserProfileHelper.shared.isLoggedIn {
+            CoreDataHelper.viewContext.perform {
+                guard let userId = UserProfileHelper.shared.userId else { return }
+                    let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
+                guard let user = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value else { return }
+                self.mailAddressTextField.text = user.profile?.email
+                self.mailAddressTextField.isUserInteractionEnabled = false
+                self.mailAddressTextField.textColor = .gray
+            }
+        }
+
     }
 
     override func viewDidLayoutSubviews() {
@@ -64,7 +85,6 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1 && UserProfileHelper.shared.isLoggedIn { return 0 }
         if section == 2 { return 65 } // Segmented Control for topic
         return super.tableView(tableView, heightForHeaderInSection: section)
     }
@@ -72,13 +92,6 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 2 {
             return self.issueTypeSegmentedControl.selectedSegmentIndex == issueTypeSegmentedControl.numberOfSegments - 1 ? 216.0 : 0
-        }
-
-        if indexPath.section == 1 && UserProfileHelper.shared.isLoggedIn {
-            return 0
-        }
-        else if indexPath.section == 1 && !UserProfileHelper.shared.isLoggedIn {
-            return 44
         }
 
         return super.tableView(tableView, heightForRowAt: indexPath)
@@ -95,64 +108,38 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         return header
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1 && UserProfileHelper.shared.isLoggedIn {
-            return nil
-        }
-        else {
-            return super.tableView(tableView, titleForHeaderInSection: section)
-        }
-    }
-
     @IBAction private func issueTopicChanged() {
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
     }
 
     @IBAction private func issueAttributeChanged() {
-//        let topic : HelpdeskTicket.Topic
-//        let selectedIndex = self.issueTypeSegmentedControl.selectedSegmentIndex
-//        var course : Course? = nil
-//        switch selectedIndex {
-//        case 0:
-//            topic = .technical
-//        case 1 :
-//            if Brand.default.features.enableReactivation {
-//                topic = .reactivation
-//
-//            }
-//            else {
-//                //way of avoiding forced unwrap?
-//                course = self.courses[coursePicker.selectedRow(inComponent: 0) - 1]
-//                topic = .courseSpecific(course: course!)
-//            }
-//        case 2:
-//            //way of avoiding forced unwrap?
-//            course = self.courses[coursePicker.selectedRow(inComponent: 0) - 1]
-//            topic = .courseSpecific(course: course!)
-//        default :
-//            topic = .technical
-//        }
-//        let ticketIsValid = HelpdeskTicket.validate(title: issueTitleTextField.text,
-//                                                          email: mailAddressTextField.text,
-//                                                          report: reportTextView.text,
-//                                                          topic: topic,
-//                                                          course: course
-//                                                          )
+        self.navigationItem.rightBarButtonItem?.isEnabled = self.hasValidInput
+
         if #available(iOS 13.0, *) {
-            isModalInPresentation = true
+            guard let issueTitle = self.issueTitleTextField.text, !issueTitle.isEmpty else {
+                isModalInPresentation = true
+                return
+            }
+
+            if !UserProfileHelper.shared.isLoggedIn {
+                guard let mailAddress = self.mailAddressTextField.text, !mailAddress.isEmpty else {
+                isModalInPresentation = true
+                return
+                }
+
+            }
+
+            guard let issueReport = self.reportTextView.text, !issueReport.isEmpty else {
+                isModalInPresentation = true
+                return
+            }
+
+            isModalInPresentation = false
+
         } else {
             // Fallback on earlier versions
         }
-
-        let mail = UserProfileHelper.shared.isLoggedIn ? self.user?.profile?.email : mailAddressTextField.text
-        let ticketIsValid = HelpdeskTicket.validate(title: issueTitleTextField.text,
-                                                                  email: mail,
-                                                                  report: reportTextView.text,
-                                                                  topic: issueTypeSegmentedControl.selectedSegmentIndex,
-                                                                  course: coursePicker.selectedRow(inComponent: 0)
-                                                                  )
-        self.navigationItem.rightBarButtonItem?.isEnabled = ticketIsValid
     }
 
     @IBAction private func cancel() {
@@ -161,9 +148,9 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
 
     @IBAction private func send() {
         guard let title = issueTitleTextField.text else { return }
-
+        guard let mail = mailAddressTextField.text else { return }
         let selectedIndex = issueTypeSegmentedControl.selectedSegmentIndex
-        let topic : HelpdeskTicket.Topic
+        let topic: HelpdeskTicket.Topic
         switch selectedIndex {
         case 0:
             topic = .technical
@@ -171,33 +158,26 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
             if Brand.default.features.enableReactivation {
                 topic = .reactivation
 
-            }
-            else {
-                let course : Course = self.courses[coursePicker.selectedRow(inComponent: 0) - 1]
+            } else {
+                let course: Course = self.courses[coursePicker.selectedRow(inComponent: 0) - 1]
                 topic = .courseSpecific(course: course)
             }
         case 2:
-            let course : Course = self.courses[coursePicker.selectedRow(inComponent: 0) - 1]
+            let course: Course = self.courses[coursePicker.selectedRow(inComponent: 0) - 1]
             topic = .courseSpecific(course: course)
         default :
             topic = .technical
         }
-        let mail = UserProfileHelper.shared.isLoggedIn ? self.user?.profile?.email : mailAddressTextField.text
+
         let ticket = HelpdeskTicket(title: title, mail: mail ?? "", topic: topic, report: reportTextView.text ?? "")
 
-        //scroll to top
-        self.onFailureLabel.isHidden = false
-        self.tableView.resizeTableHeaderView()
-        self.tableView.beginUpdates()
-        self.tableView.endUpdates()
-        self.tableView.setContentOffset(.zero , animated: true)
-
-//        HelpdeskTicketHelper.createIssue(ticket).onSuccess { _ in
-//            self.dismiss(animated: trueUnlessReduceMotionEnabled)
-//        }.onFailure { _ in
-//            //scroll to top, show error notification
-//            print("error")
-//        }
+        HelpdeskTicketHelper.createIssue(ticket).onSuccess { _ in
+            self.dismiss(animated: trueUnlessReduceMotionEnabled)
+        }.onFailure { _ in
+            self.onFailureLabel.isHidden = false
+            self.tableView.setContentOffset( CGPoint(x: 0, y: 0), animated: true)
+            print("error")
+        }
     }
 }
 
@@ -236,7 +216,7 @@ extension HelpdeskViewController: UITextViewDelegate {
         self.issueAttributeChanged()
 
         // use of performWithoutAnimation() in order to avoid rocking of the textView
-        UIView.performWithoutAnimation(){
+        UIView.performWithoutAnimation {
             self.reportTextView.sizeToFit()
             self.issueTextCell.sizeToFit()
             self.tableView.beginUpdates()
@@ -248,19 +228,16 @@ extension HelpdeskViewController: UITextViewDelegate {
 extension HelpdeskViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        let reportFieldIndex = UserProfileHelper.shared.isLoggedIn ? IndexPath(row: 0, section: 2) : IndexPath(row: 0, section:3)
 
         if textField == self.issueTitleTextField && !UserProfileHelper.shared.isLoggedIn {
             self.mailAddressTextField.becomeFirstResponder()
-        } else if textField === self.mailAddressTextField {
+        } else if textField === self.mailAddressTextField || textField == self.issueTitleTextField && UserProfileHelper.shared.isLoggedIn {
             self.reportTextView.becomeFirstResponder()
-            //jump to textView
-            self.tableView.scrollToRow(at: reportFieldIndex, at: .top, animated: true)
+            // jump to textView
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 3), at: .top, animated: true)
         }
 
         return true
     }
 
 }
-
-

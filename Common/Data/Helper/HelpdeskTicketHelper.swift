@@ -11,5 +11,5 @@ public enum HelpdeskTicketHelper {
     @discardableResult public static func createIssue(_ ticket: HelpdeskTicket) -> Future<Void, XikoloError> {
         return XikoloSyncEngine().createResource(ticket)
     }
-    
+
 }

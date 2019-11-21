@@ -44,7 +44,7 @@ public class HelpdeskTicket {
         let appName = "app name: \(UIApplication.appName)"
         let appVersion = "app version: \(UIApplication.appVersion)"
         let appBuild = "app build: \(UIApplication.appBuild)"
-        return platform + "," +  osVersion + "," + device + "," + appName + "," + appVersion + "," + appBuild
+        return platform + ", " +  osVersion + "," + device + ", " + appName + ", " + appVersion + ", " + appBuild
     }
 
     private var appLanguage: String {

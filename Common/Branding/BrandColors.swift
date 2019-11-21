@@ -71,7 +71,7 @@ public struct BrandColors: Decodable {
         self.primaryFallback = try container.decodeColor(forKey: .primary)
         self.secondaryFallback = try container.decodeColor(forKey: .secondary)
         self.tertiaryFallback = try container.decodeColor(forKey: .tertiary)
-        self.primaryLightFallback = try container.decodeColor(forKey: .primary)
+        self.primaryLightFallback = try container.decodeColor(forKey: .primaryLight)
         self.windowColorChoice = try container.decodeWindowColorChoice(forKey: .window)
     }
 

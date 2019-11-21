@@ -650,6 +650,12 @@ extension BingePlayerViewController: BingeMediaSelectionDataSource, BingeMediaSe
     }
 
     func select(_ option: AVMediaSelectionOption?, in group: AVMediaSelectionGroup) {
+        if self.currentMediaSelection?.asset?.mediaSelectionGroup(forMediaCharacteristic: .legible) == group {
+            let oldLanguageCode = self.currentMediaSelection?.selectedMediaOption(in: group)?.extendedLanguageTag
+            let newLanguageCode = option?.extendedLanguageTag
+            self.delegate?.didChangeSubtitles(from: oldLanguageCode, to: newLanguageCode)
+        }
+
         self.player.currentItem?.select(option, in: group)
     }
 

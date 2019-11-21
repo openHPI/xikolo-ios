@@ -15,6 +15,7 @@ public enum Routes {
         public static let userAgentValue = "\(UIApplication.appName)/\(UIApplication.appVersion) iOS/\(UIApplication.osVersion) (\(UIApplication.device))"
 
         public static let acceptKey = "Accept"
+        public static let acceptLanguageKey = "Accept-Language"
         public static let acceptValue = "application/vnd.api+json; xikolo-version=\(Routes.apiVersion)"
         public static let acceptPDF = "application/pdf"
 

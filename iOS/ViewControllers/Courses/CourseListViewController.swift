@@ -121,20 +121,10 @@ class CourseListViewController: UICollectionViewController {
         self.appNavigator?.show(course: course)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        if #available(iOS 11.0, *) {
-            self.navigationItem.hidesSearchBarWhenScrolling = false
-        }
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if #available(iOS 11.0, *) {
-            self.navigationItem.hidesSearchBarWhenScrolling = true
-        } else {
+        if #available(iOS 11.0, *) {} else {
             self.collectionViewLayout.invalidateLayout()
         }
     }

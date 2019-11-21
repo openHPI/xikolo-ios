@@ -40,6 +40,7 @@ class CourseNavigationController: XikoloNavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationBar.backgroundColor = nil
         self.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationBar.setBackgroundImage(UIImage(), for: .compact)
         self.navigationBar.shadowImage = UIImage()

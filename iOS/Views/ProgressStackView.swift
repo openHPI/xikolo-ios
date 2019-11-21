@@ -6,7 +6,7 @@
 import UIKit
 import Common
 
-class ProgressStackView: UIView {
+class ProgressStackView: UIStackView {
 
     @IBOutlet weak var progressTitle: UILabel!
     @IBOutlet weak var progressView: UIProgressView!

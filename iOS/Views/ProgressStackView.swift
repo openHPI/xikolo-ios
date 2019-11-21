@@ -8,6 +8,14 @@ import Common
 
 class ProgressStackView: UIStackView {
 
+    private static var percentageFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = NumberFormatter.Style.percent
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        return formatter
+    }()
+
     @IBOutlet weak var progressTitle: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var progressPointsScored: UILabel!
@@ -16,51 +24,26 @@ class ProgressStackView: UIStackView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.progressView.layer.roundCorners(for: .inner)
-
         self.progressView.trackTintColor = Brand.default.colors.primaryLight
         self.progressView.progressTintColor = Brand.default.colors.primary
     }
 
-    func calculatePercentage(pointsScored: Double, pointsPossible: Double) -> Float {
-        if pointsScored == 0 {
-            return 0.0
-        }
-
-        let percentageFormatter = NumberFormatter()
-        percentageFormatter.numberStyle = NumberFormatter.Style.percent
-        percentageFormatter.maximumFractionDigits = 1
-
-        var percentageScored : Double = 0
-        percentageScored = (pointsScored / pointsPossible)
-
-        return Float(percentageScored)
-    }
-
-    func formatToPercentage(number: Float) -> String {
-        let percentageFormatter = NumberFormatter()
-        percentageFormatter.numberStyle = NumberFormatter.Style.percent
-        percentageFormatter.minimumFractionDigits = 1
-        percentageFormatter.maximumFractionDigits = 1
-
-        return percentageFormatter.string(for: number) ?? "0.0"
-
+    // TODO: move to ExerciseProgress
+    func calculatePercentage(pointsScored: Double?, pointsPossible: Double?) -> Double? {
+        guard let scored = pointsScored else { return nil }
+        guard let possible = pointsPossible, !possible.isZero else { return nil }
+        return scored / possible
     }
 
     func configure(for progress: ExerciseProgress) {
+        self.isHidden = progress.pointsPossible?.isZero ?? true // TODO: move to ExerciseProgress -> progress.pointsAvaialble
 
-        if progress.pointsPossible! > 0.0 {
-//            self.isHidden = false
-        } else {
-//            self.isHidden = true
-        }
-
-        let scoredText = String(format: "%.1f", progress.pointsScored!) + " of " + String(format: "%.1f", progress.pointsPossible!) + " scored"
+        // TODO: use numberformatters (comma vs points as decimal point) + localization
+        let scoredText = String(format: "%.1f", progress.pointsScored!) + " of " + String(format: "%.1f", progress.pointsPossible!) + " points"
         self.progressPointsScored.text = scoredText
 
-        let percentageScored = calculatePercentage(pointsScored: progress.pointsScored!, pointsPossible: progress.pointsPossible!)
-
-        self.progressView.progress = percentageScored
-        self.progressPercentageScored.text = formatToPercentage(number: percentageScored)
-
+        let percentageScored = calculatePercentage(pointsScored: progress.pointsScored, pointsPossible: progress.pointsPossible)
+        self.progressView.progress = Float(percentageScored ?? 0)
+        self.progressPercentageScored.text = percentageScored.flatMap(Self.percentageFormatter.string(for:)) ?? "-"
     }
 }

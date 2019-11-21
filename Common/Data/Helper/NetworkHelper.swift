@@ -13,6 +13,7 @@ public enum NetworkHelper {
             Routes.Header.acceptKey: Routes.Header.acceptValue,
             Routes.Header.userPlatformKey: Routes.Header.userPlatformValue,
             Routes.Header.userAgentKey: Routes.Header.userAgentValue,
+            Routes.Header.acceptLanguageKey: Locale.supportedCurrent.identifier,
         ]
 
         for (key, value) in additionalHeaders {

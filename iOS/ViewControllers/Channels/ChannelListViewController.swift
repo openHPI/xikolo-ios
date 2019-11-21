@@ -15,13 +15,7 @@ class ChannelListViewController: UICollectionViewController {
     override func viewDidLoad() {
         self.collectionView?.register(R.nib.channelCell)
 
-//        if let channelListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
-//            channelListLayout.delegate = self
-//        }
-
         super.viewDidLoad()
-
-//        self.addRefreshControl()
 
         if #available(iOS 11, *) {
             self.navigationItem.largeTitleDisplayMode = .always

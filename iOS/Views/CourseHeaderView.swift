@@ -23,8 +23,6 @@ class CourseHeaderView: UICollectionReusableView {
         } else {
             self.backgroundView.effect = UIBlurEffect(style: .light)
         }
-
-//        self.titleView.textColor = Brand.default.colors.secondary
     }
 
     override func layoutSubviews() {

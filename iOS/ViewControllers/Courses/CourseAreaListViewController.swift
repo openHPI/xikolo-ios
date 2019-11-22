@@ -90,6 +90,7 @@ class CourseAreaListViewController: UICollectionViewController {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        self.collectionViewLayout.invalidateLayout()
         if let selectedIndexPath = self.selectedIndexPath {
             self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: false)
         }

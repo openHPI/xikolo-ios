@@ -9,10 +9,8 @@ import UIKit
 extension UITableView: EmptyStateProtocol {
 
     static func enableEmptyStates() {
-        let originalSelector = #selector(reloadData)
-        let swizzledSelector = #selector(swizzledReload)
-
-        Swizzler.swizzleMethods(for: self, originalSelector: originalSelector, swizzledSelector: swizzledSelector)
+        Swizzler.swizzleMethods(for: self, originalSelector: #selector(reloadData), swizzledSelector: #selector(swizzledReload))
+        Swizzler.swizzleMethods(for: self, originalSelector: #selector(endUpdates), swizzledSelector: #selector(swizzledEndUpdates))
     }
 
     @objc private dynamic func swizzledReload() {
@@ -20,13 +18,14 @@ extension UITableView: EmptyStateProtocol {
         self.reloadEmptyState()
     }
 
-    var hasItemsToDisplay: Bool {
-        guard let numberOfSections = self.dataSource?.numberOfSections?(in: self) else {
-            return false
-        }
+    @objc private dynamic func swizzledEndUpdates() {
+        self.swizzledEndUpdates()
+        self.reloadEmptyState()
+    }
 
-        for section in 0..<numberOfSections {
-            if self.dataSource?.tableView(self, numberOfRowsInSection: section) != 0 {
+    var hasItemsToDisplay: Bool {
+        for section in 0..<self.numberOfSections {
+            if self.numberOfRows(inSection: section) != 0 {
                 return true
             }
         }

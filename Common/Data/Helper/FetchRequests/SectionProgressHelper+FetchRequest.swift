@@ -11,7 +11,10 @@ public enum SectionProgressHelper {
 
         public static func sectionProgresses(forCourse course: Course) -> NSFetchRequest<SectionProgress> {
             let request: NSFetchRequest<SectionProgress> = SectionProgress.fetchRequest()
-            request.predicate = NSPredicate(format: "courseProgress.id = %@", course.id)
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(format: "courseProgress.id = %@", course.id),
+                NSPredicate(format: "available = %@", NSNumber(value: true)),
+            ])
             let positionSort = NSSortDescriptor(keyPath: \SectionProgress.position, ascending: true)
             request.sortDescriptors = [positionSort]
             return request

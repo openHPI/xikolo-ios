@@ -30,4 +30,14 @@ public class VisitProgress: NSObject, NSCoding, IncludedPullable {
         coder.encode(self.visitsPercentage, forKey: "visits_percentage")
     }
 
+    public func pointsAvailable() -> Bool {
+        return (self.itemsAvailable == Int.zero) ?? true
+    }
+
+    public func calculatePercentage() -> Double? {
+        guard let scored = itemsVisited else { return nil }
+        guard let possible = itemsAvailable, !(self.itemsAvailable == Int.zero) else { return nil }
+        return Double(scored / possible)
+    }
+
 }

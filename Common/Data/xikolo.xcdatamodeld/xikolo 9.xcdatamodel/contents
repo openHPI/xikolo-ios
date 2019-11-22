@@ -212,7 +212,7 @@
         <element name="CourseSection" positionX="286" positionY="306" width="128" height="180"/>
         <element name="Document" positionX="234" positionY="-63" width="128" height="150"/>
         <element name="DocumentLocalization" positionX="243" positionY="-54" width="128" height="165"/>
-        <element name="Enrollment" positionX="52" positionY="-216" width="128" height="163"/>
+        <element name="Enrollment" positionX="52" positionY="-216" width="128" height="165"/>
         <element name="LTIExercise" positionX="772" positionY="342" width="128" height="120"/>
         <element name="PeerAssessment" positionX="610" positionY="311" width="128" height="75"/>
         <element name="PlatformEvent" positionX="252" positionY="-16" width="128" height="135"/>

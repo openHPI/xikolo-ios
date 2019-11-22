@@ -34,4 +34,14 @@ public class ExerciseProgress: NSObject, NSCoding, IncludedPullable {
         coder.encode(self.pointsScored, forKey: "points_scored")
     }
 
+    public func pointsAvailable() -> Bool {
+        return self.pointsPossible?.isZero ?? true
+    }
+
+    public func calculatePercentage() -> Double? {
+        guard let scored = pointsScored else { return nil }
+        guard let possible = pointsPossible, !possible.isZero else { return nil }
+        return scored / possible
+    }
+
 }

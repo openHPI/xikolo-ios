@@ -40,6 +40,11 @@ class CourseAreaCell: UICollectionViewCell {
         }
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.titleView.font = Self.font(whenSelected: self.isSelected)
+    }
+
     func configure(for content: CourseArea) {
         self.titleView.text = content.title
     }

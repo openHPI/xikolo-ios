@@ -34,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window?.makeKeyAndVisible()
         }
 
-        self.tabBarController.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
+        self.tabBarController.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 2
     }
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {

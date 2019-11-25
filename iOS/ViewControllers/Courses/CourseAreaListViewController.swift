@@ -34,6 +34,13 @@ class CourseAreaListViewController: UICollectionViewController {
         self.collectionView.selectItem(at: self.selectedIndexPath, animated: animated, scrollPosition: .centeredHorizontally)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available(iOS 11, *) {} else {
+            self.collectionViewLayout.invalidateLayout()
+        }
+    }
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -83,6 +90,7 @@ class CourseAreaListViewController: UICollectionViewController {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        self.collectionViewLayout.invalidateLayout()
         if let selectedIndexPath = self.selectedIndexPath {
             self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: false)
         }

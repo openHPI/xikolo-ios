@@ -7,6 +7,7 @@ import Foundation
 
 public struct BrandFeatures: Decodable {
 
+    public let enableChannels: Bool
     public let enableDocuments: Bool
     public let enableRecap: Bool
     public let showCourseDatesOnDashboard: Bool

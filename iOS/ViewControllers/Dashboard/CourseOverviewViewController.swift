@@ -57,6 +57,11 @@ class CourseOverviewViewController: UIViewController {
         })
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.collectionView.collectionViewLayout.invalidateLayout()
+    }
+
     @objc private func updateCollectionViewHeight() {
         let courseCellWidth = CourseCell.minimalWidth(for: self.collectionView.traitCollection)
         let availableWidth = self.view.bounds.width - self.view.layoutMargins.left - self.view.layoutMargins.right

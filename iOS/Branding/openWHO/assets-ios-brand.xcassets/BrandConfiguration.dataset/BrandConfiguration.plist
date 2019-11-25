@@ -40,6 +40,8 @@
 	</dict>
 	<key>features</key>
 	<dict>
+		<key>enableChannels</key>
+		<true/>
 		<key>enableDocuments</key>
 		<true/>
 		<key>enableRecap</key>

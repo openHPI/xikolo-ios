@@ -11,8 +11,9 @@ enum CourseListConfiguration {
     case allCourses
     case currentCourses
     case completedCourses
+    case coursesInChannel(_ channel: Channel)
 
-    var title: String {
+    var title: String? {
         switch self {
         case .allCourses:
             return NSLocalizedString("course-list.title.Courses", comment: "title for list of all courses")
@@ -20,11 +21,22 @@ enum CourseListConfiguration {
             return NSLocalizedString("course-list.title.My current courses", comment: "title for list of current courses")
         case .completedCourses:
             return NSLocalizedString("course-list.title.My completed courses", comment: "title for list of completed courses")
+        case let .coursesInChannel(channel):
+            return channel.title
         }
     }
 
     var largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode {
-        return self == .allCourses ? .automatic : .never
+        switch self {
+        case .allCourses:
+            return .automatic
+        case .currentCourses:
+            return .never
+        case .completedCourses:
+            return .never
+        case .coursesInChannel:
+            return .automatic
+        }
     }
 
     var resultsControllers: [NSFetchedResultsController<Course>] {
@@ -43,6 +55,12 @@ enum CourseListConfiguration {
             return [
                 CoreDataHelper.createResultsController(CourseHelper.FetchRequest.completedCourses, sectionNameKeyPath: nil),
             ]
+        case let .coursesInChannel(channel):
+            return [
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.currentCourses(for: channel), sectionNameKeyPath: "currentSectionName"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.upcomingCourses(for: channel), sectionNameKeyPath: "upcomingSectionName"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.selfpacedCourses(for: channel), sectionNameKeyPath: "selfpacedSectionName"),
+            ]
         }
     }
 
@@ -54,7 +72,43 @@ enum CourseListConfiguration {
             return CourseHelper.FetchRequest.enrolledCurrentCoursesRequest
         case .completedCourses:
             return CourseHelper.FetchRequest.completedCourses
+        case let .coursesInChannel(channel):
+            return CourseHelper.FetchRequest.searchableCourses(for: channel)
         }
+    }
+
+    var shouldShowHeader: Bool {
+        switch self {
+        case .allCourses:
+            return true
+        case .currentCourses:
+            return false
+        case .completedCourses:
+            return false
+        case .coursesInChannel:
+            return true
+        }
+    }
+
+    var containsOnlyEnrolledCourses: Bool {
+        switch self {
+        case .allCourses:
+            return false
+        case .currentCourses:
+            return true
+        case .completedCourses:
+            return true
+        case .coursesInChannel:
+            return false
+        }
+    }
+
+    func colorWithFallback(to fallbackColor: UIColor) -> UIColor {
+        if case let .coursesInChannel(channel) = self {
+            return channel.colorWithFallback(to: fallbackColor)
+        }
+
+        return fallbackColor
     }
 
 }

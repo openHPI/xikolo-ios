@@ -10,7 +10,7 @@ import UIKit
 class CourseCell: UICollectionViewCell {
 
     enum Configuration {
-        case courseList(filtered: Bool)
+        case courseList(configuration: CourseListConfiguration)
         case courseOverview
 
         var showMultilineLabels: Bool {
@@ -22,17 +22,23 @@ class CourseCell: UICollectionViewCell {
             }
         }
 
-        static func == (lhs: Configuration, rhs: Configuration) -> Bool {
-            switch (lhs, rhs) {
-            case (.courseOverview, .courseOverview):
-                return true
-            case let (.courseList(filtered: lhsFiltered), .courseList(filtered: rhsFiltered)):
-                return lhsFiltered == rhsFiltered
-            default:
+        var hideTeacherLabel: Bool {
+            switch self {
+            case .courseList:
                 return false
+            case .courseOverview:
+                return true
+            }
+        }
+
+        func colorWithFallback(to fallbackColor: UIColor) -> UIColor {
+            if case let .courseList(configuration) = self {
+                return configuration.colorWithFallback(to: fallbackColor)
             }
 
+            return fallbackColor
         }
+
     }
 
     @IBOutlet private weak var shadowView: UIView!
@@ -51,13 +57,8 @@ class CourseCell: UICollectionViewCell {
         self.accessibilityIdentifier = "CourseCell"
 
         self.shadowView.layer.roundCorners(for: .default, masksToBounds: false)
-
         self.courseImage.layer.roundCorners(for: .default)
-        self.courseImage.backgroundColor = Brand.default.colors.secondary
-
         self.statusView.layer.roundCorners(for: .default)
-        self.statusView.backgroundColor = Brand.default.colors.secondary
-        self.statusLabel.backgroundColor = Brand.default.colors.secondary
 
         let gradient = CAGradientLayer()
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
@@ -65,8 +66,6 @@ class CourseCell: UICollectionViewCell {
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.gradientView.frame.size.width, height: self.gradientView.frame.size.height)
         self.gradientView.layer.insertSublayer(gradient, at: 0)
         self.gradientView.layer.roundCorners(for: .default)
-
-        self.teacherLabel.textColor = Brand.default.colors.secondary
     }
 
     override func layoutSubviews() {
@@ -75,7 +74,14 @@ class CourseCell: UICollectionViewCell {
     }
 
     func configure(_ course: Course, for configuration: Configuration) {
-        self.courseImage.image = nil
+        let accentColor = configuration.colorWithFallback(to: Brand.default.colors.secondary)
+
+        self.courseImage.backgroundColor = accentColor
+        self.statusView.backgroundColor = accentColor
+        self.statusLabel.backgroundColor = accentColor
+        self.teacherLabel.textColor = accentColor
+
+        self.courseImage.image = nil // Avoid old images on cell reuse when new image can not be loaded
         self.courseImage.alpha = course.hidden ? 0.5 : 1.0
         self.gradientView.isHidden = true
         self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil) { image, _, _, _ in
@@ -87,7 +93,7 @@ class CourseCell: UICollectionViewCell {
 
         self.titleLabel.text = course.title
         self.teacherLabel.text = {
-            guard configuration == .courseOverview else { return course.teachers }
+            guard configuration.hideTeacherLabel else { return course.teachers }
             guard Brand.default.features.showCourseTeachers else { return course.teachers }
             guard course.teachers?.isEmpty ?? true else { return course.teachers }
             return " " // forces text into teachers label to avoid misplacment for course image
@@ -97,7 +103,7 @@ class CourseCell: UICollectionViewCell {
         self.dateLabel.text = DateLabelHelper.labelFor(startDate: course.startsAt, endDate: course.endsAt)
 
         self.statusView.isHidden = true
-        if case let .courseList(filtered) = configuration, !filtered {
+        if case let .courseList(listConfiguration) = configuration, !listConfiguration.containsOnlyEnrolledCourses {
             if let enrollment = course.enrollment {
                 self.statusView.isHidden = false
                 if enrollment.completed {

@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
 
             // select start tab
-            self.tabBarController.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
+            self.tabBarController.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 2
         }
 
         DispatchQueue.main.async {

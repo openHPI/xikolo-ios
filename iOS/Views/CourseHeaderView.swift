@@ -23,8 +23,6 @@ class CourseHeaderView: UICollectionReusableView {
         } else {
             self.backgroundView.effect = UIBlurEffect(style: .light)
         }
-
-        self.titleView.textColor = Brand.default.colors.secondary
     }
 
     override func layoutSubviews() {
@@ -32,12 +30,14 @@ class CourseHeaderView: UICollectionReusableView {
         self.backgroundView.layer.cornerRadius = self.backgroundView.frame.height / 2
     }
 
-    func configure(_ section: NSFetchedResultsSectionInfo) {
+    func configure(_ section: NSFetchedResultsSectionInfo, for configuration: CourseListConfiguration) {
         self.titleView.text = section.name
+        self.titleView.textColor = configuration.colorWithFallback(to: Brand.default.colors.secondary)
     }
 
     func configure(withText headerText: String) {
         self.titleView.text = headerText
+        self.titleView.textColor = Brand.default.colors.secondary
     }
 
 }

@@ -67,6 +67,11 @@ extension CourseHelper {
             visiblePredicate,
             pastPredicate,
         ])
+        private static let searchableCoursesPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
+            currentCoursesPredicate,
+            upcomingCoursesPredicate,
+            selfpacedCoursesPredicate,
+        ])
 
         private static let customOrderSortDescriptor = NSSortDescriptor(keyPath: \Course.order, ascending: true)
 
@@ -126,11 +131,7 @@ extension CourseHelper {
 
         public static var searchableCourses: NSFetchRequest<Course> {
             let request = self.visibleCoursesRequest
-            request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
-                self.currentCoursesPredicate,
-                self.upcomingCoursesPredicate,
-                self.selfpacedCoursesPredicate,
-            ])
+            request.predicate = self.searchableCoursesPredicate
             return request
         }
 
@@ -154,6 +155,50 @@ extension CourseHelper {
                 visiblePredicate,
                 enrolledPredicate,
                 completedPredicate,
+            ])
+            return request
+        }
+
+        public static func currentCourses(for channel: Channel) -> NSFetchRequest<Course> {
+            let request = self.visibleCoursesRequest
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                self.currentCoursesPredicate,
+                NSPredicate(format: "channel = %@", channel),
+            ])
+            request.sortDescriptors = [
+                NSSortDescriptor(keyPath: \Course.startsAt, ascending: true),
+                NSSortDescriptor(keyPath: \Course.title, ascending: true),
+            ]
+            return request
+        }
+
+        public static func upcomingCourses(for channel: Channel) -> NSFetchRequest<Course> {
+            let request = self.visibleCoursesRequest
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                self.upcomingCoursesPredicate,
+                NSPredicate(format: "channel = %@", channel),
+            ])
+            request.sortDescriptors = [
+                NSSortDescriptor(keyPath: \Course.startsAt, ascending: true),
+                NSSortDescriptor(keyPath: \Course.title, ascending: true),
+            ]
+            return request
+        }
+
+        public static func selfpacedCourses(for channel: Channel) -> NSFetchRequest<Course> {
+            let request = self.visibleCoursesRequest
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                self.selfpacedCoursesPredicate,
+                NSPredicate(format: "channel = %@", channel),
+            ])
+            return request
+        }
+
+        public static func searchableCourses(for channel: Channel) -> NSFetchRequest<Course> {
+            let request = self.visibleCoursesRequest
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                self.searchableCoursesPredicate,
+                NSPredicate(format: "channel = %@", channel),
             ])
             return request
         }

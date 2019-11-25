@@ -32,6 +32,7 @@ public final class Course: NSManagedObject {
     @NSManaged public var categories: String?
     @NSManaged public var topics: String?
 
+    @NSManaged public var channel: Channel?
     @NSManaged public var sections: Set<CourseSection>
     @NSManaged public var enrollment: Enrollment?
     @NSManaged public var dates: Set<CourseDate>

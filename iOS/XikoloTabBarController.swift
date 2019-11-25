@@ -15,8 +15,15 @@ class XikoloTabBarController: UITabBarController {
     }
 
     static func make() -> XikoloTabBarController {
-        let viewControllers = [
+        var viewControllers: [UIViewController?] = [
             R.storyboard.tabDashboard.instantiateInitialViewController(),
+        ]
+
+        if Brand.default.features.enableChannels {
+            viewControllers.append(R.storyboard.tabChannels.instantiateInitialViewController())
+        }
+
+        viewControllers += [
             R.storyboard.tabCourses.instantiateInitialViewController(),
             R.storyboard.tabNews.instantiateInitialViewController(),
             R.storyboard.tabAccount.instantiateInitialViewController(),

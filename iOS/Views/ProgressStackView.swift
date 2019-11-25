@@ -42,7 +42,7 @@ class ProgressStackView: UIStackView {
         self.isHidden = progress.pointsAvailable()
 
 
-        // TODO: use + localization
+        // TODO: use localization
 
         let scored = progress.pointsScored.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
         let possible = progress.pointsPossible.flatMap(Self.pointsFormatter.string(for:)) ?? "-"

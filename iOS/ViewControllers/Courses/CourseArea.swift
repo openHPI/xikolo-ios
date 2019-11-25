@@ -21,12 +21,12 @@ enum CourseArea {
         let values: [CourseArea] = [
             .learnings,
             .discussions,
+            .progress,
             .courseDetails,
             .documents,
             .announcements,
             .recap,
             .certificates,
-            .progress,
         ]
 
         return values.filter { $0.isAvailable }

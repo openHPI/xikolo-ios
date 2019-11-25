@@ -41,9 +41,12 @@ class VisitProgressStackView: UIStackView {
     func configure(for progress: VisitProgress) {
         self.isHidden = progress.pointsAvailable()
 
-        // TODO: use numberformatters (comma vs points as decimal point) + localization
-        let scoredText = String(format: "%.1f", progress.itemsVisited!) + " of " + String(format: "%.1f", progress.itemsAvailable!) + " visited"
-        self.progressItemsVisited.text = scoredText
+        // TODO: use localization
+
+        let visited = progress.itemsVisited.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
+        let available = progress.itemsAvailable.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
+        let visitedText =  visited + " of " + available + " visited"
+        self.progressItemsVisited.text = visitedText
 
         let percentageVisited = progress.calculatePercentage()
         self.progressView.progress = Float(percentageVisited ?? 0)

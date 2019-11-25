@@ -9,9 +9,9 @@ import SafariServices
 import UIKit
 import CoreData
 
-class CourseProgressListViewController: UITableViewController {
+class CourseProgressViewController: UITableViewController {
 
-    private var dataSource: CoreDataTableViewDataSource<CourseProgressListViewController>!
+    private var dataSource: CoreDataTableViewDataSource<CourseProgressViewController>!
     var course: Course!
 
     // array available sections and corresponding points
@@ -53,7 +53,7 @@ class CourseProgressListViewController: UITableViewController {
 
 }
 
-extension CourseProgressListViewController: CourseAreaViewController {
+extension CourseProgressViewController: CourseAreaViewController {
 
     var area: CourseArea {
         return .progress
@@ -66,7 +66,7 @@ extension CourseProgressListViewController: CourseAreaViewController {
     }
 }
 
-extension CourseProgressListViewController: RefreshableViewController {
+extension CourseProgressViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         return CourseProgressHelper.syncProgress(forCourse: self.course).asVoid()
@@ -74,7 +74,7 @@ extension CourseProgressListViewController: RefreshableViewController {
 
 }
 
-extension CourseProgressListViewController: CoreDataTableViewDataSourceDelegate {
+extension CourseProgressViewController: CoreDataTableViewDataSourceDelegate {
 
     func configure(_ cell: SectionProgressCell, for object: SectionProgress) {
         cell.configure(for: object, showCourseTitle: self.course == nil)

@@ -41,8 +41,12 @@ class ProgressStackView: UIStackView {
     func configure(for progress: ExerciseProgress) {
         self.isHidden = progress.pointsAvailable()
 
-        // TODO: use numberformatters (comma vs points as decimal point) + localization
-        let scoredText = String(format: "%.1f", progress.pointsScored!) + " of " + String(format: "%.1f", progress.pointsPossible!) + " points"
+
+        // TODO: use + localization
+
+        let scored = progress.pointsScored.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
+        let possible = progress.pointsPossible.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
+        let scoredText =  scored + " of " + possible + " points"
         self.progressPointsScored.text = scoredText
 
         let percentageScored = progress.calculatePercentage()

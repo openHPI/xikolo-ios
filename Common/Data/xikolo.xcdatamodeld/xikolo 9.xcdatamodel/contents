@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19C32e" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Announcement" representedClassName=".Announcement" elementID="NewsArticle" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="imageURL" optional="YES" attributeType="Transformable"/>
@@ -76,6 +76,14 @@
         <attribute name="visited" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="content" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Content" inverseName="item" inverseEntity="Content"/>
         <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="items" inverseEntity="CourseSection"/>
+    </entity>
+    <entity name="CourseProgress" representedClassName=".CourseProgress" syncable="YES">
+        <attribute name="bonusProgress" optional="YES" attributeType="Transformable"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="mainProgress" optional="YES" attributeType="Transformable"/>
+        <attribute name="selftestProgress" optional="YES" attributeType="Transformable"/>
+        <attribute name="visitProgress" optional="YES" attributeType="Transformable"/>
+        <relationship name="sectionProgresses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SectionProgress" inverseName="courseProgress" inverseEntity="SectionProgress"/>
     </entity>
     <entity name="CourseSection" representedClassName=".CourseSection" syncable="YES">
         <attribute name="abstract" optional="YES" attributeType="String"/>
@@ -162,6 +170,17 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="text" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="SectionProgress" representedClassName=".SectionProgress" syncable="YES">
+        <attribute name="available" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="bonusProgress" optional="YES" attributeType="Transformable"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="mainProgress" optional="YES" attributeType="Transformable"/>
+        <attribute name="position" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="selftestProgress" optional="YES" attributeType="Transformable"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="visitProgress" optional="YES" attributeType="Transformable"/>
+        <relationship name="courseProgress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseProgress" inverseName="sectionProgresses" inverseEntity="CourseProgress"/>
+    </entity>
     <entity name="TrackingEvent" representedClassName=".TrackingEvent" syncable="YES">
         <attribute name="context" optional="YES" attributeType="Transformable"/>
         <attribute name="resource" attributeType="Transformable"/>
@@ -205,6 +224,7 @@
     </entity>
     <elements>
         <element name="Announcement" positionX="304" positionY="146" width="128" height="165"/>
+        <element name="Channel" positionX="234" positionY="-63" width="128" height="178"/>
         <element name="Content" positionX="666" positionY="198" width="128" height="60"/>
         <element name="Course" positionX="45" positionY="-18" width="128" height="463"/>
         <element name="CourseDate" positionX="214" positionY="-180" width="128" height="120"/>
@@ -212,8 +232,8 @@
         <element name="CourseSection" positionX="286" positionY="306" width="128" height="180"/>
         <element name="Document" positionX="234" positionY="-63" width="128" height="150"/>
         <element name="DocumentLocalization" positionX="243" positionY="-54" width="128" height="165"/>
-        <element name="Enrollment" positionX="52" positionY="-216" width="128" height="165"/>
-        <element name="LTIExercise" positionX="772" positionY="342" width="128" height="120"/>
+        <element name="Enrollment" positionX="52" positionY="-216" width="128" height="163"/>
+        <element name="LTIExercise" positionX="772" positionY="342" width="128" height="118"/>
         <element name="PeerAssessment" positionX="610" positionY="311" width="128" height="75"/>
         <element name="PlatformEvent" positionX="252" positionY="-16" width="128" height="135"/>
         <element name="Quiz" positionX="828" positionY="162" width="128" height="180"/>
@@ -223,6 +243,7 @@
         <element name="User" positionX="187" positionY="498" width="128" height="105"/>
         <element name="UserProfile" positionX="342" positionY="504" width="128" height="135"/>
         <element name="Video" positionX="621" positionY="-99" width="128" height="285"/>
-        <element name="Channel" positionX="234" positionY="-63" width="128" height="178"/>
+        <element name="CourseProgress" positionX="234" positionY="-63" width="128" height="133"/>
+        <element name="SectionProgress" positionX="243" positionY="-54" width="128" height="178"/>
     </elements>
 </model>

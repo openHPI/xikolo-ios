@@ -44,7 +44,7 @@ public class HelpdeskTicket {
         let appName = "app name: \(UIApplication.appName)"
         let appVersion = "app version: \(UIApplication.appVersion)"
         let appBuild = "app build: \(UIApplication.appBuild)"
-        return platform + ", " +  osVersion + "," + device + ", " + appName + ", " + appVersion + ", " + appBuild
+        return platform + ", \n " +  osVersion + ", \n " + device + ", \n " + appName + ", \n " + appVersion + ", \n " + appBuild
     }
 
     private var appLanguage: String {
@@ -80,7 +80,9 @@ extension HelpdeskTicket: JSONAPIPushable {
     public func resourceRelationships() -> [String: AnyObject]? {
         if case let Topic.courseSpecific(course) = self.topic {
             return [ "course": course as AnyObject ]
-        } else { return nil }
+        } else {
+            return nil
+        }
     }
 
 }

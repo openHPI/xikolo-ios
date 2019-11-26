@@ -11,6 +11,6 @@ public struct BrandFeatures: Decodable {
     public let enableRecap: Bool
     public let showCourseDatesOnDashboard: Bool
     public let showCourseTeachers: Bool
-    public let enableReactivation: Bool
+    public let enableHelpdeskReactivationTopic: Bool
 
 }

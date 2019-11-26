@@ -10,7 +10,7 @@ import UIKit
 
 class HelpdeskViewController: UITableViewController, UIAdaptivePresentationControllerDelegate {
 
-    @IBOutlet private weak var issueTitleTextField: UITextField!
+    @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var mailAddressTextField: UITextField!
     @IBOutlet private weak var coursePicker: UIPickerView!
     @IBOutlet private weak var reportTextView: UITextView!
@@ -30,7 +30,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
             NSLocalizedString("helpdesk.topic.course-specific", comment: "helpdesk topic course-specific"),
         ]
 
-        if !Brand.default.features.enableReactivation {
+        if !Brand.default.features.enableHelpdeskReactivationTopic {
             items.remove(at: 1)
         }
 
@@ -42,12 +42,12 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
     }()
 
     var hasValidInput: Bool {
-        guard let issueTitle = self.issueTitleTextField.text, !issueTitle.isEmpty else { return false }
-        guard let mailAddress = self.mailAddressTextField.text, !mailAddress.isEmpty else { return false }
-        guard let issueReport = self.reportTextView.text, !issueReport.isEmpty else { return false }
+        guard let issueTitle = self.titleTextField.text, !issueTitle.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty else { return false }
+        guard let mailAddress = self.mailAddressTextField.text, !mailAddress.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty else { return false }
+        guard let issueReport = self.reportTextView.text, !issueReport.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty else { return false }
 
         let selectedCourseIndex = self.issueTypeSegmentedControl.selectedSegmentIndex
-        let reactivationEnabled = Brand.default.features.enableReactivation
+        let reactivationEnabled = Brand.default.features.enableHelpdeskReactivationTopic
         let notCourseSpecificTopic = reactivationEnabled && (selectedCourseIndex != 2) || !reactivationEnabled && selectedCourseIndex != 1
         let courseSelected = self.coursePicker.selectedRow(inComponent: 0) != 0
         return notCourseSpecificTopic || courseSelected
@@ -61,7 +61,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         self.coursePicker.delegate = self
         self.coursePicker.dataSource = self
         self.reportTextView.delegate = self
-        self.issueTitleTextField.delegate = self
+        self.titleTextField.delegate = self
         self.mailAddressTextField.delegate = self
 
         self.onFailureLabel.isHidden = true
@@ -117,7 +117,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         self.navigationItem.rightBarButtonItem?.isEnabled = self.hasValidInput
 
         if #available(iOS 13.0, *) {
-            guard let issueTitle = self.issueTitleTextField.text, !issueTitle.isEmpty else {
+            guard let issueTitle = self.titleTextField.text, !issueTitle.isEmpty else {
                 isModalInPresentation = true
                 return
             }
@@ -137,9 +137,8 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
 
             isModalInPresentation = false
 
-        } else {
-            // Fallback on earlier versions
         }
+
     }
 
     @IBAction private func cancel() {
@@ -147,7 +146,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
     }
 
     @IBAction private func send() {
-        guard let title = issueTitleTextField.text else { return }
+        guard let title = titleTextField.text else { return }
         guard let mail = mailAddressTextField.text else { return }
         let selectedIndex = issueTypeSegmentedControl.selectedSegmentIndex
         let topic: HelpdeskTicket.Topic
@@ -155,7 +154,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         case 0:
             topic = .technical
         case 1 :
-            if Brand.default.features.enableReactivation {
+            if Brand.default.features.enableHelpdeskReactivationTopic {
                 topic = .reactivation
 
             } else {
@@ -176,9 +175,15 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         }.onFailure { _ in
             self.onFailureLabel.isHidden = false
             self.tableView.setContentOffset( CGPoint(x: 0, y: 0), animated: true)
-            print("error")
         }
     }
+
+    @IBAction func tappedBackground(_ sender: UITapGestureRecognizer) {
+        self.titleTextField.resignFirstResponder()
+        self.mailAddressTextField.resignFirstResponder()
+        self.reportTextView.resignFirstResponder()
+    }
+
 }
 
 extension HelpdeskViewController: UIPickerViewDataSource {
@@ -229,9 +234,9 @@ extension HelpdeskViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
 
-        if textField == self.issueTitleTextField && !UserProfileHelper.shared.isLoggedIn {
+        if textField == self.titleTextField && !UserProfileHelper.shared.isLoggedIn {
             self.mailAddressTextField.becomeFirstResponder()
-        } else if textField === self.mailAddressTextField || textField == self.issueTitleTextField && UserProfileHelper.shared.isLoggedIn {
+        } else if textField === self.mailAddressTextField || textField == self.titleTextField && UserProfileHelper.shared.isLoggedIn {
             self.reportTextView.becomeFirstResponder()
             // jump to textView
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: 3), at: .top, animated: true)

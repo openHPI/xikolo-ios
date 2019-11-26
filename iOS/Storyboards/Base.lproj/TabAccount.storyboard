@@ -581,14 +581,19 @@
                     <connections>
                         <outlet property="coursePicker" destination="mqm-FG-FoJ" id="kW9-IM-Yta"/>
                         <outlet property="issueTextCell" destination="dRf-Zv-2xu" id="8gs-4O-LH0"/>
-                        <outlet property="issueTitleTextField" destination="HJJ-fU-Fdn" id="C7s-ys-qMg"/>
                         <outlet property="mailAddressTextField" destination="Fs0-LO-E4J" id="762-oQ-FUZ"/>
                         <outlet property="onFailureLabel" destination="FPo-xL-mqX" id="hBA-UV-k33"/>
                         <outlet property="pickerCell" destination="iLZ-Wk-p4c" id="9Bl-5Y-oiJ"/>
                         <outlet property="reportTextView" destination="KcN-el-VIf" id="Qrg-8L-pN9"/>
+                        <outlet property="titleTextField" destination="HJJ-fU-Fdn" id="C7s-ys-qMg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXk-mr-nbr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="iqG-Io-hBA">
+                    <connections>
+                        <action selector="tappedBackground:" destination="l2c-fE-ju1" id="z3I-6o-9q8"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4182.608695652174" y="1719.6428571428571"/>
         </scene>

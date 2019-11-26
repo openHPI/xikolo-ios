@@ -118,6 +118,12 @@ public class UserProfileHelper {
             }
         }
 
+        if Brand.default.features.enableChannels {
+            coursesFuture.onComplete { _ in
+                ChannelHelper.syncAllChannels()
+            }
+        }
+
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: Self.loginStateDidChangeNotification, object: nil)
         }

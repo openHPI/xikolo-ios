@@ -15,29 +15,8 @@ class CourseItemWebViewController: WebViewController {
     }
 
     private func setURL() {
-        if self.courseItem.content != nil {
-            self.url = self.quizURL(for: self.courseItem)
-            return
-        }
-
-        CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { syncResult in
-            CoreDataHelper.viewContext.perform {
-                guard let courseItem = CoreDataHelper.viewContext.existingTypedObject(with: syncResult.objectId) as? CourseItem else {
-                    log.warning("Failed to retrieve course item to display")
-                    return
-                }
-
-                self.url = self.quizURL(for: courseItem)
-            }
-        }.onFailure { error in
-            ErrorManager.shared.report(error)
-            log.error("\(error)")
-        }
-    }
-
-    private func quizURL(for courseItem: CourseItem) -> URL? {
-        guard let courseId = self.courseItem.section?.course?.id else { return nil }
-        return Routes.courses.appendingPathComponents([courseId, "items", courseItem.id])
+        guard let courseId = self.courseItem.section?.course?.id else { return }
+        self.url = Routes.courses.appendingPathComponents([courseId, "items", courseItem.id])
     }
 
 }

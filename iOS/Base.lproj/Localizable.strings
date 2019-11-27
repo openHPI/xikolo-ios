@@ -249,13 +249,13 @@
 "global.list.selection.select all" = "Select all";
 
 /* helpdesk topic course-specific */
-"helpdesk.topic.course-specific" = "course-specific question";
+"helpdesk.topic.course-specific" = "Course-specific";
 
 /* helpdesk topic reactivation */
-"helpdesk.topic.reactivation" = "reactivation option";
+"helpdesk.topic.reactivation" = "Reactivation";
 
 /* helpdesk topic technical */
-"helpdesk.topic.technical" = "technical question";
+"helpdesk.topic.technical" = "Technical";
 
 /* label for app build */
 "settings.app.build.label" = "Build";

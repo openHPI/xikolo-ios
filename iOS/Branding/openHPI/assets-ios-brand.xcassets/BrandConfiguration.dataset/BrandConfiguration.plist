@@ -34,7 +34,7 @@
 	</dict>
 	<key>features</key>
 	<dict>
-		<key>enableReactivation</key>
+		<key>enableHelpdeskReactivationTopic</key>
 		<false/>
 		<key>enableDocuments</key>
 		<false/>

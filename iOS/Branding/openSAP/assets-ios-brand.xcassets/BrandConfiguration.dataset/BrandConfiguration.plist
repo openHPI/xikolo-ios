@@ -2,41 +2,50 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>host</key>
-	<string>open.sap.com</string>
-	<key>imprintURL</key>
-	<string>https://www.sap.com/corporate/en/legal/impressum.html</string>
-	<key>privacyURL</key>
-	<string>https://www.sap.com/corporate/en/legal/privacy.html</string>
-	<key>copyrightName</key>
-	<string>SAP</string>
-	<key>poweredByText</key>
-	<string>Powered by HPI / openHPI</string>
 	<key>colors</key>
 	<dict>
-		<key>primary</key>
-		<string>#F0AB00</string>
 		<key>secondary</key>
 		<string>#226CA9</string>
-		<key>tertiary</key>
-		<string>#8AB54E</string>
+		<key>primary</key>
+		<string>#F0AB00</string>
 		<key>primaryLight</key>
 		<string>#FBE6B4</string>
+		<key>tertiary</key>
+		<string>#8AB54E</string>
 		<key>window</key>
 		<string>secondary</string>
 	</dict>
+	<key>privacyURL</key>
+	<string>https://www.sap.com/corporate/en/legal/privacy.html</string>
 	<key>singleSignOn</key>
 	<dict>
-		<key>provider</key>
-		<string>saml</string>
 		<key>platformTitle</key>
 		<string>sap</string>
 		<key>buttonTitle</key>
 		<string>Single Sign On</string>
+		<key>provider</key>
+		<string>saml</string>
 	</dict>
+	<key>courseClassifierSearchFilters</key>
+	<dict>
+		<key>topic</key>
+		<string>topic</string>
+		<key>category</key>
+		<string>targetAudience</string>
+	</dict>
+	<key>poweredByText</key>
+	<string>Powered by HPI / openHPI</string>
+	<key></key>
+	<string></string>
+	<key>host</key>
+	<string>open.sap.com</string>
+	<key>copyrightName</key>
+	<string>SAP</string>
+	<key>imprintURL</key>
+	<string>https://www.sap.com/corporate/en/legal/impressum.html</string>
 	<key>features</key>
 	<dict>
-		<key>enableReactivation</key>
+		<key>showCourseTeachers</key>
 		<true/>
 		<key>enableDocuments</key>
 		<false/>
@@ -44,15 +53,8 @@
 		<false/>
 		<key>showCourseDatesOnDashboard</key>
 		<true/>
-		<key>showCourseTeachers</key>
+		<key>enableHelpdeskReactivationTopic</key>
 		<true/>
-	</dict>
-	<key>courseClassifierSearchFilters</key>
-	<dict>
-		<key>category</key>
-		<string>targetAudience</string>
-		<key>topic</key>
-		<string>topic</string>
 	</dict>
 </dict>
 </plist>

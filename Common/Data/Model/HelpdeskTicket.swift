@@ -38,13 +38,14 @@ public class HelpdeskTicket {
     }
 
     private var currentTrackingData: String {
-        let platform = "platform: \(UIApplication.platform)"
-        let osVersion = "os version: \(UIApplication.osVersion)"
-        let device = "device: \(UIApplication.device)"
-        let appName = "app name: \(UIApplication.appName)"
-        let appVersion = "app version: \(UIApplication.appVersion)"
-        let appBuild = "app build: \(UIApplication.appBuild)"
-        return platform + ", \n " +  osVersion + ", \n " + device + ", \n " + appName + ", \n " + appVersion + ", \n " + appBuild
+        return """
+        platform: \(UIApplication.platform), \
+        os version: \(UIApplication.osVersion), \
+        device: \(UIApplication.device), \
+        app name: \(UIApplication.appName), \
+        app version: \(UIApplication.appVersion), \
+        app build: \(UIApplication.appBuild)
+        """
     }
 
     private var appLanguage: String {

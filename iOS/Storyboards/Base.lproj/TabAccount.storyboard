@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fka-gm-6EA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fka-gm-6EA">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -251,7 +251,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsOptionBasicCell" textLabel="EWm-Ut-dSY" style="IBUITableViewCellStyleDefault" id="4xw-ei-yBc">
-                                <rect key="frame" x="20" y="90.5" width="374" height="43.5"/>
+                                <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4xw-ei-yBc" id="bHV-47-l1E">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -296,7 +296,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingsOptionBasicCell" textLabel="n2f-RE-3t4" style="IBUITableViewCellStyleDefault" id="YUS-yr-oho">
-                                <rect key="frame" x="20" y="90.5" width="374" height="43.5"/>
+                                <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YUS-yr-oho" id="ca6-5Q-tMn">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -369,13 +369,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="hwf-hc-mk6">
-                            <rect key="frame" x="0.0" y="172" width="414" height="0.0"/>
+                            <rect key="frame" x="0.0" y="137" width="414" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="certificateOverviewCell" textLabel="Grr-E2-2Yb" style="IBUITableViewCellStyleDefault" id="orD-T9-U9b">
-                                <rect key="frame" x="20" y="90.5" width="374" height="43.5"/>
+                                <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="orD-T9-U9b" id="oen-4E-MMQ">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
@@ -591,7 +591,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXk-mr-nbr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="iqG-Io-hBA">
                     <connections>
-                        <action selector="tappedBackground:" destination="l2c-fE-ju1" id="z3I-6o-9q8"/>
+                        <action selector="tappedBackground" destination="l2c-fE-ju1" id="f4F-CH-d1c"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

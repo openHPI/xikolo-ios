@@ -42,9 +42,12 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
     }()
 
     var hasValidInput: Bool {
-        guard let issueTitle = self.titleTextField.text, !issueTitle.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty else { return false }
-        guard let mailAddress = self.mailAddressTextField.text, !mailAddress.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty else { return false }
-        guard let issueReport = self.reportTextView.text, !issueReport.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty else { return false }
+        guard let issueTitle = self.titleTextField.text, !issueTitle.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty
+            else { return false }
+        guard let mailAddress = self.mailAddressTextField.text, !mailAddress.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty
+            else { return false }
+        guard let issueReport = self.reportTextView.text, !issueReport.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty
+            else { return false }
 
         let selectedCourseIndex = self.issueTypeSegmentedControl.selectedSegmentIndex
         let reactivationEnabled = Brand.default.features.enableHelpdeskReactivationTopic
@@ -148,6 +151,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
     @IBAction private func send() {
         guard let title = titleTextField.text else { return }
         guard let mail = mailAddressTextField.text else { return }
+        guard let report = reportTextView.text else { return }
         let selectedIndex = issueTypeSegmentedControl.selectedSegmentIndex
         let topic: HelpdeskTicket.Topic
         switch selectedIndex {
@@ -168,7 +172,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
             topic = .technical
         }
 
-        let ticket = HelpdeskTicket(title: title, mail: mail ?? "", topic: topic, report: reportTextView.text ?? "")
+        let ticket = HelpdeskTicket(title: title, mail: mail, topic: topic, report: report)
 
         HelpdeskTicketHelper.createIssue(ticket).onSuccess { _ in
             self.dismiss(animated: trueUnlessReduceMotionEnabled)
@@ -178,7 +182,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         }
     }
 
-    @IBAction func tappedBackground(_ sender: UITapGestureRecognizer) {
+    @IBAction private func tappedBackground() {
         self.titleTextField.resignFirstResponder()
         self.mailAddressTextField.resignFirstResponder()
         self.reportTextView.resignFirstResponder()

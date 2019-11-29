@@ -206,6 +206,9 @@
 /* title for empty certificates list */
 "empty-view.certificates.no-certificates.title" = "No certificates available";
 
+/* title for empty channel list */
+"empty-view.channels.title" = "Loading channels";
+
 /* title for empty course content list */
 "empty-view.course-content.title" = "Loading course content ...";
 

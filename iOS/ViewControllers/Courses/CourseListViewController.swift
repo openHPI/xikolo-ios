@@ -347,7 +347,11 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
 extension CourseListViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
-        return CourseHelper.syncAllCourses().asVoid()
+        if case let .coursesInChannel(channel) = self.configuration {
+            return ChannelHelper.syncChannel(channel).asVoid()
+        } else {
+            return CourseHelper.syncAllCourses().asVoid()
+        }
     }
 
 }

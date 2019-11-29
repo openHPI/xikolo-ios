@@ -32,6 +32,7 @@ class ChannelListViewController: UICollectionViewController {
                                                            delegate: self)
 
         self.refresh()
+        self.setupEmptyState()
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -105,8 +106,8 @@ extension ChannelListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        var leftPadding = collectionView.layoutMargins.left - CourseCell.cardInset
-        var rightPadding = collectionView.layoutMargins.right - CourseCell.cardInset
+        var leftPadding = collectionView.layoutMargins.left - ChannelCell.cardInset
+        var rightPadding = collectionView.layoutMargins.right - ChannelCell.cardInset
 
         if #available(iOS 11.0, *) {
             leftPadding -= collectionView.safeAreaInsets.left
@@ -124,6 +125,23 @@ extension ChannelListViewController: CoreDataCollectionViewDataSourceDelegate {
 
     func configure(_ cell: ChannelCell, for object: Channel) {
         cell.configure(object)
+    }
+
+}
+
+extension ChannelListViewController: EmptyStateDataSource, EmptyStateDelegate {
+
+    var emptyStateTitleText: String {
+        return NSLocalizedString("empty-view.channels.title", comment: "title for empty channel list")
+    }
+
+    func didTapOnEmptyStateView() {
+        self.refresh()
+    }
+
+    func setupEmptyState() {
+        self.collectionView.emptyStateDataSource = self
+        self.collectionView.emptyStateDelegate = self
     }
 
 }

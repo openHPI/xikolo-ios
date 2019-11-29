@@ -17,7 +17,8 @@ public enum ChannelHelper {
     }
 
     @discardableResult public static func syncChannel(_ channel: Channel) -> Future<SyncSingleResult, XikoloError> {
-        let query = SingleResourceQuery(resource: channel)
+        var query = SingleResourceQuery(resource: channel)
+        query.include("courses")
         return XikoloSyncEngine().synchronize(withFetchRequest: Self.FetchRequest.channel(withId: channel.id), withQuery: query)
     }
 

@@ -8,6 +8,47 @@ import UIKit
 
 class XikoloTabBarController: UITabBarController {
 
+    enum Tabs: CaseIterable {
+        case dashboard
+        case channels
+        case courses
+        case news
+        case account
+
+        static var availableTabs: [Tabs] {
+            return Self.allCases.filter { $0.isAvailable }
+        }
+
+        var isAvailable: Bool {
+            switch self {
+            case .channels:
+                return Brand.default.features.enableChannels
+            default:
+                return true
+            }
+        }
+
+        var index: Int {
+            return Self.availableTabs.firstIndex(of: self).require()
+        }
+
+        var viewController: UIViewController? {
+            switch self {
+            case .dashboard:
+                return R.storyboard.tabDashboard.instantiateInitialViewController()
+            case .channels:
+                return R.storyboard.tabChannels.instantiateInitialViewController()
+            case .courses:
+                return R.storyboard.tabCourses.instantiateInitialViewController()
+            case .news:
+                return R.storyboard.tabNews.instantiateInitialViewController()
+            case .account:
+                return R.storyboard.tabAccount.instantiateInitialViewController()
+            }
+        }
+
+    }
+
     struct Configuration {
         let backgroundColor: UIColor
         let textColor: UIColor
@@ -15,22 +56,8 @@ class XikoloTabBarController: UITabBarController {
     }
 
     static func make() -> XikoloTabBarController {
-        var viewControllers: [UIViewController?] = [
-            R.storyboard.tabDashboard.instantiateInitialViewController(),
-        ]
-
-        if Brand.default.features.enableChannels {
-            viewControllers.append(R.storyboard.tabChannels.instantiateInitialViewController())
-        }
-
-        viewControllers += [
-            R.storyboard.tabCourses.instantiateInitialViewController(),
-            R.storyboard.tabNews.instantiateInitialViewController(),
-            R.storyboard.tabAccount.instantiateInitialViewController(),
-        ]
-
         let tabBarController = XikoloTabBarController()
-        tabBarController.viewControllers = viewControllers.compactMap { $0 }
+        tabBarController.viewControllers = Tabs.availableTabs.compactMap { $0.viewController }
         return tabBarController
     }
 

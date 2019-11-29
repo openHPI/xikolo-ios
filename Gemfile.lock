@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/jcouball/ruby-git.git
-  revision: d6058159a410fad3e9d0f0a9b2bd5fe6380d6bfd
+  revision: 67e066e330944fbdfcdea5bb917dbcb65af28a77
   branch: normalize_encoding
   specs:
     git (1.5.0)

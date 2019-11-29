@@ -47,6 +47,8 @@
 	<dict>
 		<key>showCourseTeachers</key>
 		<true/>
+		<key>enableChannels</key>
+		<true/>
 		<key>enableDocuments</key>
 		<false/>
 		<key>enableRecap</key>

@@ -97,6 +97,7 @@ class CourseViewController: UIViewController {
         self.navigationController?.delegate = self
 
         self.decideContent()
+        self.updateCourseAreaListContainerHeight()
         self.updateHeaderConstraints()
 
         SpotlightHelper.shared.setUserActivity(for: self.course)

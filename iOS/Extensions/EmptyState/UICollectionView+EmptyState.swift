@@ -9,10 +9,12 @@ import UIKit
 extension UICollectionView: EmptyStateProtocol {
 
     static func enableEmptyStates() {
-        let originalSelector = #selector(reloadData)
-        let swizzledSelector = #selector(swizzledReload)
-
-        Swizzler.swizzleMethods(for: self, originalSelector: originalSelector, swizzledSelector: swizzledSelector)
+        Swizzler.swizzleMethods(for: self,
+                                originalSelector: #selector(reloadData),
+                                swizzledSelector: #selector(swizzledReload))
+        Swizzler.swizzleMethods(for: self,
+                                originalSelector: #selector(performBatchUpdates(_:completion:)),
+                                swizzledSelector: #selector(swizzledPerformBatchUpdates(_:completion:)))
     }
 
     @objc private dynamic func swizzledReload() {
@@ -20,9 +22,14 @@ extension UICollectionView: EmptyStateProtocol {
         self.reloadEmptyState()
     }
 
+    @objc private dynamic func swizzledPerformBatchUpdates(_ updates: (() -> Void)?, completion: ((Bool) -> Void)? = nil) {
+        self.swizzledPerformBatchUpdates(updates, completion: completion)
+        self.reloadEmptyState()
+    }
+
     var hasItemsToDisplay: Bool {
         for section in 0..<self.numberOfSections {
-            if self.dataSource?.collectionView(self, numberOfItemsInSection: section) != 0 {
+            if self.numberOfItems(inSection: section) != 0 {
                 return true
             }
         }

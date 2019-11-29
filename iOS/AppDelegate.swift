@@ -51,8 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.tintColor = Brand.default.colors.window
             self.window?.makeKeyAndVisible()
 
-            // select start tab
-            self.tabBarController.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
+            // Select initial tab
+            let tabToSelect: XikoloTabBarController.Tabs = UserProfileHelper.shared.isLoggedIn ? .dashboard : .courses
+            self.tabBarController.selectedIndex = tabToSelect.index
         }
 
         DispatchQueue.main.async {

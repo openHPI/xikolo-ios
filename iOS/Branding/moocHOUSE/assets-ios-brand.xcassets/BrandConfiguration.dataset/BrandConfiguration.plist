@@ -29,6 +29,8 @@
 	<dict>
 		<key>enableHelpdeskReactivationTopic</key>
 		<false/>
+		<key>enableChannels</key>
+		<true/>
 		<key>enableDocuments</key>
 		<false/>
 		<key>enableRecap</key>

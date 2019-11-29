@@ -21,9 +21,6 @@ class CertificatesListViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         self.collectionView?.register(R.nib.certificateCell)
-        if let certificateListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
-            certificateListLayout.delegate = self
-        }
 
         super.viewDidLoad()
 
@@ -31,6 +28,11 @@ class CertificatesListViewController: UICollectionViewController {
         self.addRefreshControl()
         self.refresh()
         self.setupEmptyState()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.collectionView.performBatchUpdates(nil)
     }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -59,26 +61,40 @@ class CertificatesListViewController: UICollectionViewController {
 
 }
 
-extension CertificatesListViewController: CardListLayoutDelegate {
+extension CertificatesListViewController: UICollectionViewDelegateFlowLayout {
 
-    var followReadableWidth: Bool {
-        return true
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 
-    var cardInset: CGFloat {
-        return CertificateCell.cardInset
-    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
 
-    func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
-        return CertificateCell.minimalWidth(for: traitCollection)
+        let boundingWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
+        let minimalCardWidth = CertificateCell.minimalWidth(for: self.traitCollection)
+        let numberOfColumns = floor(boundingWidth / minimalCardWidth)
+        let columnWidth = boundingWidth / numberOfColumns
+
+        let certificate = self.certificates[indexPath.item]
+        let height = CertificateCell.height(for: certificate, forWidth: columnWidth, delegate: self)
+
+        return CGSize(width: columnWidth, height: height)
     }
 
     func collectionView(_ collectionView: UICollectionView,
-                        heightForCellAtIndexPath indexPath: IndexPath,
-                        withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
-        let certificate = self.certificates[indexPath.item]
-        let height = CertificateCell.height(for: certificate, forWidth: boundingWidth, delegate: self)
-        return ceil(height)
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        var leftPadding = collectionView.layoutMargins.left - CertificateCell.cardInset
+        var rightPadding = collectionView.layoutMargins.right - CertificateCell.cardInset
+
+        if #available(iOS 11.0, *) {
+            leftPadding -= collectionView.safeAreaInsets.left
+            rightPadding -= collectionView.safeAreaInsets.right
+        }
+
+        return UIEdgeInsets(top: 0, left: leftPadding, bottom: collectionView.layoutMargins.bottom, right: rightPadding)
     }
 
 }
@@ -110,11 +126,6 @@ extension CertificatesListViewController { // CollectionViewDelegate
         let filename = [self.course.title, certificate.name].compactMap { $0 }.joined(separator: " - ")
         pdfViewController.configure(for: url, filename: filename)
         self.navigationController?.pushViewController(pdfViewController, animated: trueUnlessReduceMotionEnabled)
-    }
-
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        self.collectionView.performBatchUpdates(nil)
     }
 
 }

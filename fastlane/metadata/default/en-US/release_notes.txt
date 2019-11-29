@@ -1,9 +1,7 @@
-• Fix bug when submitting quizzes
+•  Fix the bug that quizzes do not open
 
-Also in version 2.7:
-• Adoption of Dark Mode on iOS 13
-• Support for multiple windows on iPads running iPadOS 13 or later
-• A refined look of the course presentation
-• A back button was added to the forum navigation
-• Optimized the app launch time a bit
-• Adjusted colors for high contrast mode
+Also in version 2.8:
+We redesigned our video player to improve the look and feel as well as to bring new features to you. The new video player supports subtitles, picture-in-picture mode and playback via AirPlay. To access the subtitles in offline mode, you have to redownload the respective videos.
+
+Further small improvements:
+• Dynamic type support for text items

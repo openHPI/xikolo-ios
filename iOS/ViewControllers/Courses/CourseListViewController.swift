@@ -33,6 +33,12 @@ class CourseListViewController: UICollectionViewController {
                                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
 
+        if case .coursesInChannel = self.configuration {
+            self.collectionView?.register(UINib(resource: R.nib.channelHeaderView),
+                                          forSupplementaryViewOfKind: R.nib.channelHeaderView.name,
+                                          withReuseIdentifier: R.nib.channelHeaderView.name)
+        }
+
         if let courseListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
             courseListLayout.delegate = self
         }
@@ -144,7 +150,9 @@ class CourseListViewController: UICollectionViewController {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        self.collectionViewLayout.invalidateLayout()
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.collectionViewLayout.invalidateLayout()
+        }
     }
 
 }
@@ -165,11 +173,25 @@ extension CourseListViewController: CardListLayoutDelegate {
     }
 
     var heightForHeader: CGFloat {
-        guard self.configuration == .allCourses || self.dataSource.isSearching else {
+        guard self.configuration.shouldShowHeader || self.dataSource.isSearching else {
             return 0 // Don't show header for these configurations
         }
 
         return ceil(CourseHeaderView.height)
+    }
+
+    var kindForGlobalHeader: String? {
+        guard case .coursesInChannel = self.configuration else { return nil }
+        return R.nib.channelHeaderView.name
+    }
+
+    var heightForGlobalHeader: CGFloat {
+        guard case let .coursesInChannel(channel) = self.configuration else { return 0 } // Don't show global header
+
+        let isSearchControllerFocused = self.filterContainerHeightConstraint?.constant != 0
+        if self.dataSource.isSearching || isSearchControllerFocused { return 0 } // Don't show global header
+
+        return ChannelHeaderView.height(forWidth: collectionView.bounds.width, layoutMargins: self.view.layoutMargins, channel: channel)
     }
 
     func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
@@ -268,12 +290,11 @@ extension CourseListViewController: UISearchControllerDelegate {
 extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
 
     func configure(_ cell: CourseCell, for object: Course) {
-        let filtered = self.configuration != .allCourses
-        cell.configure(object, for: .courseList(filtered: filtered))
+        cell.configure(object, for: .courseList(configuration: self.configuration))
     }
 
     func configureHeaderView(_ headerView: CourseHeaderView, sectionInfo: NSFetchedResultsSectionInfo) {
-        headerView.configure(sectionInfo)
+        headerView.configure(sectionInfo, for: self.configuration)
     }
 
     func searchPredicate(forSearchText searchText: String) -> NSPredicate? {
@@ -305,12 +326,32 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
         searchHeaderView.configure(withText: String.localizedStringWithFormat(format, numberOfSearchResults))
     }
 
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForAddtionalSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView? {
+        guard kind == R.nib.channelHeaderView.name else { return nil }
+
+        guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: R.nib.channelHeaderView.name,
+                                                                         for: indexPath) as? ChannelHeaderView else { return nil }
+
+        guard case let .coursesInChannel(channel) = self.configuration else { return nil }
+
+        view.configure(for: channel)
+
+        return view
+    }
+
 }
 
 extension CourseListViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
-        return CourseHelper.syncAllCourses().asVoid()
+        if case let .coursesInChannel(channel) = self.configuration {
+            return ChannelHelper.syncChannel(channel).asVoid()
+        } else {
+            return CourseHelper.syncAllCourses().asVoid()
+        }
     }
 
 }

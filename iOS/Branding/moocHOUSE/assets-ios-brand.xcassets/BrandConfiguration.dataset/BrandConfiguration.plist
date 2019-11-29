@@ -27,8 +27,6 @@
 	</dict>
 	<key>features</key>
 	<dict>
-		<key>enableHelpdeskReactivationTopic</key>
-		<false/>
 		<key>enableChannels</key>
 		<true/>
 		<key>enableDocuments</key>
@@ -39,6 +37,8 @@
 		<true/>
 		<key>showCourseTeachers</key>
 		<true/>
+		<key>enableHelpdeskReactivationTopic</key>
+		<false/>
 	</dict>
 </dict>
 </plist>

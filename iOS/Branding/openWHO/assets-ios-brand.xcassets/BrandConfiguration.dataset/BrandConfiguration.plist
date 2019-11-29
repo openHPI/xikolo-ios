@@ -40,8 +40,6 @@
 	</dict>
 	<key>features</key>
 	<dict>
-		<key>enableHelpdeskReactivationTopic</key>
-		<false/>
 		<key>enableChannels</key>
 		<true/>
 		<key>enableDocuments</key>
@@ -51,6 +49,8 @@
 		<key>showCourseDatesOnDashboard</key>
 		<false/>
 		<key>showCourseTeachers</key>
+		<false/>
+		<key>enableHelpdeskReactivationTopic</key>
 		<false/>
 	</dict>
 	<key>courseClassifierSearchFilters</key>

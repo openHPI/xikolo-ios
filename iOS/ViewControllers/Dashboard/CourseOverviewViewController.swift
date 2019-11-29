@@ -12,16 +12,22 @@ class CourseOverviewViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
 
-    private var dataSource: CoreDataCollectionViewDataSource<CourseOverviewViewController>!
+    private var courses: [Course] = [] {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+
+    private let itemLimit = 5
 
     var configuration: CourseListConfiguration!
 
-    private func configureCollectionView() {
-        let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
-        self.dataSource = CoreDataCollectionViewDataSource(self.collectionView,
-                                                           fetchedResultsControllers: self.configuration.resultsControllers,
-                                                           cellReuseIdentifier: reuseIdentifier,
-                                                           delegate: self)
+    private func refresh() {
+        guard let fetchRequest = self.configuration.resultsControllers.first?.fetchRequest else { return }
+        // Fetch one additional item. In this way, we know that there are more courses in the list and we should the 'Show All Courses' card.
+        fetchRequest.fetchLimit = self.itemLimit + 1
+        let result = CoreDataHelper.viewContext.fetchMultiple(fetchRequest)
+        self.courses = result.value ?? []
     }
 
     override func viewDidLoad() {
@@ -30,7 +36,8 @@ class CourseOverviewViewController: UIViewController {
 
         self.collectionView.register(R.nib.courseCell)
         self.collectionView.register(R.nib.pseudoCourseCell)
-        self.configureCollectionView()
+
+        self.refresh()
 
         self.updateCollectionViewHeight()
 
@@ -38,6 +45,11 @@ class CourseOverviewViewController: UIViewController {
                                                selector: #selector(updateCollectionViewHeight),
                                                name: UIContentSizeCategory.didChangeNotification,
                                                object: nil)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(notification:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -70,24 +82,64 @@ class CourseOverviewViewController: UIViewController {
         self.collectionViewHeightConstraint.constant = ceil(height)
     }
 
+    @objc private func coreDataChange(notification: Notification) {
+        guard notification.includesChanges(for: Course.self) else { return }
+        self.refresh()
+    }
+
+}
+
+extension CourseOverviewViewController: UICollectionViewDataSource {
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let courseCount = self.courses.count
+
+        if courseCount == 0 {
+            return 1
+        } else if courseCount > self.itemLimit {
+            return self.itemLimit + 1
+        } else {
+            return courseCount
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let courseCount = self.courses.count
+
+        if courseCount == 0 {
+            let someCell = collectionView.dequeueReusableCell(withReuseIdentifier: R.nib.pseudoCourseCell, for: indexPath)
+            let cell = someCell.require(hint: "Unexpected cell type at \(indexPath), expected cell of type \(PseudoCourseCell.self)")
+            cell.configure(for: .emptyCourseOverview, configuration: self.configuration)
+            return cell
+        } else if courseCount > self.itemLimit, self.itemLimit == indexPath.item {
+            let someCell = collectionView.dequeueReusableCell(withReuseIdentifier: R.nib.pseudoCourseCell, for: indexPath)
+            let cell = someCell.require(hint: "Unexpected cell type at \(indexPath), expected cell of type \(PseudoCourseCell.self)")
+            cell.configure(for: .showAllCoursesOfOverview, configuration: self.configuration)
+            return cell
+        } else {
+            let someCell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.courseCell, for: indexPath)
+            let cell = someCell.require(hint: "Unexpected cell type at \(indexPath), expected cell of type \(CourseCell.self)")
+            let course = self.courses[indexPath.item]
+            cell.configure(course, for: .courseOverview)
+            return cell
+        }
+    }
+
 }
 
 extension CourseOverviewViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let numberOfCoreDataItems = self.dataSource.numberOfCoreDataItems(inSection: indexPath.section)
-        let numberOfAdditionalItems = self.numberOfAdditonalItems(for: numberOfCoreDataItems, inSection: indexPath.section)
-        let itemLimit = self.itemLimit(forSection: indexPath.section) ?? Int.max
-
-        if numberOfAdditionalItems > 0, min(itemLimit, numberOfCoreDataItems) + numberOfAdditionalItems - 1 == indexPath.item {
-            if numberOfCoreDataItems == 0 {
-                self.appNavigator?.showCourseList()
-            } else {
-                self.performSegue(withIdentifier: R.segue.courseOverviewViewController.showCourseList, sender: nil)
-            }
-        } else {
-            let course = self.dataSource.object(at: indexPath)
+        if let course = self.courses[safe: indexPath.item], indexPath.item < self.itemLimit {
             self.appNavigator?.show(course: course)
+        } else if self.courses.isEmpty {
+            self.appNavigator?.showCourseList()
+        } else {
+            self.performSegue(withIdentifier: R.segue.courseOverviewViewController.showCourseList, sender: nil)
         }
     }
 
@@ -108,14 +160,10 @@ extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
         let availableWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right
         let preferedWidth = min(availableWidth * 0.9, courseCellWidth)
 
-        let numberOfCoreDataItems = self.dataSource.numberOfCoreDataItems(inSection: indexPath.section)
-        let numberOfAdditionalItems = self.numberOfAdditonalItems(for: numberOfCoreDataItems, inSection: indexPath.section)
-        let itemLimit = self.itemLimit(forSection: indexPath.section) ?? Int.max
+        let hasCourses = !self.courses.isEmpty
+        let isLastCell = self.itemLimit == indexPath.item
 
-        let hasCourses = numberOfCoreDataItems > 0
-        let hasAddtionaltems = numberOfAdditionalItems > 0
-        let isLastCell = min(itemLimit, numberOfCoreDataItems) + numberOfAdditionalItems - 1 == indexPath.item
-        let width = hasCourses && hasAddtionaltems && isLastCell ? preferedWidth * 2 / 3 : preferedWidth
+        let width = hasCourses && isLastCell ? preferedWidth * 2 / 3 : preferedWidth
         let height = CourseCell.heightForOverviewList(forWidth: preferedWidth)
 
         return CGSize(width: width, height: height)
@@ -133,55 +181,6 @@ extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
         }
 
         return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
-    }
-
-}
-
-extension CourseOverviewViewController: CoreDataCollectionViewDataSourceDelegate {
-
-    typealias HeaderView = UICollectionReusableView
-
-    func configure(_ cell: CourseCell, for object: Course) {
-        cell.configure(object, for: .courseOverview)
-    }
-
-    func shouldReloadCollectionViewForUpdate(from preChangeItemCount: Int?, to postChangeItemCount: Int) -> Bool {
-        if preChangeItemCount == 0 || postChangeItemCount == 0 {
-            return true
-        }
-
-        let itemLimit = self.itemLimit(forSection: 0) ?? Int.max
-        let passedOverItemLimit = preChangeItemCount == itemLimit && (preChangeItemCount ?? Int.min) < postChangeItemCount
-        let passedUnderItemLimit = postChangeItemCount == itemLimit && postChangeItemCount < (preChangeItemCount ?? Int.max)
-        return passedOverItemLimit || passedUnderItemLimit
-    }
-
-    func itemLimit(forSection section: Int) -> Int? {
-        return 5
-    }
-
-    func numberOfAdditonalItems(for numberOfCoreDataItems: Int, inSection section: Int) -> Int {
-        let itemLimit = self.itemLimit(forSection: section) ?? Int.max
-        return numberOfCoreDataItems > itemLimit || numberOfCoreDataItems == 0 ? 1 : 0
-    }
-
-    func collectionView(_ collectionView: UICollectionView, additionalCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
-        let numberOfCoreDataItems = self.dataSource.numberOfCoreDataItems(inSection: indexPath.section)
-        let numberOfAdditionalItems = self.numberOfAdditonalItems(for: numberOfCoreDataItems, inSection: indexPath.section)
-        let itemLimit = self.itemLimit(forSection: indexPath.section) ?? Int.max
-
-        guard numberOfAdditionalItems > 0 else {
-            return nil
-        }
-
-        guard min(itemLimit, numberOfCoreDataItems) <= indexPath.item else {
-            return nil
-        }
-
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.nib.pseudoCourseCell, for: indexPath)
-        let style: PseudoCourseCell.Style = numberOfCoreDataItems == 0 ? .emptyCourseOverview : .showAllCoursesOfOverview
-        cell?.configure(for: style, configuration: self.configuration)
-        return cell
     }
 
 }

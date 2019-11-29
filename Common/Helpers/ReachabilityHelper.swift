@@ -9,7 +9,7 @@ import Reachability
 public enum ReachabilityHelper {
 
     static var reachability: Reachability = {
-        return try! Reachability(hostname: Brand.default.host)
+        return try! Reachability(hostname: Brand.default.host) // swiftlint:disable:this force_try
     }()
 
     public static var connection: Reachability.Connection {

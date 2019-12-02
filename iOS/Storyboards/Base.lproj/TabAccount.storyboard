@@ -469,7 +469,7 @@
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="name"/>
                                                     <connections>
-                                                        <action selector="issueAttributeChanged" destination="l2c-fE-ju1" eventType="editingDidEnd" id="qbo-2N-ww6"/>
+                                                        <action selector="issueAttributeChanged" destination="l2c-fE-ju1" eventType="editingChanged" id="V8q-oA-whs"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -483,7 +483,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Your e-mail Address" id="gbn-6Q-irY" userLabel="mail">
+                            <tableViewSection headerTitle="Your e-mail address" id="gbn-6Q-irY">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="Pca-l0-Jeu">
                                         <rect key="frame" x="20" y="301.5" width="374" height="44"/>
@@ -497,7 +497,7 @@
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                                                     <connections>
-                                                        <action selector="issueAttributeChanged" destination="l2c-fE-ju1" eventType="editingDidEnd" id="ShK-y4-fCN"/>
+                                                        <action selector="issueAttributeChanged" destination="l2c-fE-ju1" eventType="editingChanged" id="doN-aK-jGC"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -564,6 +564,7 @@
                         <connections>
                             <outlet property="dataSource" destination="l2c-fE-ju1" id="ZWd-IX-fRB"/>
                             <outlet property="delegate" destination="l2c-fE-ju1" id="3Bj-QD-mN7"/>
+                            <outletCollection property="gestureRecognizers" destination="iqG-Io-hBA" appends="YES" id="bdt-MP-mhF"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ccX-D1-nh5">

@@ -170,7 +170,7 @@ class AccountViewController: UITableViewController {
         safariVC.preferredControlTintColor = Brand.default.colors.window
         self.present(safariVC, animated: trueUnlessReduceMotionEnabled)
     }
-    
+
 }
 
 extension AccountViewController: MFMailComposeViewControllerDelegate {

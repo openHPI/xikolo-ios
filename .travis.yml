@@ -17,5 +17,5 @@ install:
 script:
   - set -o pipefail
   - if [ "$TEST" == 1 ]; then bundle exec fastlane run scan scheme:$SCHEME clean:true; fi
-  - if [ "$CHECK_LOCALIZATION" == 1 ]; then bundle exec fastlane localize; bundle exec fastlane run ensure_git_status_clean show_diff:true; fi
+  - if [ "$CHECK_LOCALIZATION" == 1 ]; then bundle exec fastlane localize; git status --porcelain; git diff --quiet  -- . ':!.bundle' || travis_terminate 1; fi
   - if [ "$LINT" == 1 ]; then bundle exec danger --verbose; fi

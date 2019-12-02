@@ -35,7 +35,7 @@
 /* Class = "UITableViewSection"; headerTitle = "Your Issue"; ObjectID = "Kr0-w1-KaR"; */
 "Kr0-w1-KaR.headerTitle" = "Ihr Anliegen";
 
-/* Class = "UITableViewSection"; headerTitle = "Your e-mail Address"; ObjectID = "gbn-6Q-irY"; */
+/* Class = "UITableViewSection"; headerTitle = "Your e-mail address"; ObjectID = "gbn-6Q-irY"; */
 "gbn-6Q-irY.headerTitle" = "Ihre E-Mail-Adresse";
 
 /* Class = "UITableViewSection"; headerTitle = "Title of your issue"; ObjectID = "nus-Iv-Ng5"; */

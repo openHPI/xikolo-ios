@@ -251,6 +251,9 @@
 /* Title for button for selecting all items in a list */
 "global.list.selection.select all" = "Select all";
 
+/* Label of button for submitting a helpdesk ticket */
+"helpdesk.action.send" = "Send";
+
 /* helpdesk topic course-specific */
 "helpdesk.topic.course-specific" = "Course-specific";
 

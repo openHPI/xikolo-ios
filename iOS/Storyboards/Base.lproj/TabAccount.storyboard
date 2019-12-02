@@ -569,12 +569,7 @@
                     <navigationItem key="navigationItem" id="ccX-D1-nh5">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uE4-Zg-5h6">
                             <connections>
-                                <action selector="cancel" destination="l2c-fE-ju1" id="9KN-39-9va"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Send" id="M2S-Ud-uRw">
-                            <connections>
-                                <action selector="send" destination="l2c-fE-ju1" id="mgg-qh-nNc"/>
+                                <action selector="cancelTicketComposition" destination="l2c-fE-ju1" id="9KN-39-9va"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

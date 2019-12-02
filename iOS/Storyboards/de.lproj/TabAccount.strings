@@ -35,9 +35,6 @@
 /* Class = "UITableViewSection"; headerTitle = "Your Issue"; ObjectID = "Kr0-w1-KaR"; */
 "Kr0-w1-KaR.headerTitle" = "Ihr Anliegen";
 
-/* Class = "UIBarButtonItem"; title = "Send"; ObjectID = "M2S-Ud-uRw"; */
-"M2S-Ud-uRw.title" = "Senden";
-
 /* Class = "UITableViewSection"; headerTitle = "Your e-mail Address"; ObjectID = "gbn-6Q-irY"; */
 "gbn-6Q-irY.headerTitle" = "Ihre E-Mail-Adresse";
 

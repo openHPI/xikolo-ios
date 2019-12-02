@@ -23,6 +23,21 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         return result.value ?? []
     }()
 
+    private lazy var sendBarButtonItem: UIBarButtonItem = {
+        let title = NSLocalizedString("helpdesk.action.send", comment: "Label of button for submitting a helpdesk ticket")
+        return UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(sendTicket))
+    }()
+
+    private lazy var waitIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.color = Brand.default.colors.window
+        return indicator
+    }()
+
+    private lazy var waitBarButtonItem: UIBarButtonItem = {
+        return UIBarButtonItem(customView: self.waitIndicator)
+    }()
+
     private lazy var issueTypeSegmentedControl: UISegmentedControl = {
         var items = [
             NSLocalizedString("helpdesk.topic.technical", comment: "helpdesk topic technical"),
@@ -59,7 +74,9 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationItem.rightBarButtonItem = self.sendBarButtonItem
         self.navigationItem.rightBarButtonItem?.isEnabled = false
+
         self.tableView.delegate = self
         self.coursePicker.delegate = self
         self.coursePicker.dataSource = self
@@ -144,11 +161,11 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
 
     }
 
-    @IBAction private func cancel() {
+    @IBAction private func cancelTicketComposition() {
         self.dismiss(animated: trueUnlessReduceMotionEnabled)
     }
 
-    @IBAction private func send() {
+    @objc private func sendTicket() {
         guard let title = titleTextField.text else { return }
         guard let mail = mailAddressTextField.text else { return }
         guard let report = reportTextView.text else { return }
@@ -174,11 +191,16 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
 
         let ticket = HelpdeskTicket(title: title, mail: mail, topic: topic, report: report)
 
+        self.navigationItem.rightBarButtonItem = self.waitBarButtonItem
+        self.waitIndicator.startAnimating()
+
         HelpdeskTicketHelper.createIssue(ticket).onSuccess { _ in
             self.dismiss(animated: trueUnlessReduceMotionEnabled)
         }.onFailure { _ in
             self.onFailureLabel.isHidden = false
             self.tableView.setContentOffset( CGPoint(x: 0, y: 0), animated: true)
+        }.onComplete { _ in
+            self.navigationItem.rightBarButtonItem = self.sendBarButtonItem
         }
     }
 

@@ -89,6 +89,9 @@
 /* Shown in course content list */
 "course-item.video.slides.label" = "Slides";
 
+/* Title for button for clearning all filters */
+"course-list.search.filter.clear" = "Clear";
+
 /* Title for applying selected filter options */
 "course-list.search.filter.options.apply" = "Apply";
 

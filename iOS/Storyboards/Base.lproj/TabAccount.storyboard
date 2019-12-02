@@ -544,16 +544,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KcN-el-VIf">
-                                                    <rect key="frame" x="20" y="8" width="334" height="28"/>
+                                                    <rect key="frame" x="20" y="11" width="334" height="22"/>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="KcN-el-VIf" secondAttribute="bottom" constant="8" id="MlE-VO-r0A"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="KcN-el-VIf" secondAttribute="bottom" id="MlE-VO-r0A"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="KcN-el-VIf" secondAttribute="trailing" id="eVj-ZZ-CVX"/>
-                                                <constraint firstItem="KcN-el-VIf" firstAttribute="top" secondItem="BbS-hH-4Ez" secondAttribute="top" constant="8" id="hSb-7H-Ker"/>
+                                                <constraint firstItem="KcN-el-VIf" firstAttribute="top" secondItem="BbS-hH-4Ez" secondAttribute="topMargin" id="hSb-7H-Ker"/>
                                                 <constraint firstItem="KcN-el-VIf" firstAttribute="leading" secondItem="BbS-hH-4Ez" secondAttribute="leadingMargin" id="rS8-ko-HXh"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -713,7 +713,7 @@
     </scenes>
     <resources>
         <image name="avatar" width="500" height="500"/>
-        <image name="profile header" width="1734" height="808"/>
+        <image name="profile header" width="1000" height="659"/>
         <image name="tab bar items/account" width="28" height="28"/>
     </resources>
 </document>

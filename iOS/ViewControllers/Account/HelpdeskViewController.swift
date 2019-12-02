@@ -80,9 +80,11 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         self.tableView.delegate = self
         self.coursePicker.delegate = self
         self.coursePicker.dataSource = self
-        self.reportTextView.delegate = self
         self.titleTextField.delegate = self
         self.mailAddressTextField.delegate = self
+        self.reportTextView.delegate = self
+        self.reportTextView.textContainerInset = UIEdgeInsets.zero
+        self.reportTextView.textContainer.lineFragmentPadding = 0
 
         self.onFailureLabel.isHidden = true
 

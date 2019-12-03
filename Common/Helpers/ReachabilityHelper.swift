@@ -8,16 +8,29 @@ import Reachability
 
 public enum ReachabilityHelper {
 
-    static var reachability: Reachability = {
+    public enum Connection {
+        case wifi
+        case cellular
+        case offline
+    }
+
+    private static var reachability: Reachability = {
         return try! Reachability(hostname: Brand.default.host) // swiftlint:disable:this force_try
     }()
 
-    public static var connection: Reachability.Connection {
-        return self.reachability.connection
+    public static var connection: Connection {
+        switch self.reachability.connection {
+        case .wifi:
+            return .wifi
+        case .cellular:
+            return .cellular
+        case .none, .unavailable:
+            return .offline
+        }
     }
 
     public static var hasConnection: Bool {
-        return self.connection != .unavailable
+        return self.connection != .offline
     }
 
     public static func startObserving() throws {

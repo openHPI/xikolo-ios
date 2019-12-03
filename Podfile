@@ -9,15 +9,15 @@ pod 'SwiftLint', '~> 0.22'
 
 def firebase_pods
     pod 'Firebase/Core'
-    pod 'Fabric', '~> 1.9.0'
-    pod 'Crashlytics', '~> 3.12.0'
+    pod 'Fabric', '~> 1.10.2'
+    pod 'Crashlytics', '~> 3.14.0'
 end
 
 def common_pods
     pod 'BrightFutures', '~> 8.0'
     pod 'Down', '~> 0.5'
     pod 'KeychainAccess', '~> 3.1'
-    pod 'ReachabilitySwift', '~> 4.1'
+    pod 'ReachabilitySwift', '~> 5.0'
     pod 'SDWebImage', '~> 5.0'
     pod 'SyncEngine', :path => './Frameworks/SyncEngine'
     pod 'HTMLStyler', :path => './Frameworks/HTMLStyler'

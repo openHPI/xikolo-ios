@@ -44,6 +44,8 @@
 		<true/>
 		<key>showCourseTeachers</key>
 		<true/>
+		<key>enableHelpdeskReactivationTopic</key>
+		<false/>
 	</dict>
 	<key>courseClassifierSearchFilters</key>
 	<dict>

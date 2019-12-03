@@ -50,6 +50,8 @@
 		<false/>
 		<key>showCourseTeachers</key>
 		<false/>
+		<key>enableHelpdeskReactivationTopic</key>
+		<false/>
 	</dict>
 	<key>courseClassifierSearchFilters</key>
 	<dict>

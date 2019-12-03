@@ -63,7 +63,7 @@ extension CourseSection {
 
         // user actions for stream
 
-        if itemCounter.stream.numberOfDownloadableItems > 0, ReachabilityHelper.connection != .none {
+        if itemCounter.stream.numberOfDownloadableItems > 0, ReachabilityHelper.hasConnection {
             let downloadActionTitle = NSLocalizedString("course-section.stream-download-action.start-downloads.title",
                                                         comment: "start stream downloads for all videos in section")
             actions.append(UIAlertAction(title: downloadActionTitle, style: .default) { _ in
@@ -89,7 +89,7 @@ extension CourseSection {
 
         // user actions for slides
 
-        if itemCounter.slides.numberOfDownloadableItems > 0, ReachabilityHelper.connection != .none {
+        if itemCounter.slides.numberOfDownloadableItems > 0, ReachabilityHelper.hasConnection {
             let downloadActionTitle = NSLocalizedString("course-section.slides-download-action.start-downloads.title",
                                                         comment: "start slides downloads for all videos in section")
             actions.append(UIAlertAction(title: downloadActionTitle, style: .default) { _ in
@@ -115,7 +115,7 @@ extension CourseSection {
 
         // combined user actions
 
-        if itemCounter.stream.numberOfDownloadableItems > 0, itemCounter.slides.numberOfDownloadableItems > 0, ReachabilityHelper.connection != .none {
+        if itemCounter.stream.numberOfDownloadableItems > 0, itemCounter.slides.numberOfDownloadableItems > 0, ReachabilityHelper.hasConnection {
             let downloadActionTitle = NSLocalizedString("course-section.combined-download-action.start-downloads.title",
                                                         comment: "start all downloads for all videos in section")
             actions.append(UIAlertAction(title: downloadActionTitle, style: .default) { _ in

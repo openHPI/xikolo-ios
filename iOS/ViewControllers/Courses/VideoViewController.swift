@@ -226,7 +226,7 @@ class VideoViewController: UIViewController {
     private func show(video: Video) {
         self.video = video
 
-        let hasUserActions = ReachabilityHelper.connection != .none || !video.userActions.isEmpty
+        let hasUserActions = ReachabilityHelper.hasConnection || !video.userActions.isEmpty
         self.actionMenuButton.isEnabled = hasUserActions
         self.actionMenuButton.tintColor = hasUserActions ? Brand.default.colors.primary : ColorCompatibility.disabled
 
@@ -236,7 +236,7 @@ class VideoViewController: UIViewController {
         self.videoProgressView.updateProgress(streamDownloadProgress, animated: false)
         self.videoDownloadedIcon.isHidden = streamDownloadState != .downloaded
 
-        let isVideoActionsButtonEnabled = ReachabilityHelper.connection != .none || video.streamUserAction != nil
+        let isVideoActionsButtonEnabled = ReachabilityHelper.hasConnection || video.streamUserAction != nil
         self.videoActionsButton.isEnabled = isVideoActionsButtonEnabled
         self.videoActionsButton.tintColor = isVideoActionsButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
@@ -248,7 +248,7 @@ class VideoViewController: UIViewController {
         self.slidesProgressView.updateProgress(slidesDownloadProgress, animated: false)
         self.slidesDownloadedIcon.isHidden = !(slidesDownloadState == .downloaded)
 
-        let isSlidesActionButtonEnabled = ReachabilityHelper.connection != .none || video.slidesUserAction != nil
+        let isSlidesActionButtonEnabled = ReachabilityHelper.hasConnection || video.slidesUserAction != nil
         self.slidesActionsButton.isEnabled = isSlidesActionButtonEnabled
         self.slidesActionsButton.tintColor = isSlidesActionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
@@ -347,7 +347,7 @@ class VideoViewController: UIViewController {
                 self.slidesProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
                 self.slidesProgressView.updateProgress(SlidesPersistenceManager.shared.downloadProgress(for: video))
                 self.slidesDownloadedIcon.isHidden = !(downloadState == .downloaded)
-                let actionButtonEnabled = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil
+                let actionButtonEnabled = ReachabilityHelper.hasConnection || self.video?.slidesUserAction != nil
                 self.slidesActionsButton.isEnabled = actionButtonEnabled
                 self.slidesActionsButton.tintColor = actionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.systemGray4
             }

@@ -254,14 +254,26 @@
 /* Title for button for selecting all items in a list */
 "global.list.selection.select all" = "Alle auswählen";
 
+/* Label of button for submitting a helpdesk ticket */
+"helpdesk.action.send" = "Senden";
+
+/* helpdesk topic course-specific */
+"helpdesk.topic.course-specific" = "Kursspezifische Frage";
+
+/* helpdesk topic reactivation */
+"helpdesk.topic.reactivation" = "Reaktivierung";
+
+/* helpdesk topic technical */
+"helpdesk.topic.technical" = "Technische Frage";
+
 /* label for app build */
 "settings.app.build.label" = "Build";
 
 /* label for app version */
 "settings.app.version.label" = "Version";
 
-/* cell title for app feedback */
-"settings.cell-title.app-feedback" = "App-Feedback senden";
+/* cell title for helpdesk */
+"settings.cell-title.app-helpdesk" = "Helpdesk";
 
 /* cell title for certificates */
 "settings.cell-title.certificates" = "Leistungsnachweise";

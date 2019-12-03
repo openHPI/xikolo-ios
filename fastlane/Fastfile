@@ -205,6 +205,7 @@ platform :ios do
 
   flavors.each do |flavor|
     lane :"release_#{flavor.downcase}" do
+      ensure_git_status_clean
       ensure_git_branch(branch: 'master')
       upload_ipa(flavor: flavor, automatic_release: true)
     end
@@ -219,6 +220,7 @@ platform :ios do
 
   flavors.each do |flavor|
     lane :"beta_#{flavor.downcase}" do
+      ensure_git_status_clean
       ensure_git_branch(branch: 'dev')
       upload_ipa(flavor: flavor, skip_metadata: true)
     end

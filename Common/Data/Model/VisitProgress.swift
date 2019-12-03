@@ -31,12 +31,13 @@ public class VisitProgress: NSObject, NSCoding, IncludedPullable {
     }
 
     public func pointsAvailable() -> Bool {
-        return (self.itemsAvailable == Int.zero) ?? true
+        guard let points = self.itemsAvailable else { return false }
+        return points > 0
     }
 
     public func calculatePercentage() -> Double? {
         guard let scored = itemsVisited else { return nil }
-        guard let possible = itemsAvailable, !(self.itemsAvailable == Int.zero) else { return nil }
+        guard let possible = itemsAvailable, self.pointsAvailable() else { return nil }
         return Double(scored / possible)
     }
 

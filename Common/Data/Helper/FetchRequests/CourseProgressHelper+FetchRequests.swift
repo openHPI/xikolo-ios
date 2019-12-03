@@ -5,11 +5,11 @@
 
 import CoreData
 
-extension CourseProgressHelper {
+public extension CourseProgressHelper {
 
-    public enum FetchRequest {
+    enum FetchRequest {
 
-        static func courseProgress(forCourse course: Course) -> NSFetchRequest<CourseProgress> {
+        public static func courseProgress(forCourse course: Course) -> NSFetchRequest<CourseProgress> {
             let request: NSFetchRequest<CourseProgress> = CourseProgress.fetchRequest()
             request.predicate = NSPredicate(format: "id = %@", course.id)
             request.fetchLimit = 1

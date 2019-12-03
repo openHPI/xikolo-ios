@@ -14,6 +14,13 @@ class CourseProgressViewController: UITableViewController {
     private var dataSource: CoreDataTableViewDataSource<CourseProgressViewController>!
     var course: Course!
 
+    private lazy var courseProgress: CourseProgress? = {
+        return CoreDataHelper.viewContext.fetchSingle(CourseProgressHelper.FetchRequest.courseProgress(forCourse: course)).value
+    }()
+
+
+    @IBOutlet weak var courseProgressView: CourseTotalProgressView!
+
     // array available sections and corresponding points
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
@@ -35,6 +42,11 @@ class CourseProgressViewController: UITableViewController {
                                                       delegate: self)
 
         self.refresh()
+
+        if let progress = self.courseProgress {
+            self.courseProgressView.configure(for: progress, showCourseTitle: self.course == nil)
+            self.tableView.resizeTableFooterView()
+        }
     }
 
 
@@ -78,7 +90,6 @@ extension CourseProgressViewController: CoreDataTableViewDataSourceDelegate {
 
     func configure(_ cell: SectionProgressCell, for object: SectionProgress) {
         cell.configure(for: object, showCourseTitle: self.course == nil)
-        //cell.textLabel?.text = object.title
     }
 
 }

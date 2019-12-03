@@ -29,7 +29,7 @@ extension Video {
     }
 
     var streamUserAction: UIAlertAction? {
-        let isOffline = ReachabilityHelper.connection == .none
+        let isOffline = !ReachabilityHelper.hasConnection
         let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: self)
 
         if let url = self.streamURLForDownload, streamDownloadState == .notDownloaded, !isOffline {
@@ -60,7 +60,7 @@ extension Video {
     }
 
     var slidesUserAction: UIAlertAction? {
-        let isOffline = ReachabilityHelper.connection == .none
+        let isOffline = !ReachabilityHelper.hasConnection
         let slidesDownloadState = SlidesPersistenceManager.shared.downloadState(for: self)
 
         if let url = self.slidesURL, slidesDownloadState == .notDownloaded, !isOffline {
@@ -93,7 +93,7 @@ extension Video {
     var combinedUserActions: [UIAlertAction] {
         var actions: [UIAlertAction] = []
 
-        let isOffline = ReachabilityHelper.connection == .none
+        let isOffline = !ReachabilityHelper.hasConnection
         let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: self)
         let slidesDownloadState = SlidesPersistenceManager.shared.downloadState(for: self)
 

@@ -132,6 +132,8 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
 
     @IBAction private func issueTopicChanged() {
         self.tableView.beginUpdates()
+        // Additionally to hiding the entire cell, we also hide the picker view to improve the hide/show animation.
+        self.coursePicker.isHidden = self.issueTypeSegmentedControl.selectedSegmentIndex != issueTypeSegmentedControl.numberOfSegments - 1
         self.tableView.endUpdates()
     }
 

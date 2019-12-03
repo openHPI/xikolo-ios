@@ -513,22 +513,21 @@
                             </tableViewSection>
                             <tableViewSection id="uow-c8-Cf3">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="iLZ-Wk-p4c">
-                                        <rect key="frame" x="20" y="381.5" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="216" id="iLZ-Wk-p4c">
+                                        <rect key="frame" x="20" y="381.5" width="374" height="216"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iLZ-Wk-p4c" translatesAutoresizingMaskIntoConstraints="NO" id="yag-1O-rf5">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="216"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleAspectFit" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqm-FG-FoJ">
+                                                <pickerView contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqm-FG-FoJ">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="216"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="374" id="Ueg-9m-agi"/>
-                                                    </constraints>
                                                 </pickerView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="mqm-FG-FoJ" firstAttribute="centerX" secondItem="yag-1O-rf5" secondAttribute="centerX" id="23A-6S-7do"/>
-                                                <constraint firstItem="mqm-FG-FoJ" firstAttribute="centerY" secondItem="yag-1O-rf5" secondAttribute="centerY" id="dTH-Nr-AHt"/>
+                                                <constraint firstAttribute="trailing" secondItem="mqm-FG-FoJ" secondAttribute="trailing" id="230-gG-UlD"/>
+                                                <constraint firstItem="mqm-FG-FoJ" firstAttribute="leading" secondItem="yag-1O-rf5" secondAttribute="leading" id="D50-tK-SHt"/>
+                                                <constraint firstAttribute="bottom" secondItem="mqm-FG-FoJ" secondAttribute="bottom" id="DNr-vn-OQt"/>
+                                                <constraint firstItem="mqm-FG-FoJ" firstAttribute="top" secondItem="yag-1O-rf5" secondAttribute="top" id="jiv-sb-4K2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -537,7 +536,7 @@
                             <tableViewSection headerTitle="Your Issue" id="Kr0-w1-KaR">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dRf-Zv-2xu">
-                                        <rect key="frame" x="20" y="481" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="653.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dRf-Zv-2xu" id="BbS-hH-4Ez">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -714,7 +713,7 @@
     </scenes>
     <resources>
         <image name="avatar" width="500" height="500"/>
-        <image name="profile header" width="1000" height="659"/>
+        <image name="profile header" width="1734" height="808"/>
         <image name="tab bar items/account" width="28" height="28"/>
     </resources>
 </document>

@@ -34,11 +34,6 @@ class CourseItemListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.sectionHeaderHeight = UITableView.automaticDimension
-        self.tableView.estimatedSectionHeaderHeight = 50
-        self.tableView.rowHeight = UITableView.automaticDimension
-        self.tableView.estimatedRowHeight = 100
-
         // register custom section header view
         self.tableView.register(UINib(resource: R.nib.courseItemHeader), forHeaderFooterViewReuseIdentifier: R.nib.courseItemHeader.name)
 

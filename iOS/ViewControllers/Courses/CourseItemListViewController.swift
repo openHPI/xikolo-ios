@@ -23,7 +23,7 @@ class CourseItemListViewController: UITableViewController {
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
     var isPreloading = false
-    var inOfflineMode = ReachabilityHelper.connection == .none {
+    var inOfflineMode = !ReachabilityHelper.hasConnection {
         didSet {
             if oldValue != self.inOfflineMode {
                 self.tableView.reloadData()
@@ -70,7 +70,7 @@ class CourseItemListViewController: UITableViewController {
     }
 
     @objc func reachabilityChanged() {
-        self.inOfflineMode = ReachabilityHelper.connection == .none
+        self.inOfflineMode = !ReachabilityHelper.hasConnection
     }
 
     func preloadCourseContent() {

@@ -7,8 +7,18 @@ import BrightFutures
 import Common
 import CoreData
 import UIKit
+import Binge
+import AVFoundation
 
 class ChannelListViewController: UICollectionViewController {
+
+//    let playerViewController = BingePlayerViewController()
+//
+//    public static func playChannelTeaser() {
+//        self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
+//            self.playerViewController.startPlayback()
+//            }
+//    }
 
     private var dataSource: CoreDataCollectionViewDataSource<ChannelListViewController>!
 

@@ -38,6 +38,9 @@
 /* title of learnings view of course view */
 "course-area.view.learnings.title" = "Lernmaterial";
 
+/* title of progress view of course view */
+"course-area.view.progress.title" = "Fortschritt";
+
 /* title of recap view of course view */
 "course-area.view.recap.title" = "Recap";
 

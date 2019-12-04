@@ -7,7 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021DA1A82386A12400E6E763 /* ProgressStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021DA1A623869C1700E6E763 /* ProgressStackView.swift */; };
 		023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B8E68230615E90027E370 /* SceneDelegate.swift */; };
+		0262E6C523729C29007C9057 /* ExerciseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C423729C29007C9057 /* ExerciseProgress.swift */; };
+		0262E6C72372C797007C9057 /* VisitProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C62372C797007C9057 /* VisitProgress.swift */; };
+		0262E6C92372CBD5007C9057 /* SectionProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C82372CBD5007C9057 /* SectionProgress.swift */; };
+		0262E6CC23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6CB23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift */; };
+		026A1CA6239141C600F61976 /* CourseTotalProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026A1CA5239141C600F61976 /* CourseTotalProgressView.swift */; };
+		0270F4AA234CBD15008A1FD1 /* CourseProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0270F4A9234CBD15008A1FD1 /* CourseProgress.storyboard */; };
+		0270F4AC234CBFBC008A1FD1 /* CourseProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270F4AB234CBFBC008A1FD1 /* CourseProgressViewController.swift */; };
+		0280CB14237CBD4100B774BE /* SectionProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0280CB13237CBD4100B774BE /* SectionProgressCell.swift */; };
+		02E20BE823882CFB006C9345 /* VisitProgressStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */; };
+		02FE3EAE235502C300E3ECB4 /* CourseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */; };
 		36CCE9152A57516F7B4DCF67 /* Pods_Common_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404B6E3B7B07070C964CF6A2 /* Pods_Common_Tests.framework */; };
 		498CD6E73ECFB46C24208C01 /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 330DFF127FCB2215F2A56BA4 /* Pods_Common.framework */; };
 		5001321F215AAAEE0055016F /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
@@ -115,6 +126,8 @@
 		507D7240233784CE00DADE06 /* CourseOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 507D723F233784CE00DADE06 /* CourseOverview.storyboard */; };
 		507DFF9A2153E397006DC140 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 507DFF9C2153E397006DC140 /* InfoPlist.strings */; };
 		507F7FD62371B5E70031DC0B /* BingeMediaSelectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FD52371B5E70031DC0B /* BingeMediaSelectionDataSource.swift */; };
+		507F7FDA2372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FD92372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift */; };
+		507F7FDC2372DA530031DC0B /* CourseProgressHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FDB2372DA530031DC0B /* CourseProgressHelper.swift */; };
 		508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */; };
 		508AB2C02109F0A10079EAE5 /* DocumentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */; };
 		508AB2C22109F0DE0079EAE5 /* DocumentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */; };
@@ -387,7 +400,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		021DA1A623869C1700E6E763 /* ProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStackView.swift; sourceTree = "<group>"; };
 		023B8E68230615E90027E370 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		0262E6C423729C29007C9057 /* ExerciseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseProgress.swift; sourceTree = "<group>"; };
+		0262E6C62372C797007C9057 /* VisitProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgress.swift; sourceTree = "<group>"; };
+		0262E6C82372CBD5007C9057 /* SectionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgress.swift; sourceTree = "<group>"; };
+		0262E6CB23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SectionProgressHelper+FetchRequest.swift"; sourceTree = "<group>"; };
+		026A1CA5239141C600F61976 /* CourseTotalProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTotalProgressView.swift; sourceTree = "<group>"; };
+		0270F4A9234CBD15008A1FD1 /* CourseProgress.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CourseProgress.storyboard; sourceTree = "<group>"; };
+		0270F4AB234CBFBC008A1FD1 /* CourseProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgressViewController.swift; sourceTree = "<group>"; };
+		0280CB13237CBD4100B774BE /* SectionProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgressCell.swift; sourceTree = "<group>"; };
+		02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgressStackView.swift; sourceTree = "<group>"; };
+		02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgress.swift; sourceTree = "<group>"; };
 		0630F12AF742EF6C154CD071 /* Pods-Common.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.openhpi-ios-release.xcconfig"; path = "Pods/Target Support Files/Pods-Common/Pods-Common.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
 		10DFB61E34972A347EE799B8 /* Pods-Common.openhpi-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.openhpi-ios-debug.xcconfig"; path = "Pods/Target Support Files/Pods-Common/Pods-Common.openhpi-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		138E3C0577249A9F3ADFF8CF /* Pods-Common-Tests.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.openhpi-ios-release.xcconfig"; path = "Pods/Target Support Files/Pods-Common-Tests/Pods-Common-Tests.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
@@ -611,6 +635,8 @@
 		507DFF9F2153E411006DC140 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		507DFFA02153E41B006DC140 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		507F7FD52371B5E70031DC0B /* BingeMediaSelectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingeMediaSelectionDataSource.swift; sourceTree = "<group>"; };
+		507F7FD92372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseProgressHelper+FetchRequests.swift"; sourceTree = "<group>"; };
+		507F7FDB2372DA530031DC0B /* CourseProgressHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgressHelper.swift; sourceTree = "<group>"; };
 		508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFWebViewController.storyboard; sourceTree = "<group>"; };
 		508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentHeader.xib; sourceTree = "<group>"; };
 		508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHeader.swift; sourceTree = "<group>"; };
@@ -890,6 +916,9 @@
 				50092A81237D671900A1503F /* Channel.swift */,
 				24A16D7B1CFDE60200CAD9FE /* Content.swift */,
 				24D48E171CCA4FC100E8051E /* Course.swift */,
+				02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */,
+				0262E6C82372CBD5007C9057 /* SectionProgress.swift */,
+				0262E6C423729C29007C9057 /* ExerciseProgress.swift */,
 				AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */,
 				ABFFA85B1EAB6F4700544AB3 /* CourseCertificatesHash.swift */,
 				4E6AB1F11DD36AB500B048DB /* CourseDate.swift */,
@@ -915,6 +944,7 @@
 				ABFCF7611E81EEC40043C7B7 /* UserProfile.swift */,
 				24A16D6B1CFC883A00CAD9FE /* Video.swift */,
 				50F6A5B51FB316A6007DBAFF /* VideoStream.swift */,
+				0262E6C62372C797007C9057 /* VisitProgress.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -935,11 +965,15 @@
 		24B651471D3551C400624DBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				021DA1A623869C1700E6E763 /* ProgressStackView.swift */,
+				02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */,
 				50046F6E216B938D00D59073 /* LoadingButton.swift */,
 				503988722166920400F9043B /* ShadowContainerView.swift */,
 				5077012D218F38BC005568A6 /* InnerPillLabel.swift */,
+				026A1CA5239141C600F61976 /* CourseTotalProgressView.swift */,
 				508B9FA7211D7A600090BD16 /* RefreshControl.swift */,
 				50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */,
+				0280CB13237CBD4100B774BE /* SectionProgressCell.swift */,
 				508FF44121AB390400801530 /* SubtitleTableViewCell.swift */,
 				50092A8F237D89BD00A1503F /* ChannelCell.swift */,
 				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
@@ -1207,6 +1241,8 @@
 				50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */,
 				50F57D391FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift */,
 				50F57D1F1FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift */,
+				507F7FD92372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift */,
+				0262E6CB23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift */,
 				5054B2E22108836300CE9067 /* DocumentHelper+FetchRequests.swift */,
 				5054B2E82108BF9B00CE9067 /* DocumentLocalizationHelper+FetchRequest.swift */,
 				700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */,
@@ -1411,6 +1447,7 @@
 				50D91643207D080000DDB6E1 /* CourseArea.swift */,
 				5017B3BB204983E7001D90A1 /* CourseAreaListViewController.swift */,
 				70893B5521C3D1F600AF22E3 /* LTIHintViewController.swift */,
+				0270F4AB234CBFBC008A1FD1 /* CourseProgressViewController.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -1578,6 +1615,7 @@
 				4E2B82191DDB00C900559217 /* CourseDateHelper.swift */,
 				2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */,
 				240E03441CE38D590078A364 /* CourseSectionHelper.swift */,
+				507F7FDB2372DA530031DC0B /* CourseProgressHelper.swift */,
 				5054B2E0210880FA00CE9067 /* DocumentHelper.swift */,
 				ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */,
 				8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */,
@@ -1617,6 +1655,7 @@
 				50044FB9232773F2004D1AD8 /* CourseLearningsWeb.storyboard */,
 				82BE606F232FBB86000353B4 /* CourseDetails.storyboard */,
 				50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */,
+				0270F4A9234CBD15008A1FD1 /* CourseProgress.storyboard */,
 				5054B2E42108B19500CE9067 /* CourseDocuments.storyboard */,
 				5040A60920795BFD00E98351 /* WebViewController.storyboard */,
 				508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */,
@@ -1934,6 +1973,7 @@
 				50044FD723278F25004D1AD8 /* CourseLearningsVideo.storyboard in Resources */,
 				50CF200220DCDBFC0011BFE9 /* CourseItemHeader.xib in Resources */,
 				5058578421344C75006A5D15 /* PseudoCourseCell.xib in Resources */,
+				0270F4AA234CBD15008A1FD1 /* CourseProgress.storyboard in Resources */,
 				50CF200320DCDBFC0011BFE9 /* assets-ios.xcassets in Resources */,
 				50D65A0C20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets in Resources */,
 				50CF200520DCDBFC0011BFE9 /* Settings.bundle in Resources */,
@@ -2264,8 +2304,10 @@
 				50CF1F6F20DCDBFC0011BFE9 /* UIAlertViewController+customView.swift in Sources */,
 				50CF1F7020DCDBFC0011BFE9 /* UIView+shake.swift in Sources */,
 				507896C8233DEA1A00EA65E5 /* Course+share.swift in Sources */,
+				0270F4AC234CBFBC008A1FD1 /* CourseProgressViewController.swift in Sources */,
 				50253A2B22BA2F2A00FB63FD /* UICollectionViewFlowLayout+RTL.swift in Sources */,
 				50CF1F7220DCDBFC0011BFE9 /* CardListLayout.swift in Sources */,
+				026A1CA6239141C600F61976 /* CourseTotalProgressView.swift in Sources */,
 				5095B1DD20EB81E900572924 /* Crashlytics.swift in Sources */,
 				5046BD0A212B4DC700B9F2CD /* DocumentLocalization+Download.swift in Sources */,
 				50CF1F7520DCDBFC0011BFE9 /* UIAlertViewController+spinner.swift in Sources */,
@@ -2281,6 +2323,7 @@
 				508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */,
 				50CF1F7D20DCDBFC0011BFE9 /* CourseDetailsViewController.swift in Sources */,
 				503CEE962177082D00F34694 /* ProcotoredItemViewController.swift in Sources */,
+				0280CB14237CBD4100B774BE /* SectionProgressCell.swift in Sources */,
 				50CF1F8020DCDBFC0011BFE9 /* XikoloNavigationController.swift in Sources */,
 				50CF1F8120DCDBFC0011BFE9 /* UserActionsDelegate.swift in Sources */,
 				700398C221A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift in Sources */,
@@ -2327,6 +2370,7 @@
 				503988732166920400F9043B /* ShadowContainerView.swift in Sources */,
 				50CF1FB820DCDBFC0011BFE9 /* SlidesPersistenceManager.swift in Sources */,
 				50CF1FB920DCDBFC0011BFE9 /* CourseItemCell.swift in Sources */,
+				021DA1A82386A12400E6E763 /* ProgressStackView.swift in Sources */,
 				507D723E233780AD00DADE06 /* DashboardViewController.swift in Sources */,
 				503988792167A04200F9043B /* CourseItem+DetailedContent.swift in Sources */,
 				5044C8DD21A8089C006490CE /* ContentPersistenceManager.swift in Sources */,
@@ -2365,6 +2409,7 @@
 				50C21DE823549D4A00D7A1A6 /* UICollectionView+EmptyState.swift in Sources */,
 				50CF1FE820DCDBFC0011BFE9 /* UIView+SafeCastable.swift in Sources */,
 				50CF1FEB20DCDBFC0011BFE9 /* CircularProgressView.swift in Sources */,
+				02E20BE823882CFB006C9345 /* VisitProgressStackView.swift in Sources */,
 				5039887721679A3500F9043B /* PreloadableCourseItemContent.swift in Sources */,
 				50B71B88212AC61C008CE681 /* DocumentsPersistenceManager.swift in Sources */,
 				50CF1FEC20DCDBFC0011BFE9 /* StreamPersistenceManager.swift in Sources */,
@@ -2378,18 +2423,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				50FA2E5B20E4B26400656776 /* String+ascii.swift in Sources */,
+				0262E6C92372CBD5007C9057 /* SectionProgress.swift in Sources */,
 				50FA2E2820E4B24A00656776 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				50FA2E2220E4B24A00656776 /* CourseHelper+FetchRequests.swift in Sources */,
 				50FA2E5E20E4B26400656776 /* URL+URLQueryItem.swift in Sources */,
 				50FA2E6420E51AD000656776 /* UIApplication+AppInfo.swift in Sources */,
+				02FE3EAE235502C300E3ECB4 /* CourseProgress.swift in Sources */,
 				50FA2E3620E4B25800656776 /* Content.swift in Sources */,
 				50092A86237D7EA000A1503F /* ChannelHelper.swift in Sources */,
 				50FA2E4620E4B25800656776 /* TrackingEvent.swift in Sources */,
 				504D83FC215B64EC006F2447 /* APIStatus.swift in Sources */,
+				0262E6C72372C797007C9057 /* VisitProgress.swift in Sources */,
 				50FA2E1720E4B24300656776 /* EnrollmentHelper.swift in Sources */,
 				50FA2E5D20E4B26400656776 /* UIColor+hex.swift in Sources */,
 				50FA2E1F20E4B24300656776 /* UserProfileHelper.swift in Sources */,
 				50FA2E0E20E4B24300656776 /* CoreDataHelper.swift in Sources */,
+				0262E6CC23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift in Sources */,
 				50FA2E3720E4B25800656776 /* Course.swift in Sources */,
 				50FA2E2C20E4B24A00656776 /* VideoHelper+FetchRequests.swift in Sources */,
 				50FA2E1920E4B24300656776 /* PeerAssessmentHelper.swift in Sources */,
@@ -2417,6 +2466,7 @@
 				50FA2E5420E4B26400656776 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				50FA2E3E20E4B25800656776 /* EnrollmentCertificates.swift in Sources */,
 				50FA2E4E20E4B25E00656776 /* SafeCastable.swift in Sources */,
+				507F7FDC2372DA530031DC0B /* CourseProgressHelper.swift in Sources */,
 				505641E52119B9A6009FC4F0 /* ObjectsDidChangeNotification.swift in Sources */,
 				50FA2E0920E4B23600656776 /* Brand.swift in Sources */,
 				50FA2E5020E4B26400656776 /* Collection+SafeSubscript.swift in Sources */,
@@ -2437,6 +2487,7 @@
 				50FA2E1D20E4B24300656776 /* TrackingHelper.swift in Sources */,
 				50FA2E2720E4B24A00656776 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				50FA2E4C20E4B25800656776 /* Video.swift in Sources */,
+				507F7FDA2372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift in Sources */,
 				50FA2E4520E4B25800656776 /* RichText.swift in Sources */,
 				50046F6D216B53EB00D59073 /* Notification+CoreData.swift in Sources */,
 				50FA2E4320E4B25800656776 /* QuizQuestion.swift in Sources */,
@@ -2459,6 +2510,7 @@
 				5095B1DC20EB570B00572924 /* Filemanager+temporaryFile.swift in Sources */,
 				50FA2E1B20E4B24300656776 /* QuizHelper.swift in Sources */,
 				50FA2DFE20E4B1FB00656776 /* Error.swift in Sources */,
+				0262E6C523729C29007C9057 /* ExerciseProgress.swift in Sources */,
 				50FA2E2120E4B24A00656776 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				50FA2E5A20E4B26400656776 /* Optional+require.swift in Sources */,
 				50FA2E1520E4B24300656776 /* CourseItemHelper.swift in Sources */,

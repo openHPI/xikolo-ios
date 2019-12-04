@@ -81,8 +81,8 @@ class CourseDetailsViewController: UIViewController {
         })
 
         if let description = self.course.courseDescription ?? self.course.abstract {
-            MarkdownHelper.attributedString(for: description).onSuccess(DispatchQueue.main.context) { attributedString in
-                self.descriptionView.attributedText = attributedString
+            MarkdownHelper.attributedString(for: description).onSuccess { [weak self] attributedString in
+                self?.descriptionView.attributedText = attributedString
             }
         }
 

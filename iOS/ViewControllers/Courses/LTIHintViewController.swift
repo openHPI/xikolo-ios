@@ -53,9 +53,9 @@ class LTIHintViewController: UIViewController {
         self.startButton.backgroundColor = Brand.default.colors.primary
 
         if let markdown = ltiExercise.instructions {
-            MarkdownHelper.attributedString(for: markdown).onSuccess(DispatchQueue.main.context) { attributedString in
-                self.instructionsView.attributedText = attributedString
-                self.instructionsView.isHidden = false
+            MarkdownHelper.attributedString(for: markdown).onSuccess { [weak self] attributedString in
+                self?.instructionsView.attributedText = attributedString
+                self?.instructionsView.isHidden = false
             }
         }
 

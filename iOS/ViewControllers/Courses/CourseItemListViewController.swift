@@ -23,7 +23,7 @@ class CourseItemListViewController: UITableViewController {
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
     var isPreloading = false
-    var inOfflineMode = ReachabilityHelper.connection == .none {
+    var inOfflineMode = !ReachabilityHelper.hasConnection {
         didSet {
             if oldValue != self.inOfflineMode {
                 self.tableView.reloadData()
@@ -33,11 +33,6 @@ class CourseItemListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.tableView.sectionHeaderHeight = UITableView.automaticDimension
-        self.tableView.estimatedSectionHeaderHeight = 50
-        self.tableView.rowHeight = UITableView.automaticDimension
-        self.tableView.estimatedRowHeight = 100
 
         // register custom section header view
         self.tableView.register(UINib(resource: R.nib.courseItemHeader), forHeaderFooterViewReuseIdentifier: R.nib.courseItemHeader.name)
@@ -75,7 +70,7 @@ class CourseItemListViewController: UITableViewController {
     }
 
     @objc func reachabilityChanged() {
-        self.inOfflineMode = ReachabilityHelper.connection == .none
+        self.inOfflineMode = !ReachabilityHelper.hasConnection
     }
 
     func preloadCourseContent() {

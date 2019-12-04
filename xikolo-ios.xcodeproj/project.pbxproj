@@ -324,7 +324,10 @@
 		700398C421A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */; };
 		7007E4132133FFB6005AC7A6 /* DownloadedContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */; };
 		70893B5621C3D1F600AF22E3 /* LTIHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70893B5521C3D1F600AF22E3 /* LTIHintViewController.swift */; };
+		8251A50B237182F200A443A9 /* HelpdeskTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50A237182F200A443A9 /* HelpdeskTicket.swift */; };
+		8251A50D23718A4500A443A9 /* HelpdeskTicketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */; };
 		82BE606D232FBB86000353B4 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82BE606F232FBB86000353B4 /* CourseDetails.storyboard */; };
+		82D13D0C235726E70006A0D9 /* HelpdeskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D13D0B235726E70006A0D9 /* HelpdeskViewController.swift */; };
 		B4E079EB218791A600EA53F5 /* CertificateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E079EA218791A600EA53F5 /* CertificateCell.xib */; };
 		B4E079ED21879C9200EA53F5 /* CertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E079EC21879C9200EA53F5 /* CertificateCell.swift */; };
 		F88ADBF4AC545211C7BA4AF5 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58514D98E3A98476D78CB780 /* Pods_iOS.framework */; };
@@ -735,8 +738,11 @@
 		7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
+		8251A50A237182F200A443A9 /* HelpdeskTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskTicket.swift; sourceTree = "<group>"; };
+		8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskTicketHelper.swift; sourceTree = "<group>"; };
 		82BE606E232FBB86000353B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseDetails.storyboard; sourceTree = "<group>"; };
 		82BE6071232FBB8C000353B4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDetails.strings; sourceTree = "<group>"; };
+		82D13D0B235726E70006A0D9 /* HelpdeskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskViewController.swift; sourceTree = "<group>"; };
 		A90587C51B3BFC130095DB89 /* assets-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios.xcassets"; sourceTree = "<group>"; };
 		AB17C57E1DFCC5B50013BBCD /* PlatformEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEvent.swift; sourceTree = "<group>"; };
 		AB1C03501D92BF3F0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabCourses.strings; sourceTree = "<group>"; };
@@ -893,6 +899,7 @@
 				5054B2DE21087DB100CE9067 /* DocumentLocalization.swift */,
 				243CE47E1D709999007C59B6 /* Enrollment.swift */,
 				AB4A01AD1E7EA151005CD595 /* EnrollmentCertificates.swift */,
+				8251A50A237182F200A443A9 /* HelpdeskTicket.swift */,
 				ABC8A1631D689ED80059CEF2 /* LTIExercise.swift */,
 				ABC8A1651D689ED80059CEF2 /* PeerAssessment.swift */,
 				AB17C57E1DFCC5B50013BBCD /* PlatformEvent.swift */,
@@ -1376,6 +1383,7 @@
 				5044C8E421A85488006490CE /* DownloadedContentTypeListViewController.swift */,
 				508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift */,
 				700398C121A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift */,
+				82D13D0B235726E70006A0D9 /* HelpdeskViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1572,6 +1580,7 @@
 				240E03441CE38D590078A364 /* CourseSectionHelper.swift */,
 				5054B2E0210880FA00CE9067 /* DocumentHelper.swift */,
 				ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */,
+				8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */,
 				ABDD84C81D8E063100C7D193 /* LTIExerciseHelper.swift */,
 				ABDD84C31D8E056000C7D193 /* PeerAssessmentHelper.swift */,
 				AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */,
@@ -2303,6 +2312,7 @@
 				508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift in Sources */,
 				508FF44621AB42B200801530 /* UITableViewController+resizeViews.swift in Sources */,
 				50CF1FA620DCDBFC0011BFE9 /* CourseCell.swift in Sources */,
+				82D13D0C235726E70006A0D9 /* HelpdeskViewController.swift in Sources */,
 				50CF1FA820DCDBFC0011BFE9 /* CourseAreaListViewController.swift in Sources */,
 				50CF1FAD20DCDBFC0011BFE9 /* R.generated.swift in Sources */,
 				507CC05B21788487008819FE /* PillView.swift in Sources */,
@@ -2442,6 +2452,7 @@
 				50FA2E0820E4B22E00656776 /* DateLabelHelper.swift in Sources */,
 				50FA2E2620E4B24A00656776 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
 				508AB2EC211448E40079EAE5 /* BrandFeatures.swift in Sources */,
+				8251A50B237182F200A443A9 /* HelpdeskTicket.swift in Sources */,
 				50FA2E4B20E4B25800656776 /* UserProfile.swift in Sources */,
 				5095B1E420EBD41900572924 /* NSManagedObjectContext+typed.swift in Sources */,
 				50FA2E4A20E4B25800656776 /* User.swift in Sources */,
@@ -2463,6 +2474,7 @@
 				50FA2E4220E4B25800656776 /* Quiz.swift in Sources */,
 				504FF508231E472500AAF595 /* URL+Marschal.swift in Sources */,
 				50FA2E2520E4B24A00656776 /* CourseSectionHelper+FetchRequests.swift in Sources */,
+				8251A50D23718A4500A443A9 /* HelpdeskTicketHelper.swift in Sources */,
 				50FA2E2420E4B24A00656776 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				50FA2DFF20E4B1FB00656776 /* Routes.swift in Sources */,
 				50092A89237D825900A1503F /* ChannelHelper+FetchRequests.swift in Sources */,

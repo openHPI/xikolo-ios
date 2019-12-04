@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                         <viewLayoutGuide key="safeArea" id="rJc-jS-PCf"/>
                         <inset key="separatorInset" minX="28" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="P6G-f9-mf8">
-                            <rect key="frame" x="0.0" y="147" width="414" height="73"/>
+                            <rect key="frame" x="0.0" y="176" width="414" height="73"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="next section start" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lh1-zS-1LH">
@@ -41,19 +41,19 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseItemCell" rowHeight="74" id="G9e-ER-HXC" customClass="CourseItemCell" customModule="iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="414" height="74"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseItemCell" id="G9e-ER-HXC" customClass="CourseItemCell" customModule="iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="414" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" tableViewCell="G9e-ER-HXC" id="dUS-v4-gua">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="74"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ruK-fv-bts">
-                                            <rect key="frame" x="0.0" y="0.0" width="24" height="74"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="24" height="103"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0u-JP-r4C">
-                                            <rect key="frame" x="8" y="33" width="8" height="8"/>
+                                            <rect key="frame" x="8" y="47.5" width="8" height="8"/>
                                             <color key="backgroundColor" red="0.18823529410000001" green="0.51372549020000002" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="f0u-JP-r4C" secondAttribute="height" multiplier="1:1" id="DQl-4X-hNQ"/>
@@ -61,17 +61,17 @@
                                             </constraints>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L8U-Fp-wH1">
-                                            <rect key="frame" x="24" y="23" width="28" height="28"/>
+                                            <rect key="frame" x="24" y="37.5" width="28" height="28"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="28" id="SKE-Ma-GnJ"/>
                                                 <constraint firstAttribute="width" constant="28" id="mLi-L0-3YS"/>
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="U0c-TZ-Kbb">
-                                            <rect key="frame" x="60" y="15" width="290" height="44"/>
+                                            <rect key="frame" x="60" y="15.5" width="290" height="72.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="850" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vm4-Hr-k3d">
-                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="12.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="850" verticalCompressionResistancePriority="1000" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vm4-Hr-k3d">
+                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="20.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="highlightedColor"/>
                                                     <attributedString key="userComments">
@@ -84,20 +84,12 @@
                                                     </attributedString>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G72-sV-YTv" customClass="CourseItemDetailView" customModule="iOS" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="14.5" width="290" height="29.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="cwc-td-Mvi"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="cwc-td-Mvi"/>
-                                                        </mask>
-                                                    </variation>
+                                                    <rect key="frame" x="0.0" y="22.5" width="290" height="50"/>
                                                 </view>
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOH-l8-5Rz">
-                                            <rect key="frame" x="358" y="0.0" width="44" height="74"/>
+                                            <rect key="frame" x="358" y="0.0" width="44" height="103"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="Uxd-GS-kCe"/>
                                             </constraints>

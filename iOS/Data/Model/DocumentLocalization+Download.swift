@@ -24,7 +24,7 @@ extension DocumentLocalization {
     }
 
     private var downloadAction: UIAlertAction? {
-        let isOffline = ReachabilityHelper.connection == .none
+        let isOffline = !ReachabilityHelper.hasConnection
         let downloadState = DocumentsPersistenceManager.shared.downloadState(for: self)
 
         if let url = self.fileURL, downloadState == .notDownloaded, !isOffline {

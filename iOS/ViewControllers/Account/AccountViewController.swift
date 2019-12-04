@@ -156,6 +156,7 @@ class AccountViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.dataSource.item(for: indexPath).performAction(on: self)
+        tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
     }
 
     override func viewDidLayoutSubviews() {
@@ -168,29 +169,6 @@ class AccountViewController: UITableViewController {
         let safariVC = SFSafariViewController(url: url)
         safariVC.preferredControlTintColor = Brand.default.colors.window
         self.present(safariVC, animated: trueUnlessReduceMotionEnabled)
-    }
-
-    func sendFeedbackMail() {
-        let composeVC = MFMailComposeViewController()
-        composeVC.mailComposeDelegate = self
-        composeVC.setToRecipients(Brand.default.feedbackRecipients)
-        composeVC.setSubject(Brand.default.feedbackSubject)
-        composeVC.setMessageBody(self.feedbackMailSystemInfo, isHTML: true)
-        composeVC.navigationBar.tintColor = Brand.default.colors.window
-        self.present(composeVC, animated: trueUnlessReduceMotionEnabled)
-    }
-
-    private var feedbackMailSystemInfo: String {
-        let components = [
-            "<b>System info</b>",
-            "platform: \(UIApplication.platform)",
-            "os version: \(UIApplication.osVersion)",
-            "device: \(UIApplication.device)",
-            "app name: \(UIApplication.appName)",
-            "app version: \(UIApplication.appVersion)",
-            "app build: \(UIApplication.appBuild)",
-        ]
-        return "<br/><br/><small>" + components.joined(separator: "<br/>") + "</small>"
     }
 
 }

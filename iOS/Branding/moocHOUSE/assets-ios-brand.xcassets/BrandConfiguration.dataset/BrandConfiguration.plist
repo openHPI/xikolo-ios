@@ -37,6 +37,8 @@
 		<true/>
 		<key>showCourseTeachers</key>
 		<true/>
+		<key>enableHelpdeskReactivationTopic</key>
+		<false/>
 	</dict>
 </dict>
 </plist>

@@ -110,7 +110,7 @@ class CourseDetailsViewController: UIViewController {
             self.enrollmentButton.backgroundColor = Brand.default.colors.primaryLight
             self.enrollmentButton.tintColor = ColorCompatibility.secondaryLabel
             self.enrollmentOptionsButton.tintColor = ColorCompatibility.secondaryLabel
-        } else if ReachabilityHelper.connection != .none {
+        } else if ReachabilityHelper.hasConnection {
             self.enrollmentButton.backgroundColor = Brand.default.colors.primary
             self.enrollmentButton.tintColor = ColorCompatibility.systemBackground
             self.enrollmentOptionsButton.tintColor = ColorCompatibility.systemBackground
@@ -120,7 +120,7 @@ class CourseDetailsViewController: UIViewController {
             self.enrollmentOptionsButton.tintColor = ColorCompatibility.secondaryLabel
         }
 
-        self.enrollmentButton.isEnabled = self.course.hasEnrollment || ReachabilityHelper.connection != .none
+        self.enrollmentButton.isEnabled = self.course.hasEnrollment || ReachabilityHelper.hasConnection
         self.enrollmentOptionsButton.isHidden = !self.course.hasEnrollment
     }
 

@@ -22,3 +22,30 @@
 
 /* Class = "UILabel"; text = "Logout"; ObjectID = "UOY-X6-cgU"; */
 "UOY-X6-cgU.text" = "Ausloggen";
+
+/* Class = "UIView"; accessibilityLabel = "Please describe your technical problem using the textbox below. Information about your browser and your e-mail address will be automatically submitted along with your issue report."; ObjectID = "0X5-zw-iYv"; */
+"0X5-zw-iYv.accessibilityLabel" = "";
+
+/* Class = "UITextField"; placeholder = "Your e-mail address"; ObjectID = "Fs0-LO-E4J"; */
+"Fs0-LO-E4J.placeholder" = "Ihre E-Mail-Addresse";
+
+/* Class = "UITextField"; placeholder = "Title of your issue"; ObjectID = "HJJ-fU-Fdn"; */
+"HJJ-fU-Fdn.placeholder" = "Titel für Ihre Anfrage";
+
+/* Class = "UITableViewSection"; headerTitle = "Your Issue"; ObjectID = "Kr0-w1-KaR"; */
+"Kr0-w1-KaR.headerTitle" = "Ihr Anliegen";
+
+/* Class = "UITableViewSection"; headerTitle = "Your e-mail address"; ObjectID = "gbn-6Q-irY"; */
+"gbn-6Q-irY.headerTitle" = "Ihre E-Mail-Adresse";
+
+/* Class = "UITableViewSection"; headerTitle = "Title of your issue"; ObjectID = "nus-Iv-Ng5"; */
+"nus-Iv-Ng5.headerTitle" = "Titel für Ihre Anfrage";
+
+/* Class = "UILabel"; accessibilityLabel = "Please describe your technical problem using the textbox below. Information about your browser and your e-mail address will be automatically submitted along with your issue report."; ObjectID = "okD-ae-Y3P"; */
+"okD-ae-Y3P.accessibilityLabel" = "";
+
+/* Class = "UILabel"; text = "Please describe your technical problem using the textbox below. Information about your browser and your e-mail address will be automatically submitted along with your issue report."; ObjectID = "okD-ae-Y3P"; */
+"okD-ae-Y3P.text" = "Bitte beschreiben Sie Ihr Anliegen mit Hilfe des Formulars unten. Informationen über Ihren Browser und Ihre E-Mail-Adresse werden automatisch mit Ihrer Anfrage übermittelt.";
+
+/* Class = "UILabel"; text = "Unfortunately, your issue couldn't be forwarded. Please try again."; ObjectID = "FPo-xL-mqX"; */
+"FPo-xL-mqX.text" = "Leider konnte ihr Anliegen nicht weitergeleitet werden. Bitte versuchen Sie es erneut";

@@ -68,7 +68,7 @@ public enum TrackingHelper {
             return "wifi"
         case .cellular:
             return "mobile"
-        case .none:
+        case .offline:
             return "offline"
         }
     }

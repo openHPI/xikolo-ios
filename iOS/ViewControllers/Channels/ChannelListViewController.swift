@@ -3,12 +3,12 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import AVFoundation
+import Binge
 import BrightFutures
 import Common
 import CoreData
 import UIKit
-import Binge
-import AVFoundation
 
 class ChannelListViewController: UICollectionViewController {
 

@@ -13,7 +13,7 @@ class ChannelHeaderView: UICollectionReusableView {
 
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet weak var channelTeaserView: UIVisualEffectView!
+    @IBOutlet private weak var channelTeaserView: UIVisualEffectView!
 
     let playerViewController = BingePlayerViewController()
 
@@ -58,7 +58,6 @@ class ChannelHeaderView: UICollectionReusableView {
 //              }
     }
 }
-
 
 extension ChannelHeaderView: BingePlayerDelegate {
 

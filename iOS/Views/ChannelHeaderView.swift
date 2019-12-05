@@ -15,7 +15,8 @@ class ChannelHeaderView: UICollectionReusableView {
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var channelTeaserView: UIVisualEffectView!
 
-    let playerViewController = BingePlayerViewController()
+    weak var delegate: BingePlayerDelegate?
+    var channelTeaserUrl: URL?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,39 +33,21 @@ class ChannelHeaderView: UICollectionReusableView {
 
         self.channelTeaserView.isHidden = true
 
+        guard let stageStream = channel.stageStream else { return }
+        _ = stageStream
         guard let url = channel.stageStream?.hlsURL else { return }
+        self.channelTeaserUrl = url
 
         self.channelTeaserView.isHidden = false
         self.channelTeaserView.layer.roundCorners(for: .default)
-
-//        playerViewController.delegate = self
-//        playerViewController.tintColor = Brand.default.colors.window
-//        playerViewController.initiallyShowControls = false
-//        playerViewController.modalPresentationStyle = .fullScreen
-//
-//        if UserDefaults.standard.playbackRate > 0 {
-//            playerViewController.playbackRate = UserDefaults.standard.playbackRate
-//        }
-//
-//        playerViewController.asset = AVURLAsset(url: url)
 
     }
 
     @objc private func tapped() {
         print("tapped")
-//        ChannelListViewController.playChannelTeaser(ChannelListViewController)
-//        self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
-//            self.playerViewController.startPlayback()
-//              }
+        guard let url = self.channelTeaserUrl else { return }
+        delegate?.didTapPlay(url: url)
     }
-}
-
-extension ChannelHeaderView: BingePlayerDelegate {
-
-    func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {
-        UserDefaults.standard.playbackRate = newRate
-    }
-
 }
 
 extension ChannelHeaderView {

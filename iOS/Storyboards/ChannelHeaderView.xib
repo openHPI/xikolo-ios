@@ -28,30 +28,31 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <visualEffectView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WCN-N1-r8T">
-                    <rect key="frame" x="179" y="52" width="180" height="74.5"/>
+                    <rect key="frame" x="200.5" y="20" width="158.5" height="82"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vRb-bQ-kFm">
-                        <rect key="frame" x="0.0" y="0.0" width="180" height="74.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="158.5" height="82"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2J1-km-9Xs">
-                                <rect key="frame" x="0.0" y="0.0" width="180" height="74.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="158.5" height="82"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="MHe-R6-jQY">
-                                    <rect key="frame" x="0.0" y="0.0" width="180" height="74.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="158.5" height="82"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7XT-vN-YNL">
-                                            <rect key="frame" x="0.0" y="0.0" width="180" height="74.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7XT-vN-YNL">
+                                            <rect key="frame" x="0.0" y="0.0" width="158.5" height="82"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dYh-8l-ONu">
-                                                    <rect key="frame" x="0.0" y="24.5" width="40" height="26"/>
+                                                    <rect key="frame" x="16" y="40" width="35" height="26"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" text="Play Teaser" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BhV-hE-6X2">
-                                                    <rect key="frame" x="40" y="27" width="140" height="20.5"/>
+                                                    <rect key="frame" x="51" y="43" width="91.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <directionalEdgeInsets key="directionalLayoutMargins" top="16" leading="16" bottom="16" trailing="16"/>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -74,21 +75,17 @@
                         </constraints>
                     </view>
                     <gestureRecognizers/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="74.5" id="o4Y-I1-V79"/>
-                    </constraints>
                     <blurEffect style="systemThinMaterial"/>
                 </visualEffectView>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailingMargin" secondItem="qLH-4Y-N1Q" secondAttribute="trailing" id="53M-Mx-bs9"/>
                 <constraint firstItem="Jeh-F8-sXq" firstAttribute="top" secondItem="3cN-yh-Dzf" secondAttribute="top" id="9kq-II-Exe"/>
-                <constraint firstItem="WCN-N1-r8T" firstAttribute="top" secondItem="3cN-yh-Dzf" secondAttribute="topMargin" id="Dfh-5Q-bdf"/>
+                <constraint firstItem="WCN-N1-r8T" firstAttribute="top" secondItem="3cN-yh-Dzf" secondAttribute="top" constant="20" symbolic="YES" id="Dfh-5Q-bdf"/>
                 <constraint firstItem="qLH-4Y-N1Q" firstAttribute="top" secondItem="Jeh-F8-sXq" secondAttribute="bottom" constant="12" id="KUa-Iz-dI7"/>
                 <constraint firstAttribute="trailingMargin" secondItem="WCN-N1-r8T" secondAttribute="trailing" id="P6M-Jv-v7r"/>
                 <constraint firstItem="Jeh-F8-sXq" firstAttribute="leading" secondItem="Rcb-Xt-Bsx" secondAttribute="leading" id="Z6V-fq-Prw"/>
                 <constraint firstItem="Rcb-Xt-Bsx" firstAttribute="trailing" secondItem="Jeh-F8-sXq" secondAttribute="trailing" id="aAl-SW-Bfe"/>
-                <constraint firstItem="WCN-N1-r8T" firstAttribute="leading" secondItem="Rcb-Xt-Bsx" secondAttribute="leading" constant="179" id="b7o-hi-riD"/>
                 <constraint firstAttribute="bottom" secondItem="qLH-4Y-N1Q" secondAttribute="bottom" id="gZo-Ir-N1V"/>
                 <constraint firstItem="qLH-4Y-N1Q" firstAttribute="leading" secondItem="3cN-yh-Dzf" secondAttribute="leadingMargin" id="ykI-qj-SFo"/>
             </constraints>

@@ -12,17 +12,12 @@ import UIKit
 
 class ChannelListViewController: UICollectionViewController {
 
-//    let playerViewController = BingePlayerViewController()
-//
-//    public static func playChannelTeaser() {
-//        self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
-//            self.playerViewController.startPlayback()
-//            }
-//    }
+    private var playerViewController: BingePlayerViewController?
 
     private var dataSource: CoreDataCollectionViewDataSource<ChannelListViewController>!
 
     override func viewDidLoad() {
+
         self.collectionView?.register(R.nib.channelCell)
 
         super.viewDidLoad()
@@ -40,6 +35,17 @@ class ChannelListViewController: UICollectionViewController {
                                                            fetchedResultsControllers: [resultsController],
                                                            cellReuseIdentifier: reuseIdentifier,
                                                            delegate: self)
+
+
+        self.playerViewController = BingePlayerViewController()
+        playerViewController?.delegate = self
+        playerViewController?.tintColor = Brand.default.colors.window
+        playerViewController?.initiallyShowControls = false
+        playerViewController?.modalPresentationStyle = .fullScreen
+
+        if UserDefaults.standard.playbackRate > 0 {
+            playerViewController?.playbackRate = UserDefaults.standard.playbackRate
+        }
 
         self.refresh()
         self.setupEmptyState()
@@ -88,6 +94,21 @@ class ChannelListViewController: UICollectionViewController {
         flowLayout?.scrollDirection = self.traitCollection.horizontalSizeClass == .regular && size.width > size.height ? .horizontal : .vertical
     }
 
+}
+
+extension ChannelListViewController: BingePlayerDelegate {
+
+    func didTapPlay(url: URL) {
+        guard let playerViewController = self.playerViewController else { return }
+        self.playerViewController?.asset = AVURLAsset(url: url)
+        self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
+            self.playerViewController?.startPlayback()
+            }
+    }
+
+    func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {
+        UserDefaults.standard.playbackRate = newRate
+    }
 }
 
 extension ChannelListViewController: UICollectionViewDelegateFlowLayout {

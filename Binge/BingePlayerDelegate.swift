@@ -31,6 +31,6 @@ public extension BingePlayerDelegate {
     func didChangeSubtitles(from oldLanguageCode: String?, to newLanguageCode: String?) {}
     func didChangeLayout(from oldLayout: LayoutState, to newLayout: LayoutState) {}
     func didChangeOrientation(to orientation: UIInterfaceOrientation) {}
-    func didTapPlay(url: URL){}
+    func didTapPlay(url: URL) {}
 
 }

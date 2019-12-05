@@ -36,7 +36,6 @@ class ChannelListViewController: UICollectionViewController {
                                                            cellReuseIdentifier: reuseIdentifier,
                                                            delegate: self)
 
-
         self.playerViewController = BingePlayerViewController()
         playerViewController?.delegate = self
         playerViewController?.tintColor = Brand.default.colors.window
@@ -103,7 +102,7 @@ extension ChannelListViewController: BingePlayerDelegate {
         self.playerViewController?.asset = AVURLAsset(url: url)
         self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
             self.playerViewController?.startPlayback()
-            }
+        }
     }
 
     func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {

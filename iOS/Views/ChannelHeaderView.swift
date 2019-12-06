@@ -15,13 +15,12 @@ class ChannelHeaderView: UICollectionReusableView {
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var channelTeaserView: UIVisualEffectView!
 
-    weak var delegate: BingePlayerDelegate?
-    var channelTeaserUrl: URL?
+    weak var delegate: ChannelHeaderViewDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         channelTeaserView.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tappedPlayTeaserButton))
         self.channelTeaserView.addGestureRecognizer(tap)
     }
 
@@ -33,20 +32,15 @@ class ChannelHeaderView: UICollectionReusableView {
 
         self.channelTeaserView.isHidden = true
 
-        guard let stageStream = channel.stageStream else { return }
-        _ = stageStream
-        guard let url = channel.stageStream?.hlsURL else { return }
-        self.channelTeaserUrl = url
+        guard channel.stageStream != nil else { return }
 
         self.channelTeaserView.isHidden = false
         self.channelTeaserView.layer.roundCorners(for: .default)
 
     }
 
-    @objc private func tapped() {
-        print("tapped")
-        guard let url = self.channelTeaserUrl else { return }
-        delegate?.didTapPlay(url: url)
+    @objc private func tappedPlayTeaserButton() {
+        self.delegate?.playChannelTeaser()
     }
 }
 
@@ -61,5 +55,11 @@ extension ChannelHeaderView {
 
         return imageHeight + descriptionHeight + 12
     }
+
+}
+
+public protocol ChannelHeaderViewDelegate: AnyObject {
+
+    func playChannelTeaser()
 
 }

@@ -3,16 +3,12 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import AVFoundation
-import Binge
 import BrightFutures
 import Common
 import CoreData
 import UIKit
 
 class ChannelListViewController: UICollectionViewController {
-
-    private var playerViewController: BingePlayerViewController?
 
     private var dataSource: CoreDataCollectionViewDataSource<ChannelListViewController>!
 
@@ -35,16 +31,6 @@ class ChannelListViewController: UICollectionViewController {
                                                            fetchedResultsControllers: [resultsController],
                                                            cellReuseIdentifier: reuseIdentifier,
                                                            delegate: self)
-
-        self.playerViewController = BingePlayerViewController()
-        playerViewController?.delegate = self
-        playerViewController?.tintColor = Brand.default.colors.window
-        playerViewController?.initiallyShowControls = false
-        playerViewController?.modalPresentationStyle = .fullScreen
-
-        if UserDefaults.standard.playbackRate > 0 {
-            playerViewController?.playbackRate = UserDefaults.standard.playbackRate
-        }
 
         self.refresh()
         self.setupEmptyState()
@@ -91,22 +77,6 @@ class ChannelListViewController: UICollectionViewController {
     private func adjustScrollDirection(for size: CGSize) {
         let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         flowLayout?.scrollDirection = self.traitCollection.horizontalSizeClass == .regular && size.width > size.height ? .horizontal : .vertical
-    }
-
-}
-
-extension ChannelListViewController: BingePlayerDelegate {
-
-    func didTapPlay(url: URL) {
-        guard let playerViewController = self.playerViewController else { return }
-        self.playerViewController?.asset = AVURLAsset(url: url)
-        self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
-            self.playerViewController?.startPlayback()
-        }
-    }
-
-    func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {
-        UserDefaults.standard.playbackRate = newRate
     }
 }
 

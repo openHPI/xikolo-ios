@@ -18,8 +18,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="hbA-tw-ZeO"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" id="gg3-tJ-2Uw" customClass="CourseTotalProgressView" customModule="iOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="358.5" width="1024" height="302"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" id="gg3-tJ-2Uw" customClass="CourseTotalProgressView" customModule="iOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="1024" height="302"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" misplaced="YES" preservesSuperviewLayoutMargins="YES" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ct7-Me-MOJ">
@@ -262,7 +262,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="15" reuseIdentifier="sectionProgressCell" id="9j7-9Q-VqX" customClass="SectionProgressCell" customModule="iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="1024" height="302.5"/>
+                                <rect key="frame" x="0.0" y="330" width="1024" height="302.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" tableViewCell="9j7-9Q-VqX" id="kaM-h8-iLQ">
                                     <rect key="frame" x="0.0" y="0.0" width="1024" height="302.5"/>

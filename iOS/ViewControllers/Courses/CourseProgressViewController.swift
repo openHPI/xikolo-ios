@@ -45,11 +45,14 @@ class CourseProgressViewController: UITableViewController {
 
         if let progress = self.courseProgress {
             self.courseProgressView.configure(for: progress, showCourseTitle: self.course == nil)
-            self.tableView.resizeTableFooterView()
+            self.tableView.resizeTableHeaderView()
         }
     }
 
-
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.tableView.resizeTableHeaderView()
+    }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.scrollDelegate?.scrollViewDidScroll(scrollView)

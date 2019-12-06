@@ -355,3 +355,9 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video-Qualität mit WLAN";
+
+/* course progress visited */
+"course.progress.visited %@ of %@ visited" = "%@ von %@ besucht";
+
+/* course progress points */
+"course.progress.points %@ of %@ points" = "%@ von %@ Punkten";

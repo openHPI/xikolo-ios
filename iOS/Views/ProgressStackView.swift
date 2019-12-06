@@ -36,17 +36,14 @@ class ProgressStackView: UIStackView {
         self.progressView.progressTintColor = Brand.default.colors.primary
     }
 
-
-
     func configure(for progress: ExerciseProgress) {
         self.isHidden = progress.pointsAvailable()
 
-
-        // TODO: use localization
-
         let scored = progress.pointsScored.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
         let possible = progress.pointsPossible.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
-        let scoredText =  scored + " of " + possible + " points"
+
+        let format = NSLocalizedString("course.progress.points %@ of %@ points", comment: "course progress points")
+        let scoredText = String.localizedStringWithFormat(format, scored, possible)
         self.progressPointsScored.text = scoredText
 
         let percentageScored = progress.calculatePercentage()

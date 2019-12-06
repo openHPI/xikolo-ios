@@ -36,16 +36,13 @@ class VisitProgressStackView: UIStackView {
         self.progressView.progressTintColor = Brand.default.colors.primary
     }
 
-
-
     func configure(for progress: VisitProgress) {
-        self.isHidden = progress.pointsAvailable()
-
-        // TODO: use localization
 
         let visited = progress.itemsVisited.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
         let available = progress.itemsAvailable.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
-        let visitedText =  visited + " of " + available + " visited"
+
+        let format = NSLocalizedString("course.progress.visited %@ of %@ visited", comment: "course progress visited")
+        let visitedText = String.localizedStringWithFormat(format, visited, available)
         self.progressItemsVisited.text = visitedText
 
         let percentageVisited = progress.calculatePercentage()

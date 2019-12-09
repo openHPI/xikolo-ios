@@ -6,7 +6,9 @@
 import Common
 import UIKit
 
-class CourseTotalProgressView: UIView {
+/// Should be a subclass of `UITableViewHeaderFooterView`. This resolves potential resizing issues.
+/// See https://gist.github.com/smileyborg/50de5da1c921b73bbccf7f76b3694f6a
+class CourseTotalProgressView: UITableViewHeaderFooterView {
 
     @IBOutlet weak var courseProgressTitle: UILabel!
 
@@ -16,7 +18,6 @@ class CourseTotalProgressView: UIView {
     @IBOutlet weak var visitProgressStackView: VisitProgressStackView!
 
     func configure(for courseProgress: CourseProgress, showCourseTitle: Bool) {
-
         self.courseProgressTitle.text = "Total"
         mainProgressStackView.configure(for: courseProgress.mainProgress)
         selfTestProgressStackView.configure(for: courseProgress.selftestProgress)

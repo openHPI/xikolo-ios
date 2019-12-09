@@ -193,7 +193,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IuI-hv-c9l">
                                                     <rect key="frame" x="0.0" y="0.0" width="672" height="21"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="1Hw-SI-xDd">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="checkmark-circle" translatesAutoresizingMaskIntoConstraints="NO" id="1Hw-SI-xDd">
                                                             <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
                                                             <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <constraints>
@@ -439,7 +439,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RCM-9m-YNi">
                                                             <rect key="frame" x="0.0" y="0.0" width="672" height="21"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="3pB-tY-pIS">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="checkmark-circle" translatesAutoresizingMaskIntoConstraints="NO" id="3pB-tY-pIS">
                                                                     <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
                                                                     <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <constraints>
@@ -527,6 +527,6 @@
         <image name="Course item icons/bonus quiz" width="21" height="21"/>
         <image name="Course item icons/homework" width="21" height="21"/>
         <image name="Course item icons/quiz" width="21" height="21"/>
-        <image name="checkmark" width="21" height="21"/>
+        <image name="checkmark-circle" width="21" height="21"/>
     </resources>
 </document>

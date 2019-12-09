@@ -38,7 +38,7 @@ public class VisitProgress: NSObject, NSCoding, IncludedPullable {
     public func calculatePercentage() -> Double? {
         guard let scored = itemsVisited else { return nil }
         guard let possible = itemsAvailable, self.pointsAvailable() else { return nil }
-        return Double(scored / possible)
+        return Double(scored) / Double(possible)
     }
 
 }

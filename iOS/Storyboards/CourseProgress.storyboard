@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QYZ-pQ-Bxo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QYZ-pQ-Bxo">
     <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -71,10 +71,10 @@
                                                 </stackView>
                                             </subviews>
                                             <connections>
-                                                <outlet property="progressPercentageScored" destination="JlK-Gx-HDV" id="8DI-VD-tWw"/>
-                                                <outlet property="progressPointsScored" destination="shx-57-PSF" id="gix-I0-9VC"/>
-                                                <outlet property="progressTitle" destination="f4A-Q5-crh" id="mt4-Nh-LEg"/>
-                                                <outlet property="progressView" destination="1sC-9T-t3L" id="PiD-TB-v9w"/>
+                                                <outlet property="progressPercentageScored" destination="a9K-8e-oJn" id="AI0-bn-Ppa"/>
+                                                <outlet property="progressPointsScored" destination="DtT-Xt-hFs" id="ups-aF-wHo"/>
+                                                <outlet property="progressTitle" destination="f4A-Q5-crh" id="lGc-L9-ao4"/>
+                                                <outlet property="progressView" destination="pZI-2p-vbM" id="dgn-1t-JrG"/>
                                             </connections>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="C9m-RV-S9n" customClass="ProgressStackView" customModule="iOS" customModuleProvider="target">
@@ -175,10 +175,10 @@
                                                 </stackView>
                                             </subviews>
                                             <connections>
-                                                <outlet property="progressPercentageScored" destination="a9K-8e-oJn" id="peJ-Uq-WAr"/>
-                                                <outlet property="progressPointsScored" destination="DtT-Xt-hFs" id="SsV-Mf-Lhy"/>
-                                                <outlet property="progressTitle" destination="955-Pf-Oda" id="pAh-xc-xdi"/>
-                                                <outlet property="progressView" destination="pZI-2p-vbM" id="yub-iT-gWe"/>
+                                                <outlet property="progressPercentageScored" destination="JlK-Gx-HDV" id="Pia-WV-FcI"/>
+                                                <outlet property="progressPointsScored" destination="shx-57-PSF" id="BsG-Bw-6M3"/>
+                                                <outlet property="progressTitle" destination="955-Pf-Oda" id="eg5-W7-m2Y"/>
+                                                <outlet property="progressView" destination="1sC-9T-t3L" id="N5H-S5-WgG"/>
                                             </connections>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hgI-LT-YW6" customClass="VisitProgressStackView" customModule="iOS" customModuleProvider="target">

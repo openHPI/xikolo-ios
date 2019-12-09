@@ -40,5 +40,7 @@
 		<key>enableHelpdeskReactivationTopic</key>
 		<false/>
 	</dict>
+	<key>testAccountUserId</key>
+	<string>b70e042a-5a0c-4298-b5fa-36328205215b</string>
 </dict>
 </plist>

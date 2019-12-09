@@ -1,4 +1,5 @@
-•  Fehler beim Login behoben
+•  Gelegentlichen App-Absturz beim Öffnen der App behoben
+
 
 Auch in Version 2.8:
 Wir haben unseren Video-Player mit einer überarbeitenden Gestaltung und neuen Funktionen verbessert. Der neue Video-Player unterstützt nun Untertitel, den Bild-in-Bild-Modus und die Wiedergabe über AirPlay. Da Untertitel auch ohne Internet verfügbar sind, müssen die entsprechenden Videos neu heruntergeladen werden.

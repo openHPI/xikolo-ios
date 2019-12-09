@@ -44,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         CoreDataHelper.migrateModelToCommon()
+        UserProfileHelper.shared.logoutFromTestAccount()
 
         if #available(iOS 13.0, *) {} else {
             self.window = UIWindow(frame: UIScreen.main.bounds)

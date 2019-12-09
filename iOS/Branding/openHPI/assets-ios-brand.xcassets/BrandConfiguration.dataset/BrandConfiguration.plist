@@ -48,5 +48,7 @@
 		<key>category</key>
 		<string>track</string>
 	</dict>
+	<key>testAccountUserId</key>
+	<string>d94f5293-be2c-442f-955f-7c4de33b18ea</string>
 </dict>
 </plist>

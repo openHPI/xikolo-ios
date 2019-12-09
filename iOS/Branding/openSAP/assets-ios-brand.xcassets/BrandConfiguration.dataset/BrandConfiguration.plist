@@ -52,5 +52,7 @@
 		<key>topic</key>
 		<string>topic</string>
 	</dict>
+	<key>testAccountUserId</key>
+	<string>38cf47df-4e8d-4914-95c2-7b9128dc2582</string>
 </dict>
 </plist>

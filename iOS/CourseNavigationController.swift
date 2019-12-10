@@ -119,7 +119,7 @@ class CourseNavigationController: XikoloNavigationController {
         self.lastNavigationBarProgress = progress
 
         let headerHidden = self.traitCollection.verticalSizeClass == .compact
-        var mappedProgress = headerHidden ? 1.0 : progress
+        var mappedProgress = headerHidden || self.viewControllers.count > 1 ? 1.0 : progress
         mappedProgress = max(0, min(mappedProgress, 1)) // clamping
         mappedProgress = pow(mappedProgress, 3) // ease in
         mappedProgress = min(mappedProgress, 0.995) // otherwise the bar switches to translucent

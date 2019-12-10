@@ -17,7 +17,7 @@ class LTIHintViewController: UIViewController {
     }()
 
     @IBOutlet private weak var itemTitleLabel: UILabel!
-    @IBOutlet private weak var instructionsView: UILabel!
+    @IBOutlet private weak var instructionsView: UITextView!
     @IBOutlet private weak var typeView: UILabel!
     @IBOutlet private weak var pointsView: UILabel!
     @IBOutlet private weak var startButton: UIButton!
@@ -42,6 +42,10 @@ class LTIHintViewController: UIViewController {
 
         self.startButton.layer.roundCorners(for: .default)
 
+        self.instructionsView.delegate = self
+        self.instructionsView.textContainerInset = UIEdgeInsets.zero
+        self.instructionsView.textContainer.lineFragmentPadding = 0
+
         self.updateView()
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
     }
@@ -53,9 +57,9 @@ class LTIHintViewController: UIViewController {
         self.startButton.backgroundColor = Brand.default.colors.primary
 
         if let markdown = ltiExercise.instructions {
-            MarkdownHelper.attributedString(for: markdown).onSuccess(DispatchQueue.main.context) { attributedString in
-                self.instructionsView.attributedText = attributedString
-                self.instructionsView.isHidden = false
+            MarkdownHelper.attributedString(for: markdown).onSuccess { [weak self] attributedString in
+                self?.instructionsView.attributedText = attributedString
+                self?.instructionsView.isHidden = false
             }
         }
 
@@ -81,6 +85,15 @@ class LTIHintViewController: UIViewController {
             typedInfo.destination.url = ltiExercise.launchURL
         }
     }
+}
+
+extension LTIHintViewController: UITextViewDelegate {
+
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        guard let appNavigator = self.appNavigator else { return false }
+        return !appNavigator.handle(url: URL, on: self)
+    }
+
 }
 
 extension LTIHintViewController: CourseItemContentPresenter {

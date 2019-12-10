@@ -322,7 +322,7 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
     }
 
     func configureSearchHeaderView(_ searchHeaderView: CourseHeaderView, numberOfSearchResults: Int) {
-        let format = NSLocalizedString("%d courses found", tableName: "Common", comment: "<number> of courses found #bc-ignore!")
+        let format = NSLocalizedString("course-list.search.header", comment: "number of courses found when filtering the course list #bc-ignore!")
         searchHeaderView.configure(withText: String.localizedStringWithFormat(format, numberOfSearchResults))
     }
 

@@ -20,6 +20,7 @@ public struct Brand: Decodable {
         case showCurrentCoursesInSelfPacedSection
         case features
         case courseClassifierSearchFilters
+        case testAccountUserId
     }
 
     public static let `default`: Brand = {
@@ -41,6 +42,7 @@ public struct Brand: Decodable {
     public let showCurrentCoursesInSelfPacedSection: Bool
     public let features: BrandFeatures
     public let courseClassifierSearchFilters: CourseClassifierSearchFilter?
+    public let testAccountUserId: String?
 
     public var copyrightText: String {
         let currentYear = Calendar.current.component(.year, from: Date())
@@ -68,6 +70,7 @@ public struct Brand: Decodable {
         self.showCurrentCoursesInSelfPacedSection = try container.decodeIfPresent(Bool.self, forKey: .showCurrentCoursesInSelfPacedSection) ?? false
         self.features = try container.decode(BrandFeatures.self, forKey: .features)
         self.courseClassifierSearchFilters = try? container.decode(CourseClassifierSearchFilter.self, forKey: .courseClassifierSearchFilters)
+        self.testAccountUserId = try? container.decode(String.self, forKey: .testAccountUserId)
     }
 
 }

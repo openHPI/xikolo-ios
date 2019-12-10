@@ -31,11 +31,16 @@ public enum MarkdownHelper {
     }
 
     public static func attributedString(for markdown: String) -> Future<NSMutableAttributedString, XikoloError> {
-        return Future { complete in
+
+        let promise = Promise<NSMutableAttributedString, XikoloError>()
+
+        DispatchQueue.global(qos: .userInitiated).async {
             let html = try? Down(markdownString: markdown).toHTML()
             let attributedString = self.parser.attributedString(for: html ?? "")
-            complete(.success(attributedString))
+            promise.success(attributedString)
         }
+
+        return promise.future
     }
 
 }

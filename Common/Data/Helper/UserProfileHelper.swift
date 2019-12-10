@@ -94,11 +94,12 @@ public class UserProfileHelper {
         self.postLoginStateChange()
     }
 
-    public func logout() {
+    public func logout(runPostActions: Bool = true) {
         self.clearKeychain()
         CoreDataHelper.clearCoreDataStorage().onFailure { error in
             ErrorManager.shared.report(error)
         }.onComplete { _ in
+            guard runPostActions else { return }
             self.postLoginStateChange()
         }
     }

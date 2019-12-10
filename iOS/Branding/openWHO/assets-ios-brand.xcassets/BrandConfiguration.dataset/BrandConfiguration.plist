@@ -58,5 +58,7 @@
 		<key>category</key>
 		<string>proficiencyLevel</string>
 	</dict>
+	<key>testAccountUserId</key>
+	<string>334bd85a-760f-4d50-b919-2fcdc7395003</string>
 </dict>
 </plist>

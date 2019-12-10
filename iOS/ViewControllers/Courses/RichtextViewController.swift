@@ -57,9 +57,9 @@ class RichtextViewController: UIViewController {
             return
         }
 
-        MarkdownHelper.attributedString(for: markdown).onSuccess(DispatchQueue.main.context) { attributedString in
-            self.textView.attributedText = attributedString
-            self.textView.isHidden = false
+        MarkdownHelper.attributedString(for: markdown).onSuccess { [weak self] attributedString in
+            self?.textView.attributedText = attributedString
+            self?.textView.isHidden = false
         }
     }
 

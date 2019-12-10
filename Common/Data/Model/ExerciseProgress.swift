@@ -7,7 +7,6 @@ import Foundation
 import SyncEngine
 
 public class ExerciseProgress: NSObject, NSCoding, IncludedPullable {
-    
     public var exercisesAvailable: Int?
     public var exercisesTaken: Int?
     public var pointsPossible: Double?

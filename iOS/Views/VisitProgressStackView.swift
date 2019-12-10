@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import Common
+import UIKit
 
 class VisitProgressStackView: UIStackView {
 
@@ -24,10 +24,10 @@ class VisitProgressStackView: UIStackView {
         return formatter
     }()
 
-    @IBOutlet weak var progressTitle: UILabel!
-    @IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet weak var progressItemsVisited: UILabel!
-    @IBOutlet weak var progressItemsPercentage: UILabel!
+    @IBOutlet private weak var progressTitle: UILabel!
+    @IBOutlet private weak var progressView: UIProgressView!
+    @IBOutlet private weak var progressItemsVisited: UILabel!
+    @IBOutlet private weak var progressItemsPercentage: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

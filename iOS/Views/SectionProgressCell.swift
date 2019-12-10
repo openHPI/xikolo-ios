@@ -8,13 +8,12 @@ import UIKit
 
 class SectionProgressCell: UITableViewCell {
 
-    @IBOutlet weak var sectionProgressTitle: UILabel!
+    @IBOutlet private weak var sectionProgressTitle: UILabel!
 
-    @IBOutlet weak var mainProgressStackView: ProgressStackView!
-    @IBOutlet weak var selfTestProgressStackView: ProgressStackView!
-    @IBOutlet weak var bonusTestProgressStackView: ProgressStackView!
-    @IBOutlet weak var visitProgressStackView: VisitProgressStackView!
-
+    @IBOutlet private weak var mainProgressStackView: ProgressStackView!
+    @IBOutlet private weak var selfTestProgressStackView: ProgressStackView!
+    @IBOutlet private weak var bonusTestProgressStackView: ProgressStackView!
+    @IBOutlet private weak var visitProgressStackView: VisitProgressStackView!
 
     func configure(for sectionProgress: SectionProgress, showCourseTitle: Bool) {
 

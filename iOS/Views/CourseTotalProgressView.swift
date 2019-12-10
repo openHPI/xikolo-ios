@@ -10,12 +10,12 @@ import UIKit
 /// See https://gist.github.com/smileyborg/50de5da1c921b73bbccf7f76b3694f6a
 class CourseTotalProgressView: UITableViewHeaderFooterView {
 
-    @IBOutlet weak var courseProgressTitle: UILabel!
+    @IBOutlet private weak var courseProgressTitle: UILabel!
 
-    @IBOutlet weak var mainProgressStackView: ProgressStackView!
-    @IBOutlet weak var selfTestProgressStackView: ProgressStackView!
-    @IBOutlet weak var bonusTestProgressStackView: ProgressStackView!
-    @IBOutlet weak var visitProgressStackView: VisitProgressStackView!
+    @IBOutlet private weak var mainProgressStackView: ProgressStackView!
+    @IBOutlet private weak var selfTestProgressStackView: ProgressStackView!
+    @IBOutlet private weak var bonusTestProgressStackView: ProgressStackView!
+    @IBOutlet private weak var visitProgressStackView: VisitProgressStackView!
 
     func configure(for courseProgress: CourseProgress, showCourseTitle: Bool) {
 

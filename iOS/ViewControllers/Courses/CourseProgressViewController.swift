@@ -5,9 +5,9 @@
 
 import BrightFutures
 import Common
+import CoreData
 import SafariServices
 import UIKit
-import CoreData
 
 class CourseProgressViewController: UITableViewController {
 
@@ -18,8 +18,7 @@ class CourseProgressViewController: UITableViewController {
         return CoreDataHelper.viewContext.fetchSingle(CourseProgressHelper.FetchRequest.courseProgress(forCourse: course)).value
     }()
 
-
-    @IBOutlet weak var courseProgressView: CourseTotalProgressView!
+    @IBOutlet private weak var courseProgressView: CourseTotalProgressView!
 
     // array available sections and corresponding points
 

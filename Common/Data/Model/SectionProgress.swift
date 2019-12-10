@@ -7,7 +7,6 @@ import CoreData
 import Foundation
 import SyncEngine
 
-
 public final class SectionProgress: NSManagedObject {
 
     @NSManaged public var id: String

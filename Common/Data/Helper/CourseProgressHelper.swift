@@ -7,7 +7,6 @@ import BrightFutures
 import Foundation
 import SyncEngine
 
-
 public enum CourseProgressHelper {
 
     public static func syncProgress(forCourse course: Course) -> Future<SyncSingleResult, XikoloError> {

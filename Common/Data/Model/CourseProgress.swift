@@ -17,7 +17,6 @@ public final class CourseProgress: NSManagedObject {
 
     @NSManaged public var sectionProgresses: Set<SectionProgress>
 
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseProgress> {
         return NSFetchRequest<CourseProgress>(entityName: "CourseProgress")
     }

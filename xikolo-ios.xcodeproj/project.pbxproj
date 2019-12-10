@@ -73,6 +73,7 @@
 		504D83FA215B57D4006F2447 /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83F9215B57D4006F2447 /* ErrorReporter.swift */; };
 		504D83FC215B64EC006F2447 /* APIStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83FB215B64EC006F2447 /* APIStatus.swift */; };
 		504FF508231E472500AAF595 /* URL+Marschal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504FF507231E472500AAF595 /* URL+Marschal.swift */; };
+		5050D665239F971100E48498 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 2493481A1D9550FD006D4F2C /* Localizable.stringsdict */; };
 		5052D27721591E9400927D52 /* SyncPushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D27621591E9400927D52 /* SyncPushEngine.swift */; };
 		5052D27A2159208100927D52 /* XikoloSyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D2792159208100927D52 /* XikoloSyncEngine.swift */; };
 		5054B2DD21087D6800CE9067 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2DC21087D6800CE9067 /* Document.swift */; };
@@ -242,7 +243,6 @@
 		50FA2DFF20E4B1FB00656776 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
 		50FA2E0220E4B1FB00656776 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103CEE20110C31006DA177 /* Logger.swift */; };
 		50FA2E0420E4B22800656776 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4D61D1D6F7100F42949 /* Localizable.strings */; };
-		50FA2E0520E4B22800656776 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 2493481A1D9550FD006D4F2C /* Localizable.stringsdict */; };
 		50FA2E0620E4B22E00656776 /* MarkdownHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */; };
 		50FA2E0720E4B22E00656776 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		50FA2E0820E4B22E00656776 /* DateLabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */; };
@@ -1295,7 +1295,6 @@
 				249C01AD1D3F721E00B54AAC /* Branding */,
 				2433A5AB1CE641E70060DD98 /* Helpers */,
 				2490C4D61D1D6F7100F42949 /* Localizable.strings */,
-				2493481A1D9550FD006D4F2C /* Localizable.stringsdict */,
 				50930B6120ED10610085C6DB /* CommonLocalizedString.swift */,
 				70103CEE20110C31006DA177 /* Logger.swift */,
 				24A16D8F1CFFA3E500CAD9FE /* Error.swift */,
@@ -1367,6 +1366,7 @@
 				5040A63020797ED800E98351 /* CourseNavigationController.swift */,
 				509B10D0200790560042AA7D /* XikoloTabBarController.swift */,
 				F80D679A1B98751700E27520 /* Localizable.strings */,
+				2493481A1D9550FD006D4F2C /* Localizable.stringsdict */,
 				50CF202D20DCE6680011BFE9 /* Info.plist */,
 				507DFF9C2153E397006DC140 /* InfoPlist.strings */,
 				AB947CE11E19E1EC009888B0 /* Settings.bundle */,
@@ -1915,6 +1915,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5050D665239F971100E48498 /* Localizable.stringsdict in Resources */,
 				50044FCD23278F03004D1AD8 /* CourseLearningsProctored.storyboard in Resources */,
 				50A725942339188E00DE8338 /* CourseDateOverview.storyboard in Resources */,
 				50CF1FF720DCDBFC0011BFE9 /* WebViewController.storyboard in Resources */,
@@ -1960,7 +1961,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				50FA2E0420E4B22800656776 /* Localizable.strings in Resources */,
-				50FA2E0520E4B22800656776 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

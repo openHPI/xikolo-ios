@@ -45,7 +45,9 @@ class CourseListViewController: UICollectionViewController {
                 self.channelObserver = ManagedObjectObserver(object: channel) { [weak self] type in
                     guard type == .update else { return }
                     DispatchQueue.main.async {
-                        self?.refresh()
+                        if (self?.collectionView.numberOfSections ?? 0) > 0 {
+                            self?.collectionView?.reloadSections(IndexSet(0..<1))
+                        }
                     }
                 }
             }

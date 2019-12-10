@@ -1,0 +1,26 @@
+/* Class = "UILabel"; text = "Total"; ObjectID = "L8Z-c5-3NJ"; */
+"L8Z-c5-3NJ.text" = "Gesamt";
+
+/* Class = "UILabel"; text = "Assignment"; ObjectID = "f4A-Q5-crh"; */
+"f4A-Q5-crh.text" = "Hausaufgaben";
+
+/* Class = "UILabel"; text = "Self-tests"; ObjectID = "olK-LE-aD1"; */
+"olK-LE-aD1.text" = "Selbsttests";
+
+/* Class = "UILabel"; text = "Bonus"; ObjectID = "955-Pf-Oda"; */
+"955-Pf-Oda.text" = "Bonus";
+
+/* Class = "UILabel"; text = "Visited"; ObjectID = "dRr-LF-AmX"; */
+"dRr-LF-AmX.text" = "Besucht";
+
+/* Class = "UILabel"; text = "Assignment"; ObjectID = "Fw3-WI-o2f"; */
+"Fw3-WI-o2f.text" = "Hausaufgabe";
+
+/* Class = "UILabel"; text = "Self-tests"; ObjectID = "PuJ-gs-Srq"; */
+"PuJ-gs-Srq.text" = "Selbsttest";
+
+/* Class = "UILabel"; text = "Bonus"; ObjectID = "SnM-hk-qTW"; */
+"SnM-hk-qTW.text" = "Bonus";
+
+/* Class = "UILabel"; text = "Visited"; ObjectID = "hJL-hJ-2MM"; */
+"hJL-hJ-2MM.text" = "Besucht";

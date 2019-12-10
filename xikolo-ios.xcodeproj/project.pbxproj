@@ -14,9 +14,9 @@
 		0262E6C92372CBD5007C9057 /* SectionProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C82372CBD5007C9057 /* SectionProgress.swift */; };
 		0262E6CC23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6CB23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift */; };
 		026A1CA6239141C600F61976 /* CourseTotalProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026A1CA5239141C600F61976 /* CourseTotalProgressView.swift */; };
-		0270F4AA234CBD15008A1FD1 /* CourseProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0270F4A9234CBD15008A1FD1 /* CourseProgress.storyboard */; };
 		0270F4AC234CBFBC008A1FD1 /* CourseProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270F4AB234CBFBC008A1FD1 /* CourseProgressViewController.swift */; };
 		0280CB14237CBD4100B774BE /* SectionProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0280CB13237CBD4100B774BE /* SectionProgressCell.swift */; };
+		02AA78BB23A0176F00CD13F5 /* CourseProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02AA78BD23A0176F00CD13F5 /* CourseProgress.storyboard */; };
 		02E20BE823882CFB006C9345 /* VisitProgressStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */; };
 		02FE3EAE235502C300E3ECB4 /* CourseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */; };
 		36CCE9152A57516F7B4DCF67 /* Pods_Common_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404B6E3B7B07070C964CF6A2 /* Pods_Common_Tests.framework */; };
@@ -407,9 +407,10 @@
 		0262E6C82372CBD5007C9057 /* SectionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgress.swift; sourceTree = "<group>"; };
 		0262E6CB23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SectionProgressHelper+FetchRequest.swift"; sourceTree = "<group>"; };
 		026A1CA5239141C600F61976 /* CourseTotalProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTotalProgressView.swift; sourceTree = "<group>"; };
-		0270F4A9234CBD15008A1FD1 /* CourseProgress.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CourseProgress.storyboard; sourceTree = "<group>"; };
 		0270F4AB234CBFBC008A1FD1 /* CourseProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgressViewController.swift; sourceTree = "<group>"; };
 		0280CB13237CBD4100B774BE /* SectionProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgressCell.swift; sourceTree = "<group>"; };
+		02AA78BC23A0176F00CD13F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseProgress.storyboard; sourceTree = "<group>"; };
+		02AA78BF23A0177B00CD13F5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseProgress.strings; sourceTree = "<group>"; };
 		02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgressStackView.swift; sourceTree = "<group>"; };
 		02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgress.swift; sourceTree = "<group>"; };
 		0630F12AF742EF6C154CD071 /* Pods-Common.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.openhpi-ios-release.xcconfig"; path = "Pods/Target Support Files/Pods-Common/Pods-Common.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
@@ -1655,7 +1656,7 @@
 				50044FB9232773F2004D1AD8 /* CourseLearningsWeb.storyboard */,
 				82BE606F232FBB86000353B4 /* CourseDetails.storyboard */,
 				50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */,
-				0270F4A9234CBD15008A1FD1 /* CourseProgress.storyboard */,
+				02AA78BD23A0176F00CD13F5 /* CourseProgress.storyboard */,
 				5054B2E42108B19500CE9067 /* CourseDocuments.storyboard */,
 				5040A60920795BFD00E98351 /* WebViewController.storyboard */,
 				508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */,
@@ -1973,7 +1974,7 @@
 				50044FD723278F25004D1AD8 /* CourseLearningsVideo.storyboard in Resources */,
 				50CF200220DCDBFC0011BFE9 /* CourseItemHeader.xib in Resources */,
 				5058578421344C75006A5D15 /* PseudoCourseCell.xib in Resources */,
-				0270F4AA234CBD15008A1FD1 /* CourseProgress.storyboard in Resources */,
+				02AA78BB23A0176F00CD13F5 /* CourseProgress.storyboard in Resources */,
 				50CF200320DCDBFC0011BFE9 /* assets-ios.xcassets in Resources */,
 				50D65A0C20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets in Resources */,
 				50CF200520DCDBFC0011BFE9 /* Settings.bundle in Resources */,
@@ -2569,6 +2570,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		02AA78BD23A0176F00CD13F5 /* CourseProgress.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02AA78BC23A0176F00CD13F5 /* Base */,
+				02AA78BF23A0177B00CD13F5 /* de */,
+			);
+			name = CourseProgress.storyboard;
+			sourceTree = "<group>";
+		};
 		2490C4D61D1D6F7100F42949 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

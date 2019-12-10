@@ -17,14 +17,13 @@ class ChannelHeaderView: UICollectionReusableView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        channelTeaserView.isUserInteractionEnabled = true
+        self.channelTeaserView.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(tappedPlayTeaserButton))
         self.channelTeaserView.addGestureRecognizer(tap)
         self.channelTeaserView.layer.roundCorners(for: .default)
     }
 
     func configure(for channel: Channel) {
-
         self.imageView.backgroundColor = channel.colorWithFallback(to: Brand.default.colors.window)
         self.imageView.sd_setImage(with: channel.imageURL, placeholderImage: nil)
         self.descriptionLabel.text = MarkdownHelper.string(for: channel.channelDescription ?? "").trimmingCharacters(in: .whitespacesAndNewlines)

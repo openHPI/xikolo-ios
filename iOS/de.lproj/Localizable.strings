@@ -352,3 +352,6 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video-Qualität mit WLAN";
+
+/* play teaser */
+"channel-header.play-teaser" = "Teaser abspielen";

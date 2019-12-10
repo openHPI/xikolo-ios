@@ -28,25 +28,25 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <visualEffectView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WCN-N1-r8T">
-                    <rect key="frame" x="225.5" y="20" width="133.5" height="42"/>
+                    <rect key="frame" x="266.5" y="20" width="92.5" height="66"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vRb-bQ-kFm">
-                        <rect key="frame" x="0.0" y="0.0" width="133.5" height="42"/>
+                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="66"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2J1-km-9Xs">
-                                <rect key="frame" x="0.0" y="0.0" width="133.5" height="42"/>
+                                <rect key="frame" x="0.0" y="0.0" width="92" height="66"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="MHe-R6-jQY">
-                                    <rect key="frame" x="0.0" y="0.0" width="133.5" height="42"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="92" height="66"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7XT-vN-YNL">
-                                            <rect key="frame" x="8" y="8" width="117.5" height="26"/>
+                                            <rect key="frame" x="8" y="8" width="76" height="50"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dYh-8l-ONu">
-                                                    <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                                    <rect key="frame" x="0.0" y="12" width="26" height="26"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" text="Play Teaser" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BhV-hE-6X2">
-                                                    <rect key="frame" x="26" y="3" width="91.5" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BhV-hE-6X2">
+                                                    <rect key="frame" x="26" y="0.0" width="50" height="50"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -94,6 +94,7 @@
                 <outlet property="channelTeaserView" destination="WCN-N1-r8T" id="Flt-GI-XO2"/>
                 <outlet property="descriptionLabel" destination="qLH-4Y-N1Q" id="MFh-Bi-Ou8"/>
                 <outlet property="imageView" destination="Jeh-F8-sXq" id="wI8-Hp-Y6D"/>
+                <outlet property="playTeaserLabel" destination="BhV-hE-6X2" id="yHe-SR-m7A"/>
             </connections>
             <point key="canvasLocation" x="-21.014492753623191" y="-0.33482142857142855"/>
         </collectionReusableView>

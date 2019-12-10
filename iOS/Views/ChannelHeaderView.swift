@@ -12,6 +12,7 @@ class ChannelHeaderView: UICollectionReusableView {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var channelTeaserView: UIVisualEffectView!
+    @IBOutlet private weak var playTeaserLabel: UILabel!
 
     weak var delegate: ChannelHeaderViewDelegate?
 
@@ -29,6 +30,8 @@ class ChannelHeaderView: UICollectionReusableView {
         self.descriptionLabel.text = MarkdownHelper.string(for: channel.channelDescription ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
 
         self.channelTeaserView.isHidden = channel.stageStream == nil
+
+        self.playTeaserLabel.text = NSLocalizedString("channel-header.play-teaser", comment: "play teaser")
     }
 
     @objc private func tappedPlayTeaserButton() {

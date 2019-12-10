@@ -21,30 +21,6 @@ final class Quiz: Content {
         return NSFetchRequest<Quiz>(entityName: "Quiz")
     }
 
-    var formattedTimeLimit: [String] {
-        let hours = self.timeLimit / 3600
-        let minutes = (self.timeLimit % 3600) / 60
-        let seconds = self.timeLimit % 60
-
-        var strings = [String]()
-        if hours > 0 {
-            let format = CommonLocalizedString("%d hours", comment: "<number> of hours #bc-ignore!")
-            strings.append(String.localizedStringWithFormat(format, hours))
-        }
-
-        if minutes > 0 {
-            let format = CommonLocalizedString("%d minutes", comment: "<number> of minutes #bc-ignore!")
-            strings.append(String.localizedStringWithFormat(format, minutes))
-        }
-
-        if seconds > 0 {
-            let format = CommonLocalizedString("%d seconds", comment: "<number> of seconds #bc-ignore!")
-            strings.append(String.localizedStringWithFormat(format, seconds))
-        }
-
-        return strings
-    }
-
 }
 
 extension Quiz: JSONAPIPullable {

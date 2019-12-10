@@ -361,3 +361,6 @@
 
 /* course progress points */
 "course.progress.points %@ of %@ points" = "%@ of %@ points";
+
+/* course progress title */
+"course.progress.title Total" = "Total";

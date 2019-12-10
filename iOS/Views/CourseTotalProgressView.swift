@@ -18,7 +18,11 @@ class CourseTotalProgressView: UITableViewHeaderFooterView {
     @IBOutlet weak var visitProgressStackView: VisitProgressStackView!
 
     func configure(for courseProgress: CourseProgress, showCourseTitle: Bool) {
-        self.courseProgressTitle.text = "Total"
+
+        let format = NSLocalizedString("course.progress.title Total", comment: "course progress title")
+        let courseProgressTitleText = String.localizedStringWithFormat(format)
+
+        self.courseProgressTitle.text = courseProgressTitleText
         mainProgressStackView.configure(for: courseProgress.mainProgress)
         selfTestProgressStackView.configure(for: courseProgress.selftestProgress)
         bonusTestProgressStackView.configure(for: courseProgress.bonusProgress)

@@ -20,6 +20,9 @@
 /* App state message for server maintenance */
 "app-state.maintenance.server maintenance on %@" = "Server maintenance on %@";
 
+/* play teaser */
+"channel-header.play-teaser" = "Play Teaser";
+
 /* title of announcements view of course view */
 "course-area.view.announcements.title" = "Announcements";
 
@@ -352,6 +355,3 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video Quality using WiFi";
-
-/* play teaser */
-"channel-header.play-teaser" = "Play Teaser";

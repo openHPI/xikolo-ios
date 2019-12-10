@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable file_length
+
 import AVFoundation
 import Binge
 import BrightFutures
@@ -13,6 +15,7 @@ import UIKit
 class CourseListViewController: UICollectionViewController {
 
     private var dataSource: CoreDataCollectionViewDataSource<CourseListViewController>!
+    private var channelObserver: ManagedObjectObserver?
 
     @available(iOS, obsoleted: 11.0)
     private var searchController: UISearchController?
@@ -35,11 +38,17 @@ class CourseListViewController: UICollectionViewController {
                                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
 
-        if case .coursesInChannel = self.configuration {
-            self.collectionView?.register(UINib(resource: R.nib.channelHeaderView),
-                                          forSupplementaryViewOfKind: R.nib.channelHeaderView.name,
-                                          withReuseIdentifier: R.nib.channelHeaderView.name)
-        }
+        if case let .coursesInChannel(channel) = self.configuration {
+                self.collectionView?.register(UINib(resource: R.nib.channelHeaderView),
+                                              forSupplementaryViewOfKind: R.nib.channelHeaderView.name,
+                                              withReuseIdentifier: R.nib.channelHeaderView.name)
+                self.channelObserver = ManagedObjectObserver(object: channel) { [weak self] type in
+                    guard type == .update else { return }
+                    DispatchQueue.main.async {
+                        self?.refresh()
+                    }
+                }
+            }
 
         if let courseListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
             courseListLayout.delegate = self

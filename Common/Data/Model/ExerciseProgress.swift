@@ -41,7 +41,7 @@ public class ExerciseProgress: NSObject, NSCoding, IncludedPullable {
     public func calculatePercentage() -> Double? {
         guard let scored = pointsScored else { return nil }
         guard let possible = pointsPossible, !possible.isZero else { return nil }
-        return scored / possible
+        return Double(scored) / Double(possible)
     }
 
 }

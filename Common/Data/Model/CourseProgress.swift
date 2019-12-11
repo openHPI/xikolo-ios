@@ -14,7 +14,6 @@ public final class CourseProgress: NSManagedObject {
     @NSManaged public var selftestProgress: ExerciseProgress
     @NSManaged public var bonusProgress: ExerciseProgress
     @NSManaged public var visitProgress: VisitProgress
-
     @NSManaged public var sectionProgresses: Set<SectionProgress>
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseProgress> {
@@ -43,4 +42,5 @@ extension CourseProgress: JSONAPIPullable {
                                         with: context)
         }
     }
+
 }

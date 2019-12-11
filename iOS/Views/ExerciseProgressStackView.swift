@@ -6,11 +6,11 @@
 import Common
 import UIKit
 
-class ProgressStackView: UIStackView {
+class ExerciseProgressStackView: UIStackView {
 
     private static var percentageFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
-        formatter.numberStyle = NumberFormatter.Style.percent
+        formatter.numberStyle = .percent
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 0
         return formatter
@@ -18,7 +18,7 @@ class ProgressStackView: UIStackView {
 
     private static var pointsFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
-        formatter.numberStyle = NumberFormatter.Style.decimal
+        formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 1
         formatter.maximumFractionDigits = 1
         return formatter
@@ -37,7 +37,7 @@ class ProgressStackView: UIStackView {
     }
 
     func configure(for progress: ExerciseProgress) {
-        self.isHidden = progress.pointsAvailable()
+        self.isHidden = !progress.hasProgress
 
         let scored = progress.pointsScored.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
         let possible = progress.pointsPossible.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
@@ -46,8 +46,8 @@ class ProgressStackView: UIStackView {
         let scoredText = String.localizedStringWithFormat(format, scored, possible)
         self.progressPointsScored.text = scoredText
 
-        let percentageScored = progress.calculatePercentage()
-        self.progressView.progress = Float(percentageScored ?? 0)
-        self.progressPercentageScored.text = percentageScored.flatMap(Self.percentageFormatter.string(for:)) ?? "-"
+        self.progressView.progress = Float(progress.percentage ?? 0)
+        self.progressPercentageScored.text = progress.percentage.flatMap(Self.percentageFormatter.string(for:)) ?? "-"
     }
+
 }

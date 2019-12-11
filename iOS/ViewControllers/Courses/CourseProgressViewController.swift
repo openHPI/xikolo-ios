@@ -18,9 +18,7 @@ class CourseProgressViewController: UITableViewController {
         return CoreDataHelper.viewContext.fetchSingle(CourseProgressHelper.FetchRequest.courseProgress(forCourse: course)).value
     }()
 
-    @IBOutlet private weak var courseProgressView: CourseTotalProgressView!
-
-    // array available sections and corresponding points
+    @IBOutlet private weak var courseProgressView: CourseProgressView!
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
@@ -30,9 +28,7 @@ class CourseProgressViewController: UITableViewController {
         self.addRefreshControl()
 
         // setup table view data
-        let request: NSFetchRequest<SectionProgress>
-        request = SectionProgressHelper.FetchRequest.sectionProgresses(forCourse: course)
-
+        let request = SectionProgressHelper.FetchRequest.sectionProgresses(forCourse: course)
         let reuseIdentifier = R.reuseIdentifier.sectionProgressCell.identifier
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
         self.dataSource = CoreDataTableViewDataSource(self.tableView,

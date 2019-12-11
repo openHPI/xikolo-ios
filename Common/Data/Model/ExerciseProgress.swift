@@ -7,10 +7,21 @@ import Foundation
 import SyncEngine
 
 public class ExerciseProgress: NSObject, NSCoding, IncludedPullable {
+
     public var exercisesAvailable: Int?
     public var exercisesTaken: Int?
     public var pointsPossible: Double?
     public var pointsScored: Double?
+
+    public var hasProgress: Bool {
+        return !(self.pointsPossible?.isZero ?? true)
+    }
+
+    public var percentage: Double? {
+        guard let scored = self.pointsScored else { return nil }
+        guard let possible = self.pointsPossible, !possible.isZero else { return nil }
+        return Double(scored) / Double(possible)
+    }
 
     public required init(object: ResourceData) throws {
         self.exercisesAvailable = try object.value(for: "exercise_available")
@@ -31,16 +42,6 @@ public class ExerciseProgress: NSObject, NSCoding, IncludedPullable {
         coder.encode(self.exercisesTaken, forKey: "exercise_taken")
         coder.encode(self.pointsPossible, forKey: "points_possible")
         coder.encode(self.pointsScored, forKey: "points_scored")
-    }
-
-    public func pointsAvailable() -> Bool {
-        return self.pointsPossible?.isZero ?? true
-    }
-
-    public func calculatePercentage() -> Double? {
-        guard let scored = pointsScored else { return nil }
-        guard let possible = pointsPossible, !possible.isZero else { return nil }
-        return Double(scored) / Double(possible)
     }
 
 }

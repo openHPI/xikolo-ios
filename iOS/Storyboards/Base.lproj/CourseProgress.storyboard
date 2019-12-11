@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QYZ-pQ-Bxo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QYZ-pQ-Bxo">
     <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="hbA-tw-ZeO"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" id="gg3-tJ-2Uw" customClass="CourseTotalProgressView" customModule="iOS" customModuleProvider="target">
+                        <view key="tableHeaderView" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" id="gg3-tJ-2Uw" customClass="CourseProgressView" customModule="iOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="1024" height="288.5"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -31,7 +31,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ct7-Me-MOJ">
                                     <rect key="frame" x="176" y="36.5" width="672" height="244"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Q9y-rS-IqN" customClass="ProgressStackView" customModule="iOS" customModuleProvider="target">
+                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Q9y-rS-IqN" customClass="ExerciseProgressStackView" customModule="iOS" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="672" height="55"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6if-J1-Xy8">
@@ -83,7 +83,7 @@
                                                 <outlet property="progressView" destination="pZI-2p-vbM" id="dgn-1t-JrG"/>
                                             </connections>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="C9m-RV-S9n" customClass="ProgressStackView" customModule="iOS" customModuleProvider="target">
+                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="C9m-RV-S9n" customClass="ExerciseProgressStackView" customModule="iOS" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="63" width="672" height="55"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3T5-nK-vsf">
@@ -135,7 +135,7 @@
                                                 <outlet property="progressView" destination="SNR-ku-2iC" id="EKZ-x6-2wb"/>
                                             </connections>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="aGI-oe-0Bg" customClass="ProgressStackView" customModule="iOS" customModuleProvider="target">
+                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="aGI-oe-0Bg" customClass="ExerciseProgressStackView" customModule="iOS" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="126" width="672" height="55"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wu8-WN-ASI">
@@ -254,7 +254,6 @@
                             </constraints>
                             <connections>
                                 <outlet property="bonusTestProgressStackView" destination="aGI-oe-0Bg" id="0LV-11-FHo"/>
-                                <outlet property="courseProgressTitle" destination="L8Z-c5-3NJ" id="Ezv-3H-JrZ"/>
                                 <outlet property="mainProgressStackView" destination="Q9y-rS-IqN" id="oaq-gs-BpJ"/>
                                 <outlet property="selfTestProgressStackView" destination="C9m-RV-S9n" id="xd4-Lr-AJj"/>
                                 <outlet property="visitProgressStackView" destination="hgI-LT-YW6" id="f0Z-dN-c36"/>
@@ -262,10 +261,10 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="15" reuseIdentifier="sectionProgressCell" id="9j7-9Q-VqX" customClass="SectionProgressCell" customModule="iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="316.5" width="1024" height="302.5"/>
+                                <rect key="frame" x="0.0" y="316.5" width="1024" height="300.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" tableViewCell="9j7-9Q-VqX" id="kaM-h8-iLQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="302.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="300.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVT-IC-q5L">
@@ -275,23 +274,23 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" preservesSuperviewLayoutMargins="YES" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dqd-GA-YDp">
-                                            <rect key="frame" x="176" y="43.5" width="672" height="244"/>
+                                            <rect key="frame" x="176" y="43.5" width="672" height="242"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="csQ-yV-t9K" customClass="ProgressStackView" customModule="iOS" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="672" height="55"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="csQ-yV-t9K" customClass="ExerciseProgressStackView" customModule="iOS" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="672" height="54.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vmH-V2-ZIL">
-                                                            <rect key="frame" x="0.0" y="0.0" width="672" height="21"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="672" height="20.5"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="Course item icons/homework" translatesAutoresizingMaskIntoConstraints="NO" id="TAk-o4-ccM">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="20.5" height="20.5"/>
                                                                     <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" secondItem="TAk-o4-ccM" secondAttribute="width" multiplier="25:25" id="fDk-vA-XzB"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Assignment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fw3-WI-o2f">
-                                                                    <rect key="frame" x="29" y="0.0" width="643" height="21"/>
+                                                                    <rect key="frame" x="28.5" y="0.0" width="643.5" height="20.5"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -299,13 +298,13 @@
                                                             </subviews>
                                                         </stackView>
                                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iqt-7q-bwt">
-                                                            <rect key="frame" x="0.0" y="25" width="672" height="10"/>
+                                                            <rect key="frame" x="0.0" y="24.5" width="672" height="10"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="Blu-sh-g37"/>
                                                             </constraints>
                                                         </progressView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="JY1-oa-E0n">
-                                                            <rect key="frame" x="0.0" y="39" width="672" height="16"/>
+                                                            <rect key="frame" x="0.0" y="38.5" width="672" height="16"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="0.0 of 10.0 scored" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPn-QS-jlX">
                                                                     <rect key="frame" x="0.0" y="0.0" width="336" height="16"/>
@@ -329,21 +328,21 @@
                                                         <outlet property="progressView" destination="iqt-7q-bwt" id="7kN-a4-F8z"/>
                                                     </connections>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="uBx-PB-wYN" customClass="ProgressStackView" customModule="iOS" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="63" width="672" height="55"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="uBx-PB-wYN" customClass="ExerciseProgressStackView" customModule="iOS" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="62.5" width="672" height="54.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Dfz-cJ-Uiy">
-                                                            <rect key="frame" x="0.0" y="0.0" width="672" height="21"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="672" height="20.5"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="Course item icons/quiz" translatesAutoresizingMaskIntoConstraints="NO" id="3bD-os-LIm">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="20.5" height="20.5"/>
                                                                     <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" secondItem="3bD-os-LIm" secondAttribute="width" multiplier="25:25" id="mLN-E2-0hQ"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Self-test" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuJ-gs-Srq">
-                                                                    <rect key="frame" x="29" y="0.0" width="643" height="21"/>
+                                                                    <rect key="frame" x="28.5" y="0.0" width="643.5" height="20.5"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -351,13 +350,13 @@
                                                             </subviews>
                                                         </stackView>
                                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ca2-QJ-jGV">
-                                                            <rect key="frame" x="0.0" y="25" width="672" height="10"/>
+                                                            <rect key="frame" x="0.0" y="24.5" width="672" height="10"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="Hzb-jY-160"/>
                                                             </constraints>
                                                         </progressView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="KFY-I8-5ac">
-                                                            <rect key="frame" x="0.0" y="39" width="672" height="16"/>
+                                                            <rect key="frame" x="0.0" y="38.5" width="672" height="16"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="0.0 of 10.0 scored" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUa-YC-Mzc">
                                                                     <rect key="frame" x="0.0" y="0.0" width="336" height="16"/>
@@ -381,21 +380,21 @@
                                                         <outlet property="progressView" destination="Ca2-QJ-jGV" id="DeW-hJ-F7z"/>
                                                     </connections>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Pk7-Ab-Zfh" customClass="ProgressStackView" customModule="iOS" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="126" width="672" height="55"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Pk7-Ab-Zfh" customClass="ExerciseProgressStackView" customModule="iOS" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="125" width="672" height="54.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="otu-QO-tuu">
-                                                            <rect key="frame" x="0.0" y="0.0" width="672" height="21"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="672" height="20.5"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="Course item icons/bonus quiz" translatesAutoresizingMaskIntoConstraints="NO" id="65J-Ab-xu3">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="20.5" height="20.5"/>
                                                                     <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" secondItem="65J-Ab-xu3" secondAttribute="width" multiplier="25:25" id="TTB-O8-Tkx"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Bonus" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SnM-hk-qTW">
-                                                                    <rect key="frame" x="29" y="0.0" width="643" height="21"/>
+                                                                    <rect key="frame" x="28.5" y="0.0" width="643.5" height="20.5"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -403,13 +402,13 @@
                                                             </subviews>
                                                         </stackView>
                                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vTA-XO-Fgm">
-                                                            <rect key="frame" x="0.0" y="25" width="672" height="10"/>
+                                                            <rect key="frame" x="0.0" y="24.5" width="672" height="10"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="KFb-11-Hkf"/>
                                                             </constraints>
                                                         </progressView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Puq-sQ-eJH">
-                                                            <rect key="frame" x="0.0" y="39" width="672" height="16"/>
+                                                            <rect key="frame" x="0.0" y="38.5" width="672" height="16"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="0.0 of 10.0 scored" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJW-Ju-yg5">
                                                                     <rect key="frame" x="0.0" y="0.0" width="336" height="16"/>
@@ -434,20 +433,20 @@
                                                     </connections>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="aBz-c3-XNT" customClass="VisitProgressStackView" customModule="iOS" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="189" width="672" height="55"/>
+                                                    <rect key="frame" x="0.0" y="187.5" width="672" height="54.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RCM-9m-YNi">
-                                                            <rect key="frame" x="0.0" y="0.0" width="672" height="21"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="672" height="20.5"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="checkmark-circle" translatesAutoresizingMaskIntoConstraints="NO" id="3pB-tY-pIS">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="20.5" height="20.5"/>
                                                                     <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" secondItem="3pB-tY-pIS" secondAttribute="width" multiplier="25:25" id="SK3-Dh-kTa"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Visited" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJL-hJ-2MM">
-                                                                    <rect key="frame" x="29" y="0.0" width="643" height="21"/>
+                                                                    <rect key="frame" x="28.5" y="0.0" width="643.5" height="20.5"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -455,13 +454,13 @@
                                                             </subviews>
                                                         </stackView>
                                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qjf-DG-cBj">
-                                                            <rect key="frame" x="0.0" y="25" width="672" height="10"/>
+                                                            <rect key="frame" x="0.0" y="24.5" width="672" height="10"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="10" id="KYd-Eq-2Nf"/>
                                                             </constraints>
                                                         </progressView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="JL5-aW-Ngy">
-                                                            <rect key="frame" x="0.0" y="39" width="672" height="16"/>
+                                                            <rect key="frame" x="0.0" y="38.5" width="672" height="16"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="0.0 of 10.0 visited" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uj-QK-OZS">
                                                                     <rect key="frame" x="0.0" y="0.0" width="336" height="16"/>
@@ -501,7 +500,7 @@
                                 <connections>
                                     <outlet property="bonusTestProgressStackView" destination="Pk7-Ab-Zfh" id="4Pt-Ba-IKp"/>
                                     <outlet property="mainProgressStackView" destination="csQ-yV-t9K" id="vsm-Do-uEC"/>
-                                    <outlet property="sectionProgressTitle" destination="bVT-IC-q5L" id="l5I-aQ-zAL"/>
+                                    <outlet property="sectionTitleLabel" destination="bVT-IC-q5L" id="l5I-aQ-zAL"/>
                                     <outlet property="selfTestProgressStackView" destination="uBx-PB-wYN" id="vBz-yG-STu"/>
                                     <outlet property="visitProgressStackView" destination="aBz-c3-XNT" id="Mgh-uF-jGQ"/>
                                 </connections>

@@ -10,7 +10,7 @@ class VisitProgressStackView: UIStackView {
 
     private static var percentageFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
-        formatter.numberStyle = NumberFormatter.Style.percent
+        formatter.numberStyle = .percent
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 0
         return formatter
@@ -18,7 +18,7 @@ class VisitProgressStackView: UIStackView {
 
     private static var pointsFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
-        formatter.numberStyle = NumberFormatter.Style.decimal
+        formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 1
         formatter.maximumFractionDigits = 1
         return formatter
@@ -37,16 +37,15 @@ class VisitProgressStackView: UIStackView {
     }
 
     func configure(for progress: VisitProgress) {
-
         let visited = progress.itemsVisited.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
         let available = progress.itemsAvailable.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
 
-        let format = NSLocalizedString("course.progress.visited %@ of %@ visited", comment: "course progress visited")
+        let format = NSLocalizedString("course.progress.visited %@ of %@ visited", comment: "")
         let visitedText = String.localizedStringWithFormat(format, visited, available)
         self.progressItemsVisited.text = visitedText
 
-        let percentageVisited = progress.calculatePercentage()
-        self.progressView.progress = Float(percentageVisited ?? 0)
-        self.progressItemsPercentage.text = percentageVisited.flatMap(Self.percentageFormatter.string(for:)) ?? "-"
+        self.progressView.progress = Float(progress.percentage ?? 0)
+        self.progressItemsPercentage.text = progress.percentage.flatMap(Self.percentageFormatter.string(for:)) ?? "-"
     }
+
 }

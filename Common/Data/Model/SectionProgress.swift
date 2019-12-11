@@ -40,4 +40,5 @@ extension SectionProgress: JSONAPIPullable {
         self.bonusProgress = try attributes.value(for: "bonus_exercises")
         self.visitProgress = try attributes.value(for: "visits")
     }
+
 }

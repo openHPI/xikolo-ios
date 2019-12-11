@@ -12,6 +12,12 @@ public class VisitProgress: NSObject, NSCoding, IncludedPullable {
     public var itemsVisited: Int?
     public var visitsPercentage: Double?
 
+    public var percentage: Double? {
+        guard let scored = itemsVisited else { return nil }
+        guard let possible = itemsAvailable, possible > 0 else { return nil }
+        return Double(scored) / Double(possible)
+    }
+
     public required init(object: ResourceData) throws {
         self.itemsAvailable = try object.value(for: "items_available")
         self.itemsVisited = try object.value(for: "items_visited")
@@ -28,17 +34,6 @@ public class VisitProgress: NSObject, NSCoding, IncludedPullable {
         coder.encode(self.itemsAvailable, forKey: "items_available")
         coder.encode(self.itemsVisited, forKey: "items_visited")
         coder.encode(self.visitsPercentage, forKey: "visits_percentage")
-    }
-
-    public func pointsAvailable() -> Bool {
-        guard let points = self.itemsAvailable else { return false }
-        return points > 0
-    }
-
-    public func calculatePercentage() -> Double? {
-        guard let scored = itemsVisited else { return nil }
-        guard let possible = itemsAvailable, self.pointsAvailable() else { return nil }
-        return Double(scored) / Double(possible)
     }
 
 }

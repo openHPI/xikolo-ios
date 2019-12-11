@@ -14,10 +14,10 @@
 "dRr-LF-AmX.text" = "Besucht";
 
 /* Class = "UILabel"; text = "Assignment"; ObjectID = "Fw3-WI-o2f"; */
-"Fw3-WI-o2f.text" = "Hausaufgabe";
+"Fw3-WI-o2f.text" = "Hausaufgaben";
 
 /* Class = "UILabel"; text = "Self-tests"; ObjectID = "PuJ-gs-Srq"; */
-"PuJ-gs-Srq.text" = "Selbsttest";
+"PuJ-gs-Srq.text" = "Selbsttests";
 
 /* Class = "UILabel"; text = "Bonus"; ObjectID = "SnM-hk-qTW"; */
 "SnM-hk-qTW.text" = "Bonus";

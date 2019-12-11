@@ -13,7 +13,6 @@ class ChannelListViewController: UICollectionViewController {
     private var dataSource: CoreDataCollectionViewDataSource<ChannelListViewController>!
 
     override func viewDidLoad() {
-
         self.collectionView?.register(R.nib.channelCell)
 
         super.viewDidLoad()
@@ -78,6 +77,7 @@ class ChannelListViewController: UICollectionViewController {
         let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         flowLayout?.scrollDirection = self.traitCollection.horizontalSizeClass == .regular && size.width > size.height ? .horizontal : .vertical
     }
+
 }
 
 extension ChannelListViewController: UICollectionViewDelegateFlowLayout {

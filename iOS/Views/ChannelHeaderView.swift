@@ -22,6 +22,7 @@ class ChannelHeaderView: UICollectionReusableView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tappedPlayTeaserButton))
         self.channelTeaserView.addGestureRecognizer(tap)
         self.channelTeaserView.layer.roundCorners(for: .default)
+        self.playTeaserLabel.text = NSLocalizedString("channel-header.play-teaser", comment: "button title for starting playback for channel teaser video")
     }
 
     func configure(for channel: Channel) {
@@ -30,8 +31,6 @@ class ChannelHeaderView: UICollectionReusableView {
         self.descriptionLabel.text = MarkdownHelper.string(for: channel.channelDescription ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
 
         self.channelTeaserView.isHidden = channel.stageStream == nil
-
-        self.playTeaserLabel.text = NSLocalizedString("channel-header.play-teaser", comment: "play teaser")
     }
 
     @objc private func tappedPlayTeaserButton() {

@@ -14,13 +14,13 @@ extension CourseItem {
     static var base16Alphabet = "0123456789abcdef"
     static var base62Alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-    static func base62UUID(forUUID uuid: String) -> String? {
+    public static func base62UUID(forUUID uuid: String) -> String? {
         let compactUUID = uuid.replacingOccurrences(of: "-", with: "")
         guard let base10Value = parseString(compactUUID, alphabet: Self.base16Alphabet) else { return nil }
         return try? self.parseDecimal(base10Value, alphabet: Self.base62Alphabet)
     }
 
-    static func uuid(forBase62UUID base62UUID: String) -> String? {
+    public static func uuid(forBase62UUID base62UUID: String) -> String? {
         guard let base10Value = self.parseString(base62UUID, alphabet: Self.base62Alphabet) else { return nil }
 
         guard var compactUUID = try? self.parseDecimal(base10Value, alphabet: Self.base16Alphabet) else { return nil }

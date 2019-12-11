@@ -42,6 +42,17 @@ class CourseItemBase62UUIDTests: XCTestCase {
         XCTAssertNil(base62UUID)
     }
 
+    func testBase62UUIDforBase62UUID() {
+        // given
+        let uuid = "26zY52tsj0TTA7iMhfNrCN"
+
+        // when
+        let base62UUID = CourseItem.base62UUID(forUUID: uuid)
+
+        // then
+        XCTAssertNil(base62UUID)
+    }
+
     func testUUIDforBase62UUID() {
         // given
         let base62UUID = "26zY52tsj0TTA7iMhfNrCN"
@@ -78,6 +89,17 @@ class CourseItemBase62UUIDTests: XCTestCase {
     func testUUIDforBase62UUIDWithInvalidCharacter() {
         // given
         let base62UUID = "26zY52tsj0TTA7iMhfNrC!" // `!` at the end of the string
+
+        // when
+        let uuid = CourseItem.uuid(forBase62UUID: base62UUID)
+
+        // then
+        XCTAssertNil(uuid)
+    }
+
+    func testUUIDforUUID() {
+        // given
+        let base62UUID = "45336b3b-4ef3-4b5a-b89f-b2d6e6361119"
 
         // when
         let uuid = CourseItem.uuid(forBase62UUID: base62UUID)

@@ -26,7 +26,7 @@ extension CourseItemHelper {
             return request
         }
 
-        static func courseItem(withId courseItemId: String) -> NSFetchRequest<CourseItem> {
+        public static func courseItem(withId courseItemId: String) -> NSFetchRequest<CourseItem> {
             let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
             request.predicate = NSPredicate(format: "id == %@", courseItemId)
             request.fetchLimit = 1

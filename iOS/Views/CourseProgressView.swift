@@ -15,7 +15,7 @@ class CourseProgressView: UITableViewHeaderFooterView {
     @IBOutlet private weak var bonusTestProgressStackView: ExerciseProgressStackView!
     @IBOutlet private weak var visitProgressStackView: VisitProgressStackView!
 
-    func configure(for courseProgress: CourseProgress, showCourseTitle: Bool) {
+    func configure(for courseProgress: CourseProgress) {
         self.mainProgressStackView.configure(for: courseProgress.mainProgress)
         self.selfTestProgressStackView.configure(for: courseProgress.selftestProgress)
         self.bonusTestProgressStackView.configure(for: courseProgress.bonusProgress)

@@ -39,7 +39,7 @@ class CourseProgressViewController: UITableViewController {
         self.refresh()
 
         if let progress = self.courseProgress {
-            self.courseProgressView.configure(for: progress, showCourseTitle: self.course == nil)
+            self.courseProgressView.configure(for: progress)
             self.tableView.resizeTableHeaderView()
         }
     }

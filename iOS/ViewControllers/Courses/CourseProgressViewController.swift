@@ -14,10 +14,6 @@ class CourseProgressViewController: UITableViewController {
     private var dataSource: CoreDataTableViewDataSource<CourseProgressViewController>!
     var course: Course!
 
-    private lazy var courseProgress: CourseProgress? = {
-        return CoreDataHelper.viewContext.fetchSingle(CourseProgressHelper.FetchRequest.courseProgress(forCourse: course)).value
-    }()
-
     @IBOutlet private weak var courseProgressView: CourseProgressView!
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
@@ -26,6 +22,7 @@ class CourseProgressViewController: UITableViewController {
         super.viewDidLoad()
 
         self.addRefreshControl()
+        self.setupEmptyState()
 
         // setup table view data
         let request = SectionProgressHelper.FetchRequest.sectionProgresses(forCourse: course)
@@ -37,14 +34,12 @@ class CourseProgressViewController: UITableViewController {
                                                       delegate: self)
 
         self.refresh()
-
         self.configureCourseProgress()
-
-        setupEmptyState()
     }
 
     func configureCourseProgress() {
-        if let progress = self.courseProgress {
+        let fetchRequest = CourseProgressHelper.FetchRequest.courseProgress(forCourse: self.course)
+        if let progress = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value {
             self.courseProgressView.configure(for: progress)
             self.tableView.resizeTableHeaderView()
             self.tableView.tableHeaderView?.isHidden = false

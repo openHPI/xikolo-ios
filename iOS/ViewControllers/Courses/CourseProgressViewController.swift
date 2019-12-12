@@ -38,9 +38,16 @@ class CourseProgressViewController: UITableViewController {
 
         self.refresh()
 
+        self.configureCourseProgress()
+    }
+
+    func configureCourseProgress() {
         if let progress = self.courseProgress {
             self.courseProgressView.configure(for: progress)
             self.tableView.resizeTableHeaderView()
+            self.tableView.tableHeaderView?.isHidden = false
+        } else {
+            self.tableView.tableHeaderView?.isHidden = true
         }
     }
 
@@ -80,6 +87,10 @@ extension CourseProgressViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         return CourseProgressHelper.syncProgress(forCourse: self.course).asVoid()
+    }
+
+    func didRefresh() {
+        self.configureCourseProgress()
     }
 
 }

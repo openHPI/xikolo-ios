@@ -16,11 +16,11 @@ class VisitProgressStackView: UIStackView {
         return formatter
     }()
 
-    private static var pointsFormatter: NumberFormatter = {
+    private static var visitFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = 1
-        formatter.maximumFractionDigits = 1
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 0
         return formatter
     }()
 
@@ -37,8 +37,8 @@ class VisitProgressStackView: UIStackView {
     }
 
     func configure(for progress: VisitProgress) {
-        let visited = progress.itemsVisited.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
-        let available = progress.itemsAvailable.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
+        let visited = progress.itemsVisited.flatMap(Self.visitFormatter.string(for:)) ?? "-"
+        let available = progress.itemsAvailable.flatMap(Self.visitFormatter.string(for:)) ?? "-"
 
         let format = NSLocalizedString("course.progress.visited %@ of %@ visited", comment: "label visit progess with absolute values. n out of m")
         let visitedText = String.localizedStringWithFormat(format, visited, available)

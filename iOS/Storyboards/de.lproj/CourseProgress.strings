@@ -1,7 +1,8 @@
+
 /* Class = "UILabel"; text = "Total"; ObjectID = "L8Z-c5-3NJ"; */
 "L8Z-c5-3NJ.text" = "Gesamt";
 
-/* Class = "UILabel"; text = "Assignment"; ObjectID = "f4A-Q5-crh"; */
+/* Class = "UILabel"; text = "Assignments"; ObjectID = "f4A-Q5-crh"; */
 "f4A-Q5-crh.text" = "Hausaufgaben";
 
 /* Class = "UILabel"; text = "Self-tests"; ObjectID = "olK-LE-aD1"; */
@@ -13,7 +14,7 @@
 /* Class = "UILabel"; text = "Visited"; ObjectID = "dRr-LF-AmX"; */
 "dRr-LF-AmX.text" = "Besucht";
 
-/* Class = "UILabel"; text = "Assignment"; ObjectID = "Fw3-WI-o2f"; */
+/* Class = "UILabel"; text = "Assignments"; ObjectID = "Fw3-WI-o2f"; */
 "Fw3-WI-o2f.text" = "Hausaufgaben";
 
 /* Class = "UILabel"; text = "Self-tests"; ObjectID = "PuJ-gs-Srq"; */

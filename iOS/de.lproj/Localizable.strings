@@ -164,6 +164,12 @@
 /* course item ungraded type */
 "course.item.exercise-type.ungraded" = "unbenotete Aufgabe";
 
+/* course progress points */
+"course.progress.points %@ of %@ points" = "%@ von %@ Punkten";
+
+/* No comment provided by engineer. */
+"course.progress.visited %@ of %@ visited" = "%@ von %@ besucht";
+
 /* action text for course overview with no courses */
 "dashboard.course-overview.no-courses.action" = "Entdecke verfügbare Kurse";
 
@@ -223,6 +229,9 @@
 
 /* title for empty course documents list */
 "empty-view.course-documents.title" = "Für diesen Kurs sind keine Dokumente verfügbar";
+
+/* title for empty course-progress view */
+"empty-view.course-progress.title" = "Der Fortschritt wird geladen …";
 
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Eingeschrieben";
@@ -358,12 +367,3 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video-Qualität mit WLAN";
-
-/* course progress visited */
-"course.progress.visited %@ of %@ visited" = "%@ von %@ besucht";
-
-/* course progress points */
-"course.progress.points %@ of %@ points" = "%@ von %@ Punkten";
-
-/* title for course-progress view */
-"empty-view.course-progress.title" = "Der Fortschritt wird geladen …";

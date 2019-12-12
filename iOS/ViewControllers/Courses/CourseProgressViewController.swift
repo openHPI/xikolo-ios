@@ -39,6 +39,8 @@ class CourseProgressViewController: UITableViewController {
         self.refresh()
 
         self.configureCourseProgress()
+
+        setupEmptyState()
     }
 
     func configureCourseProgress() {
@@ -99,6 +101,24 @@ extension CourseProgressViewController: CoreDataTableViewDataSourceDelegate {
 
     func configure(_ cell: SectionProgressCell, for object: SectionProgress) {
         cell.configure(for: object, showCourseTitle: self.course == nil)
+    }
+
+}
+
+extension CourseProgressViewController: EmptyStateDataSource, EmptyStateDelegate {
+
+    var emptyStateTitleText: String {
+        return NSLocalizedString("empty-view.course-progress.title", comment: "title for empty course-progress view")
+    }
+
+    func didTapOnEmptyStateView() {
+        self.refresh()
+    }
+
+    func setupEmptyState() {
+        self.tableView.emptyStateDataSource = self
+        self.tableView.emptyStateDelegate = self
+        self.tableView.tableFooterView = UIView()
     }
 
 }

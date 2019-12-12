@@ -108,7 +108,7 @@ extension CourseProgressViewController: CoreDataTableViewDataSourceDelegate {
 extension CourseProgressViewController: EmptyStateDataSource, EmptyStateDelegate {
 
     var emptyStateTitleText: String {
-        return NSLocalizedString("empty-view.course-progress.title", comment: "title for empty course-progress view")
+        return NSLocalizedString("empty-view.course-progress.title", comment: "title for empty course progress view")
     }
 
     func didTapOnEmptyStateView() {

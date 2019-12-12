@@ -164,10 +164,10 @@
 /* course item ungraded type */
 "course.item.exercise-type.ungraded" = "ungraded exercise";
 
-/* course progress points */
+/* label exercise progess with absolute values. n out of m */
 "course.progress.points %@ of %@ points" = "%@ of %@ points";
 
-/* No comment provided by engineer. */
+/* label visit progess with absolute values. n out of m */
 "course.progress.visited %@ of %@ visited" = "%@ of %@ visited";
 
 /* action text for course overview with no courses */
@@ -230,7 +230,7 @@
 /* title for empty course documents list */
 "empty-view.course-documents.title" = "No documents are available for this course";
 
-/* title for empty course-progress view */
+/* title for empty course progress view */
 "empty-view.course-progress.title" = "Loading progress …";
 
 /* title of course enrollment button */

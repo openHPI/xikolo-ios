@@ -123,7 +123,7 @@
 "course-section.combined-download-action.stop-downloads.title" = "Alle Downloads stoppen";
 
 /* title for spinner when loading section content */
-"course-section.loading-spinner.title" = "Inhalte werden geladen";
+"course-section.loading-spinner.title" = "Inhalte werden geladen …";
 
 /* delete all downloaded slides downloads in section */
 "course-section.slides-download-action.delete-downloads.title" = "Alle Folien löschen";
@@ -207,10 +207,10 @@
 "empty-view.certificates.no-certificates.title" = "Keine Zeugnisse verfügbar";
 
 /* title for empty channel list */
-"empty-view.channels.title" = "Kursebereiche werden geladen";
+"empty-view.channels.title" = "Kursebereiche werden geladen …";
 
 /* title for empty course content list */
-"empty-view.course-content.title" = "Kursinhalte werden geladen ...";
+"empty-view.course-content.title" = "Kursinhalte werden geladen …";
 
 /* description for empty course dates list if logged in */
 "empty-view.course-dates.no-dates.description" = "Hier erscheinen Benachrichtigungen zu Fristen und neuen Kursen";
@@ -361,3 +361,6 @@
 
 /* course progress points */
 "course.progress.points %@ of %@ points" = "%@ von %@ Punkten";
+
+/* title for course-progress view */
+"empty-view.course-progress.title" = "Der Fortschritt wird geladen …";

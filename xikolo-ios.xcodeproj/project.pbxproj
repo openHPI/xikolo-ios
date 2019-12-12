@@ -85,6 +85,8 @@
 		504D83FC215B64EC006F2447 /* APIStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83FB215B64EC006F2447 /* APIStatus.swift */; };
 		504FF508231E472500AAF595 /* URL+Marschal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504FF507231E472500AAF595 /* URL+Marschal.swift */; };
 		5050D665239F971100E48498 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 2493481A1D9550FD006D4F2C /* Localizable.stringsdict */; };
+		5050D66723A00FDA00E48498 /* CourseItem+base62UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5050D66623A00FDA00E48498 /* CourseItem+base62UUID.swift */; };
+		5050D66923A0125700E48498 /* CourseItemBase62UUIDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5050D66823A0125700E48498 /* CourseItemBase62UUIDTests.swift */; };
 		5052D27721591E9400927D52 /* SyncPushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D27621591E9400927D52 /* SyncPushEngine.swift */; };
 		5052D27A2159208100927D52 /* XikoloSyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D2792159208100927D52 /* XikoloSyncEngine.swift */; };
 		5054B2DD21087D6800CE9067 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2DC21087D6800CE9067 /* Document.swift */; };
@@ -576,6 +578,8 @@
 		504FF507231E472500AAF595 /* URL+Marschal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Marschal.swift"; sourceTree = "<group>"; };
 		50502E2C1FD04E56000A8D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseLearnings.storyboard; sourceTree = "<group>"; };
 		50502E2F1FD04E59000A8D35 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseLearnings.strings; sourceTree = "<group>"; };
+		5050D66623A00FDA00E48498 /* CourseItem+base62UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseItem+base62UUID.swift"; sourceTree = "<group>"; };
+		5050D66823A0125700E48498 /* CourseItemBase62UUIDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemBase62UUIDTests.swift; sourceTree = "<group>"; };
 		5052D27621591E9400927D52 /* SyncPushEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncPushEngine.swift; sourceTree = "<group>"; };
 		5052D2792159208100927D52 /* XikoloSyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloSyncEngine.swift; sourceTree = "<group>"; };
 		5054B2DB21086CF600CE9067 /* xikolo 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 7.xcdatamodel"; sourceTree = "<group>"; };
@@ -1048,6 +1052,7 @@
 				5095B1E320EBD41900572924 /* NSManagedObjectContext+typed.swift */,
 				50046F70216BBAD200D59073 /* BrightFuture+earliest.swift */,
 				50B31DFC22C4B660007DDDA4 /* Locale.swift */,
+				5050D66623A00FDA00E48498 /* CourseItem+base62UUID.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1232,6 +1237,7 @@
 			isa = PBXGroup;
 			children = (
 				50761B5720FCADD700CEDAF9 /* Info.plist */,
+				5050D66823A0125700E48498 /* CourseItemBase62UUIDTests.swift */,
 				50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */,
 				50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */,
 			);
@@ -2293,6 +2299,7 @@
 			files = (
 				50B31DFF22C4C570007DDDA4 /* BrightFuturesTests.swift in Sources */,
 				50B31DFB22C49D11007DDDA4 /* DateLabelHelperTests.swift in Sources */,
+				5050D66923A0125700E48498 /* CourseItemBase62UUIDTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2467,6 +2474,7 @@
 				50FA2E1F20E4B24300656776 /* UserProfileHelper.swift in Sources */,
 				50FA2E0E20E4B24300656776 /* CoreDataHelper.swift in Sources */,
 				0262E6CC23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift in Sources */,
+				5050D66723A00FDA00E48498 /* CourseItem+base62UUID.swift in Sources */,
 				50FA2E3720E4B25800656776 /* Course.swift in Sources */,
 				50FA2E2C20E4B24A00656776 /* VideoHelper+FetchRequests.swift in Sources */,
 				50FA2E1920E4B24300656776 /* PeerAssessmentHelper.swift in Sources */,

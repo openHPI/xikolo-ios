@@ -16,7 +16,8 @@ class CourseItemWebViewController: WebViewController {
 
     private func setURL() {
         guard let courseId = self.courseItem.section?.course?.id else { return }
-        self.url = Routes.courses.appendingPathComponents([courseId, "items", courseItem.id])
+        guard let courseItemId = self.courseItem.base62id else { return }
+        self.url = Routes.courses.appendingPathComponents([courseId, "items", courseItemId])
     }
 
 }

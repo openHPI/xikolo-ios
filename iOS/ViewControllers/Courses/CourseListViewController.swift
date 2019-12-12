@@ -3,6 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable file_length
+
+import AVFoundation
+import Binge
 import BrightFutures
 import Common
 import CoreData
@@ -11,6 +15,7 @@ import UIKit
 class CourseListViewController: UICollectionViewController {
 
     private var dataSource: CoreDataCollectionViewDataSource<CourseListViewController>!
+    private var channelObserver: ManagedObjectObserver?
 
     @available(iOS, obsoleted: 11.0)
     private var searchController: UISearchController?
@@ -33,11 +38,19 @@ class CourseListViewController: UICollectionViewController {
                                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
 
-        if case .coursesInChannel = self.configuration {
-            self.collectionView?.register(UINib(resource: R.nib.channelHeaderView),
-                                          forSupplementaryViewOfKind: R.nib.channelHeaderView.name,
-                                          withReuseIdentifier: R.nib.channelHeaderView.name)
-        }
+        if case let .coursesInChannel(channel) = self.configuration {
+                self.collectionView?.register(UINib(resource: R.nib.channelHeaderView),
+                                              forSupplementaryViewOfKind: R.nib.channelHeaderView.name,
+                                              withReuseIdentifier: R.nib.channelHeaderView.name)
+                self.channelObserver = ManagedObjectObserver(object: channel) { [weak self] type in
+                    guard type == .update else { return }
+                    DispatchQueue.main.async {
+                        if (self?.collectionView.numberOfSections ?? 0) > 0 {
+                            self?.collectionView?.reloadSections(IndexSet(0..<1))
+                        }
+                    }
+                }
+            }
 
         if let courseListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
             courseListLayout.delegate = self
@@ -155,6 +168,39 @@ class CourseListViewController: UICollectionViewController {
         }
     }
 
+}
+
+extension CourseListViewController: ChannelHeaderViewDelegate {
+
+    func playChannelTeaser() {
+
+        guard case let .coursesInChannel(channel) = self.configuration else { return }
+        guard let url = channel.stageStream?.hlsURL else { return }
+
+        let playerViewController = BingePlayerViewController()
+        playerViewController.delegate = self
+        playerViewController.tintColor = Brand.default.colors.window
+        playerViewController.initiallyShowControls = false
+        playerViewController.modalPresentationStyle = .fullScreen
+
+        if UserDefaults.standard.playbackRate > 0 {
+            playerViewController.playbackRate = UserDefaults.standard.playbackRate
+        }
+
+        playerViewController.asset = AVURLAsset(url: url)
+        self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
+            playerViewController.startPlayback()
+            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        }
+    }
+
+}
+
+extension CourseListViewController: BingePlayerDelegate {
+
+    func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {
+        UserDefaults.standard.playbackRate = newRate
+    }
 }
 
 extension CourseListViewController: CardListLayoutDelegate {
@@ -338,6 +384,7 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
         guard case let .coursesInChannel(channel) = self.configuration else { return nil }
 
         view.configure(for: channel)
+        view.delegate = self
 
         return view
     }

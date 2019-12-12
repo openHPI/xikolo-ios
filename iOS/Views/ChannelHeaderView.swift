@@ -11,13 +11,31 @@ class ChannelHeaderView: UICollectionReusableView {
 
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var channelTeaserView: UIVisualEffectView!
+    @IBOutlet private weak var playTeaserLabel: UILabel!
+
+    weak var delegate: ChannelHeaderViewDelegate?
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.channelTeaserView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tappedPlayTeaserButton))
+        self.channelTeaserView.addGestureRecognizer(tap)
+        self.channelTeaserView.layer.roundCorners(for: .default)
+        self.playTeaserLabel.text = NSLocalizedString("channel-header.play-teaser", comment: "button title for starting playback for channel teaser video")
+    }
 
     func configure(for channel: Channel) {
         self.imageView.backgroundColor = channel.colorWithFallback(to: Brand.default.colors.window)
         self.imageView.sd_setImage(with: channel.imageURL, placeholderImage: nil)
         self.descriptionLabel.text = MarkdownHelper.string(for: channel.channelDescription ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+
+        self.channelTeaserView.isHidden = channel.stageStream == nil
     }
 
+    @objc private func tappedPlayTeaserButton() {
+        self.delegate?.playChannelTeaser()
+    }
 }
 
 extension ChannelHeaderView {
@@ -31,5 +49,11 @@ extension ChannelHeaderView {
 
         return imageHeight + descriptionHeight + 12
     }
+
+}
+
+public protocol ChannelHeaderViewDelegate: AnyObject {
+
+    func playChannelTeaser()
 
 }

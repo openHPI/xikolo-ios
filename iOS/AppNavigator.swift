@@ -108,7 +108,18 @@ class AppNavigator {
                 if courseArea == nil {
                     self.show(course: course, with: .courseDetails)
                 } else if courseArea == "items" {
-                    self.show(course: course, with: .learnings)
+                    if let courseItemId = url.pathComponents[safe: 4] {
+                        let itemId = CourseItem.uuid(forBase62UUID: courseItemId) ?? courseItemId
+                        let itemFetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: itemId)
+                        if let courseItem = CoreDataHelper.viewContext.fetchSingle(itemFetchRequest).value {
+                            self.show(item: courseItem)
+                        } else {
+                            log.info("Unable to open course item (\(itemId)) for course (\(slugOrId)) inside the app")
+                            canOpenInApp = false
+                        }
+                    } else {
+                        self.show(course: course, with: .learnings)
+                    }
                 } else if courseArea == "pinboard" {
                     self.show(course: course, with: .discussions)
                 } else if courseArea == "announcements" {

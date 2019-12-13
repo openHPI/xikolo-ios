@@ -41,6 +41,9 @@
 /* title of learnings view of course view */
 "course-area.view.learnings.title" = "Learnings";
 
+/* title of progress view of course view */
+"course-area.view.progress.title" = "Progress";
+
 /* title of recap view of course view */
 "course-area.view.recap.title" = "Recap";
 
@@ -123,7 +126,7 @@
 "course-section.combined-download-action.stop-downloads.title" = "Stop all downloads";
 
 /* title for spinner when loading section content */
-"course-section.loading-spinner.title" = "Loading content";
+"course-section.loading-spinner.title" = "Loading content …";
 
 /* delete all downloaded slides downloads in section */
 "course-section.slides-download-action.delete-downloads.title" = "Delete all slides";
@@ -160,6 +163,12 @@
 
 /* course item ungraded type */
 "course.item.exercise-type.ungraded" = "ungraded exercise";
+
+/* label exercise progess with absolute values. n out of m */
+"course.progress.points %@ of %@ points" = "%@ of %@ points";
+
+/* label visit progess with absolute values. n out of m */
+"course.progress.visited %@ of %@ visited" = "%@ of %@ visited";
 
 /* action text for course overview with no courses */
 "dashboard.course-overview.no-courses.action" = "Discover available courses";
@@ -207,10 +216,10 @@
 "empty-view.certificates.no-certificates.title" = "No certificates available";
 
 /* title for empty channel list */
-"empty-view.channels.title" = "Loading channels";
+"empty-view.channels.title" = "Loading channels …";
 
 /* title for empty course content list */
-"empty-view.course-content.title" = "Loading course content ...";
+"empty-view.course-content.title" = "Loading course content …";
 
 /* description for empty course dates list if logged in */
 "empty-view.course-dates.no-dates.description" = "Notifications about deadlines or new courses will appear here";
@@ -220,6 +229,9 @@
 
 /* title for empty course documents list */
 "empty-view.course-documents.title" = "No documents are available for this course";
+
+/* title for empty course progress view */
+"empty-view.course-progress.title" = "Loading progress …";
 
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Enrolled";

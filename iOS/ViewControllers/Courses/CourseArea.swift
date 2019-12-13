@@ -15,11 +15,13 @@ enum CourseArea {
     case announcements
     case recap
     case certificates
+    case progress
 
     static var availableAreas: [CourseArea] = {
         let values: [CourseArea] = [
             .learnings,
             .discussions,
+            .progress,
             .courseDetails,
             .documents,
             .announcements,
@@ -61,6 +63,8 @@ enum CourseArea {
             return NSLocalizedString("course-area.view.recap.title", comment: "title of recap view of course view")
         case .certificates:
             return NSLocalizedString("course-area.view.certificates.title", comment: "title of certificates view of course view")
+        case .progress:
+            return NSLocalizedString("course-area.view.progress.title", comment: "title of progress view of course view")
         }
     }
 
@@ -80,6 +84,8 @@ enum CourseArea {
             return R.storyboard.webViewController.instantiateInitialViewController()
         case .certificates:
             return R.storyboard.courseCertificates.instantiateInitialViewController()
+        case .progress:
+            return R.storyboard.courseProgress.instantiateInitialViewController()
         }
     }
 

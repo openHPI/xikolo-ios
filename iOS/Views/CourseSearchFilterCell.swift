@@ -35,23 +35,18 @@ class CourseSearchFilterCell: UICollectionViewCell {
     }
 
     func configure(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) {
-        let isNormalState = selectedOptions?.isEmpty ?? true
-        self.configureAppearance(normalState: isNormalState)
+        let isHighlighted = !(selectedOptions?.isEmpty ?? true)
+        self.layer.backgroundColor = isHighlighted ? Brand.default.colors.window.cgColor : ColorCompatibility.systemBackground.cgColor
+        self.layer.borderColor = isHighlighted ? Brand.default.colors.window.cgColor : ColorCompatibility.secondaryLabel.cgColor
+        self.titleLabel.textColor = isHighlighted ? ColorCompatibility.systemBackground : ColorCompatibility.secondaryLabel
         self.titleLabel.text = Self.title(for: filter, with: selectedOptions)
     }
 
     func configureForClearButton() {
-        self.configureAppearance(normalState: true)
+        self.layer.backgroundColor = ColorCompatibility.systemBackground.cgColor
+        self.layer.borderColor = ColorCompatibility.systemBackground.cgColor
+        self.titleLabel.textColor = ColorCompatibility.secondaryLabel
         self.titleLabel.text = NSLocalizedString("course-list.search.filter.clear", comment: "Title for button for clearning all filters")
-    }
-
-    private func configureAppearance(normalState: Bool) {
-        self.titleLabel.textColor = normalState ? ColorCompatibility.secondaryLabel : ColorCompatibility.systemBackground
-
-        self.traitCollection.performAsCurrent {
-            self.layer.backgroundColor = normalState ? ColorCompatibility.systemBackground.cgColor : Brand.default.colors.window.cgColor
-            self.layer.borderColor = normalState ? ColorCompatibility.secondaryLabel.cgColor : Brand.default.colors.window.cgColor
-        }
     }
 
     static func cellHeight() -> CGFloat {

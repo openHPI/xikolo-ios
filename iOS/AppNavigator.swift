@@ -194,15 +194,11 @@ class AppNavigator {
 
     func show(course: Course, with courseArea: CourseArea = .learnings) {
         let courseOpenAction: CourseOpenAction = { courseViewController in
-            courseViewController.area = courseArea
+            courseViewController.transitionIfPossible(to: courseArea)
         }
 
         let courseClosedAction: CourseClosedAction = { courseViewController, accessible in
-            if accessible {
-                courseViewController.area = courseArea
-            } else {
-                courseViewController.area = .courseDetails
-            }
+            courseViewController.transitionIfPossible(to: courseArea)
         }
 
         self.navigate(to: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)

@@ -96,7 +96,7 @@ class CourseViewController: UIViewController {
 
         self.navigationController?.delegate = self
 
-        self.decideContent()
+        self.transitionIfPossible(to: .learnings)
         self.updateCourseAreaListContainerHeight()
         self.updateHeaderConstraints()
 
@@ -238,12 +238,12 @@ class CourseViewController: UIViewController {
         courseNavigationController?.closeCourse()
     }
 
-    private func decideContent() {
-        if !self.course.hasEnrollment {
-            self.manuallyUpdate(to: .courseDetails, updateCourseAreaSelection: true)
+    func transitionIfPossible(to area: CourseArea) {
+        if self.course.hasEnrollment {
+            let newArea = self.course.accessible ? area : .courseDetails
+            self.manuallyUpdate(to: newArea, updateCourseAreaSelection: true)
         } else {
-            let area: CourseArea = self.course.accessible ? .learnings : .courseDetails
-            self.manuallyUpdate(to: area, updateCourseAreaSelection: true)
+            self.manuallyUpdate(to: .courseDetails, updateCourseAreaSelection: true)
         }
     }
 
@@ -400,7 +400,7 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
 
     func enrollmentStateDidChange(whenNewlyCreated newlyCreated: Bool) {
         if newlyCreated {
-            self.decideContent()
+            self.transitionIfPossible(to: .learnings)
         } else {
             self.courseAreaListViewController?.refresh()
         }

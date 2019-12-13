@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C46a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G1012" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Announcement" representedClassName=".Announcement" elementID="NewsArticle" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="imageURL" optional="YES" attributeType="Transformable"/>
@@ -134,7 +134,8 @@
     </entity>
     <entity name="PeerAssessment" representedClassName=".PeerAssessment" parentEntity="Content" syncable="YES">
         <attribute name="id" attributeType="String"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="instructions" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <entity name="PlatformEvent" representedClassName=".PlatformEvent" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -234,7 +235,7 @@
         <element name="DocumentLocalization" positionX="243" positionY="-54" width="128" height="165"/>
         <element name="Enrollment" positionX="52" positionY="-216" width="128" height="163"/>
         <element name="LTIExercise" positionX="772" positionY="342" width="128" height="118"/>
-        <element name="PeerAssessment" positionX="610" positionY="311" width="128" height="75"/>
+        <element name="PeerAssessment" positionX="610" positionY="311" width="128" height="88"/>
         <element name="PlatformEvent" positionX="252" positionY="-16" width="128" height="135"/>
         <element name="Quiz" positionX="828" positionY="162" width="128" height="163"/>
         <element name="QuizQuestion" positionX="999" positionY="162" width="128" height="180"/>

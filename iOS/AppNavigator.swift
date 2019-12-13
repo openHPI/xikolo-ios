@@ -122,6 +122,8 @@ class AppNavigator {
                     }
                 } else if courseArea == "pinboard" {
                     self.show(course: course, with: .discussions)
+                } else if courseArea == "progress" {
+                    self.show(course: course, with: .progress)
                 } else if courseArea == "announcements" {
                     self.show(course: course, with: .announcements)
                 } else {

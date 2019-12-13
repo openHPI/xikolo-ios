@@ -230,6 +230,9 @@
 /* title for empty course documents list */
 "empty-view.course-documents.title" = "No documents are available for this course";
 
+/* title for empty course list */
+"empty-view.course-list.title" = "Loading courses …";
+
 /* title for empty course progress view */
 "empty-view.course-progress.title" = "Loading progress …";
 

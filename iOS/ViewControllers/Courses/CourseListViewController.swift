@@ -64,6 +64,7 @@ class CourseListViewController: UICollectionViewController {
         }
 
         self.addRefreshControl()
+        self.setupEmptyState()
 
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
         self.dataSource = CoreDataCollectionViewDataSource(self.collectionView,
@@ -399,6 +400,23 @@ extension CourseListViewController: RefreshableViewController {
         } else {
             return CourseHelper.syncAllCourses().asVoid()
         }
+    }
+
+}
+
+extension CourseListViewController: EmptyStateDataSource, EmptyStateDelegate {
+
+    var emptyStateTitleText: String {
+        return NSLocalizedString("empty-view.course-list.title", comment: "title for empty course list")
+    }
+
+    func didTapOnEmptyStateView() {
+        self.refresh()
+    }
+
+    func setupEmptyState() {
+        self.collectionView.emptyStateDataSource = self
+        self.collectionView.emptyStateDelegate = self
     }
 
 }

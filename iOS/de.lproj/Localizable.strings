@@ -230,6 +230,9 @@
 /* title for empty course documents list */
 "empty-view.course-documents.title" = "Für diesen Kurs sind keine Dokumente verfügbar";
 
+/* title for empty course list */
+"empty-view.course-list.title" = "Kurse werden geladen …";
+
 /* title for empty course progress view */
 "empty-view.course-progress.title" = "Der Fortschritt wird geladen …";
 

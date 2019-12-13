@@ -39,13 +39,10 @@ class CourseProgressViewController: UITableViewController {
 
     func configureCourseProgress() {
         let fetchRequest = CourseProgressHelper.FetchRequest.courseProgress(forCourse: self.course)
-        if let progress = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value {
-            self.courseProgressView.configure(for: progress)
-            self.tableView.resizeTableHeaderView()
-            self.tableView.tableHeaderView?.isHidden = false
-        } else {
-            self.tableView.tableHeaderView?.isHidden = true
-        }
+        let progress = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value
+        self.courseProgressView.configure(for: progress)
+        self.tableView.tableHeaderView?.isHidden = progress == nil
+        self.tableView.resizeTableHeaderView()
     }
 
     override func viewDidLayoutSubviews() {

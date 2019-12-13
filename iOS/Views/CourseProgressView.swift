@@ -15,11 +15,18 @@ class CourseProgressView: UITableViewHeaderFooterView {
     @IBOutlet private weak var bonusTestProgressStackView: ExerciseProgressStackView!
     @IBOutlet private weak var visitProgressStackView: VisitProgressStackView!
 
-    func configure(for courseProgress: CourseProgress) {
-        self.mainProgressStackView.configure(for: courseProgress.mainProgress)
-        self.selfTestProgressStackView.configure(for: courseProgress.selftestProgress)
-        self.bonusTestProgressStackView.configure(for: courseProgress.bonusProgress)
-        self.visitProgressStackView.configure(for: courseProgress.visitProgress)
+    func configure(for courseProgress: CourseProgress?) {
+        self.mainProgressStackView.isHidden = courseProgress == nil
+        self.selfTestProgressStackView.isHidden = courseProgress == nil
+        self.bonusTestProgressStackView.isHidden = courseProgress == nil
+        self.visitProgressStackView.isHidden = courseProgress == nil
+
+        if let progress = courseProgress {
+            self.mainProgressStackView.configure(for: progress.mainProgress)
+            self.selfTestProgressStackView.configure(for: progress.selftestProgress)
+            self.bonusTestProgressStackView.configure(for: progress.bonusProgress)
+            self.visitProgressStackView.configure(for: progress.visitProgress)
+        }
     }
 
 }

@@ -5,5 +5,5 @@
 /* Class = "UIButton"; normalTitle = "Launch Exercise Tool"; ObjectID = "rF0-gS-qZg"; */
 "rF0-gS-qZg.normalTitle" = "Aufgabe starten";
 
-/* Class = "UITextView"; text = "Loading instructions ..."; ObjectID = "GdB-9t-4lq"; */
-"GdB-9t-4lq.text" = "Anweisungen werden geladen ...";
+/* Class = "UITextView"; text = "Loading instructions …"; ObjectID = "GdB-9t-4lq"; */
+"GdB-9t-4lq.text" = "Anweisungen werden geladen …";

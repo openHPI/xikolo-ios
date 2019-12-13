@@ -216,7 +216,7 @@
 "empty-view.certificates.no-certificates.title" = "Keine Zeugnisse verfügbar";
 
 /* title for empty channel list */
-"empty-view.channels.title" = "Kursebereiche werden geladen …";
+"empty-view.channels.title" = "Kursbereiche werden geladen …";
 
 /* title for empty course content list */
 "empty-view.course-content.title" = "Kursinhalte werden geladen …";

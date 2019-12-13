@@ -64,12 +64,12 @@ class LTIHintViewController: UIViewController {
         }
 
         switch self.courseItem.exerciseType {
-        case "main"?:
-            self.typeView.text = NSLocalizedString("course.item.exercise-type.main", comment: "course item main type")
-        case "bonus"?:
-            self.typeView.text = NSLocalizedString("course.item.exercise-type.bonus", comment: "course item bonus type")
-        case "ungraded"?:
-            self.typeView.text = NSLocalizedString("course.item.exercise-type.ungraded", comment: "course item ungraded type")
+        case "main":
+            self.typeView.text = NSLocalizedString("course.item.exercise-type.disclaimer.main", comment: "course item main type")
+        case "bonus":
+            self.typeView.text = NSLocalizedString("course.item.exercise-type.disclaimer.bonus", comment: "course item bonus type")
+        case "selftest":
+            self.typeView.text = NSLocalizedString("course.item.exercise-type.disclaimer.ungraded", comment: "course item ungraded type")
         default:
             self.typeView.isHidden = true
         }

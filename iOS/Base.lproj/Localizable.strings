@@ -156,13 +156,13 @@
 "course.certificates.not-enrolled" = "not enrolled";
 
 /* course item bonus type */
-"course.item.exercise-type.bonus" = "bonus exercise";
+"course.item.exercise-type.disclaimer.bonus" = "This is a bonus exercise.";
 
 /* course item main type */
-"course.item.exercise-type.main" = "graded exercise";
+"course.item.exercise-type.disclaimer.main" = "This is an graded exercise.";
 
 /* course item ungraded type */
-"course.item.exercise-type.ungraded" = "ungraded exercise";
+"course.item.exercise-type.disclaimer.ungraded" = "This is an ungraded exercise.";
 
 /* label exercise progess with absolute values. n out of m */
 "course.progress.points %@ of %@ points" = "%@ of %@ points";

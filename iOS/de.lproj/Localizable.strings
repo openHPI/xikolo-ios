@@ -156,13 +156,13 @@
 "course.certificates.not-enrolled" = "nicht eingeschrieben";
 
 /* course item bonus type */
-"course.item.exercise-type.bonus" = "Bonusaufgabe";
+"course.item.exercise-type.disclaimer.bonus" = "Dies ist eine Bonusaufgabe.";
 
 /* course item main type */
-"course.item.exercise-type.main" = "benotete Aufgabe";
+"course.item.exercise-type.disclaimer.main" = "Dies ist eine benotete Aufgabe.";
 
 /* course item ungraded type */
-"course.item.exercise-type.ungraded" = "unbenotete Aufgabe";
+"course.item.exercise-type.disclaimer.ungraded" = "Dies ist eine unbenotete Aufgabe.";
 
 /* label exercise progess with absolute values. n out of m */
 "course.progress.points %@ of %@ points" = "%@ von %@ Punkten";

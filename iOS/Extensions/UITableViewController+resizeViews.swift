@@ -22,7 +22,10 @@ extension UITableView {
         guard view.frame.size.height != size.height else { return }
         view.frame.size.height = size.height
         self[keyPath: keyPath] = view
-        self.layoutIfNeeded()
+
+        if self.window != nil {
+            self.layoutIfNeeded()
+        }
     }
 
 }

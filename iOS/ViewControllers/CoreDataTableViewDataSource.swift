@@ -72,6 +72,7 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
     // MARK: NSFetchedResultsControllerDelegate
 
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        guard self.tableView?.window != nil else { return }
         self.tableView?.beginUpdates()
     }
 

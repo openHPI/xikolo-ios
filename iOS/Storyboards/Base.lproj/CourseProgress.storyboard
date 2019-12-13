@@ -266,7 +266,6 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstItem="L8Z-c5-3NJ" firstAttribute="top" secondItem="gg3-tJ-2Uw" secondAttribute="topMargin" id="8qT-cX-agB"/>
                                 <constraint firstItem="Ct7-Me-MOJ" firstAttribute="leading" secondItem="gg3-tJ-2Uw" secondAttribute="leadingMargin" id="We4-5r-Ouz"/>

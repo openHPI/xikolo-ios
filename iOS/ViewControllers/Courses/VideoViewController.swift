@@ -44,12 +44,12 @@ class VideoViewController: UIViewController {
         }
     }
 
-    private lazy var actionMenuButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
-        button.isEnabled = false
-        button.tintColor = ColorCompatibility.disabled
-        return button
-    }()
+//    private lazy var actionMenuButton: UIBarButtonItem = {
+//        let button = UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
+//        button.isEnabled = false
+//        button.tintColor = ColorCompatibility.disabled
+//        return button
+//    }()
 
     private var courseItemObserver: ManagedObjectObserver?
 
@@ -136,7 +136,7 @@ class VideoViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
+        //self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.didViewAppear = true
 
         // Autoplay logic
@@ -154,9 +154,9 @@ class VideoViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        if self.parent?.navigationItem.rightBarButtonItem == self.actionMenuButton {
-            self.parent?.navigationItem.rightBarButtonItem = nil
-        }
+//        if self.parent?.navigationItem.rightBarButtonItem == self.actionMenuButton {
+//            self.parent?.navigationItem.rightBarButtonItem = nil
+//        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -227,8 +227,8 @@ class VideoViewController: UIViewController {
         self.video = video
 
         let hasUserActions = ReachabilityHelper.hasConnection || !video.userActions.isEmpty
-        self.actionMenuButton.isEnabled = hasUserActions
-        self.actionMenuButton.tintColor = hasUserActions ? Brand.default.colors.primary : ColorCompatibility.disabled
+//        self.actionMenuButton.isEnabled = hasUserActions
+//        self.actionMenuButton.tintColor = hasUserActions ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
         let streamDownloadProgress = StreamPersistenceManager.shared.downloadProgress(for: video)
@@ -534,6 +534,10 @@ extension VideoViewController: CourseItemContentPresenter {
 
     var item: CourseItem? {
         return self.courseItem
+    }
+
+    var additionalActions: [UIAlertAction] {
+        return self.video?.userActions ?? []
     }
 
     func configure(for item: CourseItem) {

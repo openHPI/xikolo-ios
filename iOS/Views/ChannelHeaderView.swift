@@ -30,7 +30,7 @@ class ChannelHeaderView: UICollectionReusableView {
         self.imageView.sd_setImage(with: channel.imageURL, placeholderImage: nil)
         self.descriptionLabel.text = MarkdownHelper.string(for: channel.channelDescription ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
 
-        self.channelTeaserView.isHidden = channel.stageStream == nil
+        self.channelTeaserView.isHidden = channel.stageStream?.hlsURL == nil
     }
 
     @objc private func tappedPlayTeaserButton() {

@@ -25,13 +25,15 @@ class CourseItemViewController: UIPageViewController {
 
     private var userActions: [UIAlertAction] {
         var actions = [self.shareCourseItemAction]
-        // actions.append(self.currentItem.additionalActions)
+        if let video = self.currentItem?.content as? Video {
+            actions += video.userActions
+        }
         return actions
     }
 
     private var shareCourseItemAction: UIAlertAction {
-        return UIAlertAction(title: NSLocalizedString("courseIteam.share", comment: "Title for course item share action"), style: .default) { _ in
-            self.shareCourseItem()
+        return UIAlertAction(title: NSLocalizedString("courseIteam.share", comment: "Title for course item share action"), style: .default) { [weak self] _ in
+            self?.shareCourseItem()
         }
     }
 
@@ -46,8 +48,11 @@ class CourseItemViewController: UIPageViewController {
 
             self.previousItem = self.currentItem?.previousItem
             self.nextItem = self.currentItem?.nextItem
+            self.setURL()
 
             if let item = self.currentItem, let section = item.section {
+                //sort and return indizes
+                
                 self.progressLabel.text = "\(item.position) / \(section.items.count)"
                 self.progressLabel.sizeToFit()
             } else {
@@ -63,6 +68,7 @@ class CourseItemViewController: UIPageViewController {
         self.delegate = self
 
         self.navigationItem.rightBarButtonItem = self.actionMenuButton
+        self.setURL()
 
         self.view.backgroundColor = ColorCompatibility.systemBackground
         self.navigationItem.titleView = self.progressLabel
@@ -120,6 +126,7 @@ class CourseItemViewController: UIPageViewController {
         TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, on: self, context: context)
     }
 
+    //extension to courseItem
     private func setURL() {
         guard let courseId = self.currentItem?.section?.course?.id else { return }
         guard let courseItemId = self.currentItem?.base62id else { return }
@@ -142,8 +149,8 @@ class CourseItemViewController: UIPageViewController {
     }
 
     @IBAction private func shareCourseItem() {
-        let activityItems = [self.url as Any]
-        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        let activityItems = self.url as Any
+        let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
         
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)

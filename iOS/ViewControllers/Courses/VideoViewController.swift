@@ -129,7 +129,6 @@ class VideoViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.didViewAppear = true
 
         // Autoplay logic

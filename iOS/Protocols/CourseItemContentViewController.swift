@@ -6,8 +6,11 @@
 import Common
 
 public protocol CourseItemContentPresenter: AnyObject {
+
     var item: CourseItem? { get }
+
     func configure(for item: CourseItem)
+
 }
 
 typealias CourseItemContentViewController = CourseItemContentPresenter & UIViewController

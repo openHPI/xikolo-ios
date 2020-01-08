@@ -28,6 +28,7 @@ class CourseItemViewController: UIPageViewController {
         if let video = self.currentItem?.content as? Video {
             actions += video.userActions
         }
+
         return actions
     }
 
@@ -51,8 +52,6 @@ class CourseItemViewController: UIPageViewController {
             self.setURL()
 
             if let item = self.currentItem, let section = item.section {
-                //sort and return indizes
-                
                 self.progressLabel.text = "\(item.position) / \(section.items.count)"
                 self.progressLabel.sizeToFit()
             } else {
@@ -126,7 +125,7 @@ class CourseItemViewController: UIPageViewController {
         TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, on: self, context: context)
     }
 
-    //extension to courseItem
+    // extension to courseItem
     private func setURL() {
         guard let courseId = self.currentItem?.section?.course?.id else { return }
         guard let courseItemId = self.currentItem?.base62id else { return }
@@ -152,7 +151,7 @@ class CourseItemViewController: UIPageViewController {
         let activityItems = self.url as Any
         let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
-        
+
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 

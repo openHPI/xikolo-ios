@@ -38,7 +38,6 @@ class CourseItemViewController: UIPageViewController {
         }
     }
 
-    private var url: URL?
     private var previousItem: CourseItem?
     private var nextItem: CourseItem?
 
@@ -49,7 +48,6 @@ class CourseItemViewController: UIPageViewController {
 
             self.previousItem = self.currentItem?.previousItem
             self.nextItem = self.currentItem?.nextItem
-            self.setURL()
 
             if let item = self.currentItem, let section = item.section {
                 self.progressLabel.text = "\(item.position) / \(section.items.count)"
@@ -67,7 +65,6 @@ class CourseItemViewController: UIPageViewController {
         self.delegate = self
 
         self.navigationItem.rightBarButtonItem = self.actionMenuButton
-        self.setURL()
 
         self.view.backgroundColor = ColorCompatibility.systemBackground
         self.navigationItem.titleView = self.progressLabel
@@ -125,12 +122,6 @@ class CourseItemViewController: UIPageViewController {
         TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, on: self, context: context)
     }
 
-    // extension to courseItem
-    private func setURL() {
-        guard let courseId = self.currentItem?.section?.course?.id else { return }
-        guard let courseItemId = self.currentItem?.base62id else { return }
-        self.url = Routes.courses.appendingPathComponents([courseId, "items", courseItemId])
-    }
 
     @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
         let actions = self.userActions
@@ -148,7 +139,8 @@ class CourseItemViewController: UIPageViewController {
     }
 
     @IBAction private func shareCourseItem() {
-        let activityItems = self.url as Any
+        guard let item = self.currentItem else { return }
+        let activityItems = item.courseItemURL as Any
         let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
 
@@ -190,6 +182,16 @@ extension CourseItemViewController: UIPageViewControllerDelegate {
         }
 
         self.currentItem = currentCourseItemContentViewController.item
+    }
+
+}
+
+extension CourseItem: CourseItemURL {
+
+    public var courseItemURL: URL? {
+        guard let courseId = self.section?.course?.id else { return nil }
+        guard let courseItemId = self.base62id else { return nil }
+        return Routes.courses.appendingPathComponents([courseId, "items", courseItemId])
     }
 
 }

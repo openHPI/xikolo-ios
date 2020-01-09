@@ -122,7 +122,6 @@ class CourseItemViewController: UIPageViewController {
         TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, on: self, context: context)
     }
 
-
     @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
         let actions = self.userActions
 

@@ -3,14 +3,20 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import UIKit
 import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-        
+
+    @IBOutlet weak var stackView: UIStackView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        let currentCoursesViewController = R.storyboard.courseOverview.instantiateInitialViewController().require()
+        currentCoursesViewController.configuration = .currentCourses
+        self.addContentController(currentCoursesViewController)
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -21,6 +27,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's an update, use NCUpdateResult.NewData
         
         completionHandler(NCUpdateResult.newData)
+    }
+
+    private func addContentController(_ child: UIViewController) {
+        self.addChild(child)
+        self.stackView.addArrangedSubview(child.view)
+        child.didMove(toParent: self)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        TrackingHelper.createEvent(.visitedDashboard, on: self)
     }
     
 }

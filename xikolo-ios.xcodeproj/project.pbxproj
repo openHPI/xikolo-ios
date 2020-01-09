@@ -355,13 +355,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		02D9354723C7BE94008BE0C7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 02D9353C23C7BE94008BE0C7;
-			remoteInfo = TodayExtension;
-		};
 		5067AD372367042E00ADEAB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
@@ -1890,7 +1883,6 @@
 			dependencies = (
 				50FA2DF120E4B1A800656776 /* PBXTargetDependency */,
 				5067AD382367042E00ADEAB9 /* PBXTargetDependency */,
-				02D9354823C7BE94008BE0C7 /* PBXTargetDependency */,
 			);
 			name = iOS;
 			productName = "xikolo-ios";
@@ -2209,7 +2201,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Build\\ Phases/clear-build-number.sh";
+			shellScript = "$SRCROOT/Build\\ Phases/clear-build-number.sh\n";
 		};
 		50D60D2B20E0D2C7007A4199 /* Remove localizations */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2647,11 +2639,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		02D9354823C7BE94008BE0C7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 02D9353C23C7BE94008BE0C7 /* TodayExtension */;
-			targetProxy = 02D9354723C7BE94008BE0C7 /* PBXContainerItemProxy */;
-		};
 		5067AD382367042E00ADEAB9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5067AD312367042E00ADEAB9 /* Binge */;

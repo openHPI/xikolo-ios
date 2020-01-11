@@ -341,6 +341,7 @@
 		700398C421A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */; };
 		7007E4132133FFB6005AC7A6 /* DownloadedContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */; };
 		70893B5621C3D1F600AF22E3 /* LTIHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70893B5521C3D1F600AF22E3 /* LTIHintViewController.swift */; };
+		820332F223C9FEA8007D1D60 /* CourseItemURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820332F123C9FEA8007D1D60 /* CourseItemURL.swift */; };
 		8251A50B237182F200A443A9 /* HelpdeskTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50A237182F200A443A9 /* HelpdeskTicket.swift */; };
 		8251A50D23718A4500A443A9 /* HelpdeskTicketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */; };
 		82BE606D232FBB86000353B4 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82BE606F232FBB86000353B4 /* CourseDetails.storyboard */; };
@@ -773,6 +774,7 @@
 		7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
+		820332F123C9FEA8007D1D60 /* CourseItemURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemURL.swift; sourceTree = "<group>"; };
 		8251A50A237182F200A443A9 /* HelpdeskTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskTicket.swift; sourceTree = "<group>"; };
 		8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskTicketHelper.swift; sourceTree = "<group>"; };
 		82BE606E232FBB86000353B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseDetails.storyboard; sourceTree = "<group>"; };
@@ -1064,6 +1066,7 @@
 				5019CE912171F21D0001805E /* CourseItemContentViewController.swift */,
 				5060A5211F177304007896FF /* DetailedCourseItemContent.swift */,
 				5039887621679A3500F9043B /* PreloadableCourseItemContent.swift */,
+				820332F123C9FEA8007D1D60 /* CourseItemURL.swift */,
 				5039887421679A0600F9043B /* CourseItemCellDelegate.swift */,
 				50022901205928E2003301A7 /* UserActionsDelegate.swift */,
 				5036A536211C0EC7003B0C6B /* RefreshableViewController.swift */,
@@ -2289,6 +2292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50CF1F4620DCDBFC0011BFE9 /* PDFWebViewController.swift in Sources */,
+				820332F223C9FEA8007D1D60 /* CourseItemURL.swift in Sources */,
 				50CF1F4E20DCDBFC0011BFE9 /* RichtextViewController.swift in Sources */,
 				50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */,
 				5095B1E220EBB45800572924 /* UserProfileHelperDelegateInstance.swift in Sources */,

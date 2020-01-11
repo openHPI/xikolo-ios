@@ -7,6 +7,6 @@ import Foundation
 
 public protocol CourseItemURL {
 
-    public var courseItemURL: URL? { get }
+    var courseItemURL: URL? { get }
 
 }

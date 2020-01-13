@@ -10,6 +10,7 @@
 		021DA1A82386A12400E6E763 /* ExerciseProgressStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021DA1A623869C1700E6E763 /* ExerciseProgressStackView.swift */; };
 		022A714023CC75D1002F6E09 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022A713F23CC75D1002F6E09 /* R.generated.swift */; };
 		023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B8E68230615E90027E370 /* SceneDelegate.swift */; };
+		0247254023CC852000505835 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
 		0262E6C523729C29007C9057 /* ExerciseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C423729C29007C9057 /* ExerciseProgress.swift */; };
 		0262E6C72372C797007C9057 /* VisitProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C62372C797007C9057 /* VisitProgress.swift */; };
 		0262E6C92372CBD5007C9057 /* SectionProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C82372CBD5007C9057 /* SectionProgress.swift */; };
@@ -363,6 +364,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 02D9353C23C7BE94008BE0C7;
 			remoteInfo = TodayExtension;
+		};
+		0247254123CC85F900505835 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50FA2DEA20E4B1A800656776;
+			remoteInfo = Common;
 		};
 		5067AD372367042E00ADEAB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -891,6 +899,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0247254023CC852000505835 /* Common.framework in Frameworks */,
 				02D9353F23C7BE94008BE0C7 /* NotificationCenter.framework in Frameworks */,
 				3380743742F16EA0F7531734 /* Pods_TodayExtension.framework in Frameworks */,
 			);
@@ -1804,14 +1813,15 @@
 			buildConfigurationList = 02D9355323C7BE94008BE0C7 /* Build configuration list for PBXNativeTarget "TodayExtension" */;
 			buildPhases = (
 				8238D55419DD09DA6ED94194 /* [CP] Check Pods Manifest.lock */,
+				022A713C23CC7174002F6E09 /* Run R.swift */,
 				02D9353923C7BE94008BE0C7 /* Sources */,
-				022A713C23CC7174002F6E09 /* ShellScript */,
 				02D9353A23C7BE94008BE0C7 /* Frameworks */,
 				02D9353B23C7BE94008BE0C7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0247254223CC85F900505835 /* PBXTargetDependency */,
 			);
 			name = TodayExtension;
 			productName = TodayExtension;
@@ -1913,9 +1923,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				022A713E23CC7557002F6E09 /* PBXTargetDependency */,
 				50FA2DF120E4B1A800656776 /* PBXTargetDependency */,
 				5067AD382367042E00ADEAB9 /* PBXTargetDependency */,
+				022A713E23CC7557002F6E09 /* PBXTargetDependency */,
 			);
 			name = iOS;
 			productName = "xikolo-ios";
@@ -2120,7 +2130,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		022A713C23CC7174002F6E09 /* ShellScript */ = {
+		022A713C23CC7174002F6E09 /* Run R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2130,6 +2140,7 @@
 			inputPaths = (
 				"$TEMP_DIR/rswift-lastrun",
 			);
+			name = "Run R.swift";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -2719,6 +2730,11 @@
 			target = 02D9353C23C7BE94008BE0C7 /* TodayExtension */;
 			targetProxy = 022A713D23CC7557002F6E09 /* PBXContainerItemProxy */;
 		};
+		0247254223CC85F900505835 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50FA2DEA20E4B1A800656776 /* Common */;
+			targetProxy = 0247254123CC85F900505835 /* PBXContainerItemProxy */;
+		};
 		5067AD382367042E00ADEAB9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5067AD312367042E00ADEAB9 /* Binge */;
@@ -2961,6 +2977,7 @@
 			baseConfigurationReference = 7A1FD4AB4E924BC57BEE1C55 /* Pods-TodayExtension.openhpi-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3033,6 +3050,7 @@
 			baseConfigurationReference = AEAECBE96E1308C024CFA22A /* Pods-TodayExtension.opensap-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3098,6 +3116,7 @@
 			baseConfigurationReference = 1C4FE511AABC6860CA101BB3 /* Pods-TodayExtension.openwho-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3163,6 +3182,7 @@
 			baseConfigurationReference = 13F59F35E58A4B46C499A1BA /* Pods-TodayExtension.moochouse-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3228,6 +3248,7 @@
 			baseConfigurationReference = F5573E8002F0C0CA079B4B45 /* Pods-TodayExtension.openhpi-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3293,6 +3314,7 @@
 			baseConfigurationReference = 64937786CC095E17F6A3967D /* Pods-TodayExtension.opensap-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3358,6 +3380,7 @@
 			baseConfigurationReference = 5D302EF25B4E08E27970D3A4 /* Pods-TodayExtension.openwho-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3423,6 +3446,7 @@
 			baseConfigurationReference = F47F982E1B1C2BCE5DD94DE2 /* Pods-TodayExtension.moochouse-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

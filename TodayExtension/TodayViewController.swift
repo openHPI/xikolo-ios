@@ -4,24 +4,25 @@
 //
 
 import Common
+import CoreData
 import UIKit
 import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 
     @IBOutlet weak var stackView: UIStackView!
-
+    @IBOutlet weak var todayCountLabel: UILabel!
+    @IBOutlet weak var nextCountLabel: UILabel!
+    @IBOutlet weak var allCountLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Allow the today widget to be expanded or contracted.
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
 
-        R.storyboard.mainInterface.instantiateInitialViewController()
-//        let currentCoursesViewController = R.storyboard.courseOverview.instantiateInitialViewController().require()
-//        let currentCoursesViewController = UIViewController(nibName: , bundle: <#T##Bundle?#>)
-//        currentCoursesViewController.configuration = .currentCourses
-//        self.addContentController(currentCoursesViewController)
+        self.loadData()
+
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -44,5 +45,19 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewDidAppear(animated)
         TrackingHelper.createEvent(.visitedDashboard, on: self)
     }
-    
+
+    func loadData() {
+        self.todayCountLabel.text = self.formattedItemCount(for: CourseDateHelper.FetchRequest.courseDatesForNextDays(numberOfDays: 1))
+        self.nextCountLabel.text = self.formattedItemCount(for: CourseDateHelper.FetchRequest.courseDatesForNextDays(numberOfDays: 7))
+        self.allCountLabel.text = self.formattedItemCount(for: CourseDateHelper.FetchRequest.allCourseDates)
+    }
+
+    private func formattedItemCount(for fetchRequest: NSFetchRequest<CourseDate>) -> String {
+        if let count = try? CoreDataHelper.viewContext.count(for: fetchRequest) {
+            return String(count)
+        } else {
+            return "-"
+        }
+    }
+
 }

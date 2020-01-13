@@ -48,14 +48,12 @@ class CourseItemViewController: UIPageViewController {
 
         guard let item = self.currentItem else { return }
         guard let newViewController = self.viewController(for: item) else { return }
-        newViewController.configure(for: item)
         self.setViewControllers([newViewController], direction: .forward, animated: false)
     }
 
     func reload(animated: Bool) {
         guard let item = self.currentItem else { return }
         guard let newViewController = self.viewController(for: item) else { return }
-        newViewController.configure(for: item)
         self.setViewControllers([newViewController], direction: .forward, animated: animated)
     }
 
@@ -73,16 +71,21 @@ class CourseItemViewController: UIPageViewController {
             return viewController
         }
 
-        switch item.contentType {
-        case "video"?:
-            return R.storyboard.courseLearningsVideo.instantiateInitialViewController()
-        case "rich_text"?:
-            return R.storyboard.courseLearningsRichtext.instantiateInitialViewController()
-        case "lti_exercise"?:
-            return R.storyboard.courseLearningsLTI.instantiateInitialViewController()
-        default:
-            return R.storyboard.courseLearningsWeb.instantiateInitialViewController()
-        }
+        let viewController: CourseItemContentViewController? = {
+            switch item.contentType {
+            case "video":
+                return R.storyboard.courseLearningsVideo.instantiateInitialViewController()
+            case "rich_text":
+                return R.storyboard.courseLearningsRichtext.instantiateInitialViewController()
+            case "lti_exercise":
+                return R.storyboard.courseLearningsLTI.instantiateInitialViewController()
+            default:
+                return R.storyboard.courseLearningsWeb.instantiateInitialViewController()
+            }
+        }()
+
+        viewController?.configure(for: item)
+        return viewController
     }
 
     private func trackItemVisit() {
@@ -106,14 +109,12 @@ extension CourseItemViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let item = self.previousItem else { return nil }
         guard let newViewController = self.viewController(for: item) else { return nil }
-        newViewController.configure(for: item)
         return newViewController
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let item = self.nextItem else { return nil }
         guard let newViewController = self.viewController(for: item) else { return nil }
-        newViewController.configure(for: item)
         return newViewController
     }
 

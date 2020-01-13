@@ -14,9 +14,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let currentCoursesViewController = R.storyboard.courseOverview.instantiateInitialViewController().require()
-        currentCoursesViewController.configuration = .currentCourses
-        self.addContentController(currentCoursesViewController)
+        // Allow the today widget to be expanded or contracted.
+        extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+
+        R.storyboard.mainInterface.instantiateInitialViewController()
+//        let currentCoursesViewController = R.storyboard.courseOverview.instantiateInitialViewController().require()
+//        let currentCoursesViewController = UIViewController(nibName: , bundle: <#T##Bundle?#>)
+//        currentCoursesViewController.configuration = .currentCourses
+//        self.addContentController(currentCoursesViewController)
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {

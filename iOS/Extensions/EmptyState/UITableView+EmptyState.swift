@@ -10,7 +10,14 @@ extension UITableView: EmptyStateProtocol {
 
     static func enableEmptyStates() {
         Swizzler.swizzleMethods(for: self, originalSelector: #selector(reloadData), swizzledSelector: #selector(swizzledReload))
-        Swizzler.swizzleMethods(for: self, originalSelector: #selector(endUpdates), swizzledSelector: #selector(swizzledEndUpdates))
+
+        if #available(iOS 11, *) {
+            Swizzler.swizzleMethods(for: self,
+                                    originalSelector: #selector(performBatchUpdates(_:completion:)),
+                                    swizzledSelector: #selector(swizzledPerformBatchUpdates(_:completion:)))
+        } else {
+            Swizzler.swizzleMethods(for: self, originalSelector: #selector(endUpdates), swizzledSelector: #selector(swizzledEndUpdates))
+        }
     }
 
     @objc private dynamic func swizzledReload() {
@@ -20,6 +27,11 @@ extension UITableView: EmptyStateProtocol {
 
     @objc private dynamic func swizzledEndUpdates() {
         self.swizzledEndUpdates()
+        self.reloadEmptyState()
+    }
+
+    @objc private dynamic func swizzledPerformBatchUpdates(_ updates: (() -> Void)?, completion: ((Bool) -> Void)? = nil) {
+        self.swizzledPerformBatchUpdates(updates, completion: completion)
         self.reloadEmptyState()
     }
 

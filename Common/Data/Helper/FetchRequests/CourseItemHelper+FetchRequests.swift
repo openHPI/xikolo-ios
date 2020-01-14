@@ -9,9 +9,14 @@ extension CourseItemHelper {
 
     public enum FetchRequest {
 
-        public static func orderedCourseItems(forCourse course: Course) -> NSFetchRequest<CourseItem> {
+        static func courseItems(forCourse course: Course) -> NSFetchRequest<CourseItem> {
             let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
             request.predicate = NSPredicate(format: "section.course = %@", course)
+            return request
+        }
+
+        public static func orderedCourseItems(forCourse course: Course) -> NSFetchRequest<CourseItem> {
+            let request = self.courseItems(forCourse: course)
             let sectionSort = NSSortDescriptor(keyPath: \CourseItem.section?.position, ascending: true)
             let positionSort = NSSortDescriptor(keyPath: \CourseItem.position, ascending: true)
             request.sortDescriptors = [sectionSort, positionSort]

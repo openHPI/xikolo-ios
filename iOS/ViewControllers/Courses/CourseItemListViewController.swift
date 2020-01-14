@@ -193,7 +193,9 @@ extension CourseItemListViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         self.isPreloading = self.preloadingWanted && !Self.contentToBePreloaded.isEmpty
-        return CourseItemHelper.syncCourseItems(forCourse: self.course).asVoid()
+        return CourseSectionHelper.syncCourseSections(forCourse: self.course).flatMap { _ in
+            return CourseItemHelper.syncCourseItems(forCourse: self.course)
+        }.asVoid()
     }
 
     func didRefresh() {

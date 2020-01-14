@@ -16,20 +16,12 @@ public enum CourseItemHelper {
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
-    public static func syncCourseItems(forCourse course: Course) -> Future<[SyncMultipleResult], XikoloError> {
-        return CourseSectionHelper.syncCourseSections(forCourse: course).flatMap { sectionObjectIds in
-            return sectionObjectIds.objectIds.compactMap { sectionObjectId -> Future<SyncMultipleResult, XikoloError> in
-                let promise = Promise<SyncMultipleResult, XikoloError>()
-
-                CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                    let courseSection = context.typedObject(with: sectionObjectId) as CourseSection
-                    let courseItemsFuture = Self.syncCourseItems(forSection: courseSection)
-                    promise.completeWith(courseItemsFuture)
-                }
-
-                return promise.future
-            }.sequence()
-        }
+    public static func syncCourseItems(forCourse course: Course) -> Future<SyncMultipleResult, XikoloError> {
+        let fetchRequest = Self.FetchRequest.courseItems(forCourse: course)
+        var query = MultipleResourcesQuery(type: CourseItem.self)
+        query.addFilter(forKey: "course", withValue: course.id)
+        query.include("content")
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
     @discardableResult public static func syncCourseItems(forCourse course: Course,

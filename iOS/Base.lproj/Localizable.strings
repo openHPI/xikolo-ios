@@ -170,6 +170,9 @@
 /* label visit progess with absolute values. n out of m */
 "course.progress.visited %@ of %@ visited" = "%@ of %@ visited";
 
+/* Title for course item share action */
+"courseIteam.share" = "Share";
+
 /* action text for course overview with no courses */
 "dashboard.course-overview.no-courses.action" = "Discover available courses";
 

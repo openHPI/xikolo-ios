@@ -17,6 +17,27 @@ class CourseItemViewController: UIPageViewController {
         return label
     }()
 
+    private lazy var actionMenuButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
+        button.isEnabled = true
+        return button
+    }()
+
+    private var userActions: [UIAlertAction] {
+        var actions = [self.shareCourseItemAction]
+        if let video = self.currentItem?.content as? Video {
+            actions += video.userActions
+        }
+
+        return actions
+    }
+
+    private var shareCourseItemAction: UIAlertAction {
+        return UIAlertAction(title: NSLocalizedString("courseIteam.share", comment: "Title for course item share action"), style: .default) { [weak self] _ in
+            self?.shareCourseItem()
+        }
+    }
+
     private var previousItem: CourseItem?
     private var nextItem: CourseItem?
 
@@ -42,6 +63,8 @@ class CourseItemViewController: UIPageViewController {
 
         self.dataSource = self
         self.delegate = self
+
+        self.navigationItem.rightBarButtonItem = self.actionMenuButton
 
         self.view.backgroundColor = ColorCompatibility.systemBackground
         self.navigationItem.titleView = self.progressLabel
@@ -102,6 +125,30 @@ class CourseItemViewController: UIPageViewController {
         TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, on: self, context: context)
     }
 
+    @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
+        let actions = self.userActions
+
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.barButtonItem = sender
+
+        for action in actions {
+            alert.addAction(action)
+        }
+
+        alert.addCancelAction()
+
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    @IBAction private func shareCourseItem() {
+        guard let item = self.currentItem else { return }
+        let activityItems = item.url as Any
+        let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
+
+        self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
 }
 
 extension CourseItemViewController: UIPageViewControllerDataSource {
@@ -135,6 +182,16 @@ extension CourseItemViewController: UIPageViewControllerDelegate {
         }
 
         self.currentItem = currentCourseItemContentViewController.item
+    }
+
+}
+
+extension CourseItem {
+
+    public var url: URL? {
+        guard let courseSlug = self.section?.course?.slug else { return nil }
+        guard let courseItemId = self.base62id else { return nil }
+        return Routes.courses.appendingPathComponents([courseSlug, "items", courseItemId])
     }
 
 }

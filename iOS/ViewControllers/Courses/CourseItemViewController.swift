@@ -50,8 +50,15 @@ class CourseItemViewController: UIPageViewController {
             self.nextItem = self.currentItem?.nextItem
 
             if let item = self.currentItem, let section = item.section {
-                self.progressLabel.text = "\(item.position) / \(section.items.count)"
-                self.progressLabel.sizeToFit()
+                let sortedCourseItems = section.items.sorted(by: \.position)
+
+                if let index = sortedCourseItems.firstIndex(of: item) {
+                    self.progressLabel.text = "\(index + 1) / \(section.items.count)"
+                    self.progressLabel.sizeToFit()
+                } else {
+                    self.progressLabel.text = "- / \(section.items.count)"
+                    self.progressLabel.sizeToFit()
+                }
             } else {
                 self.progressLabel.text = nil
             }

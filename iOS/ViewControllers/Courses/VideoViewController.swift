@@ -95,6 +95,7 @@ class VideoViewController: UIViewController {
         super.viewDidLoad()
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
+        self.descriptionView.delegate = self
 
         self.updateCornersOfVideoContainer(for: self.traitCollection)
 
@@ -526,6 +527,15 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         context["new_layout"] = oldLayout.rawValue
         context["old_layout"] = newLayout.rawValue
         TrackingHelper.createEvent(.videoPlaybackChangeLayout, resourceType: .video, resourceId: video.id, on: self, context: context)
+    }
+
+}
+
+extension VideoViewController: UITextViewDelegate {
+
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        guard let appNavigator = self.appNavigator else { return false }
+        return !appNavigator.handle(url: URL, on: self)
     }
 
 }

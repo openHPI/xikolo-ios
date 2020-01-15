@@ -139,7 +139,7 @@ class CourseItemViewController: UIPageViewController {
 
     @IBAction private func shareCourseItem() {
         guard let item = self.currentItem else { return }
-        let activityItems = item.courseItemURL as Any
+        let activityItems = item.url as Any
         let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
 
@@ -185,12 +185,12 @@ extension CourseItemViewController: UIPageViewControllerDelegate {
 
 }
 
-extension CourseItem: CourseItemURL {
+extension CourseItem {
 
-    public var courseItemURL: URL? {
-        guard let courseId = self.section?.course?.id else { return nil }
+    public var url: URL? {
+        guard let courseSlug = self.section?.course?.slug else { return nil }
         guard let courseItemId = self.base62id else { return nil }
-        return Routes.courses.appendingPathComponents([courseId, "items", courseItemId])
+        return Routes.courses.appendingPathComponents([courseSlug, "items", courseItemId])
     }
 
 }

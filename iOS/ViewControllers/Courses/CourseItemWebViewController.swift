@@ -10,7 +10,7 @@ class CourseItemWebViewController: WebViewController {
 
     var courseItem: CourseItem! {
         didSet {
-            self.url = self.courseItem.courseItemURL
+            self.url = self.courseItem.url
         }
     }
 

@@ -30,11 +30,14 @@ class CourseItemViewController: UIPageViewController {
 
             if let item = self.currentItem, let section = item.section {
                 let sortedCourseItems = section.items.sorted(by: \.position)
+
                 if let index = sortedCourseItems.firstIndex(of: item) {
                 let position = index + 1
 
                 self.progressLabel.text = "\(position) / \(section.items.count)"
                 self.progressLabel.sizeToFit()
+                } else {
+                    self.progressLabel.text = "- / \(section.items.count)"
                 }
             } else {
                 self.progressLabel.text = nil
@@ -141,12 +144,4 @@ extension CourseItemViewController: UIPageViewControllerDelegate {
         self.currentItem = currentCourseItemContentViewController.item
     }
 
-}
-
-extension Sequence {
-    func sorted<T: Comparable>(by keyPath: KeyPath<Element, T>) -> [Element] {
-        return sorted { item1, item2 in
-            return item1[keyPath: keyPath] < item2[keyPath: keyPath]
-        }
-    }
 }

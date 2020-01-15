@@ -345,6 +345,7 @@
 		8251A50D23718A4500A443A9 /* HelpdeskTicketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */; };
 		82BE606D232FBB86000353B4 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82BE606F232FBB86000353B4 /* CourseDetails.storyboard */; };
 		82D13D0C235726E70006A0D9 /* HelpdeskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D13D0B235726E70006A0D9 /* HelpdeskViewController.swift */; };
+		82D55A1E23CF31D000EB2768 /* Sequence+sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D55A1D23CF31D000EB2768 /* Sequence+sort.swift */; };
 		B4E079EB218791A600EA53F5 /* CertificateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E079EA218791A600EA53F5 /* CertificateCell.xib */; };
 		B4E079ED21879C9200EA53F5 /* CertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E079EC21879C9200EA53F5 /* CertificateCell.swift */; };
 		F88ADBF4AC545211C7BA4AF5 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58514D98E3A98476D78CB780 /* Pods_iOS.framework */; };
@@ -778,6 +779,7 @@
 		82BE606E232FBB86000353B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseDetails.storyboard; sourceTree = "<group>"; };
 		82BE6071232FBB8C000353B4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDetails.strings; sourceTree = "<group>"; };
 		82D13D0B235726E70006A0D9 /* HelpdeskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskViewController.swift; sourceTree = "<group>"; };
+		82D55A1D23CF31D000EB2768 /* Sequence+sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+sort.swift"; sourceTree = "<group>"; };
 		A90587C51B3BFC130095DB89 /* assets-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios.xcassets"; sourceTree = "<group>"; };
 		AB17C57E1DFCC5B50013BBCD /* PlatformEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEvent.swift; sourceTree = "<group>"; };
 		AB1C03501D92BF3F0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabCourses.strings; sourceTree = "<group>"; };
@@ -1530,6 +1532,7 @@
 				500228E720580142003301A7 /* UIAlertViewController+cancel.swift */,
 				50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */,
 				5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */,
+				82D55A1D23CF31D000EB2768 /* Sequence+sort.swift */,
 				5044C8E221A8105C006490CE /* UIAlertViewController+downloadedContent.swift */,
 				50253A2A22BA2F2A00FB63FD /* UICollectionViewFlowLayout+RTL.swift */,
 				AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */,
@@ -2378,6 +2381,7 @@
 				70893B5621C3D1F600AF22E3 /* LTIHintViewController.swift in Sources */,
 				50CF1FB120DCDBFC0011BFE9 /* UITableViewCell+enable.swift in Sources */,
 				50CF1FB320DCDBFC0011BFE9 /* DetailedCourseItemContent.swift in Sources */,
+				82D55A1E23CF31D000EB2768 /* Sequence+sort.swift in Sources */,
 				50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */,
 				5027250A235473F600815914 /* Swizzler.swift in Sources */,
 				023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */,

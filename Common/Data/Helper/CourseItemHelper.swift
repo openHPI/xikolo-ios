@@ -20,6 +20,7 @@ public enum CourseItemHelper {
         let fetchRequest = Self.FetchRequest.courseItems(forCourse: course)
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "course", withValue: course.id)
+        query.include("content")
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 

@@ -11,14 +11,4 @@ extension RichText: PreloadableCourseItemContent {
         return "rich_text"
     }
 
-    var detailedContent: [DetailedData] {
-        let words = self.text?.components(separatedBy: CharacterSet.whitespacesAndNewlines)
-        guard let wordcount = words?.count else {
-            return []
-        }
-
-        let approximatedReadingTime = ceil(Double(wordcount) / 200) * 60
-        return [.text(readingTime: approximatedReadingTime)]
-    }
-
 }

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CUD-8G-le9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CUD-8G-le9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -60,32 +61,37 @@
                                                 <constraint firstAttribute="width" constant="8" id="bCL-MM-IsZ"/>
                                             </constraints>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L8U-Fp-wH1">
-                                            <rect key="frame" x="24" y="37.5" width="28" height="28"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="28" id="SKE-Ma-GnJ"/>
-                                                <constraint firstAttribute="width" constant="28" id="mLi-L0-3YS"/>
-                                            </constraints>
-                                        </imageView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="U0c-TZ-Kbb">
-                                            <rect key="frame" x="60" y="15.5" width="290" height="72.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="a1t-cU-PcV">
+                                            <rect key="frame" x="24" y="15" width="342" height="73"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="850" verticalCompressionResistancePriority="1000" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vm4-Hr-k3d">
-                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="20.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <attributedString key="userComments">
-                                                        <fragment content="#bc-ignore!">
-                                                            <attributes>
-                                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G72-sV-YTv" customClass="CourseItemDetailView" customModule="iOS" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="22.5" width="290" height="50"/>
-                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L8U-Fp-wH1">
+                                                    <rect key="frame" x="0.0" y="22.5" width="28" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="SKE-Ma-GnJ"/>
+                                                        <constraint firstAttribute="width" constant="28" id="mLi-L0-3YS"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="U0c-TZ-Kbb">
+                                                    <rect key="frame" x="36" y="0.5" width="306" height="72.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="850" verticalCompressionResistancePriority="1000" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vm4-Hr-k3d">
+                                                            <rect key="frame" x="0.0" y="0.0" width="71.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <attributedString key="userComments">
+                                                                <fragment content="#bc-ignore!">
+                                                                    <attributes>
+                                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Qwj-mh-6JE">
+                                                            <rect key="frame" x="0.0" y="22.5" width="290" height="50"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOH-l8-5Rz">
@@ -109,35 +115,21 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="f0u-JP-r4C" firstAttribute="centerX" secondItem="ruK-fv-bts" secondAttribute="centerX" id="1Xn-eF-a0S"/>
-                                        <constraint firstItem="L8U-Fp-wH1" firstAttribute="leading" secondItem="f0u-JP-r4C" secondAttribute="trailing" constant="8" symbolic="YES" id="5ec-mr-UVn"/>
-                                        <constraint firstItem="L8U-Fp-wH1" firstAttribute="leading" secondItem="ruK-fv-bts" secondAttribute="trailing" id="8VV-ed-bPc"/>
+                                        <constraint firstItem="a1t-cU-PcV" firstAttribute="leading" secondItem="dUS-v4-gua" secondAttribute="leadingMargin" constant="4" id="3jK-c9-Uea"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="fOH-l8-5Rz" secondAttribute="trailing" constant="-8" id="BUB-Zb-j1P"/>
-                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="U0c-TZ-Kbb" secondAttribute="bottom" constant="4" id="DIx-6W-Zzg"/>
+                                        <constraint firstItem="a1t-cU-PcV" firstAttribute="top" secondItem="dUS-v4-gua" secondAttribute="topMargin" constant="4" id="BWK-DY-Cc3"/>
                                         <constraint firstItem="f0u-JP-r4C" firstAttribute="centerY" secondItem="dUS-v4-gua" secondAttribute="centerY" id="GRk-aQ-NAp"/>
                                         <constraint firstItem="fOH-l8-5Rz" firstAttribute="top" secondItem="dUS-v4-gua" secondAttribute="top" id="HNg-3I-Bub"/>
-                                        <constraint firstItem="U0c-TZ-Kbb" firstAttribute="centerY" secondItem="dUS-v4-gua" secondAttribute="centerY" id="Haq-QN-4Hq"/>
                                         <constraint firstItem="ruK-fv-bts" firstAttribute="top" secondItem="dUS-v4-gua" secondAttribute="top" id="Iwo-lX-quA"/>
+                                        <constraint firstItem="a1t-cU-PcV" firstAttribute="trailing" secondItem="fOH-l8-5Rz" secondAttribute="leading" constant="8" symbolic="YES" id="Oip-Zb-4nO"/>
                                         <constraint firstItem="ruK-fv-bts" firstAttribute="leading" secondItem="dUS-v4-gua" secondAttribute="leading" id="Snc-YG-TmY"/>
-                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="L8U-Fp-wH1" secondAttribute="bottom" constant="4" id="TOb-LX-QUc"/>
                                         <constraint firstAttribute="bottom" secondItem="ruK-fv-bts" secondAttribute="bottom" id="VmW-UF-Ag0"/>
-                                        <constraint firstItem="U0c-TZ-Kbb" firstAttribute="leading" secondItem="L8U-Fp-wH1" secondAttribute="trailing" constant="8" symbolic="YES" id="euH-Bi-ikq"/>
-                                        <constraint firstItem="fOH-l8-5Rz" firstAttribute="leading" secondItem="U0c-TZ-Kbb" secondAttribute="trailing" constant="8" symbolic="YES" id="gby-Ji-8uI"/>
-                                        <constraint firstItem="L8U-Fp-wH1" firstAttribute="leading" secondItem="dUS-v4-gua" secondAttribute="leadingMargin" constant="4" id="k49-og-pHl">
-                                            <variation key="widthClass=regular" constant="0.0"/>
-                                        </constraint>
-                                        <constraint firstItem="U0c-TZ-Kbb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dUS-v4-gua" secondAttribute="topMargin" constant="4" id="kXF-hn-UVQ"/>
-                                        <constraint firstItem="L8U-Fp-wH1" firstAttribute="centerY" secondItem="dUS-v4-gua" secondAttribute="centerY" id="kqj-Ta-P6o"/>
+                                        <constraint firstItem="a1t-cU-PcV" firstAttribute="leading" secondItem="ruK-fv-bts" secondAttribute="trailing" id="l9n-Z9-4M7"/>
                                         <constraint firstAttribute="bottom" secondItem="fOH-l8-5Rz" secondAttribute="bottom" id="lP4-cV-l3s"/>
-                                        <constraint firstItem="L8U-Fp-wH1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dUS-v4-gua" secondAttribute="topMargin" constant="4" id="o5j-3a-xZh"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="a1t-cU-PcV" secondAttribute="bottom" constant="4" id="sxK-U3-ers"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="5ec-mr-UVn"/>
-                                        </mask>
-                                    </variation>
                                     <variation key="widthClass=regular">
                                         <mask key="constraints">
-                                            <include reference="5ec-mr-UVn"/>
                                             <exclude reference="1Xn-eF-a0S"/>
                                         </mask>
                                     </variation>
@@ -145,7 +137,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="actionsButton" destination="fOH-l8-5Rz" id="yNy-Ag-Y7s"/>
-                                    <outlet property="detailContentView" destination="G72-sV-YTv" id="zyP-CW-sQY"/>
+                                    <outlet property="detailStackView" destination="Qwj-mh-6JE" id="5ZO-Y4-RfZ"/>
                                     <outlet property="iconView" destination="L8U-Fp-wH1" id="ZYN-fe-P6P"/>
                                     <outlet property="readStateView" destination="f0u-JP-r4C" id="Dda-eM-RsX"/>
                                     <outlet property="titleView" destination="vm4-Hr-k3d" id="OqI-3b-6NJ"/>

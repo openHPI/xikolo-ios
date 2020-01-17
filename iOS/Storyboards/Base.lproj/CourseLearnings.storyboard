@@ -116,6 +116,7 @@
                                     <constraints>
                                         <constraint firstItem="f0u-JP-r4C" firstAttribute="centerX" secondItem="ruK-fv-bts" secondAttribute="centerX" id="1Xn-eF-a0S"/>
                                         <constraint firstItem="a1t-cU-PcV" firstAttribute="leading" secondItem="dUS-v4-gua" secondAttribute="leadingMargin" constant="4" id="3jK-c9-Uea"/>
+                                        <constraint firstItem="a1t-cU-PcV" firstAttribute="leading" secondItem="f0u-JP-r4C" secondAttribute="trailing" constant="8" symbolic="YES" id="5ZI-YW-Tws"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="fOH-l8-5Rz" secondAttribute="trailing" constant="-8" id="BUB-Zb-j1P"/>
                                         <constraint firstItem="a1t-cU-PcV" firstAttribute="top" secondItem="dUS-v4-gua" secondAttribute="topMargin" constant="4" id="BWK-DY-Cc3"/>
                                         <constraint firstItem="f0u-JP-r4C" firstAttribute="centerY" secondItem="dUS-v4-gua" secondAttribute="centerY" id="GRk-aQ-NAp"/>
@@ -128,8 +129,14 @@
                                         <constraint firstAttribute="bottom" secondItem="fOH-l8-5Rz" secondAttribute="bottom" id="lP4-cV-l3s"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="a1t-cU-PcV" secondAttribute="bottom" constant="4" id="sxK-U3-ers"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="5ZI-YW-Tws"/>
+                                        </mask>
+                                    </variation>
                                     <variation key="widthClass=regular">
                                         <mask key="constraints">
+                                            <include reference="5ZI-YW-Tws"/>
                                             <exclude reference="1Xn-eF-a0S"/>
                                         </mask>
                                     </variation>

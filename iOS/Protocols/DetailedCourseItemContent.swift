@@ -7,14 +7,13 @@ import Foundation
 
 protocol DetailedCourseItemContent {
 
-    var detailedContent: [DetailedData] { get }
+    var detailedData: [DetailedDataItem] { get }
 
 }
 
-enum DetailedData {
+enum DetailedDataItem {
 
-    case text(readingTime: TimeInterval)
-    case stream(duration: TimeInterval)
+    case timeEffort(duration: TimeInterval)
     case slides
     case points(maxPoints: Double)
 

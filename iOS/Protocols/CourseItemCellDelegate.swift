@@ -5,8 +5,6 @@
 
 protocol CourseItemCellDelegate: AnyObject {
 
-    var inOfflineMode: Bool { get }
-
-    func isPreloading(for contentType: String?) -> Bool
+    var isInOfflineMode: Bool { get }
 
 }

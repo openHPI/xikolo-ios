@@ -72,6 +72,7 @@
         <attribute name="objectStateValue" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO"/>
         <attribute name="proctored" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timeEffort" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="visited" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="content" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Content" inverseName="item" inverseEntity="Content"/>
@@ -228,7 +229,7 @@
         <element name="Content" positionX="666" positionY="198" width="128" height="60"/>
         <element name="Course" positionX="45" positionY="-18" width="128" height="463"/>
         <element name="CourseDate" positionX="214" positionY="-180" width="128" height="120"/>
-        <element name="CourseItem" positionX="468" positionY="165" width="128" height="255"/>
+        <element name="CourseItem" positionX="468" positionY="165" width="128" height="268"/>
         <element name="CourseProgress" positionX="234" positionY="-63" width="128" height="133"/>
         <element name="CourseSection" positionX="286" positionY="306" width="128" height="180"/>
         <element name="Document" positionX="234" positionY="-63" width="128" height="150"/>

@@ -154,6 +154,7 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
                 self.tableView?.deleteRows(at: [indexPath], with: .fade)
                 self.tableView?.insertRows(at: [newIndexPath], with: .fade)
             }
+
         @unknown default:
             break
         }

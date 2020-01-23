@@ -11,16 +11,12 @@ extension Video: PreloadableCourseItemContent {
         return "video"
     }
 
-    var detailedContent: [DetailedData] {
-        var content: [DetailedData] = [
-            .stream(duration: TimeInterval(self.duration)),
-        ]
+}
 
-        if self.slidesURL != nil {
-            content.append(.slides)
-        }
+extension Video: DetailedCourseItemContent {
 
-        return content
+    var detailedData: [DetailedDataItem] {
+        return self.slidesURL != nil ? [.slides] : []
     }
 
 }

@@ -7,7 +7,7 @@ import BrightFutures
 import Common
 import SyncEngine
 
-protocol PreloadableCourseItemContent: DetailedCourseItemContent {
+protocol PreloadableCourseItemContent {
 
     static var contentType: String { get }
 

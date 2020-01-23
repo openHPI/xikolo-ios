@@ -7,10 +7,19 @@ import Common
 
 extension CourseItem {
 
-    var detailedContent: [DetailedData] {
-        var data = (self.content as? DetailedCourseItemContent)?.detailedContent ?? []
+    var detailedContent: [DetailedDataItem] {
+        var data: [DetailedDataItem] = []
+
+        if self.timeEffort > 0 {
+            data.append(DetailedDataItem.timeEffort(duration: TimeInterval(self.timeEffort)))
+        }
+
+        if let detailedContent = self.content as? DetailedCourseItemContent {
+            data += detailedContent.detailedData
+        }
+
         if self.maxPoints > 0.0 {
-            data.append(DetailedData.points(maxPoints: self.maxPoints))
+            data.append(DetailedDataItem.points(maxPoints: self.maxPoints))
         }
 
         return data

@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return tabBarController
     }()
 
+    private var shortcutItemToProcess: UIApplicationShortcutItem?
+
     @available(iOS, obsoleted: 13.0)
     lazy var appNavigator = AppNavigator(tabBarController: self.tabBarController)
 
@@ -45,6 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         CoreDataHelper.migrateModelToCommon()
         UserProfileHelper.shared.logoutFromTestAccount()
+
+        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            shortcutItemToProcess = shortcutItem
+        }
 
         if #available(iOS 13.0, *) {} else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -87,6 +93,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
+        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+             shortcutItemToProcess = shortcutItem
+         }
+
+        let fetchRequest = CourseHelper.FetchRequest.enrolledCurrentCoursesRequest
+        let result = CoreDataHelper.viewContext.fetchMultiple(fetchRequest)
+        let enrolledCurrentCourses = result.value ?? []
+
+        UIApplication.shared.shortcutItems = enrolledCurrentCourses.map { enrolledCurrentCourses -> UIApplicationShortcutItem in
+            return UIApplicationShortcutItem(type: "Course",
+                                             localizedTitle: enrolledCurrentCourses.title ?? ""
+                                             //localizedSubtitle: contact.email,
+                                            //icon: UIApplicationShortcutIcon(type: .),
+                //userInfo: ["ID": enrolledCurrentCourses.id as NSSecureCoding]
+            )
+        }
+
+        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+             shortcutItemToProcess = shortcutItem
+         }
+
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains("-cleanStatusBar") {
             log.info("Setup clean status bar")
@@ -120,6 +147,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        // Alternatively, a shortcut item may be passed in through this delegate method if the app was
+        // still in memory when the Home screen quick action was used. Again, store it for processing.
+        shortcutItemToProcess = shortcutItem
+    }
+
     func applicationDidEnterBackground(_ application: UIApplication) {
         UserDefaults.standard.synchronize()
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore
@@ -134,6 +167,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background,
         // optionally refresh the user interface.
+
+        // Is there a shortcut item that has not yet been processed?
+        if let shortcutItem = shortcutItemToProcess {
+            let id = shortcutItem.localizedSubtitle ?? ""
+            let request = CourseHelper.FetchRequest.course(withSlugOrId: id)
+            if let course = CoreDataHelper.viewContext.fetchSingle(request).value {
+                let viewController = CourseDetailsViewController.init()
+                viewController.course = course
+                self.window?.rootViewController = viewController
+            //self.appNavigator.handle(url: courseURL)
+            }
+            shortcutItemToProcess = nil
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

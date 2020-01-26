@@ -45,12 +45,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        CoreDataHelper.migrateModelToCommon()
-        UserProfileHelper.shared.logoutFromTestAccount()
 
         if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
             shortcutItemToProcess = shortcutItem
         }
+
+        let fetchRequest = CourseHelper.FetchRequest.enrolledCurrentCoursesRequest
+        let result = CoreDataHelper.viewContext.fetchMultiple(fetchRequest)
+        let enrolledCurrentCourses = result.value ?? []
+
+        UIApplication.shared.shortcutItems = enrolledCurrentCourses.map { enrolledCurrentCourses -> UIApplicationShortcutItem in
+            return UIApplicationShortcutItem.init(type: "FavoriteAction", localizedTitle: enrolledCurrentCourses.title ?? "", localizedSubtitle: "", icon: UIApplicationShortcutIcon(type: .favorite), userInfo: ["ID": enrolledCurrentCourses.id as NSSecureCoding]
+            )
+        }
+
+        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            shortcutItemToProcess = shortcutItem
+        }
+
+        print(shortcutItemToProcess)
+
+        CoreDataHelper.migrateModelToCommon()
+        UserProfileHelper.shared.logoutFromTestAccount()
 
         if #available(iOS 13.0, *) {} else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -93,27 +109,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
-             shortcutItemToProcess = shortcutItem
-         }
-
-        let fetchRequest = CourseHelper.FetchRequest.enrolledCurrentCoursesRequest
-        let result = CoreDataHelper.viewContext.fetchMultiple(fetchRequest)
-        let enrolledCurrentCourses = result.value ?? []
-
-        UIApplication.shared.shortcutItems = enrolledCurrentCourses.map { enrolledCurrentCourses -> UIApplicationShortcutItem in
-            return UIApplicationShortcutItem(type: "Course",
-                                             localizedTitle: enrolledCurrentCourses.title ?? ""
-                                             //localizedSubtitle: contact.email,
-                                            //icon: UIApplicationShortcutIcon(type: .),
-                //userInfo: ["ID": enrolledCurrentCourses.id as NSSecureCoding]
-            )
-        }
-
-        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
-             shortcutItemToProcess = shortcutItem
-         }
-
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains("-cleanStatusBar") {
             log.info("Setup clean status bar")
@@ -151,6 +146,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Alternatively, a shortcut item may be passed in through this delegate method if the app was
         // still in memory when the Home screen quick action was used. Again, store it for processing.
         shortcutItemToProcess = shortcutItem
+        print(shortcutItem)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -161,6 +157,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        if let shortcutItem = shortcutItemToProcess {
+               print(shortcutItem)
+               let id = shortcutItem.userInfo?["ID"]
+               let request = CourseHelper.FetchRequest.course(withSlugOrId: id as! String)
+               if let course = CoreDataHelper.viewContext.fetchSingle(request).value {
+                   let viewController = CourseViewController.init()
+                   viewController.course = course
+                   self.tabBarController.present(viewController, animated: trueUnlessReduceMotionEnabled)
+               }
+               shortcutItemToProcess = nil
+           }
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
@@ -169,14 +176,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // optionally refresh the user interface.
 
         // Is there a shortcut item that has not yet been processed?
+
         if let shortcutItem = shortcutItemToProcess {
-            let id = shortcutItem.localizedSubtitle ?? ""
-            let request = CourseHelper.FetchRequest.course(withSlugOrId: id)
+            print(shortcutItem)
+            let id = shortcutItem.userInfo?["ID"]
+            let request = CourseHelper.FetchRequest.course(withSlugOrId: id as! String)
             if let course = CoreDataHelper.viewContext.fetchSingle(request).value {
-                let viewController = CourseDetailsViewController.init()
+                let viewController = CourseViewController.init()
                 viewController.course = course
-                self.window?.rootViewController = viewController
-            //self.appNavigator.handle(url: courseURL)
+                self.tabBarController.present(viewController, animated: trueUnlessReduceMotionEnabled)
             }
             shortcutItemToProcess = nil
         }

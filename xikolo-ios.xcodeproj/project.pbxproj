@@ -1124,12 +1124,12 @@
 				50F7202C1F28E29B00779995 /* Video+Download.swift */,
 				50092A93237DC20C00A1503F /* Channel+Color.swift */,
 				500228F620583DF9003301A7 /* CourseSection+Download.swift */,
-				820CCEE523D05B140066CE11 /* CourseItem+share.swift */,
 				503988782167A04200F9043B /* CourseItem+DetailedContent.swift */,
 				503CEE932174EEE200F34694 /* CourseItem+AvailableContent.swift */,
 				5046BD09212B4DC700B9F2CD /* DocumentLocalization+Download.swift */,
 				502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */,
 				507896C7233DEA1A00EA65E5 /* Course+share.swift */,
+				820CCEE523D05B140066CE11 /* CourseItem+share.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

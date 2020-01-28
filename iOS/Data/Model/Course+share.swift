@@ -31,4 +31,5 @@ extension Course: UIActivityItemSource {
         metadata.title = self.title
         return metadata
     }
+
 }

@@ -1,7 +1,6 @@
-•  Fix occasional app crash when opening the app
-
-Also in version 2.8:
-We redesigned our video player to improve the look and feel as well as to bring new features to you. The new video player supports subtitles, picture-in-picture mode and playback via AirPlay. To access the subtitles in offline mode, you have to redownload the respective videos.
-
-Further small improvements:
-• Dynamic type support for text items
+• Channels can be browsed via a new tab
+• Course progress can now be viewed
+• Integrate helpdesk
+• Display time effort for more course items
+• Course items can now be shared
+• Handle more links to external resources

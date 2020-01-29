@@ -39,6 +39,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.tabBarController.selectedIndex = tabToSelect.index
     }
 
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        let id = shortcutItem.userInfo?["ID"]
+        let request = CourseHelper.FetchRequest.course(withSlugOrId: id as! String)
+        if let courseURL = CoreDataHelper.viewContext.fetchSingle(request).value?.url {
+            appNavigator.handle(url: courseURL)
+        }
+    }
+
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         self.appNavigator.handle(userActivity: userActivity)
     }
@@ -51,6 +59,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
         return scene.userActivity
     }
+
+    
 }
 
 @available(iOS 13.0, *)

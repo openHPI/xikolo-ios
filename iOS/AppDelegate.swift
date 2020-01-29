@@ -32,8 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return tabBarController
     }()
 
-    private var shortcutItemToProcess: UIApplicationShortcutItem?
-
     @available(iOS, obsoleted: 13.0)
     lazy var appNavigator = AppNavigator(tabBarController: self.tabBarController)
 
@@ -46,10 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
-            shortcutItemToProcess = shortcutItem
-        }
-
         let fetchRequest = CourseHelper.FetchRequest.enrolledCurrentCoursesRequest
         let result = CoreDataHelper.viewContext.fetchMultiple(fetchRequest)
         let enrolledCurrentCourses = result.value ?? []
@@ -58,12 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return UIApplicationShortcutItem.init(type: "FavoriteAction", localizedTitle: enrolledCurrentCourses.title ?? "", localizedSubtitle: "", icon: UIApplicationShortcutIcon(type: .favorite), userInfo: ["ID": enrolledCurrentCourses.id as NSSecureCoding]
             )
         }
-
-        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
-            shortcutItemToProcess = shortcutItem
-        }
-
-        print(shortcutItemToProcess)
 
         CoreDataHelper.migrateModelToCommon()
         UserProfileHelper.shared.logoutFromTestAccount()
@@ -145,8 +133,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         // Alternatively, a shortcut item may be passed in through this delegate method if the app was
         // still in memory when the Home screen quick action was used. Again, store it for processing.
-        shortcutItemToProcess = shortcutItem
-        print(shortcutItem)
+        if #available(iOS 13.0, *) {} else {
+            let id = shortcutItem.userInfo?["ID"]
+            let request = CourseHelper.FetchRequest.course(withSlugOrId: id as! String)
+            if let courseURL = CoreDataHelper.viewContext.fetchSingle(request).value?.url {
+                appNavigator.handle(url: courseURL)
+            }
+        }
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -157,37 +150,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        if let shortcutItem = shortcutItemToProcess {
-               print(shortcutItem)
-               let id = shortcutItem.userInfo?["ID"]
-               let request = CourseHelper.FetchRequest.course(withSlugOrId: id as! String)
-               if let course = CoreDataHelper.viewContext.fetchSingle(request).value {
-                   let viewController = CourseViewController.init()
-                   viewController.course = course
-                   self.tabBarController.present(viewController, animated: trueUnlessReduceMotionEnabled)
-               }
-               shortcutItemToProcess = nil
-           }
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background,
         // optionally refresh the user interface.
-
-        // Is there a shortcut item that has not yet been processed?
-
-        if let shortcutItem = shortcutItemToProcess {
-            print(shortcutItem)
-            let id = shortcutItem.userInfo?["ID"]
-            let request = CourseHelper.FetchRequest.course(withSlugOrId: id as! String)
-            if let course = CoreDataHelper.viewContext.fetchSingle(request).value {
-                let viewController = CourseViewController.init()
-                viewController.course = course
-                self.tabBarController.present(viewController, animated: trueUnlessReduceMotionEnabled)
-            }
-            shortcutItemToProcess = nil
-        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

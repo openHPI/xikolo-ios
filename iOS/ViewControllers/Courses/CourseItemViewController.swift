@@ -149,7 +149,7 @@ class CourseItemViewController: UIPageViewController {
 
     @IBAction private func shareCourseItem() {
         guard let item = self.currentItem else { return }
-        let activityItems = item.url as Any
+        let activityItems = item
         let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
 

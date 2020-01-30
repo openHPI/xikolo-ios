@@ -152,6 +152,14 @@ class AppNavigator {
         return false
     }
 
+    func handle(shortcutItem: UIApplicationShortcutItem) {
+        let id = shortcutItem.userInfo?["courseID"]
+        let request = CourseHelper.FetchRequest.course(withSlugOrId: id as! String)
+        if let course = CoreDataHelper.viewContext.fetchSingle(request).value {
+            self.show(course: course)
+        }
+    }
+
     func showCourseList() {
         self.tabBarController?.selectedIndex = 1
     }

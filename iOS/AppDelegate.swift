@@ -42,16 +42,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return instance.require(hint: "Unable to find AppDelegate")
     }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+    func setShortcutItems() {
         let fetchRequest = CourseHelper.FetchRequest.enrolledCurrentCoursesRequest
         let result = CoreDataHelper.viewContext.fetchMultiple(fetchRequest)
         let enrolledCurrentCourses = result.value ?? []
+        let subtitle = NSLocalizedString("quickactions.subtitle", comment: "subtitle for homescreen quick actions")
 
         UIApplication.shared.shortcutItems = enrolledCurrentCourses.map { enrolledCurrentCourses -> UIApplicationShortcutItem in
-            return UIApplicationShortcutItem.init(type: "FavoriteAction", localizedTitle: enrolledCurrentCourses.title ?? "", localizedSubtitle: "", icon: UIApplicationShortcutIcon(type: .favorite), userInfo: ["ID": enrolledCurrentCourses.id as NSSecureCoding]
+            return UIApplicationShortcutItem(type: "FavoriteAction", localizedTitle: enrolledCurrentCourses.title ?? "", localizedSubtitle: subtitle, icon: UIApplicationShortcutIcon(type: .bookmark), userInfo: ["courseID": enrolledCurrentCourses.id as NSSecureCoding]
             )
         }
+    }
+
+    private var shortcutItemToProcess: UIApplicationShortcutItem?
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+               shortcutItemToProcess = shortcutItem
+           }
 
         CoreDataHelper.migrateModelToCommon()
         UserProfileHelper.shared.logoutFromTestAccount()
@@ -125,21 +134,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
+        self.setShortcutItems()
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions
         // (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        // Alternatively, a shortcut item may be passed in through this delegate method if the app was
-        // still in memory when the Home screen quick action was used. Again, store it for processing.
-        if #available(iOS 13.0, *) {} else {
-            let id = shortcutItem.userInfo?["ID"]
-            let request = CourseHelper.FetchRequest.course(withSlugOrId: id as! String)
-            if let courseURL = CoreDataHelper.viewContext.fetchSingle(request).value?.url {
-                appNavigator.handle(url: courseURL)
-            }
-        }
+        shortcutItemToProcess = shortcutItem
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -154,6 +156,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        if let shortcutItem = shortcutItemToProcess {
+            if #available(iOS 13.0, *) {} else {
+                appNavigator.handle(shortcutItem: shortcutItem)
+            }
+
+            shortcutItemToProcess = nil
+        }
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background,
         // optionally refresh the user interface.
     }

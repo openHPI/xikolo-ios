@@ -22,7 +22,6 @@ class CourseItemListViewController: UITableViewController {
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
-    var isPreloading = false
     var inOfflineMode = !ReachabilityHelper.hasConnection {
         didSet {
             if oldValue != self.inOfflineMode {
@@ -74,10 +73,8 @@ class CourseItemListViewController: UITableViewController {
     }
 
     func preloadCourseContent() {
-        Self.contentToBePreloaded.traverse { contentType in
+        _ = Self.contentToBePreloaded.traverse { contentType in
             return contentType.preloadContent(forCourse: self.course)
-        }.onComplete { _ in
-            self.isPreloading = false
         }
     }
 
@@ -192,8 +189,9 @@ extension CourseItemListViewController: RefreshableViewController {
     }
 
     func refreshingAction() -> Future<Void, XikoloError> {
-        self.isPreloading = self.preloadingWanted && !Self.contentToBePreloaded.isEmpty
-        return CourseItemHelper.syncCourseItems(forCourse: self.course).asVoid()
+        return CourseSectionHelper.syncCourseSections(forCourse: self.course).flatMap { _ in
+            return CourseItemHelper.syncCourseItems(forCourse: self.course)
+        }.asVoid()
     }
 
     func didRefresh() {
@@ -224,9 +222,7 @@ extension CourseItemListViewController: EmptyStateDataSource, EmptyStateDelegate
 
 extension CourseItemListViewController: CourseItemCellDelegate {
 
-    func isPreloading(for contentType: String?) -> Bool {
-        return self.isPreloading && Self.contentToBePreloaded.contains { $0.contentType == contentType }
-    }
+    var isInOfflineMode: Bool { self.inOfflineMode }
 
 }
 

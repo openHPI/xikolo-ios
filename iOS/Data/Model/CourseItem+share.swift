@@ -7,10 +7,14 @@ import Common
 import LinkPresentation
 import UIKit
 
-extension Course: UIActivityItemSource {
+extension CourseItem: UIActivityItemSource {
+
+    var combinedTitle: String {
+        return [self.title, self.section?.course?.title].compactMap { $0 }.joined(separator: " - ")
+    }
 
     public func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-        return self.title ?? ""
+        return self.combinedTitle
     }
 
     public func activityViewController(_ activityViewController: UIActivityViewController,
@@ -20,7 +24,7 @@ extension Course: UIActivityItemSource {
 
     public func activityViewController(_ activityViewController: UIActivityViewController,
                                        subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
-        return self.title ?? ""
+        return self.combinedTitle
     }
 
     @available(iOS 13.0, *)
@@ -28,7 +32,7 @@ extension Course: UIActivityItemSource {
         let metadata = LPLinkMetadata()
         metadata.originalURL = self.url
         metadata.url = self.url
-        metadata.title = self.title
+        metadata.title = self.combinedTitle
         return metadata
     }
 

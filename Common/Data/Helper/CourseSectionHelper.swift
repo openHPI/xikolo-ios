@@ -9,7 +9,7 @@ import SyncEngine
 
 public enum CourseSectionHelper {
 
-    static func syncCourseSections(forCourse course: Course) -> Future<SyncMultipleResult, XikoloError> {
+    public static func syncCourseSections(forCourse course: Course) -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = Self.FetchRequest.allCourseSections(forCourse: course)
         var query = MultipleResourcesQuery(type: CourseSection.self)
         query.addFilter(forKey: "course", withValue: course.id)

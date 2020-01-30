@@ -49,14 +49,6 @@ public struct Brand: Decodable {
         return "Copyright © \(currentYear) \(self.copyrightName). All rights reserved."
     }
 
-    public var feedbackRecipients: [String] {
-        return ["mobile-feedback@hpi.de"]
-    }
-
-    public var feedbackSubject: String {
-        return "\(UIApplication.appName) | App Feedback"
-    }
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.host = try container.decode(String.self, forKey: .host)

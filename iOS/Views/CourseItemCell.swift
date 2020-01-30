@@ -11,7 +11,7 @@ class CourseItemCell: UITableViewCell {
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var readStateView: UIView!
     @IBOutlet private weak var iconView: UIImageView!
-    @IBOutlet private weak var detailContentView: CourseItemDetailView!
+    @IBOutlet private weak var detailStackView: UIStackView!
     @IBOutlet private weak var actionsButton: UIButton!
 
     var item: CourseItem?
@@ -32,7 +32,7 @@ class CourseItemCell: UITableViewCell {
         self.item = courseItem
         self.accessibilityIdentifier = "CourseItemCell-\(courseItem.contentType ?? "")"
 
-        let inOfflineMode = self.delegate?.inOfflineMode ?? true
+        let inOfflineMode = self.delegate?.isInOfflineMode ?? true
         let isAvailableInOfflineMode = courseItem.content?.isAvailableOffline ?? false
         let isAvailable = !inOfflineMode || isAvailableInOfflineMode
 
@@ -47,7 +47,7 @@ class CourseItemCell: UITableViewCell {
         self.readStateView.backgroundColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         self.configureActionsButton(for: courseItem)
-        self.detailContentView.configure(for: courseItem, with: self.delegate)
+        self.configureDetailView(for: courseItem)
     }
 
     private func configureActionsButton(for courseItem: CourseItem) {
@@ -57,11 +57,31 @@ class CourseItemCell: UITableViewCell {
             return
         }
 
-        let isAvailable = !(self.delegate?.inOfflineMode ?? true) || video.isAvailableOffline
+        let isAvailable = !(self.delegate?.isInOfflineMode ?? true) || video.isAvailableOffline
         self.actionsButton.isEnabled = isAvailable
         self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         self.actionsButton.alpha = 1
+    }
+
+    private func configureDetailView(for courseItem: CourseItem) {
+        let video = courseItem.content as? Video
+        let isOffline = self.delegate?.isInOfflineMode ?? false
+
+        let newStackViewContentViews = courseItem.detailedContent.map { contentItem -> DetailedDataItemView in
+            let view = DetailedDataItemView()
+            view.configure(for: contentItem, for: video, inOfflineMode: isOffline)
+            return view
+        }
+
+        self.detailStackView.arrangedSubviews.forEach { view in
+            self.detailStackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
+        }
+
+        newStackViewContentViews.forEach { view in
+            self.detailStackView.addArrangedSubview(view)
+        }
     }
 
     @IBAction private func tappedActionsButton() {

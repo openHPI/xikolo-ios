@@ -44,13 +44,6 @@ class VideoViewController: UIViewController {
         }
     }
 
-    private lazy var actionMenuButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
-        button.isEnabled = false
-        button.tintColor = ColorCompatibility.disabled
-        return button
-    }()
-
     private var courseItemObserver: ManagedObjectObserver?
 
     var courseItem: CourseItem! {
@@ -95,6 +88,7 @@ class VideoViewController: UIViewController {
         super.viewDidLoad()
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
+        self.descriptionView.delegate = self
 
         self.updateCornersOfVideoContainer(for: self.traitCollection)
 
@@ -136,7 +130,6 @@ class VideoViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.didViewAppear = true
 
         // Autoplay logic
@@ -153,10 +146,6 @@ class VideoViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
-        if self.parent?.navigationItem.rightBarButtonItem == self.actionMenuButton {
-            self.parent?.navigationItem.rightBarButtonItem = nil
-        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -219,16 +208,13 @@ class VideoViewController: UIViewController {
         self.titleView.text = courseItem.title
 
         guard let video = courseItem.content as? Video else { return }
+        self.video = video
 
         self.show(video: video)
     }
 
     private func show(video: Video) {
         self.video = video
-
-        let hasUserActions = ReachabilityHelper.hasConnection || !video.userActions.isEmpty
-        self.actionMenuButton.isEnabled = hasUserActions
-        self.actionMenuButton.tintColor = hasUserActions ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
         let streamDownloadProgress = StreamPersistenceManager.shared.downloadProgress(for: video)
@@ -275,21 +261,6 @@ class VideoViewController: UIViewController {
     @IBAction private func openSlides() {
         self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
         self.playerViewController?.automaticallyStartPicutureinPictureModeIfPossible()
-    }
-
-    @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
-        guard let actions = self.video?.userActions else { return }
-
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.barButtonItem = sender
-
-        for action in actions {
-            alert.addAction(action)
-        }
-
-        alert.addCancelAction()
-
-        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
     @IBAction private func showVideoActionMenu(_ sender: UIButton) {
@@ -526,6 +497,15 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         context["new_layout"] = oldLayout.rawValue
         context["old_layout"] = newLayout.rawValue
         TrackingHelper.createEvent(.videoPlaybackChangeLayout, resourceType: .video, resourceId: video.id, on: self, context: context)
+    }
+
+}
+
+extension VideoViewController: UITextViewDelegate {
+
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        guard let appNavigator = self.appNavigator else { return false }
+        return !appNavigator.handle(url: URL, on: self)
     }
 
 }

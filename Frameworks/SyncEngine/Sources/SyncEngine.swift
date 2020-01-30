@@ -20,6 +20,7 @@ public protocol SyncEngine {
 
     // Core Data
     var persistentContainer: NSPersistentContainer { get }
+    var persistentContainerQueue: OperationQueue { get } // this should be private and not be exposed
 
     func convertSyncError(_ error: SyncError) -> SyncEngineError
 
@@ -37,6 +38,15 @@ public extension SyncEngine {
 }
 
 public extension SyncEngine {
+
+    private func enqueuePersistenceOperation(block: @escaping (_ context: NSManagedObjectContext) -> Void) {
+        self.persistentContainerQueue.addOperation {
+            let context = self.persistentContainer.newBackgroundContext()
+            context.performAndWait {
+                block(context)
+            }
+        }
+    }
 
     private func handle<T: SyncEngineResult>(result: Result<T, SyncEngineError>, forOperation operation: SyncEngineOperation, forResourceType resourceType: String) {
         switch result {
@@ -303,34 +313,39 @@ public extension SyncEngine {
                                       deleteNotExistingResources: Bool = true) -> Future<SyncMultipleResult, SyncEngineError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<SyncMultipleResult, SyncError>()
 
-        self.persistentContainer.performBackgroundTask { context in
-            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
+            return retry(ImmediateExecutionContext, times: 5, coolDown: DispatchTimeInterval.seconds(2)) {
+                return self.doNetworkRequest(request, forResource: Resource.self)
+            }
+        }
 
-            let coreDataFetch = self.fetchCoreDataObjects(withFetchRequest: fetchRequest, inContext: context)
-            let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
-                return retry(ImmediateExecutionContext, times: 5, coolDown: DispatchTimeInterval.seconds(2)) {
-                    return self.doNetworkRequest(request, forResource: Resource.self)
+        networkRequest.onSuccess { networkResult in
+            self.enqueuePersistenceOperation { context in
+                context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
+                let coreDataFetch = self.fetchCoreDataObjects(withFetchRequest: fetchRequest, inContext: context)
+
+                coreDataFetch.flatMap(ImmediateExecutionContext) { objects in
+                    return self.mergeResources(object: networkResult.resourceData,
+                                               withExistingObjects: objects,
+                                               deleteNotExistingResources: deleteNotExistingResources,
+                                               in: context).map { resources in
+                        return MergeMultipleResult(resources: resources, headers: networkResult.headers)
+                    }
+                }.inject(ImmediateExecutionContext) {
+                    return Result<Void, Error> {
+                        return try context.save()
+                    }.mapError { error in
+                        return .coreData(error)
+                    }
+                }.map(ImmediateExecutionContext) { mergeResult in
+                    return SyncMultipleResult(objectIds: mergeResult.resources.map { $0.objectID }, headers: mergeResult.headers)
+                }.onComplete(ImmediateExecutionContext) { result in
+                    promise.complete(result)
                 }
             }
-
-            coreDataFetch.zip(networkRequest).flatMap(ImmediateExecutionContext) { objects, networkResult in
-                return self.mergeResources(object: networkResult.resourceData,
-                                           withExistingObjects: objects,
-                                           deleteNotExistingResources: deleteNotExistingResources,
-                                           in: context).map { resources in
-                    return MergeMultipleResult(resources: resources, headers: networkResult.headers)
-                }
-            }.inject(ImmediateExecutionContext) {
-                return Result<Void, Error> {
-                    return try context.save()
-                }.mapError { error in
-                    return .coreData(error)
-                }
-            }.map(ImmediateExecutionContext) { mergeResult in
-                return SyncMultipleResult(objectIds: mergeResult.resources.map { $0.objectID }, headers: mergeResult.headers)
-            }.onComplete(ImmediateExecutionContext) { result in
-                promise.complete(result)
-            }
+        }.onFailure { error in
+            promise.failure(error)
         }
 
         return promise.future.mapError(self.convertSyncError).andThen { result in
@@ -342,33 +357,38 @@ public extension SyncEngine {
                                       withQuery query: SingleResourceQuery<Resource>) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<SyncSingleResult, SyncError>()
 
-        self.persistentContainer.performBackgroundTask { context in
-            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
+            return retry(ImmediateExecutionContext, times: 5, coolDown: DispatchTimeInterval.seconds(2)) {
+                return self.doNetworkRequest(request, forResource: Resource.self)
+            }
+        }
 
-            let coreDataFetch = self.fetchCoreDataObject(withFetchRequest: fetchRequest, inContext: context)
-            let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
-                return retry(ImmediateExecutionContext, times: 5, coolDown: DispatchTimeInterval.seconds(2)) {
-                    return self.doNetworkRequest(request, forResource: Resource.self)
+        networkRequest.onSuccess { networkResult in
+            self.enqueuePersistenceOperation { context in
+                context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
+                let coreDataFetch = self.fetchCoreDataObject(withFetchRequest: fetchRequest, inContext: context)
+
+                coreDataFetch.flatMap(ImmediateExecutionContext) { object -> Future<MergeSingleResult<Resource>, SyncError> in
+                    return self.mergeResource(object: networkResult.resourceData,
+                                              withExistingObject: object,
+                                              in: context).map { resource in
+                        return MergeSingleResult(resource: resource, headers: networkResult.headers)
+                    }
+                }.inject(ImmediateExecutionContext) {
+                    return Result<Void, Error> {
+                        return try context.save()
+                    }.mapError { error in
+                        return .coreData(error)
+                    }
+                }.map(ImmediateExecutionContext) { mergeResult in
+                    return SyncSingleResult(objectId: mergeResult.resource.objectID, headers: mergeResult.headers)
+                }.onComplete(ImmediateExecutionContext) { result in
+                    promise.complete(result)
                 }
             }
-
-            coreDataFetch.zip(networkRequest).flatMap(ImmediateExecutionContext) { object, networkResult -> Future<MergeSingleResult<Resource>, SyncError> in
-                return self.mergeResource(object: networkResult.resourceData,
-                                          withExistingObject: object,
-                                          in: context).map { resource in
-                    return MergeSingleResult(resource: resource, headers: networkResult.headers)
-                }
-            }.inject(ImmediateExecutionContext) {
-                return Result<Void, Error> {
-                    return try context.save()
-                }.mapError { error in
-                    return .coreData(error)
-                }
-            }.map(ImmediateExecutionContext) { mergeResult in
-                return SyncSingleResult(objectId: mergeResult.resource.objectID, headers: mergeResult.headers)
-            }.onComplete(ImmediateExecutionContext) { result in
-                promise.complete(result)
-            }
+        }.onFailure { error in
+            promise.failure(error)
         }
 
         return promise.future.mapError(self.convertSyncError).andThen { result in
@@ -397,7 +417,7 @@ public extension SyncEngine {
 
         let promise = Promise<SyncSingleResult, SyncError>()
 
-        self.persistentContainer.performBackgroundTask { coreDataContext in
+        self.enqueuePersistenceOperation { coreDataContext in
             coreDataContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
 
             let context = SynchronizationContext(coreDataContext: coreDataContext, includedResourceData: [])

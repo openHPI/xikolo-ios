@@ -53,6 +53,12 @@ public struct XikoloSyncEngine: SyncEngine {
         return CoreDataHelper.persistentContainer
     }
 
+    public let persistentContainerQueue: OperationQueue = {
+        let persistentContainerQueue = OperationQueue()
+        persistentContainerQueue.maxConcurrentOperationCount = 1
+        return persistentContainerQueue
+    }()
+
     public init() {}
 
     public func convertSyncError(_ error: SyncError) -> XikoloError {

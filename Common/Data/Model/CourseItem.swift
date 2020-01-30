@@ -13,6 +13,7 @@ public final class CourseItem: NSManagedObject {
     @NSManaged public var title: String?
     @NSManaged public var position: Int32
     @NSManaged public var visited: Bool
+    @NSManaged public var timeEffort: Int16
     @NSManaged public var maxPoints: Double
     @NSManaged public var proctored: Bool
     @NSManaged public var accessible: Bool
@@ -64,6 +65,7 @@ extension CourseItem: JSONAPIPullable {
         self.proctored = try attributes.value(for: "proctored")
         self.accessible = try attributes.value(for: "accessible")
         self.visited = try attributes.value(for: "visited") || self.visited  // course items can't be set to 'not visited'
+        self.timeEffort = (try? attributes.value(for: "time_effort")) ?? 0
 
         let relationships = try object.value(for: "relationships") as JSON
         try self.updateRelationship(forKeyPath: \Self.section,

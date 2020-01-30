@@ -17,6 +17,27 @@ class CourseItemViewController: UIPageViewController {
         return label
     }()
 
+    private lazy var actionMenuButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
+        button.isEnabled = true
+        return button
+    }()
+
+    private var userActions: [UIAlertAction] {
+        var actions = [self.shareCourseItemAction]
+        if let video = self.currentItem?.content as? Video {
+            actions += video.userActions
+        }
+
+        return actions
+    }
+
+    private var shareCourseItemAction: UIAlertAction {
+        return UIAlertAction(title: NSLocalizedString("courseIteam.share", comment: "Title for course item share action"), style: .default) { [weak self] _ in
+            self?.shareCourseItem()
+        }
+    }
+
     private var previousItem: CourseItem?
     private var nextItem: CourseItem?
 
@@ -29,8 +50,15 @@ class CourseItemViewController: UIPageViewController {
             self.nextItem = self.currentItem?.nextItem
 
             if let item = self.currentItem, let section = item.section {
-                self.progressLabel.text = "\(item.position) / \(section.items.count)"
-                self.progressLabel.sizeToFit()
+                let sortedCourseItems = section.items.sorted(by: \.position)
+
+                if let index = sortedCourseItems.firstIndex(of: item) {
+                    self.progressLabel.text = "\(index + 1) / \(section.items.count)"
+                    self.progressLabel.sizeToFit()
+                } else {
+                    self.progressLabel.text = "- / \(section.items.count)"
+                    self.progressLabel.sizeToFit()
+                }
             } else {
                 self.progressLabel.text = nil
             }
@@ -43,19 +71,19 @@ class CourseItemViewController: UIPageViewController {
         self.dataSource = self
         self.delegate = self
 
+        self.navigationItem.rightBarButtonItem = self.actionMenuButton
+
         self.view.backgroundColor = ColorCompatibility.systemBackground
         self.navigationItem.titleView = self.progressLabel
 
         guard let item = self.currentItem else { return }
         guard let newViewController = self.viewController(for: item) else { return }
-        newViewController.configure(for: item)
         self.setViewControllers([newViewController], direction: .forward, animated: false)
     }
 
     func reload(animated: Bool) {
         guard let item = self.currentItem else { return }
         guard let newViewController = self.viewController(for: item) else { return }
-        newViewController.configure(for: item)
         self.setViewControllers([newViewController], direction: .forward, animated: animated)
     }
 
@@ -73,16 +101,21 @@ class CourseItemViewController: UIPageViewController {
             return viewController
         }
 
-        switch item.contentType {
-        case "video"?:
-            return R.storyboard.courseLearningsVideo.instantiateInitialViewController()
-        case "rich_text"?:
-            return R.storyboard.courseLearningsRichtext.instantiateInitialViewController()
-        case "lti_exercise"?:
-            return R.storyboard.courseLearningsLTI.instantiateInitialViewController()
-        default:
-            return R.storyboard.courseLearningsWeb.instantiateInitialViewController()
-        }
+        let viewController: CourseItemContentViewController? = {
+            switch item.contentType {
+            case "video":
+                return R.storyboard.courseLearningsVideo.instantiateInitialViewController()
+            case "rich_text":
+                return R.storyboard.courseLearningsRichtext.instantiateInitialViewController()
+            case "lti_exercise":
+                return R.storyboard.courseLearningsLTI.instantiateInitialViewController()
+            default:
+                return R.storyboard.courseLearningsWeb.instantiateInitialViewController()
+            }
+        }()
+
+        viewController?.configure(for: item)
+        return viewController
     }
 
     private func trackItemVisit() {
@@ -99,6 +132,30 @@ class CourseItemViewController: UIPageViewController {
         TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, on: self, context: context)
     }
 
+    @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
+        let actions = self.userActions
+
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.barButtonItem = sender
+
+        for action in actions {
+            alert.addAction(action)
+        }
+
+        alert.addCancelAction()
+
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    @IBAction private func shareCourseItem() {
+        guard let item = self.currentItem else { return }
+        let activityItems = item
+        let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
+
+        self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
 }
 
 extension CourseItemViewController: UIPageViewControllerDataSource {
@@ -106,14 +163,12 @@ extension CourseItemViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let item = self.previousItem else { return nil }
         guard let newViewController = self.viewController(for: item) else { return nil }
-        newViewController.configure(for: item)
         return newViewController
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let item = self.nextItem else { return nil }
         guard let newViewController = self.viewController(for: item) else { return nil }
-        newViewController.configure(for: item)
         return newViewController
     }
 
@@ -134,6 +189,16 @@ extension CourseItemViewController: UIPageViewControllerDelegate {
         }
 
         self.currentItem = currentCourseItemContentViewController.item
+    }
+
+}
+
+extension CourseItem {
+
+    public var url: URL? {
+        guard let courseSlug = self.section?.course?.slug else { return nil }
+        guard let courseItemId = self.base62id else { return nil }
+        return Routes.courses.appendingPathComponents([courseSlug, "items", courseItemId])
     }
 
 }

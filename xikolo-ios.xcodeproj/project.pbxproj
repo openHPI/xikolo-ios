@@ -447,6 +447,7 @@
 		0247254B23CCAA9900505835 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0247254D23CCAAA300505835 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0247254E23CCAD4B00505835 /* Bundle+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Bundle+.swift"; path = "../../../../Downloads/Firefox/schulcloud-mobile-ios-dev/Common/Extensions/Bundle+.swift"; sourceTree = "<group>"; };
+		025B2DAE23E33528006E0060 /* TodayExtensionopenHPI-iOS-Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TodayExtensionopenHPI-iOS-Debug.entitlements"; sourceTree = "<group>"; };
 		0262E6C423729C29007C9057 /* ExerciseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseProgress.swift; sourceTree = "<group>"; };
 		0262E6C62372C797007C9057 /* VisitProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgress.swift; sourceTree = "<group>"; };
 		0262E6C82372CBD5007C9057 /* SectionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgress.swift; sourceTree = "<group>"; };
@@ -974,6 +975,7 @@
 		02D9354023C7BE94008BE0C7 /* TodayExtension */ = {
 			isa = PBXGroup;
 			children = (
+				025B2DAE23E33528006E0060 /* TodayExtensionopenHPI-iOS-Debug.entitlements */,
 				02D9354123C7BE94008BE0C7 /* TodayViewController.swift */,
 				022A713F23CC75D1002F6E09 /* R.generated.swift */,
 				02D9354323C7BE94008BE0C7 /* MainInterface.storyboard */,
@@ -3040,6 +3042,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "TodayExtension/TodayExtensionopenHPI-iOS-Debug.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

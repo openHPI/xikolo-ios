@@ -11,6 +11,8 @@
 		022A714023CC75D1002F6E09 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022A713F23CC75D1002F6E09 /* R.generated.swift */; };
 		023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B8E68230615E90027E370 /* SceneDelegate.swift */; };
 		0247254023CC852000505835 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
+		0247254A23CCAA9900505835 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0247254C23CCAA9900505835 /* InfoPlist.strings */; };
+		0247254F23CCAD4B00505835 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0247254E23CCAD4B00505835 /* Bundle+.swift */; };
 		0262E6C523729C29007C9057 /* ExerciseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C423729C29007C9057 /* ExerciseProgress.swift */; };
 		0262E6C72372C797007C9057 /* VisitProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C62372C797007C9057 /* VisitProgress.swift */; };
 		0262E6C92372CBD5007C9057 /* SectionProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C82372CBD5007C9057 /* SectionProgress.swift */; };
@@ -439,6 +441,10 @@
 		021DA1A623869C1700E6E763 /* ExerciseProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseProgressStackView.swift; sourceTree = "<group>"; };
 		022A713F23CC75D1002F6E09 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		023B8E68230615E90027E370 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		0247254323CCA47B00505835 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
+		0247254B23CCAA9900505835 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0247254D23CCAAA300505835 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0247254E23CCAD4B00505835 /* Bundle+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Bundle+.swift"; path = "../../../../Downloads/Firefox/schulcloud-mobile-ios-dev/Common/Extensions/Bundle+.swift"; sourceTree = "<group>"; };
 		0262E6C423729C29007C9057 /* ExerciseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseProgress.swift; sourceTree = "<group>"; };
 		0262E6C62372C797007C9057 /* VisitProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgress.swift; sourceTree = "<group>"; };
 		0262E6C82372CBD5007C9057 /* SectionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgress.swift; sourceTree = "<group>"; };
@@ -452,7 +458,6 @@
 		02D9353E23C7BE94008BE0C7 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		02D9354123C7BE94008BE0C7 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		02D9354423C7BE94008BE0C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		02D9354623C7BE94008BE0C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgressStackView.swift; sourceTree = "<group>"; };
 		02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgress.swift; sourceTree = "<group>"; };
 		0630F12AF742EF6C154CD071 /* Pods-Common.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.openhpi-ios-release.xcconfig"; path = "Pods/Target Support Files/Pods-Common/Pods-Common.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
@@ -968,7 +973,8 @@
 				02D9354123C7BE94008BE0C7 /* TodayViewController.swift */,
 				022A713F23CC75D1002F6E09 /* R.generated.swift */,
 				02D9354323C7BE94008BE0C7 /* MainInterface.storyboard */,
-				02D9354623C7BE94008BE0C7 /* Info.plist */,
+				0247254423CCA47B00505835 /* Info.plist */,
+				0247254C23CCAA9900505835 /* InfoPlist.strings */,
 			);
 			path = TodayExtension;
 			sourceTree = "<group>";
@@ -1102,6 +1108,7 @@
 		24D48E1F1CCA740500E8051E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0247254E23CCAD4B00505835 /* Bundle+.swift */,
 				50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */,
 				50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */,
 				501212301FCC66B50022A7AF /* Collection+SafeSubscript.swift */,
@@ -2038,6 +2045,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0247254A23CCAA9900505835 /* InfoPlist.strings in Resources */,
 				02D9354523C7BE94008BE0C7 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2219,7 +2227,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library-iOS10.0/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/SimulatorStatusMagic/SimulatorStatusMagic.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -2346,7 +2354,7 @@
 				"${BUILT_PRODUCTS_DIR}/HTMLStyler/HTMLStyler.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
-				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library-iOS10.0/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SyncEngine/SyncEngine.framework",
@@ -2674,6 +2682,7 @@
 				507F7FDA2372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift in Sources */,
 				50FA2E4520E4B25800656776 /* RichText.swift in Sources */,
 				50046F6D216B53EB00D59073 /* Notification+CoreData.swift in Sources */,
+				0247254F23CCAD4B00505835 /* Bundle+.swift in Sources */,
 				50FA2E4320E4B25800656776 /* QuizQuestion.swift in Sources */,
 				50FA2E0C20E4B23C00656776 /* xikolo.xcdatamodeld in Sources */,
 				50FA2E3520E4B25800656776 /* Announcement.swift in Sources */,
@@ -2763,6 +2772,23 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0247254423CCA47B00505835 /* Info.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0247254323CCA47B00505835 /* Base */,
+			);
+			name = Info.plist;
+			sourceTree = "<group>";
+		};
+		0247254C23CCAA9900505835 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0247254B23CCAA9900505835 /* en */,
+				0247254D23CCAAA300505835 /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		02AA78BD23A0176F00CD13F5 /* CourseProgress.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -5177,6 +5203,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "iOS/openHPIopenHPI-iOS-Debug.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

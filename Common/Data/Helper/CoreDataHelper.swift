@@ -14,6 +14,12 @@ public class CoreDataHelper { // swiftlint:disable:this convenience_type
         let model = NSManagedObjectModel(contentsOf: modelURL).require()
         let container = NSPersistentContainer(name: "xikolo", managedObjectModel: model)
 
+        let mainBundle = Bundle.main.appGroupIdentifier!
+        let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: mainBundle)!.appendingPathComponent("xikolodb")
+        let description = NSPersistentStoreDescription(url: url)
+
+        container.persistentStoreDescriptions = [description]
+
         container.loadPersistentStores { _, error in
             if let error = error {
                 log.error("Persistant store load error", error: error)

@@ -38,11 +38,10 @@ target 'iOS' do
     firebase_pods
     # pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => '3349edc810ed54b0cf74a33d886ad3801727daf0'
     pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['openHPI-iOS-Debug', 'openSAP-iOS-Debug', 'openWHO-iOS-Debug', 'moocHOUSE-iOS-Debug']
+end
 
-    target 'TodayExtension' do
-      platform :ios, '11.0'
-    end
-
+target 'TodayExtension' do
+  platform :ios, '11.0'
 end
 
 post_install do |installer|

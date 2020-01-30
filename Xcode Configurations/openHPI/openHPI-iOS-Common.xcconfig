@@ -5,6 +5,8 @@
 
 PRODUCT_NAME = openHPI
 DISPLAY_NAME = openHPI
+APP_GROUP_IDENTIFIER = group.de.xikolo.openhpi
+BASE_BUNDLE_IDENTIFIER = de.xikolo
 
 CODE_SIGN_ENTITLEMENTS = iOS/Branding/${PRODUCT_NAME}/ios.entitlements
 PRODUCT_MODULE_NAME = iOS

@@ -51,7 +51,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let shortcutItem = shortcutItemToProcess {
             appNavigator.handle(shortcutItem: shortcutItem)
         }
-        
+
         shortcutItemToProcess = nil
     }
 

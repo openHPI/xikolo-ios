@@ -153,11 +153,10 @@ class AppNavigator {
     }
 
     func handle(shortcutItem: UIApplicationShortcutItem) {
-        let id = shortcutItem.userInfo?["courseID"]
-        let request = CourseHelper.FetchRequest.course(withSlugOrId: id as! String)
-        if let course = CoreDataHelper.viewContext.fetchSingle(request).value {
-            self.show(course: course)
-        }
+        guard let id = shortcutItem.userInfo?["courseID"] as? String else { return }
+        let request = CourseHelper.FetchRequest.course(withSlugOrId: id)
+        guard let course = CoreDataHelper.viewContext.fetchSingle(request).value else { return }
+        self.show(course: course)
     }
 
     func showCourseList() {

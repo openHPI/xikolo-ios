@@ -1,0 +1,15 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+PRODUCT_NAME = openWHO
+DISPLAY_NAME = OpenWHO
+
+BASE_BUNDLE_IDENTIFIER = de.xikolo.openwho
+
+APP_GROUP_IDENTIFIER = group.$(BASE_BUNDLE_IDENTIFIER)
+PRODUCT_BUNDLE_IDENTIFIER = $(BASE_BUNDLE_IDENTIFIER)$(IDENTIFIER_SUFFIX)$(EXTENSION_PATH)
+
+CODE_SIGN_ENTITLEMENTS = iOS/Branding/${PRODUCT_NAME}/ios.entitlements
+KEYCHAIN_GROUP = $(AppIdentifierPrefix)$(BASE_BUNDLE_IDENTIFIER)$(IDENTIFIER_SUFFIX)

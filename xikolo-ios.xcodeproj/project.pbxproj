@@ -12,7 +12,6 @@
 		023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B8E68230615E90027E370 /* SceneDelegate.swift */; };
 		0247254023CC852000505835 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
 		0247254A23CCAA9900505835 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0247254C23CCAA9900505835 /* InfoPlist.strings */; };
-		0247254F23CCAD4B00505835 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0247254E23CCAD4B00505835 /* Bundle+.swift */; };
 		0262E6C523729C29007C9057 /* ExerciseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C423729C29007C9057 /* ExerciseProgress.swift */; };
 		0262E6C72372C797007C9057 /* VisitProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C62372C797007C9057 /* VisitProgress.swift */; };
 		0262E6C92372CBD5007C9057 /* SectionProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C82372CBD5007C9057 /* SectionProgress.swift */; };
@@ -259,6 +258,7 @@
 		50CF200E20DCDBFC0011BFE9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
 		50D52164225FC50500C9860D /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D52163225FC50500C9860D /* Int+DispatchTimeInterval.swift */; };
 		50D65A0C20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
+		50DA821723E46D03003BEDE1 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA821623E46D03003BEDE1 /* Bundle.swift */; };
 		50E0351F213673F8001F963D /* CourseListConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0351E213673F8001F963D /* CourseListConfiguration.swift */; };
 		50FA2DEF20E4B1A800656776 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FA2DED20E4B1A800656776 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50FA2DF220E4B1A800656776 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
@@ -443,11 +443,8 @@
 		021DA1A623869C1700E6E763 /* ExerciseProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseProgressStackView.swift; sourceTree = "<group>"; };
 		022A713F23CC75D1002F6E09 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		023B8E68230615E90027E370 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0247254323CCA47B00505835 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 		0247254B23CCAA9900505835 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0247254D23CCAAA300505835 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0247254E23CCAD4B00505835 /* Bundle+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Bundle+.swift"; path = "../../../../Downloads/Firefox/schulcloud-mobile-ios-dev/Common/Extensions/Bundle+.swift"; sourceTree = "<group>"; };
-		025B2DAE23E33528006E0060 /* TodayExtensionopenHPI-iOS-Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TodayExtensionopenHPI-iOS-Debug.entitlements"; sourceTree = "<group>"; };
 		0262E6C423729C29007C9057 /* ExerciseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseProgress.swift; sourceTree = "<group>"; };
 		0262E6C62372C797007C9057 /* VisitProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgress.swift; sourceTree = "<group>"; };
 		0262E6C82372CBD5007C9057 /* SectionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgress.swift; sourceTree = "<group>"; };
@@ -726,6 +723,10 @@
 		50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabelHelperTests.swift; sourceTree = "<group>"; };
 		50B31DFC22C4B660007DDDA4 /* Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
 		50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightFuturesTests.swift; sourceTree = "<group>"; };
+		50B431CD23E45258006C7BC4 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		50B431CE23E4526D006C7BC4 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		50B431CF23E4542B006C7BC4 /* openHPI-Today-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-Today-Debug.xcconfig"; sourceTree = "<group>"; };
+		50B431D023E4543C006C7BC4 /* openHPI-Today-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-Today-Release.xcconfig"; sourceTree = "<group>"; };
 		50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsPersistenceManager.swift; sourceTree = "<group>"; };
 		50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableContentViewController.swift; sourceTree = "<group>"; };
 		50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crashlytics.swift; sourceTree = "<group>"; };
@@ -736,7 +737,7 @@
 		50CF1F3E20DCCF4F0011BFE9 /* openHPI-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
 		50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Release.xcconfig"; sourceTree = "<group>"; };
 		50CF201620DCDBFC0011BFE9 /* openHPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openHPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		50CF201820DCDD720011BFE9 /* openHPI-iOS-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Common.xcconfig"; sourceTree = "<group>"; };
+		50CF201820DCDD720011BFE9 /* openHPI-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-Common.xcconfig"; sourceTree = "<group>"; };
 		50CF202D20DCE6680011BFE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseCertificates.storyboard; sourceTree = "<group>"; };
 		50D52163225FC50500C9860D /* Int+DispatchTimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+DispatchTimeInterval.swift"; sourceTree = "<group>"; };
@@ -759,15 +760,23 @@
 		50D65A1320E01C5B00DFD183 /* BrandConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = BrandConfiguration.plist; path = "assets-ios-brand.xcassets/BrandConfiguration.dataset/BrandConfiguration.plist"; sourceTree = "<group>"; };
 		50D65A1920E0238000DFD183 /* openSAP-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openSAP-iOS-Release.xcconfig"; sourceTree = "<group>"; };
 		50D65A1A20E0238000DFD183 /* openSAP-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openSAP-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
-		50D65A1B20E0238000DFD183 /* openSAP-iOS-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openSAP-iOS-Common.xcconfig"; sourceTree = "<group>"; };
+		50D65A1B20E0238000DFD183 /* openSAP-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openSAP-Common.xcconfig"; sourceTree = "<group>"; };
 		50D65A1C20E023B100DFD183 /* openWHO-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openWHO-iOS-Release.xcconfig"; sourceTree = "<group>"; };
-		50D65A1D20E023B100DFD183 /* openWHO-iOS-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openWHO-iOS-Common.xcconfig"; sourceTree = "<group>"; };
+		50D65A1D20E023B100DFD183 /* openWHO-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openWHO-Common.xcconfig"; sourceTree = "<group>"; };
 		50D65A1E20E023B100DFD183 /* openWHO-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openWHO-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
-		50D65A1F20E023C000DFD183 /* moocHOUSE-iOS-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-iOS-Common.xcconfig"; sourceTree = "<group>"; };
+		50D65A1F20E023C000DFD183 /* moocHOUSE-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-Common.xcconfig"; sourceTree = "<group>"; };
 		50D65A2020E023C100DFD183 /* moocHOUSE-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-iOS-Release.xcconfig"; sourceTree = "<group>"; };
 		50D65A2120E023C100DFD183 /* moocHOUSE-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
 		50D91643207D080000DDB6E1 /* CourseArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseArea.swift; sourceTree = "<group>"; };
 		50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTimeInterval+DispatchTime.swift"; sourceTree = "<group>"; };
+		50DA821623E46D03003BEDE1 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		50DA821823E4755E003BEDE1 /* openSAP-Today-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openSAP-Today-Debug.xcconfig"; sourceTree = "<group>"; };
+		50DA821923E4756F003BEDE1 /* openSAP-Today-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openSAP-Today-Release.xcconfig"; sourceTree = "<group>"; };
+		50DA821A23E4758D003BEDE1 /* openWHO-Today-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openWHO-Today-Debug.xcconfig"; sourceTree = "<group>"; };
+		50DA821B23E475A0003BEDE1 /* openWHO-Today-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openWHO-Today-Release.xcconfig"; sourceTree = "<group>"; };
+		50DA821C23E475C9003BEDE1 /* moocHOUSE-Today-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-Today-Debug.xcconfig"; sourceTree = "<group>"; };
+		50DA821D23E475DA003BEDE1 /* moocHOUSE-Today-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-Today-Release.xcconfig"; sourceTree = "<group>"; };
+		50DA821E23E583ED003BEDE1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50DD35141FD83D5E002B40CC /* CardListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListLayout.swift; sourceTree = "<group>"; };
 		50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseHeaderView.xib; sourceTree = "<group>"; };
 		50E0351E213673F8001F963D /* CourseListConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListConfiguration.swift; sourceTree = "<group>"; };
@@ -975,11 +984,10 @@
 		02D9354023C7BE94008BE0C7 /* TodayExtension */ = {
 			isa = PBXGroup;
 			children = (
-				025B2DAE23E33528006E0060 /* TodayExtensionopenHPI-iOS-Debug.entitlements */,
 				02D9354123C7BE94008BE0C7 /* TodayViewController.swift */,
 				022A713F23CC75D1002F6E09 /* R.generated.swift */,
 				02D9354323C7BE94008BE0C7 /* MainInterface.storyboard */,
-				0247254423CCA47B00505835 /* Info.plist */,
+				50DA821E23E583ED003BEDE1 /* Info.plist */,
 				0247254C23CCAA9900505835 /* InfoPlist.strings */,
 			);
 			path = TodayExtension;
@@ -1114,7 +1122,7 @@
 		24D48E1F1CCA740500E8051E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0247254E23CCAD4B00505835 /* Bundle+.swift */,
+				50DA821623E46D03003BEDE1 /* Bundle.swift */,
 				50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */,
 				50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */,
 				501212301FCC66B50022A7AF /* Collection+SafeSubscript.swift */,
@@ -1354,6 +1362,8 @@
 		50CF1F3D20DCCED10011BFE9 /* Xcode Configurations */ = {
 			isa = PBXGroup;
 			children = (
+				50B431CD23E45258006C7BC4 /* Debug.xcconfig */,
+				50B431CE23E4526D006C7BC4 /* Release.xcconfig */,
 				50D65A1420E0220900DFD183 /* openHPI */,
 				50D65A1820E0231400DFD183 /* openSAP */,
 				50D65A1620E0230E00DFD183 /* openWHO */,
@@ -1365,9 +1375,11 @@
 		50D65A1420E0220900DFD183 /* openHPI */ = {
 			isa = PBXGroup;
 			children = (
-				50CF201820DCDD720011BFE9 /* openHPI-iOS-Common.xcconfig */,
+				50CF201820DCDD720011BFE9 /* openHPI-Common.xcconfig */,
 				50CF1F3E20DCCF4F0011BFE9 /* openHPI-iOS-Debug.xcconfig */,
 				50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */,
+				50B431CF23E4542B006C7BC4 /* openHPI-Today-Debug.xcconfig */,
+				50B431D023E4543C006C7BC4 /* openHPI-Today-Release.xcconfig */,
 			);
 			path = openHPI;
 			sourceTree = "<group>";
@@ -1375,9 +1387,11 @@
 		50D65A1620E0230E00DFD183 /* openWHO */ = {
 			isa = PBXGroup;
 			children = (
-				50D65A1D20E023B100DFD183 /* openWHO-iOS-Common.xcconfig */,
+				50D65A1D20E023B100DFD183 /* openWHO-Common.xcconfig */,
 				50D65A1E20E023B100DFD183 /* openWHO-iOS-Debug.xcconfig */,
 				50D65A1C20E023B100DFD183 /* openWHO-iOS-Release.xcconfig */,
+				50DA821A23E4758D003BEDE1 /* openWHO-Today-Debug.xcconfig */,
+				50DA821B23E475A0003BEDE1 /* openWHO-Today-Release.xcconfig */,
 			);
 			path = openWHO;
 			sourceTree = "<group>";
@@ -1385,9 +1399,11 @@
 		50D65A1720E0231100DFD183 /* moocHOUSE */ = {
 			isa = PBXGroup;
 			children = (
-				50D65A1F20E023C000DFD183 /* moocHOUSE-iOS-Common.xcconfig */,
+				50D65A1F20E023C000DFD183 /* moocHOUSE-Common.xcconfig */,
 				50D65A2120E023C100DFD183 /* moocHOUSE-iOS-Debug.xcconfig */,
 				50D65A2020E023C100DFD183 /* moocHOUSE-iOS-Release.xcconfig */,
+				50DA821C23E475C9003BEDE1 /* moocHOUSE-Today-Debug.xcconfig */,
+				50DA821D23E475DA003BEDE1 /* moocHOUSE-Today-Release.xcconfig */,
 			);
 			path = moocHOUSE;
 			sourceTree = "<group>";
@@ -1395,9 +1411,11 @@
 		50D65A1820E0231400DFD183 /* openSAP */ = {
 			isa = PBXGroup;
 			children = (
-				50D65A1B20E0238000DFD183 /* openSAP-iOS-Common.xcconfig */,
+				50D65A1B20E0238000DFD183 /* openSAP-Common.xcconfig */,
 				50D65A1A20E0238000DFD183 /* openSAP-iOS-Debug.xcconfig */,
 				50D65A1920E0238000DFD183 /* openSAP-iOS-Release.xcconfig */,
+				50DA821823E4755E003BEDE1 /* openSAP-Today-Debug.xcconfig */,
+				50DA821923E4756F003BEDE1 /* openSAP-Today-Release.xcconfig */,
 			);
 			path = openSAP;
 			sourceTree = "<group>";
@@ -2226,7 +2244,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Build\\ Phases/copy-google-services-plist.sh";
+			shellScript = "$SRCROOT/Build\\ Phases/copy-google-services-plist.sh\n";
 		};
 		50CF201120DCDBFC0011BFE9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2681,6 +2699,7 @@
 				50FA2E1A20E4B24300656776 /* PlatformEventHelper.swift in Sources */,
 				50FA2E4920E4B25800656776 /* TrackingEventResource.swift in Sources */,
 				50FA2E4020E4B25800656776 /* PeerAssessment.swift in Sources */,
+				50DA821723E46D03003BEDE1 /* Bundle.swift in Sources */,
 				50FA2E5320E4B26400656776 /* DateFormatter+localizedFormatter.swift in Sources */,
 				50FA2E6620E51B7E00656776 /* ReachabilityHelper.swift in Sources */,
 				50FA2E2020E4B24300656776 /* VideoHelper.swift in Sources */,
@@ -2692,7 +2711,6 @@
 				507F7FDA2372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift in Sources */,
 				50FA2E4520E4B25800656776 /* RichText.swift in Sources */,
 				50046F6D216B53EB00D59073 /* Notification+CoreData.swift in Sources */,
-				0247254F23CCAD4B00505835 /* Bundle+.swift in Sources */,
 				50FA2E4320E4B25800656776 /* QuizQuestion.swift in Sources */,
 				50FA2E0C20E4B23C00656776 /* xikolo.xcdatamodeld in Sources */,
 				50FA2E3520E4B25800656776 /* Announcement.swift in Sources */,
@@ -2782,14 +2800,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0247254423CCA47B00505835 /* Info.plist */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0247254323CCA47B00505835 /* Base */,
-			);
-			name = Info.plist;
-			sourceTree = "<group>";
-		};
 		0247254C23CCAA9900505835 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3010,7 +3020,7 @@
 /* Begin XCBuildConfiguration section */
 		02D9354B23C7BE94008BE0C7 /* openHPI-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A1FD4AB4E924BC57BEE1C55 /* Pods-TodayExtension.openhpi-ios-debug.xcconfig */;
+			baseConfigurationReference = 50B431CF23E4542B006C7BC4 /* openHPI-Today-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -3042,7 +3052,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "TodayExtension/TodayExtensionopenHPI-iOS-Debug.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -3071,7 +3080,6 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -3084,7 +3092,7 @@
 		};
 		02D9354C23C7BE94008BE0C7 /* openSAP-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AEAECBE96E1308C024CFA22A /* Pods-TodayExtension.opensap-ios-debug.xcconfig */;
+			baseConfigurationReference = 50DA821823E4755E003BEDE1 /* openSAP-Today-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -3137,7 +3145,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -3150,7 +3157,7 @@
 		};
 		02D9354D23C7BE94008BE0C7 /* openWHO-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C4FE511AABC6860CA101BB3 /* Pods-TodayExtension.openwho-ios-debug.xcconfig */;
+			baseConfigurationReference = 50DA821A23E4758D003BEDE1 /* openWHO-Today-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -3203,7 +3210,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -3216,7 +3222,7 @@
 		};
 		02D9354E23C7BE94008BE0C7 /* moocHOUSE-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13F59F35E58A4B46C499A1BA /* Pods-TodayExtension.moochouse-ios-debug.xcconfig */;
+			baseConfigurationReference = 50DA821C23E475C9003BEDE1 /* moocHOUSE-Today-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -3269,7 +3275,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -3282,7 +3287,7 @@
 		};
 		02D9354F23C7BE94008BE0C7 /* openHPI-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5573E8002F0C0CA079B4B45 /* Pods-TodayExtension.openhpi-ios-release.xcconfig */;
+			baseConfigurationReference = 50B431D023E4543C006C7BC4 /* openHPI-Today-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -3335,7 +3340,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -3348,7 +3352,7 @@
 		};
 		02D9355023C7BE94008BE0C7 /* openSAP-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 64937786CC095E17F6A3967D /* Pods-TodayExtension.opensap-ios-release.xcconfig */;
+			baseConfigurationReference = 50DA821923E4756F003BEDE1 /* openSAP-Today-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -3401,7 +3405,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -3414,7 +3417,7 @@
 		};
 		02D9355123C7BE94008BE0C7 /* openWHO-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D302EF25B4E08E27970D3A4 /* Pods-TodayExtension.openwho-ios-release.xcconfig */;
+			baseConfigurationReference = 50DA821B23E475A0003BEDE1 /* openWHO-Today-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -3467,7 +3470,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -3480,7 +3482,7 @@
 		};
 		02D9355223C7BE94008BE0C7 /* moocHOUSE-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F47F982E1B1C2BCE5DD94DE2 /* Pods-TodayExtension.moochouse-ios-release.xcconfig */;
+			baseConfigurationReference = 50DA821D23E475DA003BEDE1 /* moocHOUSE-Today-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -3533,7 +3535,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

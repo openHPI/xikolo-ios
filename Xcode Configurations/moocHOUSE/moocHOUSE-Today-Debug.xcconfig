@@ -1,0 +1,11 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+#include "../../Pods/Target Support Files/Pods-TodayExtension/Pods-TodayExtension.moochouse-ios-debug.xcconfig"
+#include "moocHOUSE-Common.xcconfig"
+#include "../Debug.xcconfig"
+
+PRODUCT_MODULE_NAME = Today
+EXTENSION_PATH = .today

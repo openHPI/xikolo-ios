@@ -1,0 +1,11 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+GCC_OPTIMIZATION_LEVEL = s
+SWIFT_COMPILATION_MODE = wholemodule
+SWIFT_OPTIMIZATION_LEVEL = -O
+ENABLE_NS_ASSERTIONS = NO
+
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon

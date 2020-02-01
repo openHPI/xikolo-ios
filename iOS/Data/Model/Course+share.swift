@@ -10,7 +10,7 @@ import UIKit
 extension Course: UIActivityItemSource {
 
     public func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-        return self.url as Any
+        return self.title ?? ""
     }
 
     public func activityViewController(_ activityViewController: UIActivityViewController,

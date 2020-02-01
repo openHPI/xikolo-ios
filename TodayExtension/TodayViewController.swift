@@ -10,7 +10,7 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 
-    @IBOutlet weak var stackView: UIStackView!
+//    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var todayCountLabel: UILabel!
     @IBOutlet weak var nextCountLabel: UILabel!
     @IBOutlet weak var allCountLabel: UILabel!
@@ -21,7 +21,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // Allow the today widget to be expanded or contracted.
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
 
-        self.loadData()
+        // right now, this will the widget crash
+//        self.loadData()
 
     }
         
@@ -35,15 +36,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         completionHandler(NCUpdateResult.newData)
     }
 
-    private func addContentController(_ child: UIViewController) {
-        self.addChild(child)
-        self.stackView.addArrangedSubview(child.view)
-        child.didMove(toParent: self)
-    }
+//    private func addContentController(_ child: UIViewController) {
+//        self.addChild(child)
+//        self.stackView.addArrangedSubview(child.view)
+//        child.didMove(toParent: self)
+//    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        TrackingHelper.createEvent(.visitedDashboard, on: self)
+//        TrackingHelper.createEvent(.visitedDashboard, on: self)
     }
 
     func loadData() {

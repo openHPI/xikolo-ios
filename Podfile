@@ -41,7 +41,7 @@ target 'iOS' do
 end
 
 target 'TodayExtension' do
-  platform :ios, '11.0'
+  platform :ios, '10.0'
 end
 
 post_install do |installer|

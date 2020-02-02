@@ -21,9 +21,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // Allow the today widget to be expanded or contracted.
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
 
-        // right now, this will the widget crash
-//        self.loadData()
-
+         self.loadData()
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -34,6 +32,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's an update, use NCUpdateResult.NewData
         
         completionHandler(NCUpdateResult.newData)
+    }
+
+    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        print("size change")
     }
 
 //    private func addContentController(_ child: UIViewController) {

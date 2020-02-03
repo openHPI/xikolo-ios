@@ -26,8 +26,6 @@
 	<string>0</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
-	<key>KEYCHAIN_GROUP</key>
-	<string>$(KEYCHAIN_GROUP)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>

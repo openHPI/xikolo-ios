@@ -10,11 +10,10 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 
-//    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var todayCountLabel: UILabel!
     @IBOutlet weak var nextCountLabel: UILabel!
     @IBOutlet weak var allCountLabel: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,17 +35,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         print("size change")
-    }
-
-//    private func addContentController(_ child: UIViewController) {
-//        self.addChild(child)
-//        self.stackView.addArrangedSubview(child.view)
-//        child.didMove(toParent: self)
-//    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        TrackingHelper.createEvent(.visitedDashboard, on: self)
     }
 
     func loadData() {

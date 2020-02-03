@@ -14,7 +14,8 @@ public class UserProfileHelper {
         case userToken = "de.xikolo.ios.user-token"
     }
 
-    private let keychain = Keychain(service: "de.xikolo.ios").accessibility(.afterFirstUnlock)
+    private let oldKeychain = Keychain(service: "de.xikolo.ios").accessibility(.afterFirstUnlock)
+    private let keychain = Keychain(service: "de.xikolo.ios", accessGroup: Bundle.main.appGroupIdentifier!).accessibility(.afterFirstUnlock)
 
     public static let loginStateDidChangeNotification = Notification.Name("de.xikolo.ios.loginStateChanged")
     public static let shared = UserProfileHelper()
@@ -195,6 +196,16 @@ public class UserProfileHelper {
         }
 
         defaults.synchronize()
+    }
+
+    public func migrateToSharedKeychain() {
+        if let userId = try? self.oldKeychain.getString(KeychainKey.userId.rawValue) {
+            try? self.keychain.set(userId, key: KeychainKey.userId.rawValue)
+        }
+
+        if let userToken = try? self.oldKeychain.getString(KeychainKey.userToken.rawValue) {
+            try? self.keychain.set(userToken, key: KeychainKey.userToken.rawValue)
+        }
     }
 }
 

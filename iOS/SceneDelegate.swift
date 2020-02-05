@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    var shortcutItemToProcess: UIApplicationShortcutItem?
+    private var shortcutItemToProcess: UIApplicationShortcutItem?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
@@ -44,20 +44,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        appNavigator.handle(shortcutItem: shortcutItem)
+        self.appNavigator.handle(shortcutItem: shortcutItem)
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-        if let shortcutItem = shortcutItemToProcess {
-            appNavigator.handle(shortcutItem: shortcutItem)
+        if let shortcutItem = self.shortcutItemToProcess {
+            self.appNavigator.handle(shortcutItem: shortcutItem)
         }
 
         shortcutItemToProcess = nil
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        let delegate = AppDelegate.instance()
-        delegate.setShortcutItems()
+        AppDelegate.instance().setHomescreenQuickActions()
     }
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {

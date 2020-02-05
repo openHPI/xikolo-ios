@@ -285,7 +285,7 @@
 "helpdesk.topic.technical" = "Technical";
 
 /* subtitle for homescreen quick actions */
-"quickactions.subtitle" = "continue learning";
+"quickactions.subtitle" = "Continue learning";
 
 /* label for app build */
 "settings.app.build.label" = "Build";

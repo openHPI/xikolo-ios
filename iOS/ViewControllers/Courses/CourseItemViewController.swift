@@ -109,6 +109,8 @@ class CourseItemViewController: UIPageViewController {
                 return R.storyboard.courseLearningsRichtext.instantiateInitialViewController()
             case "lti_exercise":
                 return R.storyboard.courseLearningsLTI.instantiateInitialViewController()
+            case "peer_assessment":
+                return R.storyboard.courseLearningsPeerAssessment.instantiateInitialViewController()
             default:
                 return R.storyboard.courseLearningsWeb.instantiateInitialViewController()
             }

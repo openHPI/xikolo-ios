@@ -26,6 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    private var shortcutItemToProcess: UIApplicationShortcutItem?
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
             self.window = UIWindow(windowScene: windowScene)
@@ -34,9 +36,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window?.makeKeyAndVisible()
         }
 
+        shortcutItemToProcess = connectionOptions.shortcutItem
+
         // Select initial tab
         let tabToSelect: XikoloTabBarController.Tabs = UserProfileHelper.shared.isLoggedIn ? .dashboard : .courses
         self.tabBarController.selectedIndex = tabToSelect.index
+    }
+
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        self.appNavigator.handle(shortcutItem: shortcutItem)
+    }
+
+    func sceneDidBecomeActive(_ scene: UIScene) {
+        if let shortcutItem = self.shortcutItemToProcess {
+            self.appNavigator.handle(shortcutItem: shortcutItem)
+        }
+
+        shortcutItemToProcess = nil
+    }
+
+    func sceneWillResignActive(_ scene: UIScene) {
+        AppDelegate.instance().setHomescreenQuickActions()
     }
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
@@ -51,6 +71,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
         return scene.userActivity
     }
+
 }
 
 @available(iOS 13.0, *)

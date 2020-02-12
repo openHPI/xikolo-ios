@@ -201,10 +201,12 @@ public class UserProfileHelper {
     public func migrateToSharedKeychain() {
         if let userId = try? self.oldKeychain.getString(KeychainKey.userId.rawValue) {
             try? self.keychain.set(userId, key: KeychainKey.userId.rawValue)
+            try? self.oldKeychain.remove(KeychainKey.userId.rawValue)
         }
 
         if let userToken = try? self.oldKeychain.getString(KeychainKey.userToken.rawValue) {
             try? self.keychain.set(userToken, key: KeychainKey.userToken.rawValue)
+            try? self.oldKeychain.remove(KeychainKey.userToken.rawValue)
         }
     }
 }

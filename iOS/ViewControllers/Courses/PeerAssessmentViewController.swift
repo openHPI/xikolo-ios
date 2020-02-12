@@ -44,7 +44,6 @@ class PeerAssessmentViewController: UIViewController {
         self.assessmentTitleLabel.text = peerAssessment.id
         self.assessmentTypeLabel.text = peerAssessment.type
         self.assessmentInstructionsView.text = peerAssessment.instructions
-        self.noteLabel.text = NSLocalizedString("course.item-not.optimized", comment: "course item not optimized for the app")
         self.redirectButton.backgroundColor = Brand.default.colors.primary
 
     }

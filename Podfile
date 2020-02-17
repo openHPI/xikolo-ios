@@ -40,10 +40,6 @@ target 'iOS' do
     pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['openHPI-iOS-Debug', 'openSAP-iOS-Debug', 'openWHO-iOS-Debug', 'moocHOUSE-iOS-Debug']
 end
 
-target 'TodayExtension' do
-  platform :ios, '10.0'
-end
-
 post_install do |installer|
     Pod::UI.info "Installing BartyCrouch manually"
     system("make installables -C ./Pods/BartyCrouch >> /dev/null")

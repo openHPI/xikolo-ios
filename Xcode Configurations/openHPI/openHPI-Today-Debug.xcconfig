@@ -3,7 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-#include "../../Pods/Target Support Files/Pods-TodayExtension/Pods-TodayExtension.openhpi-ios-debug.xcconfig"
 #include "openHPI-Common.xcconfig"
 #include "../Debug.xcconfig"
 

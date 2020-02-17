@@ -3,7 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-#include "../../Pods/Target Support Files/Pods-TodayExtension/Pods-TodayExtension.opensap-ios-release.xcconfig"
 #include "openSAP-Common.xcconfig"
 #include "../Release.xcconfig"
 

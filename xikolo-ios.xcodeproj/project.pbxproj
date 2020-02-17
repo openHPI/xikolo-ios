@@ -2218,7 +2218,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Build\\ Phases/run-rswift-ios.sh\n";
+			shellScript = "$SRCROOT/Build\\ Phases/run-rswift.sh\n";
 		};
 		50CF200F20DCDBFC0011BFE9 /* Copy GoogleServices-Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;

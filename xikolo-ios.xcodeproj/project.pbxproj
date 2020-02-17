@@ -255,9 +255,9 @@
 		50DA822523E587FD003BEDE1 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D9353E23C7BE94008BE0C7 /* NotificationCenter.framework */; };
 		50DA822823E587FD003BEDE1 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA822723E587FD003BEDE1 /* TodayViewController.swift */; };
 		50DA822B23E587FD003BEDE1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50DA822923E587FD003BEDE1 /* MainInterface.storyboard */; };
-		50DA822F23E587FD003BEDE1 /* openHPI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 50DA822423E587FC003BEDE1 /* openHPI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		50DA823B23E58EC7003BEDE1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50DA823D23E58EC7003BEDE1 /* InfoPlist.strings */; };
 		50E0351F213673F8001F963D /* CourseListConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0351E213673F8001F963D /* CourseListConfiguration.swift */; };
+		50EC9D8723FA91E0009A33FD /* today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 50DA822423E587FC003BEDE1 /* today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		50FA2DEF20E4B1A800656776 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FA2DED20E4B1A800656776 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50FA2DF220E4B1A800656776 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
 		50FA2DF320E4B1A800656776 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -418,7 +418,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				50DA822F23E587FD003BEDE1 /* openHPI.appex in Embed App Extensions */,
+				50EC9D8723FA91E0009A33FD /* today.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -768,7 +768,7 @@
 		50DA821B23E475A0003BEDE1 /* openWHO-Today-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openWHO-Today-Release.xcconfig"; sourceTree = "<group>"; };
 		50DA821C23E475C9003BEDE1 /* moocHOUSE-Today-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-Today-Debug.xcconfig"; sourceTree = "<group>"; };
 		50DA821D23E475DA003BEDE1 /* moocHOUSE-Today-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-Today-Release.xcconfig"; sourceTree = "<group>"; };
-		50DA822423E587FC003BEDE1 /* openHPI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = openHPI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		50DA822423E587FC003BEDE1 /* today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		50DA822723E587FD003BEDE1 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		50DA822A23E587FD003BEDE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		50DA822C23E587FD003BEDE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1481,7 +1481,7 @@
 				50761B3F20FCAC5900CEDAF9 /* iOS-Tests.xctest */,
 				50761B5320FCADD600CEDAF9 /* Common-Tests.xctest */,
 				5067AD322367042E00ADEAB9 /* Binge.framework */,
-				50DA822423E587FC003BEDE1 /* openHPI.appex */,
+				50DA822423E587FC003BEDE1 /* today.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1956,7 +1956,7 @@
 			);
 			name = TodayExtension;
 			productName = TodayExtension;
-			productReference = 50DA822423E587FC003BEDE1 /* openHPI.appex */;
+			productReference = 50DA822423E587FC003BEDE1 /* today.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		50FA2DEA20E4B1A800656776 /* Common */ = {

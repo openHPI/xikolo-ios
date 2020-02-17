@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return UIApplicationShortcutItem(type: "FavoriteAction",
                                              localizedTitle: enrolledCurrentCourses.title ?? "",
                                              localizedSubtitle: subtitle,
-                                             icon: UIApplicationShortcutIcon(type: .bookmark),
+                                             icon: UIApplicationShortcutIcon(templateImageName: "rectangle.fill.badge.arrow.right"),
                                              userInfo: ["courseID": enrolledCurrentCourses.id as NSSecureCoding]
             )
         }

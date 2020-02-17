@@ -6,5 +6,6 @@
 #include "moocHOUSE-Common.xcconfig"
 #include "../Release.xcconfig"
 
+PRODUCT_NAME = today
 PRODUCT_MODULE_NAME = Today
 EXTENSION_PATH = .today

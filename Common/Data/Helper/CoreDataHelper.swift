@@ -47,13 +47,13 @@ public class CoreDataHelper { // swiftlint:disable:this convenience_type
 
                     // delete old CoreData store
                     let fileCoordinator = NSFileCoordinator(filePresenter: nil)
-                    fileCoordinator.coordinate(writingItemAt: url, options: .forDeleting, error: nil, byAccessor: { url in
+                    fileCoordinator.coordinate(writingItemAt: url, options: .forDeleting, error: nil) { url in
                         do {
                             try FileManager.default.removeItem(at: url)
                         } catch {
                             print(error.localizedDescription)
                         }
-                    })
+                    }
                 }
             }
         }

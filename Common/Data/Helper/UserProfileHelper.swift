@@ -15,7 +15,7 @@ public class UserProfileHelper {
     }
 
     private let oldKeychain = Keychain(service: "de.xikolo.ios").accessibility(.afterFirstUnlock)
-    private let keychain = Keychain(service: "de.xikolo.ios", accessGroup: Bundle.main.appGroupIdentifier!).accessibility(.afterFirstUnlock)
+    private let keychain = Keychain(service: "de.xikolo.ios.shared", accessGroup: Bundle.main.appGroupIdentifier!).accessibility(.afterFirstUnlock)
 
     public static let loginStateDidChangeNotification = Notification.Name("de.xikolo.ios.loginStateChanged")
     public static let shared = UserProfileHelper()

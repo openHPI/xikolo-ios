@@ -284,6 +284,9 @@
 /* helpdesk topic technical */
 "helpdesk.topic.technical" = "Technische Frage";
 
+/* subtitle for homescreen quick actions */
+"quickactions.subtitle" = "Lernen fortsetzen";
+
 /* label for app build */
 "settings.app.build.label" = "Build";
 

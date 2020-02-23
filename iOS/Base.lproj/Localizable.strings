@@ -159,7 +159,7 @@
 "course.item.exercise-type.disclaimer.bonus" = "This is a bonus exercise.";
 
 /* course item main type */
-"course.item.exercise-type.disclaimer.main" = "This is an graded exercise.";
+"course.item.exercise-type.disclaimer.main" = "This is a graded exercise.";
 
 /* course item ungraded type */
 "course.item.exercise-type.disclaimer.ungraded" = "This is an ungraded exercise.";

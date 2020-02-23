@@ -7,7 +7,7 @@ import CoreData
 import Foundation
 import SyncEngine
 
-final public class PeerAssessment: Content {
+public final class PeerAssessment: Content {
 
     @NSManaged public var id: String
     @NSManaged public var instructions: String?

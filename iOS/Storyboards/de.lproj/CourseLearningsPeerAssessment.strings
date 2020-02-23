@@ -2,8 +2,14 @@
 /* Class = "UITextView"; text = "Loading instructions …"; ObjectID = "M5w-cg-LNk"; */
 "M5w-cg-LNk.text" = "Anweisungen werden geladen …";
 
-/* Class = "UILabel"; text = "You will be redirected to an external tool which may not work great on mobile devices. If you experience any issues, please consider using the web application."; ObjectID = "P4V-UO-hm9"; */
-"P4V-UO-hm9.text" = "Es wird eine externe Anwendung geöffnet, das nicht für mobile Geräte optimiert sein könnte. Bitte benutze die Webanwendung, falls Fehler auftreten sollten.";
+/* Class = "UILabel"; text = "Peer Assessments are not optimized for mobile, so we recommend that you complete it on a computer."; ObjectID = "P4V-UO-hm9"; */
+"P4V-UO-hm9.text" = "Peer Assessments sind nicht für Mobilgeräte optimiert, weshalb die Bearbeitung an einem Computer empfohlen wird.";
 
 /* Class = "UIButton"; normalTitle = "Launch Exercise Tool"; ObjectID = "Sdh-gh-SKC"; */
 "Sdh-gh-SKC.normalTitle" = "Aufgabe starten";
+
+/* Class = "UILabel"; text = "You cannot enter any new submissions, because the submission deadline has already passed."; ObjectID = "EEo-BW-kdN"; */
+"EEo-BW-kdN.text" = "Sie können keine neuen Lösungen einreichen.";
+
+/* Class = "UILabel"; text = "Submission deadline has passed"; ObjectID = "S7A-wc-mUD"; */
+"S7A-wc-mUD.text" = "Die Abgabefrist ist bereits abgelaufen.";

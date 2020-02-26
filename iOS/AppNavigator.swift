@@ -128,6 +128,18 @@ class AppNavigator {
                     self.show(course: course, with: .progress)
                 } else if courseArea == "announcements" {
                     self.show(course: course, with: .announcements)
+                } else if courseArea == "recap" {
+                    if Brand.default.features.enableRecap {
+                        self.show(course: course, with: .recap)
+                    } else {
+                        canOpenInApp = false
+                    }
+                } else if courseArea == "documents" {
+                    if Brand.default.features.enableDocuments {
+                        self.show(course: course, with: .documents)
+                    } else {
+                        canOpenInApp = false
+                    }
                 } else {
                     // We don't support this yet, so we should just open the url with some kind of browser
                     log.info("Unable to open course area (\(courseArea ?? "")) for course (\(slugOrId)) inside the app")

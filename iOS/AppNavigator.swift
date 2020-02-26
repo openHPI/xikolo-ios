@@ -35,7 +35,13 @@ class AppNavigator {
             return false
         }
 
-        return self.handle(url: url)
+        let wasHandleByApplication = self.handle(url: url)
+
+        if !wasHandleByApplication {
+            UIApplication.shared.open(url)
+        }
+
+        return wasHandleByApplication
     }
 
     func handle(url: URL, on sourceViewController: UIViewController) -> Bool {

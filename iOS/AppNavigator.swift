@@ -106,51 +106,13 @@ class AppNavigator {
 
         let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: slugOrId)
         var couldFindCourse = false
-        var canOpenInApp = true
+        var canOpenInApp = false
 
         CoreDataHelper.viewContext.performAndWait {
             switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
             case let .success(course):
                 couldFindCourse = true
-                let courseArea = url.pathComponents[safe: 3]
-                if courseArea == nil {
-                    self.show(course: course, with: .courseDetails)
-                } else if courseArea == "items" {
-                    if let courseItemId = url.pathComponents[safe: 4] {
-                        let itemId = CourseItem.uuid(forBase62UUID: courseItemId) ?? courseItemId
-                        let itemFetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: itemId)
-                        if let courseItem = CoreDataHelper.viewContext.fetchSingle(itemFetchRequest).value {
-                            self.show(item: courseItem)
-                        } else {
-                            log.info("Unable to open course item (\(itemId)) for course (\(slugOrId)) inside the app")
-                            canOpenInApp = false
-                        }
-                    } else {
-                        self.show(course: course, with: .learnings)
-                    }
-                } else if courseArea == "pinboard" {
-                    self.show(course: course, with: .discussions)
-                } else if courseArea == "progress" {
-                    self.show(course: course, with: .progress)
-                } else if courseArea == "announcements" {
-                    self.show(course: course, with: .announcements)
-                } else if courseArea == "recap" {
-                    if Brand.default.features.enableRecap {
-                        self.show(course: course, with: .recap)
-                    } else {
-                        canOpenInApp = false
-                    }
-                } else if courseArea == "documents" {
-                    if Brand.default.features.enableDocuments {
-                        self.show(course: course, with: .documents)
-                    } else {
-                        canOpenInApp = false
-                    }
-                } else {
-                    // We don't support this yet, so we should just open the url with some kind of browser
-                    log.info("Unable to open course area (\(courseArea ?? "")) for course (\(slugOrId)) inside the app")
-                    canOpenInApp = false
-                }
+                canOpenInApp = self.handle(url: url, for: course)
             case let .failure(error):
                 log.info("Could not find course in local database: \(error)")
             }
@@ -172,6 +134,54 @@ class AppNavigator {
         return false
     }
 
+    private func handle(url: URL, for course: Course) -> Bool {
+        let courseArea = url.pathComponents[safe: 3]
+        switch courseArea {
+        case nil:
+            self.show(course: course, with: .courseDetails)
+            return true
+        case "items":
+            return self.handleCourseItemURL(url, for: course)
+        case "pinboard":
+            self.show(course: course, with: .discussions)
+            return true
+        case "progress":
+            self.show(course: course, with: .progress)
+            return true
+        case "announcements":
+            self.show(course: course, with: .announcements)
+            return true
+        case "recap":
+            guard Brand.default.features.enableRecap else { return false }
+            self.show(course: course, with: .recap)
+            return true
+        case "documents":
+            guard Brand.default.features.enableDocuments else { return false }
+            self.show(course: course, with: .documents)
+            return true
+        default:
+            log.info("Unable to open course area (\(courseArea ?? "")) for course (\(course.slug ?? "-")) inside the app")
+            return false
+        }
+    }
+
+    private func handleCourseItemURL(_ url: URL, for course: Course) -> Bool {
+        if let courseItemId = url.pathComponents[safe: 4] {
+            let itemId = CourseItem.uuid(forBase62UUID: courseItemId) ?? courseItemId
+            let itemFetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: itemId)
+            if let courseItem = CoreDataHelper.viewContext.fetchSingle(itemFetchRequest).value {
+                self.show(item: courseItem)
+                return true
+            } else {
+                log.info("Unable to open course item (\(itemId)) for course (\(course.slug ?? "-")) inside the app")
+                return false
+            }
+        } else {
+            self.show(course: course, with: .learnings)
+            return true
+        }
+    }
+
     func handle(shortcutItem: UIApplicationShortcutItem) {
         guard let courseId = shortcutItem.userInfo?["courseID"] as? String else { return }
         let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: courseId)
@@ -189,6 +199,7 @@ class AppNavigator {
         } else {
             self.presentDashboardLoginViewController()
         }
+
         return true
     }
 

@@ -160,7 +160,11 @@ class AppNavigator {
     }
 
     func showCourseList() {
-        self.tabBarController?.selectedIndex = 1
+        // Close current course
+        self.currentCourseNavigationController?.closeCourse()
+        self.currentCourseNavigationController = nil
+
+        self.tabBarController?.selectedIndex = XikoloTabBarController.Tabs.courses.index
     }
 
     typealias CourseOpenAction = (CourseViewController) -> Void

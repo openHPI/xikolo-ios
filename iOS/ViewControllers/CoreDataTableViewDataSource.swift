@@ -153,7 +153,7 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
             } else {
                 self.tableView?.deleteRows(at: [indexPath], with: .fade)
                 self.tableView?.insertRows(at: [newIndexPath], with: .fade)
-            }
+            } // swiftlint:disable:this closing_brace_whitespace
         @unknown default:
             break
         }

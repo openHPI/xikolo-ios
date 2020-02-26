@@ -71,6 +71,8 @@ class AppNavigator {
             return true // url to base page, simply open the app
         case "courses":
             return self.handleCourseURL(url)
+        case "dashboard":
+            return self.showDashboard()
         default:
             return false
         }
@@ -159,6 +161,19 @@ class AppNavigator {
         self.show(course: course)
     }
 
+    func showDashboard() -> Bool {
+        // Close current course
+        self.currentCourseNavigationController?.closeCourse()
+        self.currentCourseNavigationController = nil
+
+        if UserProfileHelper.shared.isLoggedIn {
+            self.tabBarController?.selectedIndex = XikoloTabBarController.Tabs.dashboard.index
+        } else {
+            self.presentDashboardLoginViewController()
+        }
+        return true
+    }
+
     func showCourseList() {
         // Close current course
         self.currentCourseNavigationController?.closeCourse()
@@ -245,6 +260,34 @@ class AppNavigator {
         }
 
         self.navigate(to: course, courseArea: .documents, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+    }
+
+    func presentDashboardLoginViewController() {
+        guard let loginNavigationController = R.storyboard.login.instantiateInitialViewController() else {
+            let reason = "Initial view controller of Login stroyboard in not of type UINavigationController"
+            ErrorManager.shared.reportStoryboardError(reason: reason)
+            log.error(reason)
+            return
+        }
+
+        guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
+            let reason = "Could not find LoginViewController"
+            ErrorManager.shared.reportStoryboardError(reason: reason)
+            log.error(reason)
+            return
+        }
+
+        loginViewController.delegate = self
+
+        self.tabBarController?.present(loginNavigationController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+}
+
+extension AppNavigator: LoginDelegate {
+
+    func didSuccessfullyLogin() {
+        self.tabBarController?.selectedIndex = XikoloTabBarController.Tabs.dashboard.index
     }
 
 }

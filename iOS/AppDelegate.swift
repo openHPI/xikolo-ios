@@ -204,34 +204,8 @@ extension AppDelegate: UITabBarControllerDelegate {
             return true
         }
 
-        guard let loginNavigationController = R.storyboard.login.instantiateInitialViewController() else {
-            let reason = "Initial view controller of Login stroyboard in not of type UINavigationController"
-            ErrorManager.shared.reportStoryboardError(reason: reason)
-            log.error(reason)
-            return false
-        }
-
-        guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
-            let reason = "Could not find LoginViewController"
-            ErrorManager.shared.reportStoryboardError(reason: reason)
-            log.error(reason)
-            return false
-        }
-
-        loginViewController.delegate = self
-
-        tabBarController.present(loginNavigationController, animated: trueUnlessReduceMotionEnabled)
-
+        self.appNavigator.presentDashboardLoginViewController()
         return false
-    }
-
-}
-
-@available(iOS, obsoleted: 13.0)
-extension AppDelegate: LoginDelegate {
-
-    func didSuccessfullyLogin() {
-        self.tabBarController.selectedIndex = 0
     }
 
 }

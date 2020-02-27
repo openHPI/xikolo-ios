@@ -101,10 +101,6 @@ class PeerAssessmentViewController: UIViewController {
             self.peerAssessmentTypeLabel.text = "Team Peer Assessment"
             self.teamAssessmentView.isHidden = false
             self.soloAssessmentView.isHidden = true
-        case "open":
-            self.peerAssessmentTypeLabel.text = "Open Peer Assessment"
-            self.teamAssessmentView.isHidden = true
-            self.soloAssessmentView.isHidden = false
         default:
             self.peerAssessmentTypeLabel.text = "Peer Assessment"
             self.teamAssessmentView.isHidden = true

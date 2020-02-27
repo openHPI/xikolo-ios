@@ -35,7 +35,13 @@ class AppNavigator {
             return false
         }
 
-        return self.handle(url: url)
+        let wasHandleByApplication = self.handle(url: url)
+
+        if !wasHandleByApplication {
+            UIApplication.shared.open(url)
+        }
+
+        return wasHandleByApplication
     }
 
     func handle(url: URL, on sourceViewController: UIViewController) -> Bool {
@@ -71,6 +77,8 @@ class AppNavigator {
             return true // url to base page, simply open the app
         case "courses":
             return self.handleCourseURL(url)
+        case "dashboard":
+            return self.showDashboard()
         default:
             return false
         }
@@ -98,39 +106,13 @@ class AppNavigator {
 
         let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: slugOrId)
         var couldFindCourse = false
-        var canOpenInApp = true
+        var canOpenInApp = false
 
         CoreDataHelper.viewContext.performAndWait {
             switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
             case let .success(course):
                 couldFindCourse = true
-                let courseArea = url.pathComponents[safe: 3]
-                if courseArea == nil {
-                    self.show(course: course, with: .courseDetails)
-                } else if courseArea == "items" {
-                    if let courseItemId = url.pathComponents[safe: 4] {
-                        let itemId = CourseItem.uuid(forBase62UUID: courseItemId) ?? courseItemId
-                        let itemFetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: itemId)
-                        if let courseItem = CoreDataHelper.viewContext.fetchSingle(itemFetchRequest).value {
-                            self.show(item: courseItem)
-                        } else {
-                            log.info("Unable to open course item (\(itemId)) for course (\(slugOrId)) inside the app")
-                            canOpenInApp = false
-                        }
-                    } else {
-                        self.show(course: course, with: .learnings)
-                    }
-                } else if courseArea == "pinboard" {
-                    self.show(course: course, with: .discussions)
-                } else if courseArea == "progress" {
-                    self.show(course: course, with: .progress)
-                } else if courseArea == "announcements" {
-                    self.show(course: course, with: .announcements)
-                } else {
-                    // We don't support this yet, so we should just open the url with some kind of browser
-                    log.info("Unable to open course area (\(courseArea ?? "")) for course (\(slugOrId)) inside the app")
-                    canOpenInApp = false
-                }
+                canOpenInApp = self.handle(url: url, for: course)
             case let .failure(error):
                 log.info("Could not find course in local database: \(error)")
             }
@@ -152,6 +134,54 @@ class AppNavigator {
         return false
     }
 
+    private func handle(url: URL, for course: Course) -> Bool {
+        let courseArea = url.pathComponents[safe: 3]
+        switch courseArea {
+        case nil:
+            self.show(course: course, with: .courseDetails)
+            return true
+        case "items":
+            return self.handleCourseItemURL(url, for: course)
+        case "pinboard":
+            self.show(course: course, with: .discussions)
+            return true
+        case "progress":
+            self.show(course: course, with: .progress)
+            return true
+        case "announcements":
+            self.show(course: course, with: .announcements)
+            return true
+        case "recap":
+            guard Brand.default.features.enableRecap else { return false }
+            self.show(course: course, with: .recap)
+            return true
+        case "documents":
+            guard Brand.default.features.enableDocuments else { return false }
+            self.show(course: course, with: .documents)
+            return true
+        default:
+            log.info("Unable to open course area (\(courseArea ?? "")) for course (\(course.slug ?? "-")) inside the app")
+            return false
+        }
+    }
+
+    private func handleCourseItemURL(_ url: URL, for course: Course) -> Bool {
+        if let courseItemId = url.pathComponents[safe: 4] {
+            let itemId = CourseItem.uuid(forBase62UUID: courseItemId) ?? courseItemId
+            let itemFetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: itemId)
+            if let courseItem = CoreDataHelper.viewContext.fetchSingle(itemFetchRequest).value {
+                self.show(item: courseItem)
+                return true
+            } else {
+                log.info("Unable to open course item (\(itemId)) for course (\(course.slug ?? "-")) inside the app")
+                return false
+            }
+        } else {
+            self.show(course: course, with: .learnings)
+            return true
+        }
+    }
+
     func handle(shortcutItem: UIApplicationShortcutItem) {
         guard let courseId = shortcutItem.userInfo?["courseID"] as? String else { return }
         let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: courseId)
@@ -159,8 +189,26 @@ class AppNavigator {
         self.show(course: course)
     }
 
+    func showDashboard() -> Bool {
+        // Close current course
+        self.currentCourseNavigationController?.closeCourse()
+        self.currentCourseNavigationController = nil
+
+        if UserProfileHelper.shared.isLoggedIn {
+            self.tabBarController?.selectedIndex = XikoloTabBarController.Tabs.dashboard.index
+        } else {
+            self.presentDashboardLoginViewController()
+        }
+
+        return true
+    }
+
     func showCourseList() {
-        self.tabBarController?.selectedIndex = 1
+        // Close current course
+        self.currentCourseNavigationController?.closeCourse()
+        self.currentCourseNavigationController = nil
+
+        self.tabBarController?.selectedIndex = XikoloTabBarController.Tabs.courses.index
     }
 
     typealias CourseOpenAction = (CourseViewController) -> Void
@@ -241,6 +289,34 @@ class AppNavigator {
         }
 
         self.navigate(to: course, courseArea: .documents, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+    }
+
+    func presentDashboardLoginViewController() {
+        guard let loginNavigationController = R.storyboard.login.instantiateInitialViewController() else {
+            let reason = "Initial view controller of Login stroyboard in not of type UINavigationController"
+            ErrorManager.shared.reportStoryboardError(reason: reason)
+            log.error(reason)
+            return
+        }
+
+        guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
+            let reason = "Could not find LoginViewController"
+            ErrorManager.shared.reportStoryboardError(reason: reason)
+            log.error(reason)
+            return
+        }
+
+        loginViewController.delegate = self
+
+        self.tabBarController?.present(loginNavigationController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+}
+
+extension AppNavigator: LoginDelegate {
+
+    func didSuccessfullyLogin() {
+        self.tabBarController?.selectedIndex = XikoloTabBarController.Tabs.dashboard.index
     }
 
 }

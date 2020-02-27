@@ -62,7 +62,7 @@ class CourseViewController: UIViewController {
         }
     }
 
-    var area: CourseArea?
+    var area: CourseArea = .learnings
 
     override var toolbarItems: [UIBarButtonItem]? {
         get {
@@ -96,7 +96,7 @@ class CourseViewController: UIViewController {
 
         self.navigationController?.delegate = self
 
-        self.transitionIfPossible(to: .learnings)
+        self.transitionIfPossible(to: self.area)
         self.updateCourseAreaListContainerHeight()
         self.updateHeaderConstraints()
 
@@ -268,12 +268,12 @@ class CourseViewController: UIViewController {
         }) { _ in
             self.courseAreaViewController = nil
 
-            guard let area = self.area, let newViewController = area.viewController else {
+            guard let newViewController = self.area.viewController else {
                 self.courseAreaPageViewController?.setViewControllers(nil, direction: .forward, animated: false)
                 return
             }
 
-            newViewController.configure(for: self.course, with: area, delegate: self)
+            newViewController.configure(for: self.course, with: self.area, delegate: self)
             newViewController.view.alpha = 0
 
             self.courseAreaViewController = newViewController
@@ -346,16 +346,14 @@ extension CourseViewController: UIPageViewControllerDataSource {
 
     private var previousAvailableArea: CourseArea? {
         let areas = self.accessibleAreas
-        guard let currentArea = self.area else { return nil }
-        guard let index = areas.firstIndex(of: currentArea) else { return nil }
+        guard let index = areas.firstIndex(of: self.area) else { return nil }
         let indexBefore = areas.index(before: index)
         return areas[safe: indexBefore]
     }
 
     private var nextAvailableArea: CourseArea? {
         let areas = self.accessibleAreas
-        guard let currentArea = self.area else { return nil }
-        guard let index = areas.firstIndex(of: currentArea) else { return nil }
+        guard let index = areas.firstIndex(of: self.area) else { return nil }
         let indexAfter = areas.index(after: index)
         return areas[safe: indexAfter]
     }

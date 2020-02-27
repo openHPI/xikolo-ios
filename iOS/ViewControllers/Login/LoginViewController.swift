@@ -18,8 +18,6 @@ class LoginViewController: UIViewController, WKUIDelegate {
     @IBOutlet private weak var singleSignOnButton: UIButton!
     @IBOutlet private weak var centerInputFieldsConstraints: NSLayoutConstraint!
     @IBOutlet private var textFieldBackgroundViews: [UIView]!
-    @IBOutlet weak var stackView: UIStackView!
-
 
     weak var delegate: LoginDelegate?
 

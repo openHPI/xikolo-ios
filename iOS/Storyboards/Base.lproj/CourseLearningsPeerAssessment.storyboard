@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Peer Assessment View Controller-->
+        <!--Peer Assessment Hint View Controller-->
         <scene sceneID="RNh-6C-9V3">
             <objects>
-                <viewController id="xQv-lS-yqX" customClass="PeerAssessmentViewController" customModule="iOS" sceneMemberID="viewController">
+                <viewController id="xQv-lS-yqX" customClass="PeerAssessmentHintViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="jz7-gZ-5IH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

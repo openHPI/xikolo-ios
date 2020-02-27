@@ -6,7 +6,7 @@
 import Common
 import UIKit
 
-class PeerAssessmentViewController: UIViewController {
+class PeerAssessmentHintViewController: UIViewController {
 
     @IBOutlet private weak var peerAssessmentInfoView: UIStackView!
     @IBOutlet private weak var deadlineMessageView: UIStackView!
@@ -115,13 +115,13 @@ class PeerAssessmentViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let item = self.courseItem else { return }
-        if let typedInfo = R.segue.iOSPeerAssessmentViewController.openPeerAssessmentURL(segue: segue) {
+        if let typedInfo = R.segue.peerAssessmentHintViewController.openPeerAssessmentURL(segue: segue) {
             typedInfo.destination.url = item.url
         }
     }
 }
 
-extension PeerAssessmentViewController: CourseItemContentPresenter {
+extension PeerAssessmentHintViewController: CourseItemContentPresenter {
 
     var item: CourseItem? {
         return self.courseItem

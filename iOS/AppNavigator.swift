@@ -105,33 +105,18 @@ class AppNavigator {
         }
 
         let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: slugOrId)
-        var couldFindCourse = false
         var canOpenInApp = false
 
         CoreDataHelper.viewContext.performAndWait {
             switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
             case let .success(course):
-                couldFindCourse = true
                 canOpenInApp = self.handle(url: url, for: course)
             case let .failure(error):
                 log.info("Could not find course in local database: \(error)")
             }
         }
 
-        guard canOpenInApp else {
-            return false
-        }
-
-        // sync course or get course if not in local database
-        let courseFuture = CourseHelper.syncCourse(forSlugOrId: slugOrId)
-
-        if couldFindCourse {
-            return true
-        } else if courseFuture.forced(10.seconds.fromNow)?.value != nil {  // we only wait for 10 seconds
-            return true
-        }
-
-        return false
+        return canOpenInApp
     }
 
     private func handle(url: URL, for course: Course) -> Bool {

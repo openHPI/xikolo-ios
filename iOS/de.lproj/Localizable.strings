@@ -284,6 +284,12 @@
 /* helpdesk topic technical */
 "helpdesk.topic.technical" = "Technische Frage";
 
+/* solo peer assessment */
+"peer-assessment-type.solo" = "Solo Peer Assessment";
+
+/* team peer assessment */
+"peer-assessment-type.team" = "Team Peer Assessment";
+
 /* subtitle for homescreen quick actions */
 "quickactions.subtitle" = "Lernen fortsetzen";
 

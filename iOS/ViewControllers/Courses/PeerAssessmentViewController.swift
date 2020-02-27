@@ -8,20 +8,6 @@ import UIKit
 
 class PeerAssessmentViewController: UIViewController {
 
-    private static let pointsFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.decimalSeparator = "."
-        formatter.minimumFractionDigits = 1
-        formatter.maximumFractionDigits = 1
-        return formatter
-    }()
-
-    private static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd. MMM yyyy"
-        return formatter
-    }()
-
     @IBOutlet private weak var peerAssessmentInfoView: UIStackView!
     @IBOutlet private weak var deadlineMessageView: UIStackView!
     @IBOutlet private weak var assessmentTitleLabel: UILabel!
@@ -32,10 +18,31 @@ class PeerAssessmentViewController: UIViewController {
     @IBOutlet private weak var peerAssessmentTypeImage: UIImageView!
     @IBOutlet private weak var noteLabel: UILabel!
     @IBOutlet private weak var redirectButton: UIButton!
-    @IBOutlet private weak var teamAssessmentView: UIStackView!
-    @IBOutlet private weak var soloAssessmentView: UIStackView!
     @IBOutlet private weak var deadlineLabel: UILabel!
     @IBOutlet private weak var deadlineDateView: UIStackView!
+
+    private static let pointsFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.decimalSeparator = "."
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        return formatter
+    }()
+
+    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .short)
+
+    public var formattedDateWithTimeZone: String? {
+        guard let date = self.courseItem.deadline else {
+            return nil
+        }
+
+        var dateText = Self.dateFormatter.string(from: date)
+        if let timeZoneAbbreviation = TimeZone.current.abbreviation() {
+            dateText += " (\(timeZoneAbbreviation))"
+        }
+
+        return dateText
+    }
 
     weak var delegate: CourseItemViewController?
 
@@ -55,20 +62,6 @@ class PeerAssessmentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var deadlineExpired = false
-
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd. MMM yyyy"
-
-        if let deadline = self.courseItem?.deadline {
-            deadlineExpired = deadline.inPast
-            self.deadlineDateView.isHidden = false
-            self.deadlineLabel.text = Self.dateFormatter.string(from: deadline)
-        }
-
-        self.deadlineMessageView.isHidden = !deadlineExpired
-        self.peerAssessmentInfoView.isHidden = deadlineExpired
-
         self.redirectButton.layer.roundCorners(for: .default)
         self.redirectButton.backgroundColor = Brand.default.colors.primary
 
@@ -78,6 +71,13 @@ class PeerAssessmentViewController: UIViewController {
 
     func updateView() {
         guard let peerAssessment = self.courseItem?.content as? PeerAssessment else { return }
+
+        let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
+        self.deadlineLabel.text = self.formattedDateWithTimeZone
+        self.deadlineDateView.isHidden = self.courseItem?.deadline == nil
+
+        self.deadlineMessageView.isHidden = !deadlineExpired
+        self.peerAssessmentInfoView.isHidden = deadlineExpired
 
         self.assessmentTitleLabel.text = courseItem.title
 
@@ -98,13 +98,11 @@ class PeerAssessmentViewController: UIViewController {
 
         switch peerAssessment.type {
         case "team":
-            self.peerAssessmentTypeLabel.text = "Team Peer Assessment"
-            self.teamAssessmentView.isHidden = false
-            self.soloAssessmentView.isHidden = true
+            self.peerAssessmentTypeLabel.text = NSLocalizedString("peer-assessment-type.team", comment: "team peer assessment")
+            self.peerAssessmentTypeImage.image = UIImage(named: "person.3.fill")
         default:
-            self.peerAssessmentTypeLabel.text = "Peer Assessment"
-            self.teamAssessmentView.isHidden = true
-            self.soloAssessmentView.isHidden = false
+            self.peerAssessmentTypeLabel.text = NSLocalizedString("peer-assessment-type.solo", comment: "solo peer assessment")
+            self.peerAssessmentTypeImage.image = UIImage(named: "person.fill")
         }
 
         self.assessmentInstructionsView.text = peerAssessment.instructions
@@ -119,7 +117,7 @@ class PeerAssessmentViewController: UIViewController {
         guard let item = self.courseItem else { return }
         if let typedInfo = R.segue.iOSPeerAssessmentViewController.openPeerAssessmentURL(segue: segue) {
             typedInfo.destination.url = item.url
-               }
+        }
     }
 }
 

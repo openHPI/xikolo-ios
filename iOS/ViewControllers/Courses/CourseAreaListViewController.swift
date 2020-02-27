@@ -31,11 +31,12 @@ class CourseAreaListViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.collectionViewLayout.invalidateLayout()
-        self.collectionView.selectItem(at: self.selectedIndexPath, animated: animated, scrollPosition: .centeredHorizontally)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.collectionView.selectItem(at: self.selectedIndexPath, animated: animated, scrollPosition: .centeredHorizontally)
+
         if #available(iOS 11, *) {} else {
             self.collectionViewLayout.invalidateLayout()
         }

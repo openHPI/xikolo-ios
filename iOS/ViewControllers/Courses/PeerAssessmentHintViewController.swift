@@ -29,20 +29,7 @@ class PeerAssessmentHintViewController: UIViewController {
         return formatter
     }()
 
-    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .short)
-
-    public var formattedDateWithTimeZone: String? {
-        guard let date = self.courseItem.deadline else {
-            return nil
-        }
-
-        var dateText = Self.dateFormatter.string(from: date)
-        if let timeZoneAbbreviation = TimeZone.current.abbreviation() {
-            dateText += " (\(timeZoneAbbreviation))"
-        }
-
-        return dateText
-    }
+    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .long)
 
     weak var delegate: CourseItemViewController?
 
@@ -72,10 +59,12 @@ class PeerAssessmentHintViewController: UIViewController {
     func updateView() {
         guard let peerAssessment = self.courseItem?.content as? PeerAssessment else { return }
 
-        let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
-        self.deadlineLabel.text = self.formattedDateWithTimeZone
-        self.deadlineDateView.isHidden = self.courseItem?.deadline == nil
+        if let deadline = self.courseItem.deadline {
+            self.deadlineLabel.text = Self.dateFormatter.string(from: deadline)
+            self.deadlineDateView.isHidden = false
+        }
 
+        let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
         self.deadlineMessageView.isHidden = !deadlineExpired
         self.peerAssessmentInfoView.isHidden = deadlineExpired
 

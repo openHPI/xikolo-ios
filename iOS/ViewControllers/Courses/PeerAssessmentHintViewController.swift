@@ -59,10 +59,8 @@ class PeerAssessmentHintViewController: UIViewController {
     func updateView() {
         guard let peerAssessment = self.courseItem?.content as? PeerAssessment else { return }
 
-        if let deadline = self.courseItem.deadline {
-            self.deadlineLabel.text = Self.dateFormatter.string(from: deadline)
-            self.deadlineDateView.isHidden = false
-        }
+        self.deadlineLabel.text = self.courseItem.deadline.map(Self.dateFormatter.string(from:))
+        self.deadlineDateView.isHidden = self.courseItem.deadline == nil
 
         let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
         self.deadlineMessageView.isHidden = !deadlineExpired

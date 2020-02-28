@@ -6,7 +6,7 @@
 "P4V-UO-hm9.text" = "Peer Assessments sind nicht für Mobilgeräte optimiert, weshalb die Bearbeitung an einem Computer empfohlen wird.";
 
 /* Class = "UIButton"; normalTitle = "Open Peer Assessment"; ObjectID = "Sdh-gh-SKC"; */
-"Sdh-gh-SKC.normalTitle" = "Peer Assessment Öffnen";
+"Sdh-gh-SKC.normalTitle" = "Peer Assessment öffnen";
 
 /* Class = "UILabel"; text = "You cannot enter any new submissions, because the submission deadline has already passed."; ObjectID = "EEo-BW-kdN"; */
 "EEo-BW-kdN.text" = "Sie können keine neuen Lösungen einreichen.";

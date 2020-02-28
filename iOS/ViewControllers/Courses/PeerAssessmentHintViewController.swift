@@ -52,8 +52,6 @@ class PeerAssessmentHintViewController: UIViewController {
         self.launchButton.layer.roundCorners(for: .default)
         self.launchButton.backgroundColor = Brand.default.colors.primary
 
-        self.instructionsView.isHidden = true
-
         self.updateView()
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
     }
@@ -102,7 +100,6 @@ class PeerAssessmentHintViewController: UIViewController {
         if let markdown = peerAssessment.instructions {
             MarkdownHelper.attributedString(for: markdown).onSuccess { [weak self] attributedString in
                 self?.instructionsView.attributedText = attributedString
-                self?.instructionsView.isHidden = false
             }
         }
     }

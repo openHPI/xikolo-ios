@@ -16,19 +16,31 @@ class PeerAssessmentHintViewController: UIViewController {
         return formatter
     }()
 
+    private static let timeEffortFormatter: DateComponentsFormatter = {
+        var calendar = Calendar.autoupdatingCurrent
+        calendar.locale = Locale.autoupdatingCurrent
+        let formatter = DateComponentsFormatter()
+        formatter.calendar = calendar
+        formatter.unitsStyle = .full
+        formatter.allowedUnits = [.hour, .minute]
+        return formatter
+    }()
+
     private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .long)
 
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var exerciseTypeLabel: UILabel!
-    @IBOutlet private weak var pointsLabel: UILabel!
     @IBOutlet private weak var peerAssessmentTypeLabel: UILabel!
     @IBOutlet private weak var peerAssessmentTypeImage: UIImageView!
+    @IBOutlet private weak var exerciseTypeLabel: UILabel!
+    @IBOutlet private weak var pointsLabel: UILabel!
+    @IBOutlet private weak var timeEffortView: UIView!
+    @IBOutlet private weak var timeEffortLabel: UILabel!
     @IBOutlet private weak var deadlineLabel: UILabel!
-    @IBOutlet private weak var deadlineDateView: UIStackView!
+    @IBOutlet private weak var deadlineDateView: UIView!
+    @IBOutlet private weak var launchInfoView: UIView!
     @IBOutlet private weak var instructionsView: UITextView!
-    @IBOutlet private weak var launchInfoView: UIStackView!
     @IBOutlet private weak var launchButton: UIButton!
-    @IBOutlet private weak var deadlineExpiredView: UIStackView!
+    @IBOutlet private weak var deadlineExpiredView: UIView!
 
     weak var delegate: CourseItemViewController?
 
@@ -94,6 +106,11 @@ class PeerAssessmentHintViewController: UIViewController {
             self.peerAssessmentTypeLabel.text = NSLocalizedString("peer-assessment-type.solo", comment: "solo peer assessment")
             self.peerAssessmentTypeImage.image = R.image.personFill()
         }
+
+        // Set time effort label
+        let roundedTimeEffort = ceil(TimeInterval(self.courseItem.timeEffort) / 60) * 60 // round up to full minutes
+        self.timeEffortLabel.text = Self.timeEffortFormatter.string(from: roundedTimeEffort)
+        self.timeEffortView.isHidden = self.courseItem.timeEffort == 0
 
         // Set deadline label
         self.deadlineLabel.text = self.courseItem.deadline.map(Self.dateFormatter.string(from:))

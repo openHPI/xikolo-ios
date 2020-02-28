@@ -216,7 +216,6 @@
                         <outlet property="instructionsView" destination="M5w-cg-LNk" id="V8p-nl-MdM"/>
                         <outlet property="launchButton" destination="Sdh-gh-SKC" id="UJS-NY-dGP"/>
                         <outlet property="launchInfoView" destination="GQ0-pu-ThV" id="9Tn-4B-jDb"/>
-                        <outlet property="notOptimizedLabel" destination="P4V-UO-hm9" id="upJ-82-hRB"/>
                         <outlet property="peerAssessmentTypeImage" destination="MFi-FL-Tvh" id="IJ5-jg-73k"/>
                         <outlet property="peerAssessmentTypeLabel" destination="evK-Xb-vZR" id="qBr-wo-dea"/>
                         <outlet property="pointsLabel" destination="2I0-Nd-g8l" id="6mc-df-BUK"/>

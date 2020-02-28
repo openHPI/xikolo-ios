@@ -7,11 +7,11 @@ import CoreData
 import Foundation
 import SyncEngine
 
-final class PeerAssessment: Content {
+public final class PeerAssessment: Content {
 
-    @NSManaged var id: String
-    @NSManaged var instructions: String?
-    @NSManaged var type: String?
+    @NSManaged public var id: String
+    @NSManaged public var instructions: String?
+    @NSManaged public var type: String?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<PeerAssessment> {
         return NSFetchRequest<PeerAssessment>(entityName: "PeerAssessment")

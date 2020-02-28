@@ -8,6 +8,15 @@ import SyncEngine
 
 public final class CourseDate: NSManagedObject {
 
+    @available(iOS 13, *)
+    private static let relativeCourseDateTimeFormatter: RelativeDateTimeFormatter = {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.calendar = Calendar.autoupdatingCurrent
+        formatter.locale = Locale.autoupdatingCurrent
+        formatter.dateTimeStyle = .named
+        return formatter
+    }()
+
     @NSManaged public var id: String
     @NSManaged public var title: String?
     @NSManaged public var type: String?
@@ -18,19 +27,10 @@ public final class CourseDate: NSManagedObject {
         return NSFetchRequest<CourseDate>(entityName: "CourseDate")
     }
 
-    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .short)
-
-    public var formattedDateWithTimeZone: String? {
-        guard let date = self.date else {
-            return nil
-        }
-
-        var dateText = Self.dateFormatter.string(from: date)
-        if let timeZoneAbbreviation = TimeZone.current.abbreviation() {
-            dateText += " (\(timeZoneAbbreviation))"
-        }
-
-        return dateText
+    @available(iOS 13, *)
+    @objc public var relativeDateTime: String? {
+        guard let date = self.date else { return nil }
+        return Self.relativeCourseDateTimeFormatter.localizedString(for: date, relativeTo: Date())
     }
 
     public var contextAwareTitle: String {

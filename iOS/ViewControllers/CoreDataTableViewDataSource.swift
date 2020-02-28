@@ -67,6 +67,10 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
         self.tableView?.reloadData()
     }
 
+    var sectionInfos: [NSFetchedResultsSectionInfo]? {
+        return self.fetchedResultsController.sections
+    }
+
     func object(at indexPath: IndexPath) -> Object {
         return self.fetchedResultsController.object(at: indexPath)
     }

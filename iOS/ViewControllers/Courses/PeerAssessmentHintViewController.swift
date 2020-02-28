@@ -8,6 +8,16 @@ import UIKit
 
 class PeerAssessmentHintViewController: UIViewController {
 
+    private static let pointsFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.decimalSeparator = "."
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        return formatter
+    }()
+
+    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .long)
+
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var exerciseTypeLabel: UILabel!
     @IBOutlet private weak var pointsLabel: UILabel!
@@ -20,16 +30,6 @@ class PeerAssessmentHintViewController: UIViewController {
     @IBOutlet private weak var launchButton: UIButton!
     @IBOutlet private weak var notOptimizedLabel: UILabel!
     @IBOutlet private weak var deadlineExpiredView: UIStackView!
-
-    private static let pointsFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.decimalSeparator = "."
-        formatter.minimumFractionDigits = 1
-        formatter.maximumFractionDigits = 1
-        return formatter
-    }()
-
-    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .long)
 
     weak var delegate: CourseItemViewController?
 
@@ -52,6 +52,8 @@ class PeerAssessmentHintViewController: UIViewController {
         self.launchButton.layer.roundCorners(for: .default)
         self.launchButton.backgroundColor = Brand.default.colors.primary
 
+        self.instructionsView.isHidden = true
+
         self.updateView()
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
     }
@@ -59,15 +61,13 @@ class PeerAssessmentHintViewController: UIViewController {
     func updateView() {
         guard let peerAssessment = self.courseItem?.content as? PeerAssessment else { return }
 
-        self.deadlineLabel.text = self.courseItem.deadline.map(Self.dateFormatter.string(from:))
-        self.deadlineDateView.isHidden = self.courseItem.deadline == nil
-
         let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
         self.deadlineExpiredView.isHidden = !deadlineExpired
         self.launchInfoView.isHidden = deadlineExpired
 
         self.titleLabel.text = courseItem.title
 
+        // Set exercise type label
         switch self.courseItem.exerciseType {
         case "main":
             self.exerciseTypeLabel.text = NSLocalizedString("course.item.exercise-type.disclaimer.main", comment: "course item main type")
@@ -76,26 +76,33 @@ class PeerAssessmentHintViewController: UIViewController {
         case "selftest":
             self.exerciseTypeLabel.text = NSLocalizedString("course.item.exercise-type.disclaimer.ungraded", comment: "course item ungraded type")
         default:
-            self.exerciseTypeLabel.isHidden = true
+            self.exerciseTypeLabel.text = nil
         }
 
+        // Set points label
         let format = NSLocalizedString("course-item.max-points", comment: "maximum points for course item")
         let number = NSNumber(value: self.courseItem.maxPoints)
         self.pointsLabel.text = Self.pointsFormatter.string(from: number).flatMap { String.localizedStringWithFormat(format, $0) }
 
+        // Set peer assessment type label and image
         switch peerAssessment.type {
         case "team":
             self.peerAssessmentTypeLabel.text = NSLocalizedString("peer-assessment-type.team", comment: "team peer assessment")
-            self.peerAssessmentTypeImage.image = UIImage(named: "person.3.fill")
+            self.peerAssessmentTypeImage.image = R.image.person3Fill()
         default:
             self.peerAssessmentTypeLabel.text = NSLocalizedString("peer-assessment-type.solo", comment: "solo peer assessment")
-            self.peerAssessmentTypeImage.image = UIImage(named: "person.fill")
+            self.peerAssessmentTypeImage.image = R.image.personFill()
         }
 
-        self.instructionsView.text = peerAssessment.instructions
+        // Set deadline label
+        self.deadlineLabel.text = self.courseItem.deadline.map(Self.dateFormatter.string(from:))
+        self.deadlineDateView.isHidden = self.courseItem.deadline == nil
+
+        // Set instructions label
         if let markdown = peerAssessment.instructions {
             MarkdownHelper.attributedString(for: markdown).onSuccess { [weak self] attributedString in
                 self?.instructionsView.attributedText = attributedString
+                self?.instructionsView.isHidden = false
             }
         }
     }

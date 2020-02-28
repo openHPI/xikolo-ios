@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SwG-d6-2vg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SwG-d6-2vg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Hint View Controller-->
+        <!--Exercise Hint View Controller-->
         <scene sceneID="2wA-VS-j1O">
             <objects>
-                <viewController id="SwG-d6-2vg" customClass="LTIHintViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SwG-d6-2vg" customClass="LTIExerciseHintViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="Eb5-NQ-j7O">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,10 +21,10 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qou-eD-a1I">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="321"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="615.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Zsy-2v-rgP">
-                                                <rect key="frame" x="20" y="20" width="374" height="293"/>
+                                                <rect key="frame" x="20" y="20" width="374" height="587.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="item title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0C-PM-wzS">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
@@ -35,77 +35,128 @@
                                                             <fragment content="#bc-ignore!"/>
                                                         </attributedString>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sMa-M5-edP">
-                                                        <rect key="frame" x="0.0" y="38.5" width="374" height="21"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uDE-dK-ZAy">
+                                                        <rect key="frame" x="0.0" y="38.5" width="374" height="142"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="999" image="Course item icons/quiz" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D58-wm-U6Q">
-                                                                <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
-                                                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sMa-M5-edP">
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="42"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="999" image="Course item icons/quiz" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D58-wm-U6Q">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                                                                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="D58-wm-U6Q" secondAttribute="height" multiplier="1:1" id="3U3-Za-kP4"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="type" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o68-9c-PQk">
+                                                                        <rect key="frame" x="50" y="11.5" width="324" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="#bc-ignore!"/>
+                                                                        </attributedString>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gsk-Pk-9n9">
+                                                                <rect key="frame" x="0.0" y="50" width="374" height="42"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="999" image="coin" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hQd-Ez-Lfn">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                                                                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="hQd-Ez-Lfn" secondAttribute="height" multiplier="1:1" id="PEs-Qv-T5X"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="max Points" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Td9-5s-WRE">
+                                                                        <rect key="frame" x="50" y="11.5" width="324" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="#bc-ignore!"/>
+                                                                        </attributedString>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xes-mL-oQF">
+                                                                <rect key="frame" x="0.0" y="100" width="374" height="42"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="999" image="calendar" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugg-fA-aiO">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                                                                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="ugg-fA-aiO" secondAttribute="height" multiplier="1:1" id="CXS-sP-DJi"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="deadline" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiW-fH-8UJ">
+                                                                        <rect key="frame" x="50" y="11.5" width="324" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="#bc-ignore!"/>
+                                                                        </attributedString>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6H2-rR-a9u">
+                                                        <rect key="frame" x="0.0" y="192.5" width="374" height="180.5"/>
+                                                        <subviews>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Loading instructions …" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GdB-9t-4lq">
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="38"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rF0-gS-qZg" customClass="LoadingButton" customModule="iOS" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="46" width="374" height="44"/>
+                                                                <color key="backgroundColor" red="0.77679051239999997" green="0.27835539030000001" blue="0.063928675769999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="D58-wm-U6Q" secondAttribute="height" multiplier="1:1" id="3U3-Za-kP4"/>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="bLX-mM-Z8U"/>
                                                                 </constraints>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="type" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o68-9c-PQk">
-                                                                <rect key="frame" x="29" y="1" width="345" height="19.5"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="Launch Exercise Tool">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <segue destination="ECU-a1-2kE" kind="show" identifier="openLTIURL" id="7V2-2K-pGb"/>
+                                                                </connections>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FH-9A-EUU">
+                                                                <rect key="frame" x="0.0" y="98" width="374" height="82.5"/>
+                                                                <string key="text">You will be redirected to an external tool which may not work great on mobile devices. If you experience any issues, please consider using the web application.</string>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
-                                                                <attributedString key="userComments">
-                                                                    <fragment content="#bc-ignore!"/>
-                                                                </attributedString>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gsk-Pk-9n9">
-                                                        <rect key="frame" x="0.0" y="71.5" width="374" height="21"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XQl-0W-m9U">
+                                                        <rect key="frame" x="0.0" y="385" width="374" height="202.5"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="999" image="coin" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hQd-Ez-Lfn">
-                                                                <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
-                                                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="hQd-Ez-Lfn" secondAttribute="height" multiplier="1:1" id="PEs-Qv-T5X"/>
-                                                                </constraints>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.bubble.fill" translatesAutoresizingMaskIntoConstraints="NO" id="Mys-q4-YwB">
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="120"/>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="max Points" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Td9-5s-WRE">
-                                                                <rect key="frame" x="29" y="1" width="345" height="19.5"/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submission deadline has passed" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRe-re-OwF">
+                                                                <rect key="frame" x="0.0" y="128" width="374" height="24"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
-                                                                <attributedString key="userComments">
-                                                                    <fragment content="#bc-ignore!"/>
-                                                                </attributedString>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You cannot enter any new submissions, because the submission deadline has already passed." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcd-kd-eBx">
+                                                                <rect key="frame" x="0.0" y="160" width="374" height="42.5"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Loading instructions …" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GdB-9t-4lq">
-                                                        <rect key="frame" x="0.0" y="104.5" width="374" height="38"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    </textView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rF0-gS-qZg" customClass="LoadingButton" customModule="iOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="154.5" width="374" height="44"/>
-                                                        <color key="backgroundColor" red="0.77679051239999997" green="0.27835539030000001" blue="0.063928675769999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="bLX-mM-Z8U"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" title="Launch Exercise Tool">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <segue destination="ECU-a1-2kE" kind="show" identifier="openLTIURL" id="7V2-2K-pGb"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FH-9A-EUU">
-                                                        <rect key="frame" x="0.0" y="210.5" width="374" height="82.5"/>
-                                                        <string key="text">You will be redirected to an external tool which may not work great on mobile devices. If you experience any issues, please consider using the web application.</string>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -138,11 +189,15 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="deadlineDateView" destination="xes-mL-oQF" id="aJC-Ai-bE0"/>
+                        <outlet property="deadlineExpiredView" destination="XQl-0W-m9U" id="fC7-C0-fHz"/>
+                        <outlet property="deadlineLabel" destination="YiW-fH-8UJ" id="Q4y-y3-onH"/>
+                        <outlet property="exerciseTypeLabel" destination="o68-9c-PQk" id="nuu-NK-OWi"/>
                         <outlet property="instructionsView" destination="GdB-9t-4lq" id="0oB-US-Sk4"/>
                         <outlet property="itemTitleLabel" destination="s0C-PM-wzS" id="eMz-X6-DhT"/>
-                        <outlet property="pointsView" destination="Td9-5s-WRE" id="KjM-w6-87w"/>
-                        <outlet property="startButton" destination="rF0-gS-qZg" id="dOP-VG-tMl"/>
-                        <outlet property="typeView" destination="o68-9c-PQk" id="nuu-NK-OWi"/>
+                        <outlet property="launchButton" destination="rF0-gS-qZg" id="dOP-VG-tMl"/>
+                        <outlet property="launchInfoView" destination="6H2-rR-a9u" id="2Re-Eu-FRL"/>
+                        <outlet property="pointsLabel" destination="Td9-5s-WRE" id="KjM-w6-87w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3xa-1i-IxB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -152,7 +207,9 @@
         <!--WebViewController-->
         <scene sceneID="gMC-in-DJc">
             <objects>
-                <viewControllerPlaceholder storyboardName="WebViewController" id="ECU-a1-2kE" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="WebViewController" id="ECU-a1-2kE" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="wdm-Aa-Meo"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mFW-NE-K7i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4848" y="664"/>
@@ -160,6 +217,8 @@
     </scenes>
     <resources>
         <image name="Course item icons/quiz" width="21" height="21"/>
+        <image name="calendar" width="21" height="21"/>
         <image name="coin" width="21" height="21"/>
+        <image name="exclamationmark.bubble.fill" width="60" height="60"/>
     </resources>
 </document>

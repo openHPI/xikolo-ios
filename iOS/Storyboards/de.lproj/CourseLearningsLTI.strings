@@ -7,3 +7,9 @@
 
 /* Class = "UITextView"; text = "Loading instructions …"; ObjectID = "GdB-9t-4lq"; */
 "GdB-9t-4lq.text" = "Anweisungen werden geladen …";
+
+/* Class = "UILabel"; text = "Submission deadline has passed"; ObjectID = "KRe-re-OwF"; */
+"KRe-re-OwF.text" = "Die Abgabefrist ist bereits abgelaufen.";
+
+/* Class = "UILabel"; text = "You cannot enter any new submissions, because the submission deadline has already passed."; ObjectID = "Rcd-kd-eBx"; */
+"Rcd-kd-eBx.text" = "Sie können keine neuen Lösungen einreichen.";

@@ -341,7 +341,7 @@
 		700398C221A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398C121A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift */; };
 		700398C421A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */; };
 		7007E4132133FFB6005AC7A6 /* DownloadedContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */; };
-		70893B5621C3D1F600AF22E3 /* LTIHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70893B5521C3D1F600AF22E3 /* LTIHintViewController.swift */; };
+		70893B5621C3D1F600AF22E3 /* LTIExerciseHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70893B5521C3D1F600AF22E3 /* LTIExerciseHintViewController.swift */; };
 		820CCEE623D05B140066CE11 /* CourseItem+share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820CCEE523D05B140066CE11 /* CourseItem+share.swift */; };
 		8251A50B237182F200A443A9 /* HelpdeskTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50A237182F200A443A9 /* HelpdeskTicket.swift */; };
 		8251A50D23718A4500A443A9 /* HelpdeskTicketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */; };
@@ -754,7 +754,7 @@
 		702520801F6FFFD6003E0F80 /* UserDefaults+VideoQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+VideoQuality.swift"; sourceTree = "<group>"; };
 		70388C611EF1566A0093F186 /* AnnouncementListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementListViewController.swift; sourceTree = "<group>"; };
 		70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filemanager+temporaryFile.swift"; sourceTree = "<group>"; };
-		70893B5521C3D1F600AF22E3 /* LTIHintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIHintViewController.swift; sourceTree = "<group>"; };
+		70893B5521C3D1F600AF22E3 /* LTIExerciseHintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIExerciseHintViewController.swift; sourceTree = "<group>"; };
 		709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		709C93591EF09C2C00F8F045 /* ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ios.entitlements; sourceTree = "<group>"; };
 		70A830B11EC7C2560029235D /* xikolo 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -1464,7 +1464,7 @@
 				50D91643207D080000DDB6E1 /* CourseArea.swift */,
 				5017B3BB204983E7001D90A1 /* CourseAreaListViewController.swift */,
 				828FF16423EF4424006515B5 /* PeerAssessmentHintViewController.swift */,
-				70893B5521C3D1F600AF22E3 /* LTIHintViewController.swift */,
+				70893B5521C3D1F600AF22E3 /* LTIExerciseHintViewController.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -2390,7 +2390,7 @@
 				50CF1FAD20DCDBFC0011BFE9 /* R.generated.swift in Sources */,
 				507CC05B21788487008819FE /* PillView.swift in Sources */,
 				50092A94237DC20C00A1503F /* Channel+Color.swift in Sources */,
-				70893B5621C3D1F600AF22E3 /* LTIHintViewController.swift in Sources */,
+				70893B5621C3D1F600AF22E3 /* LTIExerciseHintViewController.swift in Sources */,
 				50CF1FB120DCDBFC0011BFE9 /* UITableViewCell+enable.swift in Sources */,
 				50CF1FB320DCDBFC0011BFE9 /* DetailedCourseItemContent.swift in Sources */,
 				82D55A1E23CF31D000EB2768 /* Sequence+sort.swift in Sources */,

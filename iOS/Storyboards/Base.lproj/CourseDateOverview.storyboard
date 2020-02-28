@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hhS-q8-HuO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hhS-q8-HuO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -252,10 +252,25 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" ambiguous="YES" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7KP-OG-l3b">
                                                         <rect key="frame" x="16" y="27" width="342" height="58"/>
                                                         <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" text="relative date time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eM-l2-sjr">
+                                                                <rect key="frame" x="0.0" y="0.0" width="342" height="20.5"/>
+                                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="#bc-ignore!">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
+                                                            </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" text="date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwO-xj-R53">
-                                                                <rect key="frame" x="0.0" y="0.0" width="342" height="14.5"/>
+                                                                <rect key="frame" x="0.0" y="28.5" width="342" height="13.5"/>
                                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <attributedString key="userComments">
                                                                     <fragment content="#bc-ignore!">
@@ -267,7 +282,7 @@
                                                                 </attributedString>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" text="course" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGq-3u-qqc">
-                                                                <rect key="frame" x="0.0" y="22.5" width="342" height="13.5"/>
+                                                                <rect key="frame" x="0.0" y="50" width="342" height="0.0"/>
                                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                                 <nil key="highlightedColor"/>
@@ -281,7 +296,7 @@
                                                                 </attributedString>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" text="title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFX-kT-5GC">
-                                                                <rect key="frame" x="0.0" y="44" width="342" height="14"/>
+                                                                <rect key="frame" x="0.0" y="58" width="342" height="0.0"/>
                                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                 <nil key="highlightedColor"/>
@@ -342,6 +357,7 @@
                         <outlet property="nextUpContainer" destination="lRM-3x-ACb" id="HdN-20-a6D"/>
                         <outlet property="nextUpView" destination="E0S-23-0P0" id="m6t-ZT-oI1"/>
                         <outlet property="nextUpWidthConstraint" destination="xc5-gT-LjO" id="F5o-aC-kU5"/>
+                        <outlet property="relativeDateTimeLabel" destination="1eM-l2-sjr" id="S0Q-k4-18Y"/>
                         <outlet property="summaryContainer" destination="N41-ef-baw" id="xWI-NO-5ab"/>
                         <outlet property="summaryWidthConstraint" destination="X1A-b6-Lv8" id="4tN-4P-8hI"/>
                         <outlet property="titleLabel" destination="qFX-kT-5GC" id="KIO-9T-5MQ"/>

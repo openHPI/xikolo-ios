@@ -51,6 +51,10 @@ class PeerAssessmentHintViewController: UIViewController {
         self.launchButton.layer.roundCorners(for: .default)
         self.launchButton.backgroundColor = Brand.default.colors.primary
 
+        self.instructionsView.delegate = self
+        self.instructionsView.textContainerInset = UIEdgeInsets.zero
+        self.instructionsView.textContainer.lineFragmentPadding = 0
+
         self.updateView()
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
     }
@@ -109,6 +113,15 @@ class PeerAssessmentHintViewController: UIViewController {
             typedInfo.destination.url = item.url
         }
     }
+}
+
+extension PeerAssessmentHintViewController: UITextViewDelegate {
+
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        guard let appNavigator = self.appNavigator else { return false }
+        return !appNavigator.handle(url: URL, on: self)
+    }
+
 }
 
 extension PeerAssessmentHintViewController: CourseItemContentPresenter {

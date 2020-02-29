@@ -29,8 +29,10 @@ extension CourseDateHelper {
             return request
         }
 
-        static func courseDates(for course: Course) -> NSFetchRequest<CourseDate> {
+        public static func courseDates(for course: Course) -> NSFetchRequest<CourseDate> {
             let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()
+            let dateSort = NSSortDescriptor(keyPath: \CourseDate.date, ascending: true)
+            request.sortDescriptors = [dateSort]
             request.predicate = NSPredicate(format: "course = %@", course)
             return request
         }

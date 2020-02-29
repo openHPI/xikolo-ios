@@ -56,6 +56,9 @@
 /* status 'upcoming' of a course */
 "course-cell.status.upcoming" = "Upcoming";
 
+/* Show course dates */
+"course-dates.show" = "Show course dates";
+
 /* Format string for the next section start in the footer of course item list */
 "course-item-list.footer.The next section will be available on %@ at %@" = "The next section will be available on %@ at %@.";
 

@@ -4,6 +4,7 @@
 //
 
 // swiftlint:disable file_length
+// swiftlint:disable type_body_length
 
 import Common
 import SDWebImage
@@ -73,6 +74,24 @@ class CourseViewController: UIViewController {
         set {}
     }
 
+    private lazy var actionMenuButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
+        button.isEnabled = true
+        return button
+    }()
+
+    private var shareCourseAction: UIAlertAction {
+        return UIAlertAction(title: NSLocalizedString("courseIteam.share", comment: "Title for course item share action"), style: .default) { [weak self] _ in
+            self?.shareCourse()
+        }
+    }
+
+    private var showCourseDatesAction: UIAlertAction {
+        return UIAlertAction(title: NSLocalizedString("course-dates.show", comment: "Show course dates"), style: .default) { [weak self] _ in
+            self?.showCourseDates()
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -94,6 +113,7 @@ class CourseViewController: UIViewController {
             self.updateView()
         }
 
+        self.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.navigationController?.delegate = self
 
         self.transitionIfPossible(to: self.area)
@@ -298,10 +318,31 @@ class CourseViewController: UIViewController {
         self.closeCourse()
     }
 
-    @IBAction private func shareCourse(_ sender: UIBarButtonItem) {
+    @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
+        let actions = [self.shareCourseAction, self.showCourseDatesAction]
+
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.barButtonItem = sender
+
+        for action in actions {
+            alert.addAction(action)
+        }
+
+        alert.addCancelAction()
+
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    private func showCourseDates() {
+        let courseDatesViewController = CourseDateListViewController()
+        courseDatesViewController.course = self.course
+        self.present(courseDatesViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    private func shareCourse() {
         let activityItems = [self.course as Any]
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.barButtonItem = sender
+        activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
         activityViewController.completionWithItemsHandler = { activityType, completed, _, _ in
             let context: [String: String?] = [
                 "service": activityType?.rawValue,

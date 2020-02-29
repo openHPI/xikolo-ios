@@ -12,6 +12,8 @@ class CourseDateListViewController: UITableViewController {
 
     private var dataSource: CoreDataTableViewDataSource<CourseDateListViewController>!
 
+    var course: Course?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,8 +28,16 @@ class CourseDateListViewController: UITableViewController {
             }
         }()
 
+        let request: NSFetchRequest<CourseDate>
+
+        if let course = course {
+            request = CourseDateHelper.FetchRequest.courseDates(for: course)
+        } else {
+            request = CourseDateHelper.FetchRequest.allCourseDates
+        }
+
         let reuseIdentifier = R.reuseIdentifier.courseDateCell.identifier
-        let resultsController = CoreDataHelper.createResultsController(CourseDateHelper.FetchRequest.allCourseDates, sectionNameKeyPath: sectionNameKeyPath)
+        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
         self.dataSource = CoreDataTableViewDataSource(self.tableView,
                                                       fetchedResultsController: resultsController,
                                                       cellReuseIdentifier: reuseIdentifier,

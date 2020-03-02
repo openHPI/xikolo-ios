@@ -13,7 +13,6 @@ class CourseDateOverviewViewController: UIViewController {
     @IBOutlet private weak var todayCountLabel: UILabel!
     @IBOutlet private weak var nextCountLabel: UILabel!
     @IBOutlet private weak var allCountLabel: UILabel!
-    @IBOutlet private var pills: [UIView]!
     @IBOutlet private var summaryWidthConstraint: NSLayoutConstraint!
 
     @IBOutlet private weak var nextUpView: UIView!
@@ -37,11 +36,6 @@ class CourseDateOverviewViewController: UIViewController {
         self.updateWidthConstraints()
         self.summaryContainer.layer.roundCorners(for: .default, masksToBounds: false)
         self.nextUpContainer.layer.roundCorners(for: .default, masksToBounds: false)
-
-        self.todayCountLabel.backgroundColor = Brand.default.colors.secondary
-        self.nextCountLabel.backgroundColor = Brand.default.colors.secondary
-        self.allCountLabel.backgroundColor = Brand.default.colors.secondary
-        self.pills.forEach { $0.backgroundColor = Brand.default.colors.secondary }
 
         self.courseLabel.textColor = Brand.default.colors.secondary
         self.nextUpView.isHidden = true

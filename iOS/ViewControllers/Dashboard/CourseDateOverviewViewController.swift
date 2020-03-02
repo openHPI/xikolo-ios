@@ -18,6 +18,7 @@ class CourseDateOverviewViewController: UIViewController {
 
     @IBOutlet private weak var nextUpView: UIView!
     @IBOutlet private weak var nextUpContainer: UIView!
+    @IBOutlet private weak var nextUpImageView: UIImageView!
     @IBOutlet private weak var relativeDateTimeLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var courseLabel: UILabel!
@@ -76,8 +77,10 @@ class CourseDateOverviewViewController: UIViewController {
             self.nextUpView.isHidden = false
 
             if #available(iOS 13, *) {
-                self.relativeDateTimeLabel.text = courseDate.relativeDateTime?.uppercased(with: Locale.current)
+                self.nextUpImageView.image = R.image.calendarLarge()
+                self.relativeDateTimeLabel.text = courseDate.relativeDateTime
             } else {
+                self.nextUpImageView.image = R.image.calendar()
                 self.relativeDateTimeLabel.text = nil
             }
         } else {

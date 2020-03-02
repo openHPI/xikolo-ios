@@ -14,6 +14,7 @@ public final class CourseDate: NSManagedObject {
         formatter.calendar = Calendar.autoupdatingCurrent
         formatter.locale = Locale.autoupdatingCurrent
         formatter.dateTimeStyle = .named
+        formatter.formattingContext = .beginningOfSentence
         return formatter
     }()
 

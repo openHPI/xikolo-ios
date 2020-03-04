@@ -110,27 +110,33 @@ class CourseAreaListViewController: UICollectionViewController {
 
 extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
 
+    private var font: UIFont {
+        return CourseAreaCell.font(whenSelected: true)
+    }
+
+    private var cellHeight: CGFloat {
+        return self.font.lineHeight + 2 * 8
+    }
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let font = CourseAreaCell.font(whenSelected: true)
-        let cellHeight = font.lineHeight + 2 * 8
-
         let titleText = self.delegate?.accessibleAreas[safe: indexPath.item]?.title ?? ""
-        let boundingSize = CGSize(width: CGFloat.infinity, height: cellHeight)
-        let titleAttributes = [NSAttributedString.Key.font: font]
+        let boundingSize = CGSize(width: CGFloat.infinity, height: self.cellHeight)
+        let titleAttributes = [NSAttributedString.Key.font: self.font]
         let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
                                                                  options: .usesLineFragmentOrigin,
                                                                  attributes: titleAttributes,
                                                                  context: nil)
-        return CGSize(width: titleSize.width + 2, height: cellHeight) // 2pt extra to prevent the title for truncation
+
+        return CGSize(width: titleSize.width + self.cellHeight / 2, height: self.cellHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        let leftPadding = collectionView.layoutMargins.left
-        let rightPadding = collectionView.layoutMargins.right
+        let leftPadding = collectionView.layoutMargins.left - self.cellHeight / 4
+        let rightPadding = collectionView.layoutMargins.right - self.cellHeight / 4
 
         guard collectionView.traitCollection.horizontalSizeClass != .compact else {
             return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)

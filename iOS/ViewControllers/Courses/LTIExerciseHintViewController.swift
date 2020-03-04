@@ -35,10 +35,8 @@ class LTIExerciseHintViewController: UIViewController {
     @IBOutlet private weak var timeEffortLabel: UILabel!
     @IBOutlet private weak var deadlineDateView: UIView!
     @IBOutlet private weak var deadlineLabel: UILabel!
-    @IBOutlet private weak var launchInfoView: UIView!
     @IBOutlet private weak var instructionsView: UITextView!
     @IBOutlet private weak var launchButton: UIButton!
-    @IBOutlet private weak var deadlineExpiredView: UIView!
 
     weak var delegate: CourseItemViewController?
 
@@ -71,10 +69,6 @@ class LTIExerciseHintViewController: UIViewController {
 
     func updateView() {
         guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }
-
-        let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
-        self.deadlineExpiredView.isHidden = !deadlineExpired
-        self.launchInfoView.isHidden = deadlineExpired
 
         self.itemTitleLabel.text = self.courseItem?.title
 

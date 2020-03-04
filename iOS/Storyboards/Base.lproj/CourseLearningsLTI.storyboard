@@ -21,10 +21,10 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qou-eD-a1I">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="521.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="379"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Zsy-2v-rgP">
-                                                <rect key="frame" x="20" y="20" width="374" height="493.5"/>
+                                                <rect key="frame" x="20" y="20" width="374" height="339"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="item title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0C-PM-wzS">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
@@ -158,26 +158,6 @@
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XQl-0W-m9U">
-                                                        <rect key="frame" x="0.0" y="351" width="374" height="142.5"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.bubble.fill" translatesAutoresizingMaskIntoConstraints="NO" id="Mys-q4-YwB">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submission deadline has passed" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRe-re-OwF">
-                                                                <rect key="frame" x="0.0" y="68" width="374" height="24"/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You cannot enter any new submissions, because the submission deadline has already passed." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcd-kd-eBx">
-                                                                <rect key="frame" x="0.0" y="100" width="374" height="42.5"/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                    </stackView>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -185,7 +165,7 @@
                                         <constraints>
                                             <constraint firstAttribute="trailingMargin" secondItem="Zsy-2v-rgP" secondAttribute="trailing" id="1Dl-Xc-gFb"/>
                                             <constraint firstItem="Zsy-2v-rgP" firstAttribute="top" secondItem="qou-eD-a1I" secondAttribute="top" constant="20" symbolic="YES" id="eRy-sL-yV4"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="Zsy-2v-rgP" secondAttribute="bottom" id="gDH-19-5LV"/>
+                                            <constraint firstAttribute="bottom" secondItem="Zsy-2v-rgP" secondAttribute="bottom" constant="20" symbolic="YES" id="gDH-19-5LV"/>
                                             <constraint firstItem="Zsy-2v-rgP" firstAttribute="leading" secondItem="qou-eD-a1I" secondAttribute="leadingMargin" id="uA0-pd-zqV"/>
                                         </constraints>
                                     </view>
@@ -211,13 +191,11 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="deadlineDateView" destination="xes-mL-oQF" id="aJC-Ai-bE0"/>
-                        <outlet property="deadlineExpiredView" destination="XQl-0W-m9U" id="fC7-C0-fHz"/>
                         <outlet property="deadlineLabel" destination="YiW-fH-8UJ" id="Q4y-y3-onH"/>
                         <outlet property="exerciseTypeLabel" destination="o68-9c-PQk" id="nuu-NK-OWi"/>
                         <outlet property="instructionsView" destination="GdB-9t-4lq" id="0oB-US-Sk4"/>
                         <outlet property="itemTitleLabel" destination="s0C-PM-wzS" id="eMz-X6-DhT"/>
                         <outlet property="launchButton" destination="rF0-gS-qZg" id="dOP-VG-tMl"/>
-                        <outlet property="launchInfoView" destination="6H2-rR-a9u" id="2Re-Eu-FRL"/>
                         <outlet property="pointsLabel" destination="Td9-5s-WRE" id="KjM-w6-87w"/>
                         <outlet property="timeEffortLabel" destination="jbu-gA-ILD" id="x3w-ra-5cd"/>
                         <outlet property="timeEffortView" destination="Pey-sr-JVF" id="RFI-9N-Npg"/>
@@ -242,7 +220,6 @@
         <image name="Course item icons/quiz" width="21" height="21"/>
         <image name="calendar" width="21" height="21"/>
         <image name="coin" width="21" height="21"/>
-        <image name="exclamationmark.bubble.fill" width="60" height="60"/>
         <image name="timer" width="21" height="21"/>
     </resources>
 </document>

@@ -75,6 +75,10 @@ class CourseAreaListViewController: UICollectionViewController {
         self.selectedIndexPath = indexPath
     }
 
+    override func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         self.collectionViewLayout.invalidateLayout()

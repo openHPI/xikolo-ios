@@ -228,10 +228,10 @@
 "empty-view.course-content.title" = "Loading course content …";
 
 /* description for empty course dates list if logged in */
-"empty-view.course-dates.no-dates.description" = "Notifications about deadlines or new courses will appear here";
+"empty-view.course-dates.no-dates.description" = "Information about deadlines will appear here";
 
 /* title for empty course dates list if logged in */
-"empty-view.course-dates.no-dates.title" = "There are no important course dates yet";
+"empty-view.course-dates.no-dates.title" = "There are no upcoming course dates";
 
 /* title for empty course documents list */
 "empty-view.course-documents.title" = "No documents are available for this course";

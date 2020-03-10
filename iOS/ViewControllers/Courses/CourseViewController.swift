@@ -319,7 +319,11 @@ class CourseViewController: UIViewController {
     }
 
     @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
-        let actions = [self.shareCourseAction, self.showCourseDatesAction]
+        var actions = [self.shareCourseAction]
+
+        if self.course.hasEnrollment {
+            actions.append(self.showCourseDatesAction)
+        }
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = sender
@@ -334,9 +338,11 @@ class CourseViewController: UIViewController {
     }
 
     private func showCourseDates() {
-        let courseDatesViewController = CourseDateListViewController()
+        let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
         courseDatesViewController.course = self.course
-        self.present(courseDatesViewController, animated: trueUnlessReduceMotionEnabled)
+        let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
+        navigationController.navigationBar.barTintColor = ColorCompatibility.systemBackground
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
     private func shareCourse() {

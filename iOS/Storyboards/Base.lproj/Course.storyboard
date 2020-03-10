@@ -102,7 +102,7 @@
                                 <action selector="tappedCloseButton:" destination="GW9-XM-IkA" id="hks-dm-2X6"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="B8z-CN-Upz"/>
+                        <barButtonItem key="rightBarButtonItem" image="dots" id="B8z-CN-Upz"/>
                     </navigationItem>
                     <connections>
                         <outlet property="cornerView" destination="AFF-tD-7pz" id="zDB-Ct-JmO"/>
@@ -225,4 +225,7 @@
             <point key="canvasLocation" x="4248" y="132"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dots" width="28" height="28"/>
+    </resources>
 </document>

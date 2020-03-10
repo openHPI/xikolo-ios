@@ -9,6 +9,8 @@ import UIKit
 
 class CourseDateCell: UITableViewCell {
 
+    private static let courseDateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .long)
+
     @IBOutlet private var courseLabel: UILabel!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var dateLabel: UILabel!
@@ -19,7 +21,7 @@ class CourseDateCell: UITableViewCell {
     }
 
     func configure(for courseDate: CourseDate) {
-        self.dateLabel.text = courseDate.formattedDateWithTimeZone
+        self.dateLabel.text = courseDate.date.map(Self.courseDateFormatter.string(from:))
         self.courseLabel.text = courseDate.course?.title
         self.titleLabel.text = courseDate.contextAwareTitle
     }

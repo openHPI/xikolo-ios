@@ -8,6 +8,16 @@ import SyncEngine
 
 public final class CourseDate: NSManagedObject {
 
+    @available(iOS 13, *)
+    private static let relativeCourseDateTimeFormatter: RelativeDateTimeFormatter = {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.calendar = Calendar.autoupdatingCurrent
+        formatter.locale = Locale.autoupdatingCurrent
+        formatter.dateTimeStyle = .named
+        formatter.formattingContext = .beginningOfSentence
+        return formatter
+    }()
+
     @NSManaged public var id: String
     @NSManaged public var title: String?
     @NSManaged public var type: String?
@@ -18,19 +28,16 @@ public final class CourseDate: NSManagedObject {
         return NSFetchRequest<CourseDate>(entityName: "CourseDate")
     }
 
-    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .short)
+    @available(iOS 13, *)
+    @objc public var relativeDateTime: String? {
+        guard let date = self.date else { return nil }
 
-    public var formattedDateWithTimeZone: String? {
-        guard let date = self.date else {
-            return nil
-        }
-
-        var dateText = Self.dateFormatter.string(from: date)
-        if let timeZoneAbbreviation = TimeZone.current.abbreviation() {
-            dateText += " (\(timeZoneAbbreviation))"
-        }
-
-        return dateText
+        // `RelativeDateTimeFormatter` returns incorrect results for named time intervals. For example:
+        // - time intervals of 40 hours whch pass the date line twice return 'tomorrow' instead of 'in 2 days'
+        // Therefore, we adjust the reference date used to determine the localized string.
+        let dateIsMoreThan24HoursInFuture = date.timeIntervalSinceNow > 24 * 60 * 60
+        let referenceDate = dateIsMoreThan24HoursInFuture ? Self.relativeCourseDateTimeFormatter.calendar.startOfDay(for: Date()) : Date()
+        return Self.relativeCourseDateTimeFormatter.localizedString(for: date, relativeTo: referenceDate)
     }
 
     public var contextAwareTitle: String {

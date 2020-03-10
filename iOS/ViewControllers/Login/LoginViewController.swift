@@ -17,6 +17,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
     @IBOutlet private weak var singleSignOnView: UIView!
     @IBOutlet private weak var singleSignOnButton: UIButton!
     @IBOutlet private weak var centerInputFieldsConstraints: NSLayoutConstraint!
+    @IBOutlet private var textFieldBackgroundViews: [UIView]!
 
     weak var delegate: LoginDelegate?
 
@@ -26,6 +27,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
         self.registerButton.backgroundColor = Brand.default.colors.primaryLight
         self.registerButton.tintColor = ColorCompatibility.secondaryLabel
 
+        self.textFieldBackgroundViews.forEach { $0.layer.roundCorners(for: .default) }
         self.loginButton.layer.roundCorners(for: .default)
         self.registerButton.layer.roundCorners(for: .default)
         self.singleSignOnButton.layer.roundCorners(for: .default)

@@ -18,14 +18,39 @@ class CourseDateListViewController: UITableViewController {
         self.addRefreshControl()
 
         // setup table view data
+        let sectionNameKeyPath: String? = {
+            if #available(iOS 13, *) {
+                return "relativeDateTime"
+            } else {
+                return nil
+            }
+        }()
+
         let reuseIdentifier = R.reuseIdentifier.courseDateCell.identifier
-        let resultsController = CoreDataHelper.createResultsController(CourseDateHelper.FetchRequest.allCourseDates, sectionNameKeyPath: nil)
+        let resultsController = CoreDataHelper.createResultsController(CourseDateHelper.FetchRequest.allCourseDates, sectionNameKeyPath: sectionNameKeyPath)
         self.dataSource = CoreDataTableViewDataSource(self.tableView,
                                                       fetchedResultsController: resultsController,
                                                       cellReuseIdentifier: reuseIdentifier,
                                                       delegate: self)
 
         self.setupEmptyState()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if #available(iOS 13, *) {
+            // workaround to correct show table view section header on load
+            if animated {
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
+            } else {
+                UIView.performWithoutAnimation {
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
+                }
+            }
+        }
     }
 
 }
@@ -49,6 +74,14 @@ extension CourseDateListViewController: CoreDataTableViewDataSourceDelegate {
 
     func configure(_ cell: CourseDateCell, for object: CourseDate) {
         cell.configure(for: object)
+
+        if #available(iOS 13, *) {} else {
+            cell.backgroundColor = ColorCompatibility.systemBackground
+        }
+    }
+
+    func titleForDefaultHeader(forSection section: Int) -> String? {
+        return self.dataSource?.sectionInfos?[section].name
     }
 
 }

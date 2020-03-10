@@ -26,6 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    private var shortcutItemToProcess: UIApplicationShortcutItem?
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
             self.window = UIWindow(windowScene: windowScene)
@@ -34,9 +36,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window?.makeKeyAndVisible()
         }
 
+        shortcutItemToProcess = connectionOptions.shortcutItem
+
         // Select initial tab
         let tabToSelect: XikoloTabBarController.Tabs = UserProfileHelper.shared.isLoggedIn ? .dashboard : .courses
         self.tabBarController.selectedIndex = tabToSelect.index
+    }
+
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        self.appNavigator.handle(shortcutItem: shortcutItem)
+    }
+
+    func sceneDidBecomeActive(_ scene: UIScene) {
+        if let shortcutItem = self.shortcutItemToProcess {
+            self.appNavigator.handle(shortcutItem: shortcutItem)
+        }
+
+        shortcutItemToProcess = nil
+    }
+
+    func sceneWillResignActive(_ scene: UIScene) {
+        AppDelegate.instance().setHomescreenQuickActions()
     }
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
@@ -51,6 +71,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
         return scene.userActivity
     }
+
 }
 
 @available(iOS 13.0, *)
@@ -70,34 +91,8 @@ extension SceneDelegate: UITabBarControllerDelegate {
             return true
         }
 
-        guard let loginNavigationController = R.storyboard.login.instantiateInitialViewController() else {
-            let reason = "Initial view controller of Login stroyboard in not of type UINavigationController"
-            ErrorManager.shared.reportStoryboardError(reason: reason)
-            log.error(reason)
-            return false
-        }
-
-        guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
-            let reason = "Could not find LoginViewController"
-            ErrorManager.shared.reportStoryboardError(reason: reason)
-            log.error(reason)
-            return false
-        }
-
-        loginViewController.delegate = self as LoginDelegate
-
-        tabBarController.present(loginNavigationController, animated: trueUnlessReduceMotionEnabled)
-
+        self.appNavigator.presentDashboardLoginViewController()
         return false
-    }
-
-}
-
-@available(iOS 13.0, *)
-extension SceneDelegate: LoginDelegate {
-
-    func didSuccessfullyLogin() {
-        self.tabBarController.selectedIndex = 0
     }
 
 }

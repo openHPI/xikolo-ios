@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WaE-pr-4AO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WaE-pr-4AO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,10 +27,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AJR-HV-dnR" userLabel="Title Container">
-                                <rect key="frame" x="0.0" y="238" width="414" height="47.5"/>
+                                <rect key="frame" x="0.0" y="238" width="414" height="49.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Course Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOr-5N-Ewr">
-                                        <rect key="frame" x="20" y="8" width="374" height="31.5"/>
+                                        <rect key="frame" x="20" y="8" width="374" height="33.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -56,7 +56,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TJT-Kl-tfg">
-                                <rect key="frame" x="0.0" y="285.5" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="287.5" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="M5J-wN-Bdc"/>
                                 </constraints>
@@ -65,7 +65,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KL2-g9-OIx">
-                                <rect key="frame" x="0.0" y="337.5" width="414" height="558.5"/>
+                                <rect key="frame" x="0.0" y="339.5" width="414" height="556.5"/>
                                 <connections>
                                     <segue destination="6qK-3g-pc6" kind="embed" id="lSN-d1-iw9"/>
                                 </connections>
@@ -158,7 +158,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="4yJ-0Y-wfJ">
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" sectionInsetReference="safeArea" id="4yJ-0Y-wfJ">
                             <size key="itemSize" width="50" height="34"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -172,9 +172,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="34"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RYF-nl-mvh" customClass="PillView" customModule="iOS" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="2" width="50" height="30"/>
+                                            <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJi-Ax-SOf">
                                             <rect key="frame" x="0.0" y="8" width="50" height="18"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -187,19 +190,13 @@
                                                 </fragment>
                                             </attributedString>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RYF-nl-mvh">
-                                            <rect key="frame" x="0.0" y="28" width="50" height="4"/>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="4" id="u1y-dW-VTm"/>
-                                            </constraints>
-                                        </view>
                                     </subviews>
                                 </view>
                                 <constraints>
+                                    <constraint firstItem="RYF-nl-mvh" firstAttribute="top" secondItem="MQQ-G5-gWa" secondAttribute="top" constant="2" id="7MN-fZ-eto"/>
                                     <constraint firstItem="RYF-nl-mvh" firstAttribute="leading" secondItem="MQQ-G5-gWa" secondAttribute="leading" id="9kP-SN-ITR"/>
                                     <constraint firstItem="vJi-Ax-SOf" firstAttribute="leading" secondItem="MQQ-G5-gWa" secondAttribute="leading" id="P5f-mC-sxN"/>
-                                    <constraint firstItem="RYF-nl-mvh" firstAttribute="top" secondItem="vJi-Ax-SOf" secondAttribute="bottom" constant="2" id="c9r-5Q-Dg2"/>
+                                    <constraint firstAttribute="bottom" secondItem="RYF-nl-mvh" secondAttribute="bottom" constant="2" id="exg-pd-nEy"/>
                                     <constraint firstAttribute="trailing" secondItem="RYF-nl-mvh" secondAttribute="trailing" id="f3T-x9-678"/>
                                     <constraint firstItem="vJi-Ax-SOf" firstAttribute="centerY" secondItem="MQQ-G5-gWa" secondAttribute="centerY" id="hWQ-jc-BOp"/>
                                     <constraint firstAttribute="trailing" secondItem="vJi-Ax-SOf" secondAttribute="trailing" id="xvA-Oi-jz3"/>

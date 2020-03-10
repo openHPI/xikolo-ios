@@ -9,7 +9,19 @@ import UIKit
 
 class RichtextViewController: UIViewController {
 
+    private static let timeEffortFormatter: DateComponentsFormatter = {
+        var calendar = Calendar.autoupdatingCurrent
+        calendar.locale = Locale.autoupdatingCurrent
+        let formatter = DateComponentsFormatter()
+        formatter.calendar = calendar
+        formatter.unitsStyle = .full
+        formatter.allowedUnits = [.hour, .minute]
+        return formatter
+    }()
+
     @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var timeEffortView: UIView!
+    @IBOutlet private weak var timeEffortLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var scrollViewTopConstraint: NSLayoutConstraint!
 
@@ -51,6 +63,11 @@ class RichtextViewController: UIViewController {
         guard self.viewIfLoaded != nil else { return }
 
         self.titleView.text = self.courseItem.title
+
+        // Set time effort label
+        let roundedTimeEffort = ceil(TimeInterval(self.courseItem.timeEffort) / 60) * 60 // round up to full minutes
+        self.timeEffortLabel.text = Self.timeEffortFormatter.string(from: roundedTimeEffort)
+        self.timeEffortView.isHidden = self.courseItem.timeEffort == 0
 
         guard let richText = self.courseItem.content as? RichText, let markdown = richText.text else {
             self.textView.isHidden = true

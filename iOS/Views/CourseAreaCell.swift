@@ -20,6 +20,7 @@ class CourseAreaCell: UICollectionViewCell {
         didSet {
             self.titleView.font = Self.font(whenSelected: self.isSelected)
             self.titleView.textColor = self.isSelected ? ColorCompatibility.label : ColorCompatibility.secondaryLabel
+            self.hightlightView.layer.roundCorners(for: .default)
             self.hightlightView.isHidden = !self.isSelected
         }
     }

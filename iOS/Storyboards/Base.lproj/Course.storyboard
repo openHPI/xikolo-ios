@@ -172,7 +172,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="34"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RYF-nl-mvh" customClass="PillView" customModule="iOS" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RYF-nl-mvh">
                                             <rect key="frame" x="0.0" y="2" width="50" height="30"/>
                                             <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>

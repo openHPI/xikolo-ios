@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		021DA1A82386A12400E6E763 /* ExerciseProgressStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021DA1A623869C1700E6E763 /* ExerciseProgressStackView.swift */; };
+		02299DD92417E88F006B2E52 /* today.appex in Embed App Extension */ = {isa = PBXBuildFile; fileRef = 50DA822423E587FC003BEDE1 /* today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B8E68230615E90027E370 /* SceneDelegate.swift */; };
 		0262E6C523729C29007C9057 /* ExerciseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C423729C29007C9057 /* ExerciseProgress.swift */; };
 		0262E6C72372C797007C9057 /* VisitProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C62372C797007C9057 /* VisitProgress.swift */; };
@@ -257,7 +258,6 @@
 		50DA822B23E587FD003BEDE1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50DA822923E587FD003BEDE1 /* MainInterface.storyboard */; };
 		50DA823B23E58EC7003BEDE1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50DA823D23E58EC7003BEDE1 /* InfoPlist.strings */; };
 		50E0351F213673F8001F963D /* CourseListConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0351E213673F8001F963D /* CourseListConfiguration.swift */; };
-		50EC9D8723FA91E0009A33FD /* today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 50DA822423E587FC003BEDE1 /* today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		50FA2DEF20E4B1A800656776 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FA2DED20E4B1A800656776 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50FA2DF220E4B1A800656776 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
 		50FA2DF320E4B1A800656776 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -413,15 +413,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		02D9354A23C7BE94008BE0C7 /* Embed App Extensions */ = {
+		02299DD82417E867006B2E52 /* Embed App Extension */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				50EC9D8723FA91E0009A33FD /* today.appex in Embed App Extensions */,
+				02299DD92417E88F006B2E52 /* today.appex in Embed App Extension */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed App Extension";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		50FA2DFD20E4B1A800656776 /* Embed Frameworks */ = {
@@ -966,6 +966,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02299DD72417E7C7006B2E52 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				02D9353E23C7BE94008BE0C7 /* NotificationCenter.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		2433A5AB1CE641E70060DD98 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1458,6 +1466,7 @@
 				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 				A90587BC1B3BFC130095DB89 /* Products */,
 				B48A5532D8E322172FD78521 /* Pods */,
+				02299DD72417E7C7006B2E52 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1897,10 +1906,12 @@
 				50CF1FEE20DCDBFC0011BFE9 /* Frameworks */,
 				50CF1FF620DCDBFC0011BFE9 /* Resources */,
 				50CF200F20DCDBFC0011BFE9 /* Copy GoogleServices-Info.plist */,
-				50D60D2B20E0D2C7007A4199 /* Remove localizations */,
+				BCF915E760C0D54E19A81B5C /* [CP] Embed Pods Frameworks */,
 				50FA2DFD20E4B1A800656776 /* Embed Frameworks */,
 				50CF201220DCDBFC0011BFE9 /* Clear Build Number */,
-				BCF915E760C0D54E19A81B5C /* [CP] Embed Pods Frameworks */,
+				02299DD82417E867006B2E52 /* Embed App Extension */,
+				50D60D2B20E0D2C7007A4199 /* Remove Localizations */,
+				02299DDA2417E8B1006B2E52 /* Remove Extensions */,
 			);
 			buildRules = (
 			);
@@ -2132,6 +2143,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		02299DDA2417E8B1006B2E52 /* Remove Extensions */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Remove Extensions";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/Build\\ Phases/remove-extensions.sh\n";
+		};
 		50CF1F4320DCDBFC0011BFE9 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2190,14 +2219,14 @@
 			shellPath = /bin/sh;
 			shellScript = "$SRCROOT/Build\\ Phases/clear-build-number.sh";
 		};
-		50D60D2B20E0D2C7007A4199 /* Remove localizations */ = {
+		50D60D2B20E0D2C7007A4199 /* Remove Localizations */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Remove localizations";
+			name = "Remove Localizations";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

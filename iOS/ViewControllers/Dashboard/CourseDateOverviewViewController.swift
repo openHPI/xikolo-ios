@@ -33,6 +33,15 @@ class CourseDateOverviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if #available(iOS 11, *) {} else {
+            // The large title font is not avaiable on iOS 10 and the stroyboard file fails to provide a suitable fallback value.
+            // Therefore, we set the font manually.
+            let font = UIFont.preferredFont(forTextStyle: .title1)
+            self.todayCountLabel.font = font
+            self.nextCountLabel.font = font
+            self.allCountLabel.font = font
+        }
+
         self.updateWidthConstraints()
         self.summaryContainer.layer.roundCorners(for: .default, masksToBounds: false)
         self.nextUpContainer.layer.roundCorners(for: .default, masksToBounds: false)

@@ -10,9 +10,13 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 
+    @IBOutlet weak var todayLabel: UILabel!
     @IBOutlet weak var todayCountLabel: UILabel!
+    @IBOutlet weak var nextLabel: UILabel!
     @IBOutlet weak var nextCountLabel: UILabel!
+    @IBOutlet weak var allLabel: UILabel!
     @IBOutlet weak var allCountLabel: UILabel!
+    @IBOutlet weak var loginRequestedLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +24,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // Allow the today widget to be expanded or contracted.
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
 
-         self.loadData()
+        if UserProfileHelper.shared.isLoggedIn {
+            hideLabel(isHidden: false)
+            self.loadData()
+        }
+        else {
+            hideLabel(isHidden: true)
+        }
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -35,6 +45,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         print("size change")
+    }
+
+    func hideLabel(isHidden: Bool) {
+        self.todayLabel.isHidden = isHidden
+        self.todayCountLabel.isHidden = isHidden
+        self.nextLabel.isHidden = isHidden
+        self.nextCountLabel.isHidden = isHidden
+        self.allLabel.isHidden = isHidden
+        self.allCountLabel.isHidden = isHidden
+
+        self.loginRequestedLabel.isHidden = !isHidden
     }
 
     func loadData() {

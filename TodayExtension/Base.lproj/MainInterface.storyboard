@@ -17,6 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Please log into your account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptC-Q4-u1K">
+                                <rect key="frame" x="0.0" y="20" width="375" height="75"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="kns-pM-pov">
                                 <rect key="frame" x="16" y="20" width="343" height="55"/>
                                 <subviews>
@@ -93,10 +102,14 @@
                             </stackView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="ptC-Q4-u1K" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" constant="20" symbolic="YES" id="0Vd-bp-BZv"/>
                             <constraint firstItem="kns-pM-pov" firstAttribute="trailing" secondItem="S3S-Oj-5AN" secondAttribute="trailingMargin" id="Rg3-R7-s4M"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="ptC-Q4-u1K" secondAttribute="bottom" id="dLa-5d-bs4"/>
                             <constraint firstAttribute="bottom" secondItem="kns-pM-pov" secondAttribute="bottom" constant="20" symbolic="YES" id="i7D-te-7OS"/>
                             <constraint firstItem="kns-pM-pov" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="j1o-Lf-cft"/>
                             <constraint firstItem="kns-pM-pov" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" constant="20" symbolic="YES" id="r1x-cj-3T5"/>
+                            <constraint firstItem="ptC-Q4-u1K" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="sfQ-KI-izH"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="ptC-Q4-u1K" secondAttribute="trailing" id="vUe-g1-U1q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
                     </view>
@@ -105,13 +118,17 @@
                     <size key="freeformSize" width="375" height="95"/>
                     <connections>
                         <outlet property="allCountLabel" destination="D2z-4g-4CF" id="tKe-4y-CIN"/>
+                        <outlet property="allLabel" destination="GFl-7o-kzc" id="62V-tw-HGV"/>
+                        <outlet property="loginRequestedLabel" destination="ptC-Q4-u1K" id="SQX-8N-4Uq"/>
                         <outlet property="nextCountLabel" destination="qZ7-Dc-eUO" id="5Ug-NA-ef2"/>
+                        <outlet property="nextLabel" destination="s1g-ix-PZy" id="AEi-SU-H6g"/>
                         <outlet property="todayCountLabel" destination="ZT0-cS-w8o" id="Bag-xQ-KNL"/>
+                        <outlet property="todayLabel" destination="9iS-3J-iih" id="l48-05-eiR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-678.98550724637687" y="93.080357142857139"/>
+            <point key="canvasLocation" x="-678.98550724637687" y="92.745535714285708"/>
         </scene>
     </scenes>
 </document>

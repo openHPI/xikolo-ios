@@ -20,6 +20,7 @@ class CourseViewController: UIViewController {
     @IBOutlet private weak var headerImageHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var headerImageTopSuperviewConstraint: NSLayoutConstraint!
     @IBOutlet private weak var headerImageTopSafeAreaConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var actionMenuButton: UIBarButtonItem!
 
     private var headerOffset: CGFloat = 0 {
         didSet {
@@ -74,14 +75,9 @@ class CourseViewController: UIViewController {
         set {}
     }
 
-    private lazy var actionMenuButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
-        button.isEnabled = true
-        return button
-    }()
-
     private var shareCourseAction: UIAlertAction {
-        return UIAlertAction(title: NSLocalizedString("course.action-menu.share", comment: "Title for course item share action"), style: .default) { [weak self] _ in
+        return UIAlertAction(title: NSLocalizedString("course.action-menu.share",
+                                                      comment: "Title for course item share action"), style: .default) { [weak self] _ in
             self?.shareCourse()
         }
     }
@@ -113,7 +109,6 @@ class CourseViewController: UIViewController {
             self.updateView()
         }
 
-        self.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.navigationController?.delegate = self
 
         self.transitionIfPossible(to: self.area)

@@ -15,8 +15,8 @@ end
 
 def common_pods
     pod 'BrightFutures', '~> 8.0'
-    pod 'Down', '~> 0.5'
-    pod 'KeychainAccess', '~> 3.1'
+    pod 'Down', '~> 0.9.0'
+    pod 'KeychainAccess', '~> 4.0'
     pod 'ReachabilitySwift', '~> 5.0'
     pod 'SDWebImage', '~> 5.0'
     pod 'SyncEngine', :path => './Frameworks/SyncEngine'

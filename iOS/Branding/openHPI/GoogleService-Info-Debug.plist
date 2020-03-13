@@ -11,7 +11,7 @@
 	<key>REVERSED_CLIENT_ID</key>
 	<string></string>
 	<key>API_KEY</key>
-	<string></string>
+	<string>0000</string>
 	<key>GCM_SENDER_ID</key>
 	<string>000000000000</string>
 	<key>PLIST_VERSION</key>

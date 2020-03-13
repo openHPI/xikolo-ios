@@ -10,19 +10,17 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 
-    @IBOutlet weak var todayLabel: UILabel!
+    @IBOutlet weak var counterStackView: UIStackView!
     @IBOutlet weak var todayCountLabel: UILabel!
-    @IBOutlet weak var nextLabel: UILabel!
     @IBOutlet weak var nextCountLabel: UILabel!
-    @IBOutlet weak var allLabel: UILabel!
     @IBOutlet weak var allCountLabel: UILabel!
     @IBOutlet weak var loginRequestedLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Allow the today widget to be expanded or contracted.
-        extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+        // Disallow the today widget to be expanded or contracted.
+        extensionContext?.widgetLargestAvailableDisplayMode = .compact
 
         if UserProfileHelper.shared.isLoggedIn {
             hideLabel(isHidden: false)
@@ -48,13 +46,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
 
     func hideLabel(isHidden: Bool) {
-        self.todayLabel.isHidden = isHidden
-        self.todayCountLabel.isHidden = isHidden
-        self.nextLabel.isHidden = isHidden
-        self.nextCountLabel.isHidden = isHidden
-        self.allLabel.isHidden = isHidden
-        self.allCountLabel.isHidden = isHidden
-
+        self.counterStackView.isHidden = isHidden
         self.loginRequestedLabel.isHidden = !isHidden
     }
 

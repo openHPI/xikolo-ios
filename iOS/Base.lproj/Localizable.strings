@@ -339,7 +339,7 @@
 "settings.course-item-content-preload.wifi-only" = "Wifi only";
 
 /* message for deleting downloaded content */
-"settings.downloads.alert.delete.message" = "Do you really to want to delete these content items?";
+"settings.downloads.alert.delete.message" = "Do you really want to delete these items?";
 
 /* title for deleting downloaded content */
 "settings.downloads.alert.delete.title" = "Delete downloaded content";

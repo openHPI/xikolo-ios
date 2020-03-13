@@ -9,7 +9,7 @@
 "Sdh-gh-SKC.normalTitle" = "Peer Assessment öffnen";
 
 /* Class = "UILabel"; text = "You cannot enter any new submissions, because the submission deadline has already passed."; ObjectID = "EEo-BW-kdN"; */
-"EEo-BW-kdN.text" = "Sie können keine neuen Lösungen einreichen.";
+"EEo-BW-kdN.text" = "Es können keine neuen Lösungen eingereicht werden.";
 
 /* Class = "UILabel"; text = "Submission deadline has passed"; ObjectID = "S7A-wc-mUD"; */
 "S7A-wc-mUD.text" = "Die Abgabefrist ist bereits abgelaufen.";

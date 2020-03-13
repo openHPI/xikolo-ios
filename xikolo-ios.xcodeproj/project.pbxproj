@@ -974,6 +974,14 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		02A414E1241BC806006C56C9 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				50DA822923E587FD003BEDE1 /* MainInterface.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		2433A5AB1CE641E70060DD98 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1405,7 +1413,7 @@
 			isa = PBXGroup;
 			children = (
 				50DA822723E587FD003BEDE1 /* TodayViewController.swift */,
-				50DA822923E587FD003BEDE1 /* MainInterface.storyboard */,
+				02A414E1241BC806006C56C9 /* Storyboards */,
 				50DA822C23E587FD003BEDE1 /* Info.plist */,
 				50DA823D23E58EC7003BEDE1 /* InfoPlist.strings */,
 			);

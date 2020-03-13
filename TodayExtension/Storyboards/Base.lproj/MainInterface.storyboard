@@ -72,6 +72,9 @@
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!"/>
+                                                        </attributedString>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZ7-Dc-eUO">
                                                         <rect key="frame" x="117" y="0.0" width="109" height="41"/>
@@ -81,6 +84,9 @@
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!"/>
+                                                        </attributedString>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2z-4g-4CF" userLabel="2">
                                                         <rect key="frame" x="234" y="0.0" width="109" height="41"/>
@@ -90,6 +96,9 @@
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!"/>
+                                                        </attributedString>
                                                     </label>
                                                 </subviews>
                                             </stackView>
@@ -98,6 +107,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="2s9-w4-py5" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="N2M-Jv-Xwr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2s9-w4-py5" secondAttribute="trailing" id="hMp-da-hiN"/>
@@ -110,13 +120,10 @@
                     <size key="freeformSize" width="375" height="97"/>
                     <connections>
                         <outlet property="allCountLabel" destination="D2z-4g-4CF" id="tKe-4y-CIN"/>
-                        <outlet property="allLabel" destination="GFl-7o-kzc" id="62V-tw-HGV"/>
                         <outlet property="counterStackView" destination="HPL-4k-nVu" id="u94-tn-1L7"/>
                         <outlet property="loginRequestedLabel" destination="eBe-Fq-ggH" id="iku-F6-F1T"/>
                         <outlet property="nextCountLabel" destination="qZ7-Dc-eUO" id="5Ug-NA-ef2"/>
-                        <outlet property="nextLabel" destination="s1g-ix-PZy" id="AEi-SU-H6g"/>
                         <outlet property="todayCountLabel" destination="ZT0-cS-w8o" id="Bag-xQ-KNL"/>
-                        <outlet property="todayLabel" destination="9iS-3J-iih" id="l48-05-eiR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>

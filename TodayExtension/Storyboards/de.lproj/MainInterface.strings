@@ -7,3 +7,6 @@
 
 /* Class = "UILabel"; text = "Next 7 Days"; ObjectID = "s1g-ix-PZy"; */
 "s1g-ix-PZy.text" = "Nächste 7 Tage";
+
+/* Class = "UILabel"; text = "Please log into your account"; ObjectID = "eBe-Fq-ggH"; */
+"eBe-Fq-ggH.text" = "Bitte mit dem Account anmelden";

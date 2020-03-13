@@ -81,13 +81,13 @@ class CourseViewController: UIViewController {
     }()
 
     private var shareCourseAction: UIAlertAction {
-        return UIAlertAction(title: NSLocalizedString("courseIteam.share", comment: "Title for course item share action"), style: .default) { [weak self] _ in
+        return UIAlertAction(title: NSLocalizedString("course.action-menu.share", comment: "Title for course item share action"), style: .default) { [weak self] _ in
             self?.shareCourse()
         }
     }
 
     private var showCourseDatesAction: UIAlertAction {
-        return UIAlertAction(title: NSLocalizedString("course-dates.show", comment: "Show course dates"), style: .default) { [weak self] _ in
+        return UIAlertAction(title: NSLocalizedString("course.action-menu.show.dates", comment: "Show course dates"), style: .default) { [weak self] _ in
             self?.showCourseDates()
         }
     }
@@ -319,17 +319,14 @@ class CourseViewController: UIViewController {
     }
 
     @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
-        var actions = [self.shareCourseAction]
-
-        if self.course.hasEnrollment {
-            actions.append(self.showCourseDatesAction)
-        }
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = sender
 
-        for action in actions {
-            alert.addAction(action)
+        alert.addAction(self.shareCourseAction)
+
+        if self.course.hasEnrollment {
+            alert.addAction(self.showCourseDatesAction)
         }
 
         alert.addCancelAction()

@@ -56,9 +56,6 @@
 /* status 'upcoming' of a course */
 "course-cell.status.upcoming" = "Upcoming";
 
-/* Show course dates */
-"course-dates.show" = "Show course dates";
-
 /* Format string for the next section start in the footer of course item list */
 "course-item-list.footer.The next section will be available on %@ at %@" = "The next section will be available on %@ at %@.";
 
@@ -149,6 +146,12 @@
 /* stop all stream downloads in section */
 "course-section.stream-download-action.stop-downloads.title" = "Stop all video downloads";
 
+/* Title for course item share action */
+"course.action-menu.share" = "Share";
+
+/* Show course dates */
+"course.action-menu.show.dates" = "Show course dates";
+
 /* the current state of a certificate */
 "course.certificates.achieved" = "achieved";
 
@@ -172,9 +175,6 @@
 
 /* label visit progess with absolute values. n out of m */
 "course.progress.visited %@ of %@ visited" = "%@ of %@ visited";
-
-/* Title for course item share action */
-"courseIteam.share" = "Share";
 
 /* action text for course overview with no courses */
 "dashboard.course-overview.no-courses.action" = "Discover available courses";

@@ -16,7 +16,7 @@ class DetailedDataItemView: UIStackView {
         calendar.locale = Locale.current
         let formatter = DateComponentsFormatter()
         formatter.calendar = calendar
-        formatter.unitsStyle = .brief
+        formatter.unitsStyle = .short
         formatter.allowedUnits = [.hour, .minute]
         return formatter
     }()

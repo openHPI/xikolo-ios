@@ -207,7 +207,7 @@
 "empty-view.account.certificates.no-certificates.title" = "Keine Leistungsnachweise";
 
 /* description for empty download list */
-"empty-view.account.download.no-downloads.description" = "Im Kursbereich kannst du Materialien herunterladen, um sie ohne Internetverbindung nutzen zu können";
+"empty-view.account.download.no-downloads.description" = "Im Kursbereich können Materialien heruntergeladen werden, um diese ohne Internetverbindung nutzen zu können";
 
 /* title for empty download list */
 "empty-view.account.download.no-downloads.title" = "Keine heruntergeladenen Inhalte";
@@ -252,13 +252,13 @@
 "enrollment.options-alert.mask-as-completed-action.title" = "Als abgeschlossen markieren";
 
 /* message of enrollment alert */
-"enrollment.options-alert.message" = "Du kannst Kurse als abgeschlossen markieren, wenn Du nicht mehr in diesem Kurs lernen möchtest. Du kannst dich auch abmelden. Dann kannst Du nicht mehr auf diesen Kurs zugreifen.";
+"enrollment.options-alert.message" = "Kurse können als abgeschlossen markiert werden, wenn in diesen nicht mehr gelernt wird. Alternativ kann die Kursteilnahme auch beendet werden. Die Fortschritte im Kurs werden bei einer erneuten Teilnahme wiederhergestellt.";
 
 /* title of enrollment options alert */
 "enrollment.options-alert.title" = "Fertig gelernt?";
 
 /* title for unenroll action */
-"enrollment.options-alert.unenroll-action.title" = "Ausschreiben";
+"enrollment.options-alert.unenroll-action.title" = "Kursteilnahme beenden";
 
 /* title to cancel alert */
 "global.alert.cancel" = "Abbrechen";
@@ -342,7 +342,7 @@
 "settings.course-item-content-preload.wifi-only" = "Nur mit WLAN";
 
 /* message for deleting downloaded content */
-"settings.downloads.alert.delete.message" = "Möchtest du wirklich diese Inhalte löschen?";
+"settings.downloads.alert.delete.message" = "Sollen diese Inhalte wirklich gelöscht werden?";
 
 /* title for deleting downloaded content */
 "settings.downloads.alert.delete.title" = "Heruntergeladene Inhalte löschen";

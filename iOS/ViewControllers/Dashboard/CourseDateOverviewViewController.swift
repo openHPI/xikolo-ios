@@ -13,11 +13,11 @@ class CourseDateOverviewViewController: UIViewController {
     @IBOutlet private weak var todayCountLabel: UILabel!
     @IBOutlet private weak var nextCountLabel: UILabel!
     @IBOutlet private weak var allCountLabel: UILabel!
-    @IBOutlet private var pills: [UIView]!
     @IBOutlet private var summaryWidthConstraint: NSLayoutConstraint!
 
     @IBOutlet private weak var nextUpView: UIView!
     @IBOutlet private weak var nextUpContainer: UIView!
+    @IBOutlet private weak var nextUpImageView: UIImageView!
     @IBOutlet private weak var relativeDateTimeLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var courseLabel: UILabel!
@@ -33,14 +33,18 @@ class CourseDateOverviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if #available(iOS 11, *) {} else {
+            // The large title font is not avaiable on iOS 10 and the stroyboard file fails to provide a suitable fallback value.
+            // Therefore, we set the font manually.
+            let font = UIFont.preferredFont(forTextStyle: .title1)
+            self.todayCountLabel.font = font
+            self.nextCountLabel.font = font
+            self.allCountLabel.font = font
+        }
+
         self.updateWidthConstraints()
         self.summaryContainer.layer.roundCorners(for: .default, masksToBounds: false)
         self.nextUpContainer.layer.roundCorners(for: .default, masksToBounds: false)
-
-        self.todayCountLabel.backgroundColor = Brand.default.colors.secondary
-        self.nextCountLabel.backgroundColor = Brand.default.colors.secondary
-        self.allCountLabel.backgroundColor = Brand.default.colors.secondary
-        self.pills.forEach { $0.backgroundColor = Brand.default.colors.secondary }
 
         self.courseLabel.textColor = Brand.default.colors.secondary
         self.nextUpView.isHidden = true
@@ -76,8 +80,10 @@ class CourseDateOverviewViewController: UIViewController {
             self.nextUpView.isHidden = false
 
             if #available(iOS 13, *) {
-                self.relativeDateTimeLabel.text = courseDate.relativeDateTime?.uppercased(with: Locale.current)
+                self.nextUpImageView.image = R.image.calendarLarge()
+                self.relativeDateTimeLabel.text = courseDate.relativeDateTime
             } else {
+                self.nextUpImageView.image = R.image.calendar()
                 self.relativeDateTimeLabel.text = nil
             }
         } else {

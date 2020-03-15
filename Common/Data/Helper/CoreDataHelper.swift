@@ -14,6 +14,19 @@ public class CoreDataHelper { // swiftlint:disable:this convenience_type
         let model = NSManagedObjectModel(contentsOf: modelURL).require()
         let container = NSPersistentContainer(name: "xikolo", managedObjectModel: model)
 
+        let mainBundle = Bundle.main.appGroupIdentifier!
+        let sharedStoreURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: mainBundle)!.appendingPathComponent("xikolodb")
+        let sharedStoreDescription = NSPersistentStoreDescription(url: sharedStoreURL)
+
+        var defaultStoreURL: URL?
+        if let storeDescription = container.persistentStoreDescriptions.first, let url = storeDescription.url {
+            defaultStoreURL = FileManager.default.fileExists(atPath: url.path) ? url : nil
+        }
+
+        if defaultStoreURL == nil {
+            container.persistentStoreDescriptions = [sharedStoreDescription]
+        }
+
         container.loadPersistentStores { _, error in
             if let error = error {
                 log.error("Persistant store load error", error: error)
@@ -21,6 +34,28 @@ public class CoreDataHelper { // swiftlint:disable:this convenience_type
             }
 
             container.viewContext.automaticallyMergesChangesFromParent = true
+
+            // check if we need to migrate from default CoreData store location to the shared store location
+            if let url = defaultStoreURL, url.absoluteString != sharedStoreURL.absoluteString {
+                let coordinator = container.persistentStoreCoordinator
+                if let oldStore = coordinator.persistentStore(for: url) {
+                    do {
+                        try coordinator.migratePersistentStore(oldStore, to: sharedStoreURL, options: nil, withType: NSSQLiteStoreType)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+
+                    // delete old CoreData store
+                    let fileCoordinator = NSFileCoordinator(filePresenter: nil)
+                    fileCoordinator.coordinate(writingItemAt: url, options: .forDeleting, error: nil) { url in
+                        do {
+                            try FileManager.default.removeItem(at: url)
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            }
         }
 
         return container

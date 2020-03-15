@@ -20,24 +20,15 @@ class CourseAreaCell: UICollectionViewCell {
         didSet {
             self.titleView.font = Self.font(whenSelected: self.isSelected)
             self.titleView.textColor = self.isSelected ? ColorCompatibility.label : ColorCompatibility.secondaryLabel
-
+            self.hightlightView.layer.roundCorners(for: .default)
             self.hightlightView.isHidden = !self.isSelected
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         self.titleView.textColor = ColorCompatibility.secondaryLabel
-
-        self.hightlightView.backgroundColor = Brand.default.colors.primary
         self.hightlightView.isHidden = true
-        self.hightlightView.layer.cornerRadius = self.hightlightView.bounds.height / 2
-        self.hightlightView.clipsToBounds = true
-
-        if #available(iOS 13, *) {
-            self.hightlightView.layer.cornerCurve = .continuous
-        }
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

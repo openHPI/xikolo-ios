@@ -251,6 +251,7 @@
 		50CF200E20DCDBFC0011BFE9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
 		50D52164225FC50500C9860D /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D52163225FC50500C9860D /* Int+DispatchTimeInterval.swift */; };
 		50D65A0C20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
+		50DA821723E46D03003BEDE1 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA821623E46D03003BEDE1 /* Bundle.swift */; };
 		50E0351F213673F8001F963D /* CourseListConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0351E213673F8001F963D /* CourseListConfiguration.swift */; };
 		50FA2DEF20E4B1A800656776 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FA2DED20E4B1A800656776 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50FA2DF220E4B1A800656776 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
@@ -419,6 +420,7 @@
 		0280CB13237CBD4100B774BE /* SectionProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgressCell.swift; sourceTree = "<group>"; };
 		02AA78BC23A0176F00CD13F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseProgress.storyboard; sourceTree = "<group>"; };
 		02AA78BF23A0177B00CD13F5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseProgress.strings; sourceTree = "<group>"; };
+		02D9353E23C7BE94008BE0C7 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgressStackView.swift; sourceTree = "<group>"; };
 		02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgress.swift; sourceTree = "<group>"; };
 		0675EF0736772D5AB19C88BB /* Pods-Common.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.openhpi-ios-release.xcconfig"; path = "Target Support Files/Pods-Common/Pods-Common.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
@@ -675,6 +677,8 @@
 		50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabelHelperTests.swift; sourceTree = "<group>"; };
 		50B31DFC22C4B660007DDDA4 /* Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
 		50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightFuturesTests.swift; sourceTree = "<group>"; };
+		50B431CD23E45258006C7BC4 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		50B431CE23E4526D006C7BC4 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsPersistenceManager.swift; sourceTree = "<group>"; };
 		50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableContentViewController.swift; sourceTree = "<group>"; };
 		50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crashlytics.swift; sourceTree = "<group>"; };
@@ -685,7 +689,7 @@
 		50CF1F3E20DCCF4F0011BFE9 /* openHPI-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
 		50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Release.xcconfig"; sourceTree = "<group>"; };
 		50CF201620DCDBFC0011BFE9 /* openHPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openHPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		50CF201820DCDD720011BFE9 /* openHPI-iOS-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Common.xcconfig"; sourceTree = "<group>"; };
+		50CF201820DCDD720011BFE9 /* openHPI-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-Common.xcconfig"; sourceTree = "<group>"; };
 		50CF202D20DCE6680011BFE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseCertificates.storyboard; sourceTree = "<group>"; };
 		50D52163225FC50500C9860D /* Int+DispatchTimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+DispatchTimeInterval.swift"; sourceTree = "<group>"; };
@@ -700,15 +704,16 @@
 		50D65A1320E01C5B00DFD183 /* BrandConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = BrandConfiguration.plist; path = "assets-ios-brand.xcassets/BrandConfiguration.dataset/BrandConfiguration.plist"; sourceTree = "<group>"; };
 		50D65A1920E0238000DFD183 /* openSAP-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openSAP-iOS-Release.xcconfig"; sourceTree = "<group>"; };
 		50D65A1A20E0238000DFD183 /* openSAP-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openSAP-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
-		50D65A1B20E0238000DFD183 /* openSAP-iOS-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openSAP-iOS-Common.xcconfig"; sourceTree = "<group>"; };
+		50D65A1B20E0238000DFD183 /* openSAP-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openSAP-Common.xcconfig"; sourceTree = "<group>"; };
 		50D65A1C20E023B100DFD183 /* openWHO-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openWHO-iOS-Release.xcconfig"; sourceTree = "<group>"; };
-		50D65A1D20E023B100DFD183 /* openWHO-iOS-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openWHO-iOS-Common.xcconfig"; sourceTree = "<group>"; };
+		50D65A1D20E023B100DFD183 /* openWHO-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openWHO-Common.xcconfig"; sourceTree = "<group>"; };
 		50D65A1E20E023B100DFD183 /* openWHO-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openWHO-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
-		50D65A1F20E023C000DFD183 /* moocHOUSE-iOS-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-iOS-Common.xcconfig"; sourceTree = "<group>"; };
+		50D65A1F20E023C000DFD183 /* moocHOUSE-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-Common.xcconfig"; sourceTree = "<group>"; };
 		50D65A2020E023C100DFD183 /* moocHOUSE-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-iOS-Release.xcconfig"; sourceTree = "<group>"; };
 		50D65A2120E023C100DFD183 /* moocHOUSE-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
 		50D91643207D080000DDB6E1 /* CourseArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseArea.swift; sourceTree = "<group>"; };
 		50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTimeInterval+DispatchTime.swift"; sourceTree = "<group>"; };
+		50DA821623E46D03003BEDE1 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		50DD35141FD83D5E002B40CC /* CardListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListLayout.swift; sourceTree = "<group>"; };
 		50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseHeaderView.xib; sourceTree = "<group>"; };
 		50E0351E213673F8001F963D /* CourseListConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListConfiguration.swift; sourceTree = "<group>"; };
@@ -908,6 +913,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02299DD72417E7C7006B2E52 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				02D9353E23C7BE94008BE0C7 /* NotificationCenter.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		2433A5AB1CE641E70060DD98 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1037,6 +1050,7 @@
 		24D48E1F1CCA740500E8051E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				50DA821623E46D03003BEDE1 /* Bundle.swift */,
 				50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */,
 				50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */,
 				501212301FCC66B50022A7AF /* Collection+SafeSubscript.swift */,
@@ -1276,6 +1290,8 @@
 		50CF1F3D20DCCED10011BFE9 /* Xcode Configurations */ = {
 			isa = PBXGroup;
 			children = (
+				50B431CD23E45258006C7BC4 /* Debug.xcconfig */,
+				50B431CE23E4526D006C7BC4 /* Release.xcconfig */,
 				50D65A1420E0220900DFD183 /* openHPI */,
 				50D65A1820E0231400DFD183 /* openSAP */,
 				50D65A1620E0230E00DFD183 /* openWHO */,
@@ -1287,7 +1303,7 @@
 		50D65A1420E0220900DFD183 /* openHPI */ = {
 			isa = PBXGroup;
 			children = (
-				50CF201820DCDD720011BFE9 /* openHPI-iOS-Common.xcconfig */,
+				50CF201820DCDD720011BFE9 /* openHPI-Common.xcconfig */,
 				50CF1F3E20DCCF4F0011BFE9 /* openHPI-iOS-Debug.xcconfig */,
 				50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */,
 			);
@@ -1297,7 +1313,7 @@
 		50D65A1620E0230E00DFD183 /* openWHO */ = {
 			isa = PBXGroup;
 			children = (
-				50D65A1D20E023B100DFD183 /* openWHO-iOS-Common.xcconfig */,
+				50D65A1D20E023B100DFD183 /* openWHO-Common.xcconfig */,
 				50D65A1E20E023B100DFD183 /* openWHO-iOS-Debug.xcconfig */,
 				50D65A1C20E023B100DFD183 /* openWHO-iOS-Release.xcconfig */,
 			);
@@ -1307,7 +1323,7 @@
 		50D65A1720E0231100DFD183 /* moocHOUSE */ = {
 			isa = PBXGroup;
 			children = (
-				50D65A1F20E023C000DFD183 /* moocHOUSE-iOS-Common.xcconfig */,
+				50D65A1F20E023C000DFD183 /* moocHOUSE-Common.xcconfig */,
 				50D65A2120E023C100DFD183 /* moocHOUSE-iOS-Debug.xcconfig */,
 				50D65A2020E023C100DFD183 /* moocHOUSE-iOS-Release.xcconfig */,
 			);
@@ -1317,7 +1333,7 @@
 		50D65A1820E0231400DFD183 /* openSAP */ = {
 			isa = PBXGroup;
 			children = (
-				50D65A1B20E0238000DFD183 /* openSAP-iOS-Common.xcconfig */,
+				50D65A1B20E0238000DFD183 /* openSAP-Common.xcconfig */,
 				50D65A1A20E0238000DFD183 /* openSAP-iOS-Debug.xcconfig */,
 				50D65A1920E0238000DFD183 /* openSAP-iOS-Release.xcconfig */,
 			);
@@ -1377,6 +1393,7 @@
 				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 				A90587BC1B3BFC130095DB89 /* Products */,
 				B48A5532D8E322172FD78521 /* Pods */,
+				02299DD72417E7C7006B2E52 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1815,10 +1832,10 @@
 				50CF1FEE20DCDBFC0011BFE9 /* Frameworks */,
 				50CF1FF620DCDBFC0011BFE9 /* Resources */,
 				50CF200F20DCDBFC0011BFE9 /* Copy GoogleServices-Info.plist */,
-				50D60D2B20E0D2C7007A4199 /* Remove localizations */,
+				BCF915E760C0D54E19A81B5C /* [CP] Embed Pods Frameworks */,
 				50FA2DFD20E4B1A800656776 /* Embed Frameworks */,
 				50CF201220DCDBFC0011BFE9 /* Clear Build Number */,
-				BCF915E760C0D54E19A81B5C /* [CP] Embed Pods Frameworks */,
+				50D60D2B20E0D2C7007A4199 /* Remove Localizations */,
 			);
 			buildRules = (
 			);
@@ -1857,7 +1874,7 @@
 			isa = PBXProject;
 			attributes = {
 				DefaultBuildSystemTypeForWorkspace = Latest;
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = HPI;
 				TargetAttributes = {
@@ -2058,7 +2075,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Build\\ Phases/copy-google-services-plist.sh";
+			shellScript = "$SRCROOT/Build\\ Phases/copy-google-services-plist.sh\n";
 		};
 		50CF201220DCDBFC0011BFE9 /* Clear Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2074,14 +2091,14 @@
 			shellPath = /bin/sh;
 			shellScript = "$SRCROOT/Build\\ Phases/clear-build-number.sh";
 		};
-		50D60D2B20E0D2C7007A4199 /* Remove localizations */ = {
+		50D60D2B20E0D2C7007A4199 /* Remove Localizations */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Remove localizations";
+			name = "Remove Localizations";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2513,6 +2530,7 @@
 				50FA2E1A20E4B24300656776 /* PlatformEventHelper.swift in Sources */,
 				50FA2E4920E4B25800656776 /* TrackingEventResource.swift in Sources */,
 				50FA2E4020E4B25800656776 /* PeerAssessment.swift in Sources */,
+				50DA821723E46D03003BEDE1 /* Bundle.swift in Sources */,
 				50FA2E5320E4B26400656776 /* DateFormatter+localizedFormatter.swift in Sources */,
 				50FA2E6620E51B7E00656776 /* ReachabilityHelper.swift in Sources */,
 				50FA2E2020E4B24300656776 /* VideoHelper.swift in Sources */,

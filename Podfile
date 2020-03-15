@@ -18,7 +18,6 @@ def common_pods
     pod 'Down', '~> 0.9.0'
     pod 'KeychainAccess', '~> 4.0'
     pod 'ReachabilitySwift', '~> 5.0'
-    pod 'SDWebImage', '~> 5.0'
     pod 'SyncEngine', :path => './Frameworks/SyncEngine'
     pod 'HTMLStyler', :path => './Frameworks/HTMLStyler'
 end
@@ -36,7 +35,7 @@ end
 target 'iOS' do
     platform :ios, '10.0'
     firebase_pods
-    # pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => '3349edc810ed54b0cf74a33d886ad3801727daf0'
+    pod 'SDWebImage', '~> 5.0'
     pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['openHPI-iOS-Debug', 'openSAP-iOS-Debug', 'openWHO-iOS-Debug', 'moocHOUSE-iOS-Debug']
 end
 

@@ -20,10 +20,11 @@ class CourseDateCell: UITableViewCell {
         self.courseLabel.textColor = Brand.default.colors.secondary
     }
 
-    func configure(for courseDate: CourseDate) {
+    func configure(for courseDate: CourseDate, inCourseContext: Bool) {
         self.dateLabel.text = courseDate.date.map(Self.courseDateFormatter.string(from:))
         self.courseLabel.text = courseDate.course?.title
         self.titleLabel.text = courseDate.contextAwareTitle
+        self.accessoryType = inCourseContext ? .none : .disclosureIndicator
     }
 
 }

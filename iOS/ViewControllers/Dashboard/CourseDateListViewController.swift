@@ -12,6 +12,8 @@ class CourseDateListViewController: UITableViewController {
 
     private var dataSource: CoreDataTableViewDataSource<CourseDateListViewController>!
 
+    var course: Course?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,14 +28,26 @@ class CourseDateListViewController: UITableViewController {
             }
         }()
 
+        let request: NSFetchRequest<CourseDate>
+
+        if let course = course {
+            request = CourseDateHelper.FetchRequest.courseDates(for: course)
+        } else {
+            request = CourseDateHelper.FetchRequest.allCourseDates
+        }
+
         let reuseIdentifier = R.reuseIdentifier.courseDateCell.identifier
-        let resultsController = CoreDataHelper.createResultsController(CourseDateHelper.FetchRequest.allCourseDates, sectionNameKeyPath: sectionNameKeyPath)
+        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: sectionNameKeyPath)
         self.dataSource = CoreDataTableViewDataSource(self.tableView,
                                                       fetchedResultsController: resultsController,
                                                       cellReuseIdentifier: reuseIdentifier,
                                                       delegate: self)
 
         self.setupEmptyState()
+
+        if self.course != nil {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -53,11 +67,17 @@ class CourseDateListViewController: UITableViewController {
         }
     }
 
+    @objc private func close() {
+        self.dismiss(animated: trueUnlessReduceMotionEnabled)
+    }
+
 }
 
 extension CourseDateListViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard self.course == nil else { return }
+
         let courseDate = self.dataSource.object(at: indexPath)
 
         guard let course = courseDate.course else {
@@ -73,7 +93,7 @@ extension CourseDateListViewController {
 extension CourseDateListViewController: CoreDataTableViewDataSourceDelegate {
 
     func configure(_ cell: CourseDateCell, for object: CourseDate) {
-        cell.configure(for: object)
+        cell.configure(for: object, inCourseContext: self.course != nil)
 
         if #available(iOS 13, *) {} else {
             cell.backgroundColor = ColorCompatibility.systemBackground

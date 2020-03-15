@@ -33,7 +33,8 @@ class CourseItemViewController: UIPageViewController {
     }
 
     private var shareCourseItemAction: UIAlertAction {
-        return UIAlertAction(title: NSLocalizedString("courseIteam.share", comment: "Title for course item share action"), style: .default) { [weak self] _ in
+        return UIAlertAction(title: NSLocalizedString("course.action-menu.share",
+                                                      comment: "Title for course item share action"), style: .default) { [weak self] _ in
             self?.shareCourseItem()
         }
     }

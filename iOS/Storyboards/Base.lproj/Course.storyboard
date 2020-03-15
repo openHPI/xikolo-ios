@@ -102,11 +102,6 @@
                                 <action selector="tappedCloseButton:" destination="GW9-XM-IkA" id="hks-dm-2X6"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="B8z-CN-Upz">
-                            <connections>
-                                <action selector="shareCourse:" destination="GW9-XM-IkA" id="ofg-ly-uay"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cornerView" destination="AFF-tD-7pz" id="zDB-Ct-JmO"/>

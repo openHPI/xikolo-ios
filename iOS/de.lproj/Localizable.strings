@@ -146,6 +146,12 @@
 /* stop all stream downloads in section */
 "course-section.stream-download-action.stop-downloads.title" = "Alle Video-Downloads stoppen";
 
+/* Title for course item share action */
+"course.action-menu.share" = "Teilen";
+
+/* Title for show course dates action */
+"course.action-menu.show-course-dates" = "Kurstermine anzeigen";
+
 /* the current state of a certificate */
 "course.certificates.achieved" = "erreicht";
 
@@ -169,9 +175,6 @@
 
 /* label visit progess with absolute values. n out of m */
 "course.progress.visited %@ of %@ visited" = "%@ von %@ besucht";
-
-/* Title for course item share action */
-"courseIteam.share" = "Teilen";
 
 /* action text for course overview with no courses */
 "dashboard.course-overview.no-courses.action" = "Entdecke verfügbare Kurse";
@@ -225,10 +228,10 @@
 "empty-view.course-content.title" = "Kursinhalte werden geladen …";
 
 /* description for empty course dates list if logged in */
-"empty-view.course-dates.no-dates.description" = "Hier erscheinen Benachrichtigungen zu Fristen und neuen Kursen";
+"empty-view.course-dates.no-dates.description" = "Hier erscheinen Informationen zu Fristen";
 
 /* title for empty course dates list if logged in */
-"empty-view.course-dates.no-dates.title" = "Es gibt keine wichtigen Kursdaten";
+"empty-view.course-dates.no-dates.title" = "Es gibt keine bevorstehenden Kurstermine";
 
 /* title for empty course documents list */
 "empty-view.course-documents.title" = "Für diesen Kurs sind keine Dokumente verfügbar";

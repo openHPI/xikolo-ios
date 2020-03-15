@@ -149,7 +149,7 @@
 /* Title for course item share action */
 "course.action-menu.share" = "Teilen";
 
-/* Show course dates */
+/* Title for show course dates action */
 "course.action-menu.show-course-dates" = "Kurstermine anzeigen";
 
 /* the current state of a certificate */

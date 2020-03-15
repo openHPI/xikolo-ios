@@ -19,7 +19,7 @@ class CourseTransitioningDelegate: NSObject, UIViewControllerTransitioningDelega
         let presentationController = CoursePresentationController(presentedViewController: presented, presenting: presenting)
 
         if #available(iOS 13, *) {
-            let userInterfaceLevel: UIUserInterfaceLevel = source.view.window?.isFrameFullScreen == true ? .base : .elevated
+            let userInterfaceLevel: UIUserInterfaceLevel = source.view.window?.frameIsFullScreen == true ? .base : .elevated
             presentationController.overrideTraitCollection = UITraitCollection(userInterfaceLevel: userInterfaceLevel)
         }
 

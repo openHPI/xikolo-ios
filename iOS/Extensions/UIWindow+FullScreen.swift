@@ -7,7 +7,7 @@ import UIKit
 
 extension UIWindow {
 
-    var isFrameFullScreen: Bool {
+    var frameIsFullScreen: Bool {
         return self.frame == self.screen.bounds
     }
 

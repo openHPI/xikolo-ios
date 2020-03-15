@@ -44,6 +44,7 @@ class CourseDateListViewController: UITableViewController {
                                                       delegate: self)
 
         self.setupEmptyState()
+        self.updateHeaderView()
 
         if self.course != nil {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
@@ -66,9 +67,19 @@ class CourseDateListViewController: UITableViewController {
             }
         }
     }
+   
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.tableView.resizeTableHeaderView()
+    }
 
     @objc private func close() {
         self.dismiss(animated: trueUnlessReduceMotionEnabled)
+    }
+
+    private func updateHeaderView() {
+        self.tableView.tableHeaderView?.isHidden = !self.tableView.hasItemsToDisplay
+        self.tableView.resizeTableHeaderView()
     }
 
 }
@@ -112,6 +123,10 @@ extension CourseDateListViewController: RefreshableViewController {
         return CourseHelper.syncAllCourses().map { _ in
             return CourseDateHelper.syncAllCourseDates()
         }.asVoid()
+    }
+
+    func didRefresh() {
+        self.updateHeaderView()
     }
 
 }

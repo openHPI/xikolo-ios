@@ -249,13 +249,13 @@
 "enrollment.options-alert.mask-as-completed-action.title" = "Als abgeschlossen markieren";
 
 /* message of enrollment alert */
-"enrollment.options-alert.message" = "Kurse können als abgeschlossen markiert werden, wenn in diesen nicht mehr gelernt wird. Man kann sich auch abmelden, dann gibt es keinen Zugriff mehr auf den Kurs";
+"enrollment.options-alert.message" = "Kurse können als abgeschlossen markiert werden, wenn in diesen nicht mehr gelernt wird. Alternativ kann die Kursteilnahme auch beendet werden. Die Fortschritte im Kurs werden bei einer erneuten Teilnahme wiederhergestellt.";
 
 /* title of enrollment options alert */
 "enrollment.options-alert.title" = "Fertig gelernt?";
 
 /* title for unenroll action */
-"enrollment.options-alert.unenroll-action.title" = "Ausschreiben";
+"enrollment.options-alert.unenroll-action.title" = "Kursteilnahme beenden";
 
 /* title to cancel alert */
 "global.alert.cancel" = "Abbrechen";

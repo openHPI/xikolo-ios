@@ -249,13 +249,13 @@
 "enrollment.options-alert.mask-as-completed-action.title" = "Mark as completed";
 
 /* message of enrollment alert */
-"enrollment.options-alert.message" = "You can mark a course as completed once you don't want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored.";
+"enrollment.options-alert.message" = "You can mark a course as completed once you don't want to learn anymore in this course. You may also un-enroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored.";
 
 /* title of enrollment options alert */
 "enrollment.options-alert.title" = "Finished learning?";
 
 /* title for unenroll action */
-"enrollment.options-alert.unenroll-action.title" = "Unenroll";
+"enrollment.options-alert.unenroll-action.title" = "Un-enroll";
 
 /* title to cancel alert */
 "global.alert.cancel" = "Cancel";

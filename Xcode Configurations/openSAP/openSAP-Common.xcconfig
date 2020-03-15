@@ -1,0 +1,15 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+BRAND_NAME = openSAP
+PRODUCT_NAME = openSAP
+DISPLAY_NAME = openSAP
+
+BASE_BUNDLE_IDENTIFIER = de.xikolo.opensap
+
+APP_GROUP_IDENTIFIER = group.$(BASE_BUNDLE_IDENTIFIER)
+PRODUCT_BUNDLE_IDENTIFIER = $(BASE_BUNDLE_IDENTIFIER)$(IDENTIFIER_SUFFIX)$(EXTENSION_PATH)
+
+CODE_SIGN_ENTITLEMENTS = iOS/Branding/${BRAND_NAME}/ios.entitlements

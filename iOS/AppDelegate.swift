@@ -67,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         CoreDataHelper.migrateModelToCommon()
         UserProfileHelper.shared.logoutFromTestAccount()
+        UserProfileHelper.shared.migrateLegacyKeychain()
+        UserProfileHelper.shared.migrateToSharedKeychain()
 
         if #available(iOS 13.0, *) {} else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -93,8 +95,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.pushEngineManager.register(Enrollment.self)
             self.pushEngineManager.register(TrackingEvent.self)
             self.pushEngineManager.startObserving()
-
-            UserProfileHelper.shared.migrateLegacyKeychain()
 
             StreamPersistenceManager.shared.restoreDownloads()
             SlidesPersistenceManager.shared.restoreDownloads()

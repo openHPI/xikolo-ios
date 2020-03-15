@@ -51,23 +51,6 @@ class CourseDateListViewController: UITableViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        if #available(iOS 13, *) {
-            // workaround to correct show table view section header on load
-            if animated {
-                self.tableView.beginUpdates()
-                self.tableView.endUpdates()
-            } else {
-                UIView.performWithoutAnimation {
-                    self.tableView.beginUpdates()
-                    self.tableView.endUpdates()
-                }
-            }
-        }
-    }
-   
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.tableView.resizeTableHeaderView()

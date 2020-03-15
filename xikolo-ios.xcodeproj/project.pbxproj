@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		021DA1A82386A12400E6E763 /* ExerciseProgressStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021DA1A623869C1700E6E763 /* ExerciseProgressStackView.swift */; };
-		02299DD92417E88F006B2E52 /* today.appex in Embed App Extension */ = {isa = PBXBuildFile; fileRef = 50DA822423E587FC003BEDE1 /* today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B8E68230615E90027E370 /* SceneDelegate.swift */; };
 		0262E6C523729C29007C9057 /* ExerciseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C423729C29007C9057 /* ExerciseProgress.swift */; };
 		0262E6C72372C797007C9057 /* VisitProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C62372C797007C9057 /* VisitProgress.swift */; };
@@ -253,10 +252,6 @@
 		50D52164225FC50500C9860D /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D52163225FC50500C9860D /* Int+DispatchTimeInterval.swift */; };
 		50D65A0C20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
 		50DA821723E46D03003BEDE1 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA821623E46D03003BEDE1 /* Bundle.swift */; };
-		50DA822523E587FD003BEDE1 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D9353E23C7BE94008BE0C7 /* NotificationCenter.framework */; };
-		50DA822823E587FD003BEDE1 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DA822723E587FD003BEDE1 /* TodayViewController.swift */; };
-		50DA822B23E587FD003BEDE1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50DA822923E587FD003BEDE1 /* MainInterface.storyboard */; };
-		50DA823B23E58EC7003BEDE1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50DA823D23E58EC7003BEDE1 /* InfoPlist.strings */; };
 		50E0351F213673F8001F963D /* CourseListConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0351E213673F8001F963D /* CourseListConfiguration.swift */; };
 		50FA2DEF20E4B1A800656776 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FA2DED20E4B1A800656776 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50FA2DF220E4B1A800656776 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
@@ -368,13 +363,6 @@
 			remoteGlobalIDString = 5067AD312367042E00ADEAB9;
 			remoteInfo = Binge;
 		};
-		506BDC9A23E6C3B200DDC6EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50FA2DEA20E4B1A800656776;
-			remoteInfo = Common;
-		};
 		50761B4420FCAC5A00CEDAF9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
@@ -396,13 +384,6 @@
 			remoteGlobalIDString = 50CF1F4120DCDBFC0011BFE9;
 			remoteInfo = iOS;
 		};
-		50DA822D23E587FD003BEDE1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50DA822323E587FC003BEDE1;
-			remoteInfo = TodayExtension;
-		};
 		50FA2DF020E4B1A800656776 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
@@ -413,17 +394,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		02299DD82417E867006B2E52 /* Embed App Extension */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				02299DD92417E88F006B2E52 /* today.appex in Embed App Extension */,
-			);
-			name = "Embed App Extension";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		50FA2DFD20E4B1A800656776 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -441,7 +411,6 @@
 /* Begin PBXFileReference section */
 		021DA1A623869C1700E6E763 /* ExerciseProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseProgressStackView.swift; sourceTree = "<group>"; };
 		023B8E68230615E90027E370 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0240EF1624005CFE00337879 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		0262E6C423729C29007C9057 /* ExerciseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseProgress.swift; sourceTree = "<group>"; };
 		0262E6C62372C797007C9057 /* VisitProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgress.swift; sourceTree = "<group>"; };
 		0262E6C82372CBD5007C9057 /* SectionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgress.swift; sourceTree = "<group>"; };
@@ -710,8 +679,6 @@
 		50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightFuturesTests.swift; sourceTree = "<group>"; };
 		50B431CD23E45258006C7BC4 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		50B431CE23E4526D006C7BC4 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
-		50B431CF23E4542B006C7BC4 /* openHPI-Today-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-Today-Debug.xcconfig"; sourceTree = "<group>"; };
-		50B431D023E4543C006C7BC4 /* openHPI-Today-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-Today-Release.xcconfig"; sourceTree = "<group>"; };
 		50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsPersistenceManager.swift; sourceTree = "<group>"; };
 		50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableContentViewController.swift; sourceTree = "<group>"; };
 		50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crashlytics.swift; sourceTree = "<group>"; };
@@ -747,18 +714,6 @@
 		50D91643207D080000DDB6E1 /* CourseArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseArea.swift; sourceTree = "<group>"; };
 		50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTimeInterval+DispatchTime.swift"; sourceTree = "<group>"; };
 		50DA821623E46D03003BEDE1 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
-		50DA821823E4755E003BEDE1 /* openSAP-Today-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openSAP-Today-Debug.xcconfig"; sourceTree = "<group>"; };
-		50DA821923E4756F003BEDE1 /* openSAP-Today-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openSAP-Today-Release.xcconfig"; sourceTree = "<group>"; };
-		50DA821A23E4758D003BEDE1 /* openWHO-Today-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openWHO-Today-Debug.xcconfig"; sourceTree = "<group>"; };
-		50DA821B23E475A0003BEDE1 /* openWHO-Today-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openWHO-Today-Release.xcconfig"; sourceTree = "<group>"; };
-		50DA821C23E475C9003BEDE1 /* moocHOUSE-Today-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-Today-Debug.xcconfig"; sourceTree = "<group>"; };
-		50DA821D23E475DA003BEDE1 /* moocHOUSE-Today-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-Today-Release.xcconfig"; sourceTree = "<group>"; };
-		50DA822423E587FC003BEDE1 /* today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		50DA822723E587FD003BEDE1 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		50DA822A23E587FD003BEDE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		50DA822C23E587FD003BEDE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		50DA823C23E58EC7003BEDE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		50DA823E23E58EC8003BEDE1 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		50DD35141FD83D5E002B40CC /* CardListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListLayout.swift; sourceTree = "<group>"; };
 		50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseHeaderView.xib; sourceTree = "<group>"; };
 		50E0351E213673F8001F963D /* CourseListConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListConfiguration.swift; sourceTree = "<group>"; };
@@ -944,14 +899,6 @@
 				50CF1FF420DCDBFC0011BFE9 /* CFNetwork.framework in Frameworks */,
 				5067AD392367042E00ADEAB9 /* Binge.framework in Frameworks */,
 				4A3AD2E1F775A9AFF5F1D401 /* Pods_iOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		50DA822123E587FC003BEDE1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				50DA822523E587FD003BEDE1 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1359,8 +1306,6 @@
 				50CF201820DCDD720011BFE9 /* openHPI-Common.xcconfig */,
 				50CF1F3E20DCCF4F0011BFE9 /* openHPI-iOS-Debug.xcconfig */,
 				50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */,
-				50B431CF23E4542B006C7BC4 /* openHPI-Today-Debug.xcconfig */,
-				50B431D023E4543C006C7BC4 /* openHPI-Today-Release.xcconfig */,
 			);
 			path = openHPI;
 			sourceTree = "<group>";
@@ -1371,8 +1316,6 @@
 				50D65A1D20E023B100DFD183 /* openWHO-Common.xcconfig */,
 				50D65A1E20E023B100DFD183 /* openWHO-iOS-Debug.xcconfig */,
 				50D65A1C20E023B100DFD183 /* openWHO-iOS-Release.xcconfig */,
-				50DA821A23E4758D003BEDE1 /* openWHO-Today-Debug.xcconfig */,
-				50DA821B23E475A0003BEDE1 /* openWHO-Today-Release.xcconfig */,
 			);
 			path = openWHO;
 			sourceTree = "<group>";
@@ -1383,8 +1326,6 @@
 				50D65A1F20E023C000DFD183 /* moocHOUSE-Common.xcconfig */,
 				50D65A2120E023C100DFD183 /* moocHOUSE-iOS-Debug.xcconfig */,
 				50D65A2020E023C100DFD183 /* moocHOUSE-iOS-Release.xcconfig */,
-				50DA821C23E475C9003BEDE1 /* moocHOUSE-Today-Debug.xcconfig */,
-				50DA821D23E475DA003BEDE1 /* moocHOUSE-Today-Release.xcconfig */,
 			);
 			path = moocHOUSE;
 			sourceTree = "<group>";
@@ -1395,21 +1336,8 @@
 				50D65A1B20E0238000DFD183 /* openSAP-Common.xcconfig */,
 				50D65A1A20E0238000DFD183 /* openSAP-iOS-Debug.xcconfig */,
 				50D65A1920E0238000DFD183 /* openSAP-iOS-Release.xcconfig */,
-				50DA821823E4755E003BEDE1 /* openSAP-Today-Debug.xcconfig */,
-				50DA821923E4756F003BEDE1 /* openSAP-Today-Release.xcconfig */,
 			);
 			path = openSAP;
-			sourceTree = "<group>";
-		};
-		50DA822623E587FD003BEDE1 /* TodayExtension */ = {
-			isa = PBXGroup;
-			children = (
-				50DA822723E587FD003BEDE1 /* TodayViewController.swift */,
-				50DA822923E587FD003BEDE1 /* MainInterface.storyboard */,
-				50DA822C23E587FD003BEDE1 /* Info.plist */,
-				50DA823D23E58EC7003BEDE1 /* InfoPlist.strings */,
-			);
-			path = TodayExtension;
 			sourceTree = "<group>";
 		};
 		50DD35131FD83D24002B40CC /* Layouts */ = {
@@ -1462,7 +1390,6 @@
 				50761B4020FCAC5A00CEDAF9 /* iOS-Tests */,
 				502E71652018DC2B007FC8C0 /* iOS-UITests */,
 				50CF1F3D20DCCED10011BFE9 /* Xcode Configurations */,
-				50DA822623E587FD003BEDE1 /* TodayExtension */,
 				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 				A90587BC1B3BFC130095DB89 /* Products */,
 				B48A5532D8E322172FD78521 /* Pods */,
@@ -1479,7 +1406,6 @@
 				50761B3F20FCAC5900CEDAF9 /* iOS-Tests.xctest */,
 				50761B5320FCADD600CEDAF9 /* Common-Tests.xctest */,
 				5067AD322367042E00ADEAB9 /* Binge.framework */,
-				50DA822423E587FC003BEDE1 /* today.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1909,39 +1835,18 @@
 				BCF915E760C0D54E19A81B5C /* [CP] Embed Pods Frameworks */,
 				50FA2DFD20E4B1A800656776 /* Embed Frameworks */,
 				50CF201220DCDBFC0011BFE9 /* Clear Build Number */,
-				02299DD82417E867006B2E52 /* Embed App Extension */,
 				50D60D2B20E0D2C7007A4199 /* Remove Localizations */,
-				02299DDA2417E8B1006B2E52 /* Remove Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				50FA2DF120E4B1A800656776 /* PBXTargetDependency */,
 				5067AD382367042E00ADEAB9 /* PBXTargetDependency */,
-				50DA822E23E587FD003BEDE1 /* PBXTargetDependency */,
 			);
 			name = iOS;
 			productName = "xikolo-ios";
 			productReference = 50CF201620DCDBFC0011BFE9 /* openHPI.app */;
 			productType = "com.apple.product-type.application";
-		};
-		50DA822323E587FC003BEDE1 /* TodayExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 50DA823023E587FD003BEDE1 /* Build configuration list for PBXNativeTarget "TodayExtension" */;
-			buildPhases = (
-				50DA822023E587FC003BEDE1 /* Sources */,
-				50DA822123E587FC003BEDE1 /* Frameworks */,
-				50DA822223E587FC003BEDE1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				506BDC9B23E6C3B200DDC6EA /* PBXTargetDependency */,
-			);
-			name = TodayExtension;
-			productName = TodayExtension;
-			productReference = 50DA822423E587FC003BEDE1 /* today.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 		50FA2DEA20E4B1A800656776 /* Common */ = {
 			isa = PBXNativeTarget;
@@ -2006,11 +1911,6 @@
 							};
 						};
 					};
-					50DA822323E587FC003BEDE1 = {
-						CreatedOnToolsVersion = 11.3.1;
-						DevelopmentTeam = WP53SSE8S6;
-						ProvisioningStyle = Automatic;
-					};
 					50FA2DEA20E4B1A800656776 = {
 						CreatedOnToolsVersion = 9.4.1;
 						DevelopmentTeam = WP53SSE8S6;
@@ -2039,7 +1939,6 @@
 				50CF1F4120DCDBFC0011BFE9 /* iOS */,
 				50761B3E20FCAC5900CEDAF9 /* iOS-Tests */,
 				502E712A2018D8BF007FC8C0 /* iOS-UITests */,
-				50DA822323E587FC003BEDE1 /* TodayExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -2123,15 +2022,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		50DA822223E587FC003BEDE1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				50DA822B23E587FD003BEDE1 /* MainInterface.storyboard in Resources */,
-				50DA823B23E58EC7003BEDE1 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		50FA2DE920E4B1A800656776 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2143,24 +2033,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		02299DDA2417E8B1006B2E52 /* Remove Extensions */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Remove Extensions";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Build\\ Phases/remove-extensions.sh\n";
-		};
 		50CF1F4320DCDBFC0011BFE9 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2596,14 +2468,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		50DA822023E587FC003BEDE1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				50DA822823E587FD003BEDE1 /* TodayViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		50FA2DE620E4B1A800656776 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2734,11 +2598,6 @@
 			target = 5067AD312367042E00ADEAB9 /* Binge */;
 			targetProxy = 5067AD372367042E00ADEAB9 /* PBXContainerItemProxy */;
 		};
-		506BDC9B23E6C3B200DDC6EA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 50FA2DEA20E4B1A800656776 /* Common */;
-			targetProxy = 506BDC9A23E6C3B200DDC6EA /* PBXContainerItemProxy */;
-		};
 		50761B4520FCAC5A00CEDAF9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 50CF1F4120DCDBFC0011BFE9 /* iOS */;
@@ -2753,11 +2612,6 @@
 			isa = PBXTargetDependency;
 			target = 50CF1F4120DCDBFC0011BFE9 /* iOS */;
 			targetProxy = 50D60D2C20E0D812007A4199 /* PBXContainerItemProxy */;
-		};
-		50DA822E23E587FD003BEDE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 50DA822323E587FC003BEDE1 /* TodayExtension */;
-			targetProxy = 50DA822D23E587FD003BEDE1 /* PBXContainerItemProxy */;
 		};
 		50FA2DF120E4B1A800656776 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2909,24 +2763,6 @@
 				50A725982339189600DE8338 /* de */,
 			);
 			name = CourseDateOverview.storyboard;
-			sourceTree = "<group>";
-		};
-		50DA822923E587FD003BEDE1 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				50DA822A23E587FD003BEDE1 /* Base */,
-				0240EF1624005CFE00337879 /* de */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-		50DA823D23E58EC7003BEDE1 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				50DA823C23E58EC7003BEDE1 /* en */,
-				50DA823E23E58EC8003BEDE1 /* de */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		50FE0F41236C5F4000057A17 /* Localizable.strings */ = {
@@ -5363,517 +5199,6 @@
 			};
 			name = "moocHOUSE-iOS-Release";
 		};
-		50DA823123E587FD003BEDE1 /* openHPI-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50B431CF23E4542B006C7BC4 /* openHPI-Today-Debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = "openHPI-iOS-Debug";
-		};
-		50DA823223E587FD003BEDE1 /* openSAP-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50DA821823E4755E003BEDE1 /* openSAP-Today-Debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "openSAP-iOS-Debug";
-		};
-		50DA823323E587FD003BEDE1 /* openWHO-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50DA821A23E4758D003BEDE1 /* openWHO-Today-Debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "openWHO-iOS-Debug";
-		};
-		50DA823423E587FD003BEDE1 /* moocHOUSE-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50DA821C23E475C9003BEDE1 /* moocHOUSE-Today-Debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "moocHOUSE-iOS-Debug";
-		};
-		50DA823523E587FD003BEDE1 /* openHPI-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50B431D023E4543C006C7BC4 /* openHPI-Today-Release.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "openHPI-iOS-Release";
-		};
-		50DA823623E587FD003BEDE1 /* openSAP-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50DA821923E4756F003BEDE1 /* openSAP-Today-Release.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "openSAP-iOS-Release";
-		};
-		50DA823723E587FD003BEDE1 /* openWHO-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50DA821B23E475A0003BEDE1 /* openWHO-Today-Release.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "openWHO-iOS-Release";
-		};
-		50DA823823E587FD003BEDE1 /* moocHOUSE-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50DA821D23E475DA003BEDE1 /* moocHOUSE-Today-Release.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "moocHOUSE-iOS-Release";
-		};
 		50FA2DF420E4B1A800656776 /* openHPI-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 10A990B6AE3C6D3D5E392F6C /* Pods-Common.openhpi-ios-debug.xcconfig */;
@@ -6487,21 +5812,6 @@
 				50D65A3520E0296C00DFD183 /* openSAP-iOS-Release */,
 				50D65A5320E029A600DFD183 /* openWHO-iOS-Release */,
 				50D65A5D20E029B000DFD183 /* moocHOUSE-iOS-Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "openHPI-iOS-Debug";
-		};
-		50DA823023E587FD003BEDE1 /* Build configuration list for PBXNativeTarget "TodayExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				50DA823123E587FD003BEDE1 /* openHPI-iOS-Debug */,
-				50DA823223E587FD003BEDE1 /* openSAP-iOS-Debug */,
-				50DA823323E587FD003BEDE1 /* openWHO-iOS-Debug */,
-				50DA823423E587FD003BEDE1 /* moocHOUSE-iOS-Debug */,
-				50DA823523E587FD003BEDE1 /* openHPI-iOS-Release */,
-				50DA823623E587FD003BEDE1 /* openSAP-iOS-Release */,
-				50DA823723E587FD003BEDE1 /* openWHO-iOS-Release */,
-				50DA823823E587FD003BEDE1 /* moocHOUSE-iOS-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "openHPI-iOS-Debug";

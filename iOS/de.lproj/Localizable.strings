@@ -150,7 +150,7 @@
 "course.action-menu.share" = "Teilen";
 
 /* Show course dates */
-"course.action-menu.show.dates" = "Kursdaten anzeigen";
+"course.action-menu.show-course-dates" = "Kurstermine anzeigen";
 
 /* the current state of a certificate */
 "course.certificates.achieved" = "erreicht";

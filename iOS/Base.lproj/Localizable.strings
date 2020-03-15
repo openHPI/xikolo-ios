@@ -150,7 +150,7 @@
 "course.action-menu.share" = "Share";
 
 /* Show course dates */
-"course.action-menu.show.dates" = "Show course dates";
+"course.action-menu.show-course-dates" = "Show course dates";
 
 /* the current state of a certificate */
 "course.certificates.achieved" = "achieved";

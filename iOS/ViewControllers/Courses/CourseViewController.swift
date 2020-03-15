@@ -3,8 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-// swiftlint:disable file_length
-// swiftlint:disable type_body_length
+// swiftlint:disable file_length type_body_length
 
 import Common
 import SDWebImage
@@ -52,6 +51,20 @@ class CourseViewController: UIViewController {
         return self.navigationController as? CourseNavigationController
     }
 
+    private var shareCourseAction: UIAlertAction {
+        return UIAlertAction(title: NSLocalizedString("course.action-menu.share", comment: "Title for course item share action"),
+                             style: .default) { [weak self] _ in
+            self?.shareCourse()
+        }
+    }
+
+    private var showCourseDatesAction: UIAlertAction {
+        return UIAlertAction(title: NSLocalizedString("course.action-menu.show-course-dates", comment: "Title for show course dates action"),
+                             style: .default) { [weak self] _ in
+            self?.showCourseDates()
+        }
+    }
+
     var course: Course! {
         didSet {
             self.updateView()
@@ -73,19 +86,6 @@ class CourseViewController: UIViewController {
         // we only want to use the toolbar items of the embedded view controllers
         // swiftlint:disable:next unused_setter_value
         set {}
-    }
-
-    private var shareCourseAction: UIAlertAction {
-        return UIAlertAction(title: NSLocalizedString("course.action-menu.share",
-                                                      comment: "Title for course item share action"), style: .default) { [weak self] _ in
-            self?.shareCourse()
-        }
-    }
-
-    private var showCourseDatesAction: UIAlertAction {
-        return UIAlertAction(title: NSLocalizedString("course.action-menu.show.dates", comment: "Show course dates"), style: .default) { [weak self] _ in
-            self?.showCourseDates()
-        }
     }
 
     override func viewDidLoad() {

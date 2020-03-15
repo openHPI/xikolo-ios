@@ -19,7 +19,6 @@ class CourseViewController: UIViewController {
     @IBOutlet private weak var headerImageHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var headerImageTopSuperviewConstraint: NSLayoutConstraint!
     @IBOutlet private weak var headerImageTopSafeAreaConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var actionMenuButton: UIBarButtonItem!
 
     private var headerOffset: CGFloat = 0 {
         didSet {
@@ -50,6 +49,10 @@ class CourseViewController: UIViewController {
     private var courseNavigationController: CourseNavigationController? {
         return self.navigationController as? CourseNavigationController
     }
+
+    private lazy var actionMenuButton: UIBarButtonItem = {
+        return UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
+    }()
 
     private var shareCourseAction: UIAlertAction {
         return UIAlertAction(title: NSLocalizedString("course.action-menu.share", comment: "Title for course item share action"),
@@ -91,6 +94,7 @@ class CourseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.headerImageView.backgroundColor = Brand.default.colors.secondary
 
         self.cornerView.layer.cornerRadius = self.cornerView.frame.height / 2
@@ -314,7 +318,6 @@ class CourseViewController: UIViewController {
     }
 
     @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
-
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = sender
 

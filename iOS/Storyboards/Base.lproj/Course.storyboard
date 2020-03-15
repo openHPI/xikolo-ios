@@ -102,14 +102,8 @@
                                 <action selector="tappedCloseButton:" destination="GW9-XM-IkA" id="hks-dm-2X6"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="dots" id="B8z-CN-Upz">
-                            <connections>
-                                <action selector="showActionMenu:" destination="GW9-XM-IkA" id="RRF-OO-2N4"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="actionMenuButton" destination="B8z-CN-Upz" id="J7b-mr-hJT"/>
                         <outlet property="cornerView" destination="AFF-tD-7pz" id="zDB-Ct-JmO"/>
                         <outlet property="courseAreaListContainerHeight" destination="M5J-wN-Bdc" id="8zh-Oz-2x2"/>
                         <outlet property="headerImageHeightConstraint" destination="qIM-0C-4xD" id="044-K2-V6e"/>
@@ -227,7 +221,4 @@
             <point key="canvasLocation" x="4248" y="132"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="dots" width="28" height="28"/>
-    </resources>
 </document>

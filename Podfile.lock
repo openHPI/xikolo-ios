@@ -80,7 +80,7 @@ PODS:
     - SDWebImage/Core (= 5.6.0)
   - SDWebImage/Core (5.6.0)
   - SimulatorStatusMagic (2.4.1)
-  - SwiftLint (0.37.0)
+  - SwiftLint (0.39.1)
   - SyncEngine (0.1.0):
     - BrightFutures (~> 8.0)
     - Marshal (~> 1.2)
@@ -168,7 +168,7 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SDWebImage: 21b19f56b4226cdfe3aefe4e6848dc43ed129a86
   SimulatorStatusMagic: 28d4a9d1a500ac7cea0b2b5a43c1c6ddb40ba56c
-  SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   SyncEngine: 0b941e576dfb5073344d043fbc70919c42c32435
 
 PODFILE CHECKSUM: b4bf295b146cb58058b4f2685f2340798a8cb565

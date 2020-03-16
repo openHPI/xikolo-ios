@@ -9,7 +9,7 @@ extension ChannelHelper {
 
     public enum FetchRequest {
 
-       public static var orderedChannels: NSFetchRequest<Channel> {
+        public static var orderedChannels: NSFetchRequest<Channel> {
             let request: NSFetchRequest<Channel> = Channel.fetchRequest()
             request.sortDescriptors = [
                 NSSortDescriptor(keyPath: \Channel.position, ascending: true),

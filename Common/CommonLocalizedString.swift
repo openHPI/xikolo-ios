@@ -9,6 +9,7 @@ import Foundation
 class CommonLocalizer {
 
     static func localizedString(_ key: String, comment: String) -> String {
+        // swiftlint:disable:next nslocalizedstring_key
         return NSLocalizedString(key, bundle: Bundle(for: CommonLocalizer.self), comment: comment)
     }
 

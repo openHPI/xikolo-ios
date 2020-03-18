@@ -6,5 +6,5 @@
 import Foundation
 
 public protocol ImageLoader {
-    static func load(for url: URL) -> UIImage?
+    static func dataTask(for url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask
 }

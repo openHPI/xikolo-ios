@@ -8,9 +8,9 @@ import Foundation
 public struct DefaultStyleCollection: StyleCollection {
 
     let tintColor: UIColor
-    let imageLoader: ImageLoader.Type
+    let imageLoader: ImageLoader.Type?
 
-    public init(tintColor: UIColor, imageLoader: ImageLoader.Type = DefaultImageLoader.self) {
+    public init(tintColor: UIColor, imageLoader: ImageLoader.Type? = nil) {
         self.tintColor = tintColor
         self.imageLoader = imageLoader
     }
@@ -112,11 +112,23 @@ public struct DefaultStyleCollection: StyleCollection {
         }
     }
 
-    public func replacement(for tag: Tag) -> NSAttributedString? {
+    public func replacement(for tag: Tag, with layoutChangeHandler: (() -> Void)?) -> NSAttributedString? {
         switch tag {
         case let .image(url):
-            let attachment = ImageTextAttachment()
-            attachment.image = self.imageLoader.load(for: url)
+            guard let imageLoader = self.imageLoader else {
+                return NSAttributedString(string: "\n")
+            }
+
+            let placeHolderColor: UIColor = {
+                if #available(iOS 13, *) {
+                    return .tertiarySystemFill
+                } else {
+                    return .lightGray
+                }
+            }()
+
+            let placeHolderImage = UIImage.placeholder(withColor: placeHolderColor, size: CGSize(width: 2, height: 1))
+            let attachment = AsyncImageTextAttachment(imageLoader: imageLoader, imageURL: url, layoutChangeHandler: layoutChangeHandler, placeHolderImage: placeHolderImage)
             let attachmentString = NSAttributedString(attachment: attachment)
             let attributedString = NSMutableAttributedString(attributedString: attachmentString)
             attributedString.append(NSAttributedString(string: "\n"))

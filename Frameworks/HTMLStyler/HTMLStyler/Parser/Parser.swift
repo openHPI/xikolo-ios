@@ -56,7 +56,7 @@ public struct Parser {
         return transformedHtml
     }
 
-    public func attributedString(for html: String) -> NSMutableAttributedString {
+    public func attributedString(for html: String, with layoutChangeHandler: (() -> Void)? = nil) -> NSMutableAttributedString {
         let singleLineHtml = html.replacingOccurrences(of: "\n", with: " ")
         let (transformedHtml, detections) = self.detectAndTransformTags(in: singleLineHtml)
         let attributedHtml = NSMutableAttributedString(string: transformedHtml)
@@ -72,7 +72,7 @@ public struct Parser {
                 attributedHtml.addAttributes(attributes, range: NSRange(detection.range, in: transformedHtml))
             }
 
-            if let replacement = styleCollection.replacement(for: detection.type) {
+            if let replacement = styleCollection.replacement(for: detection.type, with: layoutChangeHandler) {
                 attributedHtml.replaceCharacters(in: NSRange(detection.range, in: transformedHtml), with: replacement)
             }
         }

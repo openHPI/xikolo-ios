@@ -9,10 +9,12 @@ import HTMLStyler
 
 struct XikoloImageLoader: ImageLoader {
 
-    public static func load(for url: URL) -> UIImage? {
-        guard let absoluteURL = URL(string: url.absoluteString, relativeTo: Routes.base) else { return nil }
-        guard let data = try? Data(contentsOf: absoluteURL) else { return nil }
-        return UIImage(data: data)
+    public static func dataTask(for url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask {
+        guard let absoluteURL = URL(string: url.absoluteString, relativeTo: Routes.base) else {
+            return URLSession.shared.dataTask(with: url, completionHandler: completionHandler)
+        }
+
+        return URLSession.shared.dataTask(with: absoluteURL, completionHandler: completionHandler)
     }
 
 }
@@ -20,6 +22,12 @@ struct XikoloImageLoader: ImageLoader {
 public enum MarkdownHelper {
 
     static let parser: Parser = {
+        var parser = Parser()
+        parser.styleCollection = DefaultStyleCollection(tintColor: Brand.default.colors.primary)
+        return parser
+    }()
+
+    static let imageParser: Parser = {
         var parser = Parser()
         parser.styleCollection = DefaultStyleCollection(tintColor: Brand.default.colors.primary, imageLoader: XikoloImageLoader.self)
         return parser
@@ -30,17 +38,14 @@ public enum MarkdownHelper {
         return self.parser.string(for: html ?? "")
     }
 
-    public static func attributedString(for markdown: String) -> Future<NSMutableAttributedString, XikoloError> {
+    public static func attributedString(for markdown: String) -> NSAttributedString {
+        let html = try? Down(markdownString: markdown).toHTML()
+        return self.parser.attributedString(for: html ?? "")
+    }
 
-        let promise = Promise<NSMutableAttributedString, XikoloError>()
-
-        DispatchQueue.global(qos: .userInitiated).async {
-            let html = try? Down(markdownString: markdown).toHTML()
-            let attributedString = self.parser.attributedString(for: html ?? "")
-            promise.success(attributedString)
-        }
-
-        return promise.future
+    public static func attributedStringWithImages(for markdown: String, layoutChangeHandler: (() -> Void)? = nil) -> NSAttributedString {
+        let html = try? Down(markdownString: markdown).toHTML()
+        return self.imageParser.attributedString(for: html ?? "", with: layoutChangeHandler)
     }
 
 }

@@ -12,7 +12,9 @@
 		5057043320B8382D007DD938 /* ImageTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057043220B8382D007DD938 /* ImageTextAttachment.swift */; };
 		5057043920B838B6007DD938 /* DefaultStyleCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057043820B838B6007DD938 /* DefaultStyleCollection.swift */; };
 		5057043C20B83F5F007DD938 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057043B20B83F5F007DD938 /* ImageLoader.swift */; };
-		5057043E20B83F8E007DD938 /* DefaultImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057043D20B83F8E007DD938 /* DefaultImageLoader.swift */; };
+		506BDB78242125870002DBDE /* AsyncImageTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506BDB77242125870002DBDE /* AsyncImageTextAttachment.swift */; };
+		506BDB7A2421260D0002DBDE /* NSLayoutManager+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506BDB792421260D0002DBDE /* NSLayoutManager+Layout.swift */; };
+		506BDB7C24212A1D0002DBDE /* UIImage+placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506BDB7B24212A1D0002DBDE /* UIImage+placeholder.swift */; };
 		5072A4FB20AED07F0049812E /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5072A4F120AED07E0049812E /* HTMLStyler.framework */; };
 		5072A50020AED07F0049812E /* HTMLStylerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5072A4FF20AED07F0049812E /* HTMLStylerTests.swift */; };
 		5072A50220AED07F0049812E /* HTMLStyler.h in Headers */ = {isa = PBXBuildFile; fileRef = 5072A4F420AED07E0049812E /* HTMLStyler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -38,7 +40,9 @@
 		5057043220B8382D007DD938 /* ImageTextAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextAttachment.swift; sourceTree = "<group>"; };
 		5057043820B838B6007DD938 /* DefaultStyleCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStyleCollection.swift; sourceTree = "<group>"; };
 		5057043B20B83F5F007DD938 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		5057043D20B83F8E007DD938 /* DefaultImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageLoader.swift; sourceTree = "<group>"; };
+		506BDB77242125870002DBDE /* AsyncImageTextAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageTextAttachment.swift; sourceTree = "<group>"; };
+		506BDB792421260D0002DBDE /* NSLayoutManager+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+Layout.swift"; sourceTree = "<group>"; };
+		506BDB7B24212A1D0002DBDE /* UIImage+placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+placeholder.swift"; sourceTree = "<group>"; };
 		5072A4F120AED07E0049812E /* HTMLStyler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTMLStyler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5072A4F420AED07E0049812E /* HTMLStyler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLStyler.h; sourceTree = "<group>"; };
 		5072A4F520AED07E0049812E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,7 +108,9 @@
 				5057043820B838B6007DD938 /* DefaultStyleCollection.swift */,
 				5057043220B8382D007DD938 /* ImageTextAttachment.swift */,
 				5057043B20B83F5F007DD938 /* ImageLoader.swift */,
-				5057043D20B83F8E007DD938 /* DefaultImageLoader.swift */,
+				506BDB77242125870002DBDE /* AsyncImageTextAttachment.swift */,
+				506BDB792421260D0002DBDE /* NSLayoutManager+Layout.swift */,
+				506BDB7B24212A1D0002DBDE /* UIImage+placeholder.swift */,
 			);
 			path = Default;
 			sourceTree = "<group>";
@@ -257,8 +263,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5057043E20B83F8E007DD938 /* DefaultImageLoader.swift in Sources */,
+				506BDB7C24212A1D0002DBDE /* UIImage+placeholder.swift in Sources */,
+				506BDB78242125870002DBDE /* AsyncImageTextAttachment.swift in Sources */,
 				5057042E20B8366C007DD938 /* Tag.swift in Sources */,
+				506BDB7A2421260D0002DBDE /* NSLayoutManager+Layout.swift in Sources */,
 				5057043920B838B6007DD938 /* DefaultStyleCollection.swift in Sources */,
 				5057043320B8382D007DD938 /* ImageTextAttachment.swift in Sources */,
 				50FC3C8620B5A037007FEE83 /* NSMutableAttributedString+trim.swift in Sources */,

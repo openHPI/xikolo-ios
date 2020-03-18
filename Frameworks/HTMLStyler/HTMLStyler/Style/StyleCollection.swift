@@ -13,7 +13,7 @@ public protocol StyleCollection {
 
     func style(for tag: Tag, isLastSibling: Bool) -> Style?
 
-    func replacement(for tag: Tag) -> NSAttributedString?
+    func replacement(for tag: Tag, with layoutChangeHandler: (() -> Void)?) -> NSAttributedString?
 
 }
 
@@ -27,7 +27,7 @@ public extension StyleCollection {
         return nil
     }
 
-    func replacement(for tag: Tag) -> NSAttributedString? {
+    func replacement(for tag: Tag, with layoutChangeHandler: (() -> Void)?) -> NSAttributedString? {
         return nil
     }
 

@@ -130,6 +130,9 @@
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Loading instructions …" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GdB-9t-4lq">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="38"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="vZn-4H-Az2"/>
+                                                                </constraints>
                                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -196,6 +199,7 @@
                         <outlet property="instructionsView" destination="GdB-9t-4lq" id="0oB-US-Sk4"/>
                         <outlet property="itemTitleLabel" destination="s0C-PM-wzS" id="eMz-X6-DhT"/>
                         <outlet property="launchButton" destination="rF0-gS-qZg" id="dOP-VG-tMl"/>
+                        <outlet property="minimumTextViewHeightContraint" destination="vZn-4H-Az2" id="QQq-La-AZ4"/>
                         <outlet property="pointsLabel" destination="Td9-5s-WRE" id="KjM-w6-87w"/>
                         <outlet property="timeEffortLabel" destination="jbu-gA-ILD" id="x3w-ra-5cd"/>
                         <outlet property="timeEffortView" destination="Pey-sr-JVF" id="RFI-9N-Npg"/>

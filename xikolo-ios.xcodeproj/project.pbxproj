@@ -122,6 +122,7 @@
 		5067AD682367146500ADEAB9 /* BingeMediaSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067AD552367146500ADEAB9 /* BingeMediaSelectionViewController.swift */; };
 		5067AD692367146500ADEAB9 /* BingeTimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067AD562367146500ADEAB9 /* BingeTimeSlider.swift */; };
 		5067AD6B236717D000ADEAB9 /* Binge+Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067AD6A236717D000ADEAB9 /* Binge+Video.swift */; };
+		506BDB7E242259DA0002DBDE /* UITextView+Markdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506BDB7D242259DA0002DBDE /* UITextView+Markdown.swift */; };
 		506D7E1B2104B7730018D9E2 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506D7E1A2104B7730018D9E2 /* CourseCell.xib */; };
 		50761B5820FCADD700CEDAF9 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
 		5077012E218F38BC005568A6 /* InnerPillLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5077012D218F38BC005568A6 /* InnerPillLabel.swift */; };
@@ -621,6 +622,7 @@
 		5067AD552367146500ADEAB9 /* BingeMediaSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BingeMediaSelectionViewController.swift; sourceTree = "<group>"; };
 		5067AD562367146500ADEAB9 /* BingeTimeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BingeTimeSlider.swift; sourceTree = "<group>"; };
 		5067AD6A236717D000ADEAB9 /* Binge+Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binge+Video.swift"; sourceTree = "<group>"; };
+		506BDB7D242259DA0002DBDE /* UITextView+Markdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Markdown.swift"; sourceTree = "<group>"; };
 		506D7E1A2104B7730018D9E2 /* CourseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseCell.xib; sourceTree = "<group>"; };
 		5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNavigationController.swift; sourceTree = "<group>"; };
 		50761B3F20FCAC5900CEDAF9 /* iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1557,6 +1559,7 @@
 				50253A2A22BA2F2A00FB63FD /* UICollectionViewFlowLayout+RTL.swift */,
 				AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */,
 				508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */,
+				506BDB7D242259DA0002DBDE /* UITextView+Markdown.swift */,
 				50A2042622FAD324004371C0 /* UITraitCollection+performAsCurrent.swift */,
 				5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */,
 				50FB7121232BBDC700359BB2 /* UIView+backgroundColor.swift */,
@@ -2354,6 +2357,7 @@
 				50CF1F7220DCDBFC0011BFE9 /* CardListLayout.swift in Sources */,
 				026A1CA6239141C600F61976 /* CourseProgressView.swift in Sources */,
 				5095B1DD20EB81E900572924 /* Crashlytics.swift in Sources */,
+				506BDB7E242259DA0002DBDE /* UITextView+Markdown.swift in Sources */,
 				5046BD0A212B4DC700B9F2CD /* DocumentLocalization+Download.swift in Sources */,
 				50CF1F7520DCDBFC0011BFE9 /* UIAlertViewController+spinner.swift in Sources */,
 				50CF1F7720DCDBFC0011BFE9 /* CourseListViewController.swift in Sources */,

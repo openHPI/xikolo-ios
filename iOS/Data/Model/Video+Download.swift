@@ -90,6 +90,68 @@ extension Video {
         return nil
     }
 
+    @available(iOS 13, *)
+    var downloadStreamAction: UIAction? {
+        let isOffline = !ReachabilityHelper.hasConnection
+        let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: self)
+        if let url = self.streamURLForDownload, streamDownloadState == .notDownloaded, !isOffline {
+            let downloadActionTitle = NSLocalizedString("course-item.stream-download-action.start-download.title",
+                                                        comment: "start download of stream for video")
+            return UIAction(title: downloadActionTitle) { _ in
+                StreamPersistenceManager.shared.startDownload(with: url, for: self)
+            }
+        }
+
+        if streamDownloadState == .pending || streamDownloadState == .downloading {
+            let abortActionTitle = NSLocalizedString("course-item.stream-download-action.stop-download.title",
+                                                     comment: "stop stream download for video")
+            return UIAction(title: abortActionTitle) { _ in
+                StreamPersistenceManager.shared.cancelDownload(for: self)
+            }
+        }
+
+        if streamDownloadState == .downloaded {
+            let deleteActionTitle = NSLocalizedString("course-item.stream-download-action.delete-download.title",
+                                                      comment: "delete stream download for video")
+            return UIAction(title: deleteActionTitle) { _ in
+                StreamPersistenceManager.shared.deleteDownload(for: self)
+            }
+        }
+
+        return nil
+    }
+
+    @available(iOS 13, *)
+    var downloadSlidesAction: UIAction? {
+        let isOffline = !ReachabilityHelper.hasConnection
+        let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: self)
+        if let url = self.streamURLForDownload, streamDownloadState == .notDownloaded, !isOffline {
+            let downloadActionTitle = NSLocalizedString("course-item.slides-download-action.start-download.title",
+                                                        comment: "start download of slides for video")
+            return UIAction(title: downloadActionTitle, image: UIImage(systemName: "downloads")) { _ in
+                SlidesPersistenceManager.shared.startDownload(with: url, for: self)
+            }
+        }
+
+        if streamDownloadState == .pending || streamDownloadState == .downloading {
+            let abortActionTitle = NSLocalizedString("course-item.slides-download-action.stop-download.title",
+                                                     comment: "stop slides download for video")
+            return UIAction(title: abortActionTitle, image: UIImage(systemName: "downloads")) { _ in
+                SlidesPersistenceManager.shared.cancelDownload(for: self)
+            }
+        }
+
+        if streamDownloadState == .downloaded {
+            let deleteActionTitle = NSLocalizedString("course-item.slides-download-action.delete-download.title",
+                                                      comment: "delete slides download for video")
+            return UIAction(title: deleteActionTitle, image: UIImage(systemName: "downloads")) { _ in
+                SlidesPersistenceManager.shared.deleteDownload(for: self)
+            }
+        }
+
+        return nil
+    }
+
     var combinedUserActions: [UIAlertAction] {
         var actions: [UIAlertAction] = []
 

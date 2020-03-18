@@ -166,6 +166,35 @@ extension CourseItemListViewController { // TableViewDelegate
         return header
     }
 
+    @available(iOS 13.0, *)
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let courseItem = self.dataSource.object(at: indexPath)
+
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+
+            let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                self.shareCourseItem(courseItem: courseItem)
+            }
+
+            let contextMenu = UIMenu(title: "", children: [share])
+
+            if let video = courseItem.content as? Video {
+                if let downloadStream = video.downloadStreamAction, let downloadSlides = video.downloadSlidesAction {
+                    contextMenu.replacingChildren([share, downloadStream, downloadSlides])
+                }
+            }
+
+            return contextMenu
+        }
+    }
+
+    private func shareCourseItem(courseItem: CourseItem) {
+        let activityItems = courseItem
+        let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
+
+        self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
 }
 
 extension CourseItemListViewController: CoreDataTableViewDataSourceDelegate {

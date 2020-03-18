@@ -137,6 +137,20 @@ class CourseListViewController: UICollectionViewController {
         }
     }
 
+    private func shareCourse(course: Course) {
+        let activityItems = course
+        let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
+        self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    private func showCourseDates(course: Course) {
+            let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
+            courseDatesViewController.course = course
+            let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
+            navigationController.navigationBar.barTintColor = ColorCompatibility.systemBackground
+            self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+        }
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = self.dataSource.object(at: indexPath)
         self.appNavigator?.show(course: course)
@@ -193,20 +207,6 @@ class CourseListViewController: UICollectionViewController {
             return UIMenu(title: "", children: [share, showCourseDates])
         }
     }
-
-    private func shareCourse(course: Course) {
-        let activityItems = course
-        let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
-        self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
-    }
-
-    private func showCourseDates(course: Course) {
-            let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
-            courseDatesViewController.course = course
-            let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
-            navigationController.navigationBar.barTintColor = ColorCompatibility.systemBackground
-            self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
-        }
 
 }
 

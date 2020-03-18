@@ -51,13 +51,13 @@ public struct Parser {
     public var styleCollection: StyleCollection?
 
     public func string(for html: String) -> String {
-        let singleLineHtml = html.replacingOccurrences(of: "\n", with: "")
+        let singleLineHtml = html.replacingOccurrences(of: "\n", with: " ")
         let (transformedHtml, _) = self.detectAndTransformTags(in: singleLineHtml)
         return transformedHtml
     }
 
     public func attributedString(for html: String) -> NSMutableAttributedString {
-        let singleLineHtml = html.replacingOccurrences(of: "\n", with: "")
+        let singleLineHtml = html.replacingOccurrences(of: "\n", with: " ")
         let (transformedHtml, detections) = self.detectAndTransformTags(in: singleLineHtml)
         let attributedHtml = NSMutableAttributedString(string: transformedHtml)
 
@@ -93,7 +93,9 @@ public struct Parser {
 
         while !scanner.isAtEnd {
             if let textString = scanner.scanUpToCharacters(from: CharacterSet(charactersIn: "<&")) {
-                resultString += textString
+                if !textString.trimmingCharacters(in: CharacterSet.whitespaces).isEmpty {
+                    resultString += textString
+                }
             } else {
                 if scanner.scanString("<") != nil {
                     let isStartTag = scanner.scanString("/") == nil

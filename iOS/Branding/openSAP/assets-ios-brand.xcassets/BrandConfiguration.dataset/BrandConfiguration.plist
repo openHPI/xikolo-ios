@@ -56,6 +56,21 @@
 		<key>topic</key>
 		<string>topic</string>
 	</dict>
+	<key>additionalLearningMaterialResources</key>
+	<array>
+		<dict>
+			<key>type</key>
+			<string>microLearning</string>
+			<key>url</key>
+			<string>https://open.sap.com/microlearning</string>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>podcasts</string>
+			<key>url</key>
+			<string>https://open.sap.com/podcasts</string>
+		</dict>
+	</array>
 	<key>testAccountUserId</key>
 	<string>38cf47df-4e8d-4914-95c2-7b9128dc2582</string>
 </dict>

@@ -13,6 +13,7 @@ class XikoloTabBarController: UITabBarController {
         case channels
         case courses
         case news
+        case more
         case account
 
         static var availableTabs: [Tabs] {
@@ -23,9 +24,17 @@ class XikoloTabBarController: UITabBarController {
             switch self {
             case .channels:
                 return Brand.default.features.enableChannels
+            case .news:
+                return !self.additionalLearningResourcesAvailable
+            case .more:
+                return self.additionalLearningResourcesAvailable
             default:
                 return true
             }
+        }
+
+        private var additionalLearningResourcesAvailable: Bool {
+            return !Brand.default.additionalLearningMaterialResources.isEmpty
         }
 
         var index: Int {
@@ -42,6 +51,8 @@ class XikoloTabBarController: UITabBarController {
                 return R.storyboard.tabCourses.instantiateInitialViewController()
             case .news:
                 return R.storyboard.tabNews.instantiateInitialViewController()
+            case .more:
+                return R.storyboard.tabMore.instantiateInitialViewController()
             case .account:
                 return R.storyboard.tabAccount.instantiateInitialViewController()
             }

@@ -1,4 +1,10 @@
 
+/* Display name for additional learning material resourse: micro learning */
+"additional-learning-material-resources.micro-learning.title" = "Microlearning";
+
+/* Display name for additional learning material resourse: podcasts */
+"additional-learning-material-resources.podcasts.title" = "Podcasts";
+
 /* title for course start in a course date cell */
 "course-date-cell.course-start.title" = "Kursstart";
 

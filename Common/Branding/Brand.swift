@@ -20,6 +20,7 @@ public struct Brand: Decodable {
         case showCurrentCoursesInSelfPacedSection
         case features
         case courseClassifierSearchFilters
+        case additionalLearningMaterialResources
         case testAccountUserId
     }
 
@@ -42,6 +43,7 @@ public struct Brand: Decodable {
     public let showCurrentCoursesInSelfPacedSection: Bool
     public let features: BrandFeatures
     public let courseClassifierSearchFilters: CourseClassifierSearchFilters?
+    public let additionalLearningMaterialResources: [AdditionalLearningMaterialResource]
     public let testAccountUserId: String?
 
     public var copyrightText: String {
@@ -62,12 +64,13 @@ public struct Brand: Decodable {
         self.showCurrentCoursesInSelfPacedSection = try container.decodeIfPresent(Bool.self, forKey: .showCurrentCoursesInSelfPacedSection) ?? false
         self.features = try container.decode(BrandFeatures.self, forKey: .features)
         self.courseClassifierSearchFilters = try? container.decode(CourseClassifierSearchFilters.self, forKey: .courseClassifierSearchFilters)
+        self.additionalLearningMaterialResources = try container.decodeIfPresent([AdditionalLearningMaterialResource].self, forKey: .additionalLearningMaterialResources) ?? []
         self.testAccountUserId = try? container.decode(String.self, forKey: .testAccountUserId)
     }
 
 }
 
-private extension KeyedDecodingContainer {
+extension KeyedDecodingContainer {
 
     func decodeURL(forKey key: K) throws -> URL {
         let value = try self.decode(String.self, forKey: key)

@@ -33,3 +33,31 @@ extension Course: UIActivityItemSource {
     }
 
 }
+
+extension Course {
+
+    public func share(viewController: UIViewController) {
+
+        let activityItems = [self]
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        activityViewController.completionWithItemsHandler = { activityType, completed, _, _ in
+            let context: [String: String?] = [
+                "service": activityType?.rawValue,
+                "completed": String(describing: completed),
+            ]
+            TrackingHelper.createEvent(.shareCourse, resourceType: .course, resourceId: self.id, on: viewController, context: context)
+        }
+
+        viewController.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    func showCourseDates(viewController: UIViewController) {
+
+        let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
+        courseDatesViewController.course = self
+        let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
+        navigationController.navigationBar.barTintColor = ColorCompatibility.systemBackground
+        viewController.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+
+    }
+}

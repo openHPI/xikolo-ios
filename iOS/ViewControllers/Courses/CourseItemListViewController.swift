@@ -173,7 +173,7 @@ extension CourseItemListViewController { // TableViewDelegate
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
 
             let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
-                self.shareCourseItem(courseItem: courseItem)
+                courseItem.share(viewController: self)
             }
 
             let contextMenu = UIMenu(title: "", children: [share])

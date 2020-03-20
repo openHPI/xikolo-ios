@@ -35,7 +35,9 @@ class CourseItemViewController: UIPageViewController {
     private var shareCourseItemAction: UIAlertAction {
         return UIAlertAction(title: NSLocalizedString("course.action-menu.share",
                                                       comment: "Title for course item share action"), style: .default) { [weak self] _ in
-            self?.shareCourseItem()
+                                                        if let viewController = self {
+                                                        viewController.currentItem?.share(viewController: viewController)
+                                                        }
         }
     }
 
@@ -148,15 +150,6 @@ class CourseItemViewController: UIPageViewController {
         alert.addCancelAction()
 
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
-    }
-
-    @IBAction private func shareCourseItem() {
-        guard let item = self.currentItem else { return }
-        let activityItems = item
-        let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
-        activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
-
-        self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 
 }

@@ -30,20 +30,6 @@ class CourseOverviewViewController: UIViewController {
         self.courses = result.value ?? []
     }
 
-    private func shareCourse(course: Course) {
-        let activityItems = course
-        let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
-        self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
-    }
-
-    private func showCourseDates(course: Course) {
-            let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
-            courseDatesViewController.course = course
-            let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
-            navigationController.navigationBar.barTintColor = ColorCompatibility.systemBackground
-            self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
-        }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titleLabel.text = self.configuration.title
@@ -159,8 +145,9 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
 
     @available(iOS 13.0, *)
     func collectionView(_ collectionView: UICollectionView,
-                                 contextMenuConfigurationForItemAt indexPath: IndexPath,
-                                 point: CGPoint) -> UIContextMenuConfiguration? {
+                        contextMenuConfigurationForItemAt indexPath: IndexPath,
+                        point: CGPoint) -> UIContextMenuConfiguration? {
+
         let course = self.courses[indexPath.item]
 
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
@@ -168,13 +155,13 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
             let share = UIAction(title: NSLocalizedString("course.action-menu.share",
                                                           comment: "Title for course item share action"),
                                  image: UIImage(systemName: "square.and.arrow.up")) { _ in
-                self.shareCourse(course: course)
+                                    course.share(viewController: self)
             }
 
             let showCourseDates = UIAction(title: NSLocalizedString("course.action-menu.show-course-dates",
                                                                     comment: "Title for show course dates action"),
                                            image: UIImage(systemName: "square.and.pencil")) { _ in
-                self.showCourseDates(course: course)
+                course.showCourseDates(viewController: self)
             }
 
             return UIMenu(title: "", children: [share, showCourseDates])

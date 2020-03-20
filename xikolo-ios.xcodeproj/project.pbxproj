@@ -343,6 +343,7 @@
 		70893B5621C3D1F600AF22E3 /* LTIExerciseHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70893B5521C3D1F600AF22E3 /* LTIExerciseHintViewController.swift */; };
 		75CEF776FCE40734ADA24FC7 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A6B339B2EB0E6FBBE16BEF /* Pods_iOS.framework */; };
 		820CCEE623D05B140066CE11 /* CourseItem+share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820CCEE523D05B140066CE11 /* CourseItem+share.swift */; };
+		8242FA0324254A7E004DE429 /* Course+showDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8242FA0224254A7D004DE429 /* Course+showDates.swift */; };
 		8251A50B237182F200A443A9 /* HelpdeskTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50A237182F200A443A9 /* HelpdeskTicket.swift */; };
 		8251A50D23718A4500A443A9 /* HelpdeskTicketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */; };
 		828FF16523EF4424006515B5 /* PeerAssessmentHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FF16423EF4424006515B5 /* PeerAssessmentHintViewController.swift */; };
@@ -777,6 +778,7 @@
 		7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
 		820CCEE523D05B140066CE11 /* CourseItem+share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseItem+share.swift"; sourceTree = "<group>"; };
+		8242FA0224254A7D004DE429 /* Course+showDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+showDates.swift"; sourceTree = "<group>"; };
 		8251A50A237182F200A443A9 /* HelpdeskTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskTicket.swift; sourceTree = "<group>"; };
 		8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskTicketHelper.swift; sourceTree = "<group>"; };
 		828FF16423EF4424006515B5 /* PeerAssessmentHintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerAssessmentHintViewController.swift; sourceTree = "<group>"; };
@@ -1142,6 +1144,7 @@
 				5046BD09212B4DC700B9F2CD /* DocumentLocalization+Download.swift */,
 				502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */,
 				507896C7233DEA1A00EA65E5 /* Course+share.swift */,
+				8242FA0224254A7D004DE429 /* Course+showDates.swift */,
 				820CCEE523D05B140066CE11 /* CourseItem+share.swift */,
 			);
 			path = Model;
@@ -2357,6 +2360,7 @@
 				5046BD0A212B4DC700B9F2CD /* DocumentLocalization+Download.swift in Sources */,
 				50CF1F7520DCDBFC0011BFE9 /* UIAlertViewController+spinner.swift in Sources */,
 				50CF1F7720DCDBFC0011BFE9 /* CourseListViewController.swift in Sources */,
+				8242FA0324254A7E004DE429 /* Course+showDates.swift in Sources */,
 				50046F6F216B938D00D59073 /* LoadingButton.swift in Sources */,
 				50146FCD2222879D00177E96 /* CourseSearchFilterCell.swift in Sources */,
 				50CF1F7920DCDBFC0011BFE9 /* CertificatesListViewController.swift in Sources */,

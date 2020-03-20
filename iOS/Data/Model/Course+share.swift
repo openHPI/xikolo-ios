@@ -51,13 +51,4 @@ extension Course {
         viewController.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 
-    func showCourseDates(viewController: UIViewController) {
-
-        let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
-        courseDatesViewController.course = self
-        let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
-        navigationController.navigationBar.barTintColor = ColorCompatibility.systemBackground
-        viewController.present(navigationController, animated: trueUnlessReduceMotionEnabled)
-
-    }
 }

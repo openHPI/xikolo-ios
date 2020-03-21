@@ -38,8 +38,7 @@ extension Course {
 
     public func share(viewController: UIViewController) {
 
-        let activityItems = [self]
-        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [self], applicationActivities: nil)
         activityViewController.completionWithItemsHandler = { activityType, completed, _, _ in
             let context: [String: String?] = [
                 "service": activityType?.rawValue,

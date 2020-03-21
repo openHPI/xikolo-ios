@@ -41,8 +41,7 @@ extension CourseItem: UIActivityItemSource {
 extension CourseItem {
 
     public func share(viewController: UIViewController) {
-        let activityItems = [self]
-        let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [self], applicationActivities: nil)
         viewController.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 

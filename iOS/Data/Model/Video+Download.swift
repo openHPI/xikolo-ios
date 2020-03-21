@@ -94,10 +94,11 @@ extension Video {
     var downloadStreamAction: UIAction? {
         let isOffline = !ReachabilityHelper.hasConnection
         let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: self)
+
         if let url = self.streamURLForDownload, streamDownloadState == .notDownloaded, !isOffline {
             let downloadActionTitle = NSLocalizedString("course-item.stream-download-action.start-download.title",
                                                         comment: "start download of stream for video")
-            return UIAction(title: downloadActionTitle) { _ in
+            return UIAction(title: downloadActionTitle, image: UIImage(systemName: "icloud.and.arrow.down")) { _ in
                 StreamPersistenceManager.shared.startDownload(with: url, for: self)
             }
         }
@@ -105,7 +106,7 @@ extension Video {
         if streamDownloadState == .pending || streamDownloadState == .downloading {
             let abortActionTitle = NSLocalizedString("course-item.stream-download-action.stop-download.title",
                                                      comment: "stop stream download for video")
-            return UIAction(title: abortActionTitle) { _ in
+            return UIAction(title: abortActionTitle, image: UIImage(systemName: "stop.circle")) { _ in
                 StreamPersistenceManager.shared.cancelDownload(for: self)
             }
         }
@@ -113,7 +114,7 @@ extension Video {
         if streamDownloadState == .downloaded {
             let deleteActionTitle = NSLocalizedString("course-item.stream-download-action.delete-download.title",
                                                       comment: "delete stream download for video")
-            return UIAction(title: deleteActionTitle) { _ in
+            return UIAction(title: deleteActionTitle, image: UIImage(systemName: "trash")) { _ in
                 StreamPersistenceManager.shared.deleteDownload(for: self)
             }
         }
@@ -124,27 +125,28 @@ extension Video {
     @available(iOS 13, *)
     var downloadSlidesAction: UIAction? {
         let isOffline = !ReachabilityHelper.hasConnection
-        let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: self)
-        if let url = self.streamURLForDownload, streamDownloadState == .notDownloaded, !isOffline {
+        let slidesDownloadState = SlidesPersistenceManager.shared.downloadState(for: self)
+
+        if let url = self.slidesURL, slidesDownloadState == .notDownloaded, !isOffline {
             let downloadActionTitle = NSLocalizedString("course-item.slides-download-action.start-download.title",
                                                         comment: "start download of slides for video")
-            return UIAction(title: downloadActionTitle, image: UIImage(systemName: "downloads")) { _ in
+            return UIAction(title: downloadActionTitle, image: UIImage(systemName: "icloud.and.arrow.down")) { _ in
                 SlidesPersistenceManager.shared.startDownload(with: url, for: self)
             }
         }
 
-        if streamDownloadState == .pending || streamDownloadState == .downloading {
+        if slidesDownloadState == .pending || slidesDownloadState == .downloading {
             let abortActionTitle = NSLocalizedString("course-item.slides-download-action.stop-download.title",
                                                      comment: "stop slides download for video")
-            return UIAction(title: abortActionTitle, image: UIImage(systemName: "downloads")) { _ in
+            return UIAction(title: abortActionTitle, image: UIImage(systemName: "stop.circle")) { _ in
                 SlidesPersistenceManager.shared.cancelDownload(for: self)
             }
         }
 
-        if streamDownloadState == .downloaded {
+        if slidesDownloadState == .downloaded {
             let deleteActionTitle = NSLocalizedString("course-item.slides-download-action.delete-download.title",
                                                       comment: "delete slides download for video")
-            return UIAction(title: deleteActionTitle, image: UIImage(systemName: "downloads")) { _ in
+            return UIAction(title: deleteActionTitle, image: UIImage(systemName: "trash")) { _ in
                 SlidesPersistenceManager.shared.deleteDownload(for: self)
             }
         }

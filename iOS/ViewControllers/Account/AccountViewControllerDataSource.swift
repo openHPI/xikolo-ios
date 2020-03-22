@@ -140,8 +140,7 @@ extension AccountViewControllerDataSource: UITableViewDataSource {
 
 }
 
-// swiftlint:disable:next private_over_fileprivate
-fileprivate struct DataSourceSection {
+private struct DataSourceSection {
     let title: String?
     let items: [DataSourceItem]
 }
@@ -165,13 +164,12 @@ protocol ConfigurableDataSourceItem: DataSourceItem {
 }
 
 extension ConfigurableDataSourceItem {
-    fileprivate func configure(_ cell: UITableViewCell) {
+    func configure(_ cell: UITableViewCell) {
         cell.textLabel?.text = self.title
     }
 }
 
-// swiftlint:disable:next private_over_fileprivate
-fileprivate struct SegueItem<T: StoryboardSegueIdentifierType>: ConfigurableDataSourceItem where T.SourceType == AccountViewController {
+private struct SegueItem<T: StoryboardSegueIdentifierType>: ConfigurableDataSourceItem where T.SourceType == AccountViewController {
     let title: String
     let segueIdentifier: T
     let cellReuseIdentifier = R.reuseIdentifier.defaultCell.identifier
@@ -181,8 +179,7 @@ fileprivate struct SegueItem<T: StoryboardSegueIdentifierType>: ConfigurableData
     }
 }
 
-// swiftlint:disable:next private_over_fileprivate
-fileprivate struct URLItem: ConfigurableDataSourceItem {
+private struct URLItem: ConfigurableDataSourceItem {
     let title: String
     let url: URL
     let cellReuseIdentifier = R.reuseIdentifier.defaultCell.identifier
@@ -192,8 +189,7 @@ fileprivate struct URLItem: ConfigurableDataSourceItem {
     }
 }
 
-// swiftlint:disable:next private_over_fileprivate
-fileprivate struct ActionItem: ConfigurableDataSourceItem {
+private struct ActionItem: ConfigurableDataSourceItem {
     let cellReuseIdentifier = R.reuseIdentifier.defaultCell.identifier
     let title: String
     let action: (AccountViewController) -> Void
@@ -203,8 +199,7 @@ fileprivate struct ActionItem: ConfigurableDataSourceItem {
     }
 }
 
-// swiftlint:disable:next private_over_fileprivate
-fileprivate struct LogoutItem: DataSourceItem {
+private struct LogoutItem: DataSourceItem {
     let cellReuseIdentifier = R.reuseIdentifier.logoutCell.identifier
     let action: (AccountViewController) -> Void
 

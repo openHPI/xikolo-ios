@@ -32,7 +32,7 @@ public final class ManagedObjectObserver {
     private var token: Any!
     private var objectHasBeenDeleted: Bool = false
 
-    fileprivate func changeType(of object: NSManagedObject, in note: ObjectsDidChangeNotification) -> ChangeType? {
+    private func changeType(of object: NSManagedObject, in note: ObjectsDidChangeNotification) -> ChangeType? {
         let deleted = note.deletedObjects.union(note.invalidatedObjects)
         if note.invalidatedAllObjects || deleted.contains(where: { $0 == object }) {
             return .delete

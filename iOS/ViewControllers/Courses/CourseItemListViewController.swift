@@ -38,14 +38,10 @@ class CourseItemListViewController: UITableViewController {
 
         self.addRefreshControl()
 
-        var separatorInsetLeft: CGFloat = 16.0
+        self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 40.0, bottom: 0, right: 0)
         if #available(iOS 11.0, *) {
             self.tableView.separatorInsetReference = .fromAutomaticInsets
-        } else {
-            separatorInsetLeft += 11.0
         }
-
-        self.tableView.separatorInset = UIEdgeInsets(top: 0, left: separatorInsetLeft, bottom: 0, right: 0)
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),

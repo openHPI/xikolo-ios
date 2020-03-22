@@ -19,12 +19,6 @@ extension CourseSection {
         var slides = DownloadItemCounter()
     }
 
-    private var videos: [Video] {
-        return self.items.compactMap { item in
-            return item.content as? Video
-        }
-    }
-
     var allVideosPreloaded: Bool {
         return !self.items.contains { item in
             return item.contentType == Video.contentType && item.content == nil

@@ -146,6 +146,12 @@
 /* stop all stream downloads in section */
 "course-section.stream-download-action.stop-downloads.title" = "Stop all video downloads";
 
+/* Title for course item share action */
+"course.action-menu.share" = "Share";
+
+/* Title for show course dates action */
+"course.action-menu.show-course-dates" = "Show course dates";
+
 /* the current state of a certificate */
 "course.certificates.achieved" = "achieved";
 
@@ -169,9 +175,6 @@
 
 /* label visit progess with absolute values. n out of m */
 "course.progress.visited %@ of %@ visited" = "%@ of %@ visited";
-
-/* Title for course item share action */
-"courseIteam.share" = "Share";
 
 /* action text for course overview with no courses */
 "dashboard.course-overview.no-courses.action" = "Discover available courses";
@@ -225,10 +228,10 @@
 "empty-view.course-content.title" = "Loading course content …";
 
 /* description for empty course dates list if logged in */
-"empty-view.course-dates.no-dates.description" = "Notifications about deadlines or new courses will appear here";
+"empty-view.course-dates.no-dates.description" = "Information about deadlines will appear here";
 
 /* title for empty course dates list if logged in */
-"empty-view.course-dates.no-dates.title" = "There are no important course dates yet";
+"empty-view.course-dates.no-dates.title" = "There are no upcoming course dates";
 
 /* title for empty course documents list */
 "empty-view.course-documents.title" = "No documents are available for this course";
@@ -249,13 +252,13 @@
 "enrollment.options-alert.mask-as-completed-action.title" = "Mark as completed";
 
 /* message of enrollment alert */
-"enrollment.options-alert.message" = "You can mark a course as completed once you don't want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored.";
+"enrollment.options-alert.message" = "You can mark a course as completed once you don't want to learn anymore in this course. You may also un-enroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored.";
 
 /* title of enrollment options alert */
 "enrollment.options-alert.title" = "Finished learning?";
 
 /* title for unenroll action */
-"enrollment.options-alert.unenroll-action.title" = "Unenroll";
+"enrollment.options-alert.unenroll-action.title" = "Un-enroll";
 
 /* title to cancel alert */
 "global.alert.cancel" = "Cancel";
@@ -339,7 +342,7 @@
 "settings.course-item-content-preload.wifi-only" = "Wifi only";
 
 /* message for deleting downloaded content */
-"settings.downloads.alert.delete.message" = "Do you really to want to delete these content items?";
+"settings.downloads.alert.delete.message" = "Do you really want to delete these items?";
 
 /* title for deleting downloaded content */
 "settings.downloads.alert.delete.title" = "Delete downloaded content";

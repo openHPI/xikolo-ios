@@ -123,6 +123,7 @@
 		5067AD682367146500ADEAB9 /* BingeMediaSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067AD552367146500ADEAB9 /* BingeMediaSelectionViewController.swift */; };
 		5067AD692367146500ADEAB9 /* BingeTimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067AD562367146500ADEAB9 /* BingeTimeSlider.swift */; };
 		5067AD6B236717D000ADEAB9 /* Binge+Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067AD6A236717D000ADEAB9 /* Binge+Video.swift */; };
+		506BDB852423653E0002DBDE /* Announcements.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 506BDB872423653E0002DBDE /* Announcements.storyboard */; };
 		506D7E1B2104B7730018D9E2 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506D7E1A2104B7730018D9E2 /* CourseCell.xib */; };
 		50761B5820FCADD700CEDAF9 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
 		5077012E218F38BC005568A6 /* InnerPillLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5077012D218F38BC005568A6 /* InnerPillLabel.swift */; };
@@ -145,7 +146,7 @@
 		508FF44621AB42B200801530 /* UITableViewController+resizeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */; };
 		50911AF5223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911AF4223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift */; };
 		50911AF7223E29A9000C2007 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */; };
-		50911AF922414457000C2007 /* CourseClassifierSearchFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911AF822414457000C2007 /* CourseClassifierSearchFilter.swift */; };
+		50911AF922414457000C2007 /* CourseClassifierSearchFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911AF822414457000C2007 /* CourseClassifierSearchFilters.swift */; };
 		50913F27218C9E90006C7F11 /* String+height.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50913F26218C9E90006C7F11 /* String+height.swift */; };
 		50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */; };
 		50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */; };
@@ -652,6 +653,8 @@
 		5067AD552367146500ADEAB9 /* BingeMediaSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BingeMediaSelectionViewController.swift; sourceTree = "<group>"; };
 		5067AD562367146500ADEAB9 /* BingeTimeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BingeTimeSlider.swift; sourceTree = "<group>"; };
 		5067AD6A236717D000ADEAB9 /* Binge+Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binge+Video.swift"; sourceTree = "<group>"; };
+		506BDB862423653E0002DBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Announcements.storyboard; sourceTree = "<group>"; };
+		506BDB89242365430002DBDE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Announcements.strings; sourceTree = "<group>"; };
 		506D7E1A2104B7730018D9E2 /* CourseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseCell.xib; sourceTree = "<group>"; };
 		5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNavigationController.swift; sourceTree = "<group>"; };
 		50761B3F20FCAC5900CEDAF9 /* iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -687,7 +690,7 @@
 		508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+resizeViews.swift"; sourceTree = "<group>"; };
 		50911AF4223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFilterOptionsViewController.swift; sourceTree = "<group>"; };
 		50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
-		50911AF822414457000C2007 /* CourseClassifierSearchFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseClassifierSearchFilter.swift; sourceTree = "<group>"; };
+		50911AF822414457000C2007 /* CourseClassifierSearchFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseClassifierSearchFilters.swift; sourceTree = "<group>"; };
 		50913F26218C9E90006C7F11 /* String+height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+height.swift"; sourceTree = "<group>"; };
 		50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+coreDataModelToCommon.swift"; sourceTree = "<group>"; };
@@ -1043,7 +1046,7 @@
 				508AB2EB211448E30079EAE5 /* BrandFeatures.swift */,
 				50D65A0E20DE87F700DFD183 /* CourseDateLabelStyle.swift */,
 				5035232D21806FA600F2E7A4 /* SingleSignOnConfiguration.swift */,
-				50911AF822414457000C2007 /* CourseClassifierSearchFilter.swift */,
+				50911AF822414457000C2007 /* CourseClassifierSearchFilters.swift */,
 			);
 			path = Branding;
 			sourceTree = "<group>";
@@ -1761,6 +1764,7 @@
 				AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */,
 				24B6514B1D355B4A00624DBC /* TabNews.storyboard */,
 				AB9AF2D81CF72EF100ED3EB0 /* TabAccount.storyboard */,
+				506BDB872423653E0002DBDE /* Announcements.storyboard */,
 				5040A61320795CB200E98351 /* Course.storyboard */,
 				50502E2D1FD04E56000A8D35 /* CourseLearnings.storyboard */,
 				50044FD923278F25004D1AD8 /* CourseLearningsVideo.storyboard */,
@@ -2094,6 +2098,7 @@
 				50CF1FF720DCDBFC0011BFE9 /* WebViewController.storyboard in Resources */,
 				50044FC82327816B004D1AD8 /* CourseLearningsUnavailable.storyboard in Resources */,
 				507DFF9A2153E397006DC140 /* InfoPlist.strings in Resources */,
+				506BDB852423653E0002DBDE /* Announcements.storyboard in Resources */,
 				508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */,
 				507D7240233784CE00DADE06 /* CourseOverview.storyboard in Resources */,
 				50CF1FF820DCDBFC0011BFE9 /* TabCourses.storyboard in Resources */,
@@ -2269,7 +2274,6 @@
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SyncEngine/SyncEngine.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -2281,7 +2285,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SyncEngine.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2342,6 +2345,8 @@
 				"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SimulatorStatusMagic/SimulatorStatusMagic.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
@@ -2350,13 +2355,14 @@
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SyncEngine/SyncEngine.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimulatorStatusMagic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
@@ -2365,7 +2371,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SyncEngine.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2641,7 +2646,7 @@
 				50FA2E0620E4B22E00656776 /* MarkdownHelper.swift in Sources */,
 				50FA2E3F20E4B25800656776 /* LTIExercise.swift in Sources */,
 				5001321F215AAAEE0055016F /* NetworkIndicator.swift in Sources */,
-				50911AF922414457000C2007 /* CourseClassifierSearchFilter.swift in Sources */,
+				50911AF922414457000C2007 /* CourseClassifierSearchFilters.swift in Sources */,
 				50FA2E5220E4B26400656776 /* Date+Marshal.swift in Sources */,
 				50FA2E0720E4B22E00656776 /* Settings.swift in Sources */,
 				50FA2E3820E4B25800656776 /* CourseCertificates.swift in Sources */,
@@ -2890,6 +2895,15 @@
 				50502E2F1FD04E59000A8D35 /* de */,
 			);
 			name = CourseLearnings.storyboard;
+			sourceTree = "<group>";
+		};
+		506BDB872423653E0002DBDE /* Announcements.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				506BDB862423653E0002DBDE /* Base */,
+				506BDB89242365430002DBDE /* de */,
+			);
+			name = Announcements.storyboard;
 			sourceTree = "<group>";
 		};
 		507DFF9C2153E397006DC140 /* InfoPlist.strings */ = {

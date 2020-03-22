@@ -11,7 +11,6 @@ import UIKit
 
 class DownloadedContentListViewController: UITableViewController {
 
-    @IBOutlet private var tableViewHeader: UIView!
     @IBOutlet private weak var totalFileSizeLabel: UILabel!
     @IBOutlet private weak var selectAllBarButton: UIBarButtonItem!
     @IBOutlet private weak var deleteBarButton: UIBarButtonItem!
@@ -82,7 +81,7 @@ class DownloadedContentListViewController: UITableViewController {
         let format = NSLocalizedString("settings.downloads.total size: %@", comment: "total size label")
         let formattedFileSize = ByteCountFormatter.string(fromByteCount: Int64(fileSize), countStyle: .file)
         self.totalFileSizeLabel.text = String.localizedStringWithFormat(format, formattedFileSize)
-        self.tableViewHeader.isHidden = self.courseDownloads.isEmpty
+        self.tableView.tableHeaderView?.isHidden = self.courseDownloads.isEmpty
     }
 
     private func aggregatedFileSize(for courseDownload: CourseDownload) -> UInt64 {

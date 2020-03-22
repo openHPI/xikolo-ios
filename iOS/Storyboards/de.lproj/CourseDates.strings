@@ -1,3 +1,6 @@
 
 /* Class = "UINavigationItem"; title = "My course dates"; ObjectID = "T9X-VC-shp"; */
 "T9X-VC-shp.title" = "Meine Termine";
+
+/* Class = "UILabel"; text = "All course dates have been adjusted to your time zone."; ObjectID = "6xa-UN-eVy"; */
+"6xa-UN-eVy.text" = "Alle Kurstermine wurden an Ihre Zeitzone angepasst.";

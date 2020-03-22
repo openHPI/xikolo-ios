@@ -3,6 +3,7 @@ opt_in_rules:
 - array_init
 - closure_end_indentation
 - closure_spacing
+- collection_alignment
 - contains_over_filter_count
 - contains_over_filter_is_empty
 - contains_over_first_not_nil
@@ -14,12 +15,16 @@ opt_in_rules:
 - empty_xctest_method
 - explicit_enum_raw_value
 - explicit_init
+- fallthrough
 - fatal_error_message
 - file_header
 - first_where
+- flatmap_over_map_reduce
+- identical_operands
 - joined_default_parameter
 - last_where
 - legacy_multiple
+- legacy_random
 - let_var_whitespace
 - literal_expression_end_indentation
 - modifier_order
@@ -28,10 +33,12 @@ opt_in_rules:
 - multiline_parameters
 - nimble_operator
 - no_space_in_method_call
+- nslocalizedstring_key
 - operator_usage_whitespace
 - overridden_super_call
 - override_in_extension
 - pattern_matching_keywords
+- prefer_self_type_over_type_of_self
 - private_action
 - private_outlet
 - prohibited_super_call
@@ -44,13 +51,18 @@ opt_in_rules:
 - single_test_class
 - sorted_first_last
 - sorted_imports
+- static_operator
+- strict_fileprivate
 - switch_case_on_newline
+- toggle_bool
 - trailing_closure
 - unavailable_function
 - unneeded_parentheses_in_closure_argument
 - unowned_variable_capture
+- untyped_error_in_catch
 - unused_capture_list
 - vertical_parameter_alignment_on_call
+- xct_specific_matcher
 - yoda_condition
 
 disabled_rules:

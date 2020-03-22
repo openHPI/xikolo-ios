@@ -9,8 +9,8 @@ import Foundation
 class BingeLocalizer {
 
     static func localizedString(_ key: String, comment: String) -> String {
-        let bundle = Bundle(for: BingeLocalizer.self)
-        return NSLocalizedString(key, bundle: bundle, comment: comment)
+        // swiftlint:disable:next nslocalizedstring_key
+        return NSLocalizedString(key, bundle: Bundle(for: BingeLocalizer.self), comment: comment)
     }
 
 }

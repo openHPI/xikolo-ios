@@ -17,9 +17,23 @@ public struct DefaultStyleCollection: StyleCollection {
 
     private var paragraphStyle: NSMutableParagraphStyle {
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.15
+        paragraphStyle.lineHeightMultiple = 1.3
         paragraphStyle.paragraphSpacing = UIFont.labelFontSize / 3 * 2
         return paragraphStyle
+    }
+
+    private func headingParagraphStyle(withScale scale: CGFloat) -> NSMutableParagraphStyle {
+        let paragraphStyle = self.paragraphStyle
+        paragraphStyle.paragraphSpacingBefore = UIFont.labelFontSize * scale / 3 * 2
+        paragraphStyle.lineHeightMultiple = 1.15
+        return paragraphStyle
+    }
+
+    private func headingStyle(withScale scale: CGFloat) -> Style {
+        return [
+            .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * scale, weight: .bold)),
+            .paragraphStyle: self.headingParagraphStyle(withScale: scale),
+        ]
     }
 
     public var baseStyle: Style {
@@ -41,32 +55,17 @@ public struct DefaultStyleCollection: StyleCollection {
     public func style(for tag: Tag, isLastSibling: Bool) -> Style? {
         switch tag {
         case .headline1:
-            let paragraphStyle = self.paragraphStyle
-            paragraphStyle.paragraphSpacingBefore = UIFont.labelFontSize
-            return [
-                .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.30, weight: .bold)),
-                .paragraphStyle: paragraphStyle,
-            ]
+            return self.headingStyle(withScale: 1.30)
         case .headline2:
-            return [
-                .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.25, weight: .bold)),
-            ]
+            return self.headingStyle(withScale: 1.25)
         case .headline3:
-            return [
-                .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.20, weight: .bold)),
-            ]
+            return self.headingStyle(withScale: 1.20)
         case .headline4:
-            return [
-                .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.15, weight: .bold)),
-            ]
+            return self.headingStyle(withScale: 1.15)
         case .headline5:
-            return [
-                .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.10, weight: .bold)),
-            ]
+            return self.headingStyle(withScale: 1.10)
         case .headline6:
-            return [
-                .font: self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.05, weight: .bold)),
-            ]
+            return self.headingStyle(withScale: 1.05)
         case .bold:
             return [
                 .font: self.makeDynamicFont(for: .boldSystemFont(ofSize: UIFont.labelFontSize)),

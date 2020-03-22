@@ -79,7 +79,7 @@ enum CourseArea {
         case .documents:
             return R.storyboard.courseDocuments.instantiateInitialViewController()
         case .announcements:
-            return R.storyboard.tabNews.announcementListViewController()
+            return R.storyboard.announcements.instantiateInitialViewController()
         case .recap:
             return R.storyboard.webViewController.instantiateInitialViewController()
         case .certificates:

@@ -180,6 +180,10 @@ extension CourseItemListViewController { // TableViewDelegate
 
             if let video = courseItem.content as? Video {
 
+                if let downloadStream = video.downloadStreamAction, let downloadSlides = video.downloadSlidesAction {
+                    return UIMenu(title: "", children: [share, downloadStream, downloadSlides])
+                }
+
                 if let downloadStream = video.downloadStreamAction {
                     return UIMenu(title: "", children: [share, downloadStream])
                 }
@@ -188,9 +192,6 @@ extension CourseItemListViewController { // TableViewDelegate
                     return UIMenu(title: "", children: [share, downloadSlides])
                 }
 
-                if let downloadStream = video.downloadStreamAction, let downloadSlides = video.downloadSlidesAction {
-                    return UIMenu(title: "", children: [share, downloadStream, downloadSlides])
-                }
             }
 
             return contextMenu

@@ -28,130 +28,119 @@ extension Video {
         return [self.streamUserAction, self.slidesUserAction].compactMap { $0 } + self.combinedUserActions
     }
 
-    var streamUserAction: UIAlertAction? {
-        let isOffline = !ReachabilityHelper.hasConnection
-        let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: self)
-
-        if let url = self.streamURLForDownload, streamDownloadState == .notDownloaded, !isOffline {
-            let downloadActionTitle = NSLocalizedString("course-item.stream-download-action.start-download.title",
-                                                        comment: "start download of stream for video")
-            return UIAlertAction(title: downloadActionTitle, style: .default) { _ in
-                StreamPersistenceManager.shared.startDownload(with: url, for: self)
-            }
-        }
-
-        if streamDownloadState == .pending || streamDownloadState == .downloading {
-            let abortActionTitle = NSLocalizedString("course-item.stream-download-action.stop-download.title",
-                                                     comment: "stop stream download for video")
-            return UIAlertAction(title: abortActionTitle, style: .default) { _ in
-                StreamPersistenceManager.shared.cancelDownload(for: self)
-            }
-        }
-
-        if streamDownloadState == .downloaded {
-            let deleteActionTitle = NSLocalizedString("course-item.stream-download-action.delete-download.title",
-                                                      comment: "delete stream download for video")
-            return UIAlertAction(title: deleteActionTitle, style: .default) { _ in
-                StreamPersistenceManager.shared.deleteDownload(for: self)
-            }
-        }
-
-        return nil
-    }
-
     var slidesUserAction: UIAlertAction? {
-        let isOffline = !ReachabilityHelper.hasConnection
-        let slidesDownloadState = SlidesPersistenceManager.shared.downloadState(for: self)
-
-        if let url = self.slidesURL, slidesDownloadState == .notDownloaded, !isOffline {
-            let downloadActionTitle = NSLocalizedString("course-item.slides-download-action.start-download.title",
-                                                        comment: "start download of slides for video")
-            return UIAlertAction(title: downloadActionTitle, style: .default) { _ in
-                SlidesPersistenceManager.shared.startDownload(with: url, for: self)
-            }
+        let downloadStruct = DownloadSlidesStruct(video: self)
+        guard let title = downloadStruct.title, let action = downloadStruct.action else { return nil }
+        return UIAlertAction(title: title, style: .default) { _ in
+            action
         }
-
-        if slidesDownloadState == .pending || slidesDownloadState == .downloading {
-            let abortActionTitle = NSLocalizedString("course-item.slides-download-action.stop-download.title",
-                                                     comment: "stop slides download for video")
-            return UIAlertAction(title: abortActionTitle, style: .default) { _ in
-                SlidesPersistenceManager.shared.cancelDownload(for: self)
-            }
-        }
-
-        if slidesDownloadState == .downloaded {
-            let deleteActionTitle = NSLocalizedString("course-item.slides-download-action.delete-download.title",
-                                                      comment: "delete slides download for video")
-            return UIAlertAction(title: deleteActionTitle, style: .default) { _ in
-                SlidesPersistenceManager.shared.deleteDownload(for: self)
-            }
-        }
-
-        return nil
     }
 
-    @available(iOS 13, *)
+    var streamUserAction: UIAlertAction? {
+           let downloadStruct = DownloadStreamStruct(video: self)
+           guard let title = downloadStruct.title, let action = downloadStruct.action else { return nil }
+           return UIAlertAction(title: title, style: .default) { _ in
+               action
+           }
+       }
+
+    @available(iOS 13.0, *)
     var downloadStreamAction: UIAction? {
-        let isOffline = !ReachabilityHelper.hasConnection
-        let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: self)
-
-        if let url = self.streamURLForDownload, streamDownloadState == .notDownloaded, !isOffline {
-            let downloadActionTitle = NSLocalizedString("course-item.stream-download-action.start-download.title",
-                                                        comment: "start download of stream for video")
-            return UIAction(title: downloadActionTitle, image: UIImage(systemName: "arrow.down.left.video")) { _ in
-                StreamPersistenceManager.shared.startDownload(with: url, for: self)
-            }
+        let downloadStruct = DownloadStreamStruct(video: self)
+        guard let title = downloadStruct.title, let action = downloadStruct.action else { return nil }
+        return UIAction(title: title, image: downloadStruct.icon) { _ in
+            action
         }
-
-        if streamDownloadState == .pending || streamDownloadState == .downloading {
-            let abortActionTitle = NSLocalizedString("course-item.stream-download-action.stop-download.title",
-                                                     comment: "stop stream download for video")
-            return UIAction(title: abortActionTitle, image: UIImage(systemName: "stop.circle")) { _ in
-                StreamPersistenceManager.shared.cancelDownload(for: self)
-            }
-        }
-
-        if streamDownloadState == .downloaded {
-            let deleteActionTitle = NSLocalizedString("course-item.stream-download-action.delete-download.title",
-                                                      comment: "delete stream download for video")
-            return UIAction(title: deleteActionTitle, image: UIImage(systemName: "trash")) { _ in
-                StreamPersistenceManager.shared.deleteDownload(for: self)
-            }
-        }
-
-        return nil
     }
 
-    @available(iOS 13, *)
+    @available(iOS 13.0, *)
     var downloadSlidesAction: UIAction? {
-        let isOffline = !ReachabilityHelper.hasConnection
-        let slidesDownloadState = SlidesPersistenceManager.shared.downloadState(for: self)
+        let downloadStruct = DownloadSlidesStruct(video: self)
+        guard let title = downloadStruct.title, let action = downloadStruct.action else { return nil }
+        return UIAction(title: title, image: downloadStruct.icon) { _ in
+            action
+        }
+    }
 
-        if let url = self.slidesURL, slidesDownloadState == .notDownloaded, !isOffline {
+    struct DownloadStreamStruct {
+        var title: String?
+        var icon: UIImage?
+        var action: ()?
+
+        init(video: Video) {
+            let isOffline = !ReachabilityHelper.hasConnection
+            let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
+
+            if let url = video.streamURLForDownload, streamDownloadState == .notDownloaded, !isOffline {
+                let downloadActionTitle = NSLocalizedString("course-item.stream-download-action.start-download.title",
+                                                            comment: "start download of stream for video")
+                self.title = downloadActionTitle
+                if #available(iOS 13.0, *) {
+                    self.icon = UIImage(systemName: "arrow.down.left.video")
+                }
+
+                self.action = StreamPersistenceManager.shared.startDownload(with: url, for: video)
+            } else if streamDownloadState == .pending || streamDownloadState == .downloading {
+                let abortActionTitle = NSLocalizedString("course-item.stream-download-action.stop-download.title",
+                                                         comment: "stop stream download for video")
+                self.title = abortActionTitle
+                if #available(iOS 13.0, *) {
+                    self.icon = UIImage(systemName: "stop.circle")
+                }
+
+                self.action = StreamPersistenceManager.shared.cancelDownload(for: video)
+            } else if streamDownloadState == .downloaded {
+                let deleteActionTitle = NSLocalizedString("course-item.stream-download-action.delete-download.title",
+                                                          comment: "delete stream download for video")
+                self.title = deleteActionTitle
+                if #available(iOS 13.0, *) {
+                    self.icon = UIImage(systemName: "trash")
+                }
+
+                self.action = StreamPersistenceManager.shared.deleteDownload(for: video)
+            }
+        }
+    }
+
+    struct DownloadSlidesStruct {
+        var title: String?
+        var icon: UIImage?
+        var action: ()?
+
+        init(video: Video) {
+
+            let isOffline = !ReachabilityHelper.hasConnection
+            let slidesDownloadState = SlidesPersistenceManager.shared.downloadState(for: video)
+
+            if let url = video.slidesURL, slidesDownloadState == .notDownloaded, !isOffline {
             let downloadActionTitle = NSLocalizedString("course-item.slides-download-action.start-download.title",
                                                         comment: "start download of slides for video")
-            return UIAction(title: downloadActionTitle, image: UIImage(systemName: "arrow.down.doc")) { _ in
-                SlidesPersistenceManager.shared.startDownload(with: url, for: self)
+                self.title = downloadActionTitle
+                if #available(iOS 13.0, *) {
+                    self.icon = UIImage(systemName: "arrow.down.doc")
+                }
+
+                self.action = SlidesPersistenceManager.shared.startDownload(with: url, for: video)
+            } else if slidesDownloadState == .pending || slidesDownloadState == .downloading {
+                let abortActionTitle = NSLocalizedString("course-item.slides-download-action.stop-download.title",
+                                                         comment: "stop slides download for video")
+                self.title = abortActionTitle
+                if #available(iOS 13.0, *) {
+                    self.icon = UIImage(systemName: "stop.circle")
+                }
+
+                self.action = SlidesPersistenceManager.shared.cancelDownload(for: video)
+            } else if slidesDownloadState == .downloaded {
+                let deleteActionTitle = NSLocalizedString("course-item.slides-download-action.delete-download.title",
+                                                          comment: "delete slides download for video")
+                self.title = deleteActionTitle
+                if #available(iOS 13.0, *) {
+                    self.icon = UIImage(systemName: "trash")
+                }
+
+                self.action = SlidesPersistenceManager.shared.deleteDownload(for: video)
             }
         }
-
-        if slidesDownloadState == .pending || slidesDownloadState == .downloading {
-            let abortActionTitle = NSLocalizedString("course-item.slides-download-action.stop-download.title",
-                                                     comment: "stop slides download for video")
-            return UIAction(title: abortActionTitle, image: UIImage(systemName: "stop.circle")) { _ in
-                SlidesPersistenceManager.shared.cancelDownload(for: self)
-            }
-        }
-
-        if slidesDownloadState == .downloaded {
-            let deleteActionTitle = NSLocalizedString("course-item.slides-download-action.delete-download.title",
-                                                      comment: "delete slides download for video")
-            return UIAction(title: deleteActionTitle, image: UIImage(systemName: "trash")) { _ in
-                SlidesPersistenceManager.shared.deleteDownload(for: self)
-            }
-        }
-
-        return nil
     }
 
     var combinedUserActions: [UIAlertAction] {

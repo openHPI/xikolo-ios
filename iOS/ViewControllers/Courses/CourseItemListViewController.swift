@@ -179,9 +179,17 @@ extension CourseItemListViewController { // TableViewDelegate
             let contextMenu = UIMenu(title: "", children: [share])
 
             if let video = courseItem.content as? Video {
+
+                if let downloadStream = video.downloadStreamAction {
+                    return UIMenu(title: "", children: [share, downloadStream])
+                }
+
+                if let downloadSlides = video.downloadSlidesAction {
+                    return UIMenu(title: "", children: [share, downloadSlides])
+                }
+
                 if let downloadStream = video.downloadStreamAction, let downloadSlides = video.downloadSlidesAction {
                     return UIMenu(title: "", children: [share, downloadStream, downloadSlides])
-
                 }
             }
 

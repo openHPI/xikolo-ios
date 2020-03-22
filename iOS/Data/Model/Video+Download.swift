@@ -98,7 +98,7 @@ extension Video {
         if let url = self.streamURLForDownload, streamDownloadState == .notDownloaded, !isOffline {
             let downloadActionTitle = NSLocalizedString("course-item.stream-download-action.start-download.title",
                                                         comment: "start download of stream for video")
-            return UIAction(title: downloadActionTitle, image: UIImage(systemName: "icloud.and.arrow.down")) { _ in
+            return UIAction(title: downloadActionTitle, image: UIImage(systemName: "square.and.arrow.down")) { _ in
                 StreamPersistenceManager.shared.startDownload(with: url, for: self)
             }
         }
@@ -130,7 +130,7 @@ extension Video {
         if let url = self.slidesURL, slidesDownloadState == .notDownloaded, !isOffline {
             let downloadActionTitle = NSLocalizedString("course-item.slides-download-action.start-download.title",
                                                         comment: "start download of slides for video")
-            return UIAction(title: downloadActionTitle, image: UIImage(systemName: "icloud.and.arrow.down")) { _ in
+            return UIAction(title: downloadActionTitle, image: UIImage(systemName: "square.and.arrow.down")) { _ in
                 SlidesPersistenceManager.shared.startDownload(with: url, for: self)
             }
         }

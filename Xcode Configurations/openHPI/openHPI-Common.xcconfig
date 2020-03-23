@@ -6,6 +6,7 @@
 BRAND_NAME = openHPI
 PRODUCT_NAME = openHPI
 DISPLAY_NAME = openHPI
+URL_SCHEME = openhpi
 
 BASE_BUNDLE_IDENTIFIER = de.xikolo.openhpi
 

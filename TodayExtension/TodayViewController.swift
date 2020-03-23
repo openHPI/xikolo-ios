@@ -24,6 +24,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
         self.updateView()
         self.loadData()
+
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleBackgroundTap))
+        self.view.addGestureRecognizer(tapGestureRecognizer)
     }
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -66,6 +69,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         } else {
             return "-"
         }
+    }
+
+    @objc private func handleBackgroundTap() {
+        guard let urlScheme = Bundle.main.urlScheme else { return }
+        guard let url = URL(string: "\(urlScheme)://dashboard") else { return }
+        self.extensionContext?.open(url, completionHandler: nil)
     }
 
 }

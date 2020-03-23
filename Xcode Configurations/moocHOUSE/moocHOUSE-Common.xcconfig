@@ -6,6 +6,7 @@
 BRAND_NAME = moocHOUSE
 PRODUCT_NAME = moocHOUSE
 DISPLAY_NAME = mooc.HOUSE
+URL_SCHEME = moochouse
 
 BASE_BUNDLE_IDENTIFIER = de.xikolo.moochouse
 

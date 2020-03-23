@@ -16,7 +16,7 @@
 
 
 ### Development toolchain
-- Xcode 11.2
+- Xcode 11.3
 - bundler: `gem install bundler`
 
 The following tools will be installed via bundler:

@@ -22,6 +22,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // Disallow the today widget to be expanded or contracted.
         self.extensionContext?.widgetLargestAvailableDisplayMode = .compact
 
+        if #available(iOS 11, *) {
+            // The large title font is not avaiable on iOS 10 and the storyboard file fails to provide a suitable fallback value.
+            // Therefore, we set the font to .title1 in the storyboard file and upgrade to .largeTitle for iOS 11 manually.
+            self.todayCountLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+            self.nextCountLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+            self.allCountLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        }
+
         self.updateView()
         self.loadData()
 

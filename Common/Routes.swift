@@ -52,7 +52,6 @@ public enum Routes {
     }()
 
     public static let courses = Self.base.appendingPathComponent("courses")
-    public static let dashboard = Self.base.appendingPathComponent("dashboard")
     public static let recap = Self.base.appendingPathComponent("learn")
 
     public static var imprint = Brand.default.imprintURL.appendingInAppParameter()

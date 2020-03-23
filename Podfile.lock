@@ -3,7 +3,7 @@ PODS:
   - BrightFutures (8.0.0)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
-  - Down (0.6.6)
+  - Down (0.9.2)
   - Fabric (1.10.2)
   - Firebase/Core (6.13.0):
     - Firebase/CoreOnly
@@ -144,7 +144,7 @@ SPEC CHECKSUMS:
   BartyCrouch: 69e5e6ec67e77951dc1c22aa48abbf05d175b81c
   BrightFutures: f8427b46feabaf73c5e71ace7d86d65dfbb47696
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
-  Down: 71bf4af3c04fa093e65dffa25c4b64fa61287373
+  Down: 1f6a14846dff45ae8e7e4334b4e386a5fd3b2412
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 458d109512200d1aca2e1b9b6cf7d68a869a4a46
   FirebaseAnalytics: 45f36d9c429fc91d206283900ab75390cd05ee8a

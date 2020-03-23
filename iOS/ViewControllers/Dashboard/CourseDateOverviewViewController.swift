@@ -33,10 +33,10 @@ class CourseDateOverviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 11, *) {} else {
-            // The large title font is not avaiable on iOS 10 and the stroyboard file fails to provide a suitable fallback value.
-            // Therefore, we set the font manually.
-            let font = UIFont.preferredFont(forTextStyle: .title1)
+        if #available(iOS 11, *) {
+            // The large title font is not avaiable on iOS 10 and the storyboard file fails to provide a suitable fallback value.
+            // Therefore, we set the font to .title1 in the storyboard file and upgrade to .largeTitle for iOS 11 manually.
+            let font = UIFont.preferredFont(forTextStyle: .largeTitle)
             self.todayCountLabel.font = font
             self.nextCountLabel.font = font
             self.allCountLabel.font = font

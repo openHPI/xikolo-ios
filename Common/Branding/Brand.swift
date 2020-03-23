@@ -41,7 +41,7 @@ public struct Brand: Decodable {
     public let courseDateLabelStyle: CourseDateLabelStyle
     public let showCurrentCoursesInSelfPacedSection: Bool
     public let features: BrandFeatures
-    public let courseClassifierSearchFilters: CourseClassifierSearchFilter?
+    public let courseClassifierSearchFilters: CourseClassifierSearchFilters?
     public let testAccountUserId: String?
 
     public var copyrightText: String {
@@ -61,7 +61,7 @@ public struct Brand: Decodable {
         self.courseDateLabelStyle = try container.decodeCourseDateLabelStyle(forKey: .courseDateLabelStyle)
         self.showCurrentCoursesInSelfPacedSection = try container.decodeIfPresent(Bool.self, forKey: .showCurrentCoursesInSelfPacedSection) ?? false
         self.features = try container.decode(BrandFeatures.self, forKey: .features)
-        self.courseClassifierSearchFilters = try? container.decode(CourseClassifierSearchFilter.self, forKey: .courseClassifierSearchFilters)
+        self.courseClassifierSearchFilters = try? container.decode(CourseClassifierSearchFilters.self, forKey: .courseClassifierSearchFilters)
         self.testAccountUserId = try? container.decode(String.self, forKey: .testAccountUserId)
     }
 

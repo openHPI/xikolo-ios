@@ -38,14 +38,39 @@ public enum MarkdownHelper {
         return self.parser.string(for: html ?? "")
     }
 
+
     public static func attributedString(for markdown: String) -> NSAttributedString {
-        let html = try? Down(markdownString: markdown).toHTML()
-        return self.parser.attributedString(for: html ?? "")
+        if #available(iOS 11, *) {
+            let string = self.string(for: markdown) // parse markdown first as included URLs can skew the result
+            let dominantLanguage = NSLinguisticTagger.dominantLanguage(for: string)
+            if ["ar", "he", "fa"].contains(dominantLanguage) {
+                let attributedString = try? Down(markdownString: markdown).toAttributedString(styler: DownStyler())
+                return attributedString ?? NSAttributedString()
+            } else {
+                let html = try? Down(markdownString: markdown).toHTML()
+                return self.parser.attributedString(for: html ?? "")
+            }
+        } else {
+            let attributedString = try? Down(markdownString: markdown).toAttributedString(styler: DownStyler())
+            return attributedString ?? NSAttributedString()
+        }
     }
 
     public static func attributedStringWithImages(for markdown: String, layoutChangeHandler: (() -> Void)? = nil) -> NSAttributedString {
-        let html = try? Down(markdownString: markdown).toHTML()
-        return self.imageParser.attributedString(for: html ?? "", with: layoutChangeHandler)
+        if #available(iOS 11, *) {
+            let string = self.string(for: markdown) // parse markdown first as included URLs can skew the result
+            let dominantLanguage = NSLinguisticTagger.dominantLanguage(for: string)
+            if ["ar", "he", "fa"].contains(dominantLanguage) {
+                let attributedString = try? Down(markdownString: markdown).toAttributedString(styler: DownStyler())
+                return attributedString ?? NSAttributedString()
+            } else {
+                let html = try? Down(markdownString: markdown).toHTML()
+                return self.imageParser.attributedString(for: html ?? "", with: layoutChangeHandler)
+            }
+        } else {
+            let attributedString = try? Down(markdownString: markdown).toAttributedString(styler: DownStyler())
+            return attributedString ?? NSAttributedString()
+        }
     }
 
 }

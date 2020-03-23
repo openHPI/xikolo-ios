@@ -56,13 +56,9 @@ public final class Course: NSManagedObject {
     }
 
     public static func localize(language: String) -> String? {
-        let locale = NSLocale(localeIdentifier: Locale.supportedCurrent.identifier)
-        switch language {
-        case "cn":
-            return locale.displayName(forKey: NSLocale.Key.languageCode, value: "zh-cn")
-        default:
-            return locale.displayName(forKey: NSLocale.Key.languageCode, value: language)
-        }
+        let localeIdentifier = language == "cn" ? "zh-cn" : language
+        let locale = NSLocale(localeIdentifier: localeIdentifier)
+        return locale.displayName(forKey: NSLocale.Key.languageCode, value: localeIdentifier)
     }
 
     public var localizedLanguage: String? {

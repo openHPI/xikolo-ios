@@ -1,3 +1,6 @@
+• App-Absturz beim Öffnen bestimmter Kursinhalte behoben
+
+Auch in Version 2.9:
 • Kursbereiche sind nun über einen separaten Tab erreichbar
 • Persönlicher Kursfortschritt ist nun für alle Kurse verfügbar
 • Einbindung des Helpdesks

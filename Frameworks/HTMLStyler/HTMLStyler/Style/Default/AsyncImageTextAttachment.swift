@@ -9,8 +9,8 @@ import MobileCoreServices
 import UIKit
 
 /// An image text attachment that gets loaded from a remote URL
-public class AsyncImageTextAttachment: NSTextAttachment
-{
+public class AsyncImageTextAttachment: NSTextAttachment {
+
     public var imageLoader: ImageLoader.Type
     public var imageURL: URL
     public var layoutChangeHandler: (() -> Void)?
@@ -38,12 +38,10 @@ public class AsyncImageTextAttachment: NSTextAttachment
     private func startAsyncImageDownload(in textContainer: NSTextContainer?) {
         guard self.contents == nil, self.downloadTask == nil else { return }
 
-
-//        self.downloadTask = self.imageLoader.dataTask(for: self.imageURL) { (data, response, error) in
-        self.downloadTask = URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
+        self.downloadTask = self.imageLoader.dataTask(for: self.imageURL) { (data, response, error) in
             defer {
-                self.downloadTask = nil
-            } // done with the task
+                self.downloadTask = nil // done with the task
+            }
 
             guard let data = data, error == nil else {
                 print(error?.localizedDescription as Any)

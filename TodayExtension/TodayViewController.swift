@@ -25,9 +25,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         if #available(iOS 11, *) {
             // The large title font is not avaiable on iOS 10 and the storyboard file fails to provide a suitable fallback value.
             // Therefore, we set the font to .title1 in the storyboard file and upgrade to .largeTitle for iOS 11 manually.
-            self.todayCountLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-            self.nextCountLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-            self.allCountLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+            let font = UIFont.preferredFont(forTextStyle: .largeTitle)
+            self.todayCountLabel.font = font
+            self.nextCountLabel.font = font
+            self.allCountLabel.font = font
         }
 
         self.updateView()

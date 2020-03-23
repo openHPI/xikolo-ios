@@ -5,55 +5,59 @@
 
 import Common
 import CoreData
-import UIKit
 import NotificationCenter
+import UIKit
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 
-    @IBOutlet weak var counterStackView: UIStackView!
-    @IBOutlet weak var todayCountLabel: UILabel!
-    @IBOutlet weak var nextCountLabel: UILabel!
-    @IBOutlet weak var allCountLabel: UILabel!
-    @IBOutlet weak var loginRequestedLabel: UILabel!
+    @IBOutlet private weak var loginRequestedLabel: UILabel!
+    @IBOutlet private weak var counterStackView: UIStackView!
+    @IBOutlet private weak var todayCountLabel: UILabel!
+    @IBOutlet private weak var nextCountLabel: UILabel!
+    @IBOutlet private weak var allCountLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Disallow the today widget to be expanded or contracted.
-        extensionContext?.widgetLargestAvailableDisplayMode = .compact
+        self.extensionContext?.widgetLargestAvailableDisplayMode = .compact
 
-        if UserProfileHelper.shared.isLoggedIn {
-            hideLabel(isHidden: false)
-            self.loadData()
-        }
-        else {
-            hideLabel(isHidden: true)
-        }
+        self.updateView()
+        self.loadData()
     }
-        
+
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        // Perform any setup necessary in order to update the view.
-        
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
-        
-        completionHandler(NCUpdateResult.newData)
+        let loginStateChanged = self.updateView()
+        let contentChanged = self.loadData()
+        let result: NCUpdateResult = contentChanged || loginStateChanged ? .newData : .noData
+        completionHandler(result)
     }
 
-    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
-        print("size change")
+    @discardableResult private func updateView() -> Bool {
+        let loginStateChange = UserProfileHelper.shared.isLoggedIn != self.loginRequestedLabel.isHidden
+        self.counterStackView.isHidden = !UserProfileHelper.shared.isLoggedIn
+        self.loginRequestedLabel.isHidden = UserProfileHelper.shared.isLoggedIn
+        return loginStateChange
     }
 
-    func hideLabel(isHidden: Bool) {
-        self.counterStackView.isHidden = isHidden
-        self.loginRequestedLabel.isHidden = !isHidden
-    }
+    @discardableResult private func loadData() -> Bool {
+        let oldValues = [
+            self.todayCountLabel.text,
+            self.nextCountLabel.text,
+            self.allCountLabel.text,
+        ]
 
-    func loadData() {
         self.todayCountLabel.text = self.formattedItemCount(for: CourseDateHelper.FetchRequest.courseDatesForNextDays(numberOfDays: 1))
         self.nextCountLabel.text = self.formattedItemCount(for: CourseDateHelper.FetchRequest.courseDatesForNextDays(numberOfDays: 7))
         self.allCountLabel.text = self.formattedItemCount(for: CourseDateHelper.FetchRequest.allCourseDates)
+
+        let newValues  = [
+            self.todayCountLabel.text,
+            self.nextCountLabel.text,
+            self.allCountLabel.text,
+        ]
+
+        return oldValues != newValues
     }
 
     private func formattedItemCount(for fetchRequest: NSFetchRequest<CourseDate>) -> String {

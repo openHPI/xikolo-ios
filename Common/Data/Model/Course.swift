@@ -78,6 +78,13 @@ public final class Course: NSManagedObject {
         return self.enrollment != nil && self.enrollment?.objectState != .deleted
     }
 
+    public var openCourseUserActivity: NSUserActivity {
+        let userActivity = NSUserActivity(activityType: "com.xikolo.openCourse")
+        userActivity.title = "openCourse"
+        userActivity.userInfo = ["courseId": id ]
+        return userActivity
+    }
+
 }
 
 extension Course: JSONAPIPullable {

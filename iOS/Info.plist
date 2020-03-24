@@ -43,6 +43,10 @@
 	<string>Take and upload photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Upload photos</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>com.xikolo.openCourse</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>openHPI4.ttf</string>

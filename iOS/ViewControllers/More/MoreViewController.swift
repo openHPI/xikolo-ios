@@ -72,35 +72,35 @@ extension MoreViewController {
 
 extension MoreViewController: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 24
-    }
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 0
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 24
+//    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let boundingWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right
-        let height = CGFloat(180.0)
-        return CGSize(width: boundingWidth, height: height)
+        let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
+        let width = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
+        let height = 180 + 2 * MoreCell.cardInset
+        return CGSize(width: width, height: height)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-
-        var leftPadding = collectionView.layoutMargins.left
-        var rightPadding = collectionView.layoutMargins.right
+        var leftPadding = collectionView.layoutMargins.left - MoreCell.cardInset
+        var rightPadding = collectionView.layoutMargins.right - MoreCell.cardInset
 
         if #available(iOS 11.0, *) {
             leftPadding -= collectionView.safeAreaInsets.left
             rightPadding -= collectionView.safeAreaInsets.right
         }
 
-        return UIEdgeInsets(top: 14, left: leftPadding, bottom: collectionView.layoutMargins.bottom, right: rightPadding)
+        return UIEdgeInsets(top: 0, left: leftPadding, bottom: collectionView.layoutMargins.bottom, right: rightPadding)
     }
 
 }

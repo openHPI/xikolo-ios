@@ -28,8 +28,7 @@ class MoreCell: UICollectionViewCell {
 
     func configureNews() {
         self.cardView.backgroundColor = ColorCompatibility.secondarySystemBackground
-        self.iconImageView.tintColor = ColorCompatibility.label
-
+        self.iconImageView.tintColor = ColorCompatibility.secondaryLabel
 
         if #available(iOS 13, *) {
             self.iconImageView.image = UIImage(systemName: "bell.circle.fill")
@@ -37,9 +36,16 @@ class MoreCell: UICollectionViewCell {
             self.iconImageView.image = nil
         }
 
-        self.titleLabel.backgroundColor = ColorCompatibility.secondarySystemBackground
-        self.titleLabel.textColor = ColorCompatibility.label
+        self.titleLabel.textColor = ColorCompatibility.secondaryLabel
         self.titleLabel.text = "News"
+    }
+
+}
+
+extension MoreCell {
+
+    static var cardInset: CGFloat {
+        return 14
     }
 
 }

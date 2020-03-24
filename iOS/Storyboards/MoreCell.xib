@@ -21,23 +21,23 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nn5-sQ-laD" customClass="UICollectionReusableView">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="255"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HeY-cB-Vtv">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="255"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HeY-cB-Vtv" customClass="ShadowContainerView" customModule="iOS" customModuleProvider="target">
+                                <rect key="frame" x="14" y="14" width="372" height="227"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SiH-Im-I9g">
-                                        <rect key="frame" x="8" y="65.5" width="384" height="124"/>
+                                        <rect key="frame" x="8" y="55.5" width="356" height="116.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qfo-qw-mYE">
-                                                <rect key="frame" x="154.5" y="0.0" width="75" height="75"/>
+                                                <rect key="frame" x="140.5" y="0.0" width="75" height="75"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="75" id="K8c-mH-8D8"/>
                                                     <constraint firstAttribute="width" secondItem="qfo-qw-mYE" secondAttribute="height" multiplier="1:1" id="Ovg-qF-V6u"/>
                                                 </constraints>
                                             </imageView>
                                             <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="action" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oi4-cZ-fg6">
-                                                <rect key="frame" x="147" y="83" width="90" height="41"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                <rect key="frame" x="141" y="83" width="74" height="33.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -56,10 +56,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="HeY-cB-Vtv" firstAttribute="leading" secondItem="Nn5-sQ-laD" secondAttribute="leading" id="WLA-qQ-Xpt"/>
-                            <constraint firstAttribute="bottom" secondItem="HeY-cB-Vtv" secondAttribute="bottom" id="nHW-bN-Miw"/>
-                            <constraint firstAttribute="trailing" secondItem="HeY-cB-Vtv" secondAttribute="trailing" id="ond-GM-Wqk"/>
-                            <constraint firstItem="HeY-cB-Vtv" firstAttribute="top" secondItem="Nn5-sQ-laD" secondAttribute="top" id="wZ1-MS-IQw"/>
+                            <constraint firstItem="HeY-cB-Vtv" firstAttribute="leading" secondItem="Nn5-sQ-laD" secondAttribute="leading" constant="14" id="WLA-qQ-Xpt"/>
+                            <constraint firstAttribute="bottom" secondItem="HeY-cB-Vtv" secondAttribute="bottom" constant="14" id="nHW-bN-Miw"/>
+                            <constraint firstAttribute="trailing" secondItem="HeY-cB-Vtv" secondAttribute="trailing" constant="14" id="ond-GM-Wqk"/>
+                            <constraint firstItem="HeY-cB-Vtv" firstAttribute="top" secondItem="Nn5-sQ-laD" secondAttribute="top" constant="14" id="wZ1-MS-IQw"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="translatesAutoresizingMaskIntoConstraints" value="NO"/>

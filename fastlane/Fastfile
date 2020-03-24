@@ -240,6 +240,7 @@ platform :ios do
         export_options: {
           provisioningProfiles: {
             "de.xikolo.#{flavor.downcase}" => "#{flavor}-iOS-dist",
+            "de.xikolo.#{flavor.downcase}.today" => "#{flavor}-today-dist",
           }
         },
       )

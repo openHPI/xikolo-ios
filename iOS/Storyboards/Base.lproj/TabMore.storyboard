@@ -51,7 +51,7 @@
         <scene sceneID="WDT-Gb-zwZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gHK-5b-8tQ" customClass="XikoloNavigationController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="More" image="tab bar items/courses" id="l6T-DT-Q9p"/>
+                    <tabBarItem key="tabBarItem" title="More" image="tab bar items/more" id="l6T-DT-Q9p"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="AIM-hV-vd6">
@@ -70,6 +70,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tab bar items/courses" width="28" height="28"/>
+        <image name="tab bar items/more" width="28" height="28"/>
     </resources>
 </document>

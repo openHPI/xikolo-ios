@@ -30,11 +30,11 @@ public enum AdditionalLearningMaterialResourceType: String, Decodable {
     public var displayName: String {
         switch self {
         case .microLearning:
-            return CommonLocalizedString("additional-learning-material-resources.micro-learning.title",
-                                         comment: "Display name for additional learning material resourse: micro learning")
+            return CommonLocalizedString("additional-learning-material.micro-learning.title",
+                                         comment: "Display name for additional learning material: micro learning")
         case .podcasts:
-            return CommonLocalizedString("additional-learning-material-resources.podcasts.title",
-                                         comment: "Display name for additional learning material resourse: podcasts")
+            return CommonLocalizedString("additional-learning-material.podcasts.title",
+                                         comment: "Display name for additional learning material: podcasts")
         }
     }
 

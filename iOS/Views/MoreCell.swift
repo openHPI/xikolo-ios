@@ -58,7 +58,8 @@ class MoreCell: UICollectionViewCell {
         self.iconImageView.tintColor = ColorCompatibility.secondaryLabel
         self.iconImageView.image =  R.image.more.news()
         self.titleLabel.textColor = ColorCompatibility.secondaryLabel
-        self.titleLabel.text = "News"
+        self.titleLabel.text = NSLocalizedString("additional-learning-material.dummy.news.title",
+                                                 comment: "Display name for additional learning material dummy: news")
     }
 
 }

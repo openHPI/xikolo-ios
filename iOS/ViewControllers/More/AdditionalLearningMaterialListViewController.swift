@@ -7,10 +7,10 @@
 import Common
 import UIKit
 
-class MoreViewController: UICollectionViewController {
+class AdditionalLearningMaterialListViewController: UICollectionViewController {
 
     override func viewDidLoad() {
-        self.collectionView?.register(R.nib.moreCell)
+        self.collectionView?.register(R.nib.additionalLearningMaterialCell)
 
         super.viewDidLoad()
 
@@ -21,12 +21,12 @@ class MoreViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let additionalLearningMaterialResources = Brand.default.additionalLearningMaterialResources
+        let additionalLearningMaterial = Brand.default.additionalLearningMaterial
 
-        if indexPath.item == additionalLearningMaterialResources.count {
-            self.performSegue(withIdentifier: R.segue.moreViewController.showNews, sender: self)
+        if indexPath.item == additionalLearningMaterial.count {
+            self.performSegue(withIdentifier: R.segue.additionalLearningMaterialListViewController.showNews, sender: self)
         } else {
-            let url = additionalLearningMaterialResources[indexPath.item].url
+            let url = additionalLearningMaterial[indexPath.item].url
             UIApplication.shared.open(url)
         }
     }
@@ -43,21 +43,21 @@ class MoreViewController: UICollectionViewController {
 
 }
 
-extension MoreViewController {
+extension AdditionalLearningMaterialListViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Brand.default.additionalLearningMaterialResources.count + 1
+        return Brand.default.additionalLearningMaterial.count + 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let someCell = collectionView.dequeueReusableCell(withReuseIdentifier: R.nib.moreCell, for: indexPath)
-        let cell = someCell.require(hint: "Unexpected cell type at \(indexPath), expected cell of type \(MoreCell.self)")
+        let someCell = collectionView.dequeueReusableCell(withReuseIdentifier: R.nib.additionalLearningMaterialCell, for: indexPath)
+        let cell = someCell.require(hint: "Unexpected cell type at \(indexPath), expected cell of type \(AdditionalLearningMaterialCell.self)")
 
-        let additionalLearningMaterialResources = Brand.default.additionalLearningMaterialResources
+        let additionalLearningMaterialResources = Brand.default.additionalLearningMaterial
 
         if indexPath.item == additionalLearningMaterialResources.count {
             cell.configureNews()
@@ -70,7 +70,7 @@ extension MoreViewController {
 
 }
 
-extension MoreViewController: UICollectionViewDelegateFlowLayout {
+extension AdditionalLearningMaterialListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -85,15 +85,15 @@ extension MoreViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
         let width = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
-        let height = 180 + 2 * MoreCell.cardInset
+        let height = 180 + 2 * AdditionalLearningMaterialCell.cardInset
         return CGSize(width: width, height: height)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        var leftPadding = collectionView.layoutMargins.left - MoreCell.cardInset
-        var rightPadding = collectionView.layoutMargins.right - MoreCell.cardInset
+        var leftPadding = collectionView.layoutMargins.left - AdditionalLearningMaterialCell.cardInset
+        var rightPadding = collectionView.layoutMargins.right - AdditionalLearningMaterialCell.cardInset
 
         if #available(iOS 11.0, *) {
             leftPadding -= collectionView.safeAreaInsets.left

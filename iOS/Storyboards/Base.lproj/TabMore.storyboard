@@ -10,7 +10,7 @@
         <!--More-->
         <scene sceneID="PSH-9z-wzF">
             <objects>
-                <collectionViewController id="Tq6-zm-C7V" customClass="MoreViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="Tq6-zm-C7V" customClass="AdditionalLearningMaterialListViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="c1H-bS-Sj8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

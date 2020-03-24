@@ -34,7 +34,7 @@ class XikoloTabBarController: UITabBarController {
         }
 
         private var additionalLearningResourcesAvailable: Bool {
-            return !Brand.default.additionalLearningMaterialResources.isEmpty
+            return !Brand.default.additionalLearningMaterial.isEmpty
         }
 
         var index: Int {

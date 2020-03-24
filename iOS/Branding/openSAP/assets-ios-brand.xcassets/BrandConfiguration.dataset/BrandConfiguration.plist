@@ -56,7 +56,7 @@
 		<key>topic</key>
 		<string>topic</string>
 	</dict>
-	<key>additionalLearningMaterialResources</key>
+	<key>additionalLearningMaterial</key>
 	<array>
 		<dict>
 			<key>type</key>

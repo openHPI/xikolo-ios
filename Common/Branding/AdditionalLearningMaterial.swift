@@ -5,25 +5,25 @@
 
 import Foundation
 
-public struct AdditionalLearningMaterialResource: Decodable {
+public struct AdditionalLearningMaterial: Decodable {
 
     private enum CodingKeys: CodingKey {
         case type
         case url
     }
 
-    public let type: AdditionalLearningMaterialResourceType
+    public let type: AdditionalLearningMaterialType
     public let url: URL
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type = try container.decode(AdditionalLearningMaterialResourceType.self, forKey: .type)
+        self.type = try container.decode(AdditionalLearningMaterialType.self, forKey: .type)
         self.url = try container.decodeURL(forKey: .url)
     }
 
 }
 
-public enum AdditionalLearningMaterialResourceType: String, Decodable {
+public enum AdditionalLearningMaterialType: String, Decodable {
     case microLearning
     case podcasts
 

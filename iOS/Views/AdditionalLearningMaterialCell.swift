@@ -6,7 +6,7 @@
 import Common
 import UIKit
 
-class MoreCell: UICollectionViewCell {
+class AdditionalLearningMaterialCell: UICollectionViewCell {
 
     @IBOutlet private weak var cardView: UIView!
     @IBOutlet private weak var gradientView: UIView!
@@ -45,7 +45,7 @@ class MoreCell: UICollectionViewCell {
         }
     }
 
-    func configure(for learningMaterialResourceType: AdditionalLearningMaterialResourceType) {
+    func configure(for learningMaterialResourceType: AdditionalLearningMaterialType) {
         self.cardView.backgroundColor = Brand.default.colors.window
         self.iconImageView.tintColor = ColorCompatibility.systemBackground.withAlphaComponent(0.95)
         self.iconImageView.image = learningMaterialResourceType.icon
@@ -64,7 +64,7 @@ class MoreCell: UICollectionViewCell {
 
 }
 
-extension MoreCell {
+extension AdditionalLearningMaterialCell {
 
     static var cardInset: CGFloat {
         return 14
@@ -72,7 +72,7 @@ extension MoreCell {
 
 }
 
-extension AdditionalLearningMaterialResourceType {
+extension AdditionalLearningMaterialType {
 
     var icon: UIImage? {
         switch self {

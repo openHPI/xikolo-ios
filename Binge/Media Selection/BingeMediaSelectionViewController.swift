@@ -161,7 +161,15 @@ extension BingeMediaSelectionViewController {
 
         let row = allowsEmptySelection ? indexPath.row - 1 : indexPath.row
         let mediaSelectionOption = mediaSelectionGroup.options[row]
-        return mediaSelectionOption.displayName(with: Locale.current)
+        let locale = mediaSelectionOption.extendedLanguageTag.flatMap(Locale.init(identifier:))
+        let nativeLanguage = mediaSelectionOption.displayName(with: locale ?? Locale.current).capitalized
+        let localizedLanguage = mediaSelectionOption.displayName(with: Locale.current).capitalized
+
+        if nativeLanguage == localizedLanguage {
+            return nativeLanguage
+        } else {
+            return "\(nativeLanguage) (\(localizedLanguage))"
+        }
     }
 
 }

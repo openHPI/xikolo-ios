@@ -20,6 +20,7 @@ public struct Brand: Decodable {
         case showCurrentCoursesInSelfPacedSection
         case features
         case courseClassifierSearchFilters
+        case additionalLearningMaterial
         case testAccountUserId
     }
 
@@ -42,6 +43,7 @@ public struct Brand: Decodable {
     public let showCurrentCoursesInSelfPacedSection: Bool
     public let features: BrandFeatures
     public let courseClassifierSearchFilters: CourseClassifierSearchFilters?
+    public let additionalLearningMaterial: [AdditionalLearningMaterial]
     public let testAccountUserId: String?
 
     public var copyrightText: String {
@@ -62,6 +64,7 @@ public struct Brand: Decodable {
         self.showCurrentCoursesInSelfPacedSection = try container.decodeIfPresent(Bool.self, forKey: .showCurrentCoursesInSelfPacedSection) ?? false
         self.features = try container.decode(BrandFeatures.self, forKey: .features)
         self.courseClassifierSearchFilters = try? container.decode(CourseClassifierSearchFilters.self, forKey: .courseClassifierSearchFilters)
+        self.additionalLearningMaterial = try container.decodeIfPresent([AdditionalLearningMaterial].self, forKey: .additionalLearningMaterial) ?? []
         self.testAccountUserId = try? container.decode(String.self, forKey: .testAccountUserId)
     }
 

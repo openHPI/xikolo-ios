@@ -1,0 +1,11 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+#include "openHPI-Common.xcconfig"
+#include "../Release.xcconfig"
+
+PRODUCT_NAME = today
+PRODUCT_MODULE_NAME = Today
+EXTENSION_PATH = .today

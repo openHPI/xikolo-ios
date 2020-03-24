@@ -67,11 +67,26 @@ class AppNavigator {
     }
 
     @discardableResult func handle(url: URL) -> Bool {
-        guard url.host == Brand.default.host else {
-            log.debug("Can't open \(url) inside of the app because host is wrong")
+        if url.scheme == Bundle.main.urlScheme {
+            return self.handle(urlSchemeURL: url)
+        } else if url.host == Brand.default.host {
+            return self.handle(hostURL: url)
+        } else {
+            log.debug("Can't open \(url) inside of the app because host or url scheme is wrong")
             return false
         }
+    }
 
+    private func handle(urlSchemeURL url: URL) -> Bool {
+        switch url.host {
+        case "dashboard":
+            return self.showDashboard()
+        default:
+            return true
+        }
+    }
+
+    private func handle(hostURL url: URL) -> Bool {
         switch url.pathComponents[safe: 1] {
         case nil:
             return true // url to base page, simply open the app

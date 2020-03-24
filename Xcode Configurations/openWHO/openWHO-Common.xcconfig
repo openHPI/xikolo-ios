@@ -6,6 +6,7 @@
 BRAND_NAME = openWHO
 PRODUCT_NAME = openWHO
 DISPLAY_NAME = OpenWHO
+URL_SCHEME = openwho
 
 BASE_BUNDLE_IDENTIFIER = de.xikolo.openwho
 

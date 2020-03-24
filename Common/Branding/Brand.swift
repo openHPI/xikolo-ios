@@ -70,7 +70,7 @@ public struct Brand: Decodable {
 
 }
 
-extension KeyedDecodingContainer {
+private extension KeyedDecodingContainer {
 
     func decodeURL(forKey key: K) throws -> URL {
         let value = try self.decode(String.self, forKey: key)

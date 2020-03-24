@@ -39,3 +39,12 @@ public enum AdditionalLearningMaterialType: String, Decodable {
     }
 
 }
+
+private extension KeyedDecodingContainer {
+
+    func decodeURL(forKey key: K) throws -> URL {
+        let value = try self.decode(String.self, forKey: key)
+        return URL(string: value)!
+    }
+
+}

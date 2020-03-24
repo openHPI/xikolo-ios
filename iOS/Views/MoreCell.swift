@@ -56,13 +56,7 @@ class MoreCell: UICollectionViewCell {
     func configureNews() {
         self.cardView.backgroundColor = ColorCompatibility.secondarySystemBackground
         self.iconImageView.tintColor = ColorCompatibility.secondaryLabel
-
-        if #available(iOS 13, *) {
-            self.iconImageView.image = UIImage(systemName: "bell.fill")
-        } else {
-            self.iconImageView.image = nil
-        }
-
+        self.iconImageView.image =  R.image.more.news()
         self.titleLabel.textColor = ColorCompatibility.secondaryLabel
         self.titleLabel.text = "News"
     }
@@ -80,15 +74,11 @@ extension MoreCell {
 extension AdditionalLearningMaterialResourceType {
 
     var icon: UIImage? {
-        if #available(iOS 13, *) {
-             switch self {
-             case .microLearning:
-                return UIImage(systemName: "list.bullet.below.rectangle")//"tv.fill")
-             case .podcasts:
-                 return UIImage(systemName: "mic.fill")
-             }
-        } else {
-            return nil
+        switch self {
+        case .microLearning:
+            return R.image.more.microLearning()
+        case .podcasts:
+            return R.image.more.podcasts()
         }
     }
 }

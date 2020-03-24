@@ -29,36 +29,38 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SiH-Im-I9g">
-                                        <rect key="frame" x="8" y="63" width="356" height="101.5"/>
+                                        <rect key="frame" x="149" y="63" width="74" height="101.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qfo-qw-mYE">
-                                                <rect key="frame" x="148" y="0.0" width="60" height="60"/>
+                                                <rect key="frame" x="7" y="0.0" width="60" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="K8c-mH-8D8"/>
                                                     <constraint firstAttribute="width" secondItem="qfo-qw-mYE" secondAttribute="height" multiplier="1:1" id="Ovg-qF-V6u"/>
                                                 </constraints>
                                             </imageView>
-                                            <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="action" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oi4-cZ-fg6">
-                                                <rect key="frame" x="141" y="68" width="74" height="33.5"/>
+                                            <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="action" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oi4-cZ-fg6">
+                                                <rect key="frame" x="0.0" y="68" width="74" height="33.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <variation key="widthClass=regular" axis="horizontal" spacing="16"/>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="SiH-Im-I9g" secondAttribute="bottom" id="2rd-gi-qmq"/>
-                                    <constraint firstItem="SiH-Im-I9g" firstAttribute="leading" secondItem="HeY-cB-Vtv" secondAttribute="leadingMargin" id="G6Z-D3-b7T"/>
+                                    <constraint firstItem="SiH-Im-I9g" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HeY-cB-Vtv" secondAttribute="leadingMargin" id="G6Z-D3-b7T"/>
                                     <constraint firstAttribute="trailing" secondItem="SqS-1T-Lfc" secondAttribute="trailing" id="Tn5-wB-Rhx"/>
                                     <constraint firstAttribute="bottom" secondItem="SqS-1T-Lfc" secondAttribute="bottom" id="Wky-qr-2o0"/>
                                     <constraint firstItem="SiH-Im-I9g" firstAttribute="centerY" secondItem="HeY-cB-Vtv" secondAttribute="centerY" id="c84-aH-P1d"/>
+                                    <constraint firstItem="SiH-Im-I9g" firstAttribute="centerX" secondItem="HeY-cB-Vtv" secondAttribute="centerX" id="dw8-qO-0Wc"/>
                                     <constraint firstItem="SqS-1T-Lfc" firstAttribute="top" secondItem="HeY-cB-Vtv" secondAttribute="top" id="gyz-6c-UYZ"/>
                                     <constraint firstItem="SiH-Im-I9g" firstAttribute="top" relation="greaterThanOrEqual" secondItem="HeY-cB-Vtv" secondAttribute="topMargin" id="hwc-oW-rFr"/>
                                     <constraint firstItem="SqS-1T-Lfc" firstAttribute="leading" secondItem="HeY-cB-Vtv" secondAttribute="leading" id="oUr-Qg-Rpt"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="SiH-Im-I9g" secondAttribute="trailing" id="p9P-nf-pjl"/>
+                                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="SiH-Im-I9g" secondAttribute="trailing" id="p9P-nf-pjl"/>
                                 </constraints>
                             </view>
                         </subviews>

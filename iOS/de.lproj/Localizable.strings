@@ -68,6 +68,9 @@
 /* stop all downloads for video */
 "course-item.combined-download-action.stop-download.title" = "Alle Downloads stoppen";
 
+/* download learning material of course item */
+"course-item.download" = "Herunterladen...";
+
 /* maximum points for course item */
 "course-item.max-points" = "%@ Punkte";
 

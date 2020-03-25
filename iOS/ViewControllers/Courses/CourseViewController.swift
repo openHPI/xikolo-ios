@@ -341,8 +341,7 @@ class CourseViewController: UIViewController {
     }
 
     private func shareCourse() {
-        let activityItems = [self.course as Any]
-        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        guard let activityViewController = UIActivityViewController(course: course) else { return }
         activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
         activityViewController.completionWithItemsHandler = { activityType, completed, _, _ in
             let context: [String: String?] = [

@@ -176,22 +176,19 @@ extension CourseItemListViewController { // TableViewDelegate
                 self.shareCourseItem(courseItem: courseItem)
             }
 
-            let contextMenu = UIMenu(title: "", children: [share])
-
-            if let video = courseItem.content as? Video {
-                if let downloadStream = video.downloadStreamAction, let downloadSlides = video.downloadSlidesAction {
-                    contextMenu.replacingChildren([share, downloadStream, downloadSlides])
-                }
+            if let video = courseItem.content as? Video, let actions = video.actions {
+                let downloadTitle = NSLocalizedString("course-item.download", comment: "download learning material of course item")
+                let download = UIMenu(title: downloadTitle, image: UIImage(systemName: "square.and.arrow.down"), children: actions)
+                return UIMenu(title: "", children: [share, download])
             }
 
-            return contextMenu
+            return UIMenu(title: "", children: [share])
         }
     }
 
     private func shareCourseItem(courseItem: CourseItem) {
-        let activityItems = courseItem
-        let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
-
+        guard let activityViewController = UIActivityViewController(courseItem: courseItem) else { return }
+        activityViewController.popoverPresentationController?.sourceView = self.tableView
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 

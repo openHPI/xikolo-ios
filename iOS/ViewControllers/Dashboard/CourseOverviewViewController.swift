@@ -31,8 +31,8 @@ class CourseOverviewViewController: UIViewController {
     }
 
     private func shareCourse(course: Course) {
-        let activityItems = course
-        let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
+        guard let activityViewController = UIActivityViewController(course: course) else { return }
+        activityViewController.popoverPresentationController?.sourceView = self.collectionView
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 
@@ -159,8 +159,8 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
 
     @available(iOS 13.0, *)
     func collectionView(_ collectionView: UICollectionView,
-                                 contextMenuConfigurationForItemAt indexPath: IndexPath,
-                                 point: CGPoint) -> UIContextMenuConfiguration? {
+                        contextMenuConfigurationForItemAt indexPath: IndexPath,
+                        point: CGPoint) -> UIContextMenuConfiguration? {
         let course = self.courses[indexPath.item]
 
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
@@ -173,7 +173,7 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
 
             let showCourseDates = UIAction(title: NSLocalizedString("course.action-menu.show-course-dates",
                                                                     comment: "Title for show course dates action"),
-                                           image: UIImage(systemName: "square.and.pencil")) { _ in
+                                           image: UIImage(systemName: "calendar")) { _ in
                 self.showCourseDates(course: course)
             }
 

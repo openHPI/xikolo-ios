@@ -4,14 +4,10 @@
 <dict>
 	<key>APP_GROUP_IDENTIFIER</key>
 	<string>$(APP_GROUP_IDENTIFIER)</string>
-	<key>URL_SCHEME</key>
-	<string>$(URL_SCHEME)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>TodayExtension</string>
-	<key>LSHasLocalizedDisplayName</key>
-	<true/>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -25,7 +21,9 @@
 	<key>CFBundleShortVersionString</key>
 	<string>2.10.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>0</string>
+	<key>LSHasLocalizedDisplayName</key>
+	<true/>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionMainStoryboard</key>
@@ -33,5 +31,7 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.widget-extension</string>
 	</dict>
+	<key>URL_SCHEME</key>
+	<string>$(URL_SCHEME)</string>
 </dict>
 </plist>

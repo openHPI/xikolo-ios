@@ -1957,9 +1957,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50DA823023E587FD003BEDE1 /* Build configuration list for PBXNativeTarget "TodayExtension" */;
 			buildPhases = (
+				507661A8242B2B7E00C19E34 /* Set Build Number */,
 				50DA822023E587FC003BEDE1 /* Sources */,
 				50DA822123E587FC003BEDE1 /* Frameworks */,
 				50DA822223E587FC003BEDE1 /* Resources */,
+				507661A9242B2BA800C19E34 /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -2192,6 +2194,42 @@
 			shellPath = /bin/sh;
 			shellScript = "$SRCROOT/Build\\ Phases/remove-extensions.sh\n";
 		};
+		507661A8242B2B7E00C19E34 /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/Build\\ Phases/set-build-number.sh\n";
+		};
+		507661A9242B2BA800C19E34 /* Clear Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Clear Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/Build\\ Phases/clear-build-number.sh\n";
+		};
 		50CF1F4320DCDBFC0011BFE9 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2248,7 +2286,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Build\\ Phases/clear-build-number.sh";
+			shellScript = "$SRCROOT/Build\\ Phases/clear-build-number.sh\n";
 		};
 		50D60D2B20E0D2C7007A4199 /* Remove Localizations */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -5452,6 +5490,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5522,6 +5561,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5585,6 +5625,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5648,6 +5689,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5711,6 +5753,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5774,6 +5817,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5837,6 +5881,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5900,6 +5945,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				ENABLE_NS_ASSERTIONS = NO;

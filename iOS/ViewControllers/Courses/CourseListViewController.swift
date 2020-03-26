@@ -195,7 +195,7 @@ class CourseListViewController: UICollectionViewController {
             let share = UIAction(title: NSLocalizedString("course.action-menu.share",
                                                           comment: "Title for course item share action"),
                                  image: UIImage(systemName: "square.and.arrow.up")) { _ in
-                self.shareCourse(course: course)
+                                    self.shareCourse(course: course)
             }
 
             let showCourseDates = UIAction(title: NSLocalizedString("course.action-menu.show-course-dates",

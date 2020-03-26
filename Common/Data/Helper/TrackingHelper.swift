@@ -135,7 +135,8 @@ public enum TrackingHelper {
 
         DispatchQueue.main.async {
             var trackingContext = self.newDefaultContext(for: viewController)
-            for case let (key, value) as (String, String) in context {
+            for (key, someValue) in context {
+                guard let value = someValue else { continue }
                 trackingContext.updateValue(value, forKey: key)
             }
 

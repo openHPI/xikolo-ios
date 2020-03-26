@@ -146,6 +146,7 @@
 		508AB2C22109F0DE0079EAE5 /* DocumentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */; };
 		508AB2EC211448E40079EAE5 /* BrandFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2EB211448E30079EAE5 /* BrandFeatures.swift */; };
 		508B9FA8211D7A600090BD16 /* RefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508B9FA7211D7A600090BD16 /* RefreshControl.swift */; };
+		508CF44A242CA8F60086F339 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508CF449242CA8F50086F339 /* CoreServices.framework */; };
 		508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44121AB390400801530 /* SubtitleTableViewCell.swift */; };
 		508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift */; };
 		508FF44621AB42B200801530 /* UITableViewController+resizeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */; };
@@ -238,7 +239,6 @@
 		50CF1FEF20DCDBFC0011BFE9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */; };
 		50CF1FF020DCDBFC0011BFE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */; };
 		50CF1FF120DCDBFC0011BFE9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AC1B3C2EE5006FCAD6 /* Security.framework */; };
-		50CF1FF220DCDBFC0011BFE9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */; };
 		50CF1FF320DCDBFC0011BFE9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
 		50CF1FF420DCDBFC0011BFE9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
 		50CF1FF720DCDBFC0011BFE9 /* WebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A60920795BFD00E98351 /* WebViewController.storyboard */; };
@@ -696,6 +696,7 @@
 		508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHeader.swift; sourceTree = "<group>"; };
 		508AB2EB211448E30079EAE5 /* BrandFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandFeatures.swift; sourceTree = "<group>"; };
 		508B9FA7211D7A600090BD16 /* RefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshControl.swift; sourceTree = "<group>"; };
+		508CF449242CA8F50086F339 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		508FF44121AB390400801530 /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedContentTypeListConfiguraton.swift; sourceTree = "<group>"; };
 		508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+resizeViews.swift"; sourceTree = "<group>"; };
@@ -952,7 +953,7 @@
 				50CF1FEF20DCDBFC0011BFE9 /* QuartzCore.framework in Frameworks */,
 				50CF1FF020DCDBFC0011BFE9 /* SystemConfiguration.framework in Frameworks */,
 				50CF1FF120DCDBFC0011BFE9 /* Security.framework in Frameworks */,
-				50CF1FF220DCDBFC0011BFE9 /* MobileCoreServices.framework in Frameworks */,
+				508CF44A242CA8F60086F339 /* CoreServices.framework in Frameworks */,
 				50CF1FF320DCDBFC0011BFE9 /* CoreData.framework in Frameworks */,
 				50FA2DF220E4B1A800656776 /* Common.framework in Frameworks */,
 				50CF1FF420DCDBFC0011BFE9 /* CFNetwork.framework in Frameworks */,
@@ -1812,6 +1813,7 @@
 		FF91D61F2A79812A5E7FB607 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				508CF449242CA8F50086F339 /* CoreServices.framework */,
 				AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */,
 				7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */,
 				7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */,

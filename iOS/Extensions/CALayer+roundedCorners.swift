@@ -8,6 +8,7 @@ import UIKit
 extension CALayer {
 
     enum CornerStyle: CGFloat {
+        case searchField = 10
         case `default` = 6
         case inner = 4
     }

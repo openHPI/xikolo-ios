@@ -1,4 +1,7 @@
 
+/* Display name for additional learning material dummy: news */
+"additional-learning-material.dummy.news.title" = "News";
+
 /* title of alert for stream download errors */
 "alert.download-error.documents.title" = "Error while downloading document";
 

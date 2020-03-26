@@ -1,4 +1,7 @@
 
+/* Display name for additional learning material dummy: news */
+"additional-learning-material.dummy.news.title" = "Neuigkeiten";
+
 /* title of alert for stream download errors */
 "alert.download-error.documents.title" = "Fehler beim Dokument-Download";
 
@@ -210,7 +213,7 @@
 "empty-view.account.certificates.no-certificates.title" = "Keine Leistungsnachweise";
 
 /* description for empty download list */
-"empty-view.account.download.no-downloads.description" = "Im Kursbereich können Materialien heruntergeladen werden, um diese ohne Internetverbindung nutzen zu können";
+"empty-view.account.download.no-downloads.description" = "Für jeden Kurs können Materialien heruntergeladen werden, um diese ohne Internetverbindung nutzen zu können";
 
 /* title for empty download list */
 "empty-view.account.download.no-downloads.title" = "Keine heruntergeladenen Inhalte";

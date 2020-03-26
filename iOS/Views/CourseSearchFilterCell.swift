@@ -19,7 +19,7 @@ class CourseSearchFilterCell: UICollectionViewCell {
         super.awakeFromNib()
 
         self.layer.borderWidth = 1
-        self.layer.roundCorners(for: .default)
+        self.layer.roundCorners(for: .searchField)
 
         self.titleLabel.font = Self.titleFont
         self.titleLabel.textColor = ColorCompatibility.secondaryLabel

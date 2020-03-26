@@ -34,10 +34,22 @@ public enum MarkdownHelper {
 
         let promise = Promise<NSMutableAttributedString, XikoloError>()
 
-        DispatchQueue.global(qos: .userInitiated).async {
-            let html = try? Down(markdownString: markdown).toHTML()
-            let attributedString = self.parser.attributedString(for: html ?? "")
-            promise.success(attributedString)
+        if #available(iOS 11, *) {
+            let string = self.string(for: markdown) // parse markdown first as included URLs can skew the result
+            let dominantLanguage = NSLinguisticTagger.dominantLanguage(for: string)
+            if ["ar", "he", "fa"].contains(dominantLanguage) {
+                let attributedString = try? Down(markdownString: markdown).toAttributedString(styler: DownStyler())
+                promise.success(NSMutableAttributedString(attributedString: attributedString ?? NSAttributedString()))
+            } else {
+                DispatchQueue.global(qos: .userInitiated).async {
+                    let html = try? Down(markdownString: markdown).toHTML()
+                    let attributedString = self.parser.attributedString(for: html ?? "")
+                    promise.success(attributedString)
+                }
+            }
+        } else {
+            let attributedString = try? Down(markdownString: markdown).toAttributedString(styler: DownStyler())
+            promise.success(NSMutableAttributedString(attributedString: attributedString ?? NSAttributedString()))
         }
 
         return promise.future

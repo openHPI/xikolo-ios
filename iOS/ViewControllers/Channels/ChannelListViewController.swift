@@ -61,6 +61,7 @@ class ChannelListViewController: UICollectionViewController {
 
         // swiftlint:disable:next trailing_closure
         coordinator.animate(alongsideTransition: { _  in
+            self.navigationController?.navigationBar.sizeToFit()
             self.collectionViewLayout.invalidateLayout()
         })
     }
@@ -91,6 +92,7 @@ extension ChannelListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
 
+        let boundingHeight = collectionView.bounds.height - collectionView.layoutMargins.top - collectionView.layoutMargins.bottom
         var boundingWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
 
         if self.traitCollection.horizontalSizeClass == .regular, collectionView.bounds.width > collectionView.bounds.height {
@@ -98,7 +100,8 @@ extension ChannelListViewController: UICollectionViewDelegateFlowLayout {
         }
 
         let channel = self.dataSource.object(at: indexPath)
-        let height = ceil(ChannelCell.heightForChannelList(forWidth: boundingWidth, for: channel))
+        var height = ceil(ChannelCell.heightForChannelList(forWidth: boundingWidth, for: channel))
+        height = min(boundingHeight, height)
 
         return CGSize(width: boundingWidth, height: height)
     }

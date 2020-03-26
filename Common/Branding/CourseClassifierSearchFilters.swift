@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct CourseClassifierSearchFilter: Decodable {
+public struct CourseClassifierSearchFilters: Decodable {
     public let category: CourseClassifierSearchFilterType?
     public let topic: CourseClassifierSearchFilterType?
 }

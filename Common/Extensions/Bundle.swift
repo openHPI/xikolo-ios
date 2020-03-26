@@ -11,4 +11,8 @@ public extension Bundle {
         return self.infoDictionary?["APP_GROUP_IDENTIFIER"] as? String
     }
 
+    var urlScheme: String? {
+        return self.infoDictionary?["URL_SCHEME"] as? String
+    }
+
 }

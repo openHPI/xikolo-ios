@@ -173,7 +173,7 @@ extension CourseItemListViewController { // TableViewDelegate
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
 
             let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
-                courseItem.share(viewController: self)
+                self.shareCourseItem(courseItem: courseItem)
             }
 
             if let video = courseItem.content as? Video, let actions = video.actions {

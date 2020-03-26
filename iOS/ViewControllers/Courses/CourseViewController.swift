@@ -3,7 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-// swiftlint:disable file_length 
+// swiftlint:disable file_length type_body_length
 
 import Common
 import SDWebImage
@@ -57,7 +57,7 @@ class CourseViewController: UIViewController {
     private var shareCourseAction: UIAlertAction {
         return UIAlertAction(title: NSLocalizedString("course.action-menu.share", comment: "Title for course item share action"),
                              style: .default) { [weak self] _ in
-                                self.shareCourse()
+                                self?.shareCourse()
         }
     }
 
@@ -353,6 +353,7 @@ class CourseViewController: UIViewController {
 
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
+
     private func updateHeaderConstraints() {
         let shouldHideHeader = self.traitCollection.verticalSizeClass == .compact
         let offset = shouldHideHeader ? self.headerHeight : self.headerOffset

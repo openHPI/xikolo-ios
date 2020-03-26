@@ -33,21 +33,3 @@ extension Course: UIActivityItemSource {
     }
 
 }
-
-extension Course {
-
-    public func share(viewController: UIViewController) {
-
-        let activityViewController = UIActivityViewController(activityItems: [self], applicationActivities: nil)
-        activityViewController.completionWithItemsHandler = { activityType, completed, _, _ in
-            let context: [String: String?] = [
-                "service": activityType?.rawValue,
-                "completed": String(describing: completed),
-            ]
-            TrackingHelper.createEvent(.shareCourse, resourceType: .course, resourceId: self.id, on: viewController, context: context)
-        }
-
-        viewController.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
-    }
-
-}

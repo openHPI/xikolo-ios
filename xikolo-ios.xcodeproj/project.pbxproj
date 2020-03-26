@@ -1941,7 +1941,6 @@
 				50CF201220DCDBFC0011BFE9 /* Clear Build Number */,
 				02299DD82417E867006B2E52 /* Embed App Extension */,
 				50D60D2B20E0D2C7007A4199 /* Remove Localizations */,
-				02299DDA2417E8B1006B2E52 /* Remove Extensions */,
 			);
 			buildRules = (
 			);
@@ -2178,24 +2177,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		02299DDA2417E8B1006B2E52 /* Remove Extensions */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Remove Extensions";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Build\\ Phases/remove-extensions.sh\n";
-		};
 		507661A8242B2B7E00C19E34 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

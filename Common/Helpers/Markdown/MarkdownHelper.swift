@@ -36,8 +36,29 @@ public enum MarkdownHelper {
         listItemPrefix: Self.makeDynamicFont(for: DownFont.monospacedDigitSystemFont(ofSize: UIFont.labelFontSize * 1.0, weight: .regular))
     )
 
+    static let dynamicColors: ColorCollection = {
+        if #available(iOS 13, *) {
+            return StaticColorCollection (
+                heading1: .label,
+                heading2: .label,
+                heading3: .label,
+                body: .label,
+                code: .label,
+                link: Brand.default.colors.window,
+                quote: .secondaryLabel,
+                quoteStripe: .secondaryLabel,
+                thematicBreak: .separator,
+                listItemPrefix: .tertiaryLabel,
+                codeBlockBackground: .secondarySystemBackground
+            )
+        } else {
+            return StaticColorCollection()
+        }
+    }()
+
     static let dynamicTypeStylerConfiguration = DownStylerConfiguration(
-        fonts: dynamicFontCollection
+        fonts: dynamicFontCollection,
+        colors: dynamicColors
     )
 
     static func dataTask(for url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask {

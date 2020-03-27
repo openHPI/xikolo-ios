@@ -323,7 +323,7 @@ class CourseViewController: UIViewController {
 
         alert.addAction(self.shareCourseAction)
 
-        if self.course.hasEnrollment {
+        if self.course.hasEnrollment && Brand.default.features.showCourseDatesOnDashboard {
             alert.addAction(self.showCourseDatesAction)
         }
 

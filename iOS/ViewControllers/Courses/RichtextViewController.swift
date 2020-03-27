@@ -12,6 +12,7 @@ class RichtextViewController: UIViewController {
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var scrollViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var minimumTextViewHeightContraint: NSLayoutConstraint!
 
     private var courseItemObserver: ManagedObjectObserver?
 
@@ -52,15 +53,8 @@ class RichtextViewController: UIViewController {
 
         self.titleView.text = self.courseItem.title
 
-        guard let richText = self.courseItem.content as? RichText, let markdown = richText.text else {
-            self.textView.isHidden = true
-            return
-        }
-
-        MarkdownHelper.attributedString(for: markdown).onSuccess { [weak self] attributedString in
-            self?.textView.attributedText = attributedString
-            self?.textView.isHidden = false
-        }
+        let markdown = (self.courseItem.content as? RichText)?.text
+        self.textView.setMarkdownWithImages(from: markdown, minimumHeightContraint: self.minimumTextViewHeightContraint)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

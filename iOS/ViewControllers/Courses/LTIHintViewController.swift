@@ -21,7 +21,8 @@ class LTIHintViewController: UIViewController {
     @IBOutlet private weak var typeView: UILabel!
     @IBOutlet private weak var pointsView: UILabel!
     @IBOutlet private weak var startButton: UIButton!
-
+    @IBOutlet private weak var minimumTextViewHeightContraint: NSLayoutConstraint!
+    
     weak var delegate: CourseItemViewController?
 
     private var courseItemObserver: ManagedObjectObserver?
@@ -56,12 +57,8 @@ class LTIHintViewController: UIViewController {
         self.itemTitleLabel.text = self.courseItem?.title
         self.startButton.backgroundColor = Brand.default.colors.primary
 
-        if let markdown = ltiExercise.instructions {
-            MarkdownHelper.attributedString(for: markdown).onSuccess { [weak self] attributedString in
-                self?.instructionsView.attributedText = attributedString
-                self?.instructionsView.isHidden = false
-            }
-        }
+        self.instructionsView.setMarkdownWithImages(from: ltiExercise.instructions, minimumHeightContraint: self.minimumTextViewHeightContraint)
+
 
         switch self.courseItem.exerciseType {
         case "main":

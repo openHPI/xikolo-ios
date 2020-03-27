@@ -66,6 +66,12 @@
 		5036A9B323190E4100F7A63F /* UIViewController+AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036A9B223190E4100F7A63F /* UIViewController+AppNavigator.swift */; };
 		5036A9B52319232800F7A63F /* UIWindow+FullScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036A9B42319232800F7A63F /* UIWindow+FullScreen.swift */; };
 		5036E32F23292C830074117C /* ScreenshotsDark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036E32E23292C830074117C /* ScreenshotsDark.swift */; };
+		5037FC13242DF32900B4E8CE /* UITextView+Markdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5037FC12242DF32900B4E8CE /* UITextView+Markdown.swift */; };
+		5037FC16242DF76700B4E8CE /* UIImage+placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5037FC15242DF76700B4E8CE /* UIImage+placeholder.swift */; };
+		5037FC18242DF7BE00B4E8CE /* NSLayoutManager+setNeedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5037FC17242DF7BE00B4E8CE /* NSLayoutManager+setNeedLayout.swift */; };
+		5037FC1A242DF83100B4E8CE /* AsyncImageTextAttachement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5037FC19242DF83100B4E8CE /* AsyncImageTextAttachement.swift */; };
+		5037FC1C242DF84E00B4E8CE /* AsyncImagesStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5037FC1B242DF84E00B4E8CE /* AsyncImagesStyler.swift */; };
+		5037FC1E242DF87700B4E8CE /* NoImagesStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5037FC1D242DF87700B4E8CE /* NoImagesStyler.swift */; };
 		503988732166920400F9043B /* ShadowContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503988722166920400F9043B /* ShadowContainerView.swift */; };
 		5039887521679A0600F9043B /* CourseItemCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5039887421679A0600F9043B /* CourseItemCellDelegate.swift */; };
 		5039887721679A3500F9043B /* PreloadableCourseItemContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5039887621679A3500F9043B /* PreloadableCourseItemContent.swift */; };
@@ -550,6 +556,12 @@
 		5036E32E23292C830074117C /* ScreenshotsDark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsDark.swift; sourceTree = "<group>"; };
 		50371FF8204ECB8E006E9634 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		50371FFD20501388006E9634 /* DetailedDataItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedDataItemView.swift; sourceTree = "<group>"; };
+		5037FC12242DF32900B4E8CE /* UITextView+Markdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Markdown.swift"; sourceTree = "<group>"; };
+		5037FC15242DF76700B4E8CE /* UIImage+placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+placeholder.swift"; sourceTree = "<group>"; };
+		5037FC17242DF7BE00B4E8CE /* NSLayoutManager+setNeedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+setNeedLayout.swift"; sourceTree = "<group>"; };
+		5037FC19242DF83100B4E8CE /* AsyncImageTextAttachement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageTextAttachement.swift; sourceTree = "<group>"; };
+		5037FC1B242DF84E00B4E8CE /* AsyncImagesStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImagesStyler.swift; sourceTree = "<group>"; };
+		5037FC1D242DF87700B4E8CE /* NoImagesStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoImagesStyler.swift; sourceTree = "<group>"; };
 		503988722166920400F9043B /* ShadowContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowContainerView.swift; sourceTree = "<group>"; };
 		5039887421679A0600F9043B /* CourseItemCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemCellDelegate.swift; sourceTree = "<group>"; };
 		5039887621679A3500F9043B /* PreloadableCourseItemContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadableCourseItemContent.swift; sourceTree = "<group>"; };
@@ -912,7 +924,7 @@
 		2433A5AB1CE641E70060DD98 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */,
+				5037FC14242DF6E600B4E8CE /* Markdown */,
 				2490C4CA1D1C5A9900F42949 /* Settings.swift */,
 				ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */,
 				50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */,
@@ -1158,6 +1170,19 @@
 				502E7171201A20C9007FC8C0 /* Credentials.plist */,
 			);
 			path = "iOS-UITests";
+			sourceTree = "<group>";
+		};
+		5037FC14242DF6E600B4E8CE /* Markdown */ = {
+			isa = PBXGroup;
+			children = (
+				AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */,
+				5037FC1D242DF87700B4E8CE /* NoImagesStyler.swift */,
+				5037FC1B242DF84E00B4E8CE /* AsyncImagesStyler.swift */,
+				5037FC19242DF83100B4E8CE /* AsyncImageTextAttachement.swift */,
+				5037FC15242DF76700B4E8CE /* UIImage+placeholder.swift */,
+				5037FC17242DF7BE00B4E8CE /* NSLayoutManager+setNeedLayout.swift */,
+			);
+			path = Markdown;
 			sourceTree = "<group>";
 		};
 		5040A616207977DC00E98351 /* Transition */ = {
@@ -1540,6 +1565,7 @@
 				50253A2A22BA2F2A00FB63FD /* UICollectionViewFlowLayout+RTL.swift */,
 				AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */,
 				508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */,
+				5037FC12242DF32900B4E8CE /* UITextView+Markdown.swift */,
 				50A2042622FAD324004371C0 /* UITraitCollection+performAsCurrent.swift */,
 				5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */,
 				50FB7121232BBDC700359BB2 /* UIView+backgroundColor.swift */,
@@ -2366,6 +2392,7 @@
 				50CF1F9720DCDBFC0011BFE9 /* CoreDataCollectionViewDataSource.swift in Sources */,
 				B4E079ED21879C9200EA53F5 /* CertificateCell.swift in Sources */,
 				50092A90237D89BD00A1503F /* ChannelCell.swift in Sources */,
+				5037FC13242DF32900B4E8CE /* UITextView+Markdown.swift in Sources */,
 				50CF1F9E20DCDBFC0011BFE9 /* AppNavigator.swift in Sources */,
 				50913F27218C9E90006C7F11 /* String+height.swift in Sources */,
 				50CF1F9F20DCDBFC0011BFE9 /* CourseHeaderView.swift in Sources */,
@@ -2459,6 +2486,7 @@
 				504D83FC215B64EC006F2447 /* APIStatus.swift in Sources */,
 				0262E6C72372C797007C9057 /* VisitProgress.swift in Sources */,
 				50FA2E1720E4B24300656776 /* EnrollmentHelper.swift in Sources */,
+				5037FC1C242DF84E00B4E8CE /* AsyncImagesStyler.swift in Sources */,
 				50FA2E5D20E4B26400656776 /* UIColor+hex.swift in Sources */,
 				50FA2E1F20E4B24300656776 /* UserProfileHelper.swift in Sources */,
 				50FA2E0E20E4B24300656776 /* CoreDataHelper.swift in Sources */,
@@ -2467,6 +2495,7 @@
 				50FA2E3720E4B25800656776 /* Course.swift in Sources */,
 				50FA2E2C20E4B24A00656776 /* VideoHelper+FetchRequests.swift in Sources */,
 				50FA2E1920E4B24300656776 /* PeerAssessmentHelper.swift in Sources */,
+				5037FC1E242DF87700B4E8CE /* NoImagesStyler.swift in Sources */,
 				50FA2E5120E4B26400656776 /* Date.swift in Sources */,
 				50FA2E0620E4B22E00656776 /* MarkdownHelper.swift in Sources */,
 				50FA2E3F20E4B25800656776 /* LTIExercise.swift in Sources */,
@@ -2515,6 +2544,7 @@
 				507F7FDA2372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift in Sources */,
 				50FA2E4520E4B25800656776 /* RichText.swift in Sources */,
 				50046F6D216B53EB00D59073 /* Notification+CoreData.swift in Sources */,
+				5037FC16242DF76700B4E8CE /* UIImage+placeholder.swift in Sources */,
 				50FA2E4320E4B25800656776 /* QuizQuestion.swift in Sources */,
 				50FA2E0C20E4B23C00656776 /* xikolo.xcdatamodeld in Sources */,
 				50FA2E3520E4B25800656776 /* Announcement.swift in Sources */,
@@ -2526,6 +2556,7 @@
 				50FA2E4120E4B25800656776 /* PlatformEvent.swift in Sources */,
 				504D83FA215B57D4006F2447 /* ErrorReporter.swift in Sources */,
 				50FA2E0820E4B22E00656776 /* DateLabelHelper.swift in Sources */,
+				5037FC1A242DF83100B4E8CE /* AsyncImageTextAttachement.swift in Sources */,
 				50FA2E2620E4B24A00656776 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
 				508AB2EC211448E40079EAE5 /* BrandFeatures.swift in Sources */,
 				8251A50B237182F200A443A9 /* HelpdeskTicket.swift in Sources */,
@@ -2534,6 +2565,7 @@
 				50FA2E4A20E4B25800656776 /* User.swift in Sources */,
 				5095B1DC20EB570B00572924 /* Filemanager+temporaryFile.swift in Sources */,
 				50FA2E1B20E4B24300656776 /* QuizHelper.swift in Sources */,
+				5037FC18242DF7BE00B4E8CE /* NSLayoutManager+setNeedLayout.swift in Sources */,
 				50FA2DFE20E4B1FB00656776 /* Error.swift in Sources */,
 				0262E6C523729C29007C9057 /* ExerciseProgress.swift in Sources */,
 				50FA2E2120E4B24A00656776 /* AnnouncementHelper+FetchRequests.swift in Sources */,

@@ -70,8 +70,10 @@ public enum MarkdownHelper {
     }
 
     public static func string(for markdown: String) -> String {
+        // Uses styler on purpose. Otherwise Down uses Webkit to render the attributed string
+        // which must be executed on the main thread, or the app will crash
         let down = Down(markdownString: markdown)
-        let attributedString = try? down.toAttributedString()
+        let attributedString = try? down.toAttributedString(styler: DownStyler())
         return attributedString?.string ?? ""
     }
 

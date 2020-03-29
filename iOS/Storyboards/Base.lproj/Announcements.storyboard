@@ -222,6 +222,9 @@
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Announcement Text" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UbT-BW-x9z">
                                                         <rect key="frame" x="0.0" y="94.5" width="163" height="38"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="MKV-c0-Qj5"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -270,6 +273,7 @@
                     <connections>
                         <outlet property="courseButton" destination="AvL-qs-dkH" id="KgF-gq-2bZ"/>
                         <outlet property="dateLabel" destination="JDe-Vt-sYI" id="8PH-K0-Dos"/>
+                        <outlet property="minimumTextViewHeightContraint" destination="MKV-c0-Qj5" id="I1W-lF-bNw"/>
                         <outlet property="textView" destination="UbT-BW-x9z" id="1m5-Eg-vYW"/>
                         <outlet property="titleLabel" destination="Ncg-gL-SNu" id="Tdg-cx-1Eo"/>
                     </connections>

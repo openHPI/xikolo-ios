@@ -151,6 +151,9 @@
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Loading instructions …" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M5w-cg-LNk">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="38"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="RH3-Fp-08i"/>
+                                                                </constraints>
                                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -237,6 +240,7 @@
                         <outlet property="instructionsView" destination="M5w-cg-LNk" id="V8p-nl-MdM"/>
                         <outlet property="launchButton" destination="Sdh-gh-SKC" id="UJS-NY-dGP"/>
                         <outlet property="launchInfoView" destination="GQ0-pu-ThV" id="9Tn-4B-jDb"/>
+                        <outlet property="minimumTextViewHeightContraint" destination="M5w-cg-LNk" id="Z2k-yu-d6h"/>
                         <outlet property="peerAssessmentTypeImage" destination="MFi-FL-Tvh" id="IJ5-jg-73k"/>
                         <outlet property="peerAssessmentTypeLabel" destination="evK-Xb-vZR" id="qBr-wo-dea"/>
                         <outlet property="pointsLabel" destination="2I0-Nd-g8l" id="6mc-df-BUK"/>

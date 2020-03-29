@@ -41,6 +41,7 @@ class PeerAssessmentHintViewController: UIViewController {
     @IBOutlet private weak var instructionsView: UITextView!
     @IBOutlet private weak var launchButton: UIButton!
     @IBOutlet private weak var deadlineExpiredView: UIView!
+    @IBOutlet private weak var minimumTextViewHeightContraint: NSLayoutConstraint!
 
     weak var delegate: CourseItemViewController?
 
@@ -117,11 +118,7 @@ class PeerAssessmentHintViewController: UIViewController {
         self.deadlineDateView.isHidden = self.courseItem.deadline == nil
 
         // Set instructions label
-        if let markdown = peerAssessment.instructions {
-            MarkdownHelper.attributedString(for: markdown).onSuccess { [weak self] attributedString in
-                self?.instructionsView.attributedText = attributedString
-            }
-        }
+        self.instructionsView.setMarkdownWithImages(from: peerAssessment.instructions, minimumHeightContraint: self.minimumTextViewHeightContraint)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

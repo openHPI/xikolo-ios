@@ -16,6 +16,7 @@ class AnnouncementViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
+    @IBOutlet private weak var minimumTextViewHeightContraint: NSLayoutConstraint!
 
     private var announcementObserver: ManagedObjectObserver?
 
@@ -74,13 +75,8 @@ class AnnouncementViewController: UIViewController {
             self.dateLabel.isHidden = true
         }
 
-        if let newsText = self.announcement.text {
-            MarkdownHelper.attributedString(for: newsText).onSuccess { [weak self] attributedString in
-                self?.textView.attributedText = attributedString
-            }
-        } else {
-            self.textView.text = "[...]"
-        }
+        self.textView.setMarkdownWithImages(from: self.announcement.text, minimumHeightContraint: self.minimumTextViewHeightContraint)
+
     }
 
     @IBAction private func tappedCourseTitle() {

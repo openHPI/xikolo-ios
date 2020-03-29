@@ -144,12 +144,10 @@ class CourseListViewController: UICollectionViewController {
     }
 
     private func showCourseDates(course: Course) {
-            let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
-            courseDatesViewController.course = course
-            let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
-            navigationController.navigationBar.barTintColor = ColorCompatibility.systemBackground
-            self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
-        }
+               let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
+               let navigationController = courseDatesViewController.getCourseDatesNavigationController(course: course)
+               self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+           }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = self.dataSource.object(at: indexPath)

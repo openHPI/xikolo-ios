@@ -358,6 +358,7 @@
 		8251A50B237182F200A443A9 /* HelpdeskTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50A237182F200A443A9 /* HelpdeskTicket.swift */; };
 		8251A50D23718A4500A443A9 /* HelpdeskTicketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */; };
 		82773EF6242E245C0007F651 /* UIActivityViewController+share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82773EF5242E245C0007F651 /* UIActivityViewController+share.swift */; };
+		827DF5D9243130AE004F9538 /* CourseDateListViewController+showCourseDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827DF5D8243130AE004F9538 /* CourseDateListViewController+showCourseDates.swift */; };
 		828FF16523EF4424006515B5 /* PeerAssessmentHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FF16423EF4424006515B5 /* PeerAssessmentHintViewController.swift */; };
 		828FF16A23EF5DE1006515B5 /* CourseLearningsPeerAssessment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 828FF16C23EF5DE1006515B5 /* CourseLearningsPeerAssessment.storyboard */; };
 		82BE606D232FBB86000353B4 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82BE606F232FBB86000353B4 /* CourseDetails.storyboard */; };
@@ -839,6 +840,7 @@
 		8251A50A237182F200A443A9 /* HelpdeskTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskTicket.swift; sourceTree = "<group>"; };
 		8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskTicketHelper.swift; sourceTree = "<group>"; };
 		82773EF5242E245C0007F651 /* UIActivityViewController+share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityViewController+share.swift"; sourceTree = "<group>"; };
+		827DF5D8243130AE004F9538 /* CourseDateListViewController+showCourseDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDateListViewController+showCourseDates.swift"; sourceTree = "<group>"; };
 		828FF16423EF4424006515B5 /* PeerAssessmentHintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerAssessmentHintViewController.swift; sourceTree = "<group>"; };
 		828FF16B23EF5DE1006515B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseLearningsPeerAssessment.storyboard; sourceTree = "<group>"; };
 		828FF16E23EF5E3B006515B5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseLearningsPeerAssessment.strings; sourceTree = "<group>"; };
@@ -1648,6 +1650,7 @@
 				50272506235466B100815914 /* EmptyState */,
 				5057ED7E1FE3D91B0096095B /* UserDefaults */,
 				5012913322BA64DC00AAB58B /* CALayer+roundedCorners.swift */,
+				827DF5D8243130AE004F9538 /* CourseDateListViewController+showCourseDates.swift */,
 				700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */,
 				50913F26218C9E90006C7F11 /* String+height.swift */,
 				500228E720580142003301A7 /* UIAlertViewController+cancel.swift */,
@@ -2528,6 +2531,7 @@
 				502902E021BABA79004B1B43 /* AccountViewControllerDataSource.swift in Sources */,
 				5058578621351CBD006A5D15 /* PseudoCourseCell.swift in Sources */,
 				5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */,
+				827DF5D9243130AE004F9538 /* CourseDateListViewController+showCourseDates.swift in Sources */,
 				50CF1F5120DCDBFC0011BFE9 /* PersistenceManager.swift in Sources */,
 				50CF1F5520DCDBFC0011BFE9 /* FilePersistenceManager.swift in Sources */,
 				50CF1F5820DCDBFC0011BFE9 /* DetailedDataItemView.swift in Sources */,

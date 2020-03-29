@@ -95,7 +95,7 @@ extension Video {
              let isOffline = !ReachabilityHelper.hasConnection
              let slidesDownloadState = SlidesPersistenceManager.shared.downloadState(for: video)
 
-             if let url = video.streamURLForDownload, slidesDownloadState == .notDownloaded, !isOffline {
+             if let url = video.slidesURL, slidesDownloadState == .notDownloaded, !isOffline {
                  let downloadActionTitle = NSLocalizedString("course-item.slides-download-action.start-download.title",
                                                              comment: "start download of slides for video")
                  self.title = downloadActionTitle
@@ -174,24 +174,13 @@ extension Video {
         }
     }
 
-    var combinedUserActions: UIAlertAction {
-        let combinedActionStruct = CombinedActions(video: self)
-        return UIAlertAction(title: combinedActionStruct.title, style: .default) { _ in
-            for action in combinedActionStruct.actions {
-                action
-            }
-        }
-    }
-
     @available(iOS 13, *)
-    var combinedAction: UIAction? {
-        let combinedActionStruct = CombinedActions(video: self)
-        guard let image = combinedActionStruct.image else { return nil }
-        if !combinedActionStruct.title.isEmpty {
-            return UIAction(title: combinedActionStruct.title, image: image) { _ in
-                    for action in combinedActionStruct.actions {
-                        action
-                    }
+    var downloadStreamAction: UIAction? {
+        let streamActionStruct = StreamAction(video: self)
+        guard let image = streamActionStruct.image, let action = streamActionStruct.action else { return nil }
+        if !streamActionStruct.title.isEmpty {
+            return UIAction(title: streamActionStruct.title, image: image) { _ in
+                action
             }
         } else { return nil }
     }
@@ -208,12 +197,14 @@ extension Video {
     }
 
     @available(iOS 13, *)
-    var downloadStreamAction: UIAction? {
-        let streamActionStruct = StreamAction(video: self)
-        guard let image = streamActionStruct.image, let action = streamActionStruct.action else { return nil }
-        if !streamActionStruct.title.isEmpty {
-            return UIAction(title: streamActionStruct.title, image: image) { _ in
-                action
+    var combinedAction: UIAction? {
+        let combinedActionStruct = CombinedActions(video: self)
+        guard let image = combinedActionStruct.image else { return nil }
+        if !combinedActionStruct.title.isEmpty {
+            return UIAction(title: combinedActionStruct.title, image: image) { _ in
+                    for action in combinedActionStruct.actions {
+                        action
+                    }
             }
         } else { return nil }
     }
@@ -237,4 +228,13 @@ extension Video {
                }
            } else { return nil }
        }
+
+    var combinedUserActions: UIAlertAction {
+        let combinedActionStruct = CombinedActions(video: self)
+        return UIAlertAction(title: combinedActionStruct.title, style: .default) { _ in
+            for action in combinedActionStruct.actions {
+                action
+            }
+        }
+    }
 }

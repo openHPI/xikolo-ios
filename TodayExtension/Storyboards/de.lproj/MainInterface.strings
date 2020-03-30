@@ -10,3 +10,6 @@
 
 /* Class = "UILabel"; text = "Please log into your account"; ObjectID = "eBe-Fq-ggH"; */
 "eBe-Fq-ggH.text" = "Bitte mit dem Account anmelden";
+
+/* Class = "UILabel"; text = "Currently not supported"; ObjectID = "Ki9-Gd-mbN"; */
+"Ki9-Gd-mbN.text" = "Zurzeit nicht unterstützt";

@@ -28,6 +28,7 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
     @IBOutlet private var fullScreenContraints: [NSLayoutConstraint]!
+
     private var adjustedVideoContainerRatioConstraint: NSLayoutConstraint? {
         didSet {
             if let oldConstraint = oldValue {
@@ -239,14 +240,7 @@ class VideoViewController: UIViewController {
         self.slidesActionsButton.tintColor = isSlidesActionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         // show description
-        if let summary = video.summary {
-            MarkdownHelper.attributedString(for: summary).onSuccess { [weak self] attributedString in
-                self?.descriptionView.attributedText = attributedString
-                self?.descriptionView.isHidden = attributedString.string.isEmpty
-            }
-        } else {
-            self.descriptionView.isHidden = true
-        }
+        self.descriptionView.setMarkdownWithImages(from: video.summary)
 
         // don't reconfigure video player
         guard self.playerViewController?.asset == nil else { return }

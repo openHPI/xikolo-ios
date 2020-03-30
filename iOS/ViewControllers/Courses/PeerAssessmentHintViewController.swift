@@ -117,11 +117,7 @@ class PeerAssessmentHintViewController: UIViewController {
         self.deadlineDateView.isHidden = self.courseItem.deadline == nil
 
         // Set instructions label
-        if let markdown = peerAssessment.instructions {
-            MarkdownHelper.attributedString(for: markdown).onSuccess { [weak self] attributedString in
-                self?.instructionsView.attributedText = attributedString
-            }
-        }
+        self.instructionsView.setMarkdownWithImages(from: peerAssessment.instructions)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

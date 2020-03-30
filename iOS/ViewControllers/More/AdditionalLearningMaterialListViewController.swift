@@ -3,7 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-
 import Common
 import UIKit
 
@@ -78,7 +77,9 @@ extension AdditionalLearningMaterialListViewController: UICollectionViewDelegate
         return 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
 

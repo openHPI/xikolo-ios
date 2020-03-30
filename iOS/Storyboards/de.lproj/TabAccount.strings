@@ -49,3 +49,9 @@
 
 /* Class = "UILabel"; text = "Unfortunately, your issue couldn't be forwarded. Please try again."; ObjectID = "FPo-xL-mqX"; */
 "FPo-xL-mqX.text" = "Leider konnte Ihr Anliegen nicht weitergeleitet werden. Bitte versuchen Sie es erneut";
+
+/* Class = "UILabel"; text = "You will create a ticket that will be answered by the helpdesk team."; ObjectID = "HdZ-c8-ZUp"; */
+"HdZ-c8-ZUp.text" = "Mit Absenden wird ein Ticket erstellt, das von unserem Helpdesk-Team beantwortet wird.";
+
+/* Class = "UINavigationItem"; title = "Technical Support"; ObjectID = "ccX-D1-nh5"; */
+"ccX-D1-nh5.title" = "Technischer Support";

@@ -80,11 +80,8 @@ class CourseDetailsViewController: UIViewController {
             self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
         })
 
-        if let description = self.course.courseDescription ?? self.course.abstract {
-            MarkdownHelper.attributedString(for: description).onSuccess { [weak self] attributedString in
-                self?.descriptionView.attributedText = attributedString
-            }
-        }
+        let markdown = self.course.courseDescription ?? self.course.abstract
+        self.descriptionView.setMarkdownWithImages(from: markdown)
 
         self.refreshEnrollButton()
     }

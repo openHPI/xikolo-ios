@@ -19,7 +19,6 @@ def common_pods
     pod 'KeychainAccess', '~> 4.0'
     pod 'ReachabilitySwift', '~> 5.0'
     pod 'SyncEngine', :path => './Frameworks/SyncEngine'
-    pod 'HTMLStyler', :path => './Frameworks/HTMLStyler'
 end
 
 target 'Common' do
@@ -53,7 +52,7 @@ post_install do |installer|
     # but creates only one pod license file for iOS instead of one license file for each target
     # Additonally, it provides more customization possibilities.
     Pod::UI.info "Adding Pod Licenses"
-    excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint', 'SimulatorStatusMagic', 'SyncEngine', 'HTMLStyler']
+    excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint', 'SimulatorStatusMagic', 'SyncEngine']
     sandbox = installer.sandbox
     common_target = installer.aggregate_targets.select { |target| target.label.include? 'Common' }.first
     ios_target = installer.aggregate_targets.select { |target| target.label.include? 'iOS' }.first

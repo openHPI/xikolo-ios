@@ -284,6 +284,9 @@
 /* Label of button for submitting a helpdesk ticket */
 "helpdesk.action.send" = "Senden";
 
+/* hint for checking the FAQ before creating a helpdesk ticket */
+"helpdesk.hint.faq" = "Bevor Sie ein Ticket an den technischen Support schreiben, stellen Sie sicher, dass Sie unsere FAQ gelesen haben. Bei Fragen zu Kursinhalten wenden Sie sich bitte an das Lehrerteam im Kursforum.";
+
 /* helpdesk topic course-specific */
 "helpdesk.topic.course-specific" = "Kursspezifische Frage";
 
@@ -322,6 +325,9 @@
 
 /* cell title for downloaded content */
 "settings.cell-title.downloaded-content" = "Heruntergeladene Inhalte";
+
+/* cell title for FAQs */
+"settings.cell-title.faq" = "FAQ";
 
 /* title for link to GitHub repo (includes application name) */
 "settings.cell-title.github.%@ iOS app on GitHub" = "%@ iOS App auf GitHub";

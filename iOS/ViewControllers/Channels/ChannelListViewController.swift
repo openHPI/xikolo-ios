@@ -44,6 +44,7 @@ class ChannelListViewController: UICollectionViewController {
         super.viewDidAppear(animated)
 
         if #available(iOS 11.0, *) {} else {
+            self.navigationController?.navigationBar.sizeToFit()
             self.collectionViewLayout.invalidateLayout()
         }
     }

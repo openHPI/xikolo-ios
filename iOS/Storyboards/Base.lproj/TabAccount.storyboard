@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fka-gm-6EA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fka-gm-6EA">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -409,7 +409,7 @@
             </objects>
             <point key="canvasLocation" x="2633" y="1730"/>
         </scene>
-        <!--Helpdesk View Controller-->
+        <!--Technical Support-->
         <scene sceneID="zeb-jN-C21">
             <objects>
                 <tableViewController id="l2c-fE-ju1" customClass="HelpdeskViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -417,24 +417,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <view key="tableHeaderView" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" id="0X5-zw-iYv">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="146"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="297"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0fC-EK-ifX">
-                                    <rect key="frame" x="20" y="20" width="374" height="126"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="0fC-EK-ifX">
+                                    <rect key="frame" x="20" y="20" width="374" height="277"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="Unfortunately, your issue couldn't be forwarded. Please try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPo-xL-mqX">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Unfortunately, your issue couldn't be forwarded. Please try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPo-xL-mqX">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="47"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                             <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okD-ae-Y3P">
-                                            <rect key="frame" x="0.0" y="43.5" width="374" height="82.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okD-ae-Y3P">
+                                            <rect key="frame" x="0.0" y="55" width="374" height="91"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <string key="label">Please describe your technical problem using the textbox below. Information about your browser and your e-mail address will be automatically submitted along with your issue report.</string>
                                             </accessibility>
                                             <string key="text">Please describe your technical problem using the textbox below. Information about your browser and your e-mail address will be automatically submitted along with your issue report.</string>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="zWJ-7y-ZDC">
+                                            <rect key="frame" x="0.0" y="154" width="374" height="74.5"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZUe-SA-ewW">
+                                                    <rect key="frame" x="20" y="20" width="334" height="46.5"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="info.circle" catalog="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z70-se-1m9">
+                                                            <rect key="frame" x="157.5" y="0.5" width="19" height="18"/>
+                                                            <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" scale="medium">
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                            </preferredSymbolConfiguration>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Hint text for FAQ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duH-aa-ccr">
+                                                            <rect key="frame" x="107" y="27" width="120.5" height="19.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <attributedString key="userComments">
+                                                                <fragment content="#bc-ignore!"/>
+                                                            </attributedString>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="ZUe-SA-ewW" secondAttribute="bottom" constant="20" symbolic="YES" id="2jL-KX-FR9"/>
+                                                <constraint firstItem="ZUe-SA-ewW" firstAttribute="top" secondItem="zWJ-7y-ZDC" secondAttribute="top" constant="20" symbolic="YES" id="JPt-0V-wc9"/>
+                                                <constraint firstItem="ZUe-SA-ewW" firstAttribute="leading" secondItem="zWJ-7y-ZDC" secondAttribute="leading" constant="20" symbolic="YES" id="ZET-mP-pqD"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZUe-SA-ewW" secondAttribute="trailing" constant="20" symbolic="YES" id="vu9-T8-INg"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="You will create a ticket that will be answered by the helpdesk team." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdZ-c8-ZUp">
+                                            <rect key="frame" x="0.0" y="236.5" width="374" height="40.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -458,7 +497,7 @@
                             <tableViewSection headerTitle="Title of your issue" id="nus-Iv-Ng5">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="xBa-aT-gEl">
-                                        <rect key="frame" x="20" y="201.5" width="374" height="44"/>
+                                        <rect key="frame" x="20" y="352.5" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xBa-aT-gEl" id="f70-Vy-7ih">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
@@ -486,7 +525,7 @@
                             <tableViewSection headerTitle="Your e-mail address" id="gbn-6Q-irY">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="Pca-l0-Jeu">
-                                        <rect key="frame" x="20" y="301.5" width="374" height="44"/>
+                                        <rect key="frame" x="20" y="452.5" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pca-l0-Jeu" id="Pbq-Zh-Qlu">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
@@ -514,7 +553,7 @@
                             <tableViewSection id="uow-c8-Cf3">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="216" id="iLZ-Wk-p4c">
-                                        <rect key="frame" x="20" y="381.5" width="374" height="216"/>
+                                        <rect key="frame" x="20" y="532.5" width="374" height="216"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iLZ-Wk-p4c" translatesAutoresizingMaskIntoConstraints="NO" id="yag-1O-rf5">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="216"/>
@@ -536,7 +575,7 @@
                             <tableViewSection headerTitle="Your Issue" id="Kr0-w1-KaR">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dRf-Zv-2xu">
-                                        <rect key="frame" x="20" y="653.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="804.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dRf-Zv-2xu" id="BbS-hH-4Ez">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -566,7 +605,7 @@
                             <outletCollection property="gestureRecognizers" destination="iqG-Io-hBA" appends="YES" id="bdt-MP-mhF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ccX-D1-nh5">
+                    <navigationItem key="navigationItem" title="Technical Support" id="ccX-D1-nh5">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uE4-Zg-5h6">
                             <connections>
                                 <action selector="cancelTicketComposition" destination="l2c-fE-ju1" id="9KN-39-9va"/>
@@ -575,6 +614,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="coursePicker" destination="mqm-FG-FoJ" id="kW9-IM-Yta"/>
+                        <outlet property="hintLabel" destination="duH-aa-ccr" id="o6u-cT-NsE"/>
+                        <outlet property="hintWrapper" destination="zWJ-7y-ZDC" id="cu2-7C-P0a"/>
                         <outlet property="issueTextCell" destination="dRf-Zv-2xu" id="8gs-4O-LH0"/>
                         <outlet property="mailAddressTextField" destination="Fs0-LO-E4J" id="762-oQ-FUZ"/>
                         <outlet property="onFailureLabel" destination="FPo-xL-mqX" id="hBA-UV-k33"/>
@@ -712,6 +753,7 @@
     </scenes>
     <resources>
         <image name="avatar" width="500" height="500"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="profile header" width="1734" height="808"/>
         <image name="tab bar items/account" width="28" height="28"/>
     </resources>

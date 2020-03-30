@@ -56,7 +56,7 @@ class AdditionalLearningMaterialCell: UICollectionViewCell {
     func configureNews() {
         self.cardView.backgroundColor = ColorCompatibility.secondarySystemBackground
         self.iconImageView.tintColor = ColorCompatibility.secondaryLabel
-        self.iconImageView.image =  R.image.more.news()
+        self.iconImageView.image = R.image.more.news()
         self.titleLabel.textColor = ColorCompatibility.secondaryLabel
         self.titleLabel.text = NSLocalizedString("additional-learning-material.dummy.news.title",
                                                  comment: "Display name for additional learning material dummy: news")

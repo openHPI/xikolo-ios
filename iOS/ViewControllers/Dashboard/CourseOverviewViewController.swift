@@ -31,14 +31,14 @@ class CourseOverviewViewController: UIViewController {
     }
 
     private func shareCourse(course: Course) {
-        guard let activityViewController = UIActivityViewController(course: course) else { return }
+        let activityViewController = UIActivityViewController.make(for: course, on: self)
         activityViewController.popoverPresentationController?.sourceView = self.collectionView
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 
     private func showCourseDates(course: Course) {
             let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
-            let navigationController = courseDatesViewController.getCourseDatesNavigationController(course: course)
+            let navigationController = courseDatesViewController.courseDatesNavigationController(for: course)
             self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
         }
 

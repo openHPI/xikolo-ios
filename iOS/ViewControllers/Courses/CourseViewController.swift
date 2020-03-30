@@ -334,21 +334,13 @@ class CourseViewController: UIViewController {
 
     private func showCourseDates() {
         let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
-        let navigationController = courseDatesViewController.getCourseDatesNavigationController(course: self.course)
+        let navigationController = courseDatesViewController.courseDatesNavigationController(for: self.course)
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
     private func shareCourse() {
-        guard let activityViewController = UIActivityViewController(course: course) else { return }
+        let activityViewController = UIActivityViewController.make(for: course, on: self)
         activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
-        activityViewController.completionWithItemsHandler = { activityType, completed, _, _ in
-            let context: [String: String?] = [
-                "service": activityType?.rawValue,
-                "completed": String(describing: completed),
-            ]
-            TrackingHelper.createEvent(.shareCourse, resourceType: .course, resourceId: self.course.id, on: self, context: context)
-        }
-
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 

@@ -9,7 +9,7 @@ import UIKit
 
 extension CourseDateListViewController {
 
-    public func getCourseDatesNavigationController(course: Course) -> UINavigationController {
+    public func courseDatesNavigationController(for course: Course) -> UINavigationController {
             self.course = course
             let navigationController = XikoloNavigationController(rootViewController: self)
             navigationController.navigationBar.barTintColor = ColorCompatibility.systemBackground

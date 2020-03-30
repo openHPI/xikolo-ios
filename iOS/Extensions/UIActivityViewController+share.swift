@@ -9,16 +9,17 @@ import UIKit
 
 extension UIActivityViewController {
 
-    convenience init?(course: Course) {
-        self.init(activityItems: [course], applicationActivities: nil)
-    }
+    static func make(for course: Course, on viewController: UIViewController?) -> UIActivityViewController {
+        let controller = Self(activityItems: [course], applicationActivities: nil)
+        controller.completionWithItemsHandler = { activityType, completed, _, _ in
+            let context: [String: String?] = [
+                "service": activityType?.rawValue,
+                "completed": String(describing: completed),
+            ]
+            TrackingHelper.createEvent(.shareCourse, resourceType: .course, resourceId: course.id, on: viewController, context: context)
+        }
 
-}
-
-extension UIActivityViewController {
-
-    convenience init?(courseItem: CourseItem) {
-        self.init(activityItems: [courseItem], applicationActivities: nil)
+        return controller
     }
 
 }

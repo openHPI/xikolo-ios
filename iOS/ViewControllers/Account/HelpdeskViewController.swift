@@ -6,10 +6,13 @@
 import Common
 import CoreData
 import Foundation
+import SafariServices
 import UIKit
 
 class HelpdeskViewController: UITableViewController, UIAdaptivePresentationControllerDelegate {
 
+    @IBOutlet private weak var hintLabel: UILabel!
+    @IBOutlet private weak var hintWrapper: UIView!
     @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var mailAddressTextField: UITextField!
     @IBOutlet private weak var coursePicker: UIPickerView!
@@ -87,6 +90,17 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         self.reportTextView.textContainer.lineFragmentPadding = 0
 
         self.onFailureLabel.isHidden = true
+
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnFAQHintLabel))
+        self.hintWrapper.addGestureRecognizer(tapGestureRecognizer)
+        self.hintWrapper.layer.roundCorners(for: .default)
+
+        // Set FAQ hint label text with highlighted 'FAQ'
+        let hintText = NSLocalizedString("helpdesk.hint.faq", comment: "hint for checking the FAQ before creating a helpdesk ticket")
+        let range = NSString(string: hintText).range(of: "FAQ")
+        let attributedText = NSMutableAttributedString(string: hintText, attributes: [.font: UIFont.preferredFont(forTextStyle: .callout)])
+        attributedText.addAttributes([.foregroundColor: Brand.default.colors.window], range: range)
+        self.hintLabel.attributedText = attributedText
 
         if UserProfileHelper.shared.isLoggedIn {
             CoreDataHelper.viewContext.perform {
@@ -212,6 +226,12 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         self.titleTextField.resignFirstResponder()
         self.mailAddressTextField.resignFirstResponder()
         self.reportTextView.resignFirstResponder()
+    }
+
+    @objc private func tappedOnFAQHintLabel() {
+        let safariVC = SFSafariViewController(url: Routes.faq)
+        safariVC.preferredControlTintColor = Brand.default.colors.window
+        self.present(safariVC, animated: trueUnlessReduceMotionEnabled)
     }
 
 }

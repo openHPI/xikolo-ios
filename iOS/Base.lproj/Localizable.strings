@@ -281,6 +281,9 @@
 /* Label of button for submitting a helpdesk ticket */
 "helpdesk.action.send" = "Send";
 
+/* hint for checking the FAQ before creating a helpdesk ticket */
+"helpdesk.hint.faq" = "Before writing a ticket to technical support, please make sure that you have read our FAQ. If you have any questions about course content, please contact the teacher team in the course forum.";
+
 /* helpdesk topic course-specific */
 "helpdesk.topic.course-specific" = "Course-specific";
 

@@ -24,7 +24,6 @@ class RichtextViewController: UIViewController {
     @IBOutlet private weak var timeEffortLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var scrollViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var minimumTextViewHeightContraint: NSLayoutConstraint!
 
     private var courseItemObserver: ManagedObjectObserver?
 
@@ -71,7 +70,7 @@ class RichtextViewController: UIViewController {
         self.timeEffortView.isHidden = self.courseItem.timeEffort == 0
 
         let markdown = (self.courseItem.content as? RichText)?.text
-        self.textView.setMarkdownWithImages(from: markdown, minimumHeightContraint: self.minimumTextViewHeightContraint)
+        self.textView.setMarkdownWithImages(from: markdown)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

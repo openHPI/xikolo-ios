@@ -21,7 +21,6 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet private weak var descriptionView: UITextView!
     @IBOutlet private weak var enrollmentButton: LoadingButton!
     @IBOutlet private weak var enrollmentOptionsButton: UIButton!
-    @IBOutlet private weak var minimumTextViewHeightContraint: NSLayoutConstraint!
 
     private weak var delegate: CourseAreaViewControllerDelegate?
     private var courseObserver: ManagedObjectObserver?
@@ -82,7 +81,7 @@ class CourseDetailsViewController: UIViewController {
         })
 
         let markdown = self.course.courseDescription ?? self.course.abstract
-        self.descriptionView.setMarkdownWithImages(from: markdown, minimumHeightContraint: self.minimumTextViewHeightContraint)
+        self.descriptionView.setMarkdownWithImages(from: markdown)
 
 
         self.refreshEnrollButton()

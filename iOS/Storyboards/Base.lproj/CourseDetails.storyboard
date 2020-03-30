@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HmT-zz-ZfW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HmT-zz-ZfW">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -247,7 +247,6 @@
                         <outlet property="enrollmentButton" destination="ceU-6J-dNP" id="89a-80-Bxe"/>
                         <outlet property="enrollmentOptionsButton" destination="vLk-sW-N3O" id="u5U-AT-DmL"/>
                         <outlet property="languageView" destination="3cX-gd-UHs" id="N9U-9N-r72"/>
-                        <outlet property="minimumTextViewHeightContraint" destination="VQr-qx-e25" id="af5-kR-tYS"/>
                         <outlet property="scrollView" destination="MWe-9L-XSn" id="mKh-Ik-PH7"/>
                         <outlet property="teacherView" destination="DDY-g0-onI" id="bXT-QC-d5B"/>
                         <outlet property="teaserImageView" destination="d4b-Ar-94F" id="Nnm-kT-fiS"/>

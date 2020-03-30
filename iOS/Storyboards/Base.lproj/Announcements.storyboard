@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zUZ-ve-BEg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zUZ-ve-BEg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -273,7 +273,6 @@
                     <connections>
                         <outlet property="courseButton" destination="AvL-qs-dkH" id="KgF-gq-2bZ"/>
                         <outlet property="dateLabel" destination="JDe-Vt-sYI" id="8PH-K0-Dos"/>
-                        <outlet property="minimumTextViewHeightContraint" destination="MKV-c0-Qj5" id="I1W-lF-bNw"/>
                         <outlet property="textView" destination="UbT-BW-x9z" id="1m5-Eg-vYW"/>
                         <outlet property="titleLabel" destination="Ncg-gL-SNu" id="Tdg-cx-1Eo"/>
                     </connections>

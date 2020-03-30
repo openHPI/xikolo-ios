@@ -37,7 +37,6 @@ class LTIExerciseHintViewController: UIViewController {
     @IBOutlet private weak var deadlineLabel: UILabel!
     @IBOutlet private weak var instructionsView: UITextView!
     @IBOutlet private weak var launchButton: UIButton!
-    @IBOutlet private weak var minimumTextViewHeightContraint: NSLayoutConstraint!
 
     weak var delegate: CourseItemViewController?
 
@@ -100,7 +99,7 @@ class LTIExerciseHintViewController: UIViewController {
         self.deadlineDateView.isHidden = self.courseItem.deadline == nil
 
         // Set instructions label
-        self.instructionsView.setMarkdownWithImages(from: ltiExercise.instructions, minimumHeightContraint: self.minimumTextViewHeightContraint)
+        self.instructionsView.setMarkdownWithImages(from: ltiExercise.instructions)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

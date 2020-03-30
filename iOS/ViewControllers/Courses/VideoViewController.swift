@@ -28,7 +28,6 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
     @IBOutlet private var fullScreenContraints: [NSLayoutConstraint]!
-    @IBOutlet private weak var minimumTextViewHeightContraint: NSLayoutConstraint!
 
     private var adjustedVideoContainerRatioConstraint: NSLayoutConstraint? {
         didSet {
@@ -241,7 +240,7 @@ class VideoViewController: UIViewController {
         self.slidesActionsButton.tintColor = isSlidesActionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         // show description
-        self.descriptionView.setMarkdownWithImages(from: video.summary, minimumHeightContraint: self.minimumTextViewHeightContraint)
+        self.descriptionView.setMarkdownWithImages(from: video.summary)
 
 
         // don't reconfigure video player

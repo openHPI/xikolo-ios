@@ -38,7 +38,7 @@ public enum MarkdownHelper {
 
     static let dynamicColors: ColorCollection = {
         if #available(iOS 13, *) {
-            return StaticColorCollection (
+            return StaticColorCollection(
                 heading1: .label,
                 heading2: .label,
                 heading3: .label,
@@ -86,10 +86,11 @@ public enum MarkdownHelper {
 
     public static func attributedStringWithImages(for markdown: String, layoutChangeHandler: (() -> Void)? = nil) -> NSAttributedString {
         let down = Down(markdownString: markdown)
-        let styler = AsyncImagesStyler(imageLoader: self.dataTask(for:completionHandler:), layoutChangeHandler: layoutChangeHandler, configuration: self.dynamicTypeStylerConfiguration)
+        let styler = AsyncImagesStyler(imageLoader: self.dataTask(for:completionHandler:),
+                                       layoutChangeHandler: layoutChangeHandler,
+                                       configuration: self.dynamicTypeStylerConfiguration)
         let attribtuedString = try? down.toAttributedString(.smartUnsafe, styler: styler)
         return attribtuedString ?? NSAttributedString()
     }
 
 }
-

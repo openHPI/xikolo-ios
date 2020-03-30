@@ -83,7 +83,6 @@ class CourseDetailsViewController: UIViewController {
         let markdown = self.course.courseDescription ?? self.course.abstract
         self.descriptionView.setMarkdownWithImages(from: markdown)
 
-
         self.refreshEnrollButton()
     }
 

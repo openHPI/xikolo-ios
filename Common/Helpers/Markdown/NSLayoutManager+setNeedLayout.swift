@@ -16,7 +16,7 @@ extension NSLayoutManager {
 
         var refreshRanges: [NSRange] = []
 
-        textStorage.enumerateAttribute(NSAttributedString.Key.attachment, in: range, options: []) { (value, effectiveRange, nil) in
+        textStorage.enumerateAttribute(NSAttributedString.Key.attachment, in: range, options: []) { value, effectiveRange, _ in
             guard let foundAttachment = value as? NSTextAttachment, foundAttachment == attachment else {
                 return
             }

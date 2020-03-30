@@ -29,7 +29,8 @@ class AsyncImageTextAttachment: NSTextAttachment {
         super.init(data: nil, ofType: nil)
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    @available(*, unavailable)
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -38,8 +39,7 @@ class AsyncImageTextAttachment: NSTextAttachment {
     private func startAsyncImageDownload(in textContainer: NSTextContainer?) {
         guard self.contents == nil, self.downloadTask == nil else { return }
 
-
-        self.downloadTask = self.imageLoader(self.imageURL) { (data, response, error) in
+        self.downloadTask = self.imageLoader(self.imageURL) { data, _, error in
             defer {
                 self.downloadTask = nil
             } // done with the task
@@ -78,7 +78,7 @@ class AsyncImageTextAttachment: NSTextAttachment {
         self.downloadTask?.resume()
     }
 
-    public override func image(forBounds imageBounds: CGRect, textContainer: NSTextContainer?, characterIndex charIndex: Int) -> UIImage? {
+    override public func image(forBounds imageBounds: CGRect, textContainer: NSTextContainer?, characterIndex charIndex: Int) -> UIImage? {
         guard let contents = self.contents, let image = UIImage(data: contents) else {
             self.startAsyncImageDownload(in: textContainer)
             return self.placeHolderImage
@@ -87,7 +87,7 @@ class AsyncImageTextAttachment: NSTextAttachment {
         return image
     }
 
-    public override func attachmentBounds(for textContainer: NSTextContainer?,
+    override public func attachmentBounds(for textContainer: NSTextContainer?,
                                           proposedLineFragment lineFrag: CGRect,
                                           glyphPosition position: CGPoint,
                                           characterIndex charIndex: Int) -> CGRect {
@@ -100,4 +100,3 @@ class AsyncImageTextAttachment: NSTextAttachment {
     }
 
 }
-

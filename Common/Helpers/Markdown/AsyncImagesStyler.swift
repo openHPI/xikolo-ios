@@ -34,9 +34,9 @@ class AsyncImagesStyler: DownStyler {
 
         let placeHolderImage = UIImage.placeholder(withColor: placeHolderColor, size: CGSize(width: 2, height: 1))
         let attachment = AsyncImageTextAttachment(imageLoader: self.imageLoader,
-                                                   imageURL: url,
-                                                   layoutChangeHandler: self.layoutChangeHandler,
-                                                   placeHolderImage: placeHolderImage)
+                                                  imageURL: url,
+                                                  layoutChangeHandler: self.layoutChangeHandler,
+                                                  placeHolderImage: placeHolderImage)
         let attachmentString = NSAttributedString(attachment: attachment)
 
         let range = NSRange(location: 0, length: str.length)

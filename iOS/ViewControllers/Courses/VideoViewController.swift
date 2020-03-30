@@ -242,7 +242,6 @@ class VideoViewController: UIViewController {
         // show description
         self.descriptionView.setMarkdownWithImages(from: video.summary)
 
-
         // don't reconfigure video player
         guard self.playerViewController?.asset == nil else { return }
 

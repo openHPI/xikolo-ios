@@ -63,7 +63,6 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.5.1):
     - GoogleUtilities/Logger
-  - HTMLStyler (0.0.1)
   - KeychainAccess (4.1.0)
   - Marshal (1.2.7)
   - nanopb (0.3.9011):
@@ -92,7 +91,6 @@ DEPENDENCIES:
   - Down (~> 0.9.0)
   - Fabric (~> 1.10.2)
   - Firebase/Core
-  - HTMLStyler (from `./Frameworks/HTMLStyler`)
   - KeychainAccess (~> 4.0)
   - R.swift (~> 5.0)
   - ReachabilitySwift (~> 5.0)
@@ -132,8 +130,6 @@ EXTERNAL SOURCES:
   BartyCrouch:
     :git: https://github.com/Flinesoft/BartyCrouch.git
     :tag: 3.13.0
-  HTMLStyler:
-    :path: "./Frameworks/HTMLStyler"
   SyncEngine:
     :path: "./Frameworks/SyncEngine"
 
@@ -158,7 +154,6 @@ SPEC CHECKSUMS:
   GoogleDataTransport: a857c6a002d201b524dd4bc2ed7e7355ed07e785
   GoogleDataTransportCCTSupport: 32f75fbe904c82772fcbb6b6bd4525bfb6f2a862
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
-  HTMLStyler: 72837c551899fda8c5f62dfd9b46432537602d1b
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
   Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
@@ -171,6 +166,6 @@ SPEC CHECKSUMS:
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   SyncEngine: 0b941e576dfb5073344d043fbc70919c42c32435
 
-PODFILE CHECKSUM: b4bf295b146cb58058b4f2685f2340798a8cb565
+PODFILE CHECKSUM: 342d791d893f8f94e1bab95ef27fb763924e6e9d
 
 COCOAPODS: 1.9.1

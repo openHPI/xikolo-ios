@@ -54,8 +54,9 @@ public enum Routes {
     public static let courses = Self.base.appendingPathComponent("courses")
     public static let recap = Self.base.appendingPathComponent("learn")
 
-    public static var imprint = Brand.default.imprintURL.appendingInAppParameter()
+    public static let imprint = Brand.default.imprintURL.appendingInAppParameter()
     public static let privacy = Brand.default.privacyURL.appendingInAppParameter()
+    public static let faq = Self.base.appendingPathComponents(["pages", "faq"]).appendingInAppParameter()
     public static let github = URL(string: "https://github.com/openHPI/xikolo-ios").require(hint: "Invalid GitHub URL")
 
     public static var localizedForgotPasswordURL: URL {

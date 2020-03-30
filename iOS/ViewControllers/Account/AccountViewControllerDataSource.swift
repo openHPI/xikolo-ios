@@ -30,6 +30,11 @@ class AccountViewControllerDataSource: NSObject {
         return SegueItem(title: title, segueIdentifier: R.segue.accountViewController.showCertificates)
     }()
 
+    private lazy var showFAQItem: DataSourceItem = {
+        let title = NSLocalizedString("settings.cell-title.faq", comment: "cell title for FAQs")
+        return URLItem(title: title, url: Routes.faq)
+    }()
+
     private lazy var showImprintItem: DataSourceItem = {
         let title = NSLocalizedString("settings.cell-title.imprint", comment: "cell title for imprint")
         return URLItem(title: title, url: Routes.imprint)
@@ -82,6 +87,7 @@ class AccountViewControllerDataSource: NSObject {
 
         sections += [
             DataSourceSection(title: aboutSectionTitle, items: [
+                self.showFAQItem,
                 self.showImprintItem,
                 self.showPrivacyStatementItem,
                 self.showGithubPageItem,

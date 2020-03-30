@@ -320,6 +320,9 @@
 /* cell title for downloaded content */
 "settings.cell-title.downloaded-content" = "Heruntergeladene Inhalte";
 
+/* cell title for FAQs */
+"settings.cell-title.faq" = "FAQ";
+
 /* title for link to GitHub repo (includes application name) */
 "settings.cell-title.github.%@ iOS app on GitHub" = "%@ iOS App auf GitHub";
 

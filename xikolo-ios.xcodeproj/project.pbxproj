@@ -49,6 +49,7 @@
 		50146FCB2222875E00177E96 /* CourseSearchFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50146FCA2222875E00177E96 /* CourseSearchFilterCell.xib */; };
 		50146FCD2222879D00177E96 /* CourseSearchFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50146FCC2222879D00177E96 /* CourseSearchFilterCell.swift */; };
 		50146FCF2222C8B900177E96 /* CourseSearchFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50146FCE2222C8B900177E96 /* CourseSearchFilter.swift */; };
+		50178C2124321ECF0085FA15 /* DownStylerConfiguration+dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50178C2024321ECF0085FA15 /* DownStylerConfiguration+dynamic.swift */; };
 		5019CE902171E9390001805E /* CourseItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019CE8F2171E9390001805E /* CourseItemViewController.swift */; };
 		5019CE922171F21D0001805E /* CourseItemContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019CE912171F21D0001805E /* CourseItemContentViewController.swift */; };
 		50253A2B22BA2F2A00FB63FD /* UICollectionViewFlowLayout+RTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50253A2A22BA2F2A00FB63FD /* UICollectionViewFlowLayout+RTL.swift */; };
@@ -559,6 +560,7 @@
 		50146FCE2222C8B900177E96 /* CourseSearchFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFilter.swift; sourceTree = "<group>"; };
 		5014E2FA1FCEDFFA007255B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		5014E2FD1FCEDFFF007255B5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Login.strings; sourceTree = "<group>"; };
+		50178C2024321ECF0085FA15 /* DownStylerConfiguration+dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DownStylerConfiguration+dynamic.swift"; sourceTree = "<group>"; };
 		5017B3BB204983E7001D90A1 /* CourseAreaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAreaListViewController.swift; sourceTree = "<group>"; };
 		5017B3BD2049854F001D90A1 /* CourseAreaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAreaCell.swift; sourceTree = "<group>"; };
 		5019A7621F20ACE6008C8138 /* Video+Preloading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+Preloading.swift"; sourceTree = "<group>"; };
@@ -1267,6 +1269,7 @@
 			isa = PBXGroup;
 			children = (
 				AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */,
+				50178C2024321ECF0085FA15 /* DownStylerConfiguration+dynamic.swift */,
 				5037FC1D242DF87700B4E8CE /* NoImagesStyler.swift */,
 				5037FC1B242DF84E00B4E8CE /* AsyncImagesStyler.swift */,
 				5037FC19242DF83100B4E8CE /* AsyncImageTextAttachement.swift */,
@@ -2704,6 +2707,7 @@
 				50FA2E0E20E4B24300656776 /* CoreDataHelper.swift in Sources */,
 				0262E6CC23731A8B007C9057 /* SectionProgressHelper+FetchRequest.swift in Sources */,
 				5050D66723A00FDA00E48498 /* CourseItem+base62UUID.swift in Sources */,
+				50178C2124321ECF0085FA15 /* DownStylerConfiguration+dynamic.swift in Sources */,
 				50FA2E3720E4B25800656776 /* Course.swift in Sources */,
 				50FA2E2C20E4B24A00656776 /* VideoHelper+FetchRequests.swift in Sources */,
 				50FA2E1920E4B24300656776 /* PeerAssessmentHelper.swift in Sources */,

@@ -5,7 +5,7 @@
 
 import BrightFutures
 import CoreData
-import SyncEngine
+import Stockpile
 
 public struct XikoloNetworker: SyncNetworker {
 

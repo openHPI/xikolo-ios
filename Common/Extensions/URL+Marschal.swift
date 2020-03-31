@@ -4,7 +4,7 @@
 //
 
 import Marshal
-import SyncEngine
+import Stockpile
 
 extension ResourceData {
 

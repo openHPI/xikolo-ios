@@ -10,10 +10,16 @@ class XikoloNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationBar.backgroundColor = ColorCompatibility.systemBackground
-        self.navigationBar.shadowImage = UIImage()
-
-        if #available(iOS 13.0, *) {} else {
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = ColorCompatibility.systemBackground
+            appearance.shadowColor = .clear
+            self.navigationBar.standardAppearance = appearance
+            self.navigationBar.scrollEdgeAppearance = appearance
+        } else {
+            self.navigationBar.backgroundColor = ColorCompatibility.systemBackground
+            self.navigationBar.shadowImage = UIImage()
             self.hideShadowImage(inView: self.view)
         }
     }

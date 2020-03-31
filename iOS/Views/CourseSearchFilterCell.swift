@@ -25,7 +25,7 @@ class CourseSearchFilterCell: UICollectionViewCell {
         self.titleLabel.textColor = ColorCompatibility.secondaryLabel
 
         self.traitCollection.performAsCurrent {
-            self.layer.borderColor = ColorCompatibility.secondaryLabel.cgColor
+            self.layer.borderColor = ColorCompatibility.separator.cgColor
         }
     }
 
@@ -37,7 +37,7 @@ class CourseSearchFilterCell: UICollectionViewCell {
     func configure(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) {
         let isHighlighted = !(selectedOptions?.isEmpty ?? true)
         self.layer.backgroundColor = isHighlighted ? Brand.default.colors.window.cgColor : ColorCompatibility.systemBackground.cgColor
-        self.layer.borderColor = isHighlighted ? Brand.default.colors.window.cgColor : ColorCompatibility.secondaryLabel.cgColor
+        self.layer.borderColor = isHighlighted ? Brand.default.colors.window.cgColor : ColorCompatibility.separator.cgColor
         self.titleLabel.textColor = isHighlighted ? ColorCompatibility.systemBackground : ColorCompatibility.secondaryLabel
         self.titleLabel.text = Self.title(for: filter, with: selectedOptions)
     }

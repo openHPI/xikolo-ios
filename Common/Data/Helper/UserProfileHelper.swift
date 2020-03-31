@@ -5,7 +5,7 @@
 
 import BrightFutures
 import KeychainAccess
-import SyncEngine
+import Stockpile
 
 public class UserProfileHelper {
 

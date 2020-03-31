@@ -17,8 +17,13 @@ def common_pods
     pod 'BrightFutures', '~> 8.0'
     pod 'Down', '~> 0.9.0'
     pod 'KeychainAccess', '~> 4.0'
+    pod 'Marshal', '~> 1.2'
     pod 'ReachabilitySwift', '~> 5.0'
-    pod 'SyncEngine', :path => './Frameworks/SyncEngine'
+end
+
+def stockpile_pods
+    pod 'BrightFutures', '~> 8.0'
+    pod 'Marshal', '~> 1.2'
 end
 
 target 'Common' do
@@ -29,6 +34,16 @@ end
 target 'Common-Tests' do
     platform :ios, '10.0'
     common_pods
+end
+
+target 'Stockpile' do
+    platform :ios, '10.0'
+    stockpile_pods
+end
+
+target 'Stockpile-Tests' do
+    platform :ios, '10.0'
+    stockpile_pods
 end
 
 target 'iOS' do
@@ -52,7 +67,7 @@ post_install do |installer|
     # but creates only one pod license file for iOS instead of one license file for each target
     # Additonally, it provides more customization possibilities.
     Pod::UI.info "Adding Pod Licenses"
-    excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint', 'SimulatorStatusMagic', 'SyncEngine']
+    excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint', 'SimulatorStatusMagic']
     sandbox = installer.sandbox
     common_target = installer.aggregate_targets.select { |target| target.label.include? 'Common' }.first
     ios_target = installer.aggregate_targets.select { |target| target.label.include? 'iOS' }.first

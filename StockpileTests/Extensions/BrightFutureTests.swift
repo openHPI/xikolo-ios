@@ -6,7 +6,7 @@
 import BrightFutures
 import XCTest
 
-@testable import Common
+@testable import Stockpile
 
 class BrightFutureTests: XCTestCase {
 
@@ -17,8 +17,8 @@ class BrightFutureTests: XCTestCase {
     func testInjectSuccess() {
         // Given
         let value = true
-        let outerFuture = Future<Bool, AnyError>(value: value)
-        let innerResult = Result<Void, AnyError>(value: ())
+        let outerFuture = Future<Bool, Error>(value: value)
+        let innerResult = Result<Void, Error>(value: ())
 
         let outerExpectation = self.expectation(description: "outer")
         let innerExpectation = self.expectation(description: "inner")

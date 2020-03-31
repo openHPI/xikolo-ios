@@ -5,7 +5,7 @@
 
 import Foundation
 import Marshal
-import SyncEngine
+import Stockpile
 
 public enum XikoloError: Error {
     case coreData(Error)

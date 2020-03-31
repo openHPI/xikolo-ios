@@ -60,7 +60,6 @@
 		5027250E2354780C00815914 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027250D2354780C00815914 /* EmptyStateView.swift */; };
 		502902E021BABA79004B1B43 /* AccountViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502902DF21BABA79004B1B43 /* AccountViewControllerDataSource.swift */; };
 		502CBDCD2433716C00BF6001 /* Stockpile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 502CBDC42433716B00BF6001 /* Stockpile.framework */; };
-		502CBDD42433716C00BF6001 /* StockpileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBDD32433716C00BF6001 /* StockpileTests.swift */; };
 		502CBDD62433716C00BF6001 /* Stockpile.h in Headers */ = {isa = PBXBuildFile; fileRef = 502CBDC62433716C00BF6001 /* Stockpile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		502CBDD92433716C00BF6001 /* Stockpile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 502CBDC42433716B00BF6001 /* Stockpile.framework */; };
 		502CBDDA2433716C00BF6001 /* Stockpile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 502CBDC42433716B00BF6001 /* Stockpile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -634,7 +633,6 @@
 		502CBDC62433716C00BF6001 /* Stockpile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stockpile.h; sourceTree = "<group>"; };
 		502CBDC72433716C00BF6001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		502CBDCC2433716C00BF6001 /* Stockpile-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stockpile-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		502CBDD32433716C00BF6001 /* StockpileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockpileTests.swift; sourceTree = "<group>"; };
 		502CBDD52433716C00BF6001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		502CBDED2433718700BF6001 /* SyncEngineOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncEngineOperation.swift; sourceTree = "<group>"; };
 		502CBDEF2433718700BF6001 /* AsyncType+inject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AsyncType+inject.swift"; sourceTree = "<group>"; };
@@ -1389,7 +1387,6 @@
 			isa = PBXGroup;
 			children = (
 				502CBE242433780000BF6001 /* Extensions */,
-				502CBDD32433716C00BF6001 /* StockpileTests.swift */,
 				502CBDD52433716C00BF6001 /* Info.plist */,
 			);
 			path = StockpileTests;
@@ -2807,7 +2804,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				502CBE262433780000BF6001 /* BrightFutureTests.swift in Sources */,
-				502CBDD42433716C00BF6001 /* StockpileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

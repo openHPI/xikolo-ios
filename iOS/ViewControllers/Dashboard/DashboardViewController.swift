@@ -15,7 +15,7 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if Brand.default.features.showCourseDatesOnDashboard {
+        if Brand.default.features.showCourseDates {
             let dateOverviewViewController = R.storyboard.courseDateOverview.instantiateInitialViewController().require()
             self.addContentController(dateOverviewViewController)
         }
@@ -57,7 +57,7 @@ extension DashboardViewController: RefreshableViewController {
         // This view controller is always loaded even if the user is not logged in due to the fact
         // that the view controller is embedded in a UITabBarController. So we have to check the
         // login state of user in order to avoid a failing API request
-        if Brand.default.features.showCourseDatesOnDashboard && UserProfileHelper.shared.isLoggedIn {
+        if Brand.default.features.showCourseDates && UserProfileHelper.shared.isLoggedIn {
             return courseFuture.flatMap { _ in
                 return CourseDateHelper.syncAllCourseDates()
             }.asVoid()

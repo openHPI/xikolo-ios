@@ -40,7 +40,7 @@
 		<false/>
 		<key>enableRecap</key>
 		<true/>
-		<key>showCourseDatesOnDashboard</key>
+		<key>showCourseDates</key>
 		<true/>
 		<key>showCourseTeachers</key>
 		<true/>

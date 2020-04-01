@@ -86,7 +86,7 @@ class CourseItemCell: UITableViewCell {
 
     @IBAction private func tappedActionsButton() {
         guard let video = self.item?.content as? Video else { return }
-        self.delegate?.showAlert(with: video.userActions, title: self.item?.title, on: self.actionsButton)
+        self.delegate?.showAlert(with: video.alertActions, title: self.item?.title, on: self.actionsButton)
     }
 
     @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {

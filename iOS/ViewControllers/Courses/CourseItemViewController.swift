@@ -26,7 +26,7 @@ class CourseItemViewController: UIPageViewController {
     private var userActions: [UIAlertAction] {
         var actions = [self.shareCourseItemAction]
         if let video = self.currentItem?.content as? Video {
-            actions += video.userActions
+            actions += video.alertActions
         }
 
         return actions

@@ -258,14 +258,14 @@ class VideoViewController: UIViewController {
     }
 
     @IBAction private func showVideoActionMenu(_ sender: UIButton) {
-        guard let streamUserAction = self.video?.streamUserAction else { return }
+        guard let streamAlertAction = self.video?.streamAlertAction else { return }
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = sender.bounds.insetBy(dx: -4, dy: -4)
         alert.popoverPresentationController?.permittedArrowDirections = [.left, .right]
 
-        alert.addAction(streamUserAction)
+        alert.addAction(streamAlertAction)
         alert.addCancelAction()
 
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
@@ -284,8 +284,8 @@ class VideoViewController: UIViewController {
 
         alert.addAction(openSlides)
 
-        if let slidesUserAction = self.video?.slidesUserAction {
-            alert.addAction(slidesUserAction)
+        if let slidesAlertAction = self.video?.slidesAlertAction {
+            alert.addAction(slidesAlertAction)
         }
 
         alert.addCancelAction()

@@ -8,6 +8,8 @@
 	<string>https://mooc.house/pages/imprint</string>
 	<key>privacyURL</key>
 	<string>https://mooc.house/pages/privacy</string>
+	<key>faqURL</key>
+	<string>https://mooc.house/pages/faq</string>
 	<key>platformTitle</key>
 	<string>moochouse</string>
 	<key>copyrightName</key>

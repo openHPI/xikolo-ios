@@ -37,10 +37,11 @@ class CourseOverviewViewController: UIViewController {
     }
 
     private func showCourseDates(course: Course) {
-            let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
-            let navigationController = courseDatesViewController.courseDatesNavigationController(for: course)
-            self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
-        }
+        let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
+        courseDatesViewController.course = course
+        let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

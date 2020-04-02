@@ -334,7 +334,8 @@ class CourseViewController: UIViewController {
 
     private func showCourseDates() {
         let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
-        let navigationController = courseDatesViewController.courseDatesNavigationController(for: self.course)
+        courseDatesViewController.course = course
+        let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 

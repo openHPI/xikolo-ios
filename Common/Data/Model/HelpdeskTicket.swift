@@ -49,7 +49,6 @@ public class HelpdeskTicket {
              }
          }
 
-
     }
 
     let title: String

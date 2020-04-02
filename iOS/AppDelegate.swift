@@ -6,6 +6,7 @@
 import Common
 import Crashlytics
 import Firebase
+import NotificationCenter
 import SDWebImage
 import UIKit
 
@@ -69,6 +70,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserProfileHelper.shared.logoutFromTestAccount()
         UserProfileHelper.shared.migrateLegacyKeychain()
         UserProfileHelper.shared.migrateToSharedKeychain()
+
+        // Disable today widget on home screen if course dates are not displayed
+        if let bundleId = Bundle.main.bundleIdentifier?.appending(".today") {
+            let hasContent = Brand.default.features.showCourseDatesOnDashboard
+            NCWidgetController().setHasContent(hasContent, forWidgetWithBundleIdentifier: bundleId)
+        }
 
         if #available(iOS 13.0, *) {} else {
             self.window = UIWindow(frame: UIScreen.main.bounds)

@@ -81,7 +81,7 @@ public struct DefaultStyleCollection: StyleCollection {
             ]
         case .code:
             let font: UIFont = {
-                if #available(iOS 12, *) {
+                if #available(iOS 13, *) {
                     return .monospacedSystemFont(ofSize: UIFont.labelFontSize, weight: .regular)
                 } else if let courierNew = UIFont(name: "Courier New", size: UIFont.labelFontSize) {
                     return courierNew

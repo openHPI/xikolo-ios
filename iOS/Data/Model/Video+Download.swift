@@ -18,54 +18,34 @@ extension Video: Persistable {
 
 }
 
-struct Action {
-    let title: String
-    let image: UIImage?
-    let handler: () -> Void
-}
-
 extension Video {
 
     var streamURLForDownload: URL? {
         return self.singleStream?.hlsURL
     }
 
-    private var availableActions: [Action] {
-        return [self.streamUserAction, self.slidesUserAction].compactMap { $0 } + self.combinedActions
-    }
-
     var alertActions: [UIAlertAction] {
-        return self.availableActions.map { action in
-            self.convert(action: action)
-        }
+        return self.availableActions.map(UIAlertAction.init(action:))
     }
 
     @available(iOS 13.0, *)
     var actions: [UIAction] {
-        return self.availableActions.map { action in
-            return UIAction(title: action.title, image: action.image) { _ in
-                action.handler()
-            }
-        }
-    }
-
-    func convert(action: Action) -> UIAlertAction {
-        return UIAlertAction(title: action.title, style: .default) { _ in
-            action.handler()
-        }
+        return self.availableActions.map(UIAction.init(action:))
     }
 
     var streamAlertAction: UIAlertAction? {
-        guard let streamUserAction = self.streamUserAction else { return nil }
-        return convert(action: streamUserAction)
+        self.streamUserAction.map(UIAlertAction.init(action:))
     }
 
     var slidesAlertAction: UIAlertAction? {
-        guard let slidesUserAction = self.slidesUserAction else { return nil }
-        return convert(action: slidesUserAction)
+        return self.slidesUserAction.map(UIAlertAction.init(action:))
     }
 
-    var streamUserAction: Action? {
+    private var availableActions: [Action] {
+        return [self.streamUserAction, self.slidesUserAction].compactMap { $0 } + self.combinedActions
+    }
+
+    private var streamUserAction: Action? {
         let isOffline = !ReachabilityHelper.hasConnection
         let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: self)
 
@@ -121,8 +101,7 @@ extension Video {
         return nil
     }
 
-    var slidesUserAction: Action? {
-
+    private var slidesUserAction: Action? {
         let isOffline = !ReachabilityHelper.hasConnection
         let slidesDownloadState = SlidesPersistenceManager.shared.downloadState(for: self)
 
@@ -143,7 +122,7 @@ extension Video {
 
         }
 
-        if  slidesDownloadState == .pending || slidesDownloadState == .downloading {
+        if slidesDownloadState == .pending || slidesDownloadState == .downloading {
             let abortActionTitle = NSLocalizedString("course-item.slides-download-action.stop-download.title",
                                                      comment: "stop slides download for video")
             let image: UIImage? = {
@@ -178,8 +157,7 @@ extension Video {
         return nil
     }
 
-    var combinedActions: [Action] {
-
+    private var combinedActions: [Action] {
         var actions: [Action] = []
 
         let isOffline = !ReachabilityHelper.hasConnection
@@ -240,4 +218,27 @@ extension Video {
 
         return actions
     }
+}
+
+struct Action {
+    let title: String
+    let image: UIImage?
+    let handler: () -> Void
+}
+
+extension UIAlertAction {
+
+    convenience init(action: Action) {
+        self.init(title: action.title, style: .default, handler: { _ in action.handler() })
+    }
+
+}
+
+@available(iOS 13.0, *)
+extension UIAction {
+
+    convenience init(action: Action) {
+        self.init(title: action.title, image: action.image, handler: { _ in action.handler() })
+    }
+
 }

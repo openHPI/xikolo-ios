@@ -223,7 +223,7 @@ class VideoViewController: UIViewController {
         self.videoProgressView.updateProgress(streamDownloadProgress, animated: false)
         self.videoDownloadedIcon.isHidden = streamDownloadState != .downloaded
 
-        let isVideoActionsButtonEnabled = ReachabilityHelper.hasConnection || video.streamUserAction != nil
+        let isVideoActionsButtonEnabled = ReachabilityHelper.hasConnection || video.streamAlertAction != nil
         self.videoActionsButton.isEnabled = isVideoActionsButtonEnabled
         self.videoActionsButton.tintColor = isVideoActionsButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
@@ -235,7 +235,7 @@ class VideoViewController: UIViewController {
         self.slidesProgressView.updateProgress(slidesDownloadProgress, animated: false)
         self.slidesDownloadedIcon.isHidden = !(slidesDownloadState == .downloaded)
 
-        let isSlidesActionButtonEnabled = ReachabilityHelper.hasConnection || video.slidesUserAction != nil
+        let isSlidesActionButtonEnabled = ReachabilityHelper.hasConnection || video.slidesAlertAction != nil
         self.slidesActionsButton.isEnabled = isSlidesActionButtonEnabled
         self.slidesActionsButton.tintColor = isSlidesActionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
@@ -312,7 +312,7 @@ class VideoViewController: UIViewController {
                 self.slidesProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
                 self.slidesProgressView.updateProgress(SlidesPersistenceManager.shared.downloadProgress(for: video))
                 self.slidesDownloadedIcon.isHidden = !(downloadState == .downloaded)
-                let actionButtonEnabled = ReachabilityHelper.hasConnection || self.video?.slidesUserAction != nil
+                let actionButtonEnabled = ReachabilityHelper.hasConnection || self.video?.slidesAlertAction != nil
                 self.slidesActionsButton.isEnabled = actionButtonEnabled
                 self.slidesActionsButton.tintColor = actionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.systemGray4
             }

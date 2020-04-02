@@ -81,7 +81,7 @@ public final class Course: NSManagedObject {
     public var openCourseUserActivity: NSUserActivity {
         let userActivity = NSUserActivity(activityType: "com.xikolo.openCourse")
         userActivity.title = "openCourse"
-        userActivity.userInfo = ["courseId": id ]
+        userActivity.userInfo = ["courseID": id ]
         return userActivity
     }
 

@@ -41,6 +41,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Select initial tab
         let tabToSelect: XikoloTabBarController.Tabs = UserProfileHelper.shared.isLoggedIn ? .dashboard : .courses
         self.tabBarController.selectedIndex = tabToSelect.index
+
+        if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
+
+            if userActivity.title == "openCourse" {
+                if let courseID = userActivity.userInfo?["courseID"] as? String {
+                    let request = CourseHelper.FetchRequest.course(withSlugOrId: courseID)
+                    let course = CoreDataHelper.viewContext.fetchSingle(request).value
+
+                    // TODO: Show course in new scene
+                    let courseViewController = CourseViewController.init()
+                    courseViewController.course = course
+                }
+            }
+        }
     }
 
     func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {

@@ -102,14 +102,24 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.section == 2 else { return }
-
-        let topicSelectionViewController = HelpdeskTicketTopicListViewController(selectedTopic: self.topic) { topic in
-            self.topic = topic
+        defer {
+            self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
         }
 
-        let navigationController = UINavigationController(rootViewController: topicSelectionViewController)
-        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+        if indexPath.section == 0 {
+            self.titleTextField.becomeFirstResponder()
+        } else if indexPath.section == 1 {
+            self.mailAddressTextField.becomeFirstResponder()
+        } else if indexPath.section == 3 {
+            self.reportTextView.becomeFirstResponder()
+        } else if indexPath.section == 2 {
+            let topicSelectionViewController = HelpdeskTicketTopicListViewController(selectedTopic: self.topic) { topic in
+                self.topic = topic
+            }
+
+            let navigationController = UINavigationController(rootViewController: topicSelectionViewController)
+            self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+        }
     }
 
     @IBAction private func issueAttributeChanged() {

@@ -8,6 +8,8 @@
 	<string>https://open.hpi.de/pages/imprint</string>
 	<key>privacyURL</key>
 	<string>https://open.hpi.de/pages/privacy</string>
+	<key>faqURL</key>
+	<string>https://open.hpi.de/pages/faq</string>
 	<key>copyrightName</key>
 	<string>HPI</string>
 	<key>colors</key>
@@ -40,7 +42,7 @@
 		<false/>
 		<key>enableRecap</key>
 		<true/>
-		<key>showCourseDatesOnDashboard</key>
+		<key>showCourseDates</key>
 		<true/>
 		<key>showCourseTeachers</key>
 		<true/>

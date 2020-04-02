@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import SyncEngine
+import Stockpile
 
 public final class CourseCertificates: NSObject, NSCoding, IncludedPullable {
 

@@ -21,10 +21,10 @@
                                 <rect key="frame" x="20" y="0.0" width="374" height="314"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="oud-CI-ucd">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="143"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="141"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEk-Rh-sa0">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="39.5"/>
+                                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEk-Rh-sa0" userLabel="Summary Title Wrapper">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" text="Course date overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gI-pn-L8I">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
@@ -42,10 +42,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N41-ef-baw" customClass="ShadowContainerView" customModule="iOS" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="51.5" width="374" height="91.5"/>
+                                                <rect key="frame" x="0.0" y="38.5" width="374" height="102.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="iz0-aZ-Kqs">
-                                                        <rect key="frame" x="16" y="16" width="342" height="59.5"/>
+                                                        <rect key="frame" x="16" y="21.5" width="342" height="59.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yWQ-VG-82g">
                                                                 <rect key="frame" x="0.0" y="0.0" width="342" height="18"/>
@@ -149,10 +149,10 @@
                                         </variation>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="E0S-23-0P0">
-                                        <rect key="frame" x="0.0" y="171" width="374" height="143"/>
+                                        <rect key="frame" x="0.0" y="169" width="374" height="145"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8jy-Aj-EsG">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="39"/>
+                                            <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8jy-Aj-EsG" userLabel="Next Up Title Wrapper">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="41"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" text="Next up" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6H-XX-Fq4">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
@@ -170,7 +170,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lRM-3x-ACb" customClass="ShadowContainerView" customModule="iOS" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="51" width="374" height="92"/>
+                                                <rect key="frame" x="0.0" y="53" width="374" height="92"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" ambiguous="YES" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7KP-OG-l3b">
                                                         <rect key="frame" x="16" y="16" width="342" height="60"/>
@@ -279,6 +279,11 @@
                                 <constraints>
                                     <constraint firstItem="8jy-Aj-EsG" firstAttribute="height" secondItem="tEk-Rh-sa0" secondAttribute="height" id="RHj-kE-bjR"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="RHj-kE-bjR"/>
+                                    </mask>
+                                </variation>
                                 <variation key="widthClass=regular" alignment="fill" axis="horizontal" distribution="fill" spacing="28"/>
                             </stackView>
                         </subviews>
@@ -302,6 +307,7 @@
                         <outlet property="allCountLabel" destination="CTk-R2-F7f" id="OAt-IW-vSg"/>
                         <outlet property="courseLabel" destination="xGq-3u-qqc" id="C2B-jK-1zs"/>
                         <outlet property="dateLabel" destination="uwO-xj-R53" id="wgb-Uu-Pb4"/>
+                        <outlet property="equalTitleWrapperHeightContraint" destination="RHj-kE-bjR" id="Fzh-4z-1DA"/>
                         <outlet property="nextCountLabel" destination="lsj-eQ-Adf" id="DSL-29-VWP"/>
                         <outlet property="nextUpContainer" destination="lRM-3x-ACb" id="HdN-20-a6D"/>
                         <outlet property="nextUpImageView" destination="6Wq-Fz-ydS" id="8vh-Oq-bwU"/>

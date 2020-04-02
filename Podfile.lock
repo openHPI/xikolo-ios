@@ -80,9 +80,6 @@ PODS:
   - SDWebImage/Core (5.6.0)
   - SimulatorStatusMagic (2.4.1)
   - SwiftLint (0.39.1)
-  - SyncEngine (0.1.0):
-    - BrightFutures (~> 8.0)
-    - Marshal (~> 1.2)
 
 DEPENDENCIES:
   - BartyCrouch (from `https://github.com/Flinesoft/BartyCrouch.git`, tag `3.13.0`)
@@ -92,12 +89,12 @@ DEPENDENCIES:
   - Fabric (~> 1.10.2)
   - Firebase/Core
   - KeychainAccess (~> 4.0)
+  - Marshal (~> 1.2)
   - R.swift (~> 5.0)
   - ReachabilitySwift (~> 5.0)
   - SDWebImage (~> 5.0)
   - SimulatorStatusMagic (~> 2.1)
   - SwiftLint (~> 0.22)
-  - SyncEngine (from `./Frameworks/SyncEngine`)
 
 SPEC REPOS:
   trunk:
@@ -130,8 +127,6 @@ EXTERNAL SOURCES:
   BartyCrouch:
     :git: https://github.com/Flinesoft/BartyCrouch.git
     :tag: 3.13.0
-  SyncEngine:
-    :path: "./Frameworks/SyncEngine"
 
 CHECKOUT OPTIONS:
   BartyCrouch:
@@ -164,8 +159,7 @@ SPEC CHECKSUMS:
   SDWebImage: 21b19f56b4226cdfe3aefe4e6848dc43ed129a86
   SimulatorStatusMagic: 28d4a9d1a500ac7cea0b2b5a43c1c6ddb40ba56c
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
-  SyncEngine: 0b941e576dfb5073344d043fbc70919c42c32435
 
-PODFILE CHECKSUM: 342d791d893f8f94e1bab95ef27fb763924e6e9d
+PODFILE CHECKSUM: d348325dc61a90f8d9afb03ed7fe8e78f60a82df
 
 COCOAPODS: 1.9.1

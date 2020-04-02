@@ -5,7 +5,7 @@
 
 import BrightFutures
 import Foundation
-import SyncEngine
+import Stockpile
 
 public enum DocumentHelper {
 

@@ -4,7 +4,7 @@
 //
 
 import CoreData
-import SyncEngine
+import Stockpile
 
 extension CourseHelper {
 

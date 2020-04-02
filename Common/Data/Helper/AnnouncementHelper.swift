@@ -6,7 +6,7 @@
 import BrightFutures
 import CoreData
 import Foundation
-import SyncEngine
+import Stockpile
 
 public enum AnnouncementHelper {
 

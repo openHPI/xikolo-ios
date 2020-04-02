@@ -11,6 +11,7 @@ class DefaultTableViewCell: UITableViewCell {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         self.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         self.textLabel?.adjustsFontForContentSizeCategory = true
+        self.textLabel?.numberOfLines = 0
     }
 
     @available(*, unavailable)

@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Disable today widget on home screen if course dates are not displayed
         if let bundleId = Bundle.main.bundleIdentifier?.appending(".today") {
-            let hasContent = Brand.default.features.showCourseDatesOnDashboard
+            let hasContent = Brand.default.features.showCourseDates
             NCWidgetController().setHasContent(hasContent, forWidgetWithBundleIdentifier: bundleId)
         }
 

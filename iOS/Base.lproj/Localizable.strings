@@ -281,17 +281,14 @@
 /* Label of button for submitting a helpdesk ticket */
 "helpdesk.action.send" = "Send";
 
+/* helpdesk catergroy course-specific questions */
+"helpdesk.catergory.course-specific" = "Course-specific Question";
+
+/* helpdesk catergroy genereal questions */
+"helpdesk.catergory.general" = "General Question";
+
 /* hint for checking the FAQ before creating a helpdesk ticket */
 "helpdesk.hint.faq" = "Before writing a ticket to technical support, please make sure that you have read our FAQ. If you have any questions about course content, please contact the teacher team in the course forum.";
-
-/* helpdesk topic course-specific */
-"helpdesk.topic.course-specific" = "Course-specific";
-
-/* helpdesk topic reactivation */
-"helpdesk.topic.reactivation" = "Reactivation";
-
-/* helpdesk topic technical */
-"helpdesk.topic.technical" = "Technical";
 
 /* solo peer assessment */
 "peer-assessment-type.solo" = "Solo Peer Assessment";

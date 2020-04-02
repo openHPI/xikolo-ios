@@ -93,7 +93,7 @@ extension Pullable where Self: NSManagedObject {
                 for (resourceId, includedObject) in resourceIdsAndObjects {
                     if var currentObject = currentObjects.first(where: { $0.id == resourceId }) {
                         try currentObject.update(from: includedObject, with: context)
-                        if let index = currentObjects.index(where: { $0 == currentObject }) {
+                        if let index = currentObjects.firstIndex(where: { $0 == currentObject }) {
                             currentObjects.remove(at: index)
                         }
                     } else {
@@ -109,7 +109,7 @@ extension Pullable where Self: NSManagedObject {
 
                 for resourceId in resourceIds {
                     if let currentObject = currentObjects.first(where: { $0.id == resourceId }) {
-                        if let index = currentObjects.index(where: { $0 == currentObject }) {
+                        if let index = currentObjects.firstIndex(where: { $0 == currentObject }) {
                             currentObjects.remove(at: index)
                         }
                     } else {

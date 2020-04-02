@@ -15,16 +15,10 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
     @IBOutlet private weak var hintWrapper: UIView!
     @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var mailAddressTextField: UITextField!
-    @IBOutlet private weak var coursePicker: UIPickerView!
+    @IBOutlet private weak var topicLabel: UILabel!
     @IBOutlet private weak var reportTextView: UITextView!
-    @IBOutlet private weak var pickerCell: UITableViewCell!
     @IBOutlet private weak var issueTextCell: UITableViewCell!
     @IBOutlet private weak var onFailureLabel: UILabel!
-
-    private lazy var courses: [Course] = {
-        let result = CoreDataHelper.viewContext.fetchMultiple(CourseHelper.FetchRequest.visibleCourses)
-        return result.value ?? []
-    }()
 
     private lazy var sendBarButtonItem: UIBarButtonItem = {
         let title = NSLocalizedString("helpdesk.action.send", comment: "Label of button for submitting a helpdesk ticket")
@@ -41,23 +35,11 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         return UIBarButtonItem(customView: self.waitIndicator)
     }()
 
-    private lazy var issueTypeSegmentedControl: UISegmentedControl = {
-        var items = [
-            NSLocalizedString("helpdesk.topic.technical", comment: "helpdesk topic technical"),
-            NSLocalizedString("helpdesk.topic.reactivation", comment: "helpdesk topic reactivation"),
-            NSLocalizedString("helpdesk.topic.course-specific", comment: "helpdesk topic course-specific"),
-        ]
-
-        if !Brand.default.features.enableHelpdeskReactivationTopic {
-            items.remove(at: 1)
+    private var topic: HelpdeskTicket.Topic = .technical {
+        didSet {
+            self.topicLabel.text = self.topic.displayName
         }
-
-        let issueTypeSegmentedControl = UISegmentedControl(items: items)
-        issueTypeSegmentedControl.selectedSegmentIndex = 0
-        issueTypeSegmentedControl.addTarget(self, action: #selector(issueTopicChanged), for: .valueChanged)
-        issueTypeSegmentedControl.addTarget(self, action: #selector(issueAttributeChanged), for: .valueChanged)
-        return issueTypeSegmentedControl
-    }()
+    }
 
     var hasValidInput: Bool {
         guard let issueTitle = self.titleTextField.text, !issueTitle.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty
@@ -67,11 +49,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         guard let issueReport = self.reportTextView.text, !issueReport.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty
             else { return false }
 
-        let selectedCourseIndex = self.issueTypeSegmentedControl.selectedSegmentIndex
-        let reactivationEnabled = Brand.default.features.enableHelpdeskReactivationTopic
-        let notCourseSpecificTopic = reactivationEnabled && (selectedCourseIndex != 2) || !reactivationEnabled && selectedCourseIndex != 1
-        let courseSelected = self.coursePicker.selectedRow(inComponent: 0) != 0
-        return notCourseSpecificTopic || courseSelected
+        return true
     }
 
     override func viewDidLoad() {
@@ -80,9 +58,9 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         self.navigationItem.rightBarButtonItem = self.sendBarButtonItem
         self.navigationItem.rightBarButtonItem?.isEnabled = false
 
+        self.topicLabel.text = self.topic.displayName
+
         self.tableView.delegate = self
-        self.coursePicker.delegate = self
-        self.coursePicker.dataSource = self
         self.titleTextField.delegate = self
         self.mailAddressTextField.delegate = self
         self.reportTextView.delegate = self
@@ -91,8 +69,8 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
 
         self.onFailureLabel.isHidden = true
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnFAQHintLabel))
-        self.hintWrapper.addGestureRecognizer(tapGestureRecognizer)
+        let hintTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnFAQHintLabel))
+        self.hintWrapper.addGestureRecognizer(hintTapGestureRecognizer)
         self.hintWrapper.layer.roundCorners(for: .default)
 
         // Set FAQ hint label text with highlighted 'FAQ'
@@ -113,6 +91,9 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
             }
         }
 
+        let backgroundTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedBackground))
+        backgroundTapGestureRecognizer.cancelsTouchesInView = false
+        self.tableView.addGestureRecognizer(backgroundTapGestureRecognizer)
     }
 
     override func viewDidLayoutSubviews() {
@@ -120,35 +101,25 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         self.tableView.resizeTableHeaderView()
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 2 { return 65 } // Segmented Control for topic
-        return super.tableView(tableView, heightForHeaderInSection: section)
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 2 {
-            return self.issueTypeSegmentedControl.selectedSegmentIndex == issueTypeSegmentedControl.numberOfSegments - 1 ? 216.0 : 0
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        defer {
+            self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
         }
 
-        return super.tableView(tableView, heightForRowAt: indexPath)
-    }
+        if indexPath.section == 0 {
+            self.titleTextField.becomeFirstResponder()
+        } else if indexPath.section == 1 {
+            self.mailAddressTextField.becomeFirstResponder()
+        } else if indexPath.section == 3 {
+            self.reportTextView.becomeFirstResponder()
+        } else if indexPath.section == 2 {
+            let topicSelectionViewController = HelpdeskTicketTopicListViewController(selectedTopic: self.topic) { topic in
+                self.topic = topic
+            }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard section == 2 else { return nil }
-
-        let header = UIView()
-        header.addSubview(self.issueTypeSegmentedControl)
-        header.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 65)
-        self.issueTypeSegmentedControl.frame = CGRect(x: 0, y: 13, width: view.bounds.width, height: 44)
-        self.issueTypeSegmentedControl.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        return header
-    }
-
-    @IBAction private func issueTopicChanged() {
-        self.tableView.beginUpdates()
-        // Additionally to hiding the entire cell, we also hide the picker view to improve the hide/show animation.
-        self.coursePicker.isHidden = self.issueTypeSegmentedControl.selectedSegmentIndex != issueTypeSegmentedControl.numberOfSegments - 1
-        self.tableView.endUpdates()
+            let navigationController = UINavigationController(rootViewController: topicSelectionViewController)
+            self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+        }
     }
 
     @IBAction private func issueAttributeChanged() {
@@ -187,27 +158,8 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         guard let title = titleTextField.text else { return }
         guard let mail = mailAddressTextField.text else { return }
         guard let report = reportTextView.text else { return }
-        let selectedIndex = issueTypeSegmentedControl.selectedSegmentIndex
-        let topic: HelpdeskTicket.Topic
-        switch selectedIndex {
-        case 0:
-            topic = .technical
-        case 1 :
-            if Brand.default.features.enableHelpdeskReactivationTopic {
-                topic = .reactivation
 
-            } else {
-                let course: Course = self.courses[coursePicker.selectedRow(inComponent: 0) - 1]
-                topic = .courseSpecific(course: course)
-            }
-        case 2:
-            let course: Course = self.courses[coursePicker.selectedRow(inComponent: 0) - 1]
-            topic = .courseSpecific(course: course)
-        default :
-            topic = .technical
-        }
-
-        let ticket = HelpdeskTicket(title: title, mail: mail, topic: topic, report: report)
+        let ticket = HelpdeskTicket(title: title, mail: mail, topic: self.topic, report: report)
 
         self.navigationItem.rightBarButtonItem = self.waitBarButtonItem
         self.waitIndicator.startAnimating()
@@ -236,35 +188,6 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
 
 }
 
-extension HelpdeskViewController: UIPickerViewDataSource {
-
-    func pickerView(_ coursePicker: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if row == 0 {
-            return ""
-        } else {
-            return self.courses[row - 1].title
-        }
-    }
-
-    func pickerView(_ coursePicker: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.courses.count + 1
-    }
-
-    func numberOfComponents(in coursePicker: UIPickerView) -> Int {
-        return 1
-    }
-}
-
-extension HelpdeskViewController: UIPickerViewDelegate {
-
-    func pickerView(_ pickerView: UIPickerView,
-                    didSelectRow row: Int,
-                    inComponent component: Int) {
-        self.issueAttributeChanged()
-    }
-
-}
-
 extension HelpdeskViewController: UITextViewDelegate {
 
     func textViewDidChange(_ tableView: UITextView) {
@@ -281,6 +204,7 @@ extension HelpdeskViewController: UITextViewDelegate {
 }
 
 extension HelpdeskViewController: UITextFieldDelegate {
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
 

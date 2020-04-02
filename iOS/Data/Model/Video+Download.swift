@@ -52,16 +52,7 @@ extension Video {
         if let url = self.streamURLForDownload, streamDownloadState == .notDownloaded, !isOffline {
             let downloadActionTitle = NSLocalizedString("course-item.stream-download-action.start-download.title",
                                                         comment: "start download of stream for video")
-
-            let image: UIImage? = {
-                if #available(iOS 13, *) {
-                    return UIImage(systemName: "arrow.down.left.video")
-                } else {
-                    return nil
-                }
-            }()
-
-            return Action(title: downloadActionTitle, image: image) {
+            return Action(title: downloadActionTitle, image: Action.Image.download) {
                 StreamPersistenceManager.shared.startDownload(with: url, for: self)
             }
         }
@@ -69,15 +60,7 @@ extension Video {
         if streamDownloadState == .pending || streamDownloadState == .downloading {
             let abortActionTitle = NSLocalizedString("course-item.stream-download-action.stop-download.title",
                                                      comment: "stop stream download for video")
-            let image: UIImage? = {
-                       if #available(iOS 13, *) {
-                           return UIImage(systemName: "stop.circle")
-                       } else {
-                           return nil
-                       }
-                   }()
-
-            return Action(title: abortActionTitle, image: image) {
+            return Action(title: abortActionTitle, image: Action.Image.stop) {
                 StreamPersistenceManager.shared.cancelDownload(for: self)
             }
         }
@@ -85,15 +68,7 @@ extension Video {
         if streamDownloadState == .downloaded {
             let deleteActionTitle = NSLocalizedString("course-item.stream-download-action.delete-download.title",
                                                       comment: "delete stream download for video")
-            let image: UIImage? = {
-                       if #available(iOS 13, *) {
-                           return UIImage(systemName: "trash")
-                       } else {
-                           return nil
-                       }
-                   }()
-
-            return Action(title: deleteActionTitle, image: image) {
+            return Action(title: deleteActionTitle, image: Action.Image.delete) {
                 StreamPersistenceManager.shared.deleteDownload(for: self)
             }
         }
@@ -108,32 +83,15 @@ extension Video {
         if let url = self.slidesURL, slidesDownloadState == .notDownloaded, !isOffline {
             let downloadActionTitle = NSLocalizedString("course-item.slides-download-action.start-download.title",
                                                         comment: "start download of slides for video")
-            let image: UIImage? = {
-                if #available(iOS 13, *) {
-                    return UIImage(systemName: "arrow.down.doc")
-                } else {
-                    return nil
-                }
-            }()
-
-            return Action(title: downloadActionTitle, image: image) {
+            return Action(title: downloadActionTitle, image: Action.Image.download) {
                 SlidesPersistenceManager.shared.startDownload(with: url, for: self)
             }
-
         }
 
         if slidesDownloadState == .pending || slidesDownloadState == .downloading {
             let abortActionTitle = NSLocalizedString("course-item.slides-download-action.stop-download.title",
                                                      comment: "stop slides download for video")
-            let image: UIImage? = {
-                if #available(iOS 13, *) {
-                    return UIImage(systemName: "stop.circle")
-                } else {
-                    return nil
-                }
-            }()
-
-            return Action(title: abortActionTitle, image: image) {
+            return Action(title: abortActionTitle, image: Action.Image.stop) {
                 SlidesPersistenceManager.shared.cancelDownload(for: self)
             }
         }
@@ -141,15 +99,7 @@ extension Video {
         if slidesDownloadState == .downloaded {
             let deleteActionTitle = NSLocalizedString("course-item.slides-download-action.delete-download.title",
                                                       comment: "delete slides download for video")
-            let image: UIImage? = {
-                if #available(iOS 13, *) {
-                    return UIImage(systemName: "trash")
-                } else {
-                    return nil
-                }
-            }()
-
-            return Action(title: deleteActionTitle, image: image) {
+            return Action(title: deleteActionTitle, image: Action.Image.delete) {
                 SlidesPersistenceManager.shared.deleteDownload(for: self)
             }
         }
@@ -168,15 +118,7 @@ extension Video {
             let slidesURL = self.slidesURL, slidesDownloadState == .notDownloaded, !isOffline {
             let downloadActionTitle = NSLocalizedString("course-item.combined-download-action.start-download.title",
                                                         comment: "start all downloads for video")
-            let image: UIImage? = {
-                if #available(iOS 13, *) {
-                    return UIImage(systemName: "square.and.arrow.down")
-                } else {
-                    return nil
-                }
-            }()
-
-            actions.append(Action(title: downloadActionTitle, image: image) {
+            actions.append(Action(title: downloadActionTitle, image: Action.Image.aggregatedDownload) {
                 SlidesPersistenceManager.shared.startDownload(with: slidesURL, for: self)
                 StreamPersistenceManager.shared.startDownload(with: streamURL, for: self)
             })
@@ -185,15 +127,7 @@ extension Video {
         if streamDownloadState == .pending || streamDownloadState == .downloading, slidesDownloadState == .pending || slidesDownloadState == .downloading {
             let abortActionTitle = NSLocalizedString("course-item.combined-download-action.stop-download.title",
                                                      comment: "stop all downloads for video")
-            let image: UIImage? = {
-                if #available(iOS 13, *) {
-                    return UIImage(systemName: "stop.circle")
-                } else {
-                    return nil
-                }
-            }()
-
-            actions.append(Action(title: abortActionTitle, image: image) {
+            actions.append(Action(title: abortActionTitle, image: Action.Image.stop) {
                 SlidesPersistenceManager.shared.cancelDownload(for: self)
                 StreamPersistenceManager.shared.cancelDownload(for: self)
             })
@@ -202,15 +136,7 @@ extension Video {
         if streamDownloadState == .downloaded, slidesDownloadState == .downloaded {
             let deleteActionTitle = NSLocalizedString("course-item.combined-download-action.delete-download.title",
                                                       comment: "delete all downloads for video")
-            let image: UIImage? = {
-                if #available(iOS 13, *) {
-                    return UIImage(systemName: "trash")
-                } else {
-                    return nil
-                }
-            }()
-
-            actions.append(Action(title: deleteActionTitle, image: image) {
+            actions.append(Action(title: deleteActionTitle, image: Action.Image.delete) {
                 SlidesPersistenceManager.shared.deleteDownload(for: self)
                 StreamPersistenceManager.shared.deleteDownload(for: self)
             })
@@ -224,6 +150,41 @@ struct Action {
     let title: String
     let image: UIImage?
     let handler: () -> Void
+
+    enum Image {
+        static var download: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "square.and.arrow.down")
+            } else {
+                return nil
+            }
+        }
+
+        static var aggregatedDownload: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "square.and.arrow.down.on.square")
+            } else {
+                return nil
+            }
+        }
+
+        static var stop: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "xmark.circle")
+            } else {
+                return nil
+            }
+        }
+
+        static var delete: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "trash")
+            } else {
+                return nil
+            }
+        }
+    }
+
 }
 
 extension UIAlertAction {

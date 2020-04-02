@@ -54,20 +54,6 @@ class CourseViewController: UIViewController {
         return UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
     }()
 
-    private var shareCourseAction: UIAlertAction {
-        return UIAlertAction(title: NSLocalizedString("course.action-menu.share", comment: "Title for course item share action"),
-                             style: .default) { [weak self] _ in
-                                self?.shareCourse()
-        }
-    }
-
-    private var showCourseDatesAction: UIAlertAction {
-        return UIAlertAction(title: NSLocalizedString("course.action-menu.show-course-dates", comment: "Title for show course dates action"),
-                             style: .default) { [weak self] _ in
-                                self?.showCourseDates()
-        }
-    }
-
     var course: Course! {
         didSet {
             self.updateView()
@@ -321,10 +307,13 @@ class CourseViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = sender
 
-        alert.addAction(self.shareCourseAction)
+        let userActions = [
+            self.course?.shareAction { [weak self] in self?.shareCourse() },
+            self.course?.showCourseDatesAction { [weak self] in self?.showCourseDates() },
+        ].compactMap { $0 }
 
-        if self.course.hasEnrollment && Brand.default.features.showCourseDatesOnDashboard {
-            alert.addAction(self.showCourseDatesAction)
+        userActions.asAlertActions().forEach { action in
+            alert.addAction(action)
         }
 
         alert.addCancelAction()

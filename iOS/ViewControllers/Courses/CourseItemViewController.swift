@@ -24,19 +24,15 @@ class CourseItemViewController: UIPageViewController {
     }()
 
     private var userActions: [UIAlertAction] {
-        var actions = [self.shareCourseItemAction]
+        var alertActions = [
+            self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() }
+        ].compactMap { $0 }.asAlertActions()
+
         if let video = self.currentItem?.content as? Video {
-            actions += video.alertActions
+            userActions += video.alertActions
         }
 
-        return actions
-    }
-
-    private var shareCourseItemAction: UIAlertAction {
-        return UIAlertAction(title: NSLocalizedString("course.action-menu.share",
-                                                      comment: "Title for course item share action"), style: .default) { [weak self] _ in
-            self?.shareCourseItem()
-        }
+        return alertActions
     }
 
     private var previousItem: CourseItem?

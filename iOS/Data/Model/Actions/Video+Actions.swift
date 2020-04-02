@@ -25,12 +25,12 @@ extension Video {
     }
 
     var alertActions: [UIAlertAction] {
-        return self.availableActions.map(UIAlertAction.init(action:))
+        return self.availableActions.asAlertActions()
     }
 
     @available(iOS 13.0, *)
     var actions: [UIAction] {
-        return self.availableActions.map(UIAction.init(action:))
+        return self.availableActions.asActions()
     }
 
     var streamAlertAction: UIAlertAction? {
@@ -41,7 +41,7 @@ extension Video {
         return self.slidesUserAction.map(UIAlertAction.init(action:))
     }
 
-    private var availableActions: [Action] {
+    private var availableActions: [Action] { 
         return [self.streamUserAction, self.slidesUserAction].compactMap { $0 } + self.combinedActions
     }
 

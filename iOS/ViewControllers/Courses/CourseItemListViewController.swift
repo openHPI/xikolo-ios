@@ -171,17 +171,17 @@ extension CourseItemListViewController { // TableViewDelegate
         let courseItem = self.dataSource.object(at: indexPath)
 
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
-
-            let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
-                self.shareCourseItem(courseItem: courseItem)
-            }
+            let shareAction: UIAction = {
+                let action = courseItem.shareAction { [weak self] in self?.shareCourseItem(courseItem: courseItem) }
+                return UIAction(action: action)
+            }()
 
             if let video = courseItem.content as? Video {
-                let download = UIMenu(title: "", image: UIImage(systemName: "square.and.arrow.down"), options: .displayInline, children: video.actions)
-                return UIMenu(title: "", children: [share, download])
+                let downloadMenu = UIMenu(title: "", image: nil, options: .displayInline, children: video.actions)
+                return UIMenu(title: "", children: [shareAction, downloadMenu])
             }
 
-            return UIMenu(title: "", children: [share])
+            return UIMenu(title: "", children: [shareAction])
         }
     }
 

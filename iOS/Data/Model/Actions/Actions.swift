@@ -42,6 +42,22 @@ struct Action {
                 return nil
             }
         }
+
+        static var share: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "square.and.arrow.up")
+            } else {
+                return nil
+            }
+        }
+
+        static var calendar: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "calendar")
+            } else {
+                return nil
+            }
+        }
     }
 
 }
@@ -59,6 +75,19 @@ extension UIAction {
 
     convenience init(action: Action) {
         self.init(title: action.title, image: action.image, handler: { _ in action.handler() })
+    }
+
+}
+
+extension Array where Element == Action {
+
+    func asAlertActions() -> [UIAlertAction] {
+        return self.map(UIAlertAction.init(action:))
+    }
+
+    @available(iOS 13.0, *)
+    func asActions() -> [UIAction] {
+        return self.map(UIAction.init(action:))
     }
 
 }

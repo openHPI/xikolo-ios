@@ -163,20 +163,12 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
         let course = self.courses[indexPath.item]
 
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let userActions = [
+                course.shareAction { [weak self] in self?.shareCourse(course: course) },
+                course.showCourseDatesAction { [weak self] in self?.showCourseDates(course: course) },
+            ].compactMap { $0 }
 
-            let share = UIAction(title: NSLocalizedString("course.action-menu.share",
-                                                          comment: "Title for course item share action"),
-                                 image: UIImage(systemName: "square.and.arrow.up")) { _ in
-                self.shareCourse(course: course)
-            }
-
-            let showCourseDates = UIAction(title: NSLocalizedString("course.action-menu.show-course-dates",
-                                                                    comment: "Title for show course dates action"),
-                                           image: UIImage(systemName: "calendar")) { _ in
-                self.showCourseDates(course: course)
-            }
-
-            return UIMenu(title: "", children: [share, showCourseDates])
+            return UIMenu(title: "", children: userActions.asActions())
         }
     }
 

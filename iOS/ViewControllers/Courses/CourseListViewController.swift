@@ -190,20 +190,12 @@ class CourseListViewController: UICollectionViewController {
         let course = self.dataSource.object(at: indexPath)
 
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let userActions = [
+                course.shareAction { self.shareCourse(course: course) },
+                course.showCourseDatesAction { self.showCourseDates(course: course) },
+            ].flatMap { $0 }
 
-            let share = UIAction(title: NSLocalizedString("course.action-menu.share",
-                                                          comment: "Title for course item share action"),
-                                 image: UIImage(systemName: "square.and.arrow.up")) { _ in
-                                    self.shareCourse(course: course)
-            }
-
-            let showCourseDates = UIAction(title: NSLocalizedString("course.action-menu.show-course-dates",
-                                                                    comment: "Title for show course dates action"),
-                                           image: UIImage(systemName: "calendar")) { _ in
-                self.showCourseDates(course: course)
-            }
-
-            return UIMenu(title: "", children: [share, showCourseDates])
+            return UIMenu(title: "", children: userActions.asActions())
         }
     }
 

@@ -24,13 +24,8 @@ extension Video {
         return self.singleStream?.hlsURL
     }
 
-    var alertActions: [UIAlertAction] {
-        return self.availableActions.asAlertActions()
-    }
-
-    @available(iOS 13.0, *)
-    var actions: [UIAction] {
-        return self.availableActions.asActions()
+    var actions: [Action] {
+        return [self.streamUserAction, self.slidesUserAction].compactMap { $0 } + self.combinedActions
     }
 
     var streamAlertAction: UIAlertAction? {
@@ -39,10 +34,6 @@ extension Video {
 
     var slidesAlertAction: UIAlertAction? {
         return self.slidesUserAction.map(UIAlertAction.init(action:))
-    }
-
-    private var availableActions: [Action] { 
-        return [self.streamUserAction, self.slidesUserAction].compactMap { $0 } + self.combinedActions
     }
 
     private var streamUserAction: Action? {

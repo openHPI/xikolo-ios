@@ -177,7 +177,7 @@ extension CourseItemListViewController { // TableViewDelegate
             }()
 
             if let video = courseItem.content as? Video {
-                let downloadMenu = UIMenu(title: "", image: nil, options: .displayInline, children: video.actions)
+                let downloadMenu = UIMenu(title: "", image: nil, options: .displayInline, children: video.actions.asActions())
                 return UIMenu(title: "", children: [shareAction, downloadMenu])
             }
 

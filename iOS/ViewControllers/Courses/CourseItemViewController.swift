@@ -29,7 +29,7 @@ class CourseItemViewController: UIPageViewController {
         ].compactMap { $0 }.asAlertActions()
 
         if let video = self.currentItem?.content as? Video {
-            userActions += video.alertActions
+            alertActions += video.actions.asAlertActions()
         }
 
         return alertActions

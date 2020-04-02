@@ -119,8 +119,8 @@ extension Video {
             let downloadActionTitle = NSLocalizedString("course-item.combined-download-action.start-download.title",
                                                         comment: "start all downloads for video")
             actions.append(Action(title: downloadActionTitle, image: Action.Image.aggregatedDownload) {
-                SlidesPersistenceManager.shared.startDownload(with: slidesURL, for: self)
                 StreamPersistenceManager.shared.startDownload(with: streamURL, for: self)
+                SlidesPersistenceManager.shared.startDownload(with: slidesURL, for: self)
             })
         }
 
@@ -128,8 +128,8 @@ extension Video {
             let abortActionTitle = NSLocalizedString("course-item.combined-download-action.stop-download.title",
                                                      comment: "stop all downloads for video")
             actions.append(Action(title: abortActionTitle, image: Action.Image.stop) {
-                SlidesPersistenceManager.shared.cancelDownload(for: self)
                 StreamPersistenceManager.shared.cancelDownload(for: self)
+                SlidesPersistenceManager.shared.cancelDownload(for: self)
             })
         }
 
@@ -137,8 +137,8 @@ extension Video {
             let deleteActionTitle = NSLocalizedString("course-item.combined-download-action.delete-download.title",
                                                       comment: "delete all downloads for video")
             actions.append(Action(title: deleteActionTitle, image: Action.Image.delete) {
-                SlidesPersistenceManager.shared.deleteDownload(for: self)
                 StreamPersistenceManager.shared.deleteDownload(for: self)
+                SlidesPersistenceManager.shared.deleteDownload(for: self)
             })
         }
 

@@ -3,7 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-// swiftlint:disable file_length type_body_length
+// swiftlint:disable file_length
 
 import Common
 import SDWebImage

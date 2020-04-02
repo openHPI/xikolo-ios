@@ -25,7 +25,7 @@ class CourseItemViewController: UIPageViewController {
 
     private var userActions: [UIAlertAction] {
         var alertActions = [
-            self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() }
+            self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() },
         ].compactMap { $0 }.asAlertActions()
 
         if let video = self.currentItem?.content as? Video {

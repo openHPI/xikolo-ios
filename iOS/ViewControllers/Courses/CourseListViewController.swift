@@ -33,7 +33,6 @@ class CourseListViewController: UICollectionViewController {
     var configuration: CourseListConfiguration = .allCourses
 
     override func viewDidLoad() {
-
         self.collectionView?.register(R.nib.courseCell)
         self.collectionView?.register(UINib(resource: R.nib.courseHeaderView),
                                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,

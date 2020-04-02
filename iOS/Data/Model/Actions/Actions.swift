@@ -65,7 +65,7 @@ struct Action {
 extension UIAlertAction {
 
     convenience init(action: Action) {
-        self.init(title: action.title, style: .default, handler: { _ in action.handler() })
+        self.init(title: action.title, style: .default) { _ in action.handler() }
     }
 
 }
@@ -74,7 +74,7 @@ extension UIAlertAction {
 extension UIAction {
 
     convenience init(action: Action) {
-        self.init(title: action.title, image: action.image, handler: { _ in action.handler() })
+        self.init(title: action.title, image: action.image) { _ in action.handler() }
     }
 
 }

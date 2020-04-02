@@ -136,9 +136,11 @@ class CourseListViewController: UICollectionViewController {
         }
     }
 
-    private func shareCourse(course: Course) {
+    private func shareCourse(at indexPath: IndexPath) {
+        let cell = self.collectionView.cellForItem(at: indexPath)
+        let course = self.dataSource.object(at: indexPath)
         let activityViewController = UIActivityViewController.make(for: course, on: self)
-        activityViewController.popoverPresentationController?.sourceView = self.collectionView
+        activityViewController.popoverPresentationController?.sourceView = cell
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 
@@ -190,7 +192,7 @@ class CourseListViewController: UICollectionViewController {
 
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
             let userActions = [
-                course.shareAction { self.shareCourse(course: course) },
+                course.shareAction { self.shareCourse(at: indexPath) },
                 course.showCourseDatesAction { self.showCourseDates(course: course) },
             ].flatMap { $0 }
 

@@ -172,7 +172,7 @@ extension CourseItemListViewController { // TableViewDelegate
 
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
             let shareAction: UIAction = {
-                let action = courseItem.shareAction { [weak self] in self?.shareCourseItem(courseItem: courseItem) }
+                let action = courseItem.shareAction { [weak self] in self?.shareCourseItem(at: indexPath) }
                 return UIAction(action: action)
             }()
 
@@ -185,9 +185,11 @@ extension CourseItemListViewController { // TableViewDelegate
         }
     }
 
-    private func shareCourseItem(courseItem: CourseItem) {
+    private func shareCourseItem(at indexPath: IndexPath) {
+        let cell = self.tableView.cellForRow(at: indexPath)
+        let courseItem = self.dataSource.object(at: indexPath)
         let activityViewController = UIActivityViewController(activityItems: [courseItem], applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.tableView
+        activityViewController.popoverPresentationController?.sourceView = cell
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 

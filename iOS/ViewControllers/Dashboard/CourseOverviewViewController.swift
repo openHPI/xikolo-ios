@@ -30,9 +30,11 @@ class CourseOverviewViewController: UIViewController {
         self.courses = result.value ?? []
     }
 
-    private func shareCourse(course: Course) {
+    private func shareCourse(at indexPath: IndexPath) {
+        let cell = self.collectionView.cellForItem(at: indexPath)
+        let course = self.courses[indexPath.item]
         let activityViewController = UIActivityViewController.make(for: course, on: self)
-        activityViewController.popoverPresentationController?.sourceView = self.collectionView
+        activityViewController.popoverPresentationController?.sourceView = cell
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 
@@ -164,7 +166,7 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
 
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
             let userActions = [
-                course.shareAction { [weak self] in self?.shareCourse(course: course) },
+                course.shareAction { [weak self] in self?.shareCourse(at: indexPath) },
                 course.showCourseDatesAction { [weak self] in self?.showCourseDates(course: course) },
             ].compactMap { $0 }
 

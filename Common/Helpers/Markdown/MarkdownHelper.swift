@@ -16,7 +16,7 @@ public enum MarkdownHelper {
     }
 
     static let dynamicCodeFont: DownFont = {
-        if #available(iOS 12, *) {
+        if #available(iOS 13, *) {
             return .monospacedSystemFont(ofSize: UIFont.labelFontSize, weight: .regular)
         } else if let menlo = UIFont(name: "menlo", size: UIFont.labelFontSize) {
             return menlo

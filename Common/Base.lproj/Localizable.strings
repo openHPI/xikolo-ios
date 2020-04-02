@@ -76,3 +76,9 @@
 
 /* section title for upcoming courses */
 "course.section-title.upcoming" = "Upcoming";
+
+/* helpdesk topic reactivation */
+"helpdesk.topic.reactivation" = "Course reactivation";
+
+/* helpdesk topic technical */
+"helpdesk.topic.technical" = "Technical question";

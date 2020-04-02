@@ -59,7 +59,7 @@ public extension SyncEngine {
 
     // MARK: - build url request
 
-    private func buildGetRequest<Query>(forQuery query: Query) -> Result<URLRequest, SyncError> where Query: ResourceQuery, Query.Resource: Pullable  {
+    private func buildGetRequest<Query>(forQuery query: Query) -> Result<URLRequest, SyncError> where Query: ResourceQuery, Query.Resource: Pullable {
         guard let resourceUrl = query.resourceURL(relativeTo: self.baseURL) else {
             return .failure(.invalidResourceURL)
         }

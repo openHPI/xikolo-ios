@@ -35,7 +35,7 @@ class AnnouncementCell: UITableViewCell {
         self.readStateLabel.isHidden = !userIsLoggedIn || announcement.visited
         self.separatorView.isHidden = !userIsLoggedIn || announcement.visited || announcement.publishedAt == nil
 
-        let description : String? = announcement.text.map(MarkdownHelper.string(for:))?.replacingOccurrences(of: "\n", with: " ")
+        let description: String? = announcement.text.map(MarkdownHelper.string(for:))?.replacingOccurrences(of: "\n", with: " ")
         self.descriptionLabel.text = description
     }
 

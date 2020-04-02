@@ -170,6 +170,7 @@
 		5077012E218F38BC005568A6 /* InnerPillLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5077012D218F38BC005568A6 /* InnerPillLabel.swift */; };
 		507896C8233DEA1A00EA65E5 /* Course+share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507896C7233DEA1A00EA65E5 /* Course+share.swift */; };
 		507CC05B21788487008819FE /* PillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507CC05A21788487008819FE /* PillView.swift */; };
+		507D02F424360A090009F12B /* HelpdeskTicketTopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D02F324360A090009F12B /* HelpdeskTicketTopicListViewController.swift */; };
 		507D723C23377B0200DADE06 /* CourseOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D723B23377B0200DADE06 /* CourseOverviewViewController.swift */; };
 		507D723E233780AD00DADE06 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D723D233780AD00DADE06 /* DashboardViewController.swift */; };
 		507D7240233784CE00DADE06 /* CourseOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 507D723F233784CE00DADE06 /* CourseOverview.storyboard */; };
@@ -780,6 +781,7 @@
 		507A5CD72021EF02009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		507A5CD82021EF03009B1F95 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
 		507CC05A21788487008819FE /* PillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillView.swift; sourceTree = "<group>"; };
+		507D02F324360A090009F12B /* HelpdeskTicketTopicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskTicketTopicListViewController.swift; sourceTree = "<group>"; };
 		507D723B23377B0200DADE06 /* CourseOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseOverviewViewController.swift; sourceTree = "<group>"; };
 		507D723D233780AD00DADE06 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		507D723F233784CE00DADE06 /* CourseOverview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseOverview.storyboard; sourceTree = "<group>"; };
@@ -1767,6 +1769,7 @@
 				508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift */,
 				700398C121A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift */,
 				82D13D0B235726E70006A0D9 /* HelpdeskViewController.swift */,
+				507D02F324360A090009F12B /* HelpdeskTicketTopicListViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -2991,6 +2994,7 @@
 				50CF1FD620DCDBFC0011BFE9 /* AccountViewController.swift in Sources */,
 				507D723C23377B0200DADE06 /* CourseOverviewViewController.swift in Sources */,
 				50CF1FD720DCDBFC0011BFE9 /* CoursePresentAnimationController.swift in Sources */,
+				507D02F424360A090009F12B /* HelpdeskTicketTopicListViewController.swift in Sources */,
 				50CF1FD920DCDBFC0011BFE9 /* CoursePresentationController.swift in Sources */,
 				50CF1FDA20DCDBFC0011BFE9 /* CourseNavigationController.swift in Sources */,
 				50CF1FE020DCDBFC0011BFE9 /* CoreDataTableViewDataSource.swift in Sources */,

@@ -413,7 +413,7 @@
         <scene sceneID="zeb-jN-C21">
             <objects>
                 <tableViewController id="l2c-fE-ju1" customClass="HelpdeskViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="FWD-EI-Pg5">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="FWD-EI-Pg5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <view key="tableHeaderView" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" id="0X5-zw-iYv">
@@ -550,23 +550,27 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="uow-c8-Cf3">
+                            <tableViewSection headerTitle="Topic" id="His-qi-4tJ">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="216" id="iLZ-Wk-p4c">
-                                        <rect key="frame" x="20" y="532.5" width="374" height="216"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iLZ-Wk-p4c" translatesAutoresizingMaskIntoConstraints="NO" id="yag-1O-rf5">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="216"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="NdS-AQ-BoO">
+                                        <rect key="frame" x="20" y="552.5" width="374" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NdS-AQ-BoO" id="KgS-k5-8mp">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqm-FG-FoJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="216"/>
-                                                </pickerView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oe-8C-rec">
+                                                    <rect key="frame" x="20" y="11" width="315" height="22"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="mqm-FG-FoJ" secondAttribute="trailing" id="230-gG-UlD"/>
-                                                <constraint firstItem="mqm-FG-FoJ" firstAttribute="leading" secondItem="yag-1O-rf5" secondAttribute="leading" id="D50-tK-SHt"/>
-                                                <constraint firstAttribute="bottom" secondItem="mqm-FG-FoJ" secondAttribute="bottom" id="DNr-vn-OQt"/>
-                                                <constraint firstItem="mqm-FG-FoJ" firstAttribute="top" secondItem="yag-1O-rf5" secondAttribute="top" id="jiv-sb-4K2"/>
+                                                <constraint firstItem="8oe-8C-rec" firstAttribute="leading" secondItem="KgS-k5-8mp" secondAttribute="leadingMargin" id="6nb-Gr-N5k"/>
+                                                <constraint firstItem="8oe-8C-rec" firstAttribute="top" secondItem="KgS-k5-8mp" secondAttribute="topMargin" id="KUa-vy-c3K"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="8oe-8C-rec" secondAttribute="trailing" id="Qjv-63-55i"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="8oe-8C-rec" secondAttribute="bottom" id="lGW-hy-wPN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -575,7 +579,7 @@
                             <tableViewSection headerTitle="Your Issue" id="Kr0-w1-KaR">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dRf-Zv-2xu">
-                                        <rect key="frame" x="0.0" y="804.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="652.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dRf-Zv-2xu" id="BbS-hH-4Ez">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -602,7 +606,6 @@
                         <connections>
                             <outlet property="dataSource" destination="l2c-fE-ju1" id="ZWd-IX-fRB"/>
                             <outlet property="delegate" destination="l2c-fE-ju1" id="3Bj-QD-mN7"/>
-                            <outletCollection property="gestureRecognizers" destination="iqG-Io-hBA" appends="YES" id="bdt-MP-mhF"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Technical Support" id="ccX-D1-nh5">
@@ -613,23 +616,17 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="coursePicker" destination="mqm-FG-FoJ" id="kW9-IM-Yta"/>
                         <outlet property="hintLabel" destination="duH-aa-ccr" id="o6u-cT-NsE"/>
                         <outlet property="hintWrapper" destination="zWJ-7y-ZDC" id="cu2-7C-P0a"/>
                         <outlet property="issueTextCell" destination="dRf-Zv-2xu" id="8gs-4O-LH0"/>
                         <outlet property="mailAddressTextField" destination="Fs0-LO-E4J" id="762-oQ-FUZ"/>
                         <outlet property="onFailureLabel" destination="FPo-xL-mqX" id="hBA-UV-k33"/>
-                        <outlet property="pickerCell" destination="iLZ-Wk-p4c" id="9Bl-5Y-oiJ"/>
                         <outlet property="reportTextView" destination="KcN-el-VIf" id="Qrg-8L-pN9"/>
                         <outlet property="titleTextField" destination="HJJ-fU-Fdn" id="C7s-ys-qMg"/>
+                        <outlet property="topicLabel" destination="8oe-8C-rec" id="i4L-SS-mLY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXk-mr-nbr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="iqG-Io-hBA">
-                    <connections>
-                        <action selector="tappedBackground" destination="l2c-fE-ju1" id="f4F-CH-d1c"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4182.608695652174" y="1719.6428571428571"/>
         </scene>

@@ -45,7 +45,7 @@
 "okD-ae-Y3P.accessibilityLabel" = "";
 
 /* Class = "UILabel"; text = "Please describe your technical problem using the textbox below. Information about your browser and your e-mail address will be automatically submitted along with your issue report."; ObjectID = "okD-ae-Y3P"; */
-"okD-ae-Y3P.text" = "Bitte beschreiben Sie Ihr Anliegen mit Hilfe des Formulars unten. Informationen über Ihren Browser und Ihre E-Mail-Adresse werden automatisch mit Ihrer Anfrage übermittelt.";
+"okD-ae-Y3P.text" = "Bitte beschreiben Sie Ihr Anliegen mit Hilfe des Formulars unten. Informationen über Ihr mobiles Gerät und Ihre E-Mail-Adresse werden automatisch mit Ihrer Anfrage übermittelt.";
 
 /* Class = "UILabel"; text = "Unfortunately, your issue couldn't be forwarded. Please try again."; ObjectID = "FPo-xL-mqX"; */
 "FPo-xL-mqX.text" = "Leider konnte Ihr Anliegen nicht weitergeleitet werden. Bitte versuchen Sie es erneut";

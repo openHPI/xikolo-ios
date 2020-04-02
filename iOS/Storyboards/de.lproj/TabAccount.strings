@@ -44,7 +44,7 @@
 /* Class = "UILabel"; accessibilityLabel = "Please describe your technical problem using the textbox below. Information about your browser and your e-mail address will be automatically submitted along with your issue report."; ObjectID = "okD-ae-Y3P"; */
 "okD-ae-Y3P.accessibilityLabel" = "";
 
-/* Class = "UILabel"; text = "Please describe your technical problem using the textbox below. Information about your browser and your e-mail address will be automatically submitted along with your issue report."; ObjectID = "okD-ae-Y3P"; */
+/* Class = "UILabel"; text = "Please describe your technical problem using the textbox below. Information about your mobile device and your e-mail address will be automatically submitted along with your issue report."; ObjectID = "okD-ae-Y3P"; */
 "okD-ae-Y3P.text" = "Bitte beschreiben Sie Ihr Anliegen mit Hilfe des Formulars unten. Informationen über Ihr mobiles Gerät und Ihre E-Mail-Adresse werden automatisch mit Ihrer Anfrage übermittelt.";
 
 /* Class = "UILabel"; text = "Unfortunately, your issue couldn't be forwarded. Please try again."; ObjectID = "FPo-xL-mqX"; */
@@ -55,3 +55,6 @@
 
 /* Class = "UINavigationItem"; title = "Technical Support"; ObjectID = "ccX-D1-nh5"; */
 "ccX-D1-nh5.title" = "Technischer Support";
+
+/* Class = "UITableViewSection"; headerTitle = "Category"; ObjectID = "His-qi-4tJ"; */
+"His-qi-4tJ.headerTitle" = "Kategorie";

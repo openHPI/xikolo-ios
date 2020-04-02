@@ -550,7 +550,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Topic" id="His-qi-4tJ">
+                            <tableViewSection headerTitle="Category" id="His-qi-4tJ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="NdS-AQ-BoO">
                                         <rect key="frame" x="20" y="552.5" width="374" height="44"/>
@@ -564,6 +564,9 @@
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <attributedString key="userComments">
+                                                        <fragment content="#bc-ignore!"/>
+                                                    </attributedString>
                                                 </label>
                                             </subviews>
                                             <constraints>

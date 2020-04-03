@@ -11,10 +11,16 @@ import UIKit
 class TodayViewController: UIViewController, NCWidgetProviding {
 
     @IBOutlet private weak var loginRequestedLabel: UILabel!
+    @IBOutlet private weak var widgetDisabledLabel: UILabel!
     @IBOutlet private weak var counterStackView: UIStackView!
     @IBOutlet private weak var todayCountLabel: UILabel!
     @IBOutlet private weak var nextCountLabel: UILabel!
     @IBOutlet private weak var allCountLabel: UILabel!
+
+    private var widgetIsDisabled: Bool {
+        // TODO: This should be handle bei including the (currently not existing) brand framework
+        return Bundle.main.bundleIdentifier?.contains("who") ?? false
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +53,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     @discardableResult private func updateView() -> Bool {
         let loginStateChange = UserProfileHelper.shared.isLoggedIn != self.loginRequestedLabel.isHidden
-        self.counterStackView.isHidden = !UserProfileHelper.shared.isLoggedIn
-        self.loginRequestedLabel.isHidden = UserProfileHelper.shared.isLoggedIn
+        self.counterStackView.isHidden = !UserProfileHelper.shared.isLoggedIn || self.widgetIsDisabled
+        self.loginRequestedLabel.isHidden = UserProfileHelper.shared.isLoggedIn || self.widgetIsDisabled
+        self.widgetDisabledLabel.isHidden = !self.widgetIsDisabled
         return loginStateChange
     }
 

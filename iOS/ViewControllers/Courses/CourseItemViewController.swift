@@ -24,19 +24,15 @@ class CourseItemViewController: UIPageViewController {
     }()
 
     private var userActions: [UIAlertAction] {
-        var actions = [self.shareCourseItemAction]
+        var alertActions = [
+            self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() },
+        ].compactMap { $0 }.asAlertActions()
+
         if let video = self.currentItem?.content as? Video {
-            actions += video.userActions
+            alertActions += video.actions.asAlertActions()
         }
 
-        return actions
-    }
-
-    private var shareCourseItemAction: UIAlertAction {
-        return UIAlertAction(title: NSLocalizedString("course.action-menu.share",
-                                                      comment: "Title for course item share action"), style: .default) { [weak self] _ in
-            self?.shareCourseItem()
-        }
+        return alertActions
     }
 
     private var previousItem: CourseItem?
@@ -152,10 +148,8 @@ class CourseItemViewController: UIPageViewController {
 
     @IBAction private func shareCourseItem() {
         guard let item = self.currentItem else { return }
-        let activityItems = item
-        let activityViewController = UIActivityViewController(activityItems: [activityItems], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [item], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
-
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 

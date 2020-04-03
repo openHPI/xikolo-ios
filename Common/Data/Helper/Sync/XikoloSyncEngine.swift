@@ -5,7 +5,7 @@
 
 import BrightFutures
 import CoreData
-import SyncEngine
+import Stockpile
 
 public struct XikoloNetworker: SyncNetworker {
 
@@ -39,6 +39,12 @@ public struct XikoloNetworker: SyncNetworker {
 
 public struct XikoloSyncEngine: SyncEngine {
 
+    public static let persistentContainerQueue: OperationQueue = {
+        let persistentContainerQueue = OperationQueue()
+        persistentContainerQueue.maxConcurrentOperationCount = 1
+        return persistentContainerQueue
+    }()
+
     public let networker = XikoloNetworker()
 
     public let baseURL: URL = Routes.api
@@ -54,9 +60,7 @@ public struct XikoloSyncEngine: SyncEngine {
     }
 
     public let persistentContainerQueue: OperationQueue = {
-        let persistentContainerQueue = OperationQueue()
-        persistentContainerQueue.maxConcurrentOperationCount = 1
-        return persistentContainerQueue
+        return Self.persistentContainerQueue
     }()
 
     public init() {}

@@ -62,6 +62,17 @@ class AnnouncementListViewController: UITableViewController {
         TrackingHelper.createEvent(.visitedAnnouncementList, on: self)
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.calculatePreferredSize()
+    }
+
+    private func calculatePreferredSize() {
+//        let targetSize = CGSize(width: self.view.bounds.width, height: UIView.layoutFittingCompressedSize.height)
+//        self.preferredContentSize = self.tableView.systemLayoutSizeFitting(targetSize)
+        self.preferredContentSize = self.tableView.contentSize
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let announcement = (sender as? Announcement).require(hint: "Sender must be Announcement")
         if let typedInfo = R.segue.announcementListViewController.showAnnouncement(segue: segue) {

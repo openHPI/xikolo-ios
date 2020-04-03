@@ -30,6 +30,21 @@ class CourseOverviewViewController: UIViewController {
         self.courses = result.value ?? []
     }
 
+    private func shareCourse(at indexPath: IndexPath) {
+        let cell = self.collectionView.cellForItem(at: indexPath)
+        let course = self.courses[indexPath.item]
+        let activityViewController = UIActivityViewController.make(for: course, on: self)
+        activityViewController.popoverPresentationController?.sourceView = cell
+        self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    private func showCourseDates(course: Course) {
+        let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
+        courseDatesViewController.course = course
+        let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titleLabel.text = self.configuration.title
@@ -147,6 +162,43 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
             self.appNavigator?.showCourseList()
         } else {
             self.performSegue(withIdentifier: R.segue.courseOverviewViewController.showCourseList, sender: nil)
+        }
+    }
+
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView,
+                        contextMenuConfigurationForItemAt indexPath: IndexPath,
+                        point: CGPoint) -> UIContextMenuConfiguration? {
+        guard indexPath.item < self.itemLimit else { return nil }
+
+        let course = self.courses[indexPath.item]
+
+        let previewProvider: UIContextMenuContentPreviewProvider = {
+            return R.storyboard.coursePreview().instantiateInitialViewController { coder in
+                return CoursePreviewViewController(coder: coder, course: course, listConfiguration: self.configuration)
+            }
+        }
+
+        let actionProvider: UIContextMenuActionProvider = { _ in
+            let userActions = [
+                course.shareAction { [weak self] in self?.shareCourse(at: indexPath) },
+                course.showCourseDatesAction { [weak self] in self?.showCourseDates(course: course) },
+            ].compactMap { $0 }
+
+            return UIMenu(title: "", children: userActions.asActions())
+        }
+
+        return UIContextMenuConfiguration(identifier: indexPath as NSIndexPath, previewProvider: previewProvider, actionProvider: actionProvider)
+    }
+
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView,
+                        willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+                        animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion {
+            guard let indexPath = configuration.identifier as? IndexPath else { return }
+            let course = self.courses[indexPath.item]
+            self.appNavigator?.show(course: course)
         }
     }
 

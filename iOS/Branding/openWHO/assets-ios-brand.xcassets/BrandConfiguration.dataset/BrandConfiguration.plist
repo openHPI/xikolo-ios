@@ -8,6 +8,8 @@
 	<string>https://openwho.org/pages/about</string>
 	<key>privacyURL</key>
 	<string>https://openwho.org/pages/terms_of_use</string>
+	<key>faqURL</key>
+	<string>https://openwho.org/pages/faq</string>
 	<key>copyrightName</key>
 	<string>WHO</string>
 	<key>poweredByText</key>
@@ -46,7 +48,7 @@
 		<true/>
 		<key>enableRecap</key>
 		<false/>
-		<key>showCourseDatesOnDashboard</key>
+		<key>showCourseDates</key>
 		<false/>
 		<key>showCourseTeachers</key>
 		<false/>

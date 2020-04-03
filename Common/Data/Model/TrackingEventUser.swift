@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import SyncEngine
+import Stockpile
 
 class TrackingEventUser: NSObject, NSCoding {
 

@@ -8,6 +8,8 @@
 	<string>https://www.sap.com/corporate/en/legal/impressum.html</string>
 	<key>privacyURL</key>
 	<string>https://www.sap.com/corporate/en/legal/privacy.html</string>
+	<key>faqURL</key>
+	<string>https://open.sap.com/pages/faq</string>
 	<key>copyrightName</key>
 	<string>SAP</string>
 	<key>poweredByText</key>
@@ -42,7 +44,7 @@
 		<false/>
 		<key>enableRecap</key>
 		<false/>
-		<key>showCourseDatesOnDashboard</key>
+		<key>showCourseDates</key>
 		<true/>
 		<key>showCourseTeachers</key>
 		<true/>

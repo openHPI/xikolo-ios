@@ -1,0 +1,16 @@
+This application accompanies the website openWHO.org [1] and uses the identical credentials as the website.
+The whole platform is developed and maintained by the Hasso Plattner Institute (HPI) [2] in Potsdam, Germany (this developer account).
+The HPI forms the 'Digital Engineering' faculty of the University of Potsdam [3] and is, therefore, a fully-integrated part of a German university.
+The WHO is responsible for curating the learning material, which is free of charge, on openWHO.
+You can trace the cooperation between WHO and HPI, taking a look at the bottom line of the footer on the website [2]. Here you can read "Powered by HPI" (links to the website of the HPI [2]). 
+The website openWHO.org exists since 2016 (see footer or web archive) while the iOS application was released in 2017. Both tools were therefore already available before the Covid-19 outbreak.
+
+Here is also an article from the official website of the WHO (who.int) mentioning openWHO.org as a source for online learning. (Highlights also that the content is provided by the WHO) [4]
+
+Hopefully, this provided enough information to prove, that is application was developed in cooperation with two recognized institutions: WHO (international healthcare organization) and HPI (IT institute at a German university).
+Therefore, any violations against section 5.1.1 of the App Store Review Guidelines are unjustified. (We did run into violation allegations before.)
+
+[1] https://openwho.org
+[2] https://hpi.de/en/index.html
+[3] https://www.uni-potsdam.de/en/digital-engineering/
+[4] https://www.who.int/news-room/detail/07-02-2020-online-training-as-a-weapon-to-fight-the-new-coronavirus

@@ -6,7 +6,7 @@
 import Common
 import UIKit
 
-class CourseNavigationController: XikoloNavigationController {
+class CourseNavigationController: UINavigationController {
 
     enum BarTintStyle {
         case light

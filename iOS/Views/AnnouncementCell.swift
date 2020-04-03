@@ -17,44 +17,26 @@ class AnnouncementCell: UITableViewCell {
     @IBOutlet private weak var readStateLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
 
-    @IBOutlet private var courseLabelContraints: [NSLayoutConstraint]!
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.readStateLabel.textColor = Brand.default.colors.secondary
+        self.courseLabel.textColor = Brand.default.colors.secondary
+    }
 
     func configure(for announcement: Announcement, showCourseTitle: Bool) {
         let userIsLoggedIn = UserProfileHelper.shared.isLoggedIn
 
-        self.readStateLabel.textColor = Brand.default.colors.secondary
-        self.readStateLabel.isHidden = !userIsLoggedIn || announcement.visited
-        self.separatorView.isHidden = !userIsLoggedIn || announcement.visited
-
-        self.titleLabel.textColor = userIsLoggedIn && announcement.visited ? ColorCompatibility.secondaryLabel : ColorCompatibility.label
-
-        self.courseLabel.textColor = Brand.default.colors.secondary
-        if let courseTitle = announcement.course?.title, showCourseTitle {
-            self.courseLabel.text = courseTitle
-            self.courseLabel.isHidden = false
-            NSLayoutConstraint.activate(self.courseLabelContraints)
-        } else {
-            self.courseLabel.isHidden = true
-            NSLayoutConstraint.deactivate(self.courseLabelContraints)
-        }
+        self.courseLabel.text = showCourseTitle ? announcement.course?.title : nil
 
         self.titleLabel.text = announcement.title
+        self.titleLabel.textColor = userIsLoggedIn && announcement.visited ? ColorCompatibility.secondaryLabel : ColorCompatibility.label
 
-        if let date = announcement.publishedAt {
-            self.dateLabel.text = Self.dateFormatter.string(from: date)
-            self.dateLabel.isHidden = false
-        } else {
-            self.dateLabel.isHidden = true
-            self.separatorView.isHidden = true
-        }
+        self.dateLabel.text = announcement.publishedAt.map(Self.dateFormatter.string(from:))
+        self.readStateLabel.isHidden = !userIsLoggedIn || announcement.visited
+        self.separatorView.isHidden = !userIsLoggedIn || announcement.visited || announcement.publishedAt == nil
 
-        if let newsText = announcement.text {
-            let markDown = MarkdownHelper.string(for: newsText)
-            self.descriptionLabel.text = markDown.replacingOccurrences(of: "\n", with: " ")
-            self.descriptionLabel.isHidden = false
-        } else {
-            self.descriptionLabel.isHidden = true
-        }
+        let description: String? = announcement.text.map(MarkdownHelper.string(for:))?.replacingOccurrences(of: "\n", with: " ")
+        self.descriptionLabel.text = description
     }
 
 }

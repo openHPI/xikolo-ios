@@ -69,15 +69,8 @@ class RichtextViewController: UIViewController {
         self.timeEffortLabel.text = Self.timeEffortFormatter.string(from: roundedTimeEffort)
         self.timeEffortView.isHidden = self.courseItem.timeEffort == 0
 
-        guard let richText = self.courseItem.content as? RichText, let markdown = richText.text else {
-            self.textView.isHidden = true
-            return
-        }
-
-        MarkdownHelper.attributedString(for: markdown).onSuccess { [weak self] attributedString in
-            self?.textView.attributedText = attributedString
-            self?.textView.isHidden = false
-        }
+        let markdown = (self.courseItem.content as? RichText)?.text
+        self.textView.setMarkdownWithImages(from: markdown)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

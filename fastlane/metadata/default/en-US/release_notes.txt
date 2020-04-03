@@ -1,4 +1,4 @@
-• Fix app crash when opening certain text items
+• Bug fixes and general improvements for iOS 12
 
 Also in version 2.9:
 • Channels can be browsed via a new tab

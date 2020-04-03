@@ -1,6 +1,9 @@
 
-/* Class = "UITabBarItem"; title = "More"; ObjectID = "l6T-DT-Q9p"; */
-"l6T-DT-Q9p.title" = "Weiteres";
+/* Class = "UINavigationItem"; title = "More"; ObjectID = "JZI-pb-j87"; */
+"JZI-pb-j87.title" = "Weiteres";
 
-/* Class = "UINavigationItem"; title = "More"; ObjectID = "P1j-Jg-r2R"; */
-"P1j-Jg-r2R.title" = "Weiteres";
+/* Class = "UITabBarItem"; title = "More"; ObjectID = "oQZ-TQ-vq3"; */
+"oQZ-TQ-vq3.title" = "Weiteres";
+
+/* Class = "UILabel"; text = "News"; ObjectID = "wqX-7o-9u1"; */
+"wqX-7o-9u1.text" = "Neuigkeiten";

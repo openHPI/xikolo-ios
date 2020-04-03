@@ -1,4 +1,4 @@
-• Bug fixes and general improvements
+• Bug fixes and general improvements for iOS 12
 
 Also in version 2.9:
 • Channels can be browsed via a new tab

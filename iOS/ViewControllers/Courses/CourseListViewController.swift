@@ -136,6 +136,21 @@ class CourseListViewController: UICollectionViewController {
         }
     }
 
+    private func shareCourse(at indexPath: IndexPath) {
+        let cell = self.collectionView.cellForItem(at: indexPath)
+        let course = self.dataSource.object(at: indexPath)
+        let activityViewController = UIActivityViewController.make(for: course, on: self)
+        activityViewController.popoverPresentationController?.sourceView = cell
+        self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    private func showCourseDates(course: Course) {
+        let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
+        courseDatesViewController.course = course
+        let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+    }
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = self.dataSource.object(at: indexPath)
         self.appNavigator?.show(course: course)
@@ -166,6 +181,22 @@ class CourseListViewController: UICollectionViewController {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: nil) { _ in
             self.collectionViewLayout.invalidateLayout()
+        }
+    }
+
+    @available(iOS 13.0, *)
+    override func collectionView(_ collectionView: UICollectionView,
+                                 contextMenuConfigurationForItemAt indexPath: IndexPath,
+                                 point: CGPoint) -> UIContextMenuConfiguration? {
+        let course = self.dataSource.object(at: indexPath)
+
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let userActions = [
+                course.shareAction { self.shareCourse(at: indexPath) },
+                course.showCourseDatesAction { self.showCourseDates(course: course) },
+            ].compactMap { $0 }
+
+            return UIMenu(title: "", children: userActions.asActions())
         }
     }
 

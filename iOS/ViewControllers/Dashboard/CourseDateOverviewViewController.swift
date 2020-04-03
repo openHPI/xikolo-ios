@@ -24,7 +24,7 @@ class CourseDateOverviewViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private var nextUpWidthConstraint: NSLayoutConstraint!
 
-    @IBOutlet weak var equalTitleWrapperHeightContraint: NSLayoutConstraint!
+    @IBOutlet private weak var equalTitleWrapperHeightContraint: NSLayoutConstraint!
 
     private lazy var courseDateFormatter: DateFormatter = {
         return DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .long)

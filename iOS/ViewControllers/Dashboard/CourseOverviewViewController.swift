@@ -166,13 +166,32 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
 
         let course = self.courses[indexPath.item]
 
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+        let previewProvider: UIContextMenuContentPreviewProvider = {
+            return R.storyboard.coursePreview().instantiateInitialViewController { coder in
+                return CoursePreviewViewController(coder: coder, course: course, listConfiguration: self.configuration)
+            }
+        }
+
+        let actionProvider: UIContextMenuActionProvider = { _ in
             let userActions = [
                 course.shareAction { [weak self] in self?.shareCourse(at: indexPath) },
                 course.showCourseDatesAction { [weak self] in self?.showCourseDates(course: course) },
             ].compactMap { $0 }
 
             return UIMenu(title: "", children: userActions.asActions())
+        }
+
+        return UIContextMenuConfiguration(identifier: indexPath as NSIndexPath, previewProvider: previewProvider, actionProvider: actionProvider)
+    }
+
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView,
+                        willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+                        animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion {
+            guard let indexPath = configuration.identifier as? IndexPath else { return }
+            let course = self.courses[indexPath.item]
+            self.appNavigator?.show(course: course)
         }
     }
 

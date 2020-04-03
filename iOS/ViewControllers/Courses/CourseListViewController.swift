@@ -190,13 +190,32 @@ class CourseListViewController: UICollectionViewController {
                                  point: CGPoint) -> UIContextMenuConfiguration? {
         let course = self.dataSource.object(at: indexPath)
 
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+        let previewProvider: UIContextMenuContentPreviewProvider = {
+            return R.storyboard.coursePreview().instantiateInitialViewController { coder in
+                return CoursePreviewViewController(coder: coder, course: course, listConfiguration: self.configuration)
+            }
+        }
+
+        let actionProvider: UIContextMenuActionProvider = { _ in
             let userActions = [
                 course.shareAction { self.shareCourse(at: indexPath) },
                 course.showCourseDatesAction { self.showCourseDates(course: course) },
             ].compactMap { $0 }
 
             return UIMenu(title: "", children: userActions.asActions())
+        }
+
+        return UIContextMenuConfiguration(identifier: indexPath as NSIndexPath, previewProvider: previewProvider, actionProvider: actionProvider)
+    }
+
+    @available(iOS 13.0, *)
+    override func collectionView(_ collectionView: UICollectionView,
+                                 willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+                                 animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion {
+            guard let indexPath = configuration.identifier as? IndexPath else { return }
+            let course = self.dataSource.object(at: indexPath)
+            self.appNavigator?.show(course: course)
         }
     }
 

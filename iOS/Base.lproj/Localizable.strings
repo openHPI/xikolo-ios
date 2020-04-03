@@ -74,6 +74,15 @@
 /* maximum points for course item */
 "course-item.max-points" = "%@ points";
 
+/* text for downloaded slides in course item preview */
+"course-item.preview.slides.downloaded" = "Slides offline available";
+
+/* text for not downloaded slides in course item preview */
+"course-item.preview.slides.not-downloaded" = "Slides available";
+
+/* text for downloaded video in course item preview */
+"course-item.preview.video.downloaded" = "Offline available";
+
 /* title to cancel alert */
 "course-item.slides-alert.open-action.title" = "Open slides";
 
@@ -281,14 +290,14 @@
 /* Label of button for submitting a helpdesk ticket */
 "helpdesk.action.send" = "Send";
 
-/* helpdesk topic course-specific */
-"helpdesk.topic.course-specific" = "Course-specific";
+/* helpdesk catergroy course-specific questions */
+"helpdesk.catergory.course-specific" = "Course-specific Question";
 
-/* helpdesk topic reactivation */
-"helpdesk.topic.reactivation" = "Reactivation";
+/* helpdesk catergroy genereal questions */
+"helpdesk.catergory.general" = "General Question";
 
-/* helpdesk topic technical */
-"helpdesk.topic.technical" = "Technical";
+/* hint for checking the FAQ before creating a helpdesk ticket */
+"helpdesk.hint.faq" = "Before writing a ticket to technical support, please make sure that you have read our FAQ. If you have any questions about course content, please contact the teacher team in the course forum.";
 
 /* solo peer assessment */
 "peer-assessment-type.solo" = "Solo Peer Assessment";
@@ -319,6 +328,9 @@
 
 /* cell title for downloaded content */
 "settings.cell-title.downloaded-content" = "Downloaded Content";
+
+/* cell title for FAQs */
+"settings.cell-title.faq" = "FAQ";
 
 /* title for link to GitHub repo (includes application name) */
 "settings.cell-title.github.%@ iOS app on GitHub" = "%@ iOS app on GitHub";

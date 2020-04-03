@@ -1,12 +1,19 @@
-With OpenWHO, you have the flexibility to learn at your convenience. Watch the short video lectures and test your knowledge with self-tests when and where you like. The course forum and the collaboration spaces allow you to get in touch with other participants and experts around the world.
-You can also choose to receive regular announcements to stay up-to-date on the latest OpenWHO news.
+OpenWHO is WHO's new interactive knowledge-transfer platform offering online courses to improve the response to health emergencies. OpenWHO enables the Organization and its key partners to transfer life-saving knowledge to large numbers of frontline responders.
 
-Designed primarily for health care workers, frontline responders, and decision-makers, the app is also a source of information for those affected by infectious hazards, or for those with general interest in WHO's work in health emergencies.
+With OpenWHO, you have the flexibility to learn at your convenience. Watch the short video lectures and test your knowledge with self-tests when and where you like. The course forum and the collaboration space allow you to get in touch with other participants and experts around the world.
 
-It features 4 channels:
-The Outbreak Channel addresses the management of infectious diseases and provides life-saving, scientific information.
-The Ready for Response channel prepares personnel to be deployed to work in disease outbreaks and health emergencies.
-The Get Social channel focuses on social sciences based interventions and helps to communicate with affected communities.
-The GOARN channel is dedicated to preparing the Global Outbreak Alert and Response Network for international alert and response operations.
+Designed primarily for health care workers, frontline responders, and decision-makers, the app is also a source of information for those affected by disease outbreaks and health emergencies, or for those with a general interest in WHO's work in health emergencies.
 
-Most of the courses are in English, but other language versions are in the pipeline. Check out this app, come back regularly and get engaged in the OpenWHO community.
+It features 6 channels:
+- The 'Outbreak' channel addresses the management of infectious diseases and provides life-saving, scientific information.
+- The 'Ready for Response' channel helps prepare personnel who are training for deployment to work in disease outbreaks and health emergencies.
+- The 'Get Social' channel focuses on social science-based interventions and helps to communicate with affected communities.
+- The 'Preparing for Pandemics' channel brings together courses on various aspects of preparedness, including surveillance, public health measures and risk communication during a pandemic.
+- The 'COVID-19' channel provides learning resources in WHO's 6 official languages (Arabic, Chinese, English, French, Russian and Spanish) for health professionals, decision-makers and the public for the outbreak of coronavirus disease (COVID-19).
+- The 'COVID-19 National Languages' channel provides the same learning resources as the COVID-19 channel but in national languages, such as Indonesian, Japanese and Portuguese.
+
+OpenWHO courses are available in many languages, including WHO's 6 official languages.
+
+This app is developed in cooperation between the Hasso Plattner Institute (HPI) and the World Health Organization (WHO). The learning content is provided exclusively by the WHO.
+
+Download the app now, and join the OpenWHO community.

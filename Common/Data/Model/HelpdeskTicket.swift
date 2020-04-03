@@ -4,14 +4,19 @@
 //
 
 import Foundation
-import SyncEngine
+import Stockpile
 
 public class HelpdeskTicket {
 
-    public enum Topic {
+    public enum Topic: Equatable {
         case technical
         case reactivation
-        case courseSpecific(course: Course)
+        case courseSpecific(Course)
+
+        public static let genericTopics: [HelpdeskTicket.Topic] = [
+            .technical,
+            .reactivation,
+        ]
 
         var identifier: String {
             switch self {
@@ -23,6 +28,27 @@ public class HelpdeskTicket {
                 return "course"
             }
         }
+
+        public var isAvailable: Bool {
+             switch self {
+             case .reactivation:
+                 return Brand.default.features.enableHelpdeskReactivationTopic
+             default:
+                 return true
+             }
+         }
+
+         public var displayName: String? {
+             switch self {
+             case .technical:
+                 return CommonLocalizedString("helpdesk.topic.technical", comment: "helpdesk topic technical")
+             case let .courseSpecific(course):
+                 return course.title
+             case .reactivation:
+                 return CommonLocalizedString("helpdesk.topic.reactivation", comment: "helpdesk topic reactivation")
+             }
+         }
+
     }
 
     let title: String

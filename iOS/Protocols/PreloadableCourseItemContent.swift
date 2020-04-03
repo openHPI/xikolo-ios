@@ -5,7 +5,7 @@
 
 import BrightFutures
 import Common
-import SyncEngine
+import Stockpile
 
 protocol PreloadableCourseItemContent {
 

@@ -12,6 +12,7 @@ public struct Brand: Decodable {
         case host
         case imprintURL
         case privacyURL
+        case faqURL
         case singleSignOn
         case copyrightName
         case poweredByText
@@ -35,6 +36,7 @@ public struct Brand: Decodable {
     public let host: String
     let imprintURL: URL
     let privacyURL: URL
+    let faqURL: URL
 
     public let colors: BrandColors
     public let singleSignOn: SingleSignOnConfiguration?
@@ -56,6 +58,7 @@ public struct Brand: Decodable {
         self.host = try container.decode(String.self, forKey: .host)
         self.imprintURL = try container.decodeURL(forKey: .imprintURL)
         self.privacyURL = try container.decodeURL(forKey: .privacyURL)
+        self.faqURL = try container.decodeURL(forKey: .faqURL)
         self.singleSignOn = try? container.decode(SingleSignOnConfiguration.self, forKey: .singleSignOn)
         self.copyrightName = try container.decode(String.self, forKey: .copyrightName)
         self.poweredByText = try container.decodeIfPresent(String.self, forKey: .poweredByText)

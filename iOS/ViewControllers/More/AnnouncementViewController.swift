@@ -74,13 +74,8 @@ class AnnouncementViewController: UIViewController {
             self.dateLabel.isHidden = true
         }
 
-        if let newsText = self.announcement.text {
-            MarkdownHelper.attributedString(for: newsText).onSuccess { [weak self] attributedString in
-                self?.textView.attributedText = attributedString
-            }
-        } else {
-            self.textView.text = "[...]"
-        }
+        self.textView.setMarkdownWithImages(from: self.announcement.text)
+
     }
 
     @IBAction private func tappedCourseTitle() {

@@ -1,4 +1,4 @@
-• App-Absturz beim Öffnen bestimmter Kursinhalte behoben
+• Fehlerkorrekturen und allgemeine Verbesserungen unter iOS 12
 
 Auch in Version 2.9:
 • Kursbereiche sind nun über einen separaten Tab erreichbar

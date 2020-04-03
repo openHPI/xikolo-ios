@@ -5,7 +5,7 @@
 
 import CoreData
 import Foundation
-import SyncEngine
+import Stockpile
 
 final class Quiz: Content {
 

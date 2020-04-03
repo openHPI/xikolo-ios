@@ -28,6 +28,7 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
     @IBOutlet private var fullScreenContraints: [NSLayoutConstraint]!
+
     private var adjustedVideoContainerRatioConstraint: NSLayoutConstraint? {
         didSet {
             if let oldConstraint = oldValue {
@@ -222,7 +223,7 @@ class VideoViewController: UIViewController {
         self.videoProgressView.updateProgress(streamDownloadProgress, animated: false)
         self.videoDownloadedIcon.isHidden = streamDownloadState != .downloaded
 
-        let isVideoActionsButtonEnabled = ReachabilityHelper.hasConnection || video.streamUserAction != nil
+        let isVideoActionsButtonEnabled = ReachabilityHelper.hasConnection || video.streamAlertAction != nil
         self.videoActionsButton.isEnabled = isVideoActionsButtonEnabled
         self.videoActionsButton.tintColor = isVideoActionsButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
@@ -234,19 +235,12 @@ class VideoViewController: UIViewController {
         self.slidesProgressView.updateProgress(slidesDownloadProgress, animated: false)
         self.slidesDownloadedIcon.isHidden = !(slidesDownloadState == .downloaded)
 
-        let isSlidesActionButtonEnabled = ReachabilityHelper.hasConnection || video.slidesUserAction != nil
+        let isSlidesActionButtonEnabled = ReachabilityHelper.hasConnection || video.slidesAlertAction != nil
         self.slidesActionsButton.isEnabled = isSlidesActionButtonEnabled
         self.slidesActionsButton.tintColor = isSlidesActionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         // show description
-        if let summary = video.summary {
-            MarkdownHelper.attributedString(for: summary).onSuccess { [weak self] attributedString in
-                self?.descriptionView.attributedText = attributedString
-                self?.descriptionView.isHidden = attributedString.string.isEmpty
-            }
-        } else {
-            self.descriptionView.isHidden = true
-        }
+        self.descriptionView.setMarkdownWithImages(from: video.summary)
 
         // don't reconfigure video player
         guard self.playerViewController?.asset == nil else { return }
@@ -264,14 +258,14 @@ class VideoViewController: UIViewController {
     }
 
     @IBAction private func showVideoActionMenu(_ sender: UIButton) {
-        guard let streamUserAction = self.video?.streamUserAction else { return }
+        guard let streamAlertAction = self.video?.streamAlertAction else { return }
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = sender.bounds.insetBy(dx: -4, dy: -4)
         alert.popoverPresentationController?.permittedArrowDirections = [.left, .right]
 
-        alert.addAction(streamUserAction)
+        alert.addAction(streamAlertAction)
         alert.addCancelAction()
 
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
@@ -290,8 +284,8 @@ class VideoViewController: UIViewController {
 
         alert.addAction(openSlides)
 
-        if let slidesUserAction = self.video?.slidesUserAction {
-            alert.addAction(slidesUserAction)
+        if let slidesAlertAction = self.video?.slidesAlertAction {
+            alert.addAction(slidesAlertAction)
         }
 
         alert.addCancelAction()
@@ -318,7 +312,7 @@ class VideoViewController: UIViewController {
                 self.slidesProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
                 self.slidesProgressView.updateProgress(SlidesPersistenceManager.shared.downloadProgress(for: video))
                 self.slidesDownloadedIcon.isHidden = !(downloadState == .downloaded)
-                let actionButtonEnabled = ReachabilityHelper.hasConnection || self.video?.slidesUserAction != nil
+                let actionButtonEnabled = ReachabilityHelper.hasConnection || self.video?.slidesAlertAction != nil
                 self.slidesActionsButton.isEnabled = actionButtonEnabled
                 self.slidesActionsButton.tintColor = actionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.systemGray4
             }

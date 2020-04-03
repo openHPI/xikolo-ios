@@ -194,7 +194,7 @@ class CourseListViewController: UICollectionViewController {
             let userActions = [
                 course.shareAction { self.shareCourse(at: indexPath) },
                 course.showCourseDatesAction { self.showCourseDates(course: course) },
-            ].flatMap { $0 }
+            ].compactMap { $0 }
 
             return UIMenu(title: "", children: userActions.asActions())
         }

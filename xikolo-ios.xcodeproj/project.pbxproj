@@ -620,6 +620,7 @@
 		5012913322BA64DC00AAB58B /* CALayer+roundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+roundedCorners.swift"; sourceTree = "<group>"; };
 		5013D3F6243708A7009C6D92 /* CourseItemPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemPreviewViewController.swift; sourceTree = "<group>"; };
 		5013D3F824374029009C6D92 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		5013D3FA24378DA5009C6D92 /* xikolo 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 10.xcdatamodel"; sourceTree = "<group>"; };
 		50146FC82221829500177E96 /* CourseSearchFiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFiltersViewController.swift; sourceTree = "<group>"; };
 		50146FCA2222875E00177E96 /* CourseSearchFilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseSearchFilterCell.xib; sourceTree = "<group>"; };
 		50146FCC2222879D00177E96 /* CourseSearchFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFilterCell.swift; sourceTree = "<group>"; };
@@ -8473,6 +8474,7 @@
 		24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				5013D3FA24378DA5009C6D92 /* xikolo 10.xcdatamodel */,
 				5028ED0D23882C7B006F1F76 /* xikolo 9.xcdatamodel */,
 				50C4700521BA801C00F50A1A /* xikolo 8.xcdatamodel */,
 				5054B2DB21086CF600CE9067 /* xikolo 7.xcdatamodel */,
@@ -8483,7 +8485,7 @@
 				ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */,
 				24597D251CC6CA0D00FB5338 /* xikolo.xcdatamodel */,
 			);
-			currentVersion = 5028ED0D23882C7B006F1F76 /* xikolo 9.xcdatamodel */;
+			currentVersion = 5013D3FA24378DA5009C6D92 /* xikolo 10.xcdatamodel */;
 			path = xikolo.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

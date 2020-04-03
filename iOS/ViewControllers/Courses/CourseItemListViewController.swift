@@ -170,7 +170,13 @@ extension CourseItemListViewController { // TableViewDelegate
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let courseItem = self.dataSource.object(at: indexPath)
 
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+        let previewProvider: UIContextMenuContentPreviewProvider = {
+            return R.storyboard.courseItemPreview().instantiateInitialViewController { coder in
+                return CourseItemPreviewViewController(coder: coder, courseItem: courseItem)
+            }
+        }
+
+        let actionProvider: UIContextMenuActionProvider = { _ in
             let shareAction: UIAction = {
                 let action = courseItem.shareAction { [weak self] in self?.shareCourseItem(at: indexPath) }
                 return UIAction(action: action)
@@ -182,6 +188,19 @@ extension CourseItemListViewController { // TableViewDelegate
             }
 
             return UIMenu(title: "", children: [shareAction])
+        }
+
+        return UIContextMenuConfiguration(identifier: indexPath as NSIndexPath, previewProvider: previewProvider, actionProvider: actionProvider)
+    }
+
+    @available(iOS 13.0, *)
+    override func tableView(_ tableView: UITableView,
+                            willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+                            animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion {
+            guard let indexPath = configuration.identifier as? IndexPath else { return }
+            guard let cell = self.tableView.cellForRow(at: indexPath) else { return }
+            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showCourseItem, sender: cell)
         }
     }
 

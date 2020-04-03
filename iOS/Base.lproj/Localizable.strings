@@ -74,6 +74,15 @@
 /* maximum points for course item */
 "course-item.max-points" = "%@ points";
 
+/* text for downloaded slides in course item preview */
+"course-item.preview.slides.downloaded" = "Slides offline available";
+
+/* text for not downloaded slides in course item preview */
+"course-item.preview.slides.not-downloaded" = "Slides available";
+
+/* text for downloaded video in course item preview */
+"course-item.preview.video.downloaded" = "Offline available";
+
 /* title to cancel alert */
 "course-item.slides-alert.open-action.title" = "Open slides";
 

@@ -162,6 +162,8 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
                         point: CGPoint) -> UIContextMenuConfiguration? {
+        guard indexPath.item < self.itemLimit else { return nil }
+
         let course = self.courses[indexPath.item]
 
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in

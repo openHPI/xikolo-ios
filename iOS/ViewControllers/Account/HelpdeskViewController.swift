@@ -96,9 +96,12 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         self.tableView.addGestureRecognizer(backgroundTapGestureRecognizer)
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.tableView.resizeTableHeaderView()
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.tableView.resizeTableHeaderView()
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -168,7 +171,8 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
             self.dismiss(animated: trueUnlessReduceMotionEnabled)
         }.onFailure { _ in
             self.onFailureLabel.isHidden = false
-            self.tableView.setContentOffset( CGPoint(x: 0, y: 0), animated: true)
+            self.tableView.resizeTableHeaderView()
+            self.tableView.setContentOffset(.zero, animated: true)
         }.onComplete { _ in
             self.navigationItem.rightBarButtonItem = self.sendBarButtonItem
         }

@@ -45,9 +45,12 @@ class CourseProgressViewController: UITableViewController {
         self.tableView.resizeTableHeaderView()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.tableView.resizeTableHeaderView()
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.tableView.resizeTableHeaderView()
+        }
     }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {

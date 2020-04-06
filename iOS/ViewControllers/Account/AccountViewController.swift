@@ -162,10 +162,13 @@ class AccountViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.tableView.resizeTableHeaderView()
-        self.tableView.resizeTableFooterView()
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.tableView.resizeTableHeaderView()
+            self.tableView.resizeTableFooterView()
+        }
     }
 
     func open(url: URL) {

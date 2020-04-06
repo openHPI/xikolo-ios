@@ -100,8 +100,6 @@ file_header:
                     \/\/  Copyright © HPI\. All rights reserved\.
                     \/\/
 
-allow_zero_lintable_files: false
-
 custom_rules:
   closing_brace_whitespace:
     included: ".*.swift"

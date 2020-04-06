@@ -27,7 +27,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          bundle update --bundler
           bundle install --without documentation
           bundle exec pod install
 
@@ -49,7 +48,6 @@ jobs:
           bundle exec fastlane localize
           git status --porcelain -- ':!.bundle'
           git diff -- ':!.bundle'
-          git diff --quiet -- ':!.bundle'
       
       - name: Run code validation
         run: bundle exec danger --verbose

@@ -32,7 +32,7 @@ jobs:
           bundle config set without 'documentation'
           bundle install --jobs 4 --retry 3
 
-      - name: Install dependencies (CocoaPsods)
+      - name: Install dependencies (CocoaPods)
         run: bundle exec pod install
 
       - name: Copy brand assets

@@ -155,6 +155,8 @@ class AccountViewController: UITableViewController {
                 }
             })
         }
+
+        self.tableView.resizeTableHeaderView()
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

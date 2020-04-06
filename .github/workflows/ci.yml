@@ -27,6 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          bundle update --bundler
           bundle install --without documentation
           bundle exec pod install
 

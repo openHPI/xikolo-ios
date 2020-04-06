@@ -5,7 +5,8 @@ on:
       - dev
 
 jobs:
-  validate-and-test:
+  build-test-lint:
+    name: Build + Test + Lint + Check localization
     runs-on: macOS-latest
     steps:
       - name: Checkout
@@ -25,12 +26,14 @@ jobs:
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
           restore-keys: ${{ runner.os }}-pods-
 
-      - name: Install dependencies
+      - name: Install dependencies (Bundler)
         run: |
           bundle config path vendor/bundle
           bundle config set without 'documentation'
           bundle install --jobs 4 --retry 3
-          bundle exec pod install
+
+      - name: Install dependencies (CocoaPsods)
+        run: bundle exec pod install
 
       - name: Copy brand assets
         run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
@@ -40,7 +43,7 @@ jobs:
         env:
           scheme: Common
       
-      - name: Run tests (openHPI-iOS)
+      - name: Run tests (iOS)
         run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
         env:
           scheme: openHPI-iOS

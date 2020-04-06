@@ -33,15 +33,15 @@ jobs:
       - name: Copy brand assets
         run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
 
-      - name: Run tests (Common)
-        run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
-        env:
-          scheme: Common
+      # - name: Run tests (Common)
+      #   run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
+      #   env:
+      #     scheme: Common
       
-      - name: Run tests (openHPI-iOS)
-        run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
-        env:
-          scheme: openHPI-iOS
+      # - name: Run tests (openHPI-iOS)
+      #   run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
+      #   env:
+      #     scheme: openHPI-iOS
 
       - name: Check localization
         run: |

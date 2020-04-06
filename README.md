@@ -9,12 +9,6 @@
     iOS application for openHPI, openSAP, mooc.house and OpenWHO
 </p>
 
-<p align="center">
-    <a  href="https://travis-ci.com/openHPI/xikolo-ios" target="_blank"><img src="https://travis-ci.com/openHPI/xikolo-ios.svg?branch=dev" /></a>
-    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-</p>
-
-
 ### Development toolchain
 - Xcode 11.4
 - bundler: `gem install bundler`

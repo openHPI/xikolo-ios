@@ -28,7 +28,8 @@ jobs:
       - name: Install dependencies
         run: |
           bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3 --without documentation
+          bundle config set without 'documentation'
+          bundle install --jobs 4 --retry 3
           bundle exec pod install
 
       - name: Copy brand assets

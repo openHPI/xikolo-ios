@@ -49,6 +49,10 @@ class CourseDateListViewController: UITableViewController {
         if self.course != nil {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
         }
+
+        if let course = self.course {
+            self.navigationItem.title = course.title
+        }
     }
 
     override func viewDidLayoutSubviews() {

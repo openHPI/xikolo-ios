@@ -1,0 +1,55 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  validate-and-test:
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Cache RubyGems
+        uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: ${{ runner.os }}-gem-
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v1
+        with:
+          path: ${{ github.workspace }}/Pods
+          key: ${{ runner.os }}-cocoapods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: ${{ runner.os }}-cocoapods-
+
+      - name: Install dependencies
+        run: |
+          bundle install --without documentation
+          bundle exec pod install
+
+      - name: Copy brand assets
+        run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
+
+      - name: Run tests (Common)
+        run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
+        env:
+          scheme: Common
+      
+      - name: Run tests (openHPI-iOS)
+        run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
+        env:
+          scheme: openHPI-iOS
+
+      - name: Check localization
+        run: |
+          bundle exec fastlane localize
+          git status --porcelain -- ':!.bundle'
+          git diff --quiet -- ':!.bundle'
+      
+      - name: Run code validation
+        run: bundle exec danger --verbose
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}

@@ -97,7 +97,7 @@ public enum Routes {
 
 private extension URL {
 
-    func appendingQueryItem(_ queryItem : URLQueryItem) -> URL {
+    func appendingQueryItem(_ queryItem: URLQueryItem) -> URL {
         var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: false).require()
         if urlComponents.queryItems == nil {
             urlComponents.queryItems = [queryItem]
@@ -113,6 +113,3 @@ private extension URL {
     }
 
 }
-
-
-

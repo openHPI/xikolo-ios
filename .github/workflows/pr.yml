@@ -43,13 +43,13 @@ jobs:
       - name: Copy brand assets
         run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
 
-      - name: Run tests (Common)
+      - name: Build + Test (Common)
         run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
         env:
           scheme: Common
           DEVELOPER_DIR: ${{ matrix.xcode }}
       
-      - name: Run tests (iOS)
+      - name: Build + Test (iOS)
         run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
         env:
           scheme: openHPI-iOS

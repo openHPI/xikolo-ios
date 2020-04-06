@@ -104,6 +104,7 @@ class AccountViewController: UITableViewController {
 
         self.dataSource.reloadContent()
         self.tableView.reloadData()
+        self.tableView.resizeTableHeaderView()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -133,6 +134,7 @@ class AccountViewController: UITableViewController {
                 self.displayNameView.isHidden = userProfile.fullName == self.user?.name || self.user?.name == nil
                 self.emailView.text = userProfile.email
                 self.view.layoutIfNeeded()
+                self.tableView.resizeTableHeaderView()
             }, completion: { _ in
                 UIView.animate(withDuration: animationDuration) {
                     for view in profileViews {
@@ -152,11 +154,10 @@ class AccountViewController: UITableViewController {
 
                 UIView.animate(withDuration: animationDuration) {
                     self.view.layoutIfNeeded()
+                    self.tableView.resizeTableHeaderView()
                 }
             })
         }
-
-        self.tableView.resizeTableHeaderView()
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

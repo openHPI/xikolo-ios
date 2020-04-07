@@ -169,6 +169,7 @@ class AccountViewController: UITableViewController {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: nil) { _ in
+            self.navigationController?.navigationBar.sizeToFit()
             self.tableView.resizeTableHeaderView()
             self.tableView.resizeTableFooterView()
         }

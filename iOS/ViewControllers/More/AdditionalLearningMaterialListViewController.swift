@@ -32,6 +32,7 @@ class AdditionalLearningMaterialListViewController: UICollectionViewController {
 
         // swiftlint:disable:next trailing_closure
         coordinator.animate(alongsideTransition: { _  in
+            self.navigationController?.navigationBar.sizeToFit()
             self.collectionViewLayout.invalidateLayout()
         })
     }

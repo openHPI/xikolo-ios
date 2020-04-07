@@ -43,6 +43,15 @@ class DashboardViewController: UIViewController {
         TrackingHelper.createEvent(.visitedDashboard, on: self)
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        // swiftlint:disable:next trailing_closure
+        coordinator.animate(alongsideTransition: { _  in
+            self.navigationController?.navigationBar.sizeToFit()
+        })
+    }
+
 }
 
 extension DashboardViewController: RefreshableViewController {

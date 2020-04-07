@@ -6,7 +6,9 @@
 import Foundation
 import Stockpile
 
-final class QuizOption: NSObject, NSCoding, IncludedPullable {
+final class QuizOption: NSObject, NSSecureCoding, IncludedPullable {
+
+    public static var supportsSecureCoding: Bool { return true }
 
     var id: String
     var text: String?

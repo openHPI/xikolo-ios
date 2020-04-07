@@ -6,7 +6,9 @@
 import Foundation
 import Stockpile
 
-class TrackingEventVerb: NSObject, NSCoding {
+class TrackingEventVerb: NSObject, NSSecureCoding {
+
+    public static var supportsSecureCoding: Bool { return true }
 
     var type: String
 

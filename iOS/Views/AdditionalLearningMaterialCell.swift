@@ -78,7 +78,7 @@ extension AdditionalLearningMaterialType {
         switch self {
         case .microLearning:
             return R.image.more.microLearning()
-        case .podcasts:
+        case .podcast, .podcasts:
             return R.image.more.podcasts()
         }
     }

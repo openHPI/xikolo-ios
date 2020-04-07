@@ -54,6 +54,15 @@
 		<key>category</key>
 		<string>track</string>
 	</dict>
+	<key>additionalLearningMaterial</key>
+	<array>
+		<dict>
+			<key>type</key>
+			<string>podcast</string>
+			<key>url</key>
+			<string>https://open.hpi.de/pages/podcast</string>
+		</dict>
+	</array>
 	<key>testAccountUserId</key>
 	<string>d94f5293-be2c-442f-955f-7c4de33b18ea</string>
 </dict>

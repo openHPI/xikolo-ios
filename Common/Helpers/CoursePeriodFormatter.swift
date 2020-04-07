@@ -5,12 +5,16 @@
 
 import Foundation
 
-public enum DateLabelHelper {
+public enum CoursePeriodFormatter {
 
     private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
     private static let dateIntervalFormatter = DateIntervalFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
 
-    public static func labelFor(startDate: Date?, endDate: Date?, withStyle style: CourseDateLabelStyle = Brand.default.courseDateLabelStyle) -> String {
+    public static func string(from course: Course) -> String  {
+        return self.string(fromStartDate: course.startsAt, endDate: course.endsAt)
+    }
+
+    static func string(fromStartDate startDate: Date?, endDate: Date?, withStyle style: CourseDateLabelStyle = Brand.default.courseDateLabelStyle) -> String {
         if endDate?.inPast ?? false {
             return CommonLocalizedString("course-date-formatting.self-paced", comment: "Self-paced course")
         }

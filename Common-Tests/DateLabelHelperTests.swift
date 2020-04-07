@@ -15,7 +15,7 @@ class DateLabelHelperTests: XCTestCase {
         let distantFuture = Date.distantFuture
 
         // when
-        let labelText = DateLabelHelper.labelFor(startDate: distantPast, endDate: distantFuture, withStyle: .normal)
+        let labelText = CoursePeriodFormatter.string(fromStartDate: distantPast, endDate: distantFuture, withStyle: .normal)
 
         // then
         XCTAssertEqual(labelText, "January 1, 1 – January 1, 4001")
@@ -27,7 +27,7 @@ class DateLabelHelperTests: XCTestCase {
         let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())
 
         // when
-        let labelText = DateLabelHelper.labelFor(startDate: distantPast, endDate: yesterday, withStyle: .normal)
+        let labelText = CoursePeriodFormatter.string(fromStartDate: distantPast, endDate: yesterday, withStyle: .normal)
 
         // then
         XCTAssertEqual(labelText, "Self-paced")
@@ -38,7 +38,7 @@ class DateLabelHelperTests: XCTestCase {
         let distantPast = Date.distantPast
 
         // when
-        let labelText = DateLabelHelper.labelFor(startDate: distantPast, endDate: nil, withStyle: .normal)
+        let labelText = CoursePeriodFormatter.string(fromStartDate: distantPast, endDate: nil, withStyle: .normal)
 
         // then
         XCTAssertEqual(labelText, "Since January 1, 1")
@@ -49,7 +49,7 @@ class DateLabelHelperTests: XCTestCase {
         let distantPast = Date.distantPast
 
         // when
-        let labelText = DateLabelHelper.labelFor(startDate: distantPast, endDate: nil, withStyle: .who)
+        let labelText = CoursePeriodFormatter.string(fromStartDate: distantPast, endDate: nil, withStyle: .who)
 
         // then
         XCTAssertEqual(labelText, "Self-paced")
@@ -60,7 +60,7 @@ class DateLabelHelperTests: XCTestCase {
         let distantFuture = Date.distantFuture
 
         // when
-        let labelText = DateLabelHelper.labelFor(startDate: distantFuture, endDate: nil, withStyle: .normal)
+        let labelText = CoursePeriodFormatter.string(fromStartDate: distantFuture, endDate: nil, withStyle: .normal)
 
         // then
         XCTAssertEqual(labelText, "Beginning January 1, 4001")
@@ -71,7 +71,7 @@ class DateLabelHelperTests: XCTestCase {
         let distantFuture = Date.distantFuture
 
         // when
-        let labelText = DateLabelHelper.labelFor(startDate: distantFuture, endDate: nil, withStyle: .who)
+        let labelText = CoursePeriodFormatter.string(fromStartDate: distantFuture, endDate: nil, withStyle: .who)
 
         // then
         XCTAssertEqual(labelText, "Coming soon")
@@ -82,7 +82,7 @@ class DateLabelHelperTests: XCTestCase {
         let distantFuture = Date.distantFuture
 
         // when
-        let labelText = DateLabelHelper.labelFor(startDate: nil, endDate: distantFuture, withStyle: .normal)
+        let labelText = CoursePeriodFormatter.string(fromStartDate: nil, endDate: distantFuture, withStyle: .normal)
 
         // then
         XCTAssertEqual(labelText, "Coming soon")
@@ -90,7 +90,7 @@ class DateLabelHelperTests: XCTestCase {
 
     func testWithNoDates() {
         // when
-        let labelText = DateLabelHelper.labelFor(startDate: nil, endDate: nil, withStyle: .normal)
+        let labelText = CoursePeriodFormatter.string(fromStartDate: nil, endDate: nil, withStyle: .normal)
 
         // then
         XCTAssertEqual(labelText, "Coming soon")

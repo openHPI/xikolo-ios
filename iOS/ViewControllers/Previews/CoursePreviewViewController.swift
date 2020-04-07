@@ -41,7 +41,7 @@ class CoursePreviewViewController: UIViewController {
         self.titleLabel.text = self.course.title
         self.teacherLabel.text = self.course.teachers
 
-        self.dateLabel.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
+        self.dateLabel.text = CoursePeriodFormatter.string(from: self.course)
         self.languageLabel.text = self.course.localizedLanguage
 
         self.descriptionView.textContainerInset = .zero

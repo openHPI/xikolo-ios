@@ -71,7 +71,7 @@ class CourseDetailsViewController: UIViewController {
         self.languageView.text = self.course.localizedLanguage
         self.teacherView.text = self.course.teachers
 
-        self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
+        self.dateView.text = CoursePeriodFormatter.string(from: self.course)
         self.teaserImageView.sd_setImage(with: self.course.imageURL)
 
         let animationDuration = animated ? 0.25 : 0

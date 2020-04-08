@@ -39,7 +39,7 @@ public enum Routes {
     public static let base = URL(string: "https://" + Brand.default.host).require(hint: "Invalid base URL")
 
     static let api = Self.base.appendingPathComponents(["api", "v2"])
-    private static let apiVersion = "3"
+    private static let apiVersion = "4"
 
     static let authenticate = Self.api.appendingPathComponent("authenticate")
     public static let register = Self.base.appendingPathComponents(["account", "new"]).appendingInAppParameter()

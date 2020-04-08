@@ -2,7 +2,10 @@
 /* Display name for additional learning material: micro learning */
 "additional-learning-material.micro-learning.title" = "Microlearning";
 
-/* Display name for additional learning material: podcasts */
+/* Display name for additional learning material: podcast (single) */
+"additional-learning-material.podcast.title" = "Podcast";
+
+/* Display name for additional learning material: podcasts (multiple) */
 "additional-learning-material.podcasts.title" = "Podcasts";
 
 /* title for course start in a course date cell */

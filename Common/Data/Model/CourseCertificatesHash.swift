@@ -6,7 +6,9 @@
 import Foundation
 import Stockpile
 
-public final class CourseCertificatesHash: NSObject, NSCoding, IncludedPullable {
+public final class CourseCertificatesHash: NSObject, NSSecureCoding, IncludedPullable {
+
+    public static var supportsSecureCoding: Bool { return true }
 
     public var available: Bool
     public var threshold: Int32?

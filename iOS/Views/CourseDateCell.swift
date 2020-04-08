@@ -23,6 +23,7 @@ class CourseDateCell: UITableViewCell {
     func configure(for courseDate: CourseDate, inCourseContext: Bool) {
         self.dateLabel.text = courseDate.date.map(Self.courseDateFormatter.string(from:))
         self.courseLabel.text = courseDate.course?.title
+        self.courseLabel.isHidden = inCourseContext
         self.titleLabel.text = courseDate.contextAwareTitle
         self.accessoryType = inCourseContext ? .none : .disclosureIndicator
     }

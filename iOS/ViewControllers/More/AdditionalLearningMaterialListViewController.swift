@@ -32,6 +32,7 @@ class AdditionalLearningMaterialListViewController: UICollectionViewController {
 
         // swiftlint:disable:next trailing_closure
         coordinator.animate(alongsideTransition: { _  in
+            self.navigationController?.navigationBar.sizeToFit()
             self.collectionViewLayout.invalidateLayout()
         })
     }
@@ -101,7 +102,12 @@ extension AdditionalLearningMaterialListViewController: UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
-        let availableWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
+        var availableWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
+
+        if #available(iOS 11, *) {
+            availableWidth -= collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right
+        }
+
         let height = 180 + 2 * AdditionalLearningMaterialCell.cardInset
 
         if self.traitCollection.horizontalSizeClass == .regular {

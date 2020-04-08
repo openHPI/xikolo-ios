@@ -18,6 +18,7 @@ class AccountViewController: UITableViewController {
     @IBOutlet private weak var headerImage: UIImageView!
     @IBOutlet private weak var profileImage: UIImageView!
     @IBOutlet private weak var nameView: UILabel!
+    @IBOutlet private weak var displayNameView: UILabel!
     @IBOutlet private weak var emailView: UILabel!
 
     @IBOutlet private weak var copyrightLabel: UILabel!
@@ -103,6 +104,7 @@ class AccountViewController: UITableViewController {
 
         self.dataSource.reloadContent()
         self.tableView.reloadData()
+        self.tableView.resizeTableHeaderView()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -116,7 +118,7 @@ class AccountViewController: UITableViewController {
     }
 
     func updateProfileInfo(animated: Bool) {
-        let profileViews: [UIView] = [self.profileImage, self.nameView, self.emailView]
+        let profileViews: [UIView] = [self.profileImage, self.nameView, self.displayNameView, self.emailView]
         let animationDuration: TimeInterval = animated ? 0.25 : 0.0
 
         if let userProfile = self.user?.profile {
@@ -128,8 +130,11 @@ class AccountViewController: UITableViewController {
 
             UIView.animate(withDuration: animationDuration, animations: {
                 self.nameView.text = userProfile.fullName
+                self.displayNameView.text = self.user?.name.map { "(\($0))" }
+                self.displayNameView.isHidden = userProfile.fullName == self.user?.name || self.user?.name == nil
                 self.emailView.text = userProfile.email
                 self.view.layoutIfNeeded()
+                self.tableView.resizeTableHeaderView()
             }, completion: { _ in
                 UIView.animate(withDuration: animationDuration) {
                     for view in profileViews {
@@ -149,6 +154,7 @@ class AccountViewController: UITableViewController {
 
                 UIView.animate(withDuration: animationDuration) {
                     self.view.layoutIfNeeded()
+                    self.tableView.resizeTableHeaderView()
                 }
             })
         }
@@ -159,10 +165,14 @@ class AccountViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.tableView.resizeTableHeaderView()
-        self.tableView.resizeTableFooterView()
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.navigationController?.navigationBar.sizeToFit()
+            self.tableView.resizeTableHeaderView()
+            self.tableView.resizeTableFooterView()
+        }
     }
 
     func open(url: URL) {

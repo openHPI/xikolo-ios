@@ -64,6 +64,14 @@ class CourseItemListViewController: UITableViewController {
         self.refresh()
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.tableView.resizeTableFooterView()
+        }
+    }
+
     @objc func reachabilityChanged() {
         self.inOfflineMode = !ReachabilityHelper.hasConnection
     }
@@ -140,6 +148,8 @@ class CourseItemListViewController: UITableViewController {
                                        comment: "Format string for the next section start in the footer of course item list")
         self.nextSectionStartLabel.text = String(format: format, dateText, timeText)
         self.nextSectionStartLabel.isHidden = false
+
+        self.tableView.resizeTableFooterView()
     }
 
 }

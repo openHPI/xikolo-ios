@@ -41,6 +41,11 @@ class RichtextViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.titleView.text = NSLocalizedString("course.item.title-loading", comment: "course item title loading")
+        self.timeEffortLabel.text = NSLocalizedString("course.item-time-effort.loading", comment: "course item time effort loading")
+
+        self.textView.isHidden = true
+
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero
         self.textView.textContainer.lineFragmentPadding = 0
@@ -63,6 +68,7 @@ class RichtextViewController: UIViewController {
         guard self.viewIfLoaded != nil else { return }
 
         self.titleView.text = self.courseItem.title
+        self.textView.isHidden = false
 
         // Set time effort label
         let roundedTimeEffort = ceil(TimeInterval(self.courseItem.timeEffort) / 60) * 60 // round up to full minutes

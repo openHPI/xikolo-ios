@@ -56,6 +56,12 @@ class LTIExerciseHintViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.itemTitleLabel.text = NSLocalizedString("course.item.title-loading", comment: "course item title loading")
+        self.exerciseTypeLabel.text = NSLocalizedString("course.item.exercise.type-loading", comment: "course item exercise type loading")
+        self.pointsLabel.text = NSLocalizedString("course.item.points-loading", comment: "course item points loading")
+        self.timeEffortLabel.text = NSLocalizedString("course.item-time-effort.loading", comment: "course item time effort loading")
+        self.deadlineLabel.text = NSLocalizedString("course.item.deadline-loading", comment: "course item deadline loading")
+
         self.launchButton.layer.roundCorners(for: .default)
         self.launchButton.backgroundColor = Brand.default.colors.primary
 

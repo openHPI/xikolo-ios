@@ -173,6 +173,15 @@
 /* the current state of a certificate */
 "course.certificates.not-enrolled" = "nicht eingeschrieben";
 
+/* course item time effort loading */
+"course.item-time-effort.loading" = "Zeitaufwand wird geladen...";
+
+/* course item deadline loading */
+"course.item.deadline-loading" = "Deadline wird geladen...";
+
+/* course item description loading */
+"course.item.description-loading" = "Erklärung wird geladen...";
+
 /* course item bonus type */
 "course.item.exercise-type.disclaimer.bonus" = "Dies ist eine Bonusaufgabe.";
 
@@ -181,6 +190,15 @@
 
 /* course item ungraded type */
 "course.item.exercise-type.disclaimer.ungraded" = "Dies ist eine unbenotete Aufgabe.";
+
+/* course item exercise type loading */
+"course.item.exercise.type-loading" = "Aufgabentyp wird geladen...";
+
+/* course item points loading */
+"course.item.points-loading" = "Punkte werden geladen...";
+
+/* course item title loading */
+"course.item.title-loading" = "Titel wird geladen...";
 
 /* label exercise progess with absolute values. n out of m */
 "course.progress.points %@ of %@ points" = "%@ von %@ Punkten";
@@ -304,6 +322,9 @@
 
 /* team peer assessment */
 "peer-assessment-type.team" = "Team Peer Assessment";
+
+/* peer assessment type loading */
+"peer.assessment.type-loading" = "Peer Assessment Typ wird geladen...";
 
 /* subtitle for homescreen quick actions */
 "quickactions.subtitle" = "Lernen fortsetzen";

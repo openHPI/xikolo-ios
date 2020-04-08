@@ -87,6 +87,10 @@ class VideoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.titleView.text = NSLocalizedString("course.item.title-loading", comment: "course item title loading")
+        self.descriptionView.text = NSLocalizedString("course.item.description-loading", comment: "course item description loading")
+
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self

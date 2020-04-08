@@ -173,6 +173,15 @@
 /* the current state of a certificate */
 "course.certificates.not-enrolled" = "not enrolled";
 
+/* course item time effort loading */
+"course.item-time-effort.loading" = "Loading time effort...";
+
+/* course item deadline loading */
+"course.item.deadline-loading" = "Loading deadline...";
+
+/* course item description loading */
+"course.item.description-loading" = "Loading description...";
+
 /* course item bonus type */
 "course.item.exercise-type.disclaimer.bonus" = "This is a bonus exercise.";
 
@@ -181,6 +190,15 @@
 
 /* course item ungraded type */
 "course.item.exercise-type.disclaimer.ungraded" = "This is an ungraded exercise.";
+
+/* course item exercise type loading */
+"course.item.exercise.type-loading" = "Loading exercise type...";
+
+/* course item points loading */
+"course.item.points-loading" = "Loading points...";
+
+/* course item title loading */
+"course.item.title-loading" = "Loading title...";
 
 /* label exercise progess with absolute values. n out of m */
 "course.progress.points %@ of %@ points" = "%@ of %@ points";
@@ -304,6 +322,9 @@
 
 /* team peer assessment */
 "peer-assessment-type.team" = "Team Peer Assessment";
+
+/* peer assessment type loading */
+"peer.assessment.type-loading" = "Loading peer assessment type...";
 
 /* subtitle for homescreen quick actions */
 "quickactions.subtitle" = "Continue learning";

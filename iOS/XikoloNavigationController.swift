@@ -19,6 +19,7 @@ class XikoloNavigationController: UINavigationController {
             self.navigationBar.scrollEdgeAppearance = appearance
         } else {
             self.navigationBar.backgroundColor = ColorCompatibility.systemBackground
+            self.navigationBar.barTintColor = ColorCompatibility.systemBackground
             self.navigationBar.shadowImage = UIImage()
             self.hideShadowImage(inView: self.view)
         }

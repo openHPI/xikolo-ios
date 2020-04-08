@@ -26,6 +26,7 @@ public struct AdditionalLearningMaterial: Decodable {
 public enum AdditionalLearningMaterialType: String, Decodable {
     case microLearning
     case podcasts
+    case podcast
 
     public var displayName: String {
         switch self {
@@ -34,7 +35,10 @@ public enum AdditionalLearningMaterialType: String, Decodable {
                                          comment: "Display name for additional learning material: micro learning")
         case .podcasts:
             return CommonLocalizedString("additional-learning-material.podcasts.title",
-                                         comment: "Display name for additional learning material: podcasts")
+                                         comment: "Display name for additional learning material: podcasts (multiple)")
+        case .podcast:
+            return CommonLocalizedString("additional-learning-material.podcast.title",
+                                         comment: "Display name for additional learning material: podcast (single)")
         }
     }
 

@@ -6,7 +6,9 @@
 import Foundation
 import Stockpile
 
-public class ExerciseProgress: NSObject, NSCoding, IncludedPullable {
+public class ExerciseProgress: NSObject, NSSecureCoding, IncludedPullable {
+
+    public static var supportsSecureCoding: Bool { return true }
 
     public var exercisesAvailable: Int?
     public var exercisesTaken: Int?

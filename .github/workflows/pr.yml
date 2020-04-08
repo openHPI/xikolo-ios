@@ -1,0 +1,67 @@
+name: Pull Request
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  build-test-lint:
+    name: Build + Test + Lint + Check localization
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        xcode: ['/Applications/Xcode_11.4.app/Contents/Developer']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Cache RubyGems
+        uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: ${{ runner.os }}-gems-
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v1
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: ${{ runner.os }}-pods-
+
+      - name: Install dependencies (Bundler)
+        run: |
+          bundle config path vendor/bundle
+          bundle config set without 'documentation'
+          bundle install --jobs 4 --retry 3
+
+      - name: Install dependencies (CocoaPods)
+        run: bundle exec pod install
+        env:
+          DEVELOPER_DIR: ${{ matrix.xcode }}
+
+      - name: Copy brand assets
+        run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
+
+      - name: Build + Test (Common)
+        run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
+        env:
+          scheme: Common
+          DEVELOPER_DIR: ${{ matrix.xcode }}
+      
+      - name: Build + Test (iOS)
+        run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
+        env:
+          scheme: openHPI-iOS
+          DEVELOPER_DIR: ${{ matrix.xcode }}
+
+      - name: Check localization
+        run: |
+          bundle exec fastlane localize
+          git status --porcelain -- ':!.bundle'
+          git diff -- ':!.bundle'
+      
+      - name: Run code validation
+        run: bundle exec danger --verbose
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

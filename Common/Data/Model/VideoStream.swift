@@ -6,7 +6,9 @@
 import Foundation
 import Stockpile
 
-public final class VideoStream: NSObject, NSCoding, IncludedPullable {
+public final class VideoStream: NSObject, NSSecureCoding, IncludedPullable {
+
+    public static var supportsSecureCoding: Bool { return true }
 
     public var hdURL: URL?
     public var sdURL: URL?

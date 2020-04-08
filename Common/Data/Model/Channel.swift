@@ -12,7 +12,6 @@ public final class Channel: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var title: String?
     @NSManaged public var channelDescription: String?
-    @NSManaged public var slug: String?
     @NSManaged public var colorString: String?
     @NSManaged public var position: Int16
     @NSManaged public var imageURL: URL?
@@ -36,7 +35,6 @@ extension Channel: JSONAPIPullable {
         let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.channelDescription = try attributes.value(for: "description")
-        self.slug = try attributes.value(for: "slug")
         self.colorString = try attributes.value(for: "color")
         self.position = try attributes.value(for: "position")
         self.imageURL = try attributes.failsafeURL(for: "mobile_image_url")

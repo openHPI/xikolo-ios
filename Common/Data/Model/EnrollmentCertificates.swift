@@ -6,7 +6,9 @@
 import Foundation
 import Stockpile
 
-public final class EnrollmentCertificates: NSObject, NSCoding, IncludedPullable {
+public final class EnrollmentCertificates: NSObject, NSSecureCoding, IncludedPullable {
+
+    public static var supportsSecureCoding: Bool { return true }
 
     public var confirmationOfParticipation: URL?
     public var recordOfAchievement: URL?

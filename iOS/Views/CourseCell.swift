@@ -100,7 +100,7 @@ class CourseCell: UICollectionViewCell {
         }()
         self.teacherLabel.isHidden = !Brand.default.features.showCourseTeachers
         self.languageLabel.text = course.localizedLanguage
-        self.dateLabel.text = DateLabelHelper.labelFor(startDate: course.startsAt, endDate: course.endsAt)
+        self.dateLabel.text = CoursePeriodFormatter.string(from: course)
 
         self.statusView.isHidden = true
         if case let .courseList(listConfiguration) = configuration, !listConfiguration.containsOnlyEnrolledCourses {

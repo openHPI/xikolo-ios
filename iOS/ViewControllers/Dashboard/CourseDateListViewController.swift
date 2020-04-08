@@ -49,11 +49,30 @@ class CourseDateListViewController: UITableViewController {
         if self.course != nil {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
         }
+
+        if let course = self.course {
+            self.navigationItem.title = course.title
+        }
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.tableView.resizeTableHeaderView()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if #available(iOS 13, *) {
+            // workaround to correct show table view section header on load when horizontal size class is regular
+            UIView.performWithoutAnimation {
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
+            }
+        }
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.tableView.resizeTableHeaderView()
+        }
     }
 
     @objc private func close() {

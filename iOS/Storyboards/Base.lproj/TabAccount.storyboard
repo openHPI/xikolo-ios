@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fka-gm-6EA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fka-gm-6EA">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,7 +37,7 @@
                                     <rect key="frame" x="20" y="198" width="374" height="62"/>
                                     <subviews>
                                         <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="User's Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RdQ-ps-pvk">
-                                            <rect key="frame" x="-8.5" y="0.0" width="101.5" height="0.0"/>
+                                            <rect key="frame" x="24.5" y="0.0" width="101.5" height="0.0"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="highlightedColor"/>
@@ -50,8 +50,23 @@
                                                 </fragment>
                                             </attributedString>
                                         </label>
+                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="User's Display Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stw-1K-3Dt">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="0.0"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <attributedString key="userComments">
+                                                <fragment content="#bc-ignore!">
+                                                    <attributes>
+                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </label>
                                         <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User's Email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PoF-ih-nyj">
-                                            <rect key="frame" x="0.0" y="0.0" width="84" height="0.0"/>
+                                            <rect key="frame" x="33" y="0.0" width="84" height="0.0"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -96,7 +111,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="message" size="11"/>
+                                                        <font key="NSFont" metaFont="label" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -110,7 +125,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="message" size="11"/>
+                                                        <font key="NSFont" metaFont="label" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -124,7 +139,7 @@
                                             <attributedString key="userComments">
                                                 <fragment content="#bc-ignore!">
                                                     <attributes>
-                                                        <font key="NSFont" metaFont="message" size="11"/>
+                                                        <font key="NSFont" metaFont="label" size="11"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -216,6 +231,7 @@
                     <connections>
                         <outlet property="buildLabel" destination="BYP-h5-ZvT" id="l87-4p-9q6"/>
                         <outlet property="copyrightLabel" destination="12x-tZ-Fjh" id="FhA-RO-dC6"/>
+                        <outlet property="displayNameView" destination="Stw-1K-3Dt" id="gy0-YJ-P22"/>
                         <outlet property="emailView" destination="PoF-ih-nyj" id="CKy-Ha-Mp7"/>
                         <outlet property="headerImage" destination="TMZ-jn-WLn" id="aon-bc-agD"/>
                         <outlet property="loginButton" destination="tyU-B6-h3N" id="fdV-Pj-6OT"/>
@@ -753,8 +769,8 @@
     </scenes>
     <resources>
         <image name="avatar" width="500" height="500"/>
-        <image name="info.circle" catalog="system" width="64" height="60"/>
-        <image name="profile header" width="1734" height="808"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="profile header" width="1000" height="659"/>
         <image name="tab bar items/account" width="28" height="28"/>
     </resources>
 </document>

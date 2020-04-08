@@ -6,7 +6,9 @@
 import Foundation
 import Stockpile
 
-class TrackingEventResource: NSObject, NSCoding {
+class TrackingEventResource: NSObject, NSSecureCoding {
+
+    public static var supportsSecureCoding: Bool { return true }
 
     var resourceType: String
     var uuid: String

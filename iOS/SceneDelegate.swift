@@ -42,16 +42,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabToSelect: XikoloTabBarController.Tabs = UserProfileHelper.shared.isLoggedIn ? .dashboard : .courses
         self.tabBarController.selectedIndex = tabToSelect.index
 
-        if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
+        if let userActivity = connectionOptions.userActivities.first {
 
             if userActivity.title == "openCourse" {
                 if let courseID = userActivity.userInfo?["courseID"] as? String {
                     let request = CourseHelper.FetchRequest.course(withSlugOrId: courseID)
-                    let course = CoreDataHelper.viewContext.fetchSingle(request).value
-
-                    // TODO: Show course in new scene
-                    let courseViewController = CourseViewController.init()
-                    courseViewController.course = course
+                    if let course = CoreDataHelper.viewContext.fetchSingle(request).value {
+                        self.appNavigator.show(course: course)
+                        // TODO: Remove tabBarController from hierarchy, so the scene closes when course
+                    }
                 }
             }
         }

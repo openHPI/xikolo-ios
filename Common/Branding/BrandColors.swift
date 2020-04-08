@@ -27,7 +27,7 @@ public struct BrandColors: Decodable {
     private let secondaryFallback: UIColor
     private let tertiaryFallback: UIColor
 
-    // Light mode: 30% over #FFFFFF - Dark Mode: 55% over #1D1D1E
+    // Light mode: 25% over #FFFFFF - Dark Mode: 25% over #1D1D1E
     private let primaryLightFallback: UIColor
 
     public var primary: UIColor {

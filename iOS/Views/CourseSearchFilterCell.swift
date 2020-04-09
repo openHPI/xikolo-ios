@@ -49,7 +49,7 @@ class CourseSearchFilterCell: UICollectionViewCell {
         self.titleLabel.text = NSLocalizedString("course-list.search.filter.clear", comment: "Title for button for clearning all filters")
     }
 
-    static func cellHeight() -> CGFloat {
+    static var cellHeight: CGFloat {
         return Self.titleFont.lineHeight + 2 * Self.padding + 2
     }
 

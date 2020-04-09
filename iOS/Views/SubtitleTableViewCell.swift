@@ -13,6 +13,8 @@ class SubtitleTableViewCell: UITableViewCell {
         self.textLabel?.adjustsFontForContentSizeCategory = true
         self.detailTextLabel?.font = UIFont.preferredFont(forTextStyle: .footnote)
         self.detailTextLabel?.adjustsFontForContentSizeCategory = true
+
+        self.addDefaultPointerInteraction()
     }
 
     @available(*, unavailable)

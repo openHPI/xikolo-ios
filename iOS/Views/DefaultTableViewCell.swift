@@ -12,6 +12,8 @@ class DefaultTableViewCell: UITableViewCell {
         self.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         self.textLabel?.adjustsFontForContentSizeCategory = true
         self.textLabel?.numberOfLines = 0
+
+        self.addDefaultPointerInteraction()
     }
 
     @available(*, unavailable)

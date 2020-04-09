@@ -29,6 +29,8 @@ class CourseAreaCell: UICollectionViewCell {
         super.awakeFromNib()
         self.titleView.textColor = ColorCompatibility.secondaryLabel
         self.hightlightView.isHidden = true
+
+        self.addDefaultPointerInteraction()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

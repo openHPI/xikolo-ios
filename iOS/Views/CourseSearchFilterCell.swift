@@ -27,6 +27,8 @@ class CourseSearchFilterCell: UICollectionViewCell {
         self.traitCollection.performAsCurrent {
             self.layer.borderColor = ColorCompatibility.separator.cgColor
         }
+
+        self.addDefaultPointerInteraction()
     }
 
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
@@ -36,15 +38,15 @@ class CourseSearchFilterCell: UICollectionViewCell {
 
     func configure(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) {
         let isHighlighted = !(selectedOptions?.isEmpty ?? true)
-        self.layer.backgroundColor = isHighlighted ? Brand.default.colors.window.cgColor : ColorCompatibility.systemBackground.cgColor
+        self.layer.backgroundColor = isHighlighted ? Brand.default.colors.window.cgColor : UIColor.clear.cgColor
         self.layer.borderColor = isHighlighted ? Brand.default.colors.window.cgColor : ColorCompatibility.separator.cgColor
         self.titleLabel.textColor = isHighlighted ? ColorCompatibility.systemBackground : ColorCompatibility.secondaryLabel
         self.titleLabel.text = Self.title(for: filter, with: selectedOptions)
     }
 
     func configureForClearButton() {
-        self.layer.backgroundColor = ColorCompatibility.systemBackground.cgColor
-        self.layer.borderColor = ColorCompatibility.systemBackground.cgColor
+        self.layer.backgroundColor = UIColor.clear.cgColor
+        self.layer.borderColor = UIColor.clear.cgColor
         self.titleLabel.textColor = ColorCompatibility.secondaryLabel
         self.titleLabel.text = NSLocalizedString("course-list.search.filter.clear", comment: "Title for button for clearning all filters")
     }

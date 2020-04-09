@@ -95,12 +95,15 @@ class VideoViewController: UIViewController {
 
         self.videoActionsButton.isEnabled = false
         self.videoActionsButton.tintColor = ColorCompatibility.disabled
+        self.videoActionsButton.addDefaultPointerInteraction()
         self.videoProgressView.isHidden = true
         self.videoDownloadedIcon.tintColor = ColorCompatibility.disabled.withAlphaComponent(0.7)
         self.videoDownloadedIcon.isHidden = true
 
         self.slidesView.isHidden = true
         self.slidesDownloadedIcon.tintColor = ColorCompatibility.disabled.withAlphaComponent(0.7)
+        self.slidesButton.addDefaultPointerInteraction()
+        self.slidesActionsButton.addDefaultPointerInteraction()
 
         self.updateView(for: self.courseItem)
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)

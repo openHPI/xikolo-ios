@@ -102,7 +102,6 @@ class CourseViewController: UIViewController {
         self.navigationController?.delegate = self
 
         self.transitionIfPossible(to: self.area)
-        self.updateCourseAreaListContainerHeight()
         self.updateHeaderConstraints()
 
         SpotlightHelper.shared.setUserActivity(for: self.course)
@@ -111,7 +110,6 @@ class CourseViewController: UIViewController {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        self.updateCourseAreaListContainerHeight()
 
         self.updateHeaderConstraints()
         self.courseNavigationController?.updateNavigationBar(forProgress: self.headerOffset / self.headerHeight)
@@ -137,6 +135,13 @@ class CourseViewController: UIViewController {
         }
 
         coordinator.animate(alongsideTransition: animationBlock, completion: completionBlock)
+    }
+
+    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+        super.preferredContentSizeDidChange(forChildContentContainer: container)
+        if container is CourseAreaListViewController {
+            self.courseAreaListContainerHeight?.constant = container.preferredContentSize.height
+        }
     }
 
     func show(item: CourseItem, animated: Bool) {
@@ -231,11 +236,6 @@ class CourseViewController: UIViewController {
         context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: .RGBA8, colorSpace: nil)
 
         return (red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
-    }
-
-    private func updateCourseAreaListContainerHeight() {
-        let containerHeight = CourseAreaCell.font(whenSelected: true).lineHeight + 2 * 8
-        self.courseAreaListContainerHeight.constant = ceil(containerHeight)
     }
 
     private func closeCourse() {

@@ -1,9 +1,18 @@
-• Fehlerkorrekturen und allgemeine Verbesserungen unter iOS 12
+Neue Funktionen:
+• Neues Kurstermin-Widget auf dem Startbildschirm (ein langer Fingertipp auf das App-Icon zeigt die Übersicht der Kurstermine an)
+• Schnell-Zugriff auf die zuletzt besuchten Kurse (auch per langem Fingertipp auf das App-Icon)
+• Vorschauseiten für Kursen und Kursinhalte (per langem Fingertipp auf Kurse oder Kursinhalte)
+• Die Liste der Kurstermine kann für einen einzelnen Kurs geöffnet werden (über '⋯' in der oberen rechten Ecke, wenn ein Kurs geöffnet ist > 'Kurstermine anzeigen')
+• Links zu Microlearning- und Podcastseiten werden im neuen Tab "Weiteres" angezeigt
+• Anpassungen für iOS 13.4 (inkl. Unterstützung für Trackpad- und Mausnavigation) 
 
-Auch in Version 2.9:
-• Kursbereiche sind nun über einen separaten Tab erreichbar
-• Persönlicher Kursfortschritt ist nun für alle Kurse verfügbar
-• Einbindung des Helpdesks
-• Zeitaufwand für weitere Kursinhalte
-• Kursinhalte können nun einzeln geteilt werden
-• Links zu externen Inhalten können nun geöffnet werden
+Verbesserungen:
+• UX-Verbesserungen für die Helpdesk-Integration
+• Kurssprachen werden in der jeweiligen Sprache angezeigt
+• Die Untertitelauswahl zeigt die verfügbaren Optionen in der lokalisierten Sprache und in der Systemsprache
+• Neues Design der Kurs-Terminübersicht auf dem Dashboard
+• Anzeige des nächsten Kursdatums auf dem Dashboard im relativen Datumsformat (erfordert iOS 13 oder höher)
+• Datumsliste der Gruppenkurse nach relativen Daten (erfordert iOS 13 oder höher)
+• Zeitaufwand wird in verschiedenen Ansichten angezeigt
+• Eine zusätzliche Seite wird vor Beginn eines Peer-Assessments angezeigt
+• Verschiedene kleinere kosmetische Änderungen

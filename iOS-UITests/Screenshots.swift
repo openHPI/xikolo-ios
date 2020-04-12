@@ -25,14 +25,14 @@ class Screenshots: XCTestCase {
 
         // Course list
         Navigator.goToTabBarItem(.courses)
-        sleep(5)
+        sleep(15)
         snapshot("1-CourseList")
 
         LoginHelper.loginIfPossible()
 
         // Dashboard
         Navigator.goToTabBarItem(.dashboard)
-        sleep(5)
+        sleep(15)
 
         // Course item list
         // tap on first element in current courses view
@@ -40,7 +40,7 @@ class Screenshots: XCTestCase {
         let currentCoursesOverview = app.collectionViews.firstMatch
         let firstCurrentCourse = currentCoursesOverview.cells.firstMatch.firstMatch
         firstCurrentCourse.tap()
-        sleep(5)
+        sleep(15)
         snapshot("3-Course-Items")
 
         // tap on first video item

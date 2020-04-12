@@ -25,7 +25,7 @@ class ScreenshotsDark: XCTestCase {
 
         // Dashboard
         Navigator.goToTabBarItem(.dashboard)
-        sleep(5)
+        sleep(15)
         snapshot("2-Dashboard")
     }
 

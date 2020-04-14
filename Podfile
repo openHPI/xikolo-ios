@@ -1,7 +1,7 @@
 use_frameworks!
 inhibit_all_warnings!
 
-project 'xikolo-ios', 'openHPI-iOS-Debug' => :debug, 'openSAP-iOS-Debug' => :debug, 'openWHO-iOS-Debug' => :debug, 'moocHOUSE-iOS-Debug' => :debug
+project 'xikolo-ios'
 
 pod 'BartyCrouch', :git => 'https://github.com/Flinesoft/BartyCrouch.git', :tag => '3.13.0'
 pod 'R.swift', '~> 5.0'
@@ -50,7 +50,6 @@ target 'iOS' do
     platform :ios, '10.0'
     firebase_pods
     pod 'SDWebImage', '~> 5.0'
-    pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['openHPI-iOS-Debug', 'openSAP-iOS-Debug', 'openWHO-iOS-Debug', 'moocHOUSE-iOS-Debug']
 end
 
 post_install do |installer|
@@ -67,7 +66,7 @@ post_install do |installer|
     # but creates only one pod license file for iOS instead of one license file for each target
     # Additonally, it provides more customization possibilities.
     Pod::UI.info "Adding Pod Licenses"
-    excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint', 'SimulatorStatusMagic']
+    excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint']
     sandbox = installer.sandbox
     common_target = installer.aggregate_targets.select { |target| target.label.include? 'Common' }.first
     ios_target = installer.aggregate_targets.select { |target| target.label.include? 'iOS' }.first

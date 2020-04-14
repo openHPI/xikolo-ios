@@ -13,7 +13,7 @@ class ScreenshotsDark: XCTestCase {
         self.continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["-cleanStatusBar", "-forceDarkMode"]
+        app.launchArguments = ["-forceDarkMode"]
         setupSnapshot(app)
         app.launch()
     }

@@ -13,7 +13,6 @@ class Screenshots: XCTestCase {
         self.continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["-cleanStatusBar"]
         setupSnapshot(app)
         app.launch()
     }

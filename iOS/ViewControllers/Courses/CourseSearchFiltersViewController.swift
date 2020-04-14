@@ -55,6 +55,16 @@ class CourseSearchFiltersViewController: UICollectionViewController {
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.calculatePreferredSize()
+    }
+
+    private func calculatePreferredSize() {
+        let contentSize = CGSize(width: self.collectionView.contentSize.width, height: CourseSearchFilterCell.cellHeight + 2 * 4)
+        self.preferredContentSize = contentSize
+    }
+
     func clearFilters() {
         self.activeFilters = [:]
         self.collectionView.reloadSections(IndexSet([0]))

@@ -28,7 +28,7 @@ class LoginHelper { // swiftlint:disable:this convenience_type
 
     static func loginIfPossible() {
         let app = XCUIApplication()
-        Navigator.goToTabBarItem(.settings)
+        Navigator.goToTabBarItem(.account)
         let loginButton = app.navigationBars.buttons.element(boundBy: 0)
 
         guard loginButton.exists else { return }
@@ -50,7 +50,7 @@ class LoginHelper { // swiftlint:disable:this convenience_type
 
     static func logoutIfPossible() {
         let app = XCUIApplication()
-        Navigator.goToTabBarItem(.settings)
+        Navigator.goToTabBarItem(.account)
         let logoutCell = app.tables.cells["logoutCell"]
         if logoutCell.exists {
             logoutCell.tap()

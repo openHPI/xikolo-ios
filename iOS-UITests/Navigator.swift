@@ -7,15 +7,29 @@ import XCTest
 
 enum Navigator {
 
-    enum TabBarItem: Int {
-        case dashboard = 0
-        case courses = 1
-        case news = 2
-        case settings = 3
+    enum TabBarItem {
+        case dashboard
+        case courses
+        case account
     }
 
     static func goToTabBarItem(_ item: TabBarItem) {
-        XCUIApplication().tabBars.buttons.element(boundBy: item.rawValue).tap()
+        let tabBarItems = XCUIApplication().tabBars.buttons
+
+        let index: Int = {
+            let tabBarItemsCount = tabBarItems.count
+
+            switch item {
+            case .dashboard:
+                return 0
+            case .courses:
+                return tabBarItemsCount - 3
+            case .account:
+                return tabBarItemsCount - 1
+            }
+        }()
+
+        tabBarItems.element(boundBy: index).tap()
     }
 
 }

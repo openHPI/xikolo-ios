@@ -173,6 +173,7 @@ platform :ios do
         overwrite_screenshots: true,
         skip_binary_upload: true,
         skip_metadata: true,
+        precheck_include_in_app_purchases: false,
       )
     end
   end
@@ -192,6 +193,7 @@ platform :ios do
         copyright: copyright(flavor: flavor),
         skip_binary_upload: true,
         skip_screenshots: true,
+        precheck_include_in_app_purchases: false,
         force: true,
       )
     end
@@ -252,6 +254,7 @@ platform :ios do
         copyright: copyright(flavor: flavor),
         skip_screenshots: true,
         skip_metadata: skip_metadata,
+        precheck_include_in_app_purchases: false,
         automatic_release: automatic_release,
       )
     else

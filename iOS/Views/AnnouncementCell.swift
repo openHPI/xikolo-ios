@@ -21,6 +21,8 @@ class AnnouncementCell: UITableViewCell {
         super.awakeFromNib()
         self.readStateLabel.textColor = Brand.default.colors.secondary
         self.courseLabel.textColor = Brand.default.colors.secondary
+
+        self.addDefaultPointerInteraction()
     }
 
     func configure(for announcement: Announcement, showCourseTitle: Bool) {

@@ -21,6 +21,8 @@ class ChannelCell: UICollectionViewCell {
 
         self.channelImage.layer.roundCorners(for: .default)
         self.channelImage.backgroundColor = Brand.default.colors.secondary
+
+        self.shadowView.addDefaultPointerInteraction()
     }
 
     func configure(_ channel: Channel) {

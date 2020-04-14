@@ -91,6 +91,7 @@
 		502CBE202433718F00BF6001 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBE072433718E00BF6001 /* SyncEngine.swift */; };
 		502CBE212433718F00BF6001 /* ResourceRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBE082433718E00BF6001 /* ResourceRepresentable.swift */; };
 		502CBE262433780000BF6001 /* BrightFutureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBE252433780000BF6001 /* BrightFutureTests.swift */; };
+		502CBE2824338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBE2724338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift */; };
 		502E712E2018D8BF007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
 		502E716C2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
 		502E7172201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
@@ -675,6 +676,7 @@
 		502CBE072433718E00BF6001 /* SyncEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
 		502CBE082433718E00BF6001 /* ResourceRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceRepresentable.swift; sourceTree = "<group>"; };
 		502CBE252433780000BF6001 /* BrightFutureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrightFutureTests.swift; sourceTree = "<group>"; };
+		502CBE2724338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+defaultPointerInteraction.swift"; sourceTree = "<group>"; };
 		502E712B2018D8BF007FC8C0 /* iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		502E712D2018D8BF007FC8C0 /* Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
 		502E712F2018D8BF007FC8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1927,6 +1929,7 @@
 				5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */,
 				50FB7121232BBDC700359BB2 /* UIView+backgroundColor.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
+				502CBE2724338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift */,
 				5036A9B223190E4100F7A63F /* UIViewController+AppNavigator.swift */,
 				5036A9B42319232800F7A63F /* UIWindow+FullScreen.swift */,
 				5067AD6A236717D000ADEAB9 /* Binge+Video.swift */,
@@ -2971,6 +2974,7 @@
 				508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */,
 				50CF1F7D20DCDBFC0011BFE9 /* CourseDetailsViewController.swift in Sources */,
 				503CEE962177082D00F34694 /* ProcotoredItemViewController.swift in Sources */,
+				502CBE2824338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift in Sources */,
 				0280CB14237CBD4100B774BE /* SectionProgressCell.swift in Sources */,
 				50CF1F8020DCDBFC0011BFE9 /* XikoloNavigationController.swift in Sources */,
 				50CF1F8120DCDBFC0011BFE9 /* UserActionsDelegate.swift in Sources */,

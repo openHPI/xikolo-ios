@@ -87,6 +87,8 @@ class CourseAreaListViewController: UICollectionViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        self.calculatePreferredSize()
+
         if let selectedIndexPath = self.selectedIndexPath, self.shouldScrollToSelectedItem {
             self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: false)
             self.shouldScrollToSelectedItem = false
@@ -99,6 +101,11 @@ class CourseAreaListViewController: UICollectionViewController {
         if let selectedIndexPath = self.selectedIndexPath {
             self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: false)
         }
+    }
+
+    private func calculatePreferredSize() {
+        let contentSize = CGSize(width: self.collectionView.contentSize.width, height: self.cellHeight + 2 * 4)
+        self.preferredContentSize = contentSize
     }
 
     func refresh() {

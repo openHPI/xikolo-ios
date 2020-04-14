@@ -137,6 +137,8 @@ extension AccountViewControllerDataSource: UITableViewDataSource {
             configurableItem.configure(cell)
         }
 
+        cell.addDefaultPointerInteraction()
+
         return cell
     }
 

@@ -18,6 +18,8 @@ class CourseDateCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.courseLabel.textColor = Brand.default.colors.secondary
+
+        self.addDefaultPointerInteraction()
     }
 
     func configure(for courseDate: CourseDate, inCourseContext: Bool) {

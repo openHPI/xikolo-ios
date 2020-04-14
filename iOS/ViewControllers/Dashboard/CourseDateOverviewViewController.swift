@@ -52,6 +52,9 @@ class CourseDateOverviewViewController: UIViewController {
         self.summaryContainer.layer.roundCorners(for: .default, masksToBounds: false)
         self.nextUpContainer.layer.roundCorners(for: .default, masksToBounds: false)
 
+        self.summaryContainer.addDefaultPointerInteraction()
+        self.nextUpContainer.addDefaultPointerInteraction()
+
         self.courseLabel.textColor = Brand.default.colors.secondary
         self.nextUpView.isHidden = true
         self.nextUpContainer.isHidden = true

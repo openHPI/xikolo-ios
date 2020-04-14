@@ -54,7 +54,6 @@ class AdditionalLearningMaterialListViewController: UICollectionViewController {
         } else {
             self.preferredContentSize = self.collectionView.contentSize
         }
-
     }
 
     private func adjustScrollDirection() {

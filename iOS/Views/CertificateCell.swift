@@ -16,8 +16,9 @@ class CertificateCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         self.shadowView.layer.roundCorners(for: .default, masksToBounds: false)
+
+        self.shadowView.addDefaultPointerInteraction()
     }
 
     func configure(_ name: String, explanation: String?, url: URL?, stateOfCertificate: String) {

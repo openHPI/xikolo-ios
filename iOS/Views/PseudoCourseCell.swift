@@ -22,6 +22,8 @@ class PseudoCourseCell: UICollectionViewCell {
         super.awakeFromNib()
         self.cardView.layer.roundCorners(for: .default, masksToBounds: false)
         self.actionLabel.textColor = Brand.default.colors.window
+
+        self.cardView.addDefaultPointerInteraction()
     }
 
     func configure(for style: Style, configuration: CourseListConfiguration) {

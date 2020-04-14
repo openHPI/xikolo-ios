@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1130"
+   LastUpgradeVersion = "1140"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -47,16 +47,6 @@
                ReferencedContainer = "container:xikolo-ios.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "502CBDCB2433716C00BF6001"
-               BuildableName = "Stockpile-Tests.xctest"
-               BlueprintName = "Stockpile-Tests"
-               ReferencedContainer = "container:xikolo-ios.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -86,15 +76,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "50CF1F4120DCDBFC0011BFE9"
-            BuildableName = "openHPI.app"
-            BlueprintName = "iOS"
-            ReferencedContainer = "container:xikolo-ios.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "moocHOUSE-iOS-Debug">

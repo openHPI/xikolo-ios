@@ -10,7 +10,7 @@ public enum CoursePeriodFormatter {
     private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
     private static let dateIntervalFormatter = DateIntervalFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
 
-    public static func string(from course: Course) -> String  {
+    public static func string(from course: Course) -> String {
         return self.string(fromStartDate: course.startsAt, endDate: course.endsAt)
     }
 

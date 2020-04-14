@@ -40,6 +40,7 @@ class AnnouncementViewController: UIViewController {
 
         self.courseButton.tintColor = Brand.default.colors.secondary
         self.courseButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        self.courseButton.addDefaultPointerInteraction()
 
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero

@@ -14,10 +14,15 @@ class CourseItemHeader: UITableViewHeaderFooterView {
     private var section: CourseSection?
     weak var delegate: UserActionsDelegate?
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.titleView.textColor = ColorCompatibility.secondaryLabel
+        self.actionsButton.addDefaultPointerInteraction()
+    }
+
     func configure(for section: CourseSection, inOfflineMode: Bool) {
         self.section = section
         self.titleView.text = section.title
-        self.titleView.textColor = ColorCompatibility.secondaryLabel
         self.actionsButton.isHidden = !section.hasUserActions
         self.actionsButton.isEnabled = !inOfflineMode || !section.userActions.isEmpty
         self.actionsButton.tintColor = !inOfflineMode || !section.userActions.isEmpty ? Brand.default.colors.primary : ColorCompatibility.secondaryLabel

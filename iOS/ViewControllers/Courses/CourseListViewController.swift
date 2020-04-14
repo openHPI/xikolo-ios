@@ -80,6 +80,22 @@ class CourseListViewController: UICollectionViewController {
         self.addFilterView()
     }
 
+    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+        super.preferredContentSizeDidChange(forChildContentContainer: container)
+        if container is CourseSearchFiltersViewController {
+            let isSearching: Bool = {
+                if #available(iOS 11, *) {
+                    return self.navigationItem.searchController?.isActive ?? false
+                } else {
+                    return self.searchController?.isActive ?? false
+                }
+            }()
+
+            guard isSearching else { return }
+            self.updateSearchFilterContainerHeight(isSearching: isSearching)
+        }
+    }
+
     private func setupSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.delegate = self
@@ -127,9 +143,9 @@ class CourseListViewController: UICollectionViewController {
     private func updateSearchFilterContainerHeight(isSearching: Bool) {
         if isSearching {
             if #available(iOS 11, *) {
-                self.filterContainerHeightConstraint?.constant = CourseSearchFilterCell.cellHeight()
+                self.filterContainerHeightConstraint?.constant = self.searchFilterViewController.preferredContentSize.height
             } else {
-                self.filterContainerHeightConstraint?.constant = ceil(CourseSearchFilterCell.cellHeight()) + 16
+                self.filterContainerHeightConstraint?.constant = self.searchFilterViewController.preferredContentSize.height + 16
             }
         } else {
             self.filterContainerHeightConstraint?.constant = 0
@@ -166,14 +182,6 @@ class CourseListViewController: UICollectionViewController {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        let isSearching: Bool = {
-            if #available(iOS 11, *) {
-                return self.navigationItem.searchController?.isActive ?? false
-            } else {
-                return self.searchController?.isActive ?? false
-            }
-        }()
-        self.updateSearchFilterContainerHeight(isSearching: isSearching)
         self.collectionViewLayout.invalidateLayout()
     }
 

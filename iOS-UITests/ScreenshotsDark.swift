@@ -13,7 +13,7 @@ class ScreenshotsDark: XCTestCase {
         self.continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["-cleanStatusBar", "-forceDarkMode"]
+        app.launchArguments = ["-forceDarkMode"]
         setupSnapshot(app)
         app.launch()
     }
@@ -25,7 +25,7 @@ class ScreenshotsDark: XCTestCase {
 
         // Dashboard
         Navigator.goToTabBarItem(.dashboard)
-        sleep(5)
+        sleep(15)
         snapshot("2-Dashboard")
     }
 

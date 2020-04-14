@@ -28,6 +28,8 @@ class AdditionalLearningMaterialCell: UICollectionViewCell {
         self.cardView.layer.roundCorners(for: .default)
         self.gradientView.layer.insertSublayer(self.gradientLayer, at: 0)
         self.gradientView.layer.roundCorners(for: .default)
+
+        self.cardView.addDefaultPointerInteraction()
     }
 
     override func layoutSubviews() {

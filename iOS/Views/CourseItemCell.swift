@@ -26,6 +26,9 @@ class CourseItemCell: UITableViewCell {
                                                selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
                                                name: DownloadState.didChangeNotification,
                                                object: nil)
+
+        self.addDefaultPointerInteraction()
+        self.actionsButton.addDefaultPointerInteraction()
     }
 
     func configure(for courseItem: CourseItem) {

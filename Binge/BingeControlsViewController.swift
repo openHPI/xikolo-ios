@@ -37,6 +37,11 @@ class BingeControlsViewController: UIViewController {
         slider.setThumbImage(UIImage.bingeImage(named: "thumb-big"), for: .highlighted)
         slider.addTarget(self, action: #selector(changeProgress(sender:event:)), for: .valueChanged)
 
+        if #available(iOS 13.4, *) {
+            let interaction = UIPointerInteraction(delegate: nil)
+            slider.addInteraction(interaction)
+        }
+
         return slider
     }()
 
@@ -65,6 +70,12 @@ class BingeControlsViewController: UIViewController {
         button.setImage(UIImage.bingeImage(named: "ios-contract"), for: .selected)
         button.addTarget(self, action: #selector(toggleFullScreenMode), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+
+        if #available(iOS 13.4, *) {
+            let interaction = UIPointerInteraction(delegate: nil)
+            button.addInteraction(interaction)
+        }
+
         return button
     }()
 
@@ -81,6 +92,12 @@ class BingeControlsViewController: UIViewController {
         button.addTarget(self, action: #selector(dismissPlayer), for: .touchUpInside)
         button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
+
+        if #available(iOS 13.4, *) {
+            let interaction = UIPointerInteraction(delegate: nil)
+            button.addInteraction(interaction)
+        }
+
         return button
     }()
 
@@ -118,6 +135,12 @@ class BingeControlsViewController: UIViewController {
         button.addTarget(self, action: #selector(togglePictureInPictureMode), for: .touchUpInside)
         button.isHidden = !AVPictureInPictureController.isPictureInPictureSupported()
         button.isEnabled = false
+
+        if #available(iOS 13.4, *) {
+            let interaction = UIPointerInteraction(delegate: nil)
+            button.addInteraction(interaction)
+        }
+
         return button
     }()
 
@@ -138,6 +161,12 @@ class BingeControlsViewController: UIViewController {
         button.setImage(UIImage.bingeImage(named: "ios-options"), for: .normal)
         button.addTarget(self, action: #selector(showMediaSelection), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+
+        if #available(iOS 13.4, *) {
+            let interaction = UIPointerInteraction(delegate: nil)
+            button.addInteraction(interaction)
+        }
+
         return button
     }()
 
@@ -176,6 +205,12 @@ class BingeControlsViewController: UIViewController {
         button.addTarget(self, action: #selector(playPauseVideo), for: .touchUpInside)
         button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
+
+        if #available(iOS 13.4, *) {
+            let interaction = UIPointerInteraction(delegate: nil)
+            button.addInteraction(interaction)
+        }
+
         return button
     }()
 
@@ -192,6 +227,12 @@ class BingeControlsViewController: UIViewController {
 
         button.addTarget(self, action: #selector(seekForwards), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+
+        if #available(iOS 13.4, *) {
+            let interaction = UIPointerInteraction(delegate: nil)
+            button.addInteraction(interaction)
+        }
+
         return button
     }()
 
@@ -209,6 +250,12 @@ class BingeControlsViewController: UIViewController {
 
         button.addTarget(self, action: #selector(seekBackwards), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+
+        if #available(iOS 13.4, *) {
+            let interaction = UIPointerInteraction(delegate: nil)
+            button.addInteraction(interaction)
+        }
+
         return button
     }()
 

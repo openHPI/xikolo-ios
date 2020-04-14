@@ -78,7 +78,6 @@ PODS:
   - SDWebImage (5.6.0):
     - SDWebImage/Core (= 5.6.0)
   - SDWebImage/Core (5.6.0)
-  - SimulatorStatusMagic (2.4.1)
   - SwiftLint (0.39.1)
 
 DEPENDENCIES:
@@ -93,7 +92,6 @@ DEPENDENCIES:
   - R.swift (~> 5.0)
   - ReachabilitySwift (~> 5.0)
   - SDWebImage (~> 5.0)
-  - SimulatorStatusMagic (~> 2.1)
   - SwiftLint (~> 0.22)
 
 SPEC REPOS:
@@ -120,7 +118,6 @@ SPEC REPOS:
     - R.swift.Library
     - ReachabilitySwift
     - SDWebImage
-    - SimulatorStatusMagic
     - SwiftLint
 
 EXTERNAL SOURCES:
@@ -157,9 +154,8 @@ SPEC CHECKSUMS:
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SDWebImage: 21b19f56b4226cdfe3aefe4e6848dc43ed129a86
-  SimulatorStatusMagic: 28d4a9d1a500ac7cea0b2b5a43c1c6ddb40ba56c
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
 
-PODFILE CHECKSUM: d348325dc61a90f8d9afb03ed7fe8e78f60a82df
+PODFILE CHECKSUM: d90374f9fdeea7cc1d3ab1908d57df534253d88e
 
 COCOAPODS: 1.9.1

@@ -66,6 +66,8 @@ class CourseCell: UICollectionViewCell {
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.gradientView.frame.size.width, height: self.gradientView.frame.size.height)
         self.gradientView.layer.insertSublayer(gradient, at: 0)
         self.gradientView.layer.roundCorners(for: .default)
+
+        self.shadowView.addDefaultPointerInteraction()
     }
 
     override func layoutSubviews() {

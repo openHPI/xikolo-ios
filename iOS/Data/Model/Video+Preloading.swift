@@ -16,7 +16,15 @@ extension Video: PreloadableCourseItemContent {
 extension Video: DetailedCourseItemContent {
 
     var detailedData: [DetailedDataItem] {
-        return self.slidesURL != nil ? [.slides] : []
+        var detailedData = [
+            DetailedDataItem.timeEffort(duration: TimeInterval(self.duration)),
+        ]
+
+        if self.slidesURL != nil {
+            detailedData.append(.slides)
+        }
+
+        return detailedData
     }
 
 }

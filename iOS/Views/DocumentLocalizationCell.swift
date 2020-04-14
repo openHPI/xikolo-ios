@@ -31,6 +31,9 @@ class DocumentLocalizationCell: UITableViewCell {
                                        selector: #selector(handleAssetDownloadProgressNotification(_:)),
                                        name: DownloadProgress.didChangeNotification,
                                        object: nil)
+
+        self.addDefaultPointerInteraction()
+        self.actionsButton.addDefaultPointerInteraction()
     }
 
     func configure(for documentLocalization: DocumentLocalization) {

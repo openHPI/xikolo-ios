@@ -47,11 +47,6 @@ class SpotlightHelper {
     }
 
     private func addSearchIndex(for course: Course) {
-        guard let url = course.url else {
-            log.warning("Failed to add search index for course (\(course.title ?? "")): no course url")
-            return
-        }
-
         // Create an attribute set to describe an item.
         let attributeSet = CSSearchableItemAttributeSet(itemContentType: "Course")
         // Add metadata that supplies details about the item.
@@ -59,7 +54,7 @@ class SpotlightHelper {
         attributeSet.contentDescription = [course.abstract, course.teachers].compactMap { $0 }.joined(separator: " ")
 
         // Create an item with a unique identifier, a domain identifier, and the attribute set you created earlier.
-        let item = CSSearchableItem(uniqueIdentifier: url.absoluteString,
+        let item = CSSearchableItem(uniqueIdentifier: course.url.absoluteString,
                                     domainIdentifier: self.getReverseDomain(appendix: "course"),
                                     attributeSet: attributeSet)
         CSSearchableIndex.default().indexSearchableItems([item]) { error in
@@ -73,12 +68,7 @@ class SpotlightHelper {
     }
 
     private func removeSearchIndex(for course: Course) {
-        guard let url = course.url else {
-            log.warning("Failed to remove search index for course (\(course.title ?? "")): no course url")
-            return
-        }
-
-        CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [url.absoluteString]) { error in
+        CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [course.url.absoluteString]) { error in
             if let error = error {
                 ErrorManager.shared.report(error)
                 log.error(error.localizedDescription)
@@ -89,15 +79,10 @@ class SpotlightHelper {
     }
 
     func setUserActivity(for course: Course) {
-        guard let url = course.url else {
-            log.warning("Failed to set search user activity for course (\(course.title ?? "")): no course url")
-            return
-        }
-
         let activity = NSUserActivity(activityType: self.getReverseDomain(appendix: "course.view"))
         activity.title = "Viewing Course"
         activity.requiredUserInfoKeys = ["course_id"]
-        activity.webpageURL = url
+        activity.webpageURL = course.url
         activity.isEligibleForSearch = true
         activity.isEligibleForHandoff = true
         activity.isEligibleForPublicIndexing = !course.hidden

@@ -67,12 +67,9 @@ public final class Course: NSManagedObject {
         return self.language.flatMap(Self.localize)
     }
 
-    public var url: URL? {
-        guard let slug = self.slug else {
-            return nil
-        }
-
-        return Routes.courses.appendingPathComponent(slug)
+    public var url: URL {
+        let slugOrId = self.slug ?? self.id
+        return Routes.courses.appendingPathComponent(slugOrId)
     }
 
     public var hasEnrollment: Bool {

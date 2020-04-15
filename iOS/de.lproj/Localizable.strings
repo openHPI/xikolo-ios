@@ -254,6 +254,9 @@
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Eingeschrieben";
 
+/* title of external course button */
+"enrollment.button.external.title" = "Externen Kurs besuchen";
+
 /* title of Course enrollment options button */
 "enrollment.button.not-enrolled.title" = "Einschreiben";
 

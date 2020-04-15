@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>host</key>
+	<string>lernen.cloud</string>
+	<key>imprintURL</key>
+	<string>https://lernen.cloud/pages/imprint</string>
+	<key>privacyURL</key>
+	<string>https://lernen.cloud/pages/privacy</string>
+	<key>faqURL</key>
+	<string>https://lernen.cloud/pages/faq</string>
+	<key>copyrightName</key>
+	<string>HPI</string>
+	<key>colors</key>
+	<dict>
+		<key>primary</key>
+		<string>#DD6108</string>
+		<key>secondary</key>
+		<string>#F6A800</string>
+		<key>tertiary</key>
+		<string>#5A6065</string>
+		<key>primaryLight</key>
+		<string>#f4cfb4</string>
+		<key>window</key>
+		<string>primary</string>
+	</dict>
+	<key>features</key>
+	<dict>
+		<key>enableChannels</key>
+		<false/>
+		<key>enableDocuments</key>
+		<false/>
+		<key>enableRecap</key>
+		<false/>
+		<key>showCourseDates</key>
+		<true/>
+		<key>showCourseTeachers</key>
+		<true/>
+		<key>enableHelpdeskReactivationTopic</key>
+		<false/>
+	</dict>
+	<key>courseClassifierSearchFilters</key>
+	<dict>
+		<key>category</key>
+		<string>targetAudience</string>
+	</dict>
+</dict>
+</plist>

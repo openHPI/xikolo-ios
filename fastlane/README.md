@@ -82,6 +82,11 @@ fastlane ios make_screenshots_openwho
 fastlane ios make_screenshots_moochouse
 ```
 
+### ios make_screenshots_lernencloud
+```
+fastlane ios make_screenshots_lernencloud
+```
+
 ### ios upload_screenshots
 ```
 fastlane ios upload_screenshots
@@ -107,6 +112,11 @@ fastlane ios upload_screenshots_openwho
 ### ios upload_screenshots_moochouse
 ```
 fastlane ios upload_screenshots_moochouse
+```
+
+### ios upload_screenshots_lernencloud
+```
+fastlane ios upload_screenshots_lernencloud
 ```
 
 ### ios upload_metadata
@@ -136,6 +146,11 @@ fastlane ios upload_metadata_openwho
 fastlane ios upload_metadata_moochouse
 ```
 
+### ios upload_metadata_lernencloud
+```
+fastlane ios upload_metadata_lernencloud
+```
+
 ### ios release
 ```
 fastlane ios release
@@ -163,6 +178,11 @@ fastlane ios release_openwho
 fastlane ios release_moochouse
 ```
 
+### ios release_lernencloud
+```
+fastlane ios release_lernencloud
+```
+
 ### ios beta
 ```
 fastlane ios beta
@@ -188,6 +208,11 @@ fastlane ios beta_openwho
 ### ios beta_moochouse
 ```
 fastlane ios beta_moochouse
+```
+
+### ios beta_lernencloud
+```
+fastlane ios beta_lernencloud
 ```
 
 ### ios tag_release
@@ -218,6 +243,11 @@ fastlane ios refresh_dsyms_openwho
 ### ios refresh_dsyms_moochouse
 ```
 fastlane ios refresh_dsyms_moochouse
+```
+
+### ios refresh_dsyms_lernencloud
+```
+fastlane ios refresh_dsyms_lernencloud
 ```
 
 ### ios changelog

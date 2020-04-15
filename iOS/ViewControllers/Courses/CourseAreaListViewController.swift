@@ -104,7 +104,9 @@ class CourseAreaListViewController: UICollectionViewController {
     }
 
     private func calculatePreferredSize() {
-        let contentSize = CGSize(width: self.collectionView.contentSize.width, height: self.cellHeight + 2 * 4)
+        let numberOfAreas = self.delegate?.accessibleAreas.count ?? 0
+        let height = numberOfAreas > 1 ? self.cellHeight + 2 * 4 : 0
+        let contentSize = CGSize(width: self.collectionView.contentSize.width, height: height)
         self.preferredContentSize = contentSize
     }
 

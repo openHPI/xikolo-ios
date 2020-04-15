@@ -1,5 +1,9 @@
-name: Pull Request
+name: Allround Check
 on:
+  push:
+    branches:
+      - master
+      - dev
   pull_request:
     branches:
       - dev

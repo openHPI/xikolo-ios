@@ -745,6 +745,10 @@
 		5058578321344C75006A5D15 /* PseudoCourseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PseudoCourseCell.xib; sourceTree = "<group>"; };
 		5058578521351CBD006A5D15 /* PseudoCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PseudoCourseCell.swift; sourceTree = "<group>"; };
 		505B0D162446FFC600F88CAD /* xikolo 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 11.xcdatamodel"; sourceTree = "<group>"; };
+		505B0D172448413500F88CAD /* openHPI-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openHPI-UITests.xcconfig"; path = "Xcode Configurations/openhpi/openHPI-UITests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		505B0D182448466800F88CAD /* openSAP-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openSAP-UITests.xcconfig"; path = "Xcode Configurations/opensap/openSAP-UITests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		505B0D192448469000F88CAD /* opneWHO-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "opneWHO-UITests.xcconfig"; path = "Xcode Configurations/openwho/opneWHO-UITests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		505B0D1A244846A700F88CAD /* moocHOUSE-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "moocHOUSE-UITests.xcconfig"; path = "Xcode Configurations/moochouse/moocHOUSE-UITests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		50604585206BCE10009569D1 /* BrandColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandColors.swift; sourceTree = "<group>"; };
 		50604592206BCF48009569D1 /* URL+URLQueryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+URLQueryItem.swift"; sourceTree = "<group>"; };
 		5060A5211F177304007896FF /* DetailedCourseItemContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedCourseItemContent.swift; sourceTree = "<group>"; };
@@ -856,7 +860,7 @@
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50CF1F3E20DCCF4F0011BFE9 /* openHPI-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
 		50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Release.xcconfig"; sourceTree = "<group>"; };
-		50CF201620DCDBFC0011BFE9 /* openHPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openHPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		50CF201620DCDBFC0011BFE9 /* openHPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = openHPI.app; path = openhpi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50CF201820DCDD720011BFE9 /* openHPI-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-Common.xcconfig"; sourceTree = "<group>"; };
 		50CF202D20DCE6680011BFE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseCertificates.storyboard; sourceTree = "<group>"; };
@@ -1641,6 +1645,7 @@
 				50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */,
 				50B431CF23E4542B006C7BC4 /* openHPI-Today-Debug.xcconfig */,
 				50B431D023E4543C006C7BC4 /* openHPI-Today-Release.xcconfig */,
+				505B0D172448413500F88CAD /* openHPI-UITests.xcconfig */,
 			);
 			path = openHPI;
 			sourceTree = "<group>";
@@ -1653,6 +1658,7 @@
 				50D65A1C20E023B100DFD183 /* openWHO-iOS-Release.xcconfig */,
 				50DA821A23E4758D003BEDE1 /* openWHO-Today-Debug.xcconfig */,
 				50DA821B23E475A0003BEDE1 /* openWHO-Today-Release.xcconfig */,
+				505B0D192448469000F88CAD /* opneWHO-UITests.xcconfig */,
 			);
 			path = openWHO;
 			sourceTree = "<group>";
@@ -1665,6 +1671,7 @@
 				50D65A2020E023C100DFD183 /* moocHOUSE-iOS-Release.xcconfig */,
 				50DA821C23E475C9003BEDE1 /* moocHOUSE-Today-Debug.xcconfig */,
 				50DA821D23E475DA003BEDE1 /* moocHOUSE-Today-Release.xcconfig */,
+				505B0D1A244846A700F88CAD /* moocHOUSE-UITests.xcconfig */,
 			);
 			path = moocHOUSE;
 			sourceTree = "<group>";
@@ -1677,6 +1684,7 @@
 				50D65A1920E0238000DFD183 /* openSAP-iOS-Release.xcconfig */,
 				50DA821823E4755E003BEDE1 /* openSAP-Today-Debug.xcconfig */,
 				50DA821923E4756F003BEDE1 /* openSAP-Today-Release.xcconfig */,
+				505B0D182448466800F88CAD /* openSAP-UITests.xcconfig */,
 			);
 			path = openSAP;
 			sourceTree = "<group>";
@@ -6438,6 +6446,7 @@
 		};
 		50CF201E20DCE1340011BFE9 /* openHPI-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 505B0D172448413500F88CAD /* openHPI-UITests.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -6544,6 +6553,7 @@
 		};
 		50CF202820DCE15E0011BFE9 /* openHPI-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 505B0D172448413500F88CAD /* openHPI-UITests.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -6648,6 +6658,7 @@
 		};
 		50D65A2720E0295E00DFD183 /* openSAP-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 505B0D182448466800F88CAD /* openSAP-UITests.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -6754,6 +6765,7 @@
 		};
 		50D65A3120E0296C00DFD183 /* openSAP-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 505B0D182448466800F88CAD /* openSAP-UITests.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -6858,6 +6870,7 @@
 		};
 		50D65A3B20E0298D00DFD183 /* openWHO-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 505B0D192448469000F88CAD /* opneWHO-UITests.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -6963,6 +6976,7 @@
 		};
 		50D65A4520E0299A00DFD183 /* moocHOUSE-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 505B0D1A244846A700F88CAD /* moocHOUSE-UITests.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7069,6 +7083,7 @@
 		};
 		50D65A4F20E029A600DFD183 /* openWHO-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 505B0D192448469000F88CAD /* opneWHO-UITests.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7174,6 +7189,7 @@
 		};
 		50D65A5920E029B000DFD183 /* moocHOUSE-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 505B0D1A244846A700F88CAD /* moocHOUSE-UITests.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

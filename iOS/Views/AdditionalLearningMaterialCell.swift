@@ -47,12 +47,12 @@ class AdditionalLearningMaterialCell: UICollectionViewCell {
         }
     }
 
-    func configure(for learningMaterialResourceType: AdditionalLearningMaterialType) {
+    func configure(for learningMaterial: AdditionalLearningMaterial) {
         self.cardView.backgroundColor = Brand.default.colors.window
         self.iconImageView.tintColor = ColorCompatibility.systemBackground.withAlphaComponent(0.95)
-        self.iconImageView.image = learningMaterialResourceType.icon
+        self.iconImageView.image = learningMaterial.imageName.flatMap(UIImage.init(named:))
         self.titleLabel.textColor = ColorCompatibility.systemBackground.withAlphaComponent(0.95)
-        self.titleLabel.text = learningMaterialResourceType.displayName
+        self.titleLabel.text = learningMaterial.title
     }
 
 }
@@ -63,16 +63,4 @@ extension AdditionalLearningMaterialCell {
         return 14
     }
 
-}
-
-extension AdditionalLearningMaterialType {
-
-    var icon: UIImage? {
-        switch self {
-        case .microLearning:
-            return R.image.more.microLearning()
-        case .podcast, .podcasts:
-            return R.image.more.podcasts()
-        }
-    }
 }

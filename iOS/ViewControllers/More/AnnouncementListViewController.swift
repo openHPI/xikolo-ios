@@ -68,8 +68,6 @@ class AnnouncementListViewController: UITableViewController {
     }
 
     private func calculatePreferredSize() {
-//        let targetSize = CGSize(width: self.view.bounds.width, height: UIView.layoutFittingCompressedSize.height)
-//        self.preferredContentSize = self.tableView.systemLayoutSizeFitting(targetSize)
         self.preferredContentSize = self.tableView.contentSize
     }
 

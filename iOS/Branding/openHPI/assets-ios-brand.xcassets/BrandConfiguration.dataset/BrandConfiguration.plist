@@ -57,10 +57,12 @@
 	<key>additionalLearningMaterial</key>
 	<array>
 		<dict>
-			<key>type</key>
-			<string>podcast</string>
+			<key>title</key>
+			<string>Podcast</string>
 			<key>url</key>
 			<string>https://open.hpi.de/pages/podcast</string>
+			<key>imageName</key>
+			<string>More/podcasts</string>
 		</dict>
 	</array>
 	<key>testAccountUserId</key>

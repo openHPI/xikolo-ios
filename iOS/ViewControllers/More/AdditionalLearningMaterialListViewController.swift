@@ -77,8 +77,8 @@ extension AdditionalLearningMaterialListViewController {
         let someCell = collectionView.dequeueReusableCell(withReuseIdentifier: R.nib.additionalLearningMaterialCell, for: indexPath)
         let cell = someCell.require(hint: "Unexpected cell type at \(indexPath), expected cell of type \(AdditionalLearningMaterialCell.self)")
 
-        let additionalLearningMaterialResources = Brand.default.additionalLearningMaterial
-        cell.configure(for: additionalLearningMaterialResources[indexPath.item].type)
+        let additionalLearningMaterial = Brand.default.additionalLearningMaterial
+        cell.configure(for: additionalLearningMaterial[indexPath.item])
 
         return cell
     }

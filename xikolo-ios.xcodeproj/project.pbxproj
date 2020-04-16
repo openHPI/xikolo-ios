@@ -143,9 +143,6 @@
 		5060EC6923831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060EC6823831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift */; };
 		5066DF7A243463B30041BD9B /* CoursePreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5066DF79243463B30041BD9B /* CoursePreview.storyboard */; };
 		5066DF7C243465BB0041BD9B /* CoursePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5066DF7B243465BB0041BD9B /* CoursePreviewViewController.swift */; };
-		5066DF832434B7B70041BD9B /* GoogleService-Info-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5066DF7F2434B7B70041BD9B /* GoogleService-Info-Release.plist */; };
-		5066DF842434B7B70041BD9B /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5066DF812434B7B70041BD9B /* GoogleService-Info-Debug.plist */; };
-		5066DF862434B7FE0041BD9B /* BrandConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5066DF852434B7FE0041BD9B /* BrandConfiguration.plist */; };
 		5067AD362367042E00ADEAB9 /* Binge.h in Headers */ = {isa = PBXBuildFile; fileRef = 5067AD342367042E00ADEAB9 /* Binge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5067AD392367042E00ADEAB9 /* Binge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5067AD322367042E00ADEAB9 /* Binge.framework */; };
 		5067AD3A2367042E00ADEAB9 /* Binge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5067AD322367042E00ADEAB9 /* Binge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -2548,7 +2545,6 @@
 				50CF1FF820DCDBFC0011BFE9 /* TabCourses.storyboard in Resources */,
 				B4E079EB218791A600EA53F5 /* CertificateCell.xib in Resources */,
 				50CF1FFA20DCDBFC0011BFE9 /* Course.storyboard in Resources */,
-				5066DF862434B7FE0041BD9B /* BrandConfiguration.plist in Resources */,
 				508AB2C02109F0A10079EAE5 /* DocumentHeader.xib in Resources */,
 				507D02FF243705240009F12B /* CourseItemPreview.storyboard in Resources */,
 				50467FF0238596710084D7F6 /* TabChannels.storyboard in Resources */,
@@ -2563,10 +2559,8 @@
 				50146FCB2222875E00177E96 /* CourseSearchFilterCell.xib in Resources */,
 				50CF200120DCDBFC0011BFE9 /* CourseCertificates.storyboard in Resources */,
 				50044FD723278F25004D1AD8 /* CourseLearningsVideo.storyboard in Resources */,
-				5066DF832434B7B70041BD9B /* GoogleService-Info-Release.plist in Resources */,
 				50CF200220DCDBFC0011BFE9 /* CourseItemHeader.xib in Resources */,
 				5066DF7A243463B30041BD9B /* CoursePreview.storyboard in Resources */,
-				5066DF842434B7B70041BD9B /* GoogleService-Info-Debug.plist in Resources */,
 				5058578421344C75006A5D15 /* PseudoCourseCell.xib in Resources */,
 				02AA78BB23A0176F00CD13F5 /* CourseProgress.storyboard in Resources */,
 				50CF200320DCDBFC0011BFE9 /* assets-ios.xcassets in Resources */,

@@ -4,7 +4,7 @@
 //
 
 BRAND_NAME = openWHO
-PRODUCT_NAME = openWHO
+PRODUCT_NAME = openwho
 DISPLAY_NAME = OpenWHO
 URL_SCHEME = openwho
 

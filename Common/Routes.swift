@@ -12,7 +12,7 @@ public enum Routes {
         public static let userPlatformValue = "iOS"
 
         public static let userAgentKey = "User-Agent"
-        public static let userAgentValue = "\(UIApplication.appName)/\(UIApplication.appVersion) iOS/\(UIApplication.osVersion) (\(UIApplication.device))"
+        public static let userAgentValue = "\(UIApplication.bundleName)/\(UIApplication.appVersion) iOS/\(UIApplication.osVersion) (\(UIApplication.device))"
 
         public static let acceptKey = "Accept"
         public static let acceptLanguageKey = "Accept-Language"

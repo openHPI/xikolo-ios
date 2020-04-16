@@ -27,6 +27,7 @@ public final class Course: NSManagedObject {
     @NSManaged public var hidden: Bool
     @NSManaged public var enrollable: Bool
     @NSManaged public var external: Bool
+    @NSManaged public var externalURL: URL?
     @NSManaged public var lastVisited: Date?
     @NSManaged public var teaserStream: VideoStream?
     @NSManaged public var categories: String?
@@ -103,6 +104,7 @@ extension Course: JSONAPIPullable {
         self.hidden = try attributes.value(for: "hidden")
         self.enrollable = try attributes.value(for: "enrollable")
         self.external = try attributes.value(for: "external")
+        self.externalURL = try attributes.value(for: "external_url")
         self.teaserStream = try attributes.value(for: "teaser_stream") ?? self.teaserStream
 
         let categoryValues = try attributes.value(for: "classifiers.category") as [String]?

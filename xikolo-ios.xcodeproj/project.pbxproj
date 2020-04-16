@@ -143,7 +143,6 @@
 		5060EC6923831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060EC6823831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift */; };
 		5066DF7A243463B30041BD9B /* CoursePreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5066DF79243463B30041BD9B /* CoursePreview.storyboard */; };
 		5066DF7C243465BB0041BD9B /* CoursePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5066DF7B243465BB0041BD9B /* CoursePreviewViewController.swift */; };
-		5066DF822434B7B70041BD9B /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5066DF7E2434B7B70041BD9B /* assets-ios-brand.xcassets */; };
 		5066DF832434B7B70041BD9B /* GoogleService-Info-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5066DF7F2434B7B70041BD9B /* GoogleService-Info-Release.plist */; };
 		5066DF842434B7B70041BD9B /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5066DF812434B7B70041BD9B /* GoogleService-Info-Debug.plist */; };
 		5066DF862434B7FE0041BD9B /* BrandConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5066DF852434B7FE0041BD9B /* BrandConfiguration.plist */; };
@@ -2570,7 +2569,6 @@
 				5066DF842434B7B70041BD9B /* GoogleService-Info-Debug.plist in Resources */,
 				5058578421344C75006A5D15 /* PseudoCourseCell.xib in Resources */,
 				02AA78BB23A0176F00CD13F5 /* CourseProgress.storyboard in Resources */,
-				5066DF822434B7B70041BD9B /* assets-ios-brand.xcassets in Resources */,
 				50CF200320DCDBFC0011BFE9 /* assets-ios.xcassets in Resources */,
 				50D65A0C20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets in Resources */,
 				828FF16A23EF5DE1006515B5 /* CourseLearningsPeerAssessment.storyboard in Resources */,

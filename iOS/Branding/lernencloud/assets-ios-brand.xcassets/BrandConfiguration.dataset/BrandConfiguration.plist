@@ -40,6 +40,17 @@
 		<key>enableHelpdeskReactivationTopic</key>
 		<false/>
 	</dict>
+	<key>additionalLearningMaterial</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>HPI Schul-Cloud</string>
+			<key>url</key>
+			<string>https://schul-cloud.org/</string>
+			<key>imageName</key>
+			<string>More/schulcloud</string>
+		</dict>
+	</array>
 	<key>courseClassifierSearchFilters</key>
 	<dict>
 		<key>category</key>

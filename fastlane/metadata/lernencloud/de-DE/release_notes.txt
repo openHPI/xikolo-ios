@@ -1,0 +1,1 @@
+../../default/de-DE/release_notes.txt

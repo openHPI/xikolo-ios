@@ -1,0 +1,10 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+#include "../../Pods/Target Support Files/Pods-iOS/Pods-iOS.lernencloud-ios-debug.xcconfig"
+#include "lernencloud-Common.xcconfig"
+#include "../Debug.xcconfig"
+
+PRODUCT_MODULE_NAME = iOS

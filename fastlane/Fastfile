@@ -2,7 +2,7 @@ fastlane_version "2.55.0"
 
 default_platform :ios
 
-flavors = [:openHPI, :openSAP, :openWHO, :moocHOUSE]
+flavors = [:openHPI, :openSAP, :openWHO, :moocHOUSE, :lernencloud]
 fastlane_dir = File.expand_path(File.dirname(__FILE__))
 
 platform :ios do

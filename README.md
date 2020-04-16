@@ -6,7 +6,7 @@
 
 
 <p align="center">
-    iOS application for openHPI, openSAP, mooc.house and OpenWHO
+    iOS application for openHPI, openSAP, mooc.house, lernen.cloud and OpenWHO
 </p>
 
 ### Development toolchain

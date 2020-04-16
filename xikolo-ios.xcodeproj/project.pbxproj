@@ -921,6 +921,7 @@
 		50E0351E213673F8001F963D /* CourseListConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListConfiguration.swift; sourceTree = "<group>"; };
 		50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamingSettingsViewController.swift; sourceTree = "<group>"; };
 		50E16D041F47070A00D67632 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabAccount.strings; sourceTree = "<group>"; };
+		50E3F30524484ADC00317822 /* lernencloud-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "lernencloud-UITests.xcconfig"; sourceTree = "<group>"; };
 		50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DeviceInfo.swift"; sourceTree = "<group>"; };
 		50EFACB01FFE3C0100169C35 /* Optional+require.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+require.swift"; sourceTree = "<group>"; };
 		50EFACBD1FFFB25400169C35 /* SafeCastable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCastable.swift; sourceTree = "<group>"; };
@@ -1577,6 +1578,7 @@
 				5066DF952434BDBC0041BD9B /* lernencloud-iOS-Release.xcconfig */,
 				5066DF972434BDBC0041BD9B /* lernencloud-Today-Debug.xcconfig */,
 				5066DF942434BDBC0041BD9B /* lernencloud-Today-Release.xcconfig */,
+				50E3F30524484ADC00317822 /* lernencloud-UITests.xcconfig */,
 			);
 			path = lernencloud;
 			sourceTree = "<group>";
@@ -6986,6 +6988,7 @@
 		};
 		507D02DE2434C1CD0009F12B /* lernencloud-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50E3F30524484ADC00317822 /* lernencloud-UITests.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7584,6 +7587,7 @@
 		};
 		507D02E82434C1E60009F12B /* lernencloud-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50E3F30524484ADC00317822 /* lernencloud-UITests.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

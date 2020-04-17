@@ -5,9 +5,13 @@
 
 import UIKit
 
+let bundleIdentifier = Bundle.main.bundleIdentifier
+
 @available(iOS 13.0, *)
 enum ActivityIdentifier: String {
-    case openCourse = "com.xikolo.openCourse"
+//TODO use dynamic Model.identifier.bundleidentifier here
+    case openCourse = "de.xikolo.openhpi.debug.openCourse"
+    case standard = "de.xikolo.openhpi.debug.standard"
 
     func sceneConfiguration() -> UISceneConfiguration {
         switch self {
@@ -16,7 +20,11 @@ enum ActivityIdentifier: String {
                 name: SceneConfigurationNames.openCourse,
                 sessionRole: .windowApplication
             )
+        case .standard:
+            return UISceneConfiguration(
+                name: SceneConfigurationNames.standard,
+                sessionRole: .windowApplication
+            )
         }
     }
-
 }

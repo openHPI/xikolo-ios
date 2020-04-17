@@ -41,19 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Select initial tab
         let tabToSelect: XikoloTabBarController.Tabs = UserProfileHelper.shared.isLoggedIn ? .dashboard : .courses
         self.tabBarController.selectedIndex = tabToSelect.index
-
-        if let userActivity = connectionOptions.userActivities.first {
-
-            if userActivity.title == "openCourse" {
-                if let courseID = userActivity.userInfo?["courseID"] as? String {
-                    let request = CourseHelper.FetchRequest.course(withSlugOrId: courseID)
-                    if let course = CoreDataHelper.viewContext.fetchSingle(request).value {
-                        self.appNavigator.show(course: course)
-                        // TODO: Remove tabBarController from hierarchy, so the scene closes when course
-                    }
-                }
-            }
-        }
+    
     }
 
     func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {

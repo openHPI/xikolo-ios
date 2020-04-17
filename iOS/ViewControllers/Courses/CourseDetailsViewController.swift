@@ -19,6 +19,8 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet private weak var dateView: UILabel!
     @IBOutlet private weak var teacherView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
+    @IBOutlet private weak var notEnrollableView: UIView!
+    @IBOutlet private weak var enrollmentButtonWrapper: UIView!
     @IBOutlet private weak var enrollmentButton: LoadingButton!
     @IBOutlet private weak var enrollmentOptionsButton: UIButton!
 
@@ -47,6 +49,7 @@ class CourseDetailsViewController: UIViewController {
         self.teacherView.isHidden = !Brand.default.features.showCourseTeachers
 
         self.enrollmentButton.layer.roundCorners(for: .default)
+        self.notEnrollableView.layer.roundCorners(for: .default)
 
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
@@ -125,6 +128,10 @@ class CourseDetailsViewController: UIViewController {
 
         self.enrollmentButton.isEnabled = self.course.hasEnrollment || ReachabilityHelper.hasConnection
         self.enrollmentOptionsButton.isHidden = !self.course.hasEnrollment
+
+        let hasEnrollmentOrIsEnrollable = self.course.hasEnrollment || self.course.enrollable
+        self.enrollmentButtonWrapper.isHidden = !hasEnrollmentOrIsEnrollable
+        self.notEnrollableView.isHidden = hasEnrollmentOrIsEnrollable
     }
 
     @objc func reachabilityChanged() {

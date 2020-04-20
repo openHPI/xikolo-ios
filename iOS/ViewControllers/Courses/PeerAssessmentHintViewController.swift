@@ -41,6 +41,8 @@ class PeerAssessmentHintViewController: UIViewController {
     @IBOutlet private weak var instructionsView: UITextView!
     @IBOutlet private weak var launchButton: UIButton!
     @IBOutlet private weak var deadlineExpiredView: UIView!
+    @IBOutlet private weak var peerAssessmentInfoView: UIStackView!
+    @IBOutlet weak var loadingScreen: UIView!
 
     weak var delegate: CourseItemViewController?
 
@@ -60,6 +62,11 @@ class PeerAssessmentHintViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.titleLabel.text = self.courseItem.title
+        self.deadlineExpiredView.isHidden = true
+        self.launchInfoView.isHidden = true
+        self.peerAssessmentInfoView.isHidden = true
+
         self.launchButton.layer.roundCorners(for: .default)
         self.launchButton.backgroundColor = Brand.default.colors.primary
 
@@ -74,11 +81,13 @@ class PeerAssessmentHintViewController: UIViewController {
     func updateView() {
         guard let peerAssessment = self.courseItem?.content as? PeerAssessment else { return }
 
+        self.loadingScreen.isHidden = true
+        self.launchInfoView.isHidden = false
+        self.peerAssessmentInfoView.isHidden = false
+
         let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
         self.deadlineExpiredView.isHidden = !deadlineExpired
         self.launchInfoView.isHidden = deadlineExpired
-
-        self.titleLabel.text = courseItem.title
 
         // Set exercise type label
         switch self.courseItem.exerciseType {

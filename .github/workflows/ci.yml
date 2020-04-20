@@ -63,7 +63,7 @@ jobs:
         run: |
           bundle exec fastlane localize
           git status --porcelain -- ':!.bundle'
-          git diff -- ':!.bundle'
+          git diff --quiet -- ':!.bundle'
       
       - name: Run code validation
         run: bundle exec danger --verbose

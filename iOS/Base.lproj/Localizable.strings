@@ -212,9 +212,6 @@
 /* description for empty certificates list */
 "empty-view.account.certificates.no-certificates.description" = "Complete courses with the given requirements to earn certificates";
 
-/* title for empty certificates list */
-"empty-view.account.certificates.no-certificates.title" = "You haven't earned any certificates yet";
-
 /* description for empty download list */
 "empty-view.account.download.no-downloads.description" = "Go to a course to download videos, slides and more for offline usage";
 

@@ -62,8 +62,9 @@ jobs:
       - name: Check localization
         run: |
           bundle exec fastlane localize
+          echo "\nThe following files have incomplete localization:"
           git status --porcelain -- ':!.bundle'
-          git diff -- ':!.bundle'
+          git diff --quiet -- ':!.bundle'
       
       - name: Run code validation
         run: bundle exec danger --verbose

@@ -82,7 +82,6 @@ class PeerAssessmentHintViewController: UIViewController {
         guard let peerAssessment = self.courseItem?.content as? PeerAssessment else { return }
 
         self.loadingScreen.isHidden = true
-        self.launchInfoView.isHidden = false
         self.peerAssessmentInfoView.isHidden = false
 
         let deadlineExpired = self.courseItem?.deadline?.inPast ?? false

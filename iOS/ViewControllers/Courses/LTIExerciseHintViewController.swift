@@ -36,6 +36,8 @@ class LTIExerciseHintViewController: UIViewController {
     @IBOutlet private weak var deadlineDateView: UIView!
     @IBOutlet private weak var deadlineLabel: UILabel!
     @IBOutlet private weak var instructionsView: UITextView!
+    @IBOutlet weak var infoView: UIStackView!
+    @IBOutlet weak var loadingScreen: UIView!
     @IBOutlet private weak var launchButton: UIButton!
 
     weak var delegate: CourseItemViewController?
@@ -56,6 +58,10 @@ class LTIExerciseHintViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.itemTitleLabel.text = self.courseItem?.title
+        self.infoView.isHidden = true
+        self.loadingScreen.isHidden = false
+
         self.launchButton.layer.roundCorners(for: .default)
         self.launchButton.backgroundColor = Brand.default.colors.primary
 
@@ -70,7 +76,8 @@ class LTIExerciseHintViewController: UIViewController {
     func updateView() {
         guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }
 
-        self.itemTitleLabel.text = self.courseItem?.title
+        self.loadingScreen.isHidden = true
+        self.infoView.isHidden = false
 
         // Set exercise type label
         switch self.courseItem.exerciseType {

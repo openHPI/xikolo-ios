@@ -45,7 +45,7 @@
 	<string>Upload photos</string>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>com.xikolo.openCourse</string>
+		<string>de.xikolo.openhpi.debug.openCourse</string>
 	</array>
 	<key>UIAppFonts</key>
 	<array>

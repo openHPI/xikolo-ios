@@ -129,7 +129,7 @@ class CourseDetailsViewController: UIViewController {
         self.enrollmentButton.isEnabled = self.course.hasEnrollment || ReachabilityHelper.hasConnection
         self.enrollmentOptionsButton.isHidden = !self.course.hasEnrollment
 
-        let hasEnrollmentOrIsEnrollable = self.course.hasEnrollment || self.course.enrollable
+        let hasEnrollmentOrIsEnrollable = self.course.hasEnrollment || self.course.enrollable || self.course.external
         self.enrollmentButtonWrapper.isHidden = !hasEnrollmentOrIsEnrollable
         self.notEnrollableView.isHidden = hasEnrollmentOrIsEnrollable
     }

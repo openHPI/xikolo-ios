@@ -2252,6 +2252,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 502E71342018D8BF007FC8C0 /* Build configuration list for PBXNativeTarget "iOS-UITests" */;
 			buildPhases = (
+				5032441F245029A500D51EAD /* Copy Credentials */,
 				502E71272018D8BF007FC8C0 /* Sources */,
 				502E71282018D8BF007FC8C0 /* Frameworks */,
 				502E71292018D8BF007FC8C0 /* Resources */,
@@ -2601,6 +2602,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5032441F245029A500D51EAD /* Copy Credentials */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Credentials";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/Build\\ Phases/copy-credentials.sh\n";
+		};
 		507661A8242B2B7E00C19E34 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

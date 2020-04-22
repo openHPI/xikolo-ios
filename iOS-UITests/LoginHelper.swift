@@ -9,11 +9,9 @@ class LoginHelper { // swiftlint:disable:this convenience_type
 
     static var loginCredentials: (email: String, password: String) {
         let bundle = Bundle(for: LoginHelper.self)
-        let brandName = bundle.object(forInfoDictionaryKey: "BRAND_NAME") as? String
-        let brandCredentialsPath = brandName.flatMap { bundle.path(forResource: "Credentials-\($0)", ofType: "plist") }
-        let defaultCredentialsPath = bundle.path(forResource: "Credentials", ofType: "plist")
+        let credentialsPath = bundle.path(forResource: "Credentials", ofType: "plist")
 
-        guard let path = brandCredentialsPath ?? defaultCredentialsPath else {
+        guard let path = credentialsPath else {
             XCTFail("Credentials.plist not found")
             return (email: "", password: "")
         }

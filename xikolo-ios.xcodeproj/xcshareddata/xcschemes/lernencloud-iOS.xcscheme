@@ -20,6 +20,20 @@
                ReferencedContainer = "container:xikolo-ios.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "50761B3E20FCAC5900CEDAF9"
+               BuildableName = "iOS-Tests.xctest"
+               BlueprintName = "iOS-Tests"
+               ReferencedContainer = "container:xikolo-ios.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

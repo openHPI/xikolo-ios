@@ -9,16 +9,16 @@ import UIKit
 @available(iOS 13.0, *)
 class OpenCourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    private lazy var courseViewController: CourseViewController = {
-        let courseViewController = CourseViewController.init()
+    private lazy var courseNavigationController: CourseNavigationController = {
+        let courseNavigationController = R.storyboard.course.instantiateInitialViewController().require()
 
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains("-forceDarkMode") {
-            courseViewController.overrideUserInterfaceStyle = .dark
+            courseNavigationController.overrideUserInterfaceStyle = .dark
         }
         #endif
 
-        return courseViewController
+        return courseNavigationController
     }()
 
     var window: UIWindow?
@@ -26,9 +26,23 @@ class OpenCourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
     private var shortcutItemToProcess: UIApplicationShortcutItem?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
+            print(userActivity)
+        }
+
+        let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity
+        guard let courseId = userActivity?.userInfo?["courseID"] as? String else { return } // XXX: really return?
+
+        let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: courseId)
+        guard let course = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value else { return }
+
+        let topViewController = self.courseNavigationController.topViewController.require(hint: "Top view controller required")
+        let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
+        courseViewController.course = course
+
         if let windowScene = scene as? UIWindowScene {
             self.window = UIWindow(windowScene: windowScene)
-            self.window?.rootViewController = self.courseViewController // XXX: Set course vc here
+            self.window?.rootViewController = self.courseNavigationController
             self.window?.tintColor = Brand.default.colors.window
             self.window?.makeKeyAndVisible()
         }

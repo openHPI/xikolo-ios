@@ -178,7 +178,19 @@ class CourseNavigationController: UINavigationController {
     }
 
     @objc func closeCourse() {
-        super.dismiss(animated: trueUnlessReduceMotionEnabled)
+        if #available(iOS 13, *) {
+            if let scene = self.view.window?.windowScene, scene.delegate is OpenCourseSceneDelegate {
+                let options = UIWindowSceneDestructionRequestOptions()
+                options.windowDismissalAnimation = .decline
+                UIApplication.shared.requestSceneSessionDestruction(scene.session, options: options) { _ in
+                    log.warning("failed to close course scene")
+                }
+            } else {
+                super.dismiss(animated: trueUnlessReduceMotionEnabled)
+            }
+        } else {
+            super.dismiss(animated: trueUnlessReduceMotionEnabled)
+        }
     }
 
 }

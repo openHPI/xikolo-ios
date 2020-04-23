@@ -118,11 +118,17 @@ class XikoloTabBarController: UITabBarController {
 
         self.tabBar.isTranslucent = false
 
-        self.messageLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: XikoloTabBarController.messageViewHeight)
         self.messageLabel.textAlignment = .center
         self.messageLabel.font = UIFont.systemFont(ofSize: XikoloTabBarController.messageLabelFontSize)
         self.messageView.addSubview(self.messageLabel)
-        self.messageLabel.autoresizingMask = [.flexibleWidth]
+
+        self.messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.messageLabel.topAnchor.constraint(equalTo: self.messageView.topAnchor),
+            self.messageLabel.leadingAnchor.constraint(equalTo: self.messageView.leadingAnchor),
+            self.messageLabel.trailingAnchor.constraint(equalTo: self.messageView.trailingAnchor),
+            self.messageLabel.heightAnchor.constraint(equalToConstant: XikoloTabBarController.messageViewHeight),
+        ])
 
         self.messageView.frame = CGRect(x: 0, y: self.tabBar.frame.height, width: self.view.frame.width, height: 0)
         self.tabBar.addSubview(self.messageView)

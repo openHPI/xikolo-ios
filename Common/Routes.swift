@@ -24,7 +24,7 @@ public enum Routes {
 
         public static let authKey = "Authorization"
         public static let authValuePrefix = "Token token="
-        public static let apiVersionExpirationDate = "X-Api-Version-Expiration-Date"
+        public static let apiVersionExpirationDate = "x-api-version-expiration-date"
     }
 
     public enum HeaderParameter {

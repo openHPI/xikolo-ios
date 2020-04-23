@@ -113,14 +113,6 @@ class XikoloTabBarController: UITabBarController {
         }
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(adjustViewForKeyboardShow(_:)),
-                                               name: APIStatus.didChangeNotification,
-                                               object: nil)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -135,6 +127,11 @@ class XikoloTabBarController: UITabBarController {
         self.messageView.frame = CGRect(x: 0, y: self.tabBar.frame.height, width: self.view.frame.width, height: 0)
         self.tabBar.addSubview(self.messageView)
         self.messageView.autoresizingMask = [.flexibleWidth]
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(adjustViewForKeyboardShow(_:)),
+                                               name: APIStatus.didChangeNotification,
+                                               object: nil)
     }
 
     override func viewDidLayoutSubviews() {

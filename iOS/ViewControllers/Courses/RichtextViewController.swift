@@ -24,6 +24,8 @@ class RichtextViewController: UIViewController {
     @IBOutlet private weak var timeEffortLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var scrollViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var loadingScreen: UIView!
+    @IBOutlet weak var richtextInfoView: UIStackView!
 
     private var courseItemObserver: ManagedObjectObserver?
 
@@ -40,6 +42,10 @@ class RichtextViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.titleView.text = self.courseItem.title
+        self.richtextInfoView.isHidden = true
+        self.loadingScreen.isHidden = false
 
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero
@@ -62,7 +68,8 @@ class RichtextViewController: UIViewController {
     private func updateView() {
         guard self.viewIfLoaded != nil else { return }
 
-        self.titleView.text = self.courseItem.title
+        self.loadingScreen.isHidden = true
+        self.richtextInfoView.isHidden = false
 
         // Set time effort label
         let roundedTimeEffort = ceil(TimeInterval(self.courseItem.timeEffort) / 60) * 60 // round up to full minutes

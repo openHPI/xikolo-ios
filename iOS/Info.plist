@@ -35,6 +35,8 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>0</string>
+	<key>COURSE_OPEN</key>
+	<string>$(COURSE_OPEN)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -45,7 +47,7 @@
 	<string>Upload photos</string>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>de.xikolo.openhpi.debug.openCourse</string>
+		<string>$(COURSE_OPEN)</string>
 	</array>
 	<key>UIAppFonts</key>
 	<array>

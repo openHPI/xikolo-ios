@@ -9,41 +9,36 @@ import CoreData
 import Foundation
 import UIKit
 
-final class StreamPersistenceManager: NSObject, PersistenceManager {
+enum StreamPersistenceManagerConfiguration: PersistenceManagerConfiguration {
 
+    typealias Resource = Video
     typealias Session = AVAssetDownloadURLSession
 
-    static let shared = StreamPersistenceManager()
+    static let keyPath = \Video.localFileBookmark
     static let downloadType = "stream"
     static let titleForFailedDownloadAlert = NSLocalizedString("alert.download-error.stream.title",
                                                                comment: "title of alert for stream download errors")
 
-    let keyPath: ReferenceWritableKeyPath<Video, NSData?> = \Video.localFileBookmark
+    static func newFetchRequest() -> NSFetchRequest<Video> {
+        return Video.fetchRequest()
+    }
 
-    var activeDownloads: [URLSessionTask: String] = [:]
-    var progresses: [String: Double] = [:]
-    var didRestorePersistenceManager: Bool = false
+}
+
+final class StreamPersistenceManager: PersistenceManager<StreamPersistenceManagerConfiguration> {
+
+    static let shared = StreamPersistenceManager()
 
     private var assetTitlesForRecourseIdentifiers: [String: String] = [:]
     private var mediaSelectionForDownloadTask: [AVAssetDownloadTask: AVMediaSelection] = [:]
 
-    lazy var persistentContainerQueue = self.createPersistenceContainerQueue()
-    lazy var session: AVAssetDownloadURLSession = {
+    override func newDownloadSession() -> AVAssetDownloadURLSession {
         let sessionIdentifier = "asset-download"
         let backgroundConfiguration = URLSessionConfiguration.background(withIdentifier: sessionIdentifier)
         return AVAssetDownloadURLSession(configuration: backgroundConfiguration, assetDownloadDelegate: self, delegateQueue: OperationQueue.main)
-    }()
-
-    var fetchRequest: NSFetchRequest<Video> {
-        return Video.fetchRequest()
     }
 
-    override init() {
-        super.init()
-        self.startListeningToDownloadProgressChanges()
-    }
-
-    func downloadTask(with url: URL, for resource: Video, on session: AVAssetDownloadURLSession) -> URLSessionTask? {
+    override func downloadTask(with url: URL, for resource: Video, on session: AVAssetDownloadURLSession) -> URLSessionTask? {
         let assetTitleCourse = resource.item?.section?.course?.slug ?? "Unknown course"
         let assetTitleItem = resource.item?.title ?? "Untitled video"
         let assetTitle = "\(assetTitleItem) (\(assetTitleCourse))".safeAsciiString() ?? "Untitled video"
@@ -64,7 +59,7 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
         self.startDownload(with: url, for: video)
     }
 
-    func startSupplementaryDownloads(for task: URLSessionTask, with resourceIdentifier: String) -> Bool {
+    override func startSupplementaryDownloads(for task: URLSessionTask, with resourceIdentifier: String) -> Bool {
         guard let assetDownloadTask = task as? AVAssetDownloadTask else { return false }
         guard let (mediaSelectionGroup, mediaSelectionOption) = self.nextMediaSelection(assetDownloadTask.urlAsset) else { return false }
         guard let originalMediaSelection = self.mediaSelectionForDownloadTask[assetDownloadTask] else { return false }
@@ -86,11 +81,11 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
         return true
     }
 
-    func resourceModificationAfterStartingDownload(for resource: Video) {
+    override func resourceModificationAfterStartingDownload(for resource: Video) {
         resource.downloadDate = Date()
     }
 
-    func resourceModificationAfterDeletingDownload(for resource: Video) {
+    override func resourceModificationAfterDeletingDownload(for resource: Video) {
         resource.downloadDate = nil
     }
 
@@ -104,15 +99,15 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
         ]
     }
 
-    func didStartDownload(for resource: Video) {
+    override func didStartDownload(for resource: Video) {
         TrackingHelper.createEvent(.videoDownloadStart, resourceType: .video, resourceId: resource.id, on: nil, context: self.trackingContext(for: resource))
     }
 
-    func didCancelDownload(for resource: Video) {
+    override func didCancelDownload(for resource: Video) {
         TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: resource.id, on: nil, context: self.trackingContext(for: resource))
     }
 
-    func didFinishDownload(for resource: Video) {
+    override func didFinishDownload(for resource: Video) {
         TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resource.id, on: nil, context: self.trackingContext(for: resource))
     }
 
@@ -139,6 +134,11 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
 
         // At this point all media options have been downloaded.
         return nil
+    }
+
+    override func fileSize(for resource: Video) -> UInt64? {
+        guard let url = self.localFileLocation(for: resource) else { return nil }
+        return try? FileManager.default.allocatedSizeOfDirectory(at: url)
     }
 
 }
@@ -205,7 +205,7 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
         }
 
         var userInfo: [String: Any] = [:]
-        userInfo[DownloadNotificationKey.downloadType] = StreamPersistenceManager.downloadType
+        userInfo[DownloadNotificationKey.downloadType] = StreamPersistenceManagerConfiguration.downloadType
         userInfo[DownloadNotificationKey.resourceId] = videoId
         userInfo[DownloadNotificationKey.downloadProgress] = percentComplete
 
@@ -214,15 +214,6 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
 
     func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didResolve resolvedMediaSelection: AVMediaSelection) {
         self.mediaSelectionForDownloadTask[assetDownloadTask] = resolvedMediaSelection
-    }
-
-}
-
-extension StreamPersistenceManager {
-
-    func fileSize(for resource: Video) -> UInt64? {
-        guard let url = self.localFileLocation(for: resource) else { return nil }
-        return try? FileManager.default.allocatedSizeOfDirectory(at: url)
     }
 
 }

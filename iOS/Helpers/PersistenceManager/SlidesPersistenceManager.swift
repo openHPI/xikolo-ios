@@ -8,30 +8,28 @@ import CoreData
 import Foundation
 import UIKit
 
-final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
+enum SlidesPersistenceManagerConfiguration: PersistenceManagerConfiguration {
 
-    static let shared = SlidesPersistenceManager(keyPath: \Video.localSlidesBookmark)
+    typealias Resource = Video
+    typealias Session = URLSession
+
+    static let keyPath = \Video.localSlidesBookmark
     static let downloadType = "slides"
     static let titleForFailedDownloadAlert = NSLocalizedString("alert.download-error.slides.title",
                                                                comment: "title of alert for slides download errors")
 
-    lazy var persistentContainerQueue = self.createPersistenceContainerQueue()
-    lazy var session: URLSession = self.createURLSession(withIdentifier: "slides-download")
-
-    var activeDownloads: [URLSessionTask: String] = [:]
-    var progresses: [String: Double] = [:]
-    var didRestorePersistenceManager: Bool = false
-
-    var keyPath: ReferenceWritableKeyPath<Video, NSData?>
-
-    init(keyPath: ReferenceWritableKeyPath<Video, NSData?>) {
-        self.keyPath = keyPath
-        super.init()
-        self.startListeningToDownloadProgressChanges()
+    static func newFetchRequest() -> NSFetchRequest<Video> {
+        return Video.fetchRequest()
     }
 
-    var fetchRequest: NSFetchRequest<Video> {
-        return Video.fetchRequest()
+}
+
+final class SlidesPersistenceManager: FilePersistenceManager<SlidesPersistenceManagerConfiguration> {
+
+    static let shared = SlidesPersistenceManager()
+
+    override func newDownloadSession() -> URLSession {
+        return self.createURLSession(withIdentifier: "slides-download")
     }
 
     func startDownload(for video: Video) {
@@ -48,7 +46,7 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
         ]
     }
 
-    func didStartDownload(for resource: Video) {
+    override func didStartDownload(for resource: Video) {
         TrackingHelper.createEvent(.slidesDownloadStart,
                                    resourceType: .video,
                                    resourceId: resource.id,
@@ -56,7 +54,7 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
                                    context: self.trackingContext(for: resource))
     }
 
-    func didCancelDownload(for resource: Video) {
+    override func didCancelDownload(for resource: Video) {
         TrackingHelper.createEvent(.slidesDownloadCanceled,
                                    resourceType: .video,
                                    resourceId: resource.id,
@@ -64,7 +62,7 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
                                    context: self.trackingContext(for: resource))
     }
 
-    func didFinishDownload(for resource: Video) {
+    override func didFinishDownload(for resource: Video) {
         TrackingHelper.createEvent(.slidesDownloadFinished,
                                    resourceType: .video,
                                    resourceId: resource.id,
@@ -108,26 +106,6 @@ extension SlidesPersistenceManager {
                 self.cancelDownload(for: video)
             }
         }
-    }
-
-}
-
-extension SlidesPersistenceManager: URLSessionDownloadDelegate {
-
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        self.downloadTask(task, didCompleteWithError: error)
-    }
-
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        self.downloadTask(downloadTask, didFinishDownloadingTo: location)
-    }
-
-    func urlSession(_ session: URLSession,
-                    downloadTask: URLSessionDownloadTask,
-                    didWriteData bytesWritten: Int64,
-                    totalBytesWritten: Int64,
-                    totalBytesExpectedToWrite: Int64) {
-        self.downloadTask(downloadTask, didWriteData: bytesWritten, totalBytesWritten: totalBytesWritten, totalBytesExpectedToWrite: totalBytesExpectedToWrite)
     }
 
 }

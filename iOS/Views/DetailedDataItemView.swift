@@ -80,9 +80,9 @@ class DetailedDataItemView: UIStackView {
         self.downloadType = {
             switch data {
             case .timeEffort:
-                return video == nil ? nil : StreamPersistenceManager.downloadType
+                return video == nil ? nil : StreamPersistenceManagerConfiguration.downloadType
             case .slides:
-                return SlidesPersistenceManager.downloadType
+                return SlidesPersistenceManagerConfiguration.downloadType
             default:
                 return nil
             }

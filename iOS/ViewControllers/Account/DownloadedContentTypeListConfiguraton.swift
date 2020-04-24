@@ -8,21 +8,23 @@ import CoreData
 
 protocol DownloadedContentTypeListConfiguraton {
 
-    associatedtype Manager: PersistenceManager
+    associatedtype ManagerConfiguration: PersistenceManagerConfiguration
 
-    static var persistenceManager: Manager { get }
-    static var cellTitleKeyPath: KeyPath<Manager.Resource, String?> { get }
-    static var sectionTitleKeyPath: KeyPath<Manager.Resource, String?> { get }
+    static var persistenceManager: PersistenceManager<ManagerConfiguration> { get }
+    static var cellTitleKeyPath: KeyPath<ManagerConfiguration.Resource, String?> { get }
+    static var sectionTitleKeyPath: KeyPath<ManagerConfiguration.Resource, String?> { get }
     static var navigationTitle: String { get }
 
-    static func resultsController(for course: Course) -> NSFetchedResultsController<Manager.Resource>
-    static func show(_ object: Manager.Resource, with appNavigator: AppNavigator?)
+    static func resultsController(for course: Course) -> NSFetchedResultsController<ManagerConfiguration.Resource>
+    static func show(_ object: ManagerConfiguration.Resource, with appNavigator: AppNavigator?)
 
 }
 
 enum DownloadedStreamsListConfiguration: DownloadedContentTypeListConfiguraton {
 
-    static let persistenceManager = StreamPersistenceManager.shared
+    typealias ManagerConfiguration = StreamPersistenceManagerConfiguration
+
+    static let persistenceManager: PersistenceManager<ManagerConfiguration> = StreamPersistenceManager.shared
     static let cellTitleKeyPath = \Video.item?.title
     static let sectionTitleKeyPath = \Video.item?.section?.title
     static let navigationTitle = DownloadedContentHelper.ContentType.video.title
@@ -41,7 +43,9 @@ enum DownloadedStreamsListConfiguration: DownloadedContentTypeListConfiguraton {
 
 enum DownloadedSlidesListConfiguration: DownloadedContentTypeListConfiguraton {
 
-    static let persistenceManager = SlidesPersistenceManager.shared
+    typealias ManagerConfiguration = SlidesPersistenceManagerConfiguration
+
+    static let persistenceManager: PersistenceManager<ManagerConfiguration> = SlidesPersistenceManager.shared
     static let cellTitleKeyPath = \Video.item?.title
     static let sectionTitleKeyPath = \Video.item?.section?.title
     static let navigationTitle = DownloadedContentHelper.ContentType.slides.title
@@ -60,7 +64,9 @@ enum DownloadedSlidesListConfiguration: DownloadedContentTypeListConfiguraton {
 
 enum DownloadedDocumentsListConfiguration: DownloadedContentTypeListConfiguraton {
 
-    static let persistenceManager = DocumentsPersistenceManager.shared
+    typealias ManagerConfiguration = DocumentPersistenceManagerConfiguration
+
+    static let persistenceManager: PersistenceManager<ManagerConfiguration> = DocumentsPersistenceManager.shared
     static let cellTitleKeyPath = \DocumentLocalization.title as KeyPath<DocumentLocalization, String?>
     static let sectionTitleKeyPath = \DocumentLocalization.document.title as KeyPath<DocumentLocalization, String?>
     static let navigationTitle = DownloadedContentHelper.ContentType.document.title

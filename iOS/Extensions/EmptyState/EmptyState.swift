@@ -44,6 +44,7 @@ protocol EmptyStateProtocol: AnyObject {
 extension EmptyStateProtocol {
 
     var emptyStateView: EmptyStateView {
+        // swiftlint:disable:next implicit_getter
         get {
             guard let emptyStateView = objc_getAssociatedObject(self, &AssociatedKeys.emptyStateView) as? EmptyStateView else {
                 let emptyStateView = EmptyStateView()

@@ -249,16 +249,6 @@ extension CourseOverviewViewController: UICollectionViewDragDelegate {
 
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         let selectedCourse = self.courses[indexPath.item]
-        
-//        if #available(iOS 13.0, *) {
-//            let userActivity = NSUserActivity(activityType: ActivityIdentifier.openCourse.rawValue)
-//            let itemProvider = NSItemProvider(object: userActivity)
-//            itemProvider.registerObject(userActivity, visibility: .all)
-//            let dragItem = UIDragItem(itemProvider: itemProvider)
-//            dragItem.localObject = selectedCourse
-//
-//            return [dragItem]
-//        }
         let userActivity = selectedCourse.openCourseUserActivity
         let itemProvider = NSItemProvider()
         itemProvider.registerObject(userActivity, visibility: .all)

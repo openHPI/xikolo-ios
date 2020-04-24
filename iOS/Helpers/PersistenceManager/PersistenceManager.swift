@@ -5,7 +5,6 @@
 
 import Common
 import CoreData
-import Foundation
 
 protocol Persistable {
 

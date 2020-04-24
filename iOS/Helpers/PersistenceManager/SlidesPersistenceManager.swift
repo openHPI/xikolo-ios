@@ -5,8 +5,6 @@
 
 import Common
 import CoreData
-import Foundation
-import UIKit
 
 final class SlidesPersistenceManager: FilePersistenceManager<SlidesPersistenceManager.Configuration> {
 

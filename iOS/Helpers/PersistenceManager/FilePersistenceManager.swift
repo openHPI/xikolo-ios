@@ -4,7 +4,6 @@
 //
 
 import Common
-import Foundation
 
 class FilePersistenceManager<Configuration>: PersistenceManager<Configuration>, URLSessionDownloadDelegate where Configuration: PersistenceManagerConfiguration {
 

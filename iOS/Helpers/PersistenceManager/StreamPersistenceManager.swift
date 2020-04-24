@@ -6,8 +6,6 @@
 import AVFoundation
 import Common
 import CoreData
-import Foundation
-import UIKit
 
 final class StreamPersistenceManager: PersistenceManager<StreamPersistenceManager.Configuration> {
 

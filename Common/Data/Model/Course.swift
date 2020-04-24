@@ -79,8 +79,8 @@ public final class Course: NSManagedObject {
     }
 
     public var openCourseUserActivity: NSUserActivity {
-        let userActivity = NSUserActivity(activityType: Bundle.main.bundleIdentifier!.appending(".openCourse"))
-        userActivity.title = "openCourse"
+        let userActivity = NSUserActivity(activityType: Bundle.main.bundleIdentifier!.appending("openCourse"))
+        userActivity.title = title! + ": " + url!.absoluteString
         userActivity.userInfo = ["courseID": id ]
         return userActivity
     }

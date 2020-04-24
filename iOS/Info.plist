@@ -73,7 +73,7 @@
 					<key>UISceneConfigurationName</key>
 					<string>Course Configuration</string>
 					<key>UISceneDelegateClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).OpenCourseSceneDelegate</string>
+					<string>$(PRODUCT_MODULE_NAME).CourseSceneDelegate</string>
 				</dict>
 			</array>
 		</dict>

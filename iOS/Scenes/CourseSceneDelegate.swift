@@ -7,7 +7,7 @@ import Common
 import UIKit
 
 @available(iOS 13.0, *)
-class OpenCourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
+class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private lazy var courseNavigationController: CourseNavigationController = {
         let courseNavigationController = R.storyboard.course.instantiateInitialViewController().require()

@@ -179,7 +179,7 @@ class CourseNavigationController: UINavigationController {
 
     @objc func closeCourse() {
         if #available(iOS 13, *) {
-            if let scene = self.view.window?.windowScene, scene.delegate is OpenCourseSceneDelegate {
+            if let scene = self.view.window?.windowScene, scene.delegate is CourseSceneDelegate {
                 let options = UIWindowSceneDestructionRequestOptions()
                 options.windowDismissalAnimation = .decline
                 UIApplication.shared.requestSceneSessionDestruction(scene.session, options: options) { _ in

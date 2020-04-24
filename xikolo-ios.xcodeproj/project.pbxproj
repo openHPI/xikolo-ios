@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		020E85402449E128006BD700 /* OpenCourseSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020E853F2449E128006BD700 /* OpenCourseSceneDelegate.swift */; };
+		020E85402449E128006BD700 /* CourseSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020E853F2449E128006BD700 /* CourseSceneDelegate.swift */; };
 		021DA1A82386A12400E6E763 /* ExerciseProgressStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021DA1A623869C1700E6E763 /* ExerciseProgressStackView.swift */; };
 		02299DD92417E88F006B2E52 /* today.appex in Embed App Extension */ = {isa = PBXBuildFile; fileRef = 50DA822423E587FC003BEDE1 /* today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B8E68230615E90027E370 /* SceneDelegate.swift */; };
@@ -512,7 +512,7 @@
 
 /* Begin PBXFileReference section */
 		01009BBD71C763CF44BF0EAF /* Pods-Stockpile.opensap-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile.opensap-ios-release.xcconfig"; path = "Target Support Files/Pods-Stockpile/Pods-Stockpile.opensap-ios-release.xcconfig"; sourceTree = "<group>"; };
-		020E853F2449E128006BD700 /* OpenCourseSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCourseSceneDelegate.swift; sourceTree = "<group>"; };
+		020E853F2449E128006BD700 /* CourseSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSceneDelegate.swift; sourceTree = "<group>"; };
 		021DA1A623869C1700E6E763 /* ExerciseProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseProgressStackView.swift; sourceTree = "<group>"; };
 		023B8E68230615E90027E370 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0240EF1624005CFE00337879 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainInterface.strings; sourceTree = "<group>"; };
@@ -1137,7 +1137,7 @@
 		020E853E2449E103006BD700 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				020E853F2449E128006BD700 /* OpenCourseSceneDelegate.swift */,
+				020E853F2449E128006BD700 /* CourseSceneDelegate.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -3060,7 +3060,7 @@
 				50CF1FD020DCDBFC0011BFE9 /* CourseItemWebViewController.swift in Sources */,
 				50CF1FD320DCDBFC0011BFE9 /* Video+Preloading.swift in Sources */,
 				5036A9B52319232800F7A63F /* UIWindow+FullScreen.swift in Sources */,
-				020E85402449E128006BD700 /* OpenCourseSceneDelegate.swift in Sources */,
+				020E85402449E128006BD700 /* CourseSceneDelegate.swift in Sources */,
 				50092A8E237D88A900A1503F /* ChannelViewController.swift in Sources */,
 				700398C021A437CD00FE9D81 /* FileManager+fileSize.swift in Sources */,
 				50CF1FD520DCDBFC0011BFE9 /* Video+Actions.swift in Sources */,

@@ -19,7 +19,6 @@
 		0270F4AC234CBFBC008A1FD1 /* CourseProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270F4AB234CBFBC008A1FD1 /* CourseProgressViewController.swift */; };
 		0280CB14237CBD4100B774BE /* SectionProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0280CB13237CBD4100B774BE /* SectionProgressCell.swift */; };
 		02AA78BB23A0176F00CD13F5 /* CourseProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02AA78BD23A0176F00CD13F5 /* CourseProgress.storyboard */; };
-		02C6CCFA242A73AF006DF3AB /* ActivityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6CCF9242A73AF006DF3AB /* ActivityIdentifier.swift */; };
 		02C6CCFC242A74C6006DF3AB /* SceneConfigurationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6CCFB242A74C6006DF3AB /* SceneConfigurationNames.swift */; };
 		02E20BE823882CFB006C9345 /* VisitProgressStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */; };
 		02FE3EAE235502C300E3ECB4 /* CourseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */; };
@@ -525,7 +524,6 @@
 		0280CB13237CBD4100B774BE /* SectionProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgressCell.swift; sourceTree = "<group>"; };
 		02AA78BC23A0176F00CD13F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseProgress.storyboard; sourceTree = "<group>"; };
 		02AA78BF23A0177B00CD13F5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseProgress.strings; sourceTree = "<group>"; };
-		02C6CCF9242A73AF006DF3AB /* ActivityIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIdentifier.swift; sourceTree = "<group>"; };
 		02C6CCFB242A74C6006DF3AB /* SceneConfigurationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneConfigurationNames.swift; sourceTree = "<group>"; };
 		02D9353E23C7BE94008BE0C7 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgressStackView.swift; sourceTree = "<group>"; };
@@ -1270,7 +1268,6 @@
 				5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */,
 				50E0351E213673F8001F963D /* CourseListConfiguration.swift */,
 				50A2042422FAC389004371C0 /* ColorCompatibility.swift */,
-				02C6CCF9242A73AF006DF3AB /* ActivityIdentifier.swift */,
 				02C6CCFB242A74C6006DF3AB /* SceneConfigurationNames.swift */,
 			);
 			path = Helpers;
@@ -2944,7 +2941,6 @@
 				5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */,
 				50CF1F5120DCDBFC0011BFE9 /* PersistenceManager.swift in Sources */,
 				50CF1F5520DCDBFC0011BFE9 /* FilePersistenceManager.swift in Sources */,
-				02C6CCFA242A73AF006DF3AB /* ActivityIdentifier.swift in Sources */,
 				50CF1F5820DCDBFC0011BFE9 /* DetailedDataItemView.swift in Sources */,
 				50E0351F213673F8001F963D /* CourseListConfiguration.swift in Sources */,
 				50CF1F5920DCDBFC0011BFE9 /* CourseSection+Download.swift in Sources */,

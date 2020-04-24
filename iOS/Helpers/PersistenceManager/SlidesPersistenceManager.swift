@@ -10,8 +10,10 @@ final class SlidesPersistenceManager: FilePersistenceManager<SlidesPersistenceMa
 
     enum Configuration: PersistenceManagerConfiguration {
 
+        // swiftlint:disable nesting
         typealias Resource = Video
         typealias Session = URLSession
+        // swiftlint:enable nesting
 
         static let keyPath = \Video.localSlidesBookmark
         static let downloadType = "slides"

@@ -10,8 +10,10 @@ final class DocumentsPersistenceManager: FilePersistenceManager<DocumentsPersist
 
     enum Configuration: PersistenceManagerConfiguration {
 
+        // swiftlint:disable nesting
         typealias Resource = DocumentLocalization
         typealias Session = URLSession
+        // swiftlint:enable nesting
 
         static let keyPath = \DocumentLocalization.localFileBookmark
         static let downloadType = "documents"

@@ -5,7 +5,7 @@
 
 import Common
 
-class FilePersistenceManager<Configuration>: PersistenceManager<Configuration>, URLSessionDownloadDelegate where Configuration: PersistenceManagerConfiguration {
+class FilePersistenceManager<Configuration: PersistenceManagerConfiguration>: PersistenceManager<Configuration>, URLSessionDownloadDelegate {
 
     func createURLSession(withIdentifier identifier: String) -> URLSession {
         let backgroundConfiguration = URLSessionConfiguration.background(withIdentifier: identifier)

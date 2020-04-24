@@ -11,8 +11,10 @@ final class StreamPersistenceManager: PersistenceManager<StreamPersistenceManage
 
     enum Configuration: PersistenceManagerConfiguration {
 
+        // swiftlint:disable nesting
         typealias Resource = Video
         typealias Session = AVAssetDownloadURLSession
+        // swiftlint:enable nesting
 
         static let keyPath = \Video.localFileBookmark
         static let downloadType = "stream"

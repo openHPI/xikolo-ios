@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable type_body_length
+
 import Common
 import CoreData
 
@@ -24,7 +26,6 @@ protocol PersistenceManagerConfiguration {
     static func newFetchRequest() -> NSFetchRequest<Resource>
 
 }
-
 
 class PersistenceManager<Configuration>: NSObject where Configuration: PersistenceManagerConfiguration {
 
@@ -48,14 +49,17 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
         self.startListeningToDownloadProgressChanges()
     }
 
+    // swiftlint:disable:next unavailable_function
     func fileSize(for resource: Resource) -> UInt64? {
         fatalError("You have to implement this in a subclass")
     }
 
+    // swiftlint:disable:next unavailable_function
     func newDownloadSession() -> Session {
         fatalError("You have to implement this in a subclass")
     }
 
+    // swiftlint:disable:next unavailable_function
     func downloadTask(with url: URL, for resource: Resource, on session: Session) -> URLSessionTask? {
         fatalError("You have to implement this in a subclass")
     }

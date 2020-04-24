@@ -8,23 +8,23 @@ import CoreData
 import Foundation
 import UIKit
 
-enum DocumentPersistenceManagerConfiguration: PersistenceManagerConfiguration {
+final class DocumentsPersistenceManager: FilePersistenceManager<DocumentsPersistenceManager.Configuration> {
 
-    typealias Resource = DocumentLocalization
-    typealias Session = URLSession
+    enum Configuration: PersistenceManagerConfiguration {
 
-    static let keyPath = \DocumentLocalization.localFileBookmark
-    static let downloadType = "documents"
-    static let titleForFailedDownloadAlert = NSLocalizedString("alert.download-error.documents.title",
-                                                               comment: "title of alert for stream download errors")
+        typealias Resource = DocumentLocalization
+        typealias Session = URLSession
 
-    static func newFetchRequest() -> NSFetchRequest<DocumentLocalization> {
-        return DocumentLocalization.fetchRequest()
+        static let keyPath = \DocumentLocalization.localFileBookmark
+        static let downloadType = "documents"
+        static let titleForFailedDownloadAlert = NSLocalizedString("alert.download-error.documents.title",
+                                                                   comment: "title of alert for stream download errors")
+
+        static func newFetchRequest() -> NSFetchRequest<DocumentLocalization> {
+            return DocumentLocalization.fetchRequest()
+        }
+
     }
-
-}
-
-final class DocumentsPersistenceManager: FilePersistenceManager<DocumentPersistenceManagerConfiguration> {
 
     static let shared = DocumentsPersistenceManager()
 

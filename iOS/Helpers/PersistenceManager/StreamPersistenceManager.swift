@@ -9,23 +9,23 @@ import CoreData
 import Foundation
 import UIKit
 
-enum StreamPersistenceManagerConfiguration: PersistenceManagerConfiguration {
+final class StreamPersistenceManager: PersistenceManager<StreamPersistenceManager.Configuration> {
 
-    typealias Resource = Video
-    typealias Session = AVAssetDownloadURLSession
+    enum Configuration: PersistenceManagerConfiguration {
 
-    static let keyPath = \Video.localFileBookmark
-    static let downloadType = "stream"
-    static let titleForFailedDownloadAlert = NSLocalizedString("alert.download-error.stream.title",
-                                                               comment: "title of alert for stream download errors")
+        typealias Resource = Video
+        typealias Session = AVAssetDownloadURLSession
 
-    static func newFetchRequest() -> NSFetchRequest<Video> {
-        return Video.fetchRequest()
+        static let keyPath = \Video.localFileBookmark
+        static let downloadType = "stream"
+        static let titleForFailedDownloadAlert = NSLocalizedString("alert.download-error.stream.title",
+                                                                   comment: "title of alert for stream download errors")
+
+        static func newFetchRequest() -> NSFetchRequest<Video> {
+            return Video.fetchRequest()
+        }
+
     }
-
-}
-
-final class StreamPersistenceManager: PersistenceManager<StreamPersistenceManagerConfiguration> {
 
     static let shared = StreamPersistenceManager()
 
@@ -205,7 +205,7 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
         }
 
         var userInfo: [String: Any] = [:]
-        userInfo[DownloadNotificationKey.downloadType] = StreamPersistenceManagerConfiguration.downloadType
+        userInfo[DownloadNotificationKey.downloadType] = StreamPersistenceManager.Configuration.downloadType
         userInfo[DownloadNotificationKey.resourceId] = videoId
         userInfo[DownloadNotificationKey.downloadProgress] = percentComplete
 

@@ -22,7 +22,7 @@ protocol DownloadedContentTypeListConfiguraton {
 
 enum DownloadedStreamsListConfiguration: DownloadedContentTypeListConfiguraton {
 
-    typealias ManagerConfiguration = StreamPersistenceManagerConfiguration
+    typealias ManagerConfiguration = StreamPersistenceManager.Configuration
 
     static let persistenceManager: PersistenceManager<ManagerConfiguration> = StreamPersistenceManager.shared
     static let cellTitleKeyPath = \Video.item?.title
@@ -43,7 +43,7 @@ enum DownloadedStreamsListConfiguration: DownloadedContentTypeListConfiguraton {
 
 enum DownloadedSlidesListConfiguration: DownloadedContentTypeListConfiguraton {
 
-    typealias ManagerConfiguration = SlidesPersistenceManagerConfiguration
+    typealias ManagerConfiguration = SlidesPersistenceManager.Configuration
 
     static let persistenceManager: PersistenceManager<ManagerConfiguration> = SlidesPersistenceManager.shared
     static let cellTitleKeyPath = \Video.item?.title
@@ -64,7 +64,7 @@ enum DownloadedSlidesListConfiguration: DownloadedContentTypeListConfiguraton {
 
 enum DownloadedDocumentsListConfiguration: DownloadedContentTypeListConfiguraton {
 
-    typealias ManagerConfiguration = DocumentPersistenceManagerConfiguration
+    typealias ManagerConfiguration = DocumentsPersistenceManager.Configuration
 
     static let persistenceManager: PersistenceManager<ManagerConfiguration> = DocumentsPersistenceManager.shared
     static let cellTitleKeyPath = \DocumentLocalization.title as KeyPath<DocumentLocalization, String?>

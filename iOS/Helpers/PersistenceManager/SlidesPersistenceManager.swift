@@ -8,23 +8,23 @@ import CoreData
 import Foundation
 import UIKit
 
-enum SlidesPersistenceManagerConfiguration: PersistenceManagerConfiguration {
+final class SlidesPersistenceManager: FilePersistenceManager<SlidesPersistenceManager.Configuration> {
 
-    typealias Resource = Video
-    typealias Session = URLSession
+    enum Configuration: PersistenceManagerConfiguration {
 
-    static let keyPath = \Video.localSlidesBookmark
-    static let downloadType = "slides"
-    static let titleForFailedDownloadAlert = NSLocalizedString("alert.download-error.slides.title",
-                                                               comment: "title of alert for slides download errors")
+        typealias Resource = Video
+        typealias Session = URLSession
 
-    static func newFetchRequest() -> NSFetchRequest<Video> {
-        return Video.fetchRequest()
+        static let keyPath = \Video.localSlidesBookmark
+        static let downloadType = "slides"
+        static let titleForFailedDownloadAlert = NSLocalizedString("alert.download-error.slides.title",
+                                                                   comment: "title of alert for slides download errors")
+
+        static func newFetchRequest() -> NSFetchRequest<Video> {
+            return Video.fetchRequest()
+        }
+
     }
-
-}
-
-final class SlidesPersistenceManager: FilePersistenceManager<SlidesPersistenceManagerConfiguration> {
 
     static let shared = SlidesPersistenceManager()
 

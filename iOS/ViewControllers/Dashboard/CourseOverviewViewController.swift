@@ -68,10 +68,7 @@ class CourseOverviewViewController: UIViewController {
 
         if #available(iOS 11.0, *) {
             self.collectionView.dragDelegate = self
-        } else {
-            // Fallback on earlier versions
         }
-
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

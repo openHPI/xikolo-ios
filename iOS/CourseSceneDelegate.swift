@@ -23,8 +23,6 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    private var shortcutItemToProcess: UIApplicationShortcutItem?
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
             print(userActivity)
@@ -48,18 +46,8 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        shortcutItemToProcess = nil
-    }
-
     func sceneWillResignActive(_ scene: UIScene) {
         AppDelegate.instance().setHomescreenQuickActions()
-    }
-
-    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-    }
-
-    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
     }
 
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {

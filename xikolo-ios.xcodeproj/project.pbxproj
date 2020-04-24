@@ -19,7 +19,6 @@
 		0270F4AC234CBFBC008A1FD1 /* CourseProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270F4AB234CBFBC008A1FD1 /* CourseProgressViewController.swift */; };
 		0280CB14237CBD4100B774BE /* SectionProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0280CB13237CBD4100B774BE /* SectionProgressCell.swift */; };
 		02AA78BB23A0176F00CD13F5 /* CourseProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02AA78BD23A0176F00CD13F5 /* CourseProgress.storyboard */; };
-		02C6CCFC242A74C6006DF3AB /* SceneConfigurationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6CCFB242A74C6006DF3AB /* SceneConfigurationNames.swift */; };
 		02E20BE823882CFB006C9345 /* VisitProgressStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */; };
 		02FE3EAE235502C300E3ECB4 /* CourseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */; };
 		10DF870DD59FA369A3E513B3 /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D642EAB767C449225D952C21 /* Pods_Common.framework */; };
@@ -524,7 +523,6 @@
 		0280CB13237CBD4100B774BE /* SectionProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgressCell.swift; sourceTree = "<group>"; };
 		02AA78BC23A0176F00CD13F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseProgress.storyboard; sourceTree = "<group>"; };
 		02AA78BF23A0177B00CD13F5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseProgress.strings; sourceTree = "<group>"; };
-		02C6CCFB242A74C6006DF3AB /* SceneConfigurationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneConfigurationNames.swift; sourceTree = "<group>"; };
 		02D9353E23C7BE94008BE0C7 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgressStackView.swift; sourceTree = "<group>"; };
 		02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgress.swift; sourceTree = "<group>"; };
@@ -1132,14 +1130,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		020E853E2449E103006BD700 /* Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				020E853F2449E128006BD700 /* CourseSceneDelegate.swift */,
-			);
-			path = Scenes;
-			sourceTree = "<group>";
-		};
 		02299DD72417E7C7006B2E52 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -1268,7 +1258,6 @@
 				5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */,
 				50E0351E213673F8001F963D /* CourseListConfiguration.swift */,
 				50A2042422FAC389004371C0 /* ColorCompatibility.swift */,
-				02C6CCFB242A74C6006DF3AB /* SceneConfigurationNames.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1783,7 +1772,6 @@
 		A90587BD1B3BFC130095DB89 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				020E853E2449E103006BD700 /* Scenes */,
 				50022900205928B0003301A7 /* Protocols */,
 				AB95897A1DC4A3C400586137 /* Extensions */,
 				5019A75F1F20ABF3008C8138 /* Data */,
@@ -1796,6 +1784,7 @@
 				AB91831F1D6B091300018C1D /* Branding */,
 				F875A5161B5697640030F38C /* AppDelegate.swift */,
 				023B8E68230615E90027E370 /* SceneDelegate.swift */,
+				020E853F2449E128006BD700 /* CourseSceneDelegate.swift */,
 				50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */,
 				5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */,
 				5040A63020797ED800E98351 /* CourseNavigationController.swift */,
@@ -3028,7 +3017,6 @@
 				50CF1FB320DCDBFC0011BFE9 /* DetailedCourseItemContent.swift in Sources */,
 				82D55A1E23CF31D000EB2768 /* Sequence+sort.swift in Sources */,
 				50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */,
-				02C6CCFC242A74C6006DF3AB /* SceneConfigurationNames.swift in Sources */,
 				5027250A235473F600815914 /* Swizzler.swift in Sources */,
 				023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */,
 				50CF1FB620DCDBFC0011BFE9 /* UserDefaults+contentPreload.swift in Sources */,

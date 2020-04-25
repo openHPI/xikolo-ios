@@ -78,13 +78,6 @@ public final class Course: NSManagedObject {
         return self.enrollment != nil && self.enrollment?.objectState != .deleted
     }
 
-    public var openCourseUserActivity: NSUserActivity {
-        let userActivity = NSUserActivity(activityType: Bundle.main.ActivityTypeOpenCourse!)
-        userActivity.title = title!
-        userActivity.userInfo = ["courseID": id ]
-        return userActivity
-    }
-
 }
 
 extension Course: JSONAPIPullable {

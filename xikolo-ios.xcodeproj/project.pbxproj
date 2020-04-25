@@ -11,6 +11,7 @@
 		021DA1A82386A12400E6E763 /* ExerciseProgressStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021DA1A623869C1700E6E763 /* ExerciseProgressStackView.swift */; };
 		02299DD92417E88F006B2E52 /* today.appex in Embed App Extension */ = {isa = PBXBuildFile; fileRef = 50DA822423E587FC003BEDE1 /* today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B8E68230615E90027E370 /* SceneDelegate.swift */; };
+		0258504F2454569900CB9C65 /* Course+NSUserActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0258504D2454560E00CB9C65 /* Course+NSUserActivity.swift */; };
 		0262E6C523729C29007C9057 /* ExerciseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C423729C29007C9057 /* ExerciseProgress.swift */; };
 		0262E6C72372C797007C9057 /* VisitProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C62372C797007C9057 /* VisitProgress.swift */; };
 		0262E6C92372CBD5007C9057 /* SectionProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0262E6C82372CBD5007C9057 /* SectionProgress.swift */; };
@@ -514,6 +515,7 @@
 		021DA1A623869C1700E6E763 /* ExerciseProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseProgressStackView.swift; sourceTree = "<group>"; };
 		023B8E68230615E90027E370 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0240EF1624005CFE00337879 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		0258504D2454560E00CB9C65 /* Course+NSUserActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+NSUserActivity.swift"; sourceTree = "<group>"; };
 		0262E6C423729C29007C9057 /* ExerciseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseProgress.swift; sourceTree = "<group>"; };
 		0262E6C62372C797007C9057 /* VisitProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgress.swift; sourceTree = "<group>"; };
 		0262E6C82372CBD5007C9057 /* SectionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgress.swift; sourceTree = "<group>"; };
@@ -1281,6 +1283,7 @@
 				50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */,
 				50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */,
 				501212301FCC66B50022A7AF /* Collection+SafeSubscript.swift */,
+				0258504D2454560E00CB9C65 /* Course+NSUserActivity.swift */,
 				50F45AE0200D06BD009304A3 /* Date.swift */,
 				5012123D1FCC670D0022A7AF /* Date+Marshal.swift */,
 				504FF507231E472500AAF595 /* URL+Marschal.swift */,
@@ -3126,6 +3129,7 @@
 				50FA2E3820E4B25800656776 /* CourseCertificates.swift in Sources */,
 				50930B6220ED10610085C6DB /* CommonLocalizedString.swift in Sources */,
 				50FA2E1820E4B24300656776 /* LTIExerciseHelper.swift in Sources */,
+				0258504F2454569900CB9C65 /* Course+NSUserActivity.swift in Sources */,
 				50FA2E3A20E4B25800656776 /* CourseDate.swift in Sources */,
 				50FA2E1220E4B24300656776 /* AnnouncementHelper.swift in Sources */,
 				50FA2E2320E4B24A00656776 /* CourseDateHelper+FetchRequests.swift in Sources */,

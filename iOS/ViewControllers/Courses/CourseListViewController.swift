@@ -78,6 +78,10 @@ class CourseListViewController: UICollectionViewController {
 
         self.setupSearchController()
         self.addFilterView()
+
+        if #available(iOS 11.0, *) {
+            self.collectionView.dragDelegate = self
+        }
     }
 
     override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
@@ -491,4 +495,20 @@ extension CourseListViewController: CourseSearchFiltersViewControllerDelegate {
         }
     }
 
+}
+
+@available(iOS 11.0, *)
+extension CourseListViewController: UICollectionViewDragDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let selectedCourse = self.dataSource.object(at: indexPath)
+        let userActivity = selectedCourse.openCourseUserActivity
+        let itemProvider = NSItemProvider()
+        itemProvider.registerObject(userActivity, visibility: .all)
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+        dragItem.localObject = selectedCourse
+
+        return [dragItem]
+    }
+    
 }

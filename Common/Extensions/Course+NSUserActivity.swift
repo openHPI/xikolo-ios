@@ -8,10 +8,10 @@ import Foundation
 extension Course {
 
     public var openCourseUserActivity: NSUserActivity {
-        let userActivity = NSUserActivity(activityType: Bundle.main.ActivityTypeOpenCourse!)
+        let userActivity = NSUserActivity(activityType: Bundle.main.activityTypeOpenCourse!)
         userActivity.title = title!
         userActivity.userInfo = ["courseID": id ]
         return userActivity
     }
-    
+
 }

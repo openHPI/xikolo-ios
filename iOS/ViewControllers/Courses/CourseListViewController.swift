@@ -508,7 +508,20 @@ extension CourseListViewController: UICollectionViewDragDelegate {
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = selectedCourse
 
+        if #available(iOS 13, *) {
+            let previewViewController = R.storyboard.coursePreview().instantiateInitialViewController { coder in
+                return CoursePreviewViewController(coder: coder, course: selectedCourse, listConfiguration: self.configuration)
+            }
+
+            let parameters = UIDragPreviewParameters()
+            let cell = collectionView.cellForItem(at: indexPath)
+            parameters.visiblePath = UIBezierPath(rect: (cell!.bounds.insetBy(dx: 0, dy: -50)))
+            parameters.backgroundColor = UIColor.clear
+            
+            dragItem.previewProvider = { UIDragPreview.init(view: previewViewController!.view, parameters: parameters)}
+        }
+
         return [dragItem]
     }
-    
+
 }

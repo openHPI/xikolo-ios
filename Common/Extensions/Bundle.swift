@@ -15,7 +15,7 @@ public extension Bundle {
         return self.infoDictionary?["URL_SCHEME"] as? String
     }
 
-    var openCourse: String? {
-        return self.infoDictionary?["COURSE_OPEN"] as? String
+    var ActivityTypeOpenCourse: String? {
+        return self.infoDictionary?["ACTIVITY_TYPE_OPEN_COURSE"] as? String
     }
 }

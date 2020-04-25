@@ -79,7 +79,7 @@ public final class Course: NSManagedObject {
     }
 
     public var openCourseUserActivity: NSUserActivity {
-        let userActivity = NSUserActivity(activityType: Bundle.main.openCourse!)
+        let userActivity = NSUserActivity(activityType: Bundle.main.ActivityTypeOpenCourse!)
         userActivity.title = title!
         userActivity.userInfo = ["courseID": id ]
         return userActivity

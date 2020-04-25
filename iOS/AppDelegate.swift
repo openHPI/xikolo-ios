@@ -179,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         log.info("Entered application configurationForConnecting connectingSceneSession")
 
-        if options.userActivities.first?.activityType.split(separator: ".").last == "openCourse" {
+        if options.userActivities.first?.activityType == Bundle.main.ActivityTypeOpenCourse {
             return UISceneConfiguration(name: "Course Configuration", sessionRole: connectingSceneSession.role)
         } else {
             return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)

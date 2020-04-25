@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ACTIVITY_TYPE_OPEN_COURSE</key>
+	<string>$(ACTIVITY_TYPE_OPEN_COURSE)</string>
 	<key>APP_GROUP_IDENTIFIER</key>
 	<string>$(APP_GROUP_IDENTIFIER)</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -35,8 +37,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>0</string>
-	<key>COURSE_OPEN</key>
-	<string>$(COURSE_OPEN)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -47,7 +47,7 @@
 	<string>Upload photos</string>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>$(COURSE_OPEN)</string>
+		<string>$(ACTIVITY_TYPE_OPEN_COURSE)</string>
 	</array>
 	<key>UIAppFonts</key>
 	<array>

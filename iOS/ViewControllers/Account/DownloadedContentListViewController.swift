@@ -75,7 +75,7 @@ class DownloadedContentListViewController: UITableViewController {
 
             self.courseDownloads = downloadedCourseList.values.sorted { $0.title < $1.title }
         }.onFailure { error in
-            log.error(error.localizedDescription)
+            logger.error(error.localizedDescription)
         }
     }
 

@@ -115,10 +115,10 @@ enum DownloadedContentHelper {
                         let originalTimeEffort = courseItem?.timeEffort
                         let timeEffort = originalTimeEffort.map { contentType.transformTimeEffort($0) }
                         let item = DownloadContent(courseID: course.id,
-                                                courseTitle: course.title,
-                                                contentType: contentType,
-                                                fileSize: fileSize,
-                                                timeEffort: timeEffort)
+                                                   courseTitle: course.title,
+                                                   contentType: contentType,
+                                                   fileSize: fileSize,
+                                                   timeEffort: timeEffort)
                         items.append(item)
                     }
                 }
@@ -147,9 +147,9 @@ enum DownloadedContentHelper {
                     let downloadItems = resource[keyPath: courseKeyPath].map { course -> DownloadContent in
                         let fileSize = persistenceManager.fileSize(for: resource)
                         return DownloadContent(courseID: course.id,
-                                            courseTitle: course.title,
-                                            contentType: contentType,
-                                            fileSize: fileSize)
+                                               courseTitle: course.title,
+                                               contentType: contentType,
+                                               fileSize: fileSize)
                     }
 
                     items.append(contentsOf: downloadItems)

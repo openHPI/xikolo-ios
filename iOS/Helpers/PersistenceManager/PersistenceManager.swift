@@ -166,7 +166,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
         } catch {
             ErrorManager.shared.remember((Configuration.downloadType, resourceIdentifier), forKey: "resource")
             ErrorManager.shared.report(error)
-            log.error("An error occured deleting the file: \(error)")
+            logger.error("An error occured deleting the file: \(error)")
         }
 
         var userInfo: [String: Any] = [:]
@@ -256,7 +256,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
                             } catch {
                                 ErrorManager.shared.remember((Configuration.downloadType, resourceId), forKey: "resource")
                                 ErrorManager.shared.report(error)
-                                log.error("An error occured deleting the file: \(error)")
+                                logger.error("An error occured deleting the file: \(error)")
                             }
                         }
 
@@ -264,7 +264,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
                     case let .failure(error):
                         ErrorManager.shared.remember((Configuration.downloadType, resourceId), forKey: "resource")
                         ErrorManager.shared.report(error)
-                        log.error("Failed to complete download for '\(Configuration.downloadType)' resource '\(resourceId)': \(error)")
+                        logger.error("Failed to complete download for '\(Configuration.downloadType)' resource '\(resourceId)': \(error)")
                     }
                 } else {
                     let started = self.startSupplementaryDownloads(for: task, with: resourceId)
@@ -304,15 +304,15 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
                     let bookmark = try location.bookmarkData()
                     resource[keyPath: Configuration.keyPath] = NSData(data: bookmark)
                     try context.save()
-                    log.debug("Successfully downloaded file for '\(Configuration.downloadType)' resource '\(resourceId)'")
+                    logger.debug("Successfully downloaded file for '\(Configuration.downloadType)' resource '\(resourceId)'")
                 } catch {
-                    log.debug("Failed to downloaded file for '\(Configuration.downloadType)' resource '\(resourceId)'")
+                    logger.debug("Failed to downloaded file for '\(Configuration.downloadType)' resource '\(resourceId)'")
                     self.deleteDownload(for: resource, in: context)
                 }
             case let .failure(error):
                 ErrorManager.shared.remember((Configuration.downloadType, resourceId), forKey: "resource")
                 ErrorManager.shared.report(error)
-                log.error("Failed to finish download for '\(Configuration.downloadType)' resource '\(resourceId)': \(error)")
+                logger.error("Failed to finish download for '\(Configuration.downloadType)' resource '\(resourceId)': \(error)")
             }
         }
     }
@@ -321,13 +321,19 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
         let resourceId = resource[keyPath: Resource.identifierKeyPath]
 
         if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
-            log.debug("Canceled download of resource (type: \(Resource.self) id: \(resourceId))")
+            logger.debug("Canceled download of resource (type: \(Resource.self) id: \(resourceId))")
             return
         }
 
         ErrorManager.shared.remember((Resource.self, resourceId), forKey: "resource")
         ErrorManager.shared.report(error)
-        log.error("Unknown asset download error (resource type: \(Resource.self) | resource id: \(resourceId) | domain: \(error.domain) | code: \(error.code)")
+        logger.error("""
+            Unknown asset download error - \
+            resource type: \(Resource.self) | \
+            resource id: \(resourceId) | \
+            domain: \(error.domain) | \
+            code: \(error.code)
+            """)
 
         // show error
         DispatchQueue.main.async {

@@ -10,7 +10,7 @@ import NotificationCenter
 import SDWebImage
 import UIKit
 
-let log = Logger(subsystem: "de.xikolo.iOS", category: "iOS")
+let logger = Logger(subsystem: "de.xikolo.iOS", category: "iOS")
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -108,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 try ReachabilityHelper.startObserving()
             } catch {
                 ErrorManager.shared.report(error)
-                log.error("Failed to start reachability notification")
+                logger.error("Failed to start reachability notification")
             }
         }
 
@@ -177,7 +177,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      configurationForConnecting connectingSceneSession: UISceneSession,
                      options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        log.info("Entered application configurationForConnecting connectingSceneSession")
+        logger.info("Entered application configurationForConnecting connectingSceneSession")
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
@@ -192,7 +192,7 @@ extension AppDelegate: UITabBarControllerDelegate {
         }
 
         guard let navigationController = viewController as? UINavigationController else {
-            log.info("Navigation controller not found")
+            logger.info("Navigation controller not found")
             return true
         }
 

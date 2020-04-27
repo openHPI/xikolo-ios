@@ -46,7 +46,7 @@ class AppNavigator {
 
     func handle(url: URL, on sourceViewController: UIViewController) -> Bool {
         guard let url = self.sanitizedURL(for: url) else {
-            log.error("URL in Markdown or Markdownparser is broken")
+            logger.error("URL in Markdown or Markdownparser is broken")
             return false
         }
 
@@ -55,7 +55,7 @@ class AppNavigator {
         }
 
         guard url.host == Brand.default.host else {
-            log.debug("Can't open \(url) inside of the app because host is wrong")
+            logger.debug("Can't open \(url) inside of the app because host is wrong")
             return false
         }
 
@@ -72,7 +72,7 @@ class AppNavigator {
         } else if url.host == Brand.default.host {
             return self.handle(hostURL: url)
         } else {
-            log.debug("Can't open \(url) inside of the app because host or url scheme is wrong")
+            logger.debug("Can't open \(url) inside of the app because host or url scheme is wrong")
             return false
         }
     }
@@ -127,7 +127,7 @@ class AppNavigator {
             case let .success(course):
                 canOpenInApp = self.handle(url: url, for: course)
             case let .failure(error):
-                log.info("Could not find course in local database: \(error)")
+                logger.info("Could not find course in local database: \(error)")
             }
         }
 
@@ -160,7 +160,7 @@ class AppNavigator {
             self.show(course: course, with: .documents)
             return true
         default:
-            log.info("Unable to open course area (\(courseArea ?? "")) for course (\(course.slug ?? "-")) inside the app")
+            logger.info("Unable to open course area (\(courseArea ?? "")) for course (\(course.slug ?? "-")) inside the app")
             return false
         }
     }
@@ -173,7 +173,7 @@ class AppNavigator {
                 self.show(item: courseItem)
                 return true
             } else {
-                log.info("Unable to open course item (\(itemId)) for course (\(course.slug ?? "-")) inside the app")
+                logger.info("Unable to open course item (\(itemId)) for course (\(course.slug ?? "-")) inside the app")
                 return false
             }
         } else {
@@ -295,14 +295,14 @@ class AppNavigator {
         guard let loginNavigationController = R.storyboard.login.instantiateInitialViewController() else {
             let reason = "Initial view controller of Login stroyboard in not of type UINavigationController"
             ErrorManager.shared.reportStoryboardError(reason: reason)
-            log.error(reason)
+            logger.error(reason)
             return
         }
 
         guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
             let reason = "Could not find LoginViewController"
             ErrorManager.shared.reportStoryboardError(reason: reason)
-            log.error(reason)
+            logger.error(reason)
             return
         }
 

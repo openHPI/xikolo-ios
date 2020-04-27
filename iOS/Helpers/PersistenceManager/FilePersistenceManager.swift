@@ -42,7 +42,7 @@ class FilePersistenceManager<Configuration: PersistenceManagerConfiguration>: Pe
             try FileManager.default.moveItem(at: location, to: documentLocation)
             self.didFinishDownloadTask(downloadTask, to: documentLocation)
         } catch {
-            log.error("Failed to move downloaded file to documents directory: \(error)")
+            logger.error("Failed to move downloaded file to documents directory: \(error)")
         }
     }
 

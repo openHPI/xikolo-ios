@@ -72,13 +72,13 @@ public struct XikoloSyncEngine: SyncEngine {
     // -
 
     public func didSucceedOperation(_ operationType: SyncEngineOperation, forResourceType resourceType: String, withResult result: SyncEngineResult) {
-        log.info("Successfully performed operation (\(operationType)) for resource type: \(resourceType)")
+        logger.info("Successfully performed operation (\(operationType)) for resource type: \(resourceType)")
         self.checkAPIStatus(statusCode: 200, headers: result.headers)
     }
 
     public func didFailOperation(_ operationType: SyncEngineOperation, forResourceType resourceType: String, withError error: XikoloError) {
         ErrorManager.shared.reportAPIError(error)
-        log.error("Failed to perform operation (\(operationType)) for resource type: \(resourceType) ==> \(error)")
+        logger.error("Failed to perform operation (\(operationType)) for resource type: \(resourceType) ==> \(error)")
 
         if case let .synchronization(.api(.response(statusCode: statusCode, headers: headers))) = error {
             self.checkAPIStatus(statusCode: statusCode, headers: headers)

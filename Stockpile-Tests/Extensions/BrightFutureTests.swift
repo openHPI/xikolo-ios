@@ -35,7 +35,8 @@ class BrightFutureTests: XCTestCase {
 
         // Then
         XCTAssertTrue(resultFuture.isSuccess)
-        XCTAssertEqual(resultFuture.value, true)
+        let value = XCTUnwrap(resultFuture.value)
+        XCTAssertTrue(value)
     }
 
     func testInjectOuterFailure() {

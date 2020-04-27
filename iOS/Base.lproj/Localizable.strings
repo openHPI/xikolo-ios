@@ -362,6 +362,9 @@
 /* title for deleting downloaded content */
 "settings.downloads.alert.delete.title" = "Delete downloaded content";
 
+/* label for estimated time effort of downloaded course content */
+"settings.downloads.estimated time effort: %@" = "Estimated time effort: %@";
+
 /* download type documents */
 "settings.downloads.item.document" = "Documents";
 

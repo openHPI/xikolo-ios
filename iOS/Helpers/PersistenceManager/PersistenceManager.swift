@@ -313,7 +313,13 @@ extension PersistenceManager {
 
         ErrorManager.shared.remember((Resource.self, resourceId), forKey: "resource")
         ErrorManager.shared.report(error)
-        logger.error("Unknown asset download error (resource type: \(Resource.self) | resource id: \(resourceId) | domain: \(error.domain) | code: \(error.code)")
+        logger.error("""
+            Unknown asset download error - \
+            resource type: \(Resource.self) | \
+            resource id: \(resourceId) | \
+            domain: \(error.domain) | \
+            code: \(error.code)
+            """)
 
         // show error
         DispatchQueue.main.async {

@@ -46,7 +46,7 @@ extension FilePersistenceManager {
             try FileManager.default.moveItem(at: location, to: documentLocation)
             self.didFinishDownloadTask(task, to: documentLocation)
         } catch {
-            log.error("Failed to move downloaded file to documents directory: \(error)")
+            logger.error("Failed to move downloaded file to documents directory: \(error)")
         }
     }
 

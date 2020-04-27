@@ -152,7 +152,7 @@ extension PersistenceManager {
         } catch {
             ErrorManager.shared.remember((Self.downloadType, resourceIdentifier), forKey: "resource")
             ErrorManager.shared.report(error)
-            log.error("An error occured deleting the file: \(error)")
+            logger.error("An error occured deleting the file: \(error)")
         }
 
         var userInfo: [String: Any] = [:]
@@ -242,7 +242,7 @@ extension PersistenceManager {
                             } catch {
                                 ErrorManager.shared.remember((Self.downloadType, resourceId), forKey: "resource")
                                 ErrorManager.shared.report(error)
-                                log.error("An error occured deleting the file: \(error)")
+                                logger.error("An error occured deleting the file: \(error)")
                             }
                         }
 
@@ -250,7 +250,7 @@ extension PersistenceManager {
                     case let .failure(error):
                         ErrorManager.shared.remember((Self.downloadType, resourceId), forKey: "resource")
                         ErrorManager.shared.report(error)
-                        log.error("Failed to complete download for '\(Self.downloadType)' resource '\(resourceId)': \(error)")
+                        logger.error("Failed to complete download for '\(Self.downloadType)' resource '\(resourceId)': \(error)")
                     }
                 } else {
                     let started = self.startSupplementaryDownloads(for: task, with: resourceId)
@@ -290,15 +290,15 @@ extension PersistenceManager {
                     let bookmark = try location.bookmarkData()
                     resource[keyPath: self.keyPath] = NSData(data: bookmark)
                     try context.save()
-                    log.debug("Successfully downloaded file for '\(Self.downloadType)' resource '\(resourceId)'")
+                    logger.debug("Successfully downloaded file for '\(Self.downloadType)' resource '\(resourceId)'")
                 } catch {
-                    log.debug("Failed to downloaded file for '\(Self.downloadType)' resource '\(resourceId)'")
+                    logger.debug("Failed to downloaded file for '\(Self.downloadType)' resource '\(resourceId)'")
                     self.deleteDownload(for: resource, in: context)
                 }
             case let .failure(error):
                 ErrorManager.shared.remember((Self.downloadType, resourceId), forKey: "resource")
                 ErrorManager.shared.report(error)
-                log.error("Failed to finish download for '\(Self.downloadType)' resource '\(resourceId)': \(error)")
+                logger.error("Failed to finish download for '\(Self.downloadType)' resource '\(resourceId)': \(error)")
             }
         }
     }
@@ -307,13 +307,13 @@ extension PersistenceManager {
         let resourceId = resource[keyPath: Resource.identifierKeyPath]
 
         if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
-            log.debug("Canceled download of resource (type: \(Resource.self) id: \(resourceId))")
+            logger.debug("Canceled download of resource (type: \(Resource.self) id: \(resourceId))")
             return
         }
 
         ErrorManager.shared.remember((Resource.self, resourceId), forKey: "resource")
         ErrorManager.shared.report(error)
-        log.error("Unknown asset download error (resource type: \(Resource.self) | resource id: \(resourceId) | domain: \(error.domain) | code: \(error.code)")
+        logger.error("Unknown asset download error (resource type: \(Resource.self) | resource id: \(resourceId) | domain: \(error.domain) | code: \(error.code)")
 
         // show error
         DispatchQueue.main.async {

@@ -175,7 +175,7 @@ public class UserProfileHelper {
         do {
             try self.keychain.removeAll()
         } catch {
-            log.error("Failed to clear keychain - \(error)")
+            logger.error("Failed to clear keychain - \(error)")
             ErrorManager.shared.report(error)
         }
     }

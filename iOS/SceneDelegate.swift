@@ -83,7 +83,7 @@ extension SceneDelegate: UITabBarControllerDelegate {
         }
 
         guard let navigationController = viewController as? UINavigationController else {
-            log.info("Navigation controller not found")
+            logger.info("Navigation controller not found")
             return true
         }
 

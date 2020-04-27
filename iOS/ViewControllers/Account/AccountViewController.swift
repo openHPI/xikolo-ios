@@ -90,7 +90,7 @@ class AccountViewController: UITableViewController {
 
                 UserHelper.syncMe().onSuccess { syncResult in
                     guard let user = CoreDataHelper.viewContext.existingTypedObject(with: syncResult.objectId) as? User else {
-                        log.warning("Failed to retrieve user to display")
+                        logger.warning("Failed to retrieve user to display")
                         return
                     }
 

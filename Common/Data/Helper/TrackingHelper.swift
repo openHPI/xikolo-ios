@@ -141,7 +141,7 @@ public enum TrackingHelper {
             }
 
             #if DEBUG
-                log.debug("Would have created tracking event '\(trackingVerb.type)'")
+                logger.debug("Would have created tracking event '\(trackingVerb.type)'")
                 promise.success(())
             #else
                 CoreDataHelper.persistentContainer.performBackgroundTask { context in
@@ -151,7 +151,7 @@ public enum TrackingHelper {
                                   trackingContext: trackingContext as [String: AnyObject],
                                   inContext: context)
                     promise.complete(context.saveWithResult())
-                    log.info("Created tracking event '\(trackingVerb.type)'")
+                    logger.info("Created tracking event '\(trackingVerb.type)'")
                 }
             #endif
         }

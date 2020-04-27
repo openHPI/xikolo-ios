@@ -5,7 +5,7 @@
 
 import os
 
-let log = Logger(subsystem: "de.xikolo.common", category: "Common")
+let logger = Logger(subsystem: "de.xikolo.common", category: "Common")
 
 public struct Logger {
 

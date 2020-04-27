@@ -37,7 +37,7 @@ public final class Video: Content {
             do {
                 return try Data(contentsOf: posterImageURL)
             } catch {
-                log.warning("Failed to load poster image")
+                logger.warning("Failed to load poster image")
             }
         }
 

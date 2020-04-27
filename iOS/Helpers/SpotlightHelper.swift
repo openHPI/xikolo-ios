@@ -48,7 +48,7 @@ class SpotlightHelper {
 
     private func addSearchIndex(for course: Course) {
         guard let url = course.url else {
-            log.warning("Failed to add search index for course (\(course.title ?? "")): no course url")
+            logger.warning("Failed to add search index for course (\(course.title ?? "")): no course url")
             return
         }
 
@@ -65,32 +65,32 @@ class SpotlightHelper {
         CSSearchableIndex.default().indexSearchableItems([item]) { error in
             if let error = error {
                 ErrorManager.shared.report(error)
-                log.error(error.localizedDescription)
+                logger.error(error.localizedDescription)
             } else {
-                log.info("Item indexed.")
+                logger.info("Item indexed.")
             }
         }
     }
 
     private func removeSearchIndex(for course: Course) {
         guard let url = course.url else {
-            log.warning("Failed to remove search index for course (\(course.title ?? "")): no course url")
+            logger.warning("Failed to remove search index for course (\(course.title ?? "")): no course url")
             return
         }
 
         CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [url.absoluteString]) { error in
             if let error = error {
                 ErrorManager.shared.report(error)
-                log.error(error.localizedDescription)
+                logger.error(error.localizedDescription)
             } else {
-                log.info("Item deleted.")
+                logger.info("Item deleted.")
             }
         }
     }
 
     func setUserActivity(for course: Course) {
         guard let url = course.url else {
-            log.warning("Failed to set search user activity for course (\(course.title ?? "")): no course url")
+            logger.warning("Failed to set search user activity for course (\(course.title ?? "")): no course url")
             return
         }
 

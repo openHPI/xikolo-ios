@@ -9,7 +9,7 @@ import UIKit
 
 class DownloadedContentTypeListViewController<Configuration: DownloadedContentTypeListConfiguraton>: UITableViewController {
 
-    typealias Resource = Configuration.Manager.Resource
+    typealias Resource = Configuration.ManagerConfiguration.Resource
 
     private let cellReuseIdentifier = "downloadedItem"
 

@@ -96,13 +96,13 @@ enum DownloadedContentHelper {
                                       persistenceManager: DocumentsPersistenceManager.shared)
     }
 
-    private static func downloadedContent<Resource, Manager>(
+    private static func downloadedContent<Resource, ManagerConfiguration>(
         fetchRequest: NSFetchRequest<Resource>,
         contentType: ContentType,
         courseKeyPath: KeyPath<Resource, Course?>,
         courseItemKeyPath: KeyPath<Resource, CourseItem?>? = nil,
-        persistenceManager: Manager
-    ) -> Future<[DownloadContent], XikoloError> where Manager: PersistenceManager, Manager.Resource == Resource {
+        persistenceManager: PersistenceManager<ManagerConfiguration>
+    ) -> Future<[DownloadContent], XikoloError> where ManagerConfiguration: PersistenceManagerConfiguration, ManagerConfiguration.Resource == Resource {
         var items: [DownloadContent] = []
         let promise = Promise<[DownloadContent], XikoloError>()
         CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
@@ -132,12 +132,12 @@ enum DownloadedContentHelper {
         return promise.future
     }
 
-    private static func downloadedContent<Resource, Manager>(
+    private static func downloadedContent<Resource, ManagerConfiguration>(
         fetchRequest: NSFetchRequest<Resource>,
         contentType: ContentType,
         courseKeyPath: KeyPath<Resource, Set<Course>>,
-        persistenceManager: Manager
-    ) -> Future<[DownloadContent], XikoloError> where Manager: PersistenceManager, Manager.Resource == Resource {
+        persistenceManager: PersistenceManager<ManagerConfiguration>
+    ) -> Future<[DownloadContent], XikoloError> where ManagerConfiguration: PersistenceManagerConfiguration, ManagerConfiguration.Resource == Resource {
         var items: [DownloadContent] = []
         let promise = Promise<[DownloadContent], XikoloError>()
         CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in

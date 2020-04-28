@@ -512,7 +512,7 @@ extension CourseListViewController: UICollectionViewDragDelegate {
             let courseImage = UIImageView()
             courseImage.sd_setImage(with: selectedCourse.imageURL)
             let previewWidth = self.minimalCardWidth(for: self.traitCollection)
-            let previewHeight = CourseCell.heightForCourseList(forWidth: self.minimalCardWidth(for: self.traitCollection), for: selectedCourse)
+            let previewHeight = previewWidth / 2
             courseImage.frame = CGRect(x: 0, y: 0, width: previewWidth, height: previewHeight)
             courseImage.layer.roundCorners(for: .default)
             return UIDragPreview(view: courseImage)

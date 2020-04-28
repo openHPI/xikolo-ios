@@ -255,8 +255,8 @@ extension CourseOverviewViewController: UICollectionViewDragDelegate {
         dragItem.previewProvider = { () -> UIDragPreview? in
             let courseImage = UIImageView()
             courseImage.sd_setImage(with: selectedCourse.imageURL)
-            let previewWidth = CourseCell.minimalWidth(for: self.collectionView.traitCollection)
-            let previewHeight = CourseCell.heightForOverviewList(forWidth: CourseCell.minimalWidth(for: self.collectionView.traitCollection))
+            let previewWidth = self.collectionView.cellForItem(at: indexPath)!.bounds.width - self.collectionView.layoutMargins.left - self.collectionView.layoutMargins.right
+            let previewHeight = previewWidth * 5.5 / 10
             courseImage.frame = CGRect(x: 0, y: 0, width: previewWidth, height: previewHeight)
             courseImage.layer.roundCorners(for: .default)
             return UIDragPreview(view: courseImage)

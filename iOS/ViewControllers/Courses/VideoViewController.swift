@@ -16,6 +16,7 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var videoContainer: UIView!
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
+    @IBOutlet weak var learningMaterialsView: UIStackView!
 
     @IBOutlet private weak var videoActionsButton: UIButton!
     @IBOutlet private weak var videoProgressView: CircularProgressView!
@@ -90,6 +91,10 @@ class VideoViewController: UIViewController {
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self
+
+        self.titleView.text = self.courseItem.title
+        self.descriptionView.isHidden = true
+        self.learningMaterialsView.isHidden = true
 
         self.updateCornersOfVideoContainer(for: self.traitCollection)
 
@@ -213,6 +218,8 @@ class VideoViewController: UIViewController {
 
         guard let video = courseItem.content as? Video else { return }
         self.video = video
+
+        self.learningMaterialsView.isHidden = false
 
         self.show(video: video)
     }

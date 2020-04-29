@@ -24,8 +24,8 @@ class RichtextViewController: UIViewController {
     @IBOutlet private weak var timeEffortLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var scrollViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var loadingScreen: UIView!
-    @IBOutlet weak var richtextInfoView: UIStackView!
+    @IBOutlet private weak var loadingScreen: UIView!
+    @IBOutlet private weak var richtextInfoView: UIStackView!
 
     private var courseItemObserver: ManagedObjectObserver?
 

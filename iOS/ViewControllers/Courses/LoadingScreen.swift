@@ -3,15 +3,15 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import Common
+import Foundation
 import UIKit
 
 public class LoadingScreen: UIViewController {
 
     @IBOutlet weak var progressView: CircularProgressView!
 
-    public override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         let progressValue: CGFloat? = nil

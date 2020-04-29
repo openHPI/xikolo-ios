@@ -255,6 +255,7 @@
                     </view>
                     <connections>
                         <outlet property="descriptionView" destination="4ko-OB-QIh" id="5Bt-3g-7pB"/>
+                        <outlet property="learningMaterialsView" destination="U73-94-qMV" id="S1F-cT-44j"/>
                         <outlet property="slidesActionsButton" destination="5ts-sZ-C3O" id="rmi-e7-8Qx"/>
                         <outlet property="slidesButton" destination="C3L-1P-Ygi" id="jSY-V7-fcq"/>
                         <outlet property="slidesDownloadedIcon" destination="6cb-4r-Znd" id="pSS-dX-jv8"/>

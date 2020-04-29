@@ -24,8 +24,7 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
-            print(userActivity)
+        if (connectionOptions.userActivities.first ?? session.stateRestorationActivity) != nil {
         }
 
         let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity

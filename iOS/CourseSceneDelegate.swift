@@ -24,11 +24,8 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        if (connectionOptions.userActivities.first ?? session.stateRestorationActivity) != nil {
-        }
-
         let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity
-        guard let courseId = userActivity?.userInfo?["courseID"] as? String else { return } // XXX: really return?
+        guard let courseId = userActivity?.userInfo?["courseID"] as? String else { return }
 
         let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: courseId)
         guard let course = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value else { return }

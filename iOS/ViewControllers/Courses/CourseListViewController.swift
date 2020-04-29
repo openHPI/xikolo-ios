@@ -502,23 +502,7 @@ extension CourseListViewController: UICollectionViewDragDelegate {
 
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         let selectedCourse = self.dataSource.object(at: indexPath)
-        let userActivity = selectedCourse.openCourseUserActivity
-        let itemProvider = NSItemProvider()
-        itemProvider.registerObject(userActivity, visibility: .all)
-        let dragItem = UIDragItem(itemProvider: itemProvider)
-        dragItem.localObject = selectedCourse
-
-        dragItem.previewProvider = { () -> UIDragPreview? in
-            let courseImage = UIImageView()
-            courseImage.sd_setImage(with: selectedCourse.imageURL)
-            let previewWidth = self.minimalCardWidth(for: self.traitCollection)
-            let previewHeight = previewWidth / 2
-            courseImage.frame = CGRect(x: 0, y: 0, width: previewWidth, height: previewHeight)
-            courseImage.layer.roundCorners(for: .default)
-            return UIDragPreview(view: courseImage)
-        }
-
-        return [dragItem]
+        return [selectedCourse.dragItem(self.collectionView.traitCollection)]
     }
 
 }

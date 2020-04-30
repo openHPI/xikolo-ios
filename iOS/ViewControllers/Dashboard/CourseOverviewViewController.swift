@@ -210,13 +210,13 @@ extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let courseCellWidth = CourseCell.minimalWidth(for: collectionView.traitCollection)
         let availableWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right
-        let preferedWidth = min(availableWidth * 0.9, courseCellWidth)
+        let preferredWidth = min(availableWidth * 0.9, courseCellWidth)
 
         let hasCourses = !self.courses.isEmpty
         let isLastCell = self.itemLimit == indexPath.item
 
-        let width = hasCourses && isLastCell ? preferedWidth * 2 / 3 : preferedWidth
-        let height = CourseCell.heightForOverviewList(forWidth: preferedWidth)
+        let width = hasCourses && isLastCell ? preferredWidth * 2 / 3 : preferredWidth
+        let height = CourseCell.heightForOverviewList(forWidth: preferredWidth)
 
         return CGSize(width: width, height: height)
     }

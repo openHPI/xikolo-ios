@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,121 +13,236 @@
             <objects>
                 <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="Today" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2s9-w4-py5">
-                                <rect key="frame" x="16" y="-10" width="343" height="117"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please log into your account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBe-Fq-ggH">
+                                <rect key="frame" x="16" y="188" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currently not supported" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ki9-Gd-mbN">
+                                <rect key="frame" x="16" y="188" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2E-Sn-j9v">
+                                <rect key="frame" x="16" y="79.5" width="343" height="241.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please log into your account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBe-Fq-ggH">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="21"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currently not supported" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ki9-Gd-mbN">
-                                        <rect key="frame" x="0.0" y="29" width="343" height="20.5"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HPL-4k-nVu">
-                                        <rect key="frame" x="0.0" y="57.5" width="343" height="59.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="L9x-QD-5Ot">
+                                        <rect key="frame" x="0.0" y="20" width="343" height="201.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SqI-mt-Qyh">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="18"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HPL-4k-nVu" userLabel="Counter View">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="59.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iS-3J-iih" userLabel="Today">
-                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="18"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
-                                                        </accessibility>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next 7 Days" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1g-ix-PZy" userLabel="Next 7 Days">
-                                                        <rect key="frame" x="117" y="0.0" width="109" height="18"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
-                                                        </accessibility>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFl-7o-kzc" userLabel="All">
-                                                        <rect key="frame" x="234" y="0.0" width="109" height="18"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
-                                                        </accessibility>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SqI-mt-Qyh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="18"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iS-3J-iih" userLabel="Today">
+                                                                <rect key="frame" x="0.0" y="0.0" width="109" height="18"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                </accessibility>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next 7 Days" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1g-ix-PZy" userLabel="Next 7 Days">
+                                                                <rect key="frame" x="117" y="0.0" width="109" height="18"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                </accessibility>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFl-7o-kzc" userLabel="All">
+                                                                <rect key="frame" x="234" y="0.0" width="109" height="18"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                </accessibility>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LxF-nX-R84">
+                                                        <rect key="frame" x="0.0" y="26" width="343" height="33.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZT0-cS-w8o">
+                                                                <rect key="frame" x="0.0" y="0.0" width="109" height="33.5"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" none="YES"/>
+                                                                </accessibility>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="#bc-ignore!"/>
+                                                                </attributedString>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZ7-Dc-eUO">
+                                                                <rect key="frame" x="117" y="0.0" width="109" height="33.5"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                                </accessibility>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="#bc-ignore!"/>
+                                                                </attributedString>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2z-4g-4CF" userLabel="2">
+                                                                <rect key="frame" x="234" y="0.0" width="109" height="33.5"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                                </accessibility>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="#bc-ignore!"/>
+                                                                </attributedString>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LxF-nX-R84">
-                                                <rect key="frame" x="0.0" y="26" width="343" height="33.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8Bi-3R-cfl">
+                                                <rect key="frame" x="0.0" y="107.5" width="343" height="94"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZT0-cS-w8o">
-                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="33.5"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" none="YES"/>
-                                                        </accessibility>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <attributedString key="userComments">
-                                                            <fragment content="#bc-ignore!"/>
-                                                        </attributedString>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZ7-Dc-eUO">
-                                                        <rect key="frame" x="117" y="0.0" width="109" height="33.5"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" notEnabled="YES"/>
-                                                        </accessibility>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <attributedString key="userComments">
-                                                            <fragment content="#bc-ignore!"/>
-                                                        </attributedString>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2z-4g-4CF" userLabel="2">
-                                                        <rect key="frame" x="234" y="0.0" width="109" height="33.5"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" notEnabled="YES"/>
-                                                        </accessibility>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <attributedString key="userComments">
-                                                            <fragment content="#bc-ignore!"/>
-                                                        </attributedString>
-                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ndy-1w-vea">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="39"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" image="calendar-large" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="93g-WM-EB7">
+                                                                <rect key="frame" x="0.0" y="0.0" width="39" height="39"/>
+                                                                <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </imageView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="RSp-3Z-AOw">
+                                                                <rect key="frame" x="47" y="0.0" width="296" height="39"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="relative date time" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVT-tT-Qtx">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="296" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="#bc-ignore!">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="date" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LU-eF-35Q">
+                                                                        <rect key="frame" x="0.0" y="24.5" width="296" height="14.5"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                                        <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="#bc-ignore!">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxh-uZ-bmr">
+                                                        <rect key="frame" x="0.0" y="47" width="343" height="1"/>
+                                                        <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="zUM-fx-hDZ"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="z8V-UM-sHZ">
+                                                        <rect key="frame" x="0.0" y="56" width="343" height="38"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="course" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4TA-ww-Ysg">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="13.5"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="#bc-ignore!">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NlA-DQ-CBl">
+                                                                <rect key="frame" x="0.0" y="17.5" width="343" height="20.5"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="#bc-ignore!">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="L9x-QD-5Ot" firstAttribute="top" secondItem="s2E-Sn-j9v" secondAttribute="top" constant="20" symbolic="YES" id="5IR-Ug-N9F"/>
+                                    <constraint firstAttribute="bottom" secondItem="L9x-QD-5Ot" secondAttribute="bottom" constant="20" symbolic="YES" id="C06-4b-UoD"/>
+                                    <constraint firstItem="L9x-QD-5Ot" firstAttribute="leading" secondItem="s2E-Sn-j9v" secondAttribute="leading" id="SmX-z0-pbZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="L9x-QD-5Ot" secondAttribute="trailing" id="vaC-Cj-szQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="2s9-w4-py5" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="N2M-Jv-Xwr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2s9-w4-py5" secondAttribute="trailing" id="hMp-da-hiN"/>
-                            <constraint firstItem="2s9-w4-py5" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="nSd-Jo-JbD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ki9-Gd-mbN" secondAttribute="trailing" id="4oT-Kb-YBm"/>
+                            <constraint firstItem="s2E-Sn-j9v" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="AFP-Nd-Bw9"/>
+                            <constraint firstItem="eBe-Fq-ggH" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="PmG-cN-Zbt"/>
+                            <constraint firstItem="eBe-Fq-ggH" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" constant="-2" id="WyZ-hX-mBa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eBe-Fq-ggH" secondAttribute="trailing" id="ZyD-Rc-VgO"/>
+                            <constraint firstItem="s2E-Sn-j9v" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="gke-k5-mM3"/>
+                            <constraint firstItem="Ki9-Gd-mbN" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" constant="-2" id="sT0-SG-Vny"/>
+                            <constraint firstItem="Ki9-Gd-mbN" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="t15-JZ-Cr3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="s2E-Sn-j9v" secondAttribute="trailing" id="vUp-Sd-m4X"/>
+                            <constraint firstItem="HPL-4k-nVu" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" constant="-2" id="zck-7t-60a"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="E5m-KV-fur"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="zck-7t-60a"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="97"/>
+                    <size key="freeformSize" width="375" height="400"/>
                     <connections>
                         <outlet property="allCountLabel" destination="D2z-4g-4CF" id="tKe-4y-CIN"/>
-                        <outlet property="counterStackView" destination="HPL-4k-nVu" id="u94-tn-1L7"/>
+                        <outlet property="datesAvailableView" destination="s2E-Sn-j9v" id="pS1-Uq-cUl"/>
                         <outlet property="loginRequestedLabel" destination="eBe-Fq-ggH" id="iku-F6-F1T"/>
                         <outlet property="nextCountLabel" destination="qZ7-Dc-eUO" id="5Ug-NA-ef2"/>
+                        <outlet property="nextCourseDateContainer" destination="8Bi-3R-cfl" id="wx3-kD-MbC"/>
+                        <outlet property="nextCourseDateCourseTitleLabel" destination="4TA-ww-Ysg" id="iia-iK-e35"/>
+                        <outlet property="nextCourseDateDateLabel" destination="0LU-eF-35Q" id="boC-uR-v7l"/>
+                        <outlet property="nextCourseDateImageView" destination="93g-WM-EB7" id="b70-xd-W2M"/>
+                        <outlet property="nextCourseDateRelativeDateTimeLabel" destination="OVT-tT-Qtx" id="SpH-1C-kAE"/>
+                        <outlet property="nextCourseDateTitleLabel" destination="NlA-DQ-CBl" id="d5R-cQ-uBH"/>
+                        <outlet property="nextDateAvailableCenterLayoutConstraint" destination="AFP-Nd-Bw9" id="cpx-Vx-Jmu"/>
+                        <outlet property="noNextDateAvailableCenterLayoutConstraint" destination="zck-7t-60a" id="8mw-wP-MJf"/>
                         <outlet property="todayCountLabel" destination="ZT0-cS-w8o" id="Bag-xQ-KNL"/>
                         <outlet property="widgetDisabledLabel" destination="Ki9-Gd-mbN" id="Wzm-HI-O9D"/>
                     </connections>
@@ -138,4 +252,7 @@
             <point key="canvasLocation" x="-678.98550724637687" y="92.745535714285708"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="calendar-large" width="39" height="39"/>
+    </resources>
 </document>

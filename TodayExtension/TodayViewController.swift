@@ -45,9 +45,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        // Disallow the today widget to be expanded or contracted.
-//        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
-
         if #available(iOS 11, *) {
             // The large title font is not available on iOS 10 and the storyboard file fails to provide a suitable fallback value.
             // Therefore, we set the font to .title1 in the storyboard file and upgrade to .largeTitle for iOS 11 manually.
@@ -63,32 +60,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             //            self.nextUpImageView.image = R.image.calendar()
         }
 
-//        self.updateView()
-//        self.loadData()
-
-        self.widgetPerformUpdate(completionHandler: { [weak self] _ in
-//            DispatchQueue.main.async {
-//                let isInCompactMode = self?.extensionContext?.widgetActiveDisplayMode != .expanded
-//                self?.nextDateAvailableCenterLayoutConstraint.isActive = !isInCompactMode
-//                self?.noNextDateAvailableCenterLayoutConstraint.isActive = isInCompactMode
-//                self?.view.setNeedsLayout()
-//                self?.view.layoutIfNeeded()
-//            }
-        })
+        self.widgetPerformUpdate(completionHandler: { _ in })
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleBackgroundTap))
         self.view.addGestureRecognizer(tapGestureRecognizer)
     }
-
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        let isInCompactMode = self.extensionContext?.widgetActiveDisplayMode != .expanded
-//        self.nextDateAvailableCenterLayoutConstraint.isActive = !isInCompactMode
-//        self.noNextDateAvailableCenterLayoutConstraint.isActive = isInCompactMode
-//        self.nextCourseDateContainer.alpha = isInCompactMode ? 0 : 1
-//        self.view.layoutIfNeeded()
-//    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -108,39 +84,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let isInCompactMode = self.extensionContext?.widgetActiveDisplayMode != .expanded
         self.nextDateAvailableCenterLayoutConstraint.isActive = !isInCompactMode
         self.noNextDateAvailableCenterLayoutConstraint.isActive = isInCompactMode
-//        self.view.layoutIfNeeded()
 
         coordinator.animate(alongsideTransition: { [weak self] _ in
             self?.nextCourseDateContainer.alpha = isInCompactMode ? 0 : 1
             self?.view.layoutIfNeeded()
-//            self?.nextCourseDateContainer.isHidden = self?.extensionContext?.widgetActiveDisplayMode != .expanded
-        }, completion: { [weak self] _ in
-//             self?.nextCourseDateContainer.isHidden = self?.extensionContext?.widgetActiveDisplayMode != .expanded
-        })
-
-//        let updatedVisibleCellCount = numberOfTableRowsToDisplay()
-//        let currentVisibleCellCount = self.tableView.visibleCells.count
-//        let cellCountDifference = updatedVisibleCellCount - currentVisibleCellCount
-
-//        // If the number of visible cells has changed, animate them in/out along with the resize animation.
-//        if cellCountDifference != 0 {
-//            coordinator.animate(alongsideTransition: { [unowned self] (UIViewControllerTransitionCoordinatorContext) in
-//                self.tableView.performBatchUpdates({ [unowned self] in
-//                    // Build an array of IndexPath objects representing the rows to be inserted or deleted.
-//                    let range = (1...abs(cellCountDifference))
-//                    let indexPaths = range.map({ (index) -> IndexPath in
-//                        return IndexPath(row: index, section: 0)
-//                    })
-//
-//                    // Animate the insertion or deletion of the rows.
-//                    if cellCountDifference > 0 {
-//                        self.tableView.insertRows(at: indexPaths, with: .fade)
-//                    } else {
-//                        self.tableView.deleteRows(at: indexPaths, with: .fade)
-//                    }
-//                }, completion: nil)
-//            }, completion: nil)
-//        }
+        }, completion: nil)
     }
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -151,10 +99,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
 
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
-//        self.nextCourseDateContainer.isHidden = activeDisplayMode == .compact
-//        self.nextCourseDateContainer.alpha = 0
-//        self.view.layoutIfNeeded()
-
         switch activeDisplayMode {
         case .compact:
             // The compact view is a fixed size.
@@ -171,8 +115,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @discardableResult private func updateView(nextCourseDateAvailable: Bool) -> Bool {
         let loginStateChange = UserProfileHelper.shared.isLoggedIn != self.loginRequestedLabel.isHidden
         self.datesAvailableView.isHidden = !UserProfileHelper.shared.isLoggedIn || self.widgetIsDisabled
-//        self.nextCourseDateContainer.isHidden = !UserProfileHelper.shared.isLoggedIn || self.widgetIsDisabled || !nextCourseDateAvailable || self.extensionContext?.widgetActiveDisplayMode == .compact
-        self.nextCourseDateContainer.alpha = (!UserProfileHelper.shared.isLoggedIn || self.widgetIsDisabled || !nextCourseDateAvailable || self.extensionContext?.widgetActiveDisplayMode == .compact) ? 0 : 1
         self.loginRequestedLabel.isHidden = UserProfileHelper.shared.isLoggedIn || self.widgetIsDisabled
         self.widgetDisabledLabel.isHidden = !self.widgetIsDisabled
         self.extensionContext?.widgetLargestAvailableDisplayMode = nextCourseDateAvailable ? .expanded : .compact

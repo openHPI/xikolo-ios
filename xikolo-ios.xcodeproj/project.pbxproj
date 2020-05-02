@@ -20,8 +20,10 @@
 		02AA78BB23A0176F00CD13F5 /* CourseProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02AA78BD23A0176F00CD13F5 /* CourseProgress.storyboard */; };
 		02E20BE823882CFB006C9345 /* VisitProgressStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */; };
 		02FE3EAE235502C300E3ECB4 /* CourseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */; };
-		0E9A918199CDB2713B303D13 /* Pods_Stockpile_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 292B073B0741788A932E7517 /* Pods_Stockpile_Tests.framework */; };
-		42D10D69F7D73BE6EE2A86BB /* Pods_Stockpile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2496EAFA788D8B8FBC8824D6 /* Pods_Stockpile.framework */; };
+		10DF870DD59FA369A3E513B3 /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D642EAB767C449225D952C21 /* Pods_Common.framework */; };
+		4A3AD2E1F775A9AFF5F1D401 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7425AC35D1422FBFEBAB2B64 /* Pods_iOS.framework */; };
+		4B1A18A85A0779EE15AD3893 /* Pods_Stockpile_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FF4E7BC182070B58E455CD /* Pods_Stockpile_Tests.framework */; };
+		4E5BD4C354D150C6FEB5C677 /* Pods_Common_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69898D249002AF4DD310CD76 /* Pods_Common_Tests.framework */; };
 		5001321F215AAAEE0055016F /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
 		50044FBA232773F2004D1AD8 /* CourseLearningsWeb.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50044FB9232773F2004D1AD8 /* CourseLearningsWeb.storyboard */; };
 		50044FC32327815F004D1AD8 /* CourseLearningsLTI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50044FC52327815F004D1AD8 /* CourseLearningsLTI.storyboard */; };
@@ -401,21 +403,19 @@
 		7007E4132133FFB6005AC7A6 /* DownloadedContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */; };
 		70893B5621C3D1F600AF22E3 /* LTIExerciseHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70893B5521C3D1F600AF22E3 /* LTIExerciseHintViewController.swift */; };
 		820CCEE623D05B140066CE11 /* CourseItem+share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820CCEE523D05B140066CE11 /* CourseItem+share.swift */; };
-		82300ABD2451916300480257 /* LoadingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82300ABF2451916300480257 /* LoadingScreen.storyboard */; };
 		8251A50B237182F200A443A9 /* HelpdeskTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50A237182F200A443A9 /* HelpdeskTicket.swift */; };
 		8251A50D23718A4500A443A9 /* HelpdeskTicketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */; };
 		82773EF6242E245C0007F651 /* UIActivityViewController+share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82773EF5242E245C0007F651 /* UIActivityViewController+share.swift */; };
 		828FF16523EF4424006515B5 /* PeerAssessmentHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FF16423EF4424006515B5 /* PeerAssessmentHintViewController.swift */; };
 		828FF16A23EF5DE1006515B5 /* CourseLearningsPeerAssessment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 828FF16C23EF5DE1006515B5 /* CourseLearningsPeerAssessment.storyboard */; };
 		82BE606D232FBB86000353B4 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82BE606F232FBB86000353B4 /* CourseDetails.storyboard */; };
+		82CF971F245D9878008EC208 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CF971E245D9878008EC208 /* LoadingScreen.swift */; };
+		82CF9722245D989F008EC208 /* LoadingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82CF9720245D989F008EC208 /* LoadingScreen.storyboard */; };
 		82D13D0C235726E70006A0D9 /* HelpdeskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D13D0B235726E70006A0D9 /* HelpdeskViewController.swift */; };
 		82D55A1E23CF31D000EB2768 /* Sequence+sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D55A1D23CF31D000EB2768 /* Sequence+sort.swift */; };
-		82DFA7A4244874C700781BC3 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DFA7A3244874C700781BC3 /* LoadingScreen.swift */; };
 		B4E079EB218791A600EA53F5 /* CertificateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E079EA218791A600EA53F5 /* CertificateCell.xib */; };
 		B4E079ED21879C9200EA53F5 /* CertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E079EC21879C9200EA53F5 /* CertificateCell.swift */; };
-		D3F8E49414EBDE7ADF11C8D3 /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FECEF6291399B9D1548C31B /* Pods_Common.framework */; };
-		E3C35C98981EF5383230DD34 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39BFDBF8AD40272258AD0E1E /* Pods_iOS.framework */; };
-		E5E9A16B12AEC594703CBBAC /* Pods_Common_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BBC0A7E9AB0936619464B0 /* Pods_Common_Tests.framework */; };
+		E01AA6EE18A41F11D3715E57 /* Pods_Stockpile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C3A78F600FE15618A724E68 /* Pods_Stockpile.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -512,8 +512,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		001645B6494C458806467C98 /* Pods-Common-Tests.openwho-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.openwho-ios-debug.xcconfig"; path = "Target Support Files/Pods-Common-Tests/Pods-Common-Tests.openwho-ios-debug.xcconfig"; sourceTree = "<group>"; };
-		0179BEA5D20B5A1D50D08BBC /* Pods-Stockpile.moochouse-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile.moochouse-ios-debug.xcconfig"; path = "Target Support Files/Pods-Stockpile/Pods-Stockpile.moochouse-ios-debug.xcconfig"; sourceTree = "<group>"; };
+		01009BBD71C763CF44BF0EAF /* Pods-Stockpile.opensap-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile.opensap-ios-release.xcconfig"; path = "Target Support Files/Pods-Stockpile/Pods-Stockpile.opensap-ios-release.xcconfig"; sourceTree = "<group>"; };
 		021DA1A623869C1700E6E763 /* ExerciseProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseProgressStackView.swift; sourceTree = "<group>"; };
 		023B8E68230615E90027E370 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0240EF1624005CFE00337879 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainInterface.strings; sourceTree = "<group>"; };
@@ -554,7 +553,6 @@
 		2490C4D51D1D6F7100F42949 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		249348191D9550FD006D4F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		2493481B1D955101006D4F2C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		2496EAFA788D8B8FBC8824D6 /* Pods_Stockpile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stockpile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		249E3AA31D43C0A100D7663F /* QuizHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizHelper.swift; sourceTree = "<group>"; };
 		249E3AA91D43C7C900D7663F /* QuizQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 		24A16D6B1CFC883A00CAD9FE /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
@@ -967,6 +965,7 @@
 		70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+localizedFormatter.swift"; sourceTree = "<group>"; };
 		702520801F6FFFD6003E0F80 /* UserDefaults+VideoQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+VideoQuality.swift"; sourceTree = "<group>"; };
 		70388C611EF1566A0093F186 /* AnnouncementListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementListViewController.swift; sourceTree = "<group>"; };
+		703F7ECFD3188514974E8B7A /* Pods-Stockpile.openwho-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile.openwho-ios-debug.xcconfig"; path = "Target Support Files/Pods-Stockpile/Pods-Stockpile.openwho-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filemanager+temporaryFile.swift"; sourceTree = "<group>"; };
 		70893B5521C3D1F600AF22E3 /* LTIExerciseHintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIExerciseHintViewController.swift; sourceTree = "<group>"; };
 		709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
@@ -975,9 +974,7 @@
 		70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFWebViewController.swift; sourceTree = "<group>"; };
 		70F379CE205B643400149C3B /* CertificatesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificatesListViewController.swift; sourceTree = "<group>"; };
 		70F8C27D1F24C6010091F202 /* xikolo 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 4.xcdatamodel"; sourceTree = "<group>"; };
-		71A6932344C734FD03B82954 /* Pods-Common.moochouse-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.moochouse-ios-release.xcconfig"; path = "Target Support Files/Pods-Common/Pods-Common.moochouse-ios-release.xcconfig"; sourceTree = "<group>"; };
-		73A10674BDFC9BC5E4CA3AED /* Pods-iOS.moochouse-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.moochouse-ios-release.xcconfig"; path = "Target Support Files/Pods-iOS/Pods-iOS.moochouse-ios-release.xcconfig"; sourceTree = "<group>"; };
-		749BD7FD021CAEB600EFFF14 /* Pods-Stockpile.openwho-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile.openwho-ios-release.xcconfig"; path = "Target Support Files/Pods-Stockpile/Pods-Stockpile.openwho-ios-release.xcconfig"; sourceTree = "<group>"; };
+		7425AC35D1422FBFEBAB2B64 /* Pods_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -986,8 +983,7 @@
 		7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
 		820CCEE523D05B140066CE11 /* CourseItem+share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseItem+share.swift"; sourceTree = "<group>"; };
-		82300ABE2451916300480257 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoadingScreen.storyboard; sourceTree = "<group>"; };
-		82300AC12451916900480257 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LoadingScreen.strings; sourceTree = "<group>"; };
+		8233D36BB282FEAF3A1D7876 /* Pods-iOS.openhpi-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.openhpi-ios-debug.xcconfig"; path = "Target Support Files/Pods-iOS/Pods-iOS.openhpi-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		8251A50A237182F200A443A9 /* HelpdeskTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskTicket.swift; sourceTree = "<group>"; };
 		8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskTicketHelper.swift; sourceTree = "<group>"; };
 		82773EF5242E245C0007F651 /* UIActivityViewController+share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityViewController+share.swift"; sourceTree = "<group>"; };
@@ -996,9 +992,11 @@
 		828FF16E23EF5E3B006515B5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseLearningsPeerAssessment.strings; sourceTree = "<group>"; };
 		82BE606E232FBB86000353B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseDetails.storyboard; sourceTree = "<group>"; };
 		82BE6071232FBB8C000353B4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDetails.strings; sourceTree = "<group>"; };
+		82CF971E245D9878008EC208 /* LoadingScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		82CF9721245D989F008EC208 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoadingScreen.storyboard; sourceTree = "<group>"; };
+		82CF9728245D9A3E008EC208 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LoadingScreen.strings; sourceTree = "<group>"; };
 		82D13D0B235726E70006A0D9 /* HelpdeskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskViewController.swift; sourceTree = "<group>"; };
 		82D55A1D23CF31D000EB2768 /* Sequence+sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+sort.swift"; sourceTree = "<group>"; };
-		82DFA7A3244874C700781BC3 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 		8BF6ABC3186368821DF90072 /* Pods-Common-Tests.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.openhpi-ios-release.xcconfig"; path = "Target Support Files/Pods-Common-Tests/Pods-Common-Tests.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
 		929724B767BEFE487AA184D4 /* Pods-Stockpile-Tests.lernencloud-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile-Tests.lernencloud-ios-debug.xcconfig"; path = "Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests.lernencloud-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		9F601CB31F07E4583D00C5AB /* Pods-iOS.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.openhpi-ios-release.xcconfig"; path = "Target Support Files/Pods-iOS/Pods-iOS.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
@@ -1022,6 +1020,7 @@
 		AB4F226D1D7CB95500ED0BF1 /* CourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
 		AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventHelper.swift; sourceTree = "<group>"; };
 		AB77C2961DF956EE00B30619 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
+		AB8D7819A946397392C4DDB7 /* Pods-Common-Tests.opensap-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.opensap-ios-debug.xcconfig"; path = "Target Support Files/Pods-Common-Tests/Pods-Common-Tests.opensap-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemListViewController.swift; sourceTree = "<group>"; };
@@ -1077,8 +1076,7 @@
 		F875A5161B5697640030F38C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89473C11B3C46FD00553882 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F8FABFBC1B580B7A0007F308 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
-		F926FC8A2FFE6C692804730B /* Pods-Stockpile-Tests.opensap-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile-Tests.opensap-ios-debug.xcconfig"; path = "Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests.opensap-ios-debug.xcconfig"; sourceTree = "<group>"; };
-		FA7E7BB34DE1B520C38D8500 /* Pods-Common-Tests.opensap-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.opensap-ios-debug.xcconfig"; path = "Target Support Files/Pods-Common-Tests/Pods-Common-Tests.opensap-ios-debug.xcconfig"; sourceTree = "<group>"; };
+		F90E6D1FD2A559C182E6A5C0 /* Pods-iOS.moochouse-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.moochouse-ios-debug.xcconfig"; path = "Target Support Files/Pods-iOS/Pods-iOS.moochouse-ios-debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1086,7 +1084,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42D10D69F7D73BE6EE2A86BB /* Pods_Stockpile.framework in Frameworks */,
+				E01AA6EE18A41F11D3715E57 /* Pods_Stockpile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1095,7 +1093,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				502CBDCD2433716C00BF6001 /* Stockpile.framework in Frameworks */,
-				0E9A918199CDB2713B303D13 /* Pods_Stockpile_Tests.framework in Frameworks */,
+				4B1A18A85A0779EE15AD3893 /* Pods_Stockpile_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1125,7 +1123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50761B5820FCADD700CEDAF9 /* Common.framework in Frameworks */,
-				E5E9A16B12AEC594703CBBAC /* Pods_Common_Tests.framework in Frameworks */,
+				4E5BD4C354D150C6FEB5C677 /* Pods_Common_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1142,7 +1140,7 @@
 				50FA2DF220E4B1A800656776 /* Common.framework in Frameworks */,
 				50CF1FF420DCDBFC0011BFE9 /* CFNetwork.framework in Frameworks */,
 				5067AD392367042E00ADEAB9 /* Binge.framework in Frameworks */,
-				E3C35C98981EF5383230DD34 /* Pods_iOS.framework in Frameworks */,
+				4A3AD2E1F775A9AFF5F1D401 /* Pods_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1158,7 +1156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3F8E49414EBDE7ADF11C8D3 /* Pods_Common.framework in Frameworks */,
+				10DF870DD59FA369A3E513B3 /* Pods_Common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1900,24 +1898,24 @@
 				50146FC82221829500177E96 /* CourseSearchFiltersViewController.swift */,
 				50911AF4223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift */,
 				50146FCE2222C8B900177E96 /* CourseSearchFilter.swift */,
-				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
 				AB4F226D1D7CB95500ED0BF1 /* CourseViewController.swift */,
-				50D91643207D080000DDB6E1 /* CourseArea.swift */,
 				AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */,
 				5019CE8F2171E9390001805E /* CourseItemViewController.swift */,
 				ABAC56061D142B4A008D30FB /* RichtextViewController.swift */,
+				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
 				ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */,
 				50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */,
 				503CEE952177082D00F34694 /* ProcotoredItemViewController.swift */,
 				50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */,
+				AB9A3D8C1E61CE2500384B1E /* CourseDetailsViewController.swift */,
 				0270F4AB234CBFBC008A1FD1 /* CourseProgressViewController.swift */,
 				70F379CE205B643400149C3B /* CertificatesListViewController.swift */,
 				5054B2E62108B30E00CE9067 /* DocumentListViewController.swift */,
-				AB9A3D8C1E61CE2500384B1E /* CourseDetailsViewController.swift */,
+				50D91643207D080000DDB6E1 /* CourseArea.swift */,
 				5017B3BB204983E7001D90A1 /* CourseAreaListViewController.swift */,
 				828FF16423EF4424006515B5 /* PeerAssessmentHintViewController.swift */,
-				82DFA7A3244874C700781BC3 /* LoadingScreen.swift */,
 				70893B5521C3D1F600AF22E3 /* LTIExerciseHintViewController.swift */,
+				82CF971E245D9878008EC208 /* LoadingScreen.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -2156,6 +2154,7 @@
 				50044FD423278F19004D1AD8 /* CourseLearningsRichtext.storyboard */,
 				50044FC52327815F004D1AD8 /* CourseLearningsLTI.storyboard */,
 				828FF16C23EF5DE1006515B5 /* CourseLearningsPeerAssessment.storyboard */,
+				82CF9720245D989F008EC208 /* LoadingScreen.storyboard */,
 				50044FCA2327816B004D1AD8 /* CourseLearningsUnavailable.storyboard */,
 				50044FCF23278F03004D1AD8 /* CourseLearningsProctored.storyboard */,
 				50044FB9232773F2004D1AD8 /* CourseLearningsWeb.storyboard */,
@@ -2169,7 +2168,6 @@
 				506D7E1A2104B7730018D9E2 /* CourseCell.xib */,
 				50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */,
 				50467FEC238425B40084D7F6 /* ChannelHeaderView.xib */,
-				82300ABF2451916300480257 /* LoadingScreen.storyboard */,
 				5058578321344C75006A5D15 /* PseudoCourseCell.xib */,
 				506BDB952423822C0002DBDE /* AdditionalLearningMaterialCell.xib */,
 				50146FCA2222875E00177E96 /* CourseSearchFilterCell.xib */,
@@ -2193,11 +2191,11 @@
 				7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */,
 				7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */,
 				7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */,
-				5FECEF6291399B9D1548C31B /* Pods_Common.framework */,
-				D6BBC0A7E9AB0936619464B0 /* Pods_Common_Tests.framework */,
-				2496EAFA788D8B8FBC8824D6 /* Pods_Stockpile.framework */,
-				292B073B0741788A932E7517 /* Pods_Stockpile_Tests.framework */,
-				39BFDBF8AD40272258AD0E1E /* Pods_iOS.framework */,
+				D642EAB767C449225D952C21 /* Pods_Common.framework */,
+				69898D249002AF4DD310CD76 /* Pods_Common_Tests.framework */,
+				7425AC35D1422FBFEBAB2B64 /* Pods_iOS.framework */,
+				2C3A78F600FE15618A724E68 /* Pods_Stockpile.framework */,
+				C4FF4E7BC182070B58E455CD /* Pods_Stockpile_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2236,7 +2234,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 502CBDDB2433716C00BF6001 /* Build configuration list for PBXNativeTarget "Stockpile" */;
 			buildPhases = (
-				7AB9C9CFFA547F2B72C8187E /* [CP] Check Pods Manifest.lock */,
+				93D4CFA5AD1E575580540383 /* [CP] Check Pods Manifest.lock */,
 				502CBDBF2433716B00BF6001 /* Headers */,
 				502CBDC02433716B00BF6001 /* Sources */,
 				502CBDC12433716B00BF6001 /* Frameworks */,
@@ -2255,11 +2253,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 502CBDE42433716C00BF6001 /* Build configuration list for PBXNativeTarget "Stockpile-Tests" */;
 			buildPhases = (
-				CD08D67378E6E75B05F67F7C /* [CP] Check Pods Manifest.lock */,
+				8C1BA5DCCB006D486301A73C /* [CP] Check Pods Manifest.lock */,
 				502CBDC82433716C00BF6001 /* Sources */,
 				502CBDC92433716C00BF6001 /* Frameworks */,
 				502CBDCA2433716C00BF6001 /* Resources */,
-				715B045D3E878BC0BBC23334 /* [CP] Embed Pods Frameworks */,
+				F776A500E11A770DB1FD59B8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2330,11 +2328,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50761B5B20FCADD700CEDAF9 /* Build configuration list for PBXNativeTarget "Common-Tests" */;
 			buildPhases = (
-				CE35AA13ECB79C3DC0D77EF3 /* [CP] Check Pods Manifest.lock */,
+				79D975DF356DA8FEC80ABF31 /* [CP] Check Pods Manifest.lock */,
 				50761B4F20FCADD600CEDAF9 /* Sources */,
 				50761B5020FCADD600CEDAF9 /* Frameworks */,
 				50761B5120FCADD600CEDAF9 /* Resources */,
-				0641D2419A37DB53BDD61F30 /* [CP] Embed Pods Frameworks */,
+				543A3CC5E498AD0F531A3AA2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2350,7 +2348,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50CF201320DCDBFC0011BFE9 /* Build configuration list for PBXNativeTarget "iOS" */;
 			buildPhases = (
-				70FADC2FA361E2E3447D5B75 /* [CP] Check Pods Manifest.lock */,
+				842A19DE1904587C585C18B2 /* [CP] Check Pods Manifest.lock */,
 				50CF1F4320DCDBFC0011BFE9 /* Set Build Number */,
 				50D65A0D20DE33B100DFD183 /* Copy Brand Assets */,
 				50CF1F4420DCDBFC0011BFE9 /* Run R.swift */,
@@ -2358,11 +2356,11 @@
 				50CF1FEE20DCDBFC0011BFE9 /* Frameworks */,
 				50CF1FF620DCDBFC0011BFE9 /* Resources */,
 				50CF200F20DCDBFC0011BFE9 /* Copy GoogleServices-Info.plist */,
+				BCF915E760C0D54E19A81B5C /* [CP] Embed Pods Frameworks */,
 				50FA2DFD20E4B1A800656776 /* Embed Frameworks */,
 				50CF201220DCDBFC0011BFE9 /* Clear Build Number */,
 				02299DD82417E867006B2E52 /* Embed App Extension */,
 				50D60D2B20E0D2C7007A4199 /* Remove Localizations */,
-				B95AF14BFDDA1BDF5B7B9639 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2400,7 +2398,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50FA2DFC20E4B1A800656776 /* Build configuration list for PBXNativeTarget "Common" */;
 			buildPhases = (
-				289F06A21E676BE66F1BAB81 /* [CP] Check Pods Manifest.lock */,
+				E2823DEADBC75FC85C818BA4 /* [CP] Check Pods Manifest.lock */,
 				50FA2DE620E4B1A800656776 /* Sources */,
 				50FA2DE720E4B1A800656776 /* Frameworks */,
 				50FA2DE820E4B1A800656776 /* Headers */,
@@ -2572,10 +2570,10 @@
 				508AB2C02109F0A10079EAE5 /* DocumentHeader.xib in Resources */,
 				507D02FF243705240009F12B /* CourseItemPreview.storyboard in Resources */,
 				50467FF0238596710084D7F6 /* TabChannels.storyboard in Resources */,
+				82CF9722245D989F008EC208 /* LoadingScreen.storyboard in Resources */,
 				50CF1FFC20DCDBFC0011BFE9 /* CourseLearnings.storyboard in Resources */,
 				50044FC32327815F004D1AD8 /* CourseLearningsLTI.storyboard in Resources */,
 				5054B2E52108B19500CE9067 /* CourseDocuments.storyboard in Resources */,
-				82300ABD2451916300480257 /* LoadingScreen.storyboard in Resources */,
 				50CF1FFF20DCDBFC0011BFE9 /* LaunchScreen.storyboard in Resources */,
 				50CF200020DCDBFC0011BFE9 /* TabAccount.storyboard in Resources */,
 				50467FED238425B40084D7F6 /* ChannelHeaderView.xib in Resources */,
@@ -2766,7 +2764,46 @@
 			shellPath = /bin/sh;
 			shellScript = "$SRCROOT/Build\\ Phases/copy-brand-assets.sh";
 		};
-		70FADC2FA361E2E3447D5B75 /* [CP] Check Pods Manifest.lock */ = {
+		543A3CC5E498AD0F531A3AA2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Common-Tests/Pods-Common-Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Common-Tests/Pods-Common-Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Common-Tests/Pods-Common-Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79D975DF356DA8FEC80ABF31 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Common-Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		842A19DE1904587C585C18B2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2788,63 +2825,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		715B045D3E878BC0BBC23334 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7AB9C9CFFA547F2B72C8187E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Stockpile-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B95AF14BFDDA1BDF5B7B9639 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CD08D67378E6E75B05F67F7C /* [CP] Check Pods Manifest.lock */ = {
+		8C1BA5DCCB006D486301A73C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2866,7 +2847,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CE35AA13ECB79C3DC0D77EF3 /* [CP] Check Pods Manifest.lock */ = {
+		93D4CFA5AD1E575580540383 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2881,11 +2862,67 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Common-Tests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Stockpile-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BCF915E760C0D54E19A81B5C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2823DEADBC75FC85C818BA4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Common-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F776A500E11A770DB1FD59B8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2997,7 +3034,6 @@
 				507D02FB243653470009F12B /* CourseItem+Actions.swift in Sources */,
 				5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */,
 				50CF1F5120DCDBFC0011BFE9 /* PersistenceManager.swift in Sources */,
-				82DFA7A4244874C700781BC3 /* LoadingScreen.swift in Sources */,
 				50CF1F5520DCDBFC0011BFE9 /* FilePersistenceManager.swift in Sources */,
 				50CF1F5820DCDBFC0011BFE9 /* DetailedDataItemView.swift in Sources */,
 				50E0351F213673F8001F963D /* CourseListConfiguration.swift in Sources */,
@@ -3093,6 +3129,7 @@
 				50CF1FB620DCDBFC0011BFE9 /* UserDefaults+contentPreload.swift in Sources */,
 				503988732166920400F9043B /* ShadowContainerView.swift in Sources */,
 				50CF1FB820DCDBFC0011BFE9 /* SlidesPersistenceManager.swift in Sources */,
+				82CF971F245D9878008EC208 /* LoadingScreen.swift in Sources */,
 				50CF1FB920DCDBFC0011BFE9 /* CourseItemCell.swift in Sources */,
 				021DA1A82386A12400E6E763 /* ExerciseProgressStackView.swift in Sources */,
 				507D723E233780AD00DADE06 /* DashboardViewController.swift in Sources */,
@@ -3528,15 +3565,6 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		82300ABF2451916300480257 /* LoadingScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				82300ABE2451916300480257 /* Base */,
-				82300AC12451916900480257 /* de */,
-			);
-			name = LoadingScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		828FF16C23EF5DE1006515B5 /* CourseLearningsPeerAssessment.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3553,6 +3581,15 @@
 				82BE6071232FBB8C000353B4 /* de */,
 			);
 			name = CourseDetails.storyboard;
+			sourceTree = "<group>";
+		};
+		82CF9720245D989F008EC208 /* LoadingScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				82CF9721245D989F008EC208 /* Base */,
+				82CF9728245D9A3E008EC208 /* de */,
+			);
+			name = LoadingScreen.storyboard;
 			sourceTree = "<group>";
 		};
 		AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */ = {
@@ -3596,7 +3633,7 @@
 /* Begin XCBuildConfiguration section */
 		502CBDDC2433716C00BF6001 /* openHPI-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14A64F004AE4C2332FCB8414 /* Pods-Stockpile.openhpi-ios-debug.xcconfig */;
+			baseConfigurationReference = D4383D0BC392B66238F1ED5B /* Pods-Stockpile.openhpi-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3681,7 +3718,7 @@
 		};
 		502CBDDD2433716C00BF6001 /* openSAP-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6D341C1C3BDC5AD6BCDF7539 /* Pods-Stockpile.opensap-ios-debug.xcconfig */;
+			baseConfigurationReference = E52F0B88C7C8AE6D12C2A0E9 /* Pods-Stockpile.opensap-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3760,7 +3797,7 @@
 		};
 		502CBDDE2433716C00BF6001 /* openWHO-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27B27E8C42567FAE823D8F4D /* Pods-Stockpile.openwho-ios-debug.xcconfig */;
+			baseConfigurationReference = 703F7ECFD3188514974E8B7A /* Pods-Stockpile.openwho-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3839,7 +3876,7 @@
 		};
 		502CBDDF2433716C00BF6001 /* moocHOUSE-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0179BEA5D20B5A1D50D08BBC /* Pods-Stockpile.moochouse-ios-debug.xcconfig */;
+			baseConfigurationReference = E3C88F530B84EC9819B97456 /* Pods-Stockpile.moochouse-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3918,7 +3955,7 @@
 		};
 		502CBDE02433716C00BF6001 /* openHPI-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8D1913C32CAE49EFAFE48CA /* Pods-Stockpile.openhpi-ios-release.xcconfig */;
+			baseConfigurationReference = 3CB0C9097127F22498D825FC /* Pods-Stockpile.openhpi-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3997,7 +4034,7 @@
 		};
 		502CBDE12433716C00BF6001 /* openSAP-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F8A8790879882970EEBBDCA /* Pods-Stockpile.opensap-ios-release.xcconfig */;
+			baseConfigurationReference = 01009BBD71C763CF44BF0EAF /* Pods-Stockpile.opensap-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4076,7 +4113,7 @@
 		};
 		502CBDE22433716C00BF6001 /* openWHO-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 749BD7FD021CAEB600EFFF14 /* Pods-Stockpile.openwho-ios-release.xcconfig */;
+			baseConfigurationReference = 538CD7D9C6CC4C74D0C31B4D /* Pods-Stockpile.openwho-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4155,7 +4192,7 @@
 		};
 		502CBDE32433716C00BF6001 /* moocHOUSE-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2107380D5851B5D38545E89E /* Pods-Stockpile.moochouse-ios-release.xcconfig */;
+			baseConfigurationReference = 3B2A1C16DA2DD22063B56E17 /* Pods-Stockpile.moochouse-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4234,7 +4271,7 @@
 		};
 		502CBDE52433716C00BF6001 /* openHPI-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 266537B5CB1A36D0E707D34D /* Pods-Stockpile-Tests.openhpi-ios-debug.xcconfig */;
+			baseConfigurationReference = 1E36214307D30140AD93753F /* Pods-Stockpile-Tests.openhpi-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4306,7 +4343,7 @@
 		};
 		502CBDE62433716C00BF6001 /* openSAP-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F926FC8A2FFE6C692804730B /* Pods-Stockpile-Tests.opensap-ios-debug.xcconfig */;
+			baseConfigurationReference = BF7C04C7ED912D306F9895A4 /* Pods-Stockpile-Tests.opensap-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4372,7 +4409,7 @@
 		};
 		502CBDE72433716C00BF6001 /* openWHO-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03D2703F6C6E6AAF154F78B1 /* Pods-Stockpile-Tests.openwho-ios-debug.xcconfig */;
+			baseConfigurationReference = 31060D2321F588E9D3B3FA6E /* Pods-Stockpile-Tests.openwho-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4438,7 +4475,7 @@
 		};
 		502CBDE82433716C00BF6001 /* moocHOUSE-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 982076A6383FC3F6E77A037C /* Pods-Stockpile-Tests.moochouse-ios-debug.xcconfig */;
+			baseConfigurationReference = 0E8F9DE0B60909E27339E54B /* Pods-Stockpile-Tests.moochouse-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4504,7 +4541,7 @@
 		};
 		502CBDE92433716C00BF6001 /* openHPI-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C21A4793AB3EDE8F954D37D8 /* Pods-Stockpile-Tests.openhpi-ios-release.xcconfig */;
+			baseConfigurationReference = CB3F6A701EAE1BA0BF61A05F /* Pods-Stockpile-Tests.openhpi-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4570,7 +4607,7 @@
 		};
 		502CBDEA2433716C00BF6001 /* openSAP-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CFD09C3F68694E4129765ED1 /* Pods-Stockpile-Tests.opensap-ios-release.xcconfig */;
+			baseConfigurationReference = 03E1911F3C87B02F9B30465F /* Pods-Stockpile-Tests.opensap-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4636,7 +4673,7 @@
 		};
 		502CBDEB2433716C00BF6001 /* openWHO-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6050A11D1B339FDB89609DA5 /* Pods-Stockpile-Tests.openwho-ios-release.xcconfig */;
+			baseConfigurationReference = F31BDDCE00FC3EAD36A69A0F /* Pods-Stockpile-Tests.openwho-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4702,7 +4739,7 @@
 		};
 		502CBDEC2433716C00BF6001 /* moocHOUSE-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53F1221E3E5031564E8A18F0 /* Pods-Stockpile-Tests.moochouse-ios-release.xcconfig */;
+			baseConfigurationReference = 38298D38D2B27418B4EC094C /* Pods-Stockpile-Tests.moochouse-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5925,7 +5962,7 @@
 		};
 		50761B5C20FCADD700CEDAF9 /* openHPI-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E34E13EEA9C1889EDE0779D1 /* Pods-Common-Tests.openhpi-ios-debug.xcconfig */;
+			baseConfigurationReference = 405500FC6F00B01DEA3F5C5F /* Pods-Common-Tests.openhpi-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5996,7 +6033,7 @@
 		};
 		50761B5D20FCADD700CEDAF9 /* openSAP-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA7E7BB34DE1B520C38D8500 /* Pods-Common-Tests.opensap-ios-debug.xcconfig */;
+			baseConfigurationReference = AB8D7819A946397392C4DDB7 /* Pods-Common-Tests.opensap-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6065,7 +6102,7 @@
 		};
 		50761B5E20FCADD700CEDAF9 /* openWHO-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 001645B6494C458806467C98 /* Pods-Common-Tests.openwho-ios-debug.xcconfig */;
+			baseConfigurationReference = 222AE934B107B19E527FBD6F /* Pods-Common-Tests.openwho-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6134,7 +6171,7 @@
 		};
 		50761B5F20FCADD700CEDAF9 /* moocHOUSE-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BCD0F1411F2AF5A2C3F47422 /* Pods-Common-Tests.moochouse-ios-debug.xcconfig */;
+			baseConfigurationReference = A8C80B2A51464E58FB55EFBC /* Pods-Common-Tests.moochouse-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6203,7 +6240,7 @@
 		};
 		50761B6020FCADD700CEDAF9 /* openHPI-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25C0D31D6BDE4293043A41DE /* Pods-Common-Tests.openhpi-ios-release.xcconfig */;
+			baseConfigurationReference = 8BF6ABC3186368821DF90072 /* Pods-Common-Tests.openhpi-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6268,7 +6305,7 @@
 		};
 		50761B6120FCADD700CEDAF9 /* openSAP-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55A85A1CA257A59D30995C61 /* Pods-Common-Tests.opensap-ios-release.xcconfig */;
+			baseConfigurationReference = A0C568541276F0D234B37DF7 /* Pods-Common-Tests.opensap-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6333,7 +6370,7 @@
 		};
 		50761B6220FCADD700CEDAF9 /* openWHO-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E1BC9304B2A04FF6511EBD15 /* Pods-Common-Tests.openwho-ios-release.xcconfig */;
+			baseConfigurationReference = DD2DF6189D61B68C0C87E909 /* Pods-Common-Tests.openwho-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6398,7 +6435,7 @@
 		};
 		50761B6320FCADD700CEDAF9 /* moocHOUSE-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38F1807A14C225E3C30E3049 /* Pods-Common-Tests.moochouse-ios-release.xcconfig */;
+			baseConfigurationReference = 632A3B1AF62A0C25E3717DCD /* Pods-Common-Tests.moochouse-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9097,7 +9134,7 @@
 		};
 		50FA2DF420E4B1A800656776 /* openHPI-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2DE8744DEE16B6CE708D5D77 /* Pods-Common.openhpi-ios-debug.xcconfig */;
+			baseConfigurationReference = 10A990B6AE3C6D3D5E392F6C /* Pods-Common.openhpi-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9170,7 +9207,7 @@
 		};
 		50FA2DF520E4B1A800656776 /* openSAP-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60E1BE1CC5E9CCC0A8BCD7BB /* Pods-Common.opensap-ios-debug.xcconfig */;
+			baseConfigurationReference = D4682AC5BD2C5FB2CECA1689 /* Pods-Common.opensap-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9240,7 +9277,7 @@
 		};
 		50FA2DF620E4B1A800656776 /* openWHO-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8984F85FAEE593B931A35084 /* Pods-Common.openwho-ios-debug.xcconfig */;
+			baseConfigurationReference = A2F5618D68F2BB336C5CA734 /* Pods-Common.openwho-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9310,7 +9347,7 @@
 		};
 		50FA2DF720E4B1A800656776 /* moocHOUSE-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 860D2B394E9849BDF00D90FF /* Pods-Common.moochouse-ios-debug.xcconfig */;
+			baseConfigurationReference = E8218A5F8109CCE6A9385AD6 /* Pods-Common.moochouse-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9380,7 +9417,7 @@
 		};
 		50FA2DF820E4B1A800656776 /* openHPI-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 304F0F1E5D854D12CC43D00B /* Pods-Common.openhpi-ios-release.xcconfig */;
+			baseConfigurationReference = 0675EF0736772D5AB19C88BB /* Pods-Common.openhpi-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9445,7 +9482,7 @@
 		};
 		50FA2DF920E4B1A800656776 /* openSAP-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 231D614754A96604882DA84C /* Pods-Common.opensap-ios-release.xcconfig */;
+			baseConfigurationReference = 4250974F889264158F8FE237 /* Pods-Common.opensap-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9510,7 +9547,7 @@
 		};
 		50FA2DFA20E4B1A800656776 /* openWHO-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E9653B533ACBCB1973ECA5A /* Pods-Common.openwho-ios-release.xcconfig */;
+			baseConfigurationReference = 5764B8650D3700A04FB61051 /* Pods-Common.openwho-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9575,7 +9612,7 @@
 		};
 		50FA2DFB20E4B1A800656776 /* moocHOUSE-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71A6932344C734FD03B82954 /* Pods-Common.moochouse-ios-release.xcconfig */;
+			baseConfigurationReference = 57998C792C57DBA72BFEBB0A /* Pods-Common.moochouse-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

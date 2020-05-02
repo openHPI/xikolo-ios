@@ -214,11 +214,10 @@ class VideoViewController: UIViewController {
     }
 
     private func updateView(for courseItem: CourseItem) {
-        self.titleView.text = courseItem.title
-
         guard let video = courseItem.content as? Video else { return }
         self.video = video
 
+        self.descriptionView.isHidden = false 
         self.learningMaterialsView.isHidden = false
 
         self.show(video: video)

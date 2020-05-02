@@ -94,7 +94,7 @@ extension CourseDateListViewController {
         let courseDate = self.dataSource.object(at: indexPath)
 
         guard let course = courseDate.course else {
-            log.warning("Did not find course for course date")
+            logger.warning("Did not find course for course date")
             return
         }
 

@@ -4,7 +4,7 @@
 //
 
 BRAND_NAME = openSAP
-PRODUCT_NAME = openSAP
+PRODUCT_NAME = opensap
 DISPLAY_NAME = openSAP
 URL_SCHEME = opensap
 

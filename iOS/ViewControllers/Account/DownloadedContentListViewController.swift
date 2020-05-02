@@ -11,6 +11,16 @@ import UIKit
 
 class DownloadedContentListViewController: UITableViewController {
 
+    private static let timeEffortFormatter: DateComponentsFormatter = {
+        var calendar = Calendar.autoupdatingCurrent
+        calendar.locale = Locale.autoupdatingCurrent
+        let formatter = DateComponentsFormatter()
+        formatter.calendar = calendar
+        formatter.unitsStyle = .short
+        formatter.allowedUnits = [.hour, .minute]
+        return formatter
+    }()
+
     @IBOutlet private weak var totalFileSizeLabel: UILabel!
     @IBOutlet private weak var selectAllBarButton: UIBarButtonItem!
     @IBOutlet private weak var deleteBarButton: UIBarButtonItem!
@@ -19,6 +29,7 @@ class DownloadedContentListViewController: UITableViewController {
         var id: String
         var title: String
         var byteCounts: [DownloadedContentHelper.ContentType: UInt64] = [:]
+        var timeEffort: Int16 = 0
 
         init(id: String, title: String) {
             self.id = id
@@ -61,21 +72,21 @@ class DownloadedContentListViewController: UITableViewController {
     }
 
     @discardableResult
-    private func refresh() -> Future<[[DownloadedContentHelper.DownloadItem]], XikoloError> {
-        return DownloadedContentHelper.downloadedItemForAllCourses().onSuccess { itemsArray in
-            let downloadItems = itemsArray.flatMap { $0 }
+    private func refresh() -> Future<[DownloadedContentHelper.DownloadContent], XikoloError> {
+        return DownloadedContentHelper.downloadedContentForAllCourses().onSuccess { downloadItems in
             var downloadedCourseList: [String: CourseDownload] = [:]
 
             for downloadItem in downloadItems {
                 let courseId = downloadItem.courseID
                 var courseDownload = downloadedCourseList[courseId, default: CourseDownload(id: courseId, title: downloadItem.courseTitle ?? "")]
                 courseDownload.byteCounts[downloadItem.contentType, default: 0] += downloadItem.fileSize ?? 0
+                courseDownload.timeEffort += downloadItem.timeEffort ?? 0
                 downloadedCourseList[downloadItem.courseID] = courseDownload
             }
 
             self.courseDownloads = downloadedCourseList.values.sorted { $0.title < $1.title }
         }.onFailure { error in
-            log.error(error.localizedDescription)
+            logger.error(error.localizedDescription)
         }
     }
 
@@ -130,6 +141,19 @@ extension DownloadedContentListViewController { // Table view data source
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.courseDownloads[section].title
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        let timeEffort = self.courseDownloads[section].timeEffort
+
+        guard timeEffort > 0 else {
+            return nil
+        }
+
+        let roundedTimeEffort = ceil(TimeInterval(timeEffort) / 60) * 60 // round up to full minutes
+        let formattedTimeEffort = Self.timeEffortFormatter.string(from: roundedTimeEffort)
+        let format = NSLocalizedString("settings.downloads.estimated time effort: %@", comment: "label for estimated time effort of downloaded course content")
+        return formattedTimeEffort.map { String.localizedStringWithFormat(format, $0) }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

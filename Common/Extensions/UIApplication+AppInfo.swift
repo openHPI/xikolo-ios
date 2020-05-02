@@ -12,10 +12,21 @@ extension UIApplication {
     }()
 
     //  Inspired by http://stackoverflow.com/a/7608711/2387552
+    public static let bundleName: String = {
+        let bundleNameKey = kCFBundleNameKey as String
+        let bundleName = Bundle.main.object(forInfoDictionaryKey: bundleNameKey) as? String
+        return bundleName.require(hint: "Unable to retrieve bundle name")
+    }()
+
     public static let appName: String = {
-        let key = kCFBundleNameKey as String
-        let appName = Bundle.main.object(forInfoDictionaryKey: key) as? String
-        return appName.require(hint: "Unable to retrieve bundle name")
+        let bundleDisplayNameKey = "CFBundleDisplayName"
+        if let localizedAppName = Bundle.main.infoDictionary?[bundleDisplayNameKey] as? String {
+            return localizedAppName
+        } else {
+            let bundleNameKey = kCFBundleNameKey as String
+            let bundleName = Bundle.main.object(forInfoDictionaryKey: bundleNameKey) as? String
+            return bundleName.require(hint: "Unable to retrieve bundle name")
+        }
     }()
 
     public static let appVersion: String = {

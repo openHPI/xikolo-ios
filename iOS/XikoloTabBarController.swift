@@ -104,7 +104,7 @@ class XikoloTabBarController: UITabBarController {
                 return
             }
 
-            log.info("Update app state from %@ to %@", String(describing: self.status), String(describing: newValue))
+            logger.info("Update app state from %@ to %@", String(describing: self.status), String(describing: newValue))
             let animationDuration: TimeInterval = self.status == .standard ? 0 : 0.25
             UIView.animate(withDuration: animationDuration) {
                 self._status = newValue
@@ -113,28 +113,31 @@ class XikoloTabBarController: UITabBarController {
         }
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(adjustViewForKeyboardShow(_:)),
-                                               name: APIStatus.didChangeNotification,
-                                               object: nil)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tabBar.isTranslucent = false
 
-        self.messageLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: XikoloTabBarController.messageViewHeight)
         self.messageLabel.textAlignment = .center
         self.messageLabel.font = UIFont.systemFont(ofSize: XikoloTabBarController.messageLabelFontSize)
         self.messageView.addSubview(self.messageLabel)
-        self.messageLabel.autoresizingMask = [.flexibleWidth]
+
+        self.messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.messageLabel.topAnchor.constraint(equalTo: self.messageView.topAnchor),
+            self.messageLabel.leadingAnchor.constraint(equalTo: self.messageView.leadingAnchor),
+            self.messageLabel.trailingAnchor.constraint(equalTo: self.messageView.trailingAnchor),
+            self.messageLabel.heightAnchor.constraint(equalToConstant: XikoloTabBarController.messageViewHeight),
+        ])
 
         self.messageView.frame = CGRect(x: 0, y: self.tabBar.frame.height, width: self.view.frame.width, height: 0)
         self.tabBar.addSubview(self.messageView)
         self.messageView.autoresizingMask = [.flexibleWidth]
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(adjustViewForKeyboardShow(_:)),
+                                               name: APIStatus.didChangeNotification,
+                                               object: nil)
     }
 
     override func viewDidLayoutSubviews() {

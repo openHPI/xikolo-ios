@@ -1,12 +1,14 @@
-Neue Funktionen:
+• Externe Kurse wurden in die Kursliste aufgenommen
+• Für Kurse, die nur mit einer Einladung zugänglich sind, wird eine Meldung angezeigt
+• Anzeige des geschätzten Zeitaufwands für heruntergeladene Inhalte
+
+Auch in Version 2.10:
 • Neues Kurstermin-Widget auf dem Startbildschirm (ein langer Fingertipp auf das App-Icon zeigt die Übersicht der Kurstermine an)
 • Schnell-Zugriff auf die zuletzt besuchten Kurse (auch per langem Fingertipp auf das App-Icon)
 • Vorschauseiten für Kursen und Kursinhalte (per langem Fingertipp auf Kurse oder Kursinhalte)
 • Die Liste der Kurstermine kann für einen einzelnen Kurs geöffnet werden (über '⋯' in der oberen rechten Ecke, wenn ein Kurs geöffnet ist > 'Kurstermine anzeigen')
 • Links zu Microlearning- und Podcastseiten werden im neuen Tab "Weiteres" angezeigt
 • Anpassungen für iOS 13.4 (inkl. Unterstützung für Trackpad- und Mausnavigation) 
-
-Verbesserungen:
 • UX-Verbesserungen für die Helpdesk-Integration
 • Kurssprachen werden in der jeweiligen Sprache angezeigt
 • Die Untertitelauswahl zeigt die verfügbaren Optionen in der lokalisierten Sprache und in der Systemsprache

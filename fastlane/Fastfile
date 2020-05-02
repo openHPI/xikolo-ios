@@ -2,7 +2,7 @@ fastlane_version "2.55.0"
 
 default_platform :ios
 
-flavors = [:openHPI, :openSAP, :openWHO, :moocHOUSE]
+flavors = [:openHPI, :openSAP, :openWHO, :moocHOUSE, :lernencloud]
 fastlane_dir = File.expand_path(File.dirname(__FILE__))
 
 platform :ios do
@@ -117,6 +117,7 @@ platform :ios do
       mode: options[:mode],
       executable: "Pods/SwiftLint/swiftlint",
       config_file: ".swiftlint.yml",
+      quiet: true,
       ignore_exit_status: true,
     )
   end

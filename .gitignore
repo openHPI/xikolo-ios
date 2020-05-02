@@ -62,7 +62,8 @@ fastlane/test_output
 fastlane/Appfile
 
 # UI Tests
-UI Tests/Credentials.plist
+iOS-UITests/Credentials.plist
+iOS-UITests/Credentials-*.plist
 
 # R.swift
 **/R.generated.swift

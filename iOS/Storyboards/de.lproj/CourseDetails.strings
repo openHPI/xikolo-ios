@@ -1,3 +1,6 @@
 
 /* Class = "UILabel"; text = "Play Teaser"; ObjectID = "zkq-AG-0z2"; */
 "zkq-AG-0z2.text" = "Teaser abspielen";
+
+/* Class = "UILabel"; text = "You must be invited to enroll in this course."; ObjectID = "ccH-qZ-IZi"; */
+"ccH-qZ-IZi.text" = "Sie benötigen eine Einladung, um sich für diesen Kurs einzuschreiben.";

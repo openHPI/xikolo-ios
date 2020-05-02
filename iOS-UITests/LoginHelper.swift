@@ -8,7 +8,10 @@ import XCTest
 class LoginHelper { // swiftlint:disable:this convenience_type
 
     static var loginCredentials: (email: String, password: String) {
-        guard let path = Bundle(for: LoginHelper.self).path(forResource: "Credentials", ofType: "plist") else {
+        let bundle = Bundle(for: LoginHelper.self)
+        let credentialsPath = bundle.path(forResource: "Credentials", ofType: "plist")
+
+        guard let path = credentialsPath else {
             XCTFail("Credentials.plist not found")
             return (email: "", password: "")
         }

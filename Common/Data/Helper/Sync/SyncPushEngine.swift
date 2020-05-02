@@ -100,12 +100,12 @@ class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObje
             let context = CoreDataHelper.persistentContainer.newBackgroundContext()
             context.performAndWait {
                 guard let object = try? context.existingObject(with: managedObjectId), let resource = object as? Resource else {
-                    log.info("Resource to be pushed could not be found")
+                    logger.info("Resource to be pushed could not be found")
                     return
                 }
 
                 guard resource.objectState != .unchanged else {
-                    log.info("No change to be pushed for resource of type \(type(of: resource).type)")
+                    logger.info("No change to be pushed for resource of type \(type(of: resource).type)")
                     return
                 }
 
@@ -114,11 +114,11 @@ class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObje
                 if resource.objectState == .new {
                     pushFuture = self.manager?.syncEngine.createResource(resource)
                 } else {
-                    log.warning("unhandle resource modification")
+                    logger.warning("unhandle resource modification")
                 }
 
                 if let error = pushFuture?.forced().error {
-                    log.error("Failed to push resource modification", error: error)
+                    logger.error("Failed to push resource modification", error: error)
                     ErrorManager.shared.report(error)
                     return
                 }
@@ -126,7 +126,7 @@ class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObje
                 // post sync actions
                 if resource.objectState == .deleted || !(resource is Pullable) {
                     context.delete(resource)
-                    log.info("Deleted local resource of type: %@", type(of: resource).type)
+                    logger.info("Deleted local resource of type: %@", type(of: resource).type)
                 } else if resource.objectState == .new || resource.objectState == .modified {
                     resource.markAsUnchanged()
                 }
@@ -134,7 +134,7 @@ class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObje
                 do {
                     try context.save()
                 } catch {
-                    log.error("while pushing core data changes: \(error)")
+                    logger.error("while pushing core data changes: \(error)")
                     ErrorManager.shared.report(error)
                 }
             }
@@ -178,12 +178,12 @@ class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManaged
             let context = CoreDataHelper.persistentContainer.newBackgroundContext()
             context.performAndWait {
                 guard let object = try? context.existingObject(with: managedObjectId), let resource = object as? Resource else {
-                    log.info("Resource to be pushed could not be found")
+                    logger.info("Resource to be pushed could not be found")
                     return
                 }
 
                 guard resource.objectState != .unchanged else {
-                    log.info("No change to be pushed for resource of type \(type(of: resource).type)")
+                    logger.info("No change to be pushed for resource of type \(type(of: resource).type)")
                     return
                 }
 
@@ -193,7 +193,7 @@ class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManaged
                 } else if resource.objectState == .deleted {
                     pushFuture = self.manager?.syncEngine.deleteResource(resource)
                 } else {
-                    log.warning("unhandle resource modification")
+                    logger.warning("unhandle resource modification")
                 }
 
                 // it makes only sense to retry on network errors
@@ -204,20 +204,20 @@ class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManaged
                         return Future(error: error)
                     }
 
-                    log.error("Failed to push resource modification - \(error)")
+                    logger.error("Failed to push resource modification - \(error)")
                     ErrorManager.shared.report(error)
                     return Future(value: ())
                 }
 
                 guard pushFuture?.forced().value != nil else {
-                    log.warning("Failed to push resource modification due to network issues")
+                    logger.warning("Failed to push resource modification due to network issues")
                     return
                 }
 
                 // post sync actions
                 if resource.objectState == .deleted {
                     context.delete(resource)
-                    log.info("Deleted local resource of type: %@", type(of: resource).type)
+                    logger.info("Deleted local resource of type: %@", type(of: resource).type)
                 } else if resource.objectState == .new || resource.objectState == .modified {
                     resource.markAsUnchanged()
                 }
@@ -225,7 +225,7 @@ class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManaged
                 do {
                     try context.save()
                 } catch {
-                    log.error("while pushing core data changes: \(error)")
+                    logger.error("while pushing core data changes: \(error)")
                     ErrorManager.shared.report(error)
                 }
             }

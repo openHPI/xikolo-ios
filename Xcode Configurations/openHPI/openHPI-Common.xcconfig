@@ -4,7 +4,7 @@
 //
 
 BRAND_NAME = openHPI
-PRODUCT_NAME = openHPI
+PRODUCT_NAME = openhpi
 DISPLAY_NAME = openHPI
 URL_SCHEME = openhpi
 

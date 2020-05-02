@@ -27,7 +27,7 @@ extension SafeCastable {
                 message.append(". Debugging hint: \(hint)")
             }
 
-            log.error("%@", message)
+            logger.error("%@", message)
 
             let exception = NSException(
                 name: .invalidArgumentException,

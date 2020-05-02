@@ -61,16 +61,20 @@
 	<key>additionalLearningMaterial</key>
 	<array>
 		<dict>
-			<key>type</key>
-			<string>microLearning</string>
+			<key>title</key>
+			<string>Microlearning</string>
 			<key>url</key>
 			<string>https://open.sap.com/microlearning</string>
+			<key>imageName</key>
+			<string>More/micro learning</string>
 		</dict>
 		<dict>
-			<key>type</key>
-			<string>podcasts</string>
+			<key>title</key>
+			<string>Podcasts</string>
 			<key>url</key>
 			<string>https://open.sap.com/podcasts</string>
+			<key>imageName</key>
+			<string>More/podcasts</string>
 		</dict>
 	</array>
 	<key>testAccountUserId</key>

@@ -11,7 +11,6 @@ extension CourseHelper {
     public enum FetchRequest {
 
         private static let visiblePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(format: "external != %@", NSNumber(value: true)),
             NSPredicate(format: "status != %@", "preparation"),
         ])
 

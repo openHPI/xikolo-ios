@@ -311,13 +311,13 @@ class VideoViewController: UIViewController {
             let video = self.video,
             video.id == videoId else { return }
 
-        if downloadType == StreamPersistenceManager.downloadType {
+        if downloadType == StreamPersistenceManager.Configuration.downloadType {
             DispatchQueue.main.async {
                 self.videoProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
                 self.videoProgressView.updateProgress(StreamPersistenceManager.shared.downloadProgress(for: video))
                 self.videoDownloadedIcon.isHidden = !(downloadState == .downloaded)
             }
-        } else if downloadType == SlidesPersistenceManager.downloadType {
+        } else if downloadType == SlidesPersistenceManager.Configuration.downloadType {
             DispatchQueue.main.async {
                 self.slidesProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
                 self.slidesProgressView.updateProgress(SlidesPersistenceManager.shared.downloadProgress(for: video))
@@ -336,12 +336,12 @@ class VideoViewController: UIViewController {
             let video = self.video,
             video.id == videoId else { return }
 
-        if downloadType == StreamPersistenceManager.downloadType {
+        if downloadType == StreamPersistenceManager.Configuration.downloadType {
             DispatchQueue.main.async {
                 self.videoProgressView.isHidden = false
                 self.videoProgressView.updateProgress(progress)
             }
-        } else if downloadType == SlidesPersistenceManager.downloadType {
+        } else if downloadType == SlidesPersistenceManager.Configuration.downloadType {
             DispatchQueue.main.async {
                 self.slidesProgressView.isHidden = false
                 self.slidesProgressView.updateProgress(progress)

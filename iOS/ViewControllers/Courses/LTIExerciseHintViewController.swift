@@ -36,8 +36,8 @@ class LTIExerciseHintViewController: UIViewController {
     @IBOutlet private weak var deadlineDateView: UIView!
     @IBOutlet private weak var deadlineLabel: UILabel!
     @IBOutlet private weak var instructionsView: UITextView!
-    @IBOutlet weak var infoView: UIStackView!
-    @IBOutlet weak var loadingScreen: UIView!
+    @IBOutlet private weak var infoView: UIStackView!
+    @IBOutlet private weak var loadingScreen: UIView!
     @IBOutlet private weak var launchButton: UIButton!
 
     weak var delegate: CourseItemViewController?

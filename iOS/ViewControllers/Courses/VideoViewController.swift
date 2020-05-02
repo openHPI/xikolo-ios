@@ -16,7 +16,7 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var videoContainer: UIView!
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
-    @IBOutlet weak var learningMaterialsView: UIStackView!
+    @IBOutlet private weak var learningMaterialsView: UIStackView!
 
     @IBOutlet private weak var videoActionsButton: UIButton!
     @IBOutlet private weak var videoProgressView: CircularProgressView!
@@ -217,7 +217,7 @@ class VideoViewController: UIViewController {
         guard let video = courseItem.content as? Video else { return }
         self.video = video
 
-        self.descriptionView.isHidden = false 
+        self.descriptionView.isHidden = false
         self.learningMaterialsView.isHidden = false
 
         self.show(video: video)

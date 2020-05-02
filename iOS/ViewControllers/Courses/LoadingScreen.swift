@@ -9,7 +9,7 @@ import UIKit
 
 public class LoadingScreen: UIViewController {
 
-    @IBOutlet weak var progressView: CircularProgressView!
+    @IBOutlet private weak var progressView: CircularProgressView!
 
     override public func viewDidLoad() {
         super.viewDidLoad()

@@ -55,9 +55,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
 
         if #available(iOS 13, *) {
-            //            self.nextUpImageView.image = R.image.calendarLarge()
+            self.nextCourseDateImageView.image = UIImage(named: "calendar-large")
         } else {
-            //            self.nextUpImageView.image = R.image.calendar()
+            self.nextCourseDateImageView.image = UIImage(named: "calendar")
         }
 
         self.widgetPerformUpdate(completionHandler: { _ in })

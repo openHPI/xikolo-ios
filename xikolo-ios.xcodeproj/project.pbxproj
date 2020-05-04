@@ -122,6 +122,8 @@
 		5046BD0A212B4DC700B9F2CD /* DocumentLocalization+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046BD09212B4DC700B9F2CD /* DocumentLocalization+Actions.swift */; };
 		504AC11F239C46F1007F097B /* UserDefaults+logoutTestAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504AC11E239C46F1007F097B /* UserDefaults+logoutTestAccount.swift */; };
 		504AC121239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504AC120239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift */; };
+		504BA9AD245C02AF004C836C /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
+		504BA9AE245C02C8004C836C /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
 		504D83FA215B57D4006F2447 /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83F9215B57D4006F2447 /* ErrorReporter.swift */; };
 		504D83FC215B64EC006F2447 /* APIStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83FB215B64EC006F2447 /* APIStatus.swift */; };
 		504FF508231E472500AAF595 /* URL+Marschal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504FF507231E472500AAF595 /* URL+Marschal.swift */; };
@@ -1744,8 +1746,8 @@
 		50DA822623E587FD003BEDE1 /* TodayExtension */ = {
 			isa = PBXGroup;
 			children = (
-				50DA822723E587FD003BEDE1 /* TodayViewController.swift */,
 				02A414E1241BC806006C56C9 /* Storyboards */,
+				50DA822723E587FD003BEDE1 /* TodayViewController.swift */,
 				50DA822C23E587FD003BEDE1 /* Info.plist */,
 				50DA823D23E58EC7003BEDE1 /* InfoPlist.strings */,
 			);
@@ -2600,8 +2602,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				504BA9AD245C02AF004C836C /* assets-ios.xcassets in Resources */,
 				50DA822B23E587FD003BEDE1 /* MainInterface.storyboard in Resources */,
 				50DA823B23E58EC7003BEDE1 /* InfoPlist.strings in Resources */,
+				504BA9AE245C02C8004C836C /* assets-ios-brand.generated.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

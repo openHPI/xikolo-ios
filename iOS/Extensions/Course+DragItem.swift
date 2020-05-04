@@ -8,8 +8,7 @@ import Common
 @available(iOS 11.0, *)
 extension Course {
 
-    func dragItem(_ traitCollection: UITraitCollection) -> UIDragItem {
-
+    func dragItem(for traitCollection: UITraitCollection) -> UIDragItem {
         let userActivity = self.openCourseUserActivity
         let itemProvider = NSItemProvider()
         itemProvider.registerObject(userActivity, visibility: .all)

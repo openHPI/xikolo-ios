@@ -502,7 +502,7 @@ extension CourseListViewController: UICollectionViewDragDelegate {
 
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         let selectedCourse = self.dataSource.object(at: indexPath)
-        return [selectedCourse.dragItem(self.collectionView.traitCollection)]
+        return [selectedCourse.dragItem(for: self.collectionView.traitCollection)]
     }
 
 }

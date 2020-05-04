@@ -6,7 +6,7 @@
 
 
 <p align="center">
-    iOS application for openHPI, openSAP, mooc.house and OpenWHO
+    iOS application for openHPI, openSAP, mooc.house, lernen.cloud and OpenWHO
 </p>
 
 ### Development toolchain
@@ -30,8 +30,9 @@ The following tools will be installed via CocoaPods:
 - start one of the defined targets
 
 ### Setup testing
-- copy the credentials plist dummy file `cp UI\ Tests/Credentials.plist.dummy UI\ Tests/Credentials.plist`
+- copy the credentials plist dummy file `cp iOS-UITests/Credentials.plist.dummy iOS-UITests/Credentials-default.plist`
 - enter your login credentials for testing
+- to create a brand specific credentials plist `cp iOS-UITests/Credentials.plist.dummy iOS-UITests/Credentials-<BRAND_NAME>.plist`
 
 ## Contribute to _xikolo-ios_
 Check out [CONTRIBUTING.md](CONTRIBUTING.md) for more information.

@@ -6,17 +6,6 @@
 import Common
 import UIKit
 
-extension DocumentLocalization: Persistable {
-
-    static let identifierKeyPath: WritableKeyPath<DocumentLocalization, String> = \DocumentLocalization.id
-
-    override public func prepareForDeletion() { // swiftlint:disable:this override_in_extension
-        super.prepareForDeletion()
-        DocumentsPersistenceManager.shared.prepareForDeletion(of: self)
-    }
-
-}
-
 extension DocumentLocalization {
 
     var userActions: [UIAlertAction] {

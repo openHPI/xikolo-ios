@@ -254,6 +254,9 @@
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Eingeschrieben";
 
+/* title of external course button */
+"enrollment.button.external.title" = "Externen Kurs besuchen";
+
 /* title of Course enrollment options button */
 "enrollment.button.not-enrolled.title" = "Einschreiben";
 
@@ -358,6 +361,9 @@
 
 /* title for deleting downloaded content */
 "settings.downloads.alert.delete.title" = "Heruntergeladene Inhalte löschen";
+
+/* label for estimated time effort of downloaded course content */
+"settings.downloads.estimated time effort: %@" = "Geschätzter Zeitaufwand: %@";
 
 /* download type documents */
 "settings.downloads.item.document" = "Dokument";

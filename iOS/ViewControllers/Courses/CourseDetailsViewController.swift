@@ -19,6 +19,8 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet private weak var dateView: UILabel!
     @IBOutlet private weak var teacherView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
+    @IBOutlet private weak var notEnrollableView: UIView!
+    @IBOutlet private weak var enrollmentButtonWrapper: UIView!
     @IBOutlet private weak var enrollmentButton: LoadingButton!
     @IBOutlet private weak var enrollmentOptionsButton: UIButton!
 
@@ -47,6 +49,7 @@ class CourseDetailsViewController: UIViewController {
         self.teacherView.isHidden = !Brand.default.features.showCourseTeachers
 
         self.enrollmentButton.layer.roundCorners(for: .default)
+        self.notEnrollableView.layer.roundCorners(for: .default)
 
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
@@ -95,7 +98,9 @@ class CourseDetailsViewController: UIViewController {
 
     private func refreshEnrollButton() {
         let buttonTitle: String
-        if self.course.hasEnrollment {
+        if self.course.external {
+            buttonTitle = NSLocalizedString("enrollment.button.external.title", comment: "title of external course button")
+        } else if self.course.hasEnrollment {
             buttonTitle = NSLocalizedString("enrollment.button.enrolled.title", comment: "title of course enrollment button")
         } else {
             buttonTitle = NSLocalizedString("enrollment.button.not-enrolled.title", comment: "title of Course enrollment options button")
@@ -103,7 +108,11 @@ class CourseDetailsViewController: UIViewController {
 
         self.enrollmentButton.setTitle(buttonTitle, for: .normal)
 
-        if self.course.hasEnrollment {
+        if self.course.external {
+            self.enrollmentButton.backgroundColor = Brand.default.colors.primary
+            self.enrollmentButton.tintColor = ColorCompatibility.systemBackground
+            self.enrollmentOptionsButton.tintColor = ColorCompatibility.systemBackground
+        } else if self.course.hasEnrollment {
             self.enrollmentButton.backgroundColor = Brand.default.colors.primaryLight
             self.enrollmentButton.tintColor = ColorCompatibility.secondaryLabel
             self.enrollmentOptionsButton.tintColor = ColorCompatibility.secondaryLabel
@@ -119,6 +128,10 @@ class CourseDetailsViewController: UIViewController {
 
         self.enrollmentButton.isEnabled = self.course.hasEnrollment || ReachabilityHelper.hasConnection
         self.enrollmentOptionsButton.isHidden = !self.course.hasEnrollment
+
+        let hasEnrollmentOrIsEnrollable = self.course.hasEnrollment || self.course.enrollable || self.course.external
+        self.enrollmentButtonWrapper.isHidden = !hasEnrollmentOrIsEnrollable
+        self.notEnrollableView.isHidden = hasEnrollmentOrIsEnrollable
     }
 
     @objc func reachabilityChanged() {
@@ -126,7 +139,10 @@ class CourseDetailsViewController: UIViewController {
     }
 
     @IBAction private func enroll(_ sender: UIButton) {
-        if UserProfileHelper.shared.isLoggedIn {
+        if self.course.external {
+            guard let url = course.externalURL else { return }
+            UIApplication.shared.open(url)
+        } else if UserProfileHelper.shared.isLoggedIn {
             if !course.hasEnrollment {
                 self.createEnrollment()
             } else {

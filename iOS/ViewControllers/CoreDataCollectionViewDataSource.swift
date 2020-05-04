@@ -86,7 +86,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             }
         } catch {
             ErrorManager.shared.report(error)
-            log.error("Error fetching items", error: error)
+            logger.error("Error fetching items", error: error)
         }
 
         self.collectionView?.dataSource = self
@@ -275,7 +275,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
 
     func search(withText searchText: String?) {
         guard let fetchRequest = self.searchFetchRequest?.copy() as? NSFetchRequest<Object> else {
-            log.warning("CollectionViewControllerDelegateImplementation is not configured for search. Missing search fetch request.")
+            logger.warning("CollectionViewControllerDelegateImplementation is not configured for search. Missing search fetch request.")
             self.resetSearch()
             return
         }
@@ -297,7 +297,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             try self.searchFetchResultsController?.performFetch()
         } catch {
             ErrorManager.shared.report(error)
-            log.error("Error fetching search item", error: error)
+            logger.error("Error fetching search item", error: error)
         }
 
         self.collectionView?.reloadData()

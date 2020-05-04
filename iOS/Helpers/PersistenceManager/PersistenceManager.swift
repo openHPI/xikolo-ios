@@ -3,9 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable type_body_length
+
 import Common
 import CoreData
-import Foundation
 
 protocol Persistable {
 
@@ -13,47 +14,62 @@ protocol Persistable {
 
 }
 
-protocol PersistenceManager: AnyObject {
+protocol PersistenceManagerConfiguration {
 
     associatedtype Resource: NSManagedObject & Persistable
     associatedtype Session: URLSession
 
-    static var shared: Self { get }
+    static var keyPath: ReferenceWritableKeyPath<Resource, NSData?> { get }
     static var downloadType: String { get }
     static var titleForFailedDownloadAlert: String { get }
 
-    var persistentContainerQueue: OperationQueue { get }
-    var session: Session { get }
-    var keyPath: ReferenceWritableKeyPath<Resource, NSData?> { get }
-    var fetchRequest: NSFetchRequest<Resource> { get }
-
-    var activeDownloads: [URLSessionTask: String] { get set }
-    var progresses: [String: Double] { get set }
-    var didRestorePersistenceManager: Bool { get set }
-
-    func fileSize(for resource: Resource) -> UInt64?
-
-    // configuration
-    func downloadTask(with url: URL, for resource: Resource, on session: Session) -> URLSessionTask?
-    func startSupplementaryDownloads(for task: URLSessionTask, with resourceIdentifier: String) -> Bool
-    func resourceModificationAfterStartingDownload(for resource: Resource)
-    func resourceModificationAfterDeletingDownload(for resource: Resource)
-
-    // delegates
-    func didStartDownload(for resource: Resource)
-    func didCancelDownload(for resource: Resource)
-    func didFinishDownload(for resource: Resource)
+    static func newFetchRequest() -> NSFetchRequest<Resource>
 
 }
 
-extension PersistenceManager {
+class PersistenceManager<Configuration>: NSObject where Configuration: PersistenceManagerConfiguration {
 
-    // MARK: private methods
+    typealias Resource = Configuration.Resource
+    typealias Session = Configuration.Session
+
+    lazy var session: Session = self.newDownloadSession()
+
+    lazy var persistentContainerQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+
+    var activeDownloads: [URLSessionTask: String] = [:]
+    var progresses: [String: Double] = [:]
+    var didRestorePersistenceManager: Bool = false
+
+    override init() {
+        super.init()
+        self.startListeningToDownloadProgressChanges()
+    }
+
+    // swiftlint:disable:next unavailable_function
+    func fileSize(for resource: Resource) -> UInt64? {
+        fatalError("You have to implement this in a subclass")
+    }
+
+    // swiftlint:disable:next unavailable_function
+    func newDownloadSession() -> Session {
+        fatalError("You have to implement this in a subclass")
+    }
+
+    // swiftlint:disable:next unavailable_function
+    func downloadTask(with url: URL, for resource: Resource, on session: Session) -> URLSessionTask? {
+        fatalError("You have to implement this in a subclass")
+    }
+
+    // MARK: functionality
 
     func startListeningToDownloadProgressChanges() {
         // swiftlint:disable:next discarded_notification_center_observer
         NotificationCenter.default.addObserver(forName: DownloadProgress.didChangeNotification, object: nil, queue: nil) { notification in
-            guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == Self.downloadType,
+            guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == Configuration.downloadType,
                 let resourceId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
                 let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double else { return }
 
@@ -66,8 +82,6 @@ extension PersistenceManager {
         queue.maxConcurrentOperationCount = 1
         return queue
     }
-
-    // MARK: functionality
 
     func restoreDownloads() {
         guard !self.didRestorePersistenceManager else { return }
@@ -102,7 +116,7 @@ extension PersistenceManager {
             }
 
             var userInfo: [String: Any] = [:]
-            userInfo[DownloadNotificationKey.downloadType] = Self.downloadType
+            userInfo[DownloadNotificationKey.downloadType] = Configuration.downloadType
             userInfo[DownloadNotificationKey.resourceId] = resourceIdentifier
             userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloading.rawValue
 
@@ -146,17 +160,17 @@ extension PersistenceManager {
 
         do {
             try FileManager.default.removeItem(at: localFileLocation)
-            resource[keyPath: self.keyPath] = nil
+            resource[keyPath: Configuration.keyPath] = nil
             self.resourceModificationAfterDeletingDownload(for: resource)
             try context.save()
         } catch {
-            ErrorManager.shared.remember((Self.downloadType, resourceIdentifier), forKey: "resource")
+            ErrorManager.shared.remember((Configuration.downloadType, resourceIdentifier), forKey: "resource")
             ErrorManager.shared.report(error)
-            log.error("An error occured deleting the file: \(error)")
+            logger.error("An error occured deleting the file: \(error)")
         }
 
         var userInfo: [String: Any] = [:]
-        userInfo[DownloadNotificationKey.downloadType] = Self.downloadType
+        userInfo[DownloadNotificationKey.downloadType] = Configuration.downloadType
         userInfo[DownloadNotificationKey.resourceId] = resourceIdentifier
         userInfo[DownloadNotificationKey.downloadState] = DownloadState.notDownloaded.rawValue
 
@@ -188,7 +202,7 @@ extension PersistenceManager {
     }
 
     func localFileLocation(for resource: Resource) -> URL? {
-        guard let bookmarkData = resource[keyPath: self.keyPath] as Data? else {
+        guard let bookmarkData = resource[keyPath: Configuration.keyPath] as Data? else {
             return nil
         }
 
@@ -218,7 +232,7 @@ extension PersistenceManager {
         self.progresses.removeValue(forKey: resourceId)
 
         var userInfo: [String: Any] = [:]
-        userInfo[DownloadNotificationKey.downloadType] = Self.downloadType
+        userInfo[DownloadNotificationKey.downloadType] = Configuration.downloadType
         userInfo[DownloadNotificationKey.resourceId] = resourceId
 
         self.persistentContainerQueue.addOperation {
@@ -227,7 +241,7 @@ extension PersistenceManager {
                 if let error = error as NSError? {
                     userInfo[DownloadNotificationKey.downloadState] = DownloadState.notDownloaded.rawValue
 
-                    let fetchRequest = self.fetchRequest
+                    let fetchRequest = Configuration.newFetchRequest()
                     fetchRequest.predicate = NSPredicate(format: "id == %@", resourceId)
                     fetchRequest.fetchLimit = 1
 
@@ -236,21 +250,21 @@ extension PersistenceManager {
                         if let localFileLocation = self.localFileLocation(for: resource) {
                             do {
                                 try FileManager.default.removeItem(at: localFileLocation)
-                                resource[keyPath: self.keyPath] = nil
+                                resource[keyPath: Configuration.keyPath] = nil
                                 self.resourceModificationAfterDeletingDownload(for: resource)
                                 try context.save()
                             } catch {
-                                ErrorManager.shared.remember((Self.downloadType, resourceId), forKey: "resource")
+                                ErrorManager.shared.remember((Configuration.downloadType, resourceId), forKey: "resource")
                                 ErrorManager.shared.report(error)
-                                log.error("An error occured deleting the file: \(error)")
+                                logger.error("An error occured deleting the file: \(error)")
                             }
                         }
 
                         self.didFailToDownloadResource(resource, with: error)
                     case let .failure(error):
-                        ErrorManager.shared.remember((Self.downloadType, resourceId), forKey: "resource")
+                        ErrorManager.shared.remember((Configuration.downloadType, resourceId), forKey: "resource")
                         ErrorManager.shared.report(error)
-                        log.error("Failed to complete download for '\(Self.downloadType)' resource '\(resourceId)': \(error)")
+                        logger.error("Failed to complete download for '\(Configuration.downloadType)' resource '\(resourceId)': \(error)")
                     }
                 } else {
                     let started = self.startSupplementaryDownloads(for: task, with: resourceId)
@@ -260,7 +274,7 @@ extension PersistenceManager {
                     } else {
                         userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloaded.rawValue
 
-                        let fetchRequest = self.fetchRequest
+                        let fetchRequest = Configuration.newFetchRequest()
                         fetchRequest.predicate = NSPredicate(format: "id == %@", resourceId)
                         fetchRequest.fetchLimit = 1
 
@@ -280,7 +294,7 @@ extension PersistenceManager {
 
         let context = CoreDataHelper.persistentContainer.newBackgroundContext()
         context.performAndWait {
-            let fetchRequest = self.fetchRequest
+            let fetchRequest = Configuration.newFetchRequest()
             fetchRequest.predicate = NSPredicate(format: "id == %@", resourceId)
             fetchRequest.fetchLimit = 1
 
@@ -288,17 +302,17 @@ extension PersistenceManager {
             case let .success(resource):
                 do {
                     let bookmark = try location.bookmarkData()
-                    resource[keyPath: self.keyPath] = NSData(data: bookmark)
+                    resource[keyPath: Configuration.keyPath] = NSData(data: bookmark)
                     try context.save()
-                    log.debug("Successfully downloaded file for '\(Self.downloadType)' resource '\(resourceId)'")
+                    logger.debug("Successfully downloaded file for '\(Configuration.downloadType)' resource '\(resourceId)'")
                 } catch {
-                    log.debug("Failed to downloaded file for '\(Self.downloadType)' resource '\(resourceId)'")
+                    logger.debug("Failed to downloaded file for '\(Configuration.downloadType)' resource '\(resourceId)'")
                     self.deleteDownload(for: resource, in: context)
                 }
             case let .failure(error):
-                ErrorManager.shared.remember((Self.downloadType, resourceId), forKey: "resource")
+                ErrorManager.shared.remember((Configuration.downloadType, resourceId), forKey: "resource")
                 ErrorManager.shared.report(error)
-                log.error("Failed to finish download for '\(Self.downloadType)' resource '\(resourceId)': \(error)")
+                logger.error("Failed to finish download for '\(Configuration.downloadType)' resource '\(resourceId)': \(error)")
             }
         }
     }
@@ -307,17 +321,23 @@ extension PersistenceManager {
         let resourceId = resource[keyPath: Resource.identifierKeyPath]
 
         if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
-            log.debug("Canceled download of resource (type: \(Resource.self) id: \(resourceId))")
+            logger.debug("Canceled download of resource (type: \(Resource.self) id: \(resourceId))")
             return
         }
 
         ErrorManager.shared.remember((Resource.self, resourceId), forKey: "resource")
         ErrorManager.shared.report(error)
-        log.error("Unknown asset download error (resource type: \(Resource.self) | resource id: \(resourceId) | domain: \(error.domain) | code: \(error.code)")
+        logger.error("""
+            Unknown asset download error - \
+            resource type: \(Resource.self) | \
+            resource id: \(resourceId) | \
+            domain: \(error.domain) | \
+            code: \(error.code)
+            """)
 
         // show error
         DispatchQueue.main.async {
-            let alertTitle = Self.titleForFailedDownloadAlert
+            let alertTitle = Configuration.titleForFailedDownloadAlert
             let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
             let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
             let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")

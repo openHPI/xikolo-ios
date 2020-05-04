@@ -346,7 +346,9 @@ class CourseViewController: UIViewController {
 extension CourseViewController: CourseAreaListViewControllerDelegate {
 
     var accessibleAreas: [CourseArea] {
-        if self.course.hasEnrollment && self.course.accessible {
+        if self.course.external {
+            return [.courseDetails]
+        } else if self.course.hasEnrollment && self.course.accessible {
             return CourseArea.availableAreas
         } else {
             return CourseArea.availableAreas.filter { $0.acessibleWithoutEnrollment }

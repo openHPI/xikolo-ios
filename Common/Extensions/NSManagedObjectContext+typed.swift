@@ -40,7 +40,7 @@ extension NSManagedObjectContext {
         guard let object = managedObject as? T else {
             let message = "Type mismatch for NSManagedObject (required)"
             let reason = "required: \(T.self), found: \(type(of: managedObject))"
-            log.error("%@: %@", message, reason)
+            logger.error("%@: %@", message, reason)
             fatalError("\(message): \(reason)")
         }
 
@@ -49,14 +49,14 @@ extension NSManagedObjectContext {
 
     public func existingTypedObject<T>(with id: NSManagedObjectID) -> T? where T: NSManagedObject {
         guard let managedObject = try? self.existingObject(with: id) else {
-            log.info("NSManagedObject of type (\(T.self)) could not be retrieved by id (\(id))")
+            logger.info("NSManagedObject of type (\(T.self)) could not be retrieved by id (\(id))")
             return nil
         }
 
         guard let object = managedObject as? T else {
             let message = "Type mismatch for NSManagedObject"
             let reason = "expected: \(T.self), found: \(type(of: managedObject))"
-            log.error("\(message): \(reason)")
+            logger.error("\(message): \(reason)")
             return nil
         }
 

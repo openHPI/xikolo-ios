@@ -183,7 +183,7 @@ class CourseNavigationController: UINavigationController {
                 let options = UIWindowSceneDestructionRequestOptions()
                 options.windowDismissalAnimation = .decline
                 UIApplication.shared.requestSceneSessionDestruction(scene.session, options: options) { _ in
-                    log.warning("failed to close course scene")
+                    logger.warning("failed to close course scene")
                 }
             } else {
                 super.dismiss(animated: trueUnlessReduceMotionEnabled)

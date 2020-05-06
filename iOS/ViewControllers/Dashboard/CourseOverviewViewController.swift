@@ -166,6 +166,8 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
 
         let course = self.courses[indexPath.item]
 
+        ErrorManager.shared.remember(course.id, forKey: "course_overview_list-latest_course_preview")
+
         let previewProvider: UIContextMenuContentPreviewProvider = {
             return R.storyboard.coursePreview().instantiateInitialViewController { coder in
                 return CoursePreviewViewController(coder: coder, course: course, listConfiguration: self.configuration)

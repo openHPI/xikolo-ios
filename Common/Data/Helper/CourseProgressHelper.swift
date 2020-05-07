@@ -12,7 +12,7 @@ public enum CourseProgressHelper {
     public static func syncProgress(forCourse course: Course) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = Self.FetchRequest.courseProgress(forCourse: course)
         var query = SingleResourceQuery(type: CourseProgress.self, id: course.id)
-        query.include("section-progresses")
+        query.include("section_progresses")
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 

@@ -2,13 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-	<string></string>
-	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-	<string></string>
 	<key>CLIENT_ID</key>
 	<string></string>
 	<key>REVERSED_CLIENT_ID</key>
+	<string></string>
+	<key>ANDROID_CLIENT_ID</key>
 	<string></string>
 	<key>API_KEY</key>
 	<string>0000</string>
@@ -23,15 +21,15 @@
 	<key>STORAGE_BUCKET</key>
 	<string></string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<false/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<false/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:000:ios:000</string>
 	<key>DATABASE_URL</key>

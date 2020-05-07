@@ -194,7 +194,7 @@
 		508B9FA8211D7A600090BD16 /* RefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508B9FA7211D7A600090BD16 /* RefreshControl.swift */; };
 		508CF44A242CA8F60086F339 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508CF449242CA8F50086F339 /* CoreServices.framework */; };
 		508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44121AB390400801530 /* SubtitleTableViewCell.swift */; };
-		508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift */; };
+		508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguration.swift */; };
 		508FF44621AB42B200801530 /* UITableViewController+resizeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */; };
 		50911AF5223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911AF4223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift */; };
 		50911AF7223E29A9000C2007 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */; };
@@ -838,7 +838,7 @@
 		508B9FA7211D7A600090BD16 /* RefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshControl.swift; sourceTree = "<group>"; };
 		508CF449242CA8F50086F339 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		508FF44121AB390400801530 /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
-		508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedContentTypeListConfiguraton.swift; sourceTree = "<group>"; };
+		508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedContentTypeListConfiguration.swift; sourceTree = "<group>"; };
 		508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+resizeViews.swift"; sourceTree = "<group>"; };
 		50911AF4223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFilterOptionsViewController.swift; sourceTree = "<group>"; };
 		50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
@@ -876,7 +876,7 @@
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50CF1F3E20DCCF4F0011BFE9 /* openHPI-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
 		50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Release.xcconfig"; sourceTree = "<group>"; };
-		50CF201620DCDBFC0011BFE9 /* openHPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = openHPI.app; path = openhpi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		50CF201620DCDBFC0011BFE9 /* openhpi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openhpi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50CF201820DCDD720011BFE9 /* openHPI-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-Common.xcconfig"; sourceTree = "<group>"; };
 		50CF202D20DCE6680011BFE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseCertificates.storyboard; sourceTree = "<group>"; };
@@ -1825,7 +1825,7 @@
 			isa = PBXGroup;
 			children = (
 				502E712B2018D8BF007FC8C0 /* iOS-UITests.xctest */,
-				50CF201620DCDBFC0011BFE9 /* openHPI.app */,
+				50CF201620DCDBFC0011BFE9 /* openhpi.app */,
 				50FA2DEB20E4B1A800656776 /* Common.framework */,
 				50761B3F20FCAC5900CEDAF9 /* iOS-Tests.xctest */,
 				50761B5320FCADD600CEDAF9 /* Common-Tests.xctest */,
@@ -1877,7 +1877,7 @@
 				5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */,
 				7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */,
 				5044C8E421A85488006490CE /* DownloadedContentTypeListViewController.swift */,
-				508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift */,
+				508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguration.swift */,
 				700398C121A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift */,
 				82D13D0B235726E70006A0D9 /* HelpdeskViewController.swift */,
 				507D02F324360A090009F12B /* HelpdeskTicketTopicListViewController.swift */,
@@ -2364,7 +2364,7 @@
 			);
 			name = iOS;
 			productName = "xikolo-ios";
-			productReference = 50CF201620DCDBFC0011BFE9 /* openHPI.app */;
+			productReference = 50CF201620DCDBFC0011BFE9 /* openhpi.app */;
 			productType = "com.apple.product-type.application";
 		};
 		50DA822323E587FC003BEDE1 /* TodayExtension */ = {
@@ -3101,7 +3101,7 @@
 				508AB2C22109F0DE0079EAE5 /* DocumentHeader.swift in Sources */,
 				50CF1FA520DCDBFC0011BFE9 /* CourseViewController.swift in Sources */,
 				820CCEE623D05B140066CE11 /* CourseItem+share.swift in Sources */,
-				508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift in Sources */,
+				508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguration.swift in Sources */,
 				508FF44621AB42B200801530 /* UITableViewController+resizeViews.swift in Sources */,
 				50CF1FA620DCDBFC0011BFE9 /* CourseCell.swift in Sources */,
 				82D13D0C235726E70006A0D9 /* HelpdeskViewController.swift in Sources */,

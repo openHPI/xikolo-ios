@@ -33,7 +33,7 @@ enum DownloadedContentHelper {
             }
         }
 
-        var persistenceManager: ContentPersistanceManager {
+        var persistenceManager: ContentPersistenceManager {
             switch self {
             case .video:
                 return StreamPersistenceManager.shared

@@ -14,6 +14,7 @@ protocol CoreDataTableViewDataSourceDelegate: AnyObject {
 
     func configure(_ cell: Cell, for object: Object)
     func titleForDefaultHeader(forSection section: Int) -> String?
+    func titleForDefaultFooter(forSection section: Int) -> String?
     func canEditRow(at indexPath: IndexPath) -> Bool
     func commit(editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
 
@@ -22,6 +23,10 @@ protocol CoreDataTableViewDataSourceDelegate: AnyObject {
 extension CoreDataTableViewDataSourceDelegate {
 
     func titleForDefaultHeader(forSection section: Int) -> String? {
+        return nil
+    }
+
+    func titleForDefaultFooter(forSection section: Int) -> String? {
         return nil
     }
 
@@ -197,6 +202,10 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.delegate?.titleForDefaultHeader(forSection: section)
+    }
+
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return self.delegate?.titleForDefaultFooter(forSection: section)
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

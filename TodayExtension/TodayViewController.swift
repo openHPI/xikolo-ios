@@ -24,8 +24,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet private weak var nextCourseDateRelativeDateTimeLabel: UILabel!
     @IBOutlet private weak var nextCourseDateDateLabel: UILabel!
 
-    @IBOutlet weak var nextDateAvailableCenterLayoutConstraint: NSLayoutConstraint!
-    @IBOutlet weak var noNextDateAvailableCenterLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var nextDateAvailableCenterConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var noNextDateAvailableCenterConstraint: NSLayoutConstraint!
 
     private lazy var courseDateFormatter: DateFormatter = {
         return DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .long)
@@ -60,7 +60,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             self.nextCourseDateImageView.image = UIImage(named: "calendar")
         }
 
-        self.widgetPerformUpdate(completionHandler: { _ in })
+        self.widgetPerformUpdate { _ in }
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleBackgroundTap))
         self.view.addGestureRecognizer(tapGestureRecognizer)
@@ -71,8 +71,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
         DispatchQueue.main.async {
             let isInCompactMode = self.extensionContext?.widgetActiveDisplayMode != .expanded
-            self.nextDateAvailableCenterLayoutConstraint.isActive = !isInCompactMode
-            self.noNextDateAvailableCenterLayoutConstraint.isActive = isInCompactMode
+            self.nextDateAvailableCenterConstraint.isActive = !isInCompactMode
+            self.noNextDateAvailableCenterConstraint.isActive = isInCompactMode
             self.view.setNeedsLayout()
             self.view.layoutIfNeeded()
         }
@@ -82,8 +82,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewWillTransition(to: size, with: coordinator)
 
         let isInCompactMode = self.extensionContext?.widgetActiveDisplayMode != .expanded
-        self.nextDateAvailableCenterLayoutConstraint.isActive = !isInCompactMode
-        self.noNextDateAvailableCenterLayoutConstraint.isActive = isInCompactMode
+        self.nextDateAvailableCenterConstraint.isActive = !isInCompactMode
+        self.noNextDateAvailableCenterConstraint.isActive = isInCompactMode
 
         coordinator.animate(alongsideTransition: { [weak self] _ in
             self?.nextCourseDateContainer.alpha = isInCompactMode ? 0 : 1

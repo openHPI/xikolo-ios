@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -243,8 +241,8 @@
                         <outlet property="nextCourseDateImageView" destination="93g-WM-EB7" id="b70-xd-W2M"/>
                         <outlet property="nextCourseDateRelativeDateTimeLabel" destination="OVT-tT-Qtx" id="SpH-1C-kAE"/>
                         <outlet property="nextCourseDateTitleLabel" destination="NlA-DQ-CBl" id="d5R-cQ-uBH"/>
-                        <outlet property="nextDateAvailableCenterLayoutConstraint" destination="AFP-Nd-Bw9" id="cpx-Vx-Jmu"/>
-                        <outlet property="noNextDateAvailableCenterLayoutConstraint" destination="zck-7t-60a" id="8mw-wP-MJf"/>
+                        <outlet property="nextDateAvailableCenterConstraint" destination="AFP-Nd-Bw9" id="cpx-Vx-Jmu"/>
+                        <outlet property="noNextDateAvailableCenterConstraint" destination="zck-7t-60a" id="8mw-wP-MJf"/>
                         <outlet property="todayCountLabel" destination="ZT0-cS-w8o" id="Bag-xQ-KNL"/>
                         <outlet property="widgetDisabledLabel" destination="Ki9-Gd-mbN" id="Wzm-HI-O9D"/>
                     </connections>

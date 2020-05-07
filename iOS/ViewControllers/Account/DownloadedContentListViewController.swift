@@ -29,7 +29,7 @@ class DownloadedContentListViewController: UITableViewController {
         var id: String
         var title: String
         var byteCounts: [DownloadedContentHelper.ContentType: UInt64] = [:]
-        var timeEffort: Int16 = 0
+        var timeEffort: TimeInterval = 0
 
         init(id: String, title: String) {
             self.id = id
@@ -80,7 +80,7 @@ class DownloadedContentListViewController: UITableViewController {
                 let courseId = downloadItem.courseID
                 var courseDownload = downloadedCourseList[courseId, default: CourseDownload(id: courseId, title: downloadItem.courseTitle ?? "")]
                 courseDownload.byteCounts[downloadItem.contentType, default: 0] += downloadItem.fileSize ?? 0
-                courseDownload.timeEffort += downloadItem.timeEffort ?? 0
+                courseDownload.timeEffort += ceil(TimeInterval(downloadItem.timeEffort ?? 0) / 60) * 60 // round up to full minutes
                 downloadedCourseList[downloadItem.courseID] = courseDownload
             }
 
@@ -150,8 +150,7 @@ extension DownloadedContentListViewController { // Table view data source
             return nil
         }
 
-        let roundedTimeEffort = ceil(TimeInterval(timeEffort) / 60) * 60 // round up to full minutes
-        let formattedTimeEffort = Self.timeEffortFormatter.string(from: roundedTimeEffort)
+        let formattedTimeEffort = Self.timeEffortFormatter.string(from: timeEffort)
         let format = NSLocalizedString("settings.downloads.estimated time effort: %@", comment: "label for estimated time effort of downloaded course content")
         return formattedTimeEffort.map { String.localizedStringWithFormat(format, $0) }
     }

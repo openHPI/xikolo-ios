@@ -1,6 +1,4 @@
-• Externe Kurse wurden in die Kursliste aufgenommen
-• Für Kurse, die nur mit einer Einladung zugänglich sind, wird eine Meldung angezeigt
-• Anzeige des geschätzten Zeitaufwands für heruntergeladene Inhalte
+• Problem beim Laden des Kursfortschritts behoben
 
 Auch in Version 2.10:
 • Neues Kurstermin-Widget auf dem Startbildschirm (ein langer Fingertipp auf das App-Icon zeigt die Übersicht der Kurstermine an)
@@ -18,3 +16,6 @@ Auch in Version 2.10:
 • Zeitaufwand wird in verschiedenen Ansichten angezeigt
 • Eine zusätzliche Seite wird vor Beginn eines Peer-Assessments angezeigt
 • Verschiedene kleinere kosmetische Änderungen
+• Externe Kurse wurden in die Kursliste aufgenommen
+• Für Kurse, die nur mit einer Einladung zugänglich sind, wird eine Meldung angezeigt
+• Anzeige des geschätzten Zeitaufwands für heruntergeladene Inhalte

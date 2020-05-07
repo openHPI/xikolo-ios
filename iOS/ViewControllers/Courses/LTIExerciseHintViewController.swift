@@ -38,8 +38,6 @@ class LTIExerciseHintViewController: UIViewController {
     @IBOutlet private weak var instructionsView: UITextView!
     @IBOutlet private weak var launchButton: UIButton!
 
-    weak var delegate: CourseItemViewController?
-
     private var courseItemObserver: ManagedObjectObserver?
 
     private var courseItem: CourseItem! {

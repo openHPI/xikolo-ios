@@ -42,8 +42,6 @@ class PeerAssessmentHintViewController: UIViewController {
     @IBOutlet private weak var launchButton: UIButton!
     @IBOutlet private weak var deadlineExpiredView: UIView!
 
-    weak var delegate: CourseItemViewController?
-
     private var courseItemObserver: ManagedObjectObserver?
 
     private var courseItem: CourseItem! {

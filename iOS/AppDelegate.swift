@@ -4,8 +4,8 @@
 //
 
 import Common
-import Crashlytics
 import Firebase
+import FirebaseCrashlytics
 import NotificationCenter
 import SDWebImage
 import UIKit
@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
-            ErrorManager.shared.register(reporter: Crashlytics.sharedInstance())
+            ErrorManager.shared.register(reporter: Crashlytics.crashlytics())
 
             // register resource to be pushed automatically
             self.pushEngineManager.register(Announcement.self)

@@ -876,7 +876,7 @@
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50CF1F3E20DCCF4F0011BFE9 /* openHPI-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
 		50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Release.xcconfig"; sourceTree = "<group>"; };
-		50CF201620DCDBFC0011BFE9 /* openHPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = openHPI.app; path = openhpi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		50CF201620DCDBFC0011BFE9 /* openhpi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openhpi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50CF201820DCDD720011BFE9 /* openHPI-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-Common.xcconfig"; sourceTree = "<group>"; };
 		50CF202D20DCE6680011BFE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseCertificates.storyboard; sourceTree = "<group>"; };
@@ -1825,7 +1825,7 @@
 			isa = PBXGroup;
 			children = (
 				502E712B2018D8BF007FC8C0 /* iOS-UITests.xctest */,
-				50CF201620DCDBFC0011BFE9 /* openHPI.app */,
+				50CF201620DCDBFC0011BFE9 /* openhpi.app */,
 				50FA2DEB20E4B1A800656776 /* Common.framework */,
 				50761B3F20FCAC5900CEDAF9 /* iOS-Tests.xctest */,
 				50761B5320FCADD600CEDAF9 /* Common-Tests.xctest */,
@@ -2364,7 +2364,7 @@
 			);
 			name = iOS;
 			productName = "xikolo-ios";
-			productReference = 50CF201620DCDBFC0011BFE9 /* openHPI.app */;
+			productReference = 50CF201620DCDBFC0011BFE9 /* openhpi.app */;
 			productType = "com.apple.product-type.application";
 		};
 		50DA822323E587FC003BEDE1 /* TodayExtension */ = {

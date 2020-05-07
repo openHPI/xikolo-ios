@@ -8,9 +8,8 @@ pod 'R.swift', '~> 5.0'
 pod 'SwiftLint', '~> 0.22'
 
 def firebase_pods
-    pod 'Firebase/Core'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Crashlytics', '~> 3.14.0'
+    pod 'Firebase/Crashlytics'
+    pod 'Firebase/Analytics'
 end
 
 def common_pods

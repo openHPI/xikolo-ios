@@ -25,7 +25,8 @@ class RichtextViewController: UIViewController {
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var scrollViewTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var loadingScreen: UIView!
-    @IBOutlet private weak var richtextInfoView: UIStackView!
+    @IBOutlet private weak var descriptionView: UITextView!
+    @IBOutlet private weak var displayIssuesButton: UIButton!
 
     private var courseItemObserver: ManagedObjectObserver?
 
@@ -44,8 +45,9 @@ class RichtextViewController: UIViewController {
         super.viewDidLoad()
 
         self.titleView.text = self.courseItem.title
-        self.richtextInfoView.isHidden = true
         self.loadingScreen.isHidden = false
+        self.descriptionView.isHidden = true
+        self.displayIssuesButton.isHidden = true
 
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero
@@ -61,23 +63,22 @@ class RichtextViewController: UIViewController {
         }
 
         self.updateView()
-
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
     }
 
     private func updateView() {
         guard self.viewIfLoaded != nil else { return }
 
-        self.loadingScreen.isHidden = true
-        self.richtextInfoView.isHidden = false
-
         // Set time effort label
         let roundedTimeEffort = ceil(TimeInterval(self.courseItem.timeEffort) / 60) * 60 // round up to full minutes
         self.timeEffortLabel.text = Self.timeEffortFormatter.string(from: roundedTimeEffort)
         self.timeEffortView.isHidden = self.courseItem.timeEffort == 0
 
-        let markdown = (self.courseItem.content as? RichText)?.text
-        self.textView.setMarkdownWithImages(from: markdown)
+        guard let richtext = self.courseItem.content as? RichText else { return }
+
+        self.textView.setMarkdownWithImages(from: richtext.text)
+        self.loadingScreen.isHidden = true
+        self.displayIssuesButton.isHidden = false
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

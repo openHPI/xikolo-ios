@@ -405,10 +405,12 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
     func searchPredicate(forSearchText searchText: String) -> NSPredicate? {
         let subPredicates = searchText.split(separator: " ").map(String.init).map { searchTextPart in
             return NSCompoundPredicate(orPredicateWithSubpredicates: [
-                NSPredicate(format: "title CONTAINS[c] %@", searchTextPart),
-                NSPredicate(format: "teachers CONTAINS[c] %@", searchTextPart),
-                NSPredicate(format: "abstract CONTAINS[c] %@", searchTextPart),
-                NSPredicate(format: "slug CONTAINS[c] %@", searchTextPart),
+                NSPredicate(format: "title CONTAINS[cd] %@", searchTextPart),
+                NSPredicate(format: "teachers CONTAINS[cd] %@", searchTextPart),
+                NSPredicate(format: "abstract CONTAINS[cd] %@", searchTextPart),
+                NSPredicate(format: "slug CONTAINS[cd] %@", searchTextPart),
+                NSPredicate(format: "categories CONTAINS[cd] %@", searchTextPart),
+                NSPredicate(format: "topics CONTAINS[cd] %@", searchTextPart),
             ])
         }
 

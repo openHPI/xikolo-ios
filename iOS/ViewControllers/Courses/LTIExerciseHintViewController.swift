@@ -29,14 +29,18 @@ class LTIExerciseHintViewController: UIViewController {
     private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .long)
 
     @IBOutlet private weak var itemTitleLabel: UILabel!
+
+    @IBOutlet weak var exerciseTypeView: UIStackView!
     @IBOutlet private weak var exerciseTypeLabel: UILabel!
+    @IBOutlet private weak var pointsView: UIStackView!
     @IBOutlet private weak var pointsLabel: UILabel!
     @IBOutlet private weak var timeEffortView: UIView!
     @IBOutlet private weak var timeEffortLabel: UILabel!
     @IBOutlet private weak var deadlineDateView: UIView!
     @IBOutlet private weak var deadlineLabel: UILabel!
     @IBOutlet private weak var instructionsView: UITextView!
-    @IBOutlet private weak var infoView: UIStackView!
+
+    @IBOutlet private weak var launchExerciseView: UIStackView!
     @IBOutlet private weak var loadingScreen: UIView!
     @IBOutlet private weak var launchButton: UIButton!
 
@@ -59,7 +63,11 @@ class LTIExerciseHintViewController: UIViewController {
         super.viewDidLoad()
 
         self.itemTitleLabel.text = self.courseItem?.title
-        self.infoView.isHidden = true
+        self.launchExerciseView.isHidden = true
+        self.exerciseTypeView.isHidden = true
+        self.pointsView.isHidden = true
+        self.timeEffortView.isHidden = true
+        self.deadlineDateView.isHidden = true
         self.loadingScreen.isHidden = false
 
         self.launchButton.layer.roundCorners(for: .default)
@@ -74,10 +82,21 @@ class LTIExerciseHintViewController: UIViewController {
     }
 
     func updateView() {
-        guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }
 
-        self.loadingScreen.isHidden = true
-        self.infoView.isHidden = false
+        // Set points label
+        let format = NSLocalizedString("course-item.max-points", comment: "maximum points for course item")
+        let number = NSNumber(value: self.courseItem.maxPoints)
+        self.pointsLabel.text = Self.pointsFormatter.string(from: number).flatMap { String.localizedStringWithFormat(format, $0) }
+        self.pointsView.isHidden = false
+
+        // Set time effort label
+        let roundedTimeEffort = ceil(TimeInterval(self.courseItem.timeEffort) / 60) * 60 // round up to full minutes
+        self.timeEffortLabel.text = Self.timeEffortFormatter.string(from: roundedTimeEffort)
+        self.timeEffortView.isHidden = self.courseItem.timeEffort == 0
+
+        // Set deadline label
+        self.deadlineLabel.text = self.courseItem.deadline.map(Self.dateFormatter.string(from:))
+        self.deadlineDateView.isHidden = self.courseItem.deadline == nil
 
         // Set exercise type label
         switch self.courseItem.exerciseType {
@@ -90,23 +109,16 @@ class LTIExerciseHintViewController: UIViewController {
         default:
             self.exerciseTypeLabel.text = nil
         }
+        self.exerciseTypeView.isHidden = false
 
-        // Set points label
-        let format = NSLocalizedString("course-item.max-points", comment: "maximum points for course item")
-        let number = NSNumber(value: self.courseItem.maxPoints)
-        self.pointsLabel.text = Self.pointsFormatter.string(from: number).flatMap { String.localizedStringWithFormat(format, $0) }
+        guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }
 
-        // Set time effort label
-        let roundedTimeEffort = ceil(TimeInterval(self.courseItem.timeEffort) / 60) * 60 // round up to full minutes
-        self.timeEffortLabel.text = Self.timeEffortFormatter.string(from: roundedTimeEffort)
-        self.timeEffortView.isHidden = self.courseItem.timeEffort == 0
-
-        // Set deadline label
-        self.deadlineLabel.text = self.courseItem.deadline.map(Self.dateFormatter.string(from:))
-        self.deadlineDateView.isHidden = self.courseItem.deadline == nil
+        self.loadingScreen.isHidden = true
+        self.launchExerciseView.isHidden = false
 
         // Set instructions label
         self.instructionsView.setMarkdownWithImages(from: ltiExercise.instructions)
+        self.instructionsView.isHidden = false
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

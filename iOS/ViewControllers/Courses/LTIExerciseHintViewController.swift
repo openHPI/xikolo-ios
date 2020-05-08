@@ -30,7 +30,7 @@ class LTIExerciseHintViewController: UIViewController {
 
     @IBOutlet private weak var itemTitleLabel: UILabel!
 
-    @IBOutlet weak var exerciseTypeView: UIStackView!
+    @IBOutlet private weak var exerciseTypeView: UIStackView!
     @IBOutlet private weak var exerciseTypeLabel: UILabel!
     @IBOutlet private weak var pointsView: UIStackView!
     @IBOutlet private weak var pointsLabel: UILabel!
@@ -109,6 +109,7 @@ class LTIExerciseHintViewController: UIViewController {
         default:
             self.exerciseTypeLabel.text = nil
         }
+        
         self.exerciseTypeView.isHidden = false
 
         guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }

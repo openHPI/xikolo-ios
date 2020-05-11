@@ -65,6 +65,10 @@ class CourseOverviewViewController: UIViewController {
                                                selector: #selector(coreDataChange(notification:)),
                                                name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
                                                object: CoreDataHelper.viewContext)
+
+        if #available(iOS 11.0, *) {
+            self.collectionView.dragDelegate = self
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -237,4 +241,13 @@ extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
     }
 
+}
+
+@available(iOS 11.0, *)
+extension CourseOverviewViewController: UICollectionViewDragDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let selectedCourse = self.courses[indexPath.item]
+        return [selectedCourse.dragItem(for: self.collectionView.traitCollection)]
+    }
 }

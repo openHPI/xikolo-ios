@@ -78,6 +78,10 @@ class CourseListViewController: UICollectionViewController {
 
         self.setupSearchController()
         self.addFilterView()
+
+        if #available(iOS 11.0, *) {
+            self.collectionView.dragDelegate = self
+        }
     }
 
     override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
@@ -491,6 +495,16 @@ extension CourseListViewController: CourseSearchFiltersViewControllerDelegate {
             guard let searchController = self.searchController else { return }
             self.updateSearchResults(for: searchController)
         }
+    }
+
+}
+
+@available(iOS 11.0, *)
+extension CourseListViewController: UICollectionViewDragDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let selectedCourse = self.dataSource.object(at: indexPath)
+        return [selectedCourse.dragItem(for: self.collectionView.traitCollection)]
     }
 
 }

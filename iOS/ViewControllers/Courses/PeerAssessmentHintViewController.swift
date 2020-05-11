@@ -30,7 +30,7 @@ class PeerAssessmentHintViewController: UIViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
 
-    @IBOutlet weak var peerAssessmentTypeView: UIStackView!
+    @IBOutlet private weak var peerAssessmentTypeView: UIStackView!
     @IBOutlet private weak var peerAssessmentTypeLabel: UILabel!
     @IBOutlet private weak var peerAssessmentTypeImage: UIImageView!
 
@@ -71,7 +71,6 @@ class PeerAssessmentHintViewController: UIViewController {
         self.titleLabel.text = self.courseItem.title
         self.deadlineExpiredView.isHidden = true
         self.launchInfoView.isHidden = true
-        self.peerAssessmentTypeView.isHidden = true
         self.peerAssessmentInfoView.isHidden = true
         self.loadingScreen.isHidden = false
 
@@ -118,11 +117,11 @@ class PeerAssessmentHintViewController: UIViewController {
 
         guard let peerAssessment = self.courseItem?.content as? PeerAssessment else { return }
 
+        self.loadingScreen.isHidden = true
+
         let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
         self.deadlineExpiredView.isHidden = !deadlineExpired
         self.launchInfoView.isHidden = deadlineExpired
-
-        self.loadingScreen.isHidden = true
 
         // Set peer assessment type label and image
         switch peerAssessment.type {
@@ -133,6 +132,7 @@ class PeerAssessmentHintViewController: UIViewController {
             self.peerAssessmentTypeLabel.text = NSLocalizedString("peer-assessment-type.solo", comment: "solo peer assessment")
             self.peerAssessmentTypeImage.image = R.image.personFill()
         }
+
         self.peerAssessmentTypeView.isHidden = false
 
         // Set instructions label

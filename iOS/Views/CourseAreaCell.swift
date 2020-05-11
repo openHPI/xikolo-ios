@@ -9,7 +9,7 @@ import UIKit
 class CourseAreaCell: UICollectionViewCell {
 
     @IBOutlet private weak var titleView: UILabel!
-    @IBOutlet private weak var hightlightView: UIView!
+    @IBOutlet private weak var highlightView: UIView!
 
     static func font(whenSelected selected: Bool) -> UIFont {
         let preferredFontSize = UIFont.preferredFont(forTextStyle: .subheadline).pointSize
@@ -20,15 +20,15 @@ class CourseAreaCell: UICollectionViewCell {
         didSet {
             self.titleView.font = Self.font(whenSelected: self.isSelected)
             self.titleView.textColor = self.isSelected ? ColorCompatibility.label : ColorCompatibility.secondaryLabel
-            self.hightlightView.layer.roundCorners(for: .default)
-            self.hightlightView.isHidden = !self.isSelected
+            self.highlightView.layer.roundCorners(for: .default)
+            self.highlightView.isHidden = !self.isSelected
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.titleView.textColor = ColorCompatibility.secondaryLabel
-        self.hightlightView.isHidden = true
+        self.highlightView.isHidden = true
 
         self.addDefaultPointerInteraction()
     }

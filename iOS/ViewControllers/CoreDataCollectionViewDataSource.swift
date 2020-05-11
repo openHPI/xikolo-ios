@@ -20,7 +20,7 @@ protocol CoreDataCollectionViewDataSourceDelegate: AnyObject {
     func configureSearchHeaderView(_ searchHeaderView: HeaderView, numberOfSearchResults: Int)
 
     func collectionView(_ collectionView: UICollectionView,
-                        viewForAddtionalSupplementaryElementOfKind kind: String,
+                        viewForAdditionalSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView?
 
 }
@@ -36,7 +36,7 @@ extension CoreDataCollectionViewDataSourceDelegate {
     func configureSearchHeaderView(_ view: HeaderView, numberOfSearchResults: Int) {}
 
     func collectionView(_ collectionView: UICollectionView,
-                        viewForAddtionalSupplementaryElementOfKind kind: String,
+                        viewForAdditionalSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView? {
         return nil
     }
@@ -270,7 +270,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             return view
         }
 
-        return self.delegate?.collectionView(collectionView, viewForAddtionalSupplementaryElementOfKind: kind, at: indexPath) ?? UICollectionReusableView()
+        return self.delegate?.collectionView(collectionView, viewForAdditionalSupplementaryElementOfKind: kind, at: indexPath) ?? UICollectionReusableView()
     }
 
     func search(withText searchText: String?) {

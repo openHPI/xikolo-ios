@@ -42,7 +42,7 @@ class ExerciseProgressStackView: UIStackView {
         let scored = progress.pointsScored.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
         let possible = progress.pointsPossible.flatMap(Self.pointsFormatter.string(for:)) ?? "-"
 
-        let format = NSLocalizedString("course.progress.points %@ of %@ points", comment: "label exercise progess with absolute values. n out of m")
+        let format = NSLocalizedString("course.progress.points %@ of %@ points", comment: "label exercise progress with absolute values. n out of m")
         let scoredText = String.localizedStringWithFormat(format, scored, possible)
         self.progressPointsScored.text = scoredText
 

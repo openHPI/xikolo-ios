@@ -40,8 +40,8 @@ extension Video {
 
     func preferredPeakBitRate() -> Double? {
         guard StreamPersistenceManager.shared.localFileLocation(for: self) == nil else { return nil }
-        let videoQuaility = ReachabilityHelper.connection == .wifi ? UserDefaults.standard.videoQualityOnWifi : UserDefaults.standard.videoQualityOnCellular
-        return Double(videoQuaility.rawValue)
+        let videoQuality = ReachabilityHelper.connection == .wifi ? UserDefaults.standard.videoQualityOnWifi : UserDefaults.standard.videoQualityOnCellular
+        return Double(videoQuality.rawValue)
     }
 
 }

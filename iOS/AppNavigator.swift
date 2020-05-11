@@ -219,7 +219,7 @@ class AppNavigator {
         let someCourseViewController = self.currentCourseNavigationController?.courseViewController
 
         if let courseViewController = someCourseViewController, courseViewController.course.id == course.id, currentlyPresentsCourse {
-            if course.accessible || courseArea.acessibleWithoutEnrollment {
+            if course.accessible || courseArea.accessibleWithoutEnrollment {
                 self.currentCourseNavigationController?.popToRootViewController(animated: trueUnlessReduceMotionEnabled)
                 courseOpenAction(courseViewController)
             }
@@ -235,7 +235,7 @@ class AppNavigator {
         let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
         courseViewController.course = course
 
-        let accessible = course.accessible || courseArea.acessibleWithoutEnrollment
+        let accessible = course.accessible || courseArea.accessibleWithoutEnrollment
         courseClosedAction(courseViewController, accessible)
 
         self.currentCourseNavigationController = courseNavigationController

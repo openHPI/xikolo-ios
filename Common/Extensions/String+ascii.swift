@@ -8,7 +8,7 @@ import Foundation
 extension String {
 
     public func safeAsciiString() -> String? {
-        let charSubstitions = [
+        let charSubstitutions = [
             "Ä": "Ae",
             "ä": "ae",
             "Ö": "Oe",
@@ -19,7 +19,7 @@ extension String {
         ]
 
         var asciiText = self
-        for (char, substitution) in charSubstitions {
+        for (char, substitution) in charSubstitutions {
             asciiText = asciiText.replacingOccurrences(of: char, with: substitution)
         }
 

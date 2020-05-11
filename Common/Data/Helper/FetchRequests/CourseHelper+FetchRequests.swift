@@ -62,14 +62,14 @@ extension CourseHelper {
             visiblePredicate,
             futurePredicate,
         ])
-        private static let selfpacedCoursesPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+        private static let selfPacedCoursesPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             visiblePredicate,
             pastPredicate,
         ])
         private static let searchableCoursesPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
             currentCoursesPredicate,
             upcomingCoursesPredicate,
-            selfpacedCoursesPredicate,
+            selfPacedCoursesPredicate,
         ])
 
         private static let customOrderSortDescriptor = NSSortDescriptor(keyPath: \Course.order, ascending: true)
@@ -130,7 +130,7 @@ extension CourseHelper {
 
         public static var selfpacedCourses: NSFetchRequest<Course> {
             let request = self.visibleCoursesRequest
-            request.predicate = self.selfpacedCoursesPredicate
+            request.predicate = self.selfPacedCoursesPredicate
             return request
         }
 
@@ -193,7 +193,7 @@ extension CourseHelper {
         public static func selfpacedCourses(for channel: Channel) -> NSFetchRequest<Course> {
             let request = self.visibleCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                self.selfpacedCoursesPredicate,
+                self.selfPacedCoursesPredicate,
                 NSPredicate(format: "channel = %@", channel),
             ])
             return request

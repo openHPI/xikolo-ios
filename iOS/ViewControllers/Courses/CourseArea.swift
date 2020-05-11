@@ -32,7 +32,7 @@ enum CourseArea {
         return values.filter { $0.isAvailable }
     }()
 
-    var acessibleWithoutEnrollment: Bool {
+    var accessibleWithoutEnrollment: Bool {
         return self == .courseDetails || self == .certificates
     }
 

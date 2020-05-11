@@ -11,7 +11,7 @@ class MoreViewController: UIViewController {
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var newsLabel: UILabel!
-    @IBOutlet private weak var additonalMaterialsContainerHeight: NSLayoutConstraint!
+    @IBOutlet private weak var additionalMaterialsContainerHeight: NSLayoutConstraint!
     @IBOutlet private weak var announcementsContainerHeight: NSLayoutConstraint!
 
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class MoreViewController: UIViewController {
     override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
         super.preferredContentSizeDidChange(forChildContentContainer: container)
         if container is AdditionalLearningMaterialListViewController {
-            self.additonalMaterialsContainerHeight?.constant = container.preferredContentSize.height
+            self.additionalMaterialsContainerHeight?.constant = container.preferredContentSize.height
         } else if container is AnnouncementListViewController {
             self.announcementsContainerHeight?.constant = container.preferredContentSize.height
         }

@@ -438,7 +438,7 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView,
-                        viewForAddtionalSupplementaryElementOfKind kind: String,
+                        viewForAdditionalSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView? {
         guard kind == R.nib.channelHeaderView.name else { return nil }
 

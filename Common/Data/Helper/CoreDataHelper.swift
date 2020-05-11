@@ -29,7 +29,7 @@ public class CoreDataHelper { // swiftlint:disable:this convenience_type
 
         container.loadPersistentStores { _, error in
             if let error = error {
-                logger.error("Persistant store load error", error: error)
+                logger.error("Persistent store load error", error: error)
                 fatalError("Unresolved error \(error)")
             }
 

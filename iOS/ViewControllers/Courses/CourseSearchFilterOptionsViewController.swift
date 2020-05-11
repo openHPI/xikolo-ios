@@ -56,7 +56,7 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("course-list.search.filter.options.title.refine serach",
+        self.navigationItem.title = NSLocalizedString("course-list.search.filter.options.title.refine search",
                                                       comment: "Title for filter options menu")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         self.navigationItem.rightBarButtonItem = {

@@ -11,8 +11,8 @@ extension AnnouncementHelper {
     public enum FetchRequest {
 
         private static var enrolledCoursePredicate: NSPredicate {
-            let deletedEnrollmentPrecidate = NSPredicate(format: "course.enrollment.objectStateValue = %d", ObjectState.deleted.rawValue)
-            let notDeletedEnrollmentPredicate = NSCompoundPredicate(notPredicateWithSubpredicate: deletedEnrollmentPrecidate)
+            let deletedEnrollmentPredicate = NSPredicate(format: "course.enrollment.objectStateValue = %d", ObjectState.deleted.rawValue)
+            let notDeletedEnrollmentPredicate = NSCompoundPredicate(notPredicateWithSubpredicate: deletedEnrollmentPredicate)
             return NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(format: "course.enrollment != nil"),
                 notDeletedEnrollmentPredicate,

@@ -44,10 +44,10 @@ public final class Course: NSManagedObject {
     }
 
     @objc var interestingSection = CommonLocalizedString("course.section-title.suggested", comment: "section title for collapsed upcoming & active courses")
-    @objc var selfpacedSectionName = CommonLocalizedString("course.section-title.self-paced", comment: "section title for selfpaced courses")
+    @objc var selfPacedSectionName = CommonLocalizedString("course.section-title.self-paced", comment: "section title for selfpaced courses")
     @objc var currentSectionName = CommonLocalizedString("course.section-title.current", comment: "section title for current courses")
     @objc var upcomingSectionName = CommonLocalizedString("course.section-title.upcoming", comment: "section title for upcoming courses")
-    @objc var completedSectioName = CommonLocalizedString("course.section-title.completed", comment: "section title for completed courses")
+    @objc var completedSectionName = CommonLocalizedString("course.section-title.completed", comment: "section title for completed courses")
     @objc var isEnrolledSectionName: String {
         if enrollment != nil {
             return CommonLocalizedString("course.section-title.my courses", comment: "section title for enrolled courses")

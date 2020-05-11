@@ -4,20 +4,16 @@
 //
 
 import Common
-import Crashlytics
+import FirebaseCrashlytics
 
 extension Crashlytics: ErrorReporter {
 
     public func report(_ error: Error) {
-        self.recordError(error)
+        self.record(error: error)
     }
 
-    public func reportStoryboardError(reason: String) {
-        self.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
-    }
-
-    public func remember(_ value: Any?, forKey key: String) {
-        self.setObjectValue(value, forKey: key)
+    public func remember(_ value: Any, forKey key: String) {
+        self.setCustomValue(value, forKey: key)
     }
 
 }

@@ -41,7 +41,7 @@ class CourseItemViewController: UIPageViewController {
     var currentItem: CourseItem? {
         didSet {
             self.trackItemVisit()
-            ErrorManager.shared.remember(self.currentItem?.id, forKey: "item_id")
+            ErrorManager.shared.remember(self.currentItem?.id as Any, forKey: "item_id")
 
             self.previousItem = self.currentItem?.previousItem
             self.nextItem = self.currentItem?.nextItem

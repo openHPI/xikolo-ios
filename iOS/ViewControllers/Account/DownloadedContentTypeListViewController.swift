@@ -205,7 +205,7 @@ extension DownloadedContentTypeListViewController: CoreDataTableViewDataSourceDe
         guard let timeEffortKeyPath = Configuration.timeEffortKeyPath else { return nil }
         guard let dataSource = self.dataSource else { return nil }
         guard let resources = dataSource.sectionInfos?[section].objects?.compactMap({ $0 as? Resource }) else { return nil }
-        let timeEfforts = resources.compactMap({ $0[keyPath: timeEffortKeyPath] })
+        let timeEfforts = resources.compactMap { $0[keyPath: timeEffortKeyPath] }
         let transformedTimeEfforts = timeEfforts.map(Configuration.contentType.transformTimeEffort)
         let roundedTimeEfforts = transformedTimeEfforts.map { ceil(TimeInterval($0) / 60) * 60 } // round up to full minutes
         let combinedTimeEffort = roundedTimeEfforts.reduce(0, +)

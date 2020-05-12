@@ -104,14 +104,14 @@
 /* Shown in course content list */
 "course-item.video.slides.label" = "Slides";
 
-/* Title for button for clearning all filters */
+/* Title for button for clearing all filters */
 "course-list.search.filter.clear" = "Clear";
 
 /* Title for applying selected filter options */
 "course-list.search.filter.options.apply" = "Apply";
 
 /* Title for filter options menu */
-"course-list.search.filter.options.title.refine serach" = "Refine search";
+"course-list.search.filter.options.title.refine search" = "Refine search";
 
 /* Title for language filter */
 "course-list.search.filter.title.language" = "Language";
@@ -179,10 +179,10 @@
 /* course item ungraded type */
 "course.item.exercise-type.disclaimer.ungraded" = "This is an ungraded exercise.";
 
-/* label exercise progess with absolute values. n out of m */
+/* label exercise progress with absolute values. n out of m */
 "course.progress.points %@ of %@ points" = "%@ of %@ points";
 
-/* label visit progess with absolute values. n out of m */
+/* label visit progress with absolute values. n out of m */
 "course.progress.visited %@ of %@ visited" = "%@ of %@ visited";
 
 /* action text for course overview with no courses */
@@ -290,11 +290,11 @@
 /* Label of button for submitting a helpdesk ticket */
 "helpdesk.action.send" = "Send";
 
-/* helpdesk catergroy course-specific questions */
-"helpdesk.catergory.course-specific" = "Course-specific Question";
+/* helpdesk category course-specific questions */
+"helpdesk.category.course-specific" = "Course-specific Question";
 
-/* helpdesk catergroy genereal questions */
-"helpdesk.catergory.general" = "General Question";
+/* helpdesk category general questions */
+"helpdesk.category.general" = "General Question";
 
 /* hint for checking the FAQ before creating a helpdesk ticket */
 "helpdesk.hint.faq" = "Before writing a ticket to technical support, please make sure that you have read our FAQ. If you have any questions about course content, please contact the teacher team in the course forum.";

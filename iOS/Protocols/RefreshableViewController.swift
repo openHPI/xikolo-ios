@@ -43,7 +43,7 @@ extension RefreshableViewController where Self: UITableViewController {
 extension RefreshableViewController where Self: UICollectionViewController {
 
     var refreshableScrollView: UIScrollView {
-        return self.collectionView.require(hint: "UICollectionViewController must have a collectioView")
+        return self.collectionView.require(hint: "UICollectionViewController must have a collection view")
     }
 
 }

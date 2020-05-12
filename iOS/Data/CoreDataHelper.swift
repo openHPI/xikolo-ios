@@ -23,8 +23,8 @@ extension CoreDataHelper {
         let context = self.persistentContainer.newBackgroundContext()
         context.performAndWait {
             do {
-                for (enitityName, attributes) in nestedResources {
-                    guard let request = self.attributeResetRequest(for: enitityName, attributes: attributes) else { continue }
+                for (entityName, attributes) in nestedResources {
+                    guard let request = self.attributeResetRequest(for: entityName, attributes: attributes) else { continue }
                     try context.execute(request)
                 }
 

@@ -67,9 +67,9 @@ class HelpdeskTicketTopicListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return NSLocalizedString("helpdesk.catergory.general", comment: "helpdesk catergroy genereal questions")
+            return NSLocalizedString("helpdesk.category.general", comment: "helpdesk category general questions")
         } else {
-            return NSLocalizedString("helpdesk.catergory.course-specific", comment: "helpdesk catergroy course-specific questions")
+            return NSLocalizedString("helpdesk.category.course-specific", comment: "helpdesk category course-specific questions")
         }
     }
 

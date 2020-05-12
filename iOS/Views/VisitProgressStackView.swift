@@ -40,7 +40,7 @@ class VisitProgressStackView: UIStackView {
         let visited = progress.itemsVisited.flatMap(Self.visitFormatter.string(for:)) ?? "-"
         let available = progress.itemsAvailable.flatMap(Self.visitFormatter.string(for:)) ?? "-"
 
-        let format = NSLocalizedString("course.progress.visited %@ of %@ visited", comment: "label visit progess with absolute values. n out of m")
+        let format = NSLocalizedString("course.progress.visited %@ of %@ visited", comment: "label visit progress with absolute values. n out of m")
         let visitedText = String.localizedStringWithFormat(format, visited, available)
         self.progressItemsVisited.text = visitedText
 

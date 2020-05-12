@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WaE-pr-4AO">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,24 +11,24 @@
             <objects>
                 <viewController storyboardIdentifier="CourseViewController" automaticallyAdjustsScrollViewInsets="NO" id="GW9-XM-IkA" customClass="CourseViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="raX-iA-spo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VE7-ox-Fte">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="238"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="194"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AFF-tD-7pz" userLabel="Corner View">
-                                <rect key="frame" x="0.0" y="222" width="414" height="32"/>
+                                <rect key="frame" x="0.0" y="178" width="600" height="32"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="9a3-Lq-xW3"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AJR-HV-dnR" userLabel="Title Container">
-                                <rect key="frame" x="0.0" y="238" width="414" height="41.5"/>
+                                <rect key="frame" x="0.0" y="194" width="600" height="41.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Course Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOr-5N-Ewr">
-                                        <rect key="frame" x="20" y="8" width="374" height="33.5"/>
+                                        <rect key="frame" x="20" y="8" width="560" height="33.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -48,7 +46,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BeB-Ri-K3W" userLabel="Header Helper View">
-                                <rect key="frame" x="0.0" y="88" width="10" height="150"/>
+                                <rect key="frame" x="0.0" y="44" width="10" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="10" id="g33-uF-yjI"/>
@@ -56,7 +54,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TJT-Kl-tfg">
-                                <rect key="frame" x="0.0" y="279.5" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="235.5" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="M5J-wN-Bdc"/>
                                 </constraints>
@@ -65,7 +63,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KL2-g9-OIx">
-                                <rect key="frame" x="0.0" y="323.5" width="414" height="572.5"/>
+                                <rect key="frame" x="0.0" y="279.5" width="600" height="320.5"/>
                                 <connections>
                                     <segue destination="6qK-3g-pc6" kind="embed" id="lSN-d1-iw9"/>
                                 </connections>
@@ -161,7 +159,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseAreaCell" id="MQQ-G5-gWa" customClass="CourseAreaCell" customModule="iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="27" width="50" height="34"/>
+                                <rect key="frame" x="0.0" y="5" width="50" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="34"/>
@@ -197,7 +195,7 @@
                                     <constraint firstAttribute="trailing" secondItem="vJi-Ax-SOf" secondAttribute="trailing" id="xvA-Oi-jz3"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="hightlightView" destination="RYF-nl-mvh" id="LHP-Jm-rQi"/>
+                                    <outlet property="highlightView" destination="RYF-nl-mvh" id="LHP-Jm-rQi"/>
                                     <outlet property="titleView" destination="vJi-Ax-SOf" id="68G-ri-Y9c"/>
                                 </connections>
                             </collectionViewCell>

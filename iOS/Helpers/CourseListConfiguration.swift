@@ -45,7 +45,7 @@ enum CourseListConfiguration {
             return [
                 CoreDataHelper.createResultsController(CourseHelper.FetchRequest.currentCourses, sectionNameKeyPath: "currentSectionName"),
                 CoreDataHelper.createResultsController(CourseHelper.FetchRequest.upcomingCourses, sectionNameKeyPath: "upcomingSectionName"),
-                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.selfpacedCourses, sectionNameKeyPath: "selfpacedSectionName"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.selfpacedCourses, sectionNameKeyPath: "selfPacedSectionName"),
             ]
         case .currentCourses:
             return [
@@ -59,7 +59,7 @@ enum CourseListConfiguration {
             return [
                 CoreDataHelper.createResultsController(CourseHelper.FetchRequest.currentCourses(for: channel), sectionNameKeyPath: "currentSectionName"),
                 CoreDataHelper.createResultsController(CourseHelper.FetchRequest.upcomingCourses(for: channel), sectionNameKeyPath: "upcomingSectionName"),
-                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.selfpacedCourses(for: channel), sectionNameKeyPath: "selfpacedSectionName"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.selfpacedCourses(for: channel), sectionNameKeyPath: "selfPacedSectionName"),
             ]
         }
     }

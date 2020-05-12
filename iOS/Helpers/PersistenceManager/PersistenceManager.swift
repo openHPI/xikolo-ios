@@ -166,7 +166,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
         } catch {
             ErrorManager.shared.remember((Configuration.downloadType, resourceIdentifier), forKey: "resource")
             ErrorManager.shared.report(error)
-            logger.error("An error occured deleting the file: \(error)")
+            logger.error("An error occurred deleting the file: \(error)")
         }
 
         var userInfo: [String: Any] = [:]
@@ -256,7 +256,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
                             } catch {
                                 ErrorManager.shared.remember((Configuration.downloadType, resourceId), forKey: "resource")
                                 ErrorManager.shared.report(error)
-                                logger.error("An error occured deleting the file: \(error)")
+                                logger.error("An error occurred deleting the file: \(error)")
                             }
                         }
 

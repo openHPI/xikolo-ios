@@ -80,7 +80,7 @@ class CardListLayout: UICollectionViewLayout {
                             right: collectionView.bounds.width - layoutFrame.maxX - cardInset)
     }
 
-    private func numberOfColumms(for collectionView: UICollectionView) -> Int {
+    private func numberOfColumns(for collectionView: UICollectionView) -> Int {
         guard let minimalCardWidth = self.delegate?.minimalCardWidth(for: collectionView.traitCollection) else {
             return 1
         }
@@ -101,7 +101,7 @@ class CardListLayout: UICollectionViewLayout {
             return
         }
 
-        let numberOfColumns = self.numberOfColumms(for: collectionView)
+        let numberOfColumns = self.numberOfColumns(for: collectionView)
         let columnWidth = (self.contentWidth - CGFloat(max(0, numberOfColumns - 1)) * self.cellPadding) / CGFloat(numberOfColumns)
         let layoutInsets = self.layoutInsets(for: collectionView)
 

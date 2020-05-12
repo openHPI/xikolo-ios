@@ -48,7 +48,7 @@ class CourseSearchFilterCell: UICollectionViewCell {
         self.layer.backgroundColor = UIColor.clear.cgColor
         self.layer.borderColor = UIColor.clear.cgColor
         self.titleLabel.textColor = ColorCompatibility.secondaryLabel
-        self.titleLabel.text = NSLocalizedString("course-list.search.filter.clear", comment: "Title for button for clearning all filters")
+        self.titleLabel.text = NSLocalizedString("course-list.search.filter.clear", comment: "Title for button for clearing all filters")
     }
 
     static var cellHeight: CGFloat {

@@ -194,9 +194,11 @@ extension DownloadedContentTypeListViewController: CoreDataTableViewDataSourceDe
     }
 
     func titleForDefaultHeader(forSection section: Int) -> String? {
-        let indexPath = IndexPath(row: 0, section: section)
-        guard let dataSource = self.dataSource else { return nil }
-        return dataSource.object(at: indexPath)[keyPath: Configuration.sectionTitleKeyPath]
+        guard let firstItemInSection = self.dataSource?.sectionInfos?[section].objects?.first as? Resource else {
+            return nil
+        }
+
+        return firstItemInSection[keyPath: Configuration.sectionTitleKeyPath]
     }
 
     func titleForDefaultFooter(forSection section: Int) -> String? {

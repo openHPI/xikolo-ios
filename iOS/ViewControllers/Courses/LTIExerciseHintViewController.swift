@@ -109,7 +109,7 @@ class LTIExerciseHintViewController: UIViewController {
         default:
             self.exerciseTypeLabel.text = nil
         }
-        
+
         self.exerciseTypeView.isHidden = false
 
         guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }

@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,14 +35,8 @@
                                                             <fragment content="#bc-ignore!"/>
                                                         </attributedString>
                                                     </label>
-                                                    <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tRB-US-R03">
-                                                        <rect key="frame" x="0.0" y="38.5" width="374" height="50"/>
-                                                        <connections>
-                                                            <segue destination="KAw-Hm-h58" kind="embed" id="Sh6-zq-Zof"/>
-                                                        </connections>
-                                                    </containerView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uDE-dK-ZAy">
-                                                        <rect key="frame" x="0.0" y="100.5" width="374" height="108"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uDE-dK-ZAy">
+                                                        <rect key="frame" x="0.0" y="38.5" width="374" height="108"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sMa-M5-edP">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="21"/>
@@ -130,6 +124,12 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
+                                                    <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tRB-US-R03">
+                                                        <rect key="frame" x="0.0" y="158.5" width="374" height="50"/>
+                                                        <connections>
+                                                            <segue destination="KAw-Hm-h58" kind="embed" id="Sh6-zq-Zof"/>
+                                                        </connections>
+                                                    </containerView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6H2-rR-a9u">
                                                         <rect key="frame" x="0.0" y="220.5" width="374" height="180.5"/>
                                                         <subviews>

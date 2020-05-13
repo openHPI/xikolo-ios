@@ -114,6 +114,7 @@ class PeerAssessmentHintViewController: UIViewController {
         self.deadlineDateView.isHidden = self.courseItem.deadline == nil
 
         self.peerAssessmentInfoView.isHidden = false
+        self.peerAssessmentTypeView.isHidden = true
 
         guard let peerAssessment = self.courseItem?.content as? PeerAssessment else { return }
 

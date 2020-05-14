@@ -46,7 +46,7 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
 
         self.tableView.allowsMultipleSelection = true
         self.tableView.cellLayoutMarginsFollowReadableWidth = true
-        self.tableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: self.cellReuseIdentifier)
+        self.tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: self.cellReuseIdentifier)
     }
 
     @available(*, unavailable)
@@ -87,7 +87,10 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
         let option = self.options[indexPath.row]
         let isSelected = self.selectedOptions.contains(option)
 
-        cell.textLabel?.text = self.filter.displayName(forOption: option)
+        cell.detailTextLabel?.textColor = ColorCompatibility.secondaryLabel
+
+        cell.textLabel?.text = self.filter.title(for: option)
+        cell.detailTextLabel?.text = self.filter.subtitle(for: option)
         cell.accessoryType = isSelected ? .checkmark : .none
         cell.selectionStyle = .none
 

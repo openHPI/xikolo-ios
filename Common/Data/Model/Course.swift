@@ -57,7 +57,7 @@ public final class Course: NSManagedObject {
     }
 
     public static func localize(language: String) -> String? {
-        let localeIdentifier = language == "cn" ? "zh-cn" : language
+        let localeIdentifier = language == "cn" ? "zh" : language
         let locale = NSLocale(localeIdentifier: localeIdentifier)
         let displayName = locale.displayName(forKey: NSLocale.Key.languageCode, value: localeIdentifier)
         return displayName?.capitalized

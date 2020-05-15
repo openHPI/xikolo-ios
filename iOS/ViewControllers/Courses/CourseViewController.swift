@@ -124,6 +124,7 @@ class CourseViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
 
         let animationBlock: (UIViewControllerTransitionCoordinatorContext) -> Void = { [weak self] _ in
+            self?.updateHeaderConstraints()
             // Fix size of title view
             self?.view.setNeedsLayout()
             self?.view.layoutIfNeeded()

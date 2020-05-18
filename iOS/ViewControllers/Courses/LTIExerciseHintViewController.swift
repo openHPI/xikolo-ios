@@ -64,10 +64,6 @@ class LTIExerciseHintViewController: UIViewController {
 
         self.itemTitleLabel.text = self.courseItem?.title
         self.launchExerciseView.isHidden = true
-        self.exerciseTypeView.isHidden = true
-        self.pointsView.isHidden = true
-        self.timeEffortView.isHidden = true
-        self.deadlineDateView.isHidden = true
         self.loadingScreen.isHidden = false
 
         self.launchButton.layer.roundCorners(for: .default)

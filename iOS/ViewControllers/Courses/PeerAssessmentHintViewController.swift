@@ -50,10 +50,9 @@ class PeerAssessmentHintViewController: UIViewController {
 
     @IBOutlet private weak var peerAssessmentInfoView: UIStackView!
     @IBOutlet private weak var loadingScreen: UIView!
-    @IBOutlet weak var loadingScreenHeight: NSLayoutConstraint!
-    
-    weak var delegate: CourseItemViewController?
+    @IBOutlet private weak var loadingScreenHeight: NSLayoutConstraint!
 
+    weak var delegate: CourseItemViewController?
 
     private var courseItemObserver: ManagedObjectObserver?
 

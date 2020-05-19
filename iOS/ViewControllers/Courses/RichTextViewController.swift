@@ -25,7 +25,7 @@ class RichTextViewController: UIViewController {
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var scrollViewTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var loadingScreen: UIView!
-    @IBOutlet weak var loadingScreenHeight: NSLayoutConstraint!
+    @IBOutlet private weak var loadingScreenHeight: NSLayoutConstraint!
     @IBOutlet private weak var descriptionView: UITextView!
     @IBOutlet private weak var displayIssuesButton: UIButton!
 

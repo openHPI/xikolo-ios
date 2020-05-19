@@ -47,7 +47,7 @@ extension FileManager {
             accumulatedSize += try contentItemURL.regularFileAllocatedSize()
         }
 
-        // Rethrow errors from errorHandler.
+        // Re-throw errors from errorHandler.
         if let error = enumeratorError { throw error }
 
         return accumulatedSize

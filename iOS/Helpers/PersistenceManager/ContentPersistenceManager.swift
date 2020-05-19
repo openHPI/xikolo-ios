@@ -5,13 +5,13 @@
 
 import Common
 
-protocol ContentPersistanceManager {
+protocol ContentPersistenceManager {
 
     func deleteDownloads(for course: Course)
 
 }
 
-extension StreamPersistenceManager: ContentPersistanceManager {
+extension StreamPersistenceManager: ContentPersistenceManager {
 
     func deleteDownloads(for course: Course) {
         course.sections.forEach { courseSection in
@@ -21,7 +21,7 @@ extension StreamPersistenceManager: ContentPersistanceManager {
 
 }
 
-extension SlidesPersistenceManager: ContentPersistanceManager {
+extension SlidesPersistenceManager: ContentPersistenceManager {
 
     func deleteDownloads(for course: Course) {
         course.sections.forEach { courseSection in
@@ -31,7 +31,7 @@ extension SlidesPersistenceManager: ContentPersistanceManager {
 
 }
 
-extension DocumentsPersistenceManager: ContentPersistanceManager {
+extension DocumentsPersistenceManager: ContentPersistenceManager {
 
     func deleteDownloads(for course: Course) {
         course.documents.forEach { document in

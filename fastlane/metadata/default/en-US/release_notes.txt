@@ -1,6 +1,4 @@
-• Include external courses in the course list
-• Show message for invite-only courses
-• Display the estimated time effort for downloaded content
+• Fix problem with loading the course progress
 
 Also in version 2.10:
 • New course date widget on the home screen (long-press on the app icon to reveal the course date overview)
@@ -18,3 +16,6 @@ Also in version 2.10:
 • Display time effort in various views
 • Show additional view before starting a peer assessment
 • Various smaller cosmetic changes
+• Include external courses in the course list
+• Show message for invite-only courses
+• Display the estimated time effort for downloaded content

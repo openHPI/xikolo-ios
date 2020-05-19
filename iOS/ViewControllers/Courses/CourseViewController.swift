@@ -124,6 +124,7 @@ class CourseViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
 
         let animationBlock: (UIViewControllerTransitionCoordinatorContext) -> Void = { [weak self] _ in
+            self?.updateHeaderConstraints()
             // Fix size of title view
             self?.view.setNeedsLayout()
             self?.view.layoutIfNeeded()
@@ -351,7 +352,7 @@ extension CourseViewController: CourseAreaListViewControllerDelegate {
         } else if self.course.hasEnrollment && self.course.accessible {
             return CourseArea.availableAreas
         } else {
-            return CourseArea.availableAreas.filter { $0.acessibleWithoutEnrollment }
+            return CourseArea.availableAreas.filter { $0.accessibleWithoutEnrollment }
         }
     }
 

@@ -6,8 +6,7 @@
 public protocol ErrorReporter {
 
     func report(_ error: Error)
-    func reportStoryboardError(reason: String)
-    func remember(_ value: Any?, forKey key: String)
+    func remember(_ value: Any, forKey key: String)
 
 }
 
@@ -25,11 +24,7 @@ public class ErrorManager: ErrorReporter {
         self.reporters.forEach { $0.report(error) }
     }
 
-    public func reportStoryboardError(reason: String) {
-        self.reporters.forEach { $0.reportStoryboardError(reason: reason) }
-    }
-
-    public func remember(_ value: Any?, forKey key: String) {
+    public func remember(_ value: Any, forKey key: String) {
         self.reporters.forEach { $0.remember(value, forKey: key) }
     }
 

@@ -23,9 +23,9 @@ extension UIAlertController {
         let marker = "__CUSTOM_CONTENT_MARKER__"
         self.init(title: title, message: marker, preferredStyle: preferredStyle)
 
-        // Try to find the message label in the alert controller's view hierarchie
+        // Try to find the message label in the alert controller's view hierarchy
         if let customContentPlaceholder = self.view.findLabel(withText: marker), let customContainer = customContentPlaceholder.superview {
-            // The message label was found. Add the custom view over it and fix the autolayout...
+            // The message label was found. Add the custom view over it and fix the auto layout...
             customContainer.addSubview(customView)
 
             customView.translatesAutoresizingMaskIntoConstraints = false

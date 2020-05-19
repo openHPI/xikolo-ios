@@ -78,6 +78,10 @@ class CourseListViewController: UICollectionViewController {
 
         self.setupSearchController()
         self.addFilterView()
+
+        if #available(iOS 11.0, *) {
+            self.collectionView.dragDelegate = self
+        }
     }
 
     override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
@@ -405,10 +409,12 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
     func searchPredicate(forSearchText searchText: String) -> NSPredicate? {
         let subPredicates = searchText.split(separator: " ").map(String.init).map { searchTextPart in
             return NSCompoundPredicate(orPredicateWithSubpredicates: [
-                NSPredicate(format: "title CONTAINS[c] %@", searchTextPart),
-                NSPredicate(format: "teachers CONTAINS[c] %@", searchTextPart),
-                NSPredicate(format: "abstract CONTAINS[c] %@", searchTextPart),
-                NSPredicate(format: "slug CONTAINS[c] %@", searchTextPart),
+                NSPredicate(format: "title CONTAINS[cd] %@", searchTextPart),
+                NSPredicate(format: "teachers CONTAINS[cd] %@", searchTextPart),
+                NSPredicate(format: "abstract CONTAINS[cd] %@", searchTextPart),
+                NSPredicate(format: "slug CONTAINS[cd] %@", searchTextPart),
+                NSPredicate(format: "categories CONTAINS[cd] %@", searchTextPart),
+                NSPredicate(format: "topics CONTAINS[cd] %@", searchTextPart),
             ])
         }
 
@@ -432,7 +438,7 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView,
-                        viewForAddtionalSupplementaryElementOfKind kind: String,
+                        viewForAdditionalSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView? {
         guard kind == R.nib.channelHeaderView.name else { return nil }
 
@@ -489,6 +495,16 @@ extension CourseListViewController: CourseSearchFiltersViewControllerDelegate {
             guard let searchController = self.searchController else { return }
             self.updateSearchResults(for: searchController)
         }
+    }
+
+}
+
+@available(iOS 11.0, *)
+extension CourseListViewController: UICollectionViewDragDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let selectedCourse = self.dataSource.object(at: indexPath)
+        return [selectedCourse.dragItem(for: self.collectionView.traitCollection)]
     }
 
 }

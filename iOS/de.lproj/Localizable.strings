@@ -104,14 +104,14 @@
 /* Shown in course content list */
 "course-item.video.slides.label" = "Folien";
 
-/* Title for button for clearning all filters */
+/* Title for button for clearing all filters */
 "course-list.search.filter.clear" = "Löschen";
 
 /* Title for applying selected filter options */
 "course-list.search.filter.options.apply" = "Übernehmen";
 
 /* Title for filter options menu */
-"course-list.search.filter.options.title.refine serach" = "Suche verfeinern";
+"course-list.search.filter.options.title.refine search" = "Suche verfeinern";
 
 /* Title for language filter */
 "course-list.search.filter.title.language" = "Sprache";
@@ -179,10 +179,10 @@
 /* course item ungraded type */
 "course.item.exercise-type.disclaimer.ungraded" = "Dies ist eine unbenotete Aufgabe.";
 
-/* label exercise progess with absolute values. n out of m */
+/* label exercise progress with absolute values. n out of m */
 "course.progress.points %@ of %@ points" = "%@ von %@ Punkten";
 
-/* label visit progess with absolute values. n out of m */
+/* label visit progress with absolute values. n out of m */
 "course.progress.visited %@ of %@ visited" = "%@ von %@ besucht";
 
 /* action text for course overview with no courses */
@@ -290,11 +290,11 @@
 /* Label of button for submitting a helpdesk ticket */
 "helpdesk.action.send" = "Senden";
 
-/* helpdesk catergroy course-specific questions */
-"helpdesk.catergory.course-specific" = "Kursspezifische Frage";
+/* helpdesk category course-specific questions */
+"helpdesk.category.course-specific" = "Kursspezifische Frage";
 
-/* helpdesk catergroy genereal questions */
-"helpdesk.catergory.general" = "Allgemeine Frage";
+/* helpdesk category general questions */
+"helpdesk.category.general" = "Allgemeine Frage";
 
 /* hint for checking the FAQ before creating a helpdesk ticket */
 "helpdesk.hint.faq" = "Bevor Sie ein Ticket an den technischen Support schreiben, stellen Sie sicher, dass Sie unsere FAQ gelesen haben. Bei Fragen zu Kursinhalten wenden Sie sich bitte an das Lehrerteam im Kursforum.";

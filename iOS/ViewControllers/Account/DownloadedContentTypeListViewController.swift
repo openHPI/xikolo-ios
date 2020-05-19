@@ -7,9 +7,19 @@ import Common
 import CoreData
 import UIKit
 
-class DownloadedContentTypeListViewController<Configuration: DownloadedContentTypeListConfiguraton>: UITableViewController {
+class DownloadedContentTypeListViewController<Configuration: DownloadedContentTypeListConfiguration>: UITableViewController {
 
     typealias Resource = Configuration.ManagerConfiguration.Resource
+
+    private static var timeEffortFormatter: DateComponentsFormatter {
+        var calendar = Calendar.autoupdatingCurrent
+        calendar.locale = Locale.autoupdatingCurrent
+        let formatter = DateComponentsFormatter()
+        formatter.calendar = calendar
+        formatter.unitsStyle = .short
+        formatter.allowedUnits = [.hour, .minute]
+        return formatter
+    }
 
     private let cellReuseIdentifier = "downloadedItem"
 
@@ -47,7 +57,7 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = Configuration.navigationTitle
+        self.navigationItem.title = Configuration.contentType.title
         self.navigationItem.rightBarButtonItem = self.editButtonItem
 
         self.toolbarItems = [
@@ -184,9 +194,27 @@ extension DownloadedContentTypeListViewController: CoreDataTableViewDataSourceDe
     }
 
     func titleForDefaultHeader(forSection section: Int) -> String? {
-        let indexPath = IndexPath(row: 0, section: section)
+        guard let firstItemInSection = self.dataSource?.sectionInfos?[section].objects?.first as? Resource else {
+            return nil
+        }
+
+        return firstItemInSection[keyPath: Configuration.sectionTitleKeyPath]
+    }
+
+    func titleForDefaultFooter(forSection section: Int) -> String? {
+        guard let timeEffortKeyPath = Configuration.timeEffortKeyPath else { return nil }
         guard let dataSource = self.dataSource else { return nil }
-        return dataSource.object(at: indexPath)[keyPath: Configuration.sectionTitleKeyPath]
+        guard let resources = dataSource.sectionInfos?[section].objects?.compactMap({ $0 as? Resource }) else { return nil }
+        let timeEfforts = resources.compactMap { $0[keyPath: timeEffortKeyPath] }
+        let transformedTimeEfforts = timeEfforts.map(Configuration.contentType.transformTimeEffort)
+        let roundedTimeEfforts = transformedTimeEfforts.map { ceil(TimeInterval($0) / 60) * 60 } // round up to full minutes
+        let combinedTimeEffort = roundedTimeEfforts.reduce(0, +)
+
+        guard combinedTimeEffort > 0 else { return nil }
+
+        let formattedTimeEffort = Self.timeEffortFormatter.string(from: combinedTimeEffort)
+        let format = NSLocalizedString("settings.downloads.estimated time effort: %@", comment: "label for estimated time effort of downloaded course content")
+        return formattedTimeEffort.map { String.localizedStringWithFormat(format, $0) }
     }
 
     func canEditRow(at indexPath: IndexPath) -> Bool {

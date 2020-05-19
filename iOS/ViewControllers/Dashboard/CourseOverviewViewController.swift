@@ -65,6 +65,10 @@ class CourseOverviewViewController: UIViewController {
                                                selector: #selector(coreDataChange(notification:)),
                                                name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
                                                object: CoreDataHelper.viewContext)
+
+        if #available(iOS 11.0, *) {
+            self.collectionView.dragDelegate = self
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -166,6 +170,8 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
 
         let course = self.courses[indexPath.item]
 
+        ErrorManager.shared.remember(course.id, forKey: "course_overview_list-latest_course_preview")
+
         let previewProvider: UIContextMenuContentPreviewProvider = {
             return R.storyboard.coursePreview().instantiateInitialViewController { coder in
                 return CoursePreviewViewController(coder: coder, course: course, listConfiguration: self.configuration)
@@ -210,13 +216,13 @@ extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let courseCellWidth = CourseCell.minimalWidth(for: collectionView.traitCollection)
         let availableWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right
-        let preferedWidth = min(availableWidth * 0.9, courseCellWidth)
+        let preferredWidth = min(availableWidth * 0.9, courseCellWidth)
 
         let hasCourses = !self.courses.isEmpty
         let isLastCell = self.itemLimit == indexPath.item
 
-        let width = hasCourses && isLastCell ? preferedWidth * 2 / 3 : preferedWidth
-        let height = CourseCell.heightForOverviewList(forWidth: preferedWidth)
+        let width = hasCourses && isLastCell ? preferredWidth * 2 / 3 : preferredWidth
+        let height = CourseCell.heightForOverviewList(forWidth: preferredWidth)
 
         return CGSize(width: width, height: height)
     }
@@ -235,4 +241,13 @@ extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
     }
 
+}
+
+@available(iOS 11.0, *)
+extension CourseOverviewViewController: UICollectionViewDragDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let selectedCourse = self.courses[indexPath.item]
+        return [selectedCourse.dragItem(for: self.collectionView.traitCollection)]
+    }
 }

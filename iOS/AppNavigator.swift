@@ -219,7 +219,7 @@ class AppNavigator {
         let someCourseViewController = self.currentCourseNavigationController?.courseViewController
 
         if let courseViewController = someCourseViewController, courseViewController.course.id == course.id, currentlyPresentsCourse {
-            if course.accessible || courseArea.acessibleWithoutEnrollment {
+            if course.accessible || courseArea.accessibleWithoutEnrollment {
                 self.currentCourseNavigationController?.popToRootViewController(animated: trueUnlessReduceMotionEnabled)
                 courseOpenAction(courseViewController)
             }
@@ -235,7 +235,7 @@ class AppNavigator {
         let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
         courseViewController.course = course
 
-        let accessible = course.accessible || courseArea.acessibleWithoutEnrollment
+        let accessible = course.accessible || courseArea.accessibleWithoutEnrollment
         courseClosedAction(courseViewController, accessible)
 
         self.currentCourseNavigationController = courseNavigationController
@@ -292,19 +292,9 @@ class AppNavigator {
     }
 
     func presentDashboardLoginViewController() {
-        guard let loginNavigationController = R.storyboard.login.instantiateInitialViewController() else {
-            let reason = "Initial view controller of Login stroyboard in not of type UINavigationController"
-            ErrorManager.shared.reportStoryboardError(reason: reason)
-            logger.error(reason)
-            return
-        }
-
-        guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
-            let reason = "Could not find LoginViewController"
-            ErrorManager.shared.reportStoryboardError(reason: reason)
-            logger.error(reason)
-            return
-        }
+        let loginNavigationController = R.storyboard.login.instantiateInitialViewController().require()
+        let firstViewController = loginNavigationController.viewControllers.first.require()
+        let loginViewController = firstViewController.require(toHaveType: LoginViewController.self)
 
         loginViewController.delegate = self
 

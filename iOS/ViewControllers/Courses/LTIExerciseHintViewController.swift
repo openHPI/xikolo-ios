@@ -45,8 +45,6 @@ class LTIExerciseHintViewController: UIViewController {
     @IBOutlet weak var loadingScreenHeight: NSLayoutConstraint!
     @IBOutlet private weak var launchButton: UIButton!
 
-    weak var delegate: CourseItemViewController?
-
     private var courseItemObserver: ManagedObjectObserver?
 
     private var courseItem: CourseItem! {

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ACTIVITY_TYPE_OPEN_COURSE</key>
+	<string>$(ACTIVITY_TYPE_OPEN_COURSE)</string>
 	<key>APP_GROUP_IDENTIFIER</key>
 	<string>$(APP_GROUP_IDENTIFIER)</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -19,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.10.1</string>
+	<string>2.10.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -43,6 +45,10 @@
 	<string>Take and upload photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Upload photos</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>$(ACTIVITY_TYPE_OPEN_COURSE)</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>openHPI4.ttf</string>
@@ -62,6 +68,12 @@
 					<string>Default Configuration</string>
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+				</dict>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>Course Configuration</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).CourseSceneDelegate</string>
 				</dict>
 			</array>
 		</dict>

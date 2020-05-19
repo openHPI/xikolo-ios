@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rg3-oN-kal">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Richtext View Controller-->
+        <!--Rich Text View Controller-->
         <scene sceneID="tVE-lt-FrA">
             <objects>
-                <viewController id="rg3-oN-kal" customClass="RichtextViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rg3-oN-kal" customClass="RichTextViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="t4O-cz-BsG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentInsetAdjustmentBehavior="always" translatesAutoresizingMaskIntoConstraints="NO" id="TET-md-G1G">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <view contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s40-oe-5ie" userLabel="Scroll Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="197.5"/>
+                                    <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s40-oe-5ie" userLabel="Scroll Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="179.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4Oz-94-Rh9">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="197.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4Oz-94-Rh9">
+                                                <rect key="frame" x="20" y="20" width="560" height="139.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3R-aw-Xc8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="560" height="26.5"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                         <nil key="highlightedColor"/>
                                                         <attributedString key="userComments">
@@ -40,7 +38,7 @@
                                                         </attributedString>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2CG-ir-47f">
-                                                        <rect key="frame" x="0.0" y="34.5" width="374" height="21"/>
+                                                        <rect key="frame" x="0.0" y="34.5" width="560" height="21"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="999" image="timer" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ki8-6h-hkc">
                                                                 <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
@@ -50,7 +48,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time effort" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgt-bz-vVU">
-                                                                <rect key="frame" x="29" y="1" width="345" height="19.5"/>
+                                                                <rect key="frame" x="29" y="1" width="531" height="19.5"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -70,14 +68,14 @@
                                                         </connections>
                                                     </containerView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Loading text …" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQN-fr-A67">
-                                                        <rect key="frame" x="0.0" y="121.5" width="374" height="38"/>
+                                                        <rect key="frame" x="0.0" y="63.5" width="560" height="38"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                     </textView>
-                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHK-EI-eQB">
-                                                        <rect key="frame" x="0.0" y="167.5" width="374" height="30"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHK-EI-eQB">
+                                                        <rect key="frame" x="0.0" y="109.5" width="560" height="30"/>
                                                         <state key="normal" title="Display issues?"/>
                                                         <connections>
                                                             <segue destination="pNg-BV-73a" kind="show" identifier="openInWebView" id="Ach-Qd-eGW"/>

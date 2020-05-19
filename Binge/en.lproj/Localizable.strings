@@ -5,7 +5,7 @@
 /* cell title for the off option in the media option selection */
 "media-option-selection.cell.title.off" = "Off";
 
-/* cell title for an unknonw option in the media option selection */
+/* cell title for an unknown option in the media option selection */
 "media-option-selection.cell.title.unknown" = "Unknown";
 
 /* navigation bar title for the media option selection */

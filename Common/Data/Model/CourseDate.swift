@@ -33,7 +33,7 @@ public final class CourseDate: NSManagedObject {
         guard let date = self.date else { return nil }
 
         // `RelativeDateTimeFormatter` returns incorrect results for named time intervals. For example:
-        // - time intervals of 40 hours whch pass the date line twice return 'tomorrow' instead of 'in 2 days'
+        // - time intervals of 40 hours which pass the date line twice return 'tomorrow' instead of 'in 2 days'
         // Therefore, we adjust the reference date used to determine the localized string.
         let dateIsMoreThan24HoursInFuture = date.timeIntervalSinceNow > 24 * 60 * 60
         let referenceDate = dateIsMoreThan24HoursInFuture ? Self.relativeCourseDateTimeFormatter.calendar.startOfDay(for: Date()) : Date()

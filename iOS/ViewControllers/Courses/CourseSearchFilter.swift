@@ -71,21 +71,23 @@ enum CourseSearchFilter: CaseIterable {
         return Array(valueSet).sorted()
     }
 
-    func displayName(forOption option: String) -> String? {
+    func title(for option: String) -> String? {
         switch self {
         case .language:
-            let locale = NSLocale(localeIdentifier: Locale.current.identifier)
-            let localizedLanguage = locale.displayName(forKey: .languageCode, value: option)
-            let nativeLanguage = Course.localize(language: option)
-
-            if nativeLanguage == localizedLanguage {
-                return nativeLanguage
-            } else {
-                let values = [nativeLanguage, localizedLanguage.flatMap { "(\($0))" }]
-                return values.compactMap { $0 }.joined(separator: " ")
-            }
+            return Course.localize(language: option)
         default:
             return option
+        }
+    }
+
+    func subtitle(for option: String) -> String? {
+        switch self {
+        case .language:
+            let localeIdentifier = option == "cn" ? "zh" : option
+            let locale = NSLocale(localeIdentifier: Locale.current.identifier)
+            return locale.displayName(forKey: .languageCode, value: localeIdentifier)
+        default:
+            return nil
         }
     }
 

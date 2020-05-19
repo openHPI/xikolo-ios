@@ -94,9 +94,11 @@ extension DocumentListViewController { // TableViewDelegate
             return nil
         }
 
-        let indexPath = IndexPath(row: 0, section: section)
-        let document = self.dataSource.object(at: indexPath).document
-        header.configure(for: document)
+        guard let firstItemInSection = self.dataSource.sectionInfos?[section].objects?.first as? DocumentLocalization else {
+            return nil
+        }
+
+        header.configure(for: firstItemInSection.document)
 
         return header
     }

@@ -10,10 +10,13 @@ class BingeMediaOptionCell: UITableViewCell {
     static let identifier = "BingeMediaOptionCell"
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         self.textLabel?.textColor = .white
         self.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         self.textLabel?.adjustsFontForContentSizeCategory = true
+        self.detailTextLabel?.textColor = .lightText
+        self.detailTextLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
+        self.detailTextLabel?.adjustsFontForContentSizeCategory = true
         self.backgroundColor = UIColor(white: 0.1, alpha: 1.0)
         self.tintColor = .white
         self.selectionStyle = .none

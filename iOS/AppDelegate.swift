@@ -4,8 +4,8 @@
 //
 
 import Common
-import Crashlytics
 import Firebase
+import FirebaseCrashlytics
 import NotificationCenter
 import SDWebImage
 import UIKit
@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
-            ErrorManager.shared.register(reporter: Crashlytics.sharedInstance())
+            ErrorManager.shared.register(reporter: Crashlytics.crashlytics())
 
             // register resource to be pushed automatically
             self.pushEngineManager.register(Announcement.self)
@@ -178,7 +178,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      configurationForConnecting connectingSceneSession: UISceneSession,
                      options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         logger.info("Entered application configurationForConnecting connectingSceneSession")
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+
+        if options.userActivities.first?.activityType == Bundle.main.activityTypeOpenCourse {
+            return UISceneConfiguration(name: "Course Configuration", sessionRole: connectingSceneSession.role)
+        } else {
+            return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        }
     }
 
 }

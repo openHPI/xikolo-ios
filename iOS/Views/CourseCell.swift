@@ -98,7 +98,7 @@ class CourseCell: UICollectionViewCell {
             guard configuration.hideTeacherLabel else { return course.teachers }
             guard Brand.default.features.showCourseTeachers else { return course.teachers }
             guard course.teachers?.isEmpty ?? true else { return course.teachers }
-            return " " // forces text into teachers label to avoid misplacment for course image
+            return " " // forces text into teachers label to avoid misplacement for course image
         }()
         self.teacherLabel.isHidden = !Brand.default.features.showCourseTeachers
         self.languageLabel.text = course.localizedLanguage

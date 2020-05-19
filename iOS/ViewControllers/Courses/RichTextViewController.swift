@@ -7,7 +7,7 @@ import Common
 import SafariServices
 import UIKit
 
-class RichtextViewController: UIViewController {
+class RichTextViewController: UIViewController {
 
     private static let timeEffortFormatter: DateComponentsFormatter = {
         var calendar = Calendar.autoupdatingCurrent
@@ -83,7 +83,7 @@ class RichtextViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let typedInfo = R.segue.richtextViewController.openInWebView(segue: segue) {
+        if let typedInfo = R.segue.richTextViewController.openInWebView(segue: segue) {
             typedInfo.destination.courseItem = self.courseItem
         }
     }
@@ -95,7 +95,7 @@ class RichtextViewController: UIViewController {
 
 }
 
-extension RichtextViewController: UITextViewDelegate {
+extension RichTextViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         guard let appNavigator = self.appNavigator else { return false }
@@ -104,7 +104,7 @@ extension RichtextViewController: UITextViewDelegate {
 
 }
 
-extension RichtextViewController: CourseItemContentPresenter {
+extension RichTextViewController: CourseItemContentPresenter {
 
     var item: CourseItem? {
         return self.courseItem

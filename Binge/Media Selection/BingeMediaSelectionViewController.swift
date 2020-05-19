@@ -94,7 +94,9 @@ extension BingeMediaSelectionViewController {
         if let playbackRateCell = cell as? BingePlaybackRateCell {
             playbackRateCell.delegate = self.delegate
         } else {
-            cell.textLabel?.text = self.titleForOption(at: indexPath)
+            let (nativeDisplayName, localizedDisplayName) = self.languageDisplayNamesForOption(at: indexPath)
+            cell.textLabel?.text = nativeDisplayName
+            cell.detailTextLabel?.text = localizedDisplayName
         }
 
         return cell
@@ -147,29 +149,26 @@ extension BingeMediaSelectionViewController {
         return mediaSelectionGroup.allowsEmptySelection && mediaCharacteristic == .legible
     }
 
-    private func titleForOption(at indexPath: IndexPath) -> String {
+    private func languageDisplayNamesForOption(at indexPath: IndexPath) -> (String, String?) {
         guard let mediaSelectionGroup = self.mediaSelectionGroup(forSection: indexPath.section) else {
-            return BingeLocalizedString("media-option-selection.cell.title.unknown",
-                                        comment: "cell title for an unknonw option in the media option selection")
+            let title = BingeLocalizedString("media-option-selection.cell.title.unknown",
+                                             comment: "cell title for an unknown option in the media option selection")
+            return (title, nil)
         }
 
         let allowsEmptySelection = self.allowsEmptySelection(inSection: indexPath.section)
         if allowsEmptySelection, indexPath.row == 0 {
-            return BingeLocalizedString("media-option-selection.cell.title.off",
-                                        comment: "cell title for the off option in the media option selection")
+            let title = BingeLocalizedString("media-option-selection.cell.title.off",
+                                             comment: "cell title for the off option in the media option selection")
+            return (title, nil)
         }
 
         let row = allowsEmptySelection ? indexPath.row - 1 : indexPath.row
         let mediaSelectionOption = mediaSelectionGroup.options[row]
         let locale = mediaSelectionOption.extendedLanguageTag.flatMap(Locale.init(identifier:))
-        let nativeLanguage = mediaSelectionOption.displayName(with: locale ?? Locale.current).capitalized
-        let localizedLanguage = mediaSelectionOption.displayName(with: Locale.current).capitalized
-
-        if nativeLanguage == localizedLanguage {
-            return nativeLanguage
-        } else {
-            return "\(nativeLanguage) (\(localizedLanguage))"
-        }
+        let nativeDisplayName = mediaSelectionOption.displayName(with: locale ?? Locale.current).capitalized
+        let localizedDisplayName = mediaSelectionOption.displayName(with: Locale.current).capitalized
+        return (nativeDisplayName, localizedDisplayName)
     }
 
 }

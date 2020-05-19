@@ -165,12 +165,15 @@ extension CourseItemListViewController { // TableViewDelegate
             return nil
         }
 
-        let indexPath = IndexPath(row: 0, section: section)
-        guard let section = self.dataSource.object(at: indexPath).section else {
+        guard let firstItemInSection = self.dataSource.sectionInfos?[section].objects?.first as? CourseItem else {
             return nil
         }
 
-        header.configure(for: section, inOfflineMode: self.inOfflineMode)
+        guard let courseSection = firstItemInSection.section else {
+            return nil
+        }
+
+        header.configure(for: courseSection, inOfflineMode: self.inOfflineMode)
         header.delegate = self
 
         return header

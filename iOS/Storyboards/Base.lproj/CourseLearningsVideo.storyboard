@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,245 +17,233 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3I-76-iXF">
-                                <rect key="frame" x="0.0" y="44" width="414" height="233"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="b3I-76-iXF" secondAttribute="height" multiplier="16:9" priority="750" id="aws-YL-SNr"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="R1m-Qw-wA4" kind="embed" identifier="EmbedPlayer" id="XmU-pm-wMn"/>
-                                </connections>
-                            </containerView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7D-jH-K7k">
-                                <rect key="frame" x="0.0" y="277" width="414" height="619"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Oyy-Y6-tFf">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y7K-M2-skE">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="247"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Snh-TZ-htf">
-                                                <rect key="frame" x="20" y="20" width="374" height="72.5"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U34-R4-gU3">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <attributedString key="userComments">
-                                                            <fragment content="#bc-ignore!">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
-                                                    </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Item Description" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ko-OB-QIh">
-                                                        <rect key="frame" x="0.0" y="34.5" width="374" height="38"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" notEnabled="YES"/>
-                                                        </accessibility>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                                        <attributedString key="userComments">
-                                                            <fragment content="#bc-ignore!">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
-                                                    </textView>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="U73-94-qMV" userLabel="Learning Material">
-                                                <rect key="frame" x="20" y="124.5" width="374" height="102.5"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learning Material" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gL1-59-90u">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yjN-Id-Jog">
-                                                        <rect key="frame" x="0.0" y="28.5" width="374" height="33"/>
-                                                        <subviews>
-                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGH-WC-Iys">
-                                                                <rect key="frame" x="0.0" y="0.0" width="44" height="33"/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                <state key="normal" title="Video">
-                                                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                </state>
-                                                            </button>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ucE-wO-W0Q">
-                                                                <rect key="frame" x="289" y="0.0" width="85" height="33"/>
-                                                                <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downloaded" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OF0-N3-xWy">
-                                                                        <rect key="frame" x="0.0" y="6" width="21" height="21"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" secondItem="OF0-N3-xWy" secondAttribute="height" multiplier="1:1" id="uDK-oL-GMg"/>
-                                                                        </constraints>
-                                                                    </imageView>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jjo-QM-UbQ" customClass="CircularProgressView" customModule="iOS" customModuleProvider="target">
-                                                                        <rect key="frame" x="29" y="6.5" width="20" height="20"/>
-                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="20" id="fVY-Bb-don"/>
-                                                                            <constraint firstAttribute="width" secondItem="jjo-QM-UbQ" secondAttribute="height" multiplier="1:1" id="jfJ-QT-ubZ"/>
-                                                                        </constraints>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
-                                                                                <real key="value" value="1.5"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="gapWidth">
-                                                                                <real key="value" value="1.5"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="indeterminateProgress">
-                                                                                <real key="value" value="0.80000000000000004"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                    </view>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oc-Ch-RwR">
-                                                                        <rect key="frame" x="57" y="2.5" width="28" height="28"/>
-                                                                        <state key="normal" image="dots"/>
-                                                                        <attributedString key="userComments">
-                                                                            <fragment content="#bc-ignore!">
-                                                                                <attributes>
-                                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                                </attributes>
-                                                                            </fragment>
-                                                                        </attributedString>
-                                                                        <connections>
-                                                                            <action selector="showVideoActionMenu:" destination="9ES-XH-GKA" eventType="touchUpInside" id="gvN-2Q-niz"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                            </stackView>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1fa-EB-3TV">
-                                                        <rect key="frame" x="0.0" y="69.5" width="374" height="33"/>
-                                                        <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3L-1P-Ygi">
-                                                                <rect key="frame" x="0.0" y="0.0" width="47" height="33"/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                <state key="normal" title="Slides"/>
-                                                                <connections>
-                                                                    <action selector="openSlides" destination="9ES-XH-GKA" eventType="touchUpInside" id="Dfx-If-PMI"/>
-                                                                </connections>
-                                                            </button>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eUw-Oe-phg">
-                                                                <rect key="frame" x="289" y="0.0" width="85" height="33"/>
-                                                                <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downloaded" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6cb-4r-Znd">
-                                                                        <rect key="frame" x="0.0" y="6" width="21" height="21"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" secondItem="6cb-4r-Znd" secondAttribute="height" multiplier="1:1" id="wvc-9d-D8t"/>
-                                                                        </constraints>
-                                                                    </imageView>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3u7-ea-UYl" customClass="CircularProgressView" customModule="iOS" customModuleProvider="target">
-                                                                        <rect key="frame" x="29" y="6.5" width="20" height="20"/>
-                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" secondItem="3u7-ea-UYl" secondAttribute="height" multiplier="1:1" id="2tf-7X-Ypc"/>
-                                                                            <constraint firstAttribute="height" constant="20" id="Scm-TA-ts7"/>
-                                                                        </constraints>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
-                                                                                <real key="value" value="1.5"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="gapWidth">
-                                                                                <real key="value" value="1.5"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="indeterminateProgress">
-                                                                                <real key="value" value="0.80000000000000004"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                    </view>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ts-sZ-C3O">
-                                                                        <rect key="frame" x="57" y="2.5" width="28" height="28"/>
-                                                                        <state key="normal" image="dots"/>
-                                                                        <attributedString key="userComments">
-                                                                            <fragment content="#bc-ignore!">
-                                                                                <attributes>
-                                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                                </attributes>
-                                                                            </fragment>
-                                                                        </attributedString>
-                                                                        <connections>
-                                                                            <action selector="showSlidesActionMenu:" destination="9ES-XH-GKA" eventType="touchUpInside" id="NH3-Ub-0qV"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                            </stackView>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3I-76-iXF">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="233"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailingMargin" secondItem="Snh-TZ-htf" secondAttribute="trailing" id="9un-SI-gtB"/>
-                                            <constraint firstItem="Snh-TZ-htf" firstAttribute="top" secondItem="y7K-M2-skE" secondAttribute="top" constant="20" symbolic="YES" id="F7h-lq-baJ"/>
-                                            <constraint firstAttribute="bottom" secondItem="U73-94-qMV" secondAttribute="bottom" constant="20" symbolic="YES" id="FZo-QL-gzq"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="U73-94-qMV" secondAttribute="trailing" id="GgQ-f8-L9K"/>
-                                            <constraint firstItem="Snh-TZ-htf" firstAttribute="leading" secondItem="y7K-M2-skE" secondAttribute="leadingMargin" id="gi8-fH-0Js"/>
-                                            <constraint firstItem="U73-94-qMV" firstAttribute="leading" secondItem="y7K-M2-skE" secondAttribute="leadingMargin" id="rnk-aR-w9I"/>
-                                            <constraint firstItem="U73-94-qMV" firstAttribute="top" secondItem="Snh-TZ-htf" secondAttribute="bottom" constant="32" id="x6H-mX-kDQ"/>
+                                            <constraint firstAttribute="width" secondItem="b3I-76-iXF" secondAttribute="height" multiplier="16:9" priority="750" id="aws-YL-SNr"/>
                                         </constraints>
-                                    </view>
+                                        <connections>
+                                            <segue destination="R1m-Qw-wA4" kind="embed" identifier="EmbedPlayer" id="XmU-pm-wMn"/>
+                                        </connections>
+                                    </containerView>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7D-jH-K7k">
+                                        <rect key="frame" x="0.0" y="233" width="414" height="585"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y7K-M2-skE">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="383"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Snh-TZ-htf">
+                                                        <rect key="frame" x="8" y="20" width="374" height="208.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U34-R4-gU3">
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="#bc-ignore!">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
+                                                            </label>
+                                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5e-Ui-eFK">
+                                                                <rect key="frame" x="0.0" y="34.5" width="374" height="128"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="128" id="iWZ-0u-mn0"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <segue destination="JV5-Kp-lqg" kind="embed" id="LAb-8O-VsF"/>
+                                                                </connections>
+                                                            </containerView>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Item Description" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ko-OB-QIh">
+                                                                <rect key="frame" x="0.0" y="170.5" width="374" height="38"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                                </accessibility>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="#bc-ignore!">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
+                                                            </textView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="U73-94-qMV" userLabel="Learning Material">
+                                                        <rect key="frame" x="8" y="260.5" width="374" height="102.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learning Material" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gL1-59-90u">
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yjN-Id-Jog">
+                                                                <rect key="frame" x="0.0" y="28.5" width="374" height="33"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGH-WC-Iys">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="44" height="33"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <state key="normal" title="Video">
+                                                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        </state>
+                                                                    </button>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ucE-wO-W0Q">
+                                                                        <rect key="frame" x="289" y="0.0" width="85" height="33"/>
+                                                                        <subviews>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downloaded" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OF0-N3-xWy">
+                                                                                <rect key="frame" x="0.0" y="6" width="21" height="21"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="OF0-N3-xWy" secondAttribute="height" multiplier="1:1" id="uDK-oL-GMg"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jjo-QM-UbQ" customClass="CircularProgressView" customModule="iOS" customModuleProvider="target">
+                                                                                <rect key="frame" x="29" y="6.5" width="20" height="20"/>
+                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="20" id="fVY-Bb-don"/>
+                                                                                    <constraint firstAttribute="width" secondItem="jjo-QM-UbQ" secondAttribute="height" multiplier="1:1" id="jfJ-QT-ubZ"/>
+                                                                                </constraints>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                                                        <real key="value" value="1.5"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="gapWidth">
+                                                                                        <real key="value" value="1.5"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="indeterminateProgress">
+                                                                                        <real key="value" value="0.80000000000000004"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </view>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oc-Ch-RwR">
+                                                                                <rect key="frame" x="57" y="2.5" width="28" height="28"/>
+                                                                                <state key="normal" image="dots"/>
+                                                                                <attributedString key="userComments">
+                                                                                    <fragment content="#bc-ignore!">
+                                                                                        <attributes>
+                                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                                        </attributes>
+                                                                                    </fragment>
+                                                                                </attributedString>
+                                                                                <connections>
+                                                                                    <action selector="showVideoActionMenu:" destination="9ES-XH-GKA" eventType="touchUpInside" id="gvN-2Q-niz"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1fa-EB-3TV">
+                                                                <rect key="frame" x="0.0" y="69.5" width="374" height="33"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3L-1P-Ygi">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="47" height="33"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <state key="normal" title="Slides"/>
+                                                                        <connections>
+                                                                            <action selector="openSlides" destination="9ES-XH-GKA" eventType="touchUpInside" id="Dfx-If-PMI"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eUw-Oe-phg">
+                                                                        <rect key="frame" x="289" y="0.0" width="85" height="33"/>
+                                                                        <subviews>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downloaded" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6cb-4r-Znd">
+                                                                                <rect key="frame" x="0.0" y="6" width="21" height="21"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="6cb-4r-Znd" secondAttribute="height" multiplier="1:1" id="wvc-9d-D8t"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3u7-ea-UYl" customClass="CircularProgressView" customModule="iOS" customModuleProvider="target">
+                                                                                <rect key="frame" x="29" y="6.5" width="20" height="20"/>
+                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="3u7-ea-UYl" secondAttribute="height" multiplier="1:1" id="2tf-7X-Ypc"/>
+                                                                                    <constraint firstAttribute="height" constant="20" id="Scm-TA-ts7"/>
+                                                                                </constraints>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                                                        <real key="value" value="1.5"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="gapWidth">
+                                                                                        <real key="value" value="1.5"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="indeterminateProgress">
+                                                                                        <real key="value" value="0.80000000000000004"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </view>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ts-sZ-C3O">
+                                                                                <rect key="frame" x="57" y="2.5" width="28" height="28"/>
+                                                                                <state key="normal" image="dots"/>
+                                                                                <attributedString key="userComments">
+                                                                                    <fragment content="#bc-ignore!">
+                                                                                        <attributes>
+                                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                                        </attributes>
+                                                                                    </fragment>
+                                                                                </attributedString>
+                                                                                <connections>
+                                                                                    <action selector="showSlidesActionMenu:" destination="9ES-XH-GKA" eventType="touchUpInside" id="NH3-Ub-0qV"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="Snh-TZ-htf" secondAttribute="trailing" id="9un-SI-gtB"/>
+                                                    <constraint firstItem="Snh-TZ-htf" firstAttribute="top" secondItem="y7K-M2-skE" secondAttribute="top" constant="20" symbolic="YES" id="F7h-lq-baJ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="U73-94-qMV" secondAttribute="bottom" constant="20" symbolic="YES" id="FZo-QL-gzq"/>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="U73-94-qMV" secondAttribute="trailing" id="GgQ-f8-L9K"/>
+                                                    <constraint firstItem="Snh-TZ-htf" firstAttribute="leading" secondItem="y7K-M2-skE" secondAttribute="leadingMargin" id="gi8-fH-0Js"/>
+                                                    <constraint firstItem="U73-94-qMV" firstAttribute="leading" secondItem="y7K-M2-skE" secondAttribute="leadingMargin" id="rnk-aR-w9I"/>
+                                                    <constraint firstItem="U73-94-qMV" firstAttribute="top" secondItem="Snh-TZ-htf" secondAttribute="bottom" constant="32" id="x6H-mX-kDQ"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="y7K-M2-skE" firstAttribute="leading" secondItem="b7D-jH-K7k" secondAttribute="leading" id="OQW-k2-knf"/>
+                                            <constraint firstAttribute="bottom" secondItem="y7K-M2-skE" secondAttribute="bottom" id="b3c-0E-IPl"/>
+                                            <constraint firstAttribute="trailing" secondItem="y7K-M2-skE" secondAttribute="trailing" id="dZt-fw-rCH"/>
+                                            <constraint firstItem="y7K-M2-skE" firstAttribute="top" secondItem="b7D-jH-K7k" secondAttribute="top" id="i2q-ob-VCd"/>
+                                        </constraints>
+                                    </scrollView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="y7K-M2-skE" firstAttribute="leading" secondItem="b7D-jH-K7k" secondAttribute="leading" id="OQW-k2-knf"/>
-                                    <constraint firstAttribute="bottom" secondItem="y7K-M2-skE" secondAttribute="bottom" id="b3c-0E-IPl"/>
-                                    <constraint firstAttribute="trailing" secondItem="y7K-M2-skE" secondAttribute="trailing" id="dZt-fw-rCH"/>
-                                    <constraint firstItem="y7K-M2-skE" firstAttribute="top" secondItem="b7D-jH-K7k" secondAttribute="top" id="i2q-ob-VCd"/>
-                                </constraints>
-                            </scrollView>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="b3I-76-iXF" secondAttribute="trailing" id="9ns-Oe-WJ9"/>
-                            <constraint firstAttribute="bottom" secondItem="b3I-76-iXF" secondAttribute="bottom" id="HSD-ee-D4T"/>
-                            <constraint firstItem="XLK-IB-kRo" firstAttribute="trailing" secondItem="b7D-jH-K7k" secondAttribute="trailing" id="NJt-3U-ars"/>
-                            <constraint firstAttribute="trailing" secondItem="b3I-76-iXF" secondAttribute="trailing" id="TKU-Ld-itT"/>
-                            <constraint firstItem="b3I-76-iXF" firstAttribute="top" secondItem="XLK-IB-kRo" secondAttribute="top" id="Tpi-eg-IxJ"/>
-                            <constraint firstItem="y7K-M2-skE" firstAttribute="width" secondItem="b7D-jH-K7k" secondAttribute="width" id="WUm-2q-zbM"/>
-                            <constraint firstItem="b3I-76-iXF" firstAttribute="leading" secondItem="inN-lO-9aU" secondAttribute="leadingMargin" priority="750" id="WoF-cE-aI2"/>
-                            <constraint firstAttribute="bottom" secondItem="b7D-jH-K7k" secondAttribute="bottom" id="cVY-bp-VPT"/>
-                            <constraint firstItem="b7D-jH-K7k" firstAttribute="top" secondItem="b3I-76-iXF" secondAttribute="bottom" id="d2i-9n-d2t"/>
-                            <constraint firstItem="b3I-76-iXF" firstAttribute="leading" secondItem="inN-lO-9aU" secondAttribute="leading" id="ezE-Vl-vz3"/>
-                            <constraint firstItem="b3I-76-iXF" firstAttribute="trailing" secondItem="inN-lO-9aU" secondAttribute="trailingMargin" priority="750" id="jsU-OA-ewX"/>
-                            <constraint firstItem="b3I-76-iXF" firstAttribute="top" secondItem="inN-lO-9aU" secondAttribute="top" id="nE2-TU-3J1"/>
-                            <constraint firstItem="b7D-jH-K7k" firstAttribute="leading" secondItem="XLK-IB-kRo" secondAttribute="leading" id="pW3-DS-wyq"/>
-                            <constraint firstItem="b3I-76-iXF" firstAttribute="leading" secondItem="inN-lO-9aU" secondAttribute="leading" id="vVb-oG-2Cj"/>
+                            <constraint firstItem="Oyy-Y6-tFf" firstAttribute="top" secondItem="XLK-IB-kRo" secondAttribute="top" id="516-ea-jAG"/>
+                            <constraint firstItem="Oyy-Y6-tFf" firstAttribute="leadingMargin" secondItem="XLK-IB-kRo" secondAttribute="leading" id="AUd-IR-1D5"/>
+                            <constraint firstItem="Oyy-Y6-tFf" firstAttribute="trailingMargin" secondItem="XLK-IB-kRo" secondAttribute="trailing" id="hMK-Np-6D7"/>
+                            <constraint firstItem="Oyy-Y6-tFf" firstAttribute="bottom" secondItem="XLK-IB-kRo" secondAttribute="bottom" id="unR-sw-RjR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XLK-IB-kRo"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="HSD-ee-D4T"/>
-                                <exclude reference="TKU-Ld-itT"/>
-                                <exclude reference="WoF-cE-aI2"/>
-                                <exclude reference="jsU-OA-ewX"/>
-                                <exclude reference="nE2-TU-3J1"/>
-                                <exclude reference="vVb-oG-2Cj"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=regular">
-                            <mask key="constraints">
-                                <exclude reference="9ns-Oe-WJ9"/>
-                                <include reference="WoF-cE-aI2"/>
-                                <exclude reference="ezE-Vl-vz3"/>
-                                <include reference="jsU-OA-ewX"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="descriptionView" destination="4ko-OB-QIh" id="5Bt-3g-7pB"/>
                         <outlet property="learningMaterialsView" destination="U73-94-qMV" id="S1F-cT-44j"/>
+                        <outlet property="loadingScreen" destination="a5e-Ui-eFK" id="y2o-9y-c2p"/>
+                        <outlet property="loadingScreenHeight" destination="iWZ-0u-mn0" id="8T7-fg-Gmo"/>
                         <outlet property="slidesActionsButton" destination="5ts-sZ-C3O" id="rmi-e7-8Qx"/>
                         <outlet property="slidesButton" destination="C3L-1P-Ygi" id="jSY-V7-fcq"/>
                         <outlet property="slidesDownloadedIcon" destination="6cb-4r-Znd" id="pSS-dX-jv8"/>
@@ -266,10 +254,6 @@
                         <outlet property="videoContainer" destination="b3I-76-iXF" id="5iO-cR-rH2"/>
                         <outlet property="videoDownloadedIcon" destination="OF0-N3-xWy" id="qFE-vt-MDK"/>
                         <outlet property="videoProgressView" destination="jjo-QM-UbQ" id="0zC-UH-xxJ"/>
-                        <outletCollection property="fullScreenContraints" destination="HSD-ee-D4T" collectionClass="NSMutableArray" id="pbc-JW-3KT"/>
-                        <outletCollection property="fullScreenContraints" destination="nE2-TU-3J1" collectionClass="NSMutableArray" id="Uqx-h9-qfP"/>
-                        <outletCollection property="fullScreenContraints" destination="vVb-oG-2Cj" collectionClass="NSMutableArray" id="lco-Hq-sTy"/>
-                        <outletCollection property="fullScreenContraints" destination="TKU-Ld-itT" collectionClass="NSMutableArray" id="2rI-sL-Tc3"/>
                         <segue destination="fYO-1K-Qdy" kind="show" identifier="ShowSlides" id="Vee-Qu-tfP"/>
                     </connections>
                 </viewController>
@@ -286,6 +270,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14N-sz-UDf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="1774"/>
+        </scene>
+        <!--LoadingScreen-->
+        <scene sceneID="xrr-um-J3U">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LoadingScreen" id="JV5-Kp-lqg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Ef-nh-ViS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="778" y="1189"/>
         </scene>
         <!--Binge Player View Controller-->
         <scene sceneID="zpX-St-rAF">

@@ -17,7 +17,9 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
     @IBOutlet private weak var learningMaterialsView: UIStackView!
-
+    @IBOutlet weak var loadingScreen: UIView!
+    @IBOutlet weak var loadingScreenHeight: NSLayoutConstraint!
+    
     @IBOutlet private weak var videoActionsButton: UIButton!
     @IBOutlet private weak var videoProgressView: CircularProgressView!
     @IBOutlet private weak var videoDownloadedIcon: UIImageView!
@@ -95,6 +97,8 @@ class VideoViewController: UIViewController {
         self.titleView.text = self.courseItem.title
         self.descriptionView.isHidden = true
         self.learningMaterialsView.isHidden = true
+        self.videoContainer.isHidden = true
+        self.loadingScreen.isHidden = false
 
         self.updateCornersOfVideoContainer(for: self.traitCollection)
 
@@ -217,6 +221,8 @@ class VideoViewController: UIViewController {
         guard let video = courseItem.content as? Video else { return }
         self.video = video
 
+        self.loadingScreen.isHidden = true
+        self.videoContainer.isHidden = false
         self.descriptionView.isHidden = false
         self.learningMaterialsView.isHidden = false
 

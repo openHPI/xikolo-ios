@@ -17,9 +17,9 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
     @IBOutlet private weak var learningMaterialsView: UIStackView!
-    @IBOutlet weak var loadingScreen: UIView!
-    @IBOutlet weak var loadingScreenHeight: NSLayoutConstraint!
-    
+    @IBOutlet private weak var loadingScreen: UIView!
+    @IBOutlet private weak var loadingScreenHeight: NSLayoutConstraint!
+
     @IBOutlet private weak var videoActionsButton: UIButton!
     @IBOutlet private weak var videoProgressView: CircularProgressView!
     @IBOutlet private weak var videoDownloadedIcon: UIImageView!

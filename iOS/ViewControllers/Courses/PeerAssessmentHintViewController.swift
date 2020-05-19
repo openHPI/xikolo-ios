@@ -49,7 +49,8 @@ class PeerAssessmentHintViewController: UIViewController {
     @IBOutlet private weak var deadlineExpiredView: UIView!
     @IBOutlet private weak var peerAssessmentInfoView: UIStackView!
     @IBOutlet private weak var loadingScreen: UIView!
-
+    @IBOutlet weak var loadingScreenHeight: NSLayoutConstraint!
+    
     weak var delegate: CourseItemViewController?
 
     private var courseItemObserver: ManagedObjectObserver?
@@ -71,7 +72,6 @@ class PeerAssessmentHintViewController: UIViewController {
         self.titleLabel.text = self.courseItem.title
         self.deadlineExpiredView.isHidden = true
         self.launchInfoView.isHidden = true
-        self.peerAssessmentInfoView.isHidden = true
         self.loadingScreen.isHidden = false
 
         self.launchButton.layer.roundCorners(for: .default)
@@ -113,7 +113,6 @@ class PeerAssessmentHintViewController: UIViewController {
         self.deadlineLabel.text = self.courseItem.deadline.map(Self.dateFormatter.string(from:))
         self.deadlineDateView.isHidden = self.courseItem.deadline == nil
 
-        self.peerAssessmentInfoView.isHidden = false
         self.peerAssessmentTypeView.isHidden = true
 
         guard let peerAssessment = self.courseItem?.content as? PeerAssessment else { return }
@@ -145,6 +144,11 @@ class PeerAssessmentHintViewController: UIViewController {
         if let typedInfo = R.segue.peerAssessmentHintViewController.openPeerAssessmentURL(segue: segue) {
             typedInfo.destination.url = item.url
         }
+    }
+
+    override func viewWillLayoutSubviews() {
+        self.view.layoutSubviews()
+        self.loadingScreenHeight.constant = self.view.frame.height / 5
     }
 }
 

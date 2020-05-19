@@ -42,6 +42,7 @@ class LTIExerciseHintViewController: UIViewController {
 
     @IBOutlet private weak var launchExerciseView: UIStackView!
     @IBOutlet private weak var loadingScreen: UIView!
+    @IBOutlet weak var loadingScreenHeight: NSLayoutConstraint!
     @IBOutlet private weak var launchButton: UIButton!
 
     weak var delegate: CourseItemViewController?
@@ -123,6 +124,11 @@ class LTIExerciseHintViewController: UIViewController {
         if let typedInfo = R.segue.ltiExerciseHintViewController.openLTIURL(segue: segue) {
             typedInfo.destination.url = ltiExercise.launchURL
         }
+    }
+
+    override func viewWillLayoutSubviews() {
+        self.view.layoutSubviews()
+        self.loadingScreenHeight.constant = self.view.frame.height / 2
     }
 }
 

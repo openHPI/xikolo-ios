@@ -31,6 +31,8 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
     @IBOutlet private var fullScreenContraints: [NSLayoutConstraint]!
+    @IBOutlet private weak var scrollViewTop: NSLayoutConstraint!
+    @IBOutlet private weak var scrollViewVideoTop: NSLayoutConstraint!
 
     private var adjustedVideoContainerRatioConstraint: NSLayoutConstraint? {
         didSet {
@@ -98,6 +100,8 @@ class VideoViewController: UIViewController {
         self.descriptionView.isHidden = true
         self.learningMaterialsView.isHidden = true
         self.videoContainer.isHidden = true
+        NSLayoutConstraint.deactivate([self.scrollViewVideoTop])
+        NSLayoutConstraint.activate([self.scrollViewTop])
         self.loadingScreen.isHidden = false
 
         self.updateCornersOfVideoContainer(for: self.traitCollection)
@@ -202,6 +206,11 @@ class VideoViewController: UIViewController {
         self.updateCornersOfVideoContainer(for: newCollection)
     }
 
+    override func viewWillLayoutSubviews() {
+        self.view.layoutSubviews()
+        self.loadingScreenHeight.constant = self.view.frame.height / 2
+    }
+
     override var childForStatusBarStyle: UIViewController? {
         guard self.playerViewController?.layoutState == .fullScreen else { return nil }
         return self.playerViewController
@@ -222,6 +231,8 @@ class VideoViewController: UIViewController {
         self.video = video
 
         self.loadingScreen.isHidden = true
+        NSLayoutConstraint.deactivate([self.scrollViewTop])
+        NSLayoutConstraint.activate([self.scrollViewVideoTop])
         self.videoContainer.isHidden = false
         self.descriptionView.isHidden = false
         self.learningMaterialsView.isHidden = false

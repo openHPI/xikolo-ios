@@ -118,12 +118,6 @@ class PeerAssessmentHintViewController: UIViewController {
 
         guard let peerAssessment = self.courseItem?.content as? PeerAssessment else { return }
 
-        self.loadingScreen.isHidden = true
-
-        let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
-        self.deadlineExpiredView.isHidden = !deadlineExpired
-        self.launchInfoView.isHidden = deadlineExpired
-
         // Set peer assessment type label and image
         switch peerAssessment.type {
         case "team":
@@ -134,10 +128,18 @@ class PeerAssessmentHintViewController: UIViewController {
             self.peerAssessmentTypeImage.image = R.image.personFill()
         }
 
-        self.peerAssessmentTypeView.isHidden = false
+        func hideLoadingScreen() {
+            self.loadingScreen.alpha = 0.0
+        }
 
-        // Set instructions label
-        self.instructionsView.setMarkdownWithImages(from: peerAssessment.instructions)
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveLinear, animations: hideLoadingScreen) { _ in
+            self.loadingScreen.isHidden = true
+            self.peerAssessmentTypeView.isHidden = false
+            let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
+            self.deadlineExpiredView.isHidden = !deadlineExpired
+            self.launchInfoView.isHidden = deadlineExpired
+            self.instructionsView.setMarkdownWithImages(from: peerAssessment.instructions)
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

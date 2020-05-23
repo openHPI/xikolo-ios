@@ -109,12 +109,15 @@ class LTIExerciseHintViewController: UIViewController {
 
         guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }
 
-        self.loadingScreen.isHidden = true
-        self.launchExerciseView.isHidden = false
+        func hideLoadingScreen() {
+            self.loadingScreen.alpha = 0.0
+        }
 
-        // Set instructions label
-        self.instructionsView.setMarkdownWithImages(from: ltiExercise.instructions)
-        self.instructionsView.isHidden = false
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveLinear, animations: hideLoadingScreen) { _ in
+            self.loadingScreen.isHidden = true
+            self.launchExerciseView.isHidden = false
+            self.instructionsView.setMarkdownWithImages(from: ltiExercise.instructions)
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

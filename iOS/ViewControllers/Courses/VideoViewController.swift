@@ -230,12 +230,18 @@ class VideoViewController: UIViewController {
         guard let video = courseItem.content as? Video else { return }
         self.video = video
 
-        self.loadingScreen.isHidden = true
-        NSLayoutConstraint.deactivate([self.scrollViewTop])
-        NSLayoutConstraint.activate([self.scrollViewVideoTop])
-        self.videoContainer.isHidden = false
-        self.descriptionView.isHidden = false
-        self.learningMaterialsView.isHidden = false
+        func hideLoadingScreen() {
+            self.loadingScreen.alpha = 0.0
+        }
+
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveLinear, animations: hideLoadingScreen) { _ in
+            self.loadingScreen.isHidden = true
+            NSLayoutConstraint.deactivate([self.scrollViewTop])
+            self.videoContainer.isHidden = false
+            NSLayoutConstraint.activate([self.scrollViewVideoTop])
+            self.descriptionView.isHidden = false
+            self.learningMaterialsView.isHidden = false
+        }
 
         self.show(video: video)
     }

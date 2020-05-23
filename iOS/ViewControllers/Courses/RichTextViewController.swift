@@ -77,9 +77,15 @@ class RichTextViewController: UIViewController {
 
         guard let richtext = self.courseItem.content as? RichText else { return }
 
-        self.textView.setMarkdownWithImages(from: richtext.text)
-        self.loadingScreen.isHidden = true
-        self.displayIssuesButton.isHidden = false
+        func hideLoadingScreen() {
+            self.loadingScreen.alpha = 0.0
+        }
+
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveLinear, animations: hideLoadingScreen) { _ in
+            self.loadingScreen.isHidden = true
+            self.textView.setMarkdownWithImages(from: richtext.text)
+            self.displayIssuesButton.isHidden = false
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -31,8 +31,6 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
     @IBOutlet private var fullScreenContraints: [NSLayoutConstraint]!
-    @IBOutlet private weak var scrollViewTop: NSLayoutConstraint!
-    @IBOutlet private weak var scrollViewVideoTop: NSLayoutConstraint!
 
     private var adjustedVideoContainerRatioConstraint: NSLayoutConstraint? {
         didSet {
@@ -97,11 +95,9 @@ class VideoViewController: UIViewController {
         self.descriptionView.delegate = self
 
         self.titleView.text = self.courseItem.title
+        self.videoContainer.isHidden = true
         self.descriptionView.isHidden = true
         self.learningMaterialsView.isHidden = true
-        self.videoContainer.isHidden = true
-        NSLayoutConstraint.deactivate([self.scrollViewVideoTop])
-        NSLayoutConstraint.activate([self.scrollViewTop])
         self.loadingScreen.isHidden = false
 
         self.updateCornersOfVideoContainer(for: self.traitCollection)
@@ -234,13 +230,17 @@ class VideoViewController: UIViewController {
             self.loadingScreen.alpha = 0.0
         }
 
+        func hideVideoContainer() {
+            self.videoContainer.isHidden = false
+        }
+
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveLinear, animations: hideLoadingScreen) { _ in
             self.loadingScreen.isHidden = true
-            NSLayoutConstraint.deactivate([self.scrollViewTop])
-            self.videoContainer.isHidden = false
-            NSLayoutConstraint.activate([self.scrollViewVideoTop])
-            self.descriptionView.isHidden = false
+        }
+
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: hideVideoContainer) { _ in
             self.learningMaterialsView.isHidden = false
+            self.descriptionView.isHidden = false
         }
 
         self.show(video: video)

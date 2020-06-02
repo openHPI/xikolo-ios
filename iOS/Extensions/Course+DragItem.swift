@@ -42,7 +42,7 @@ extension Course: NSItemProviderWriting {
     public func loadData(withTypeIdentifier typeIdentifier: String,
                          forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
         if typeIdentifier == kUTTypeUTF8PlainText as String {
-            completionHandler(self.url?.absoluteString.data(using: .utf8), nil)
+            completionHandler(self.teachers?.data(using: .utf8), nil)
         }
         return nil
     }

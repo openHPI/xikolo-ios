@@ -44,6 +44,7 @@ public class BingePlayerViewController: UIViewController {
         let indicator = BingeLoadingIndicator()
         indicator.tintColor = .white
         indicator.lineWidth = 4
+        indicator.shadowRadius = 10
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
@@ -266,8 +267,8 @@ public class BingePlayerViewController: UIViewController {
                                constant: 0),
             self.loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             self.loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            self.loadingIndicator.heightAnchor.constraint(equalToConstant: 55),
-            self.loadingIndicator.widthAnchor.constraint(equalToConstant: 55),
+            self.loadingIndicator.heightAnchor.constraint(equalToConstant: 75), // including 2 * shadowRadius
+            self.loadingIndicator.widthAnchor.constraint(equalToConstant: 75), // including 2 * shadowRadius
         ])
 
         self.view = view

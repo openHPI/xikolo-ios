@@ -27,6 +27,26 @@ class BingeLoadingIndicator: UIView {
         }
     }
 
+    @IBInspectable var shadowRadius: CGFloat {
+        get {
+            return self.loadingIndicatorLayer.shadowRadius
+        }
+        set {
+            self.loadingIndicatorLayer.shadowRadius = newValue
+            self.loadingIndicatorLayer.setNeedsDisplay()
+        }
+    }
+
+    @IBInspectable var shadowColor: CGColor? {
+        get {
+            return self.loadingIndicatorLayer.shadowColor
+        }
+        set {
+            self.loadingIndicatorLayer.shadowColor = newValue
+            self.loadingIndicatorLayer.setNeedsDisplay()
+        }
+    }
+
     // swiftlint:disable:next valid_ibinspectable
     @IBInspectable var duration: CFTimeInterval = 1.0
 
@@ -69,6 +89,8 @@ class BingeLoadingIndicator: UIView {
         self.loadingIndicatorLayer.tintColor = self.tintColor
         self.loadingIndicatorLayer.lineWidth = 2
         self.loadingIndicatorLayer.gap = 0.2
+        self.loadingIndicatorLayer.shadowRadius = 0
+        self.loadingIndicatorLayer.shadowColor = UIColor.black.withAlphaComponent(0.25).cgColor
         self.duration = 1.0
 
         self.backgroundColor = .clear
@@ -94,7 +116,7 @@ class BingeLoadingIndicator: UIView {
         override func draw(in ctx: CGContext) {
             let center = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
 
-            let borderRadius = (min(self.bounds.width, self.bounds.height) - self.lineWidth) / 2
+            let borderRadius = (min(self.bounds.width, self.bounds.height) - self.lineWidth - 2 * self.shadowRadius) / 2
             let borderStartAngle = 1.5 * CGFloat.pi
             let borderEndAngle = borderStartAngle - self.gap * 2 * CGFloat.pi
 
@@ -104,6 +126,7 @@ class BingeLoadingIndicator: UIView {
             let borderPath = CGMutablePath()
             borderPath.addArc(center: center, radius: borderRadius, startAngle: borderStartAngle, endAngle: borderEndAngle, clockwise: false)
             ctx.addPath(borderPath)
+            ctx.setShadow(offset: .zero, blur: self.shadowRadius, color: self.shadowColor)
             ctx.strokePath()
         }
 

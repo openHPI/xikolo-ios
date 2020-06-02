@@ -36,19 +36,13 @@ extension Course: NSItemProviderWriting {
     // MARK: - NSItemProviderWriting
 
     public static var writableTypeIdentifiersForItemProvider: [String] {
-        return [
-//            kUTTypeURL as String,
-                kUTTypeUTF8PlainText as String]
+        return [kUTTypeUTF8PlainText as String]
     }
 
     public func loadData(withTypeIdentifier typeIdentifier: String,
                          forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
-        
-//        if typeIdentifier == kUTTypeURL as String {
-//            completionHandler(self.url?.dataRepresentation, nil)
-//        } else
-            if typeIdentifier == kUTTypeUTF8PlainText as String {
-            completionHandler(self.teachers?.data(using: .utf8), nil)
+        if typeIdentifier == kUTTypeUTF8PlainText as String {
+            completionHandler(self.url?.absoluteString.data(using: .utf8), nil)
         }
         return nil
     }

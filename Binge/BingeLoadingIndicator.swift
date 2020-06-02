@@ -37,7 +37,7 @@ class BingeLoadingIndicator: UIView {
         }
     }
 
-    @IBInspectable var shadowColor: CGColor? {
+    var shadowColor: CGColor? {
         get {
             return self.loadingIndicatorLayer.shadowColor
         }

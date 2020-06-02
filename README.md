@@ -10,7 +10,7 @@
 </p>
 
 ### Development toolchain
-- Xcode 11.4
+- Xcode 11.5
 - bundler: `gem install bundler`
 
 The following tools will be installed via bundler:

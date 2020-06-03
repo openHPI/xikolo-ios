@@ -68,7 +68,7 @@ public struct SynchronizationContext {
         }
 
         guard !self.includedResourceData.isEmpty else {
-            return .included(objects: [], ids: resourceIdentifiers.map { $0.id })
+            return .included(objects: [], ids: resourceIdentifiers.map(\.id))
         }
 
         var resourceData: [(id: String, object: ResourceData)] = []

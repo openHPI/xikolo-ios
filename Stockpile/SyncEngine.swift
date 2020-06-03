@@ -339,7 +339,7 @@ public extension SyncEngine {
                         return .coreData(error)
                     }
                 }.map(ImmediateExecutionContext) { mergeResult in
-                    return SyncMultipleResult(objectIds: mergeResult.resources.map { $0.objectID }, headers: mergeResult.headers)
+                    return SyncMultipleResult(objectIds: mergeResult.resources.map(\.objectID), headers: mergeResult.headers)
                 }.onComplete(ImmediateExecutionContext) { result in
                     promise.complete(result)
                 }

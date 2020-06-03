@@ -17,7 +17,7 @@ class XikoloTabBarController: UITabBarController {
         case account
 
         static var availableTabs: [Tabs] {
-            return Self.allCases.filter { $0.isAvailable }
+            return Self.allCases.filter(\.isAvailable)
         }
 
         var isAvailable: Bool {
@@ -68,7 +68,7 @@ class XikoloTabBarController: UITabBarController {
 
     static func make() -> XikoloTabBarController {
         let tabBarController = XikoloTabBarController()
-        tabBarController.viewControllers = Tabs.availableTabs.compactMap { $0.viewController }
+        tabBarController.viewControllers = Tabs.availableTabs.compactMap(\.viewController)
         return tabBarController
     }
 

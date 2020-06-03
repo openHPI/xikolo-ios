@@ -51,7 +51,7 @@ class HelpdeskTicketTopicListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 { // generic section
-            return HelpdeskTicket.Topic.genericTopics.filter { $0.isAvailable }.count
+            return HelpdeskTicket.Topic.genericTopics.filter(\.isAvailable).count
         } else { // course specific section
             return self.courses.count
         }
@@ -81,7 +81,7 @@ class HelpdeskTicketTopicListViewController: UITableViewController {
 
     private func topic(for indexPath: IndexPath) -> HelpdeskTicket.Topic {
         if indexPath.section == 0 {
-            return HelpdeskTicket.Topic.genericTopics.filter { $0.isAvailable }[indexPath.row]
+            return HelpdeskTicket.Topic.genericTopics.filter(\.isAvailable)[indexPath.row]
         } else {
             let course = self.courses[indexPath.row]
             return .courseSpecific(course)

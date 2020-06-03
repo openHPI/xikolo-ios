@@ -95,7 +95,6 @@ class VideoViewController: UIViewController {
         self.descriptionView.delegate = self
 
         self.titleView.text = self.courseItem.title
-        self.videoContainer.isHidden = true
         self.descriptionView.isHidden = true
         self.learningMaterialsView.isHidden = true
         self.loadingScreen.isHidden = false
@@ -230,15 +229,8 @@ class VideoViewController: UIViewController {
             self.loadingScreen.alpha = 0.0
         }
 
-        func hideVideoContainer() {
-            self.videoContainer.isHidden = false
-        }
-
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveLinear, animations: hideLoadingScreen) { _ in
             self.loadingScreen.isHidden = true
-        }
-
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: hideVideoContainer) { _ in
             self.learningMaterialsView.isHidden = false
             self.descriptionView.isHidden = false
         }

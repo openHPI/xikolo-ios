@@ -248,8 +248,6 @@ extension CourseOverviewViewController: UICollectionViewDragDelegate {
 
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         let selectedCourse = self.courses[indexPath.item]
-        let dragItem = UIDragItem(itemProvider: NSItemProvider(object: selectedCourse))
-        return [dragItem]
-//        return [selectedCourse.dragItem(for: self.collectionView.traitCollection)]
+        return [selectedCourse.dragItem(for: self.collectionView.traitCollection)]
     }
 }

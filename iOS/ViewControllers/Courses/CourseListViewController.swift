@@ -501,34 +501,10 @@ extension CourseListViewController: CourseSearchFiltersViewControllerDelegate {
 
 @available(iOS 11.0, *)
 extension CourseListViewController: UICollectionViewDragDelegate {
-    // TODO: Refactor this back again into Course+DragItem.swift
 
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        var dragItems = [UIDragItem]()
         let selectedCourse = self.dataSource.object(at: indexPath)
-
-        let userActivity = selectedCourse.openCourseUserActivity
-        let itemProvider = NSItemProvider(object: selectedCourse)
-        itemProvider.registerObject(userActivity, visibility: .all)
-
-        let dragItem = UIDragItem(itemProvider: itemProvider)
-        dragItem.localObject = selectedCourse
-
-        dragItem.previewProvider = { () -> UIDragPreview? in
-            let courseImage = UIImageView()
-            courseImage.sd_setImage(with: selectedCourse.imageURL)
-            let previewWidth = CourseCell.minimalWidth(for: self.traitCollection)
-            let previewHeight = previewWidth / 2
-            courseImage.frame = CGRect(x: 0, y: 0, width: previewWidth, height: previewHeight)
-            courseImage.layer.roundCorners(for: .default)
-            courseImage.contentMode = .scaleAspectFill
-            return UIDragPreview(view: courseImage)
-        }
-
-        dragItems.append(dragItem)
-//        let dragItem = UIDragItem(itemProvider: NSItemProvider(object: selectedCourse))
-        return [dragItem]
-//        return [selectedCourse.dragItem(for: self.collectionView.traitCollection)]
+        return [selectedCourse.dragItem(for: self.collectionView.traitCollection)]
     }
 
 }

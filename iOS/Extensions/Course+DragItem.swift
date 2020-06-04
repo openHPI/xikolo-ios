@@ -11,7 +11,7 @@ extension Course {
 
     func dragItem(for traitCollection: UITraitCollection) -> UIDragItem {
         let userActivity = self.openCourseUserActivity
-        let itemProvider = NSItemProvider()
+        let itemProvider = NSItemProvider(object: self)
         itemProvider.registerObject(userActivity, visibility: .all)
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = self
@@ -36,13 +36,15 @@ extension Course: NSItemProviderWriting {
     // MARK: - NSItemProviderWriting
 
     public static var writableTypeIdentifiersForItemProvider: [String] {
-        return [kUTTypeUTF8PlainText as String]
+        return [kUTTypeUTF8PlainText as String,
+        ]
     }
 
     public func loadData(withTypeIdentifier typeIdentifier: String,
                          forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
         if typeIdentifier == kUTTypeUTF8PlainText as String {
-            completionHandler(self.teachers?.data(using: .utf8), nil)
+            let titleUrl : String = self.title! + " \n" + self.url!.absoluteString
+            completionHandler(titleUrl.data(using: .utf8), nil)
         }
         return nil
     }

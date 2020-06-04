@@ -23,7 +23,7 @@ class CourseInteractionController: UIPercentDrivenInteractiveTransition {
 
     private func prepareGestureRecognizer(for navigationController: CourseNavigationController) {
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
-        navigationController.addDismissalGestureRecognizer(gesture)
+        navigationController.dismissalGestureRecognizer = gesture
     }
 
     @objc func handleGesture(_ gestureRecognizer: UIPanGestureRecognizer) {

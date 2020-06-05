@@ -14,6 +14,7 @@ class CourseViewController: UIViewController {
     @IBOutlet private weak var titleView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var headerImageView: UIImageView!
+    @IBOutlet private weak var cardHeaderView: UIView!
     @IBOutlet private weak var cornerView: UIView!
     @IBOutlet private weak var courseAreaListContainerHeight: NSLayoutConstraint!
     @IBOutlet private weak var headerImageHeightConstraint: NSLayoutConstraint!
@@ -52,6 +53,13 @@ class CourseViewController: UIViewController {
 
     private lazy var actionMenuButton: UIBarButtonItem = {
         return UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
+    }()
+
+    private var downUpwardsInitialHeaderOffset: CGFloat = 0
+    private lazy var downUpwardsGestureRecognizer: UIPanGestureRecognizer = {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
+        panGesture.delegate = self
+        return panGesture
     }()
 
     var course: Course! {
@@ -95,17 +103,16 @@ class CourseViewController: UIViewController {
 
         self.titleLabel.textAlignment = self.traitCollection.horizontalSizeClass == .compact ? .natural : .center
 
-        if self.course != nil {
-            self.updateView()
-        }
-
         self.navigationController?.delegate = self
 
+        self.updateView()
         self.transitionIfPossible(to: self.area)
         self.updateHeaderConstraints()
 
         SpotlightHelper.shared.setUserActivity(for: self.course)
         ErrorManager.shared.remember(self.course.id, forKey: "course_id")
+
+        self.cardHeaderView.addGestureRecognizer(self.downUpwardsGestureRecognizer)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -342,6 +349,21 @@ class CourseViewController: UIViewController {
         self.headerImageTopSafeAreaConstraint.constant = offset * -1
     }
 
+    @objc private func handleGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+        let headerOffset = -1 * gestureRecognizer.translation(in: self.view).y + self.downUpwardsInitialHeaderOffset
+
+        switch gestureRecognizer.state {
+        case .began:
+            self.downUpwardsInitialHeaderOffset = self.headerOffset
+        case .changed:
+            self.adjustHeaderPosition(for: headerOffset)
+        case .ended:
+            self.snapToExtendedOrCollapsedHeaderPosition(with: headerOffset)
+        default:
+            break
+        }
+    }
+
 }
 
 extension CourseViewController: CourseAreaListViewControllerDelegate {
@@ -432,20 +454,14 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
         // Only react when user interacts with the scroll view. WKWebView will trigger this when loading URLs.
         guard scrollView.isDragging else { return }
 
-        let headerHeight = self.headerHeight
         let adjustedScrollOffset = scrollView.contentOffset.y + self.headerOffset
-        var headerOffset = max(0, min(adjustedScrollOffset, headerHeight))
-        headerOffset = self.traitCollection.verticalSizeClass == .compact ? headerHeight : headerOffset
-
-        self.headerOffset = headerOffset
+        self.adjustHeaderPosition(for: adjustedScrollOffset)
 
         if adjustedScrollOffset >= 0, // for pull to refresh
-            adjustedScrollOffset <= headerHeight, // over scrolling
+            adjustedScrollOffset <= self.headerHeight, // over scrolling
             self.traitCollection.verticalSizeClass != .compact {
             scrollView.contentOffset = .zero
         }
-
-        self.courseNavigationController?.updateNavigationBar(forProgress: headerOffset / headerHeight)
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -457,12 +473,24 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
         self.snapToExtendedOrCollapsedHeaderPosition(with: scrollView)
     }
 
+    private func adjustHeaderPosition(for scrollOffset: CGFloat) {
+        let headerHeight = self.headerHeight
+        var headerOffset = max(0, min(scrollOffset, headerHeight))
+        headerOffset = self.traitCollection.verticalSizeClass == .compact ? headerHeight : headerOffset
+
+        self.headerOffset = headerOffset
+        self.courseNavigationController?.updateNavigationBar(forProgress: headerOffset / headerHeight)
+    }
+
     private func snapToExtendedOrCollapsedHeaderPosition(with scrollView: UIScrollView) {
         let adjustedScrollOffset = scrollView.contentOffset.y + self.headerOffset
         if adjustedScrollOffset > self.headerHeight { return }
+        self.snapToExtendedOrCollapsedHeaderPosition(with: adjustedScrollOffset)
+    }
 
+    private func snapToExtendedOrCollapsedHeaderPosition(with headerOffset: CGFloat) {
         let snapThreshold: CGFloat = 0.3
-        let snapUpwards = adjustedScrollOffset / self.headerHeight > snapThreshold
+        let snapUpwards = headerOffset / self.headerHeight > snapThreshold
 
         self.headerOffset = snapUpwards ? self.headerHeight : 0
 
@@ -501,6 +529,15 @@ extension CourseViewController: UINavigationControllerDelegate {
                 self.courseNavigationController?.updateNavigationBar(forProgress: progress)
             }
         })
+    }
+
+}
+
+extension CourseViewController: UIGestureRecognizerDelegate {
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard self.headerOffset != self.headerHeight else { return false }
+        return otherGestureRecognizer == self.courseNavigationController?.dismissalGestureRecognizer
     }
 
 }

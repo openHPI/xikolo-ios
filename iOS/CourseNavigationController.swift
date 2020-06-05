@@ -22,7 +22,6 @@ class CourseNavigationController: UINavigationController {
         }
     }
 
-    private var pendingGestureRecognizer: UIGestureRecognizer?
     private var lastNavigationBarProgress: CGFloat?
     private var barTintStyle: BarTintStyle = .light {
         didSet {
@@ -30,6 +29,14 @@ class CourseNavigationController: UINavigationController {
             if let lastNavigationBarProgress = self.lastNavigationBarProgress {
                 self.updateNavigationBar(forProgress: lastNavigationBarProgress)
             }
+        }
+    }
+
+    var dismissalGestureRecognizer: UIGestureRecognizer? {
+        didSet {
+            guard let view = self.viewIfLoaded else { return }
+            guard let gestureRecognizer = self.dismissalGestureRecognizer else { return }
+            view.addGestureRecognizer(gestureRecognizer)
         }
     }
 
@@ -47,7 +54,7 @@ class CourseNavigationController: UINavigationController {
         self.navigationBar.isTranslucent = true
         self.navigationBar.tintColor = .white
 
-        if let gestureRecognizer = self.pendingGestureRecognizer {
+        if let gestureRecognizer = self.dismissalGestureRecognizer {
             self.view.addGestureRecognizer(gestureRecognizer)
         }
     }
@@ -167,14 +174,6 @@ class CourseNavigationController: UINavigationController {
         self.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(mappedProgress),
         ]
-    }
-
-    func addDismissalGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {
-        if let view = self.viewIfLoaded {
-            view.addGestureRecognizer(gestureRecognizer)
-        } else {
-            self.pendingGestureRecognizer = gestureRecognizer
-        }
     }
 
     @objc func closeCourse() {

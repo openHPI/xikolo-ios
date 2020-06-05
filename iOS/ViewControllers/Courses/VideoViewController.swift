@@ -252,7 +252,7 @@ class VideoViewController: UIViewController {
         video.managedObjectContext?.refresh(video, mergeChanges: true)
 
         self.playerViewController?.configure(for: video)
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
     }
 
     @IBAction private func openSlides() {

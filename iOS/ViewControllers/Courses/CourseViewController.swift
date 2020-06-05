@@ -352,7 +352,7 @@ extension CourseViewController: CourseAreaListViewControllerDelegate {
         } else if self.course.hasEnrollment && self.course.accessible {
             return CourseArea.availableAreas
         } else {
-            return CourseArea.availableAreas.filter { $0.accessibleWithoutEnrollment }
+            return CourseArea.availableAreas.filter(\.accessibleWithoutEnrollment)
         }
     }
 

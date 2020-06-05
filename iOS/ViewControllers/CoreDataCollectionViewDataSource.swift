@@ -220,7 +220,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         if self.isSearching {
             return 1
         } else {
-            return self.fetchedResultsControllers.compactMap { $0.sections?.count }.reduce(0, +)
+            return self.fetchedResultsControllers.compactMap(\.sections?.count).reduce(0, +)
         }
     }
 

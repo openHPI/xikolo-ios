@@ -49,17 +49,8 @@
                                                             </fragment>
                                                         </attributedString>
                                                     </label>
-                                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXi-bu-i9n">
-                                                        <rect key="frame" x="0.0" y="34" width="374" height="128"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="128" id="Uxy-t8-02c"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <segue destination="VM5-5e-bUX" kind="embed" id="zD7-aN-VlT"/>
-                                                        </connections>
-                                                    </containerView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Item Description" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ko-OB-QIh">
-                                                        <rect key="frame" x="0.0" y="170.5" width="374" height="38"/>
+                                                        <rect key="frame" x="0.0" y="34.5" width="374" height="38"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" notEnabled="YES"/>
@@ -76,6 +67,15 @@
                                                             </fragment>
                                                         </attributedString>
                                                     </textView>
+                                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXi-bu-i9n">
+                                                        <rect key="frame" x="0.0" y="80.5" width="374" height="128"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="128" id="Uxy-t8-02c"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <segue destination="VM5-5e-bUX" kind="embed" id="zD7-aN-VlT"/>
+                                                        </connections>
+                                                    </containerView>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="U73-94-qMV" userLabel="Learning Material">

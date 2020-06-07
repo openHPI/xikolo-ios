@@ -30,9 +30,7 @@ class LTIExerciseHintViewController: UIViewController {
 
     @IBOutlet private weak var itemTitleLabel: UILabel!
 
-    @IBOutlet private weak var exerciseTypeView: UIStackView!
     @IBOutlet private weak var exerciseTypeLabel: UILabel!
-    @IBOutlet private weak var pointsView: UIStackView!
     @IBOutlet private weak var pointsLabel: UILabel!
     @IBOutlet private weak var timeEffortView: UIView!
     @IBOutlet private weak var timeEffortLabel: UILabel!
@@ -82,7 +80,6 @@ class LTIExerciseHintViewController: UIViewController {
         let format = NSLocalizedString("course-item.max-points", comment: "maximum points for course item")
         let number = NSNumber(value: self.courseItem.maxPoints)
         self.pointsLabel.text = Self.pointsFormatter.string(from: number).flatMap { String.localizedStringWithFormat(format, $0) }
-        self.pointsView.isHidden = false
 
         // Set time effort label
         let roundedTimeEffort = ceil(TimeInterval(self.courseItem.timeEffort) / 60) * 60 // round up to full minutes
@@ -104,8 +101,6 @@ class LTIExerciseHintViewController: UIViewController {
         default:
             self.exerciseTypeLabel.text = nil
         }
-
-        self.exerciseTypeView.isHidden = false
 
         guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }
 

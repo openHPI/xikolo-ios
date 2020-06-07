@@ -202,7 +202,6 @@
                         <outlet property="deadlineDateView" destination="xes-mL-oQF" id="aJC-Ai-bE0"/>
                         <outlet property="deadlineLabel" destination="YiW-fH-8UJ" id="Q4y-y3-onH"/>
                         <outlet property="exerciseTypeLabel" destination="o68-9c-PQk" id="nuu-NK-OWi"/>
-                        <outlet property="exerciseTypeView" destination="sMa-M5-edP" id="1qJ-js-r0H"/>
                         <outlet property="instructionsView" destination="GdB-9t-4lq" id="0oB-US-Sk4"/>
                         <outlet property="itemTitleLabel" destination="s0C-PM-wzS" id="eMz-X6-DhT"/>
                         <outlet property="launchButton" destination="rF0-gS-qZg" id="dOP-VG-tMl"/>
@@ -210,7 +209,6 @@
                         <outlet property="loadingScreen" destination="tRB-US-R03" id="c5c-rM-pbh"/>
                         <outlet property="loadingScreenHeight" destination="Kef-43-7Hf" id="lWr-Ti-1Pf"/>
                         <outlet property="pointsLabel" destination="Td9-5s-WRE" id="KjM-w6-87w"/>
-                        <outlet property="pointsView" destination="gsk-Pk-9n9" id="j8q-TG-I0G"/>
                         <outlet property="timeEffortLabel" destination="jbu-gA-ILD" id="x3w-ra-5cd"/>
                         <outlet property="timeEffortView" destination="Pey-sr-JVF" id="RFI-9N-Npg"/>
                     </connections>

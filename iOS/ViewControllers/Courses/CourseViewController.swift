@@ -505,12 +505,10 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
 extension CourseViewController: UINavigationControllerDelegate {
 
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        let progress: CGFloat = {
-            guard viewController == self else { return 1 }
+        guard viewController == self else { return }
 
-            let headerOffset = self.headerImageTopSuperviewConstraint.constant * -1
-            return headerOffset / self.headerHeight
-        }()
+        let headerOffset = self.headerImageTopSuperviewConstraint.constant * -1
+        let progress = headerOffset / self.headerHeight
 
         guard let transitionController = navigationController.transitionCoordinator, animated else {
             self.courseNavigationController?.updateNavigationBar(forProgress: progress)
@@ -529,6 +527,11 @@ extension CourseViewController: UINavigationControllerDelegate {
                 self.courseNavigationController?.updateNavigationBar(forProgress: progress)
             }
         })
+    }
+
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        if viewController == self { return }
+        self.courseNavigationController?.updateNavigationBar(forProgress: 1)
     }
 
 }

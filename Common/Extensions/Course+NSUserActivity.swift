@@ -9,7 +9,7 @@ extension Course {
 
     public var openCourseUserActivity: NSUserActivity {
         let userActivity = NSUserActivity(activityType: Bundle.main.activityTypeOpenCourse.require())
-        userActivity.title = url?.absoluteString
+        userActivity.title = title
         userActivity.userInfo = ["courseID": id ]
         return userActivity
     }

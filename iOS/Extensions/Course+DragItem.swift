@@ -49,8 +49,29 @@ extension Course: NSItemProviderWriting {
             completionHandler(titleUrl.data(using: .utf8), nil)
         }
         else if typeIdentifier == kUTTypeURL as String {
-            completionHandler(self.url?.absoluteString.data(using: .utf8), nil)
+            let dropRepresentation = self.url.flatMap({ URLDropRepresentation(url: $0, title: self.title) })
+            let data = try? dropRepresentation.map(PropertyListEncoder().encode)
+            completionHandler(data, nil)
         }
         return nil
+    }
+}
+
+private struct URLDropRepresentation: Encodable {
+    let url: URL
+    let title: String?
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        try container.encode(self.url.absoluteString)
+        try container.encode("")
+        try container.encode(self.metadata)
+    }
+
+    private var metadata: [String: String] {
+        guard let title = self.title else {
+            return [:]
+        }
+        return ["title": title]
     }
 }

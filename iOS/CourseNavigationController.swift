@@ -26,9 +26,6 @@ class CourseNavigationController: UINavigationController {
     private var barTintStyle: BarTintStyle = .light {
         didSet {
             self.setNeedsStatusBarAppearanceUpdate()
-            if let lastNavigationBarProgress = self.lastNavigationBarProgress {
-                self.updateNavigationBar(forProgress: lastNavigationBarProgress)
-            }
         }
     }
 
@@ -115,7 +112,7 @@ class CourseNavigationController: UINavigationController {
         var blue: CGFloat = 0
         color.getRed(&red, green: &green, blue: &blue, alpha: nil)
 
-        // Refers to this suggeted formula: https://www.w3.org/WAI/ER/WD-AERT/#color-contrast
+        // Refers to this suggested formula: https://www.w3.org/WAI/ER/WD-AERT/#color-contrast
         let brightnessValue = (red * 299 + green * 587 + blue * 114) / 1000 * 255
         let isBright = brightnessValue > 125
 
@@ -139,13 +136,18 @@ class CourseNavigationController: UINavigationController {
         var alpha: CGFloat = 1
         Brand.default.colors.window.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
 
-        let tintColor: UIColor
-        switch self.barTintStyle {
-        case .light:
-            tintColor = UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: (1 - mappedProgress * (1 - brightness)), alpha: alpha)
-        case .dark:
-            tintColor = UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: mappedProgress * brightness, alpha: alpha)
-        }
+        let tintColor: UIColor = {
+            if #available(iOS 13, *) {
+                if self.traitCollection.userInterfaceStyle == .dark {
+                    return UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: (1 - mappedProgress * (1 - brightness)), alpha: alpha)
+                } else {
+                    return UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: mappedProgress * brightness, alpha: alpha)
+                }
+
+            } else {
+                return UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: mappedProgress * brightness, alpha: alpha)
+            }
+        }()
 
         self.navigationBar.tintColor = tintColor
 

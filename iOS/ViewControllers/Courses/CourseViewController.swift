@@ -51,8 +51,18 @@ class CourseViewController: UIViewController {
         return self.navigationController as? CourseNavigationController
     }
 
+    private lazy var closeButton: UIBarButtonItem = {
+        return UIBarButtonItem(image: R.image.navigationBarIcons.xmark(),
+                               circularBackgroundColor: ColorCompatibility.secondarySystemBackground.withAlphaComponent(0.9),
+                               target: self,
+                               action: #selector(closeCourse))
+    }()
+
     private lazy var actionMenuButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
+        return UIBarButtonItem(image: R.image.navigationBarIcons.dots(),
+                               circularBackgroundColor: ColorCompatibility.secondarySystemBackground.withAlphaComponent(0.9),
+                               target: self,
+                               action: #selector(showActionMenu(_:)))
     }()
 
     private var downUpwardsInitialHeaderOffset: CGFloat = 0
@@ -88,6 +98,7 @@ class CourseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationItem.leftBarButtonItem = self.closeButton
         self.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.headerImageView.backgroundColor = Brand.default.colors.secondary
 
@@ -246,11 +257,6 @@ class CourseViewController: UIViewController {
         return (red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
     }
 
-    private func closeCourse() {
-        let courseNavigationController = self.navigationController as? CourseNavigationController
-        courseNavigationController?.closeCourse()
-    }
-
     func transitionIfPossible(to area: CourseArea) {
         if self.course.hasEnrollment {
             let newArea = self.course.accessible ? area : .courseDetails
@@ -307,8 +313,9 @@ class CourseViewController: UIViewController {
         }
     }
 
-    @IBAction private func tappedCloseButton(_ sender: Any) {
-        self.closeCourse()
+    @objc private func closeCourse() {
+        let courseNavigationController = self.navigationController as? CourseNavigationController
+        courseNavigationController?.closeCourse()
     }
 
     @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {

@@ -131,8 +131,11 @@ class CourseNavigationController: UINavigationController {
         mappedProgress = pow(mappedProgress, 3) // ease in
         mappedProgress = min(mappedProgress, 0.995) // otherwise the bar switches to translucent
 
-        let navigationBarAlpha = mappedProgress
+        self.updateNavigationBarTintColor(forMappedProgress: mappedProgress)
+        self.updateNavigationBarBackground(forMappedProgress: mappedProgress)
+    }
 
+    func updateNavigationBarTintColor(forMappedProgress mappedProgress: CGFloat) {
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
         var brightness: CGFloat = 0
@@ -148,6 +151,10 @@ class CourseNavigationController: UINavigationController {
         }
 
         self.navigationBar.tintColor = tintColor
+    }
+
+    private func updateNavigationBarBackground(forMappedProgress mappedProgress: CGFloat) {
+        let navigationBarAlpha = mappedProgress
 
         var transparentBackground: UIImage
 

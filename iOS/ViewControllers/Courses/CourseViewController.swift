@@ -505,17 +505,22 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
 extension CourseViewController: UINavigationControllerDelegate {
 
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        guard viewController == self else { return }
+        guard viewController == self else {
+            navigationController.transitionCoordinator?.animate(alongsideTransition: { context in
+                self.courseNavigationController?.updateNavigationBarTintColor(forMappedProgress: 1)
+            })
+            return
+        }
 
         let headerOffset = self.headerImageTopSuperviewConstraint.constant * -1
         let progress = headerOffset / self.headerHeight
 
-        guard let transitionController = navigationController.transitionCoordinator, animated else {
+        guard let transitionCoordinator = navigationController.transitionCoordinator, animated else {
             self.courseNavigationController?.updateNavigationBar(forProgress: progress)
             return
         }
 
-        transitionController.animate(alongsideTransition: { context in
+        transitionCoordinator.animate(alongsideTransition: { context in
             self.courseNavigationController?.updateNavigationBar(forProgress: progress)
             self.navigationController?.navigationBar.layoutIfNeeded()
         }, completion: { context in

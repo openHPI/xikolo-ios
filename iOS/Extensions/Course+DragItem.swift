@@ -36,15 +36,20 @@ extension Course: NSItemProviderWriting {
     // MARK: - NSItemProviderWriting
 
     public static var writableTypeIdentifiersForItemProvider: [String] {
-        return [kUTTypeUTF8PlainText as String,
+        return [
+            kUTTypeUTF8PlainText as String,
+            kUTTypeURL as String,
         ]
     }
 
     public func loadData(withTypeIdentifier typeIdentifier: String,
                          forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
         if typeIdentifier == kUTTypeUTF8PlainText as String {
-            let titleUrl : String = self.title! + " \n" + self.url!.absoluteString
+            let titleUrl: String = [self.title, self.url].compactMap({ $0 }).joined(by: "\n")
             completionHandler(titleUrl.data(using: .utf8), nil)
+        }
+        else if typeIdentifier == kUTTypeURL as String {
+            completionHandler(self.url?.absoluteString.data(using: .utf8), nil)
         }
         return nil
     }

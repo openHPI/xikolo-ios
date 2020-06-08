@@ -45,7 +45,7 @@ extension Course: NSItemProviderWriting {
     public func loadData(withTypeIdentifier typeIdentifier: String,
                          forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
         if typeIdentifier == kUTTypeUTF8PlainText as String {
-            let titleUrl: String = [self.title, self.url].compactMap({ $0 }).joined(by: "\n")
+            let titleUrl: String = [self.title, self.url?.absoluteString].compactMap({ $0 }).joined(separator: "\n")
             completionHandler(titleUrl.data(using: .utf8), nil)
         }
         else if typeIdentifier == kUTTypeURL as String {

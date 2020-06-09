@@ -98,6 +98,12 @@ class VideoViewController: UIViewController {
         self.descriptionView.isHidden = true
         self.learningMaterialsView.isHidden = true
         self.loadingScreen.isHidden = false
+        self.loadingScreen.alpha = 0.0
+
+        // swiftlint:disable trailing_closure
+        UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveLinear, animations: {
+            self.loadingScreen.alpha = 1.0
+        })
 
         self.updateCornersOfVideoContainer(for: self.traitCollection)
 
@@ -225,15 +231,9 @@ class VideoViewController: UIViewController {
         guard let video = courseItem.content as? Video else { return }
         self.video = video
 
-        func hideLoadingScreen() {
-            self.loadingScreen.alpha = 0.0
-        }
-
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveLinear, animations: hideLoadingScreen) { _ in
-            self.loadingScreen.isHidden = true
-            self.learningMaterialsView.isHidden = false
-            self.descriptionView.isHidden = false
-        }
+        self.loadingScreen.isHidden = true
+        self.learningMaterialsView.isHidden = false
+        self.descriptionView.isHidden = false
 
         self.show(video: video)
     }

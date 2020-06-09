@@ -74,6 +74,12 @@ class PeerAssessmentHintViewController: UIViewController {
         self.deadlineExpiredView.isHidden = true
         self.launchInfoView.isHidden = true
         self.loadingScreen.isHidden = false
+        self.loadingScreen.alpha = 0.0
+
+        // swiftlint:disable trailing_closure
+        UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveLinear, animations: {
+            self.loadingScreen.alpha = 1.0
+        })
 
         self.launchButton.layer.roundCorners(for: .default)
         self.launchButton.backgroundColor = Brand.default.colors.primary
@@ -128,18 +134,15 @@ class PeerAssessmentHintViewController: UIViewController {
             self.peerAssessmentTypeImage.image = R.image.personFill()
         }
 
-        func hideLoadingScreen() {
-            self.loadingScreen.alpha = 0.0
-        }
+        self.loadingScreen.isHidden = true
+        self.peerAssessmentTypeView.isHidden = false
 
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveLinear, animations: hideLoadingScreen) { _ in
-            self.loadingScreen.isHidden = true
-            self.peerAssessmentTypeView.isHidden = false
-            let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
-            self.deadlineExpiredView.isHidden = !deadlineExpired
-            self.launchInfoView.isHidden = deadlineExpired
-            self.instructionsView.setMarkdownWithImages(from: peerAssessment.instructions)
-        }
+        let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
+        self.deadlineExpiredView.isHidden = !deadlineExpired
+
+        self.launchInfoView.isHidden = deadlineExpired
+        self.instructionsView.setMarkdownWithImages(from: peerAssessment.instructions)
+
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

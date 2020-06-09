@@ -52,17 +52,11 @@ class CourseViewController: UIViewController {
     }
 
     private lazy var closeButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: R.image.navigationBarIcons.xmark(),
-                               circularBackgroundColor: ColorCompatibility.secondarySystemBackground.withAlphaComponent(0.9),
-                               target: self,
-                               action: #selector(closeCourse))
+        return UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.xmark(), target: self, action: #selector(closeCourse))
     }()
 
     private lazy var actionMenuButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: R.image.navigationBarIcons.dots(),
-                               circularBackgroundColor: ColorCompatibility.secondarySystemBackground.withAlphaComponent(0.9),
-                               target: self,
-                               action: #selector(showActionMenu(_:)))
+        return UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(), target: self, action: #selector(showActionMenu(_:)))
     }()
 
     private var downUpwardsInitialHeaderOffset: CGFloat = 0

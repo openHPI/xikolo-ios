@@ -18,10 +18,7 @@ class CourseItemViewController: UIPageViewController {
     }()
 
     private lazy var actionMenuButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: R.image.navigationBarIcons.dots(),
-                                     circularBackgroundColor: ColorCompatibility.secondarySystemBackground.withAlphaComponent(0.9),
-                                     target: self,
-                                     action: #selector(showActionMenu(_:)))
+        let button = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(), target: self, action: #selector(showActionMenu(_:)))
         button.isEnabled = true
         return button
     }()

@@ -17,12 +17,17 @@ class CircularButton: UIButton {
 
 extension UIBarButtonItem {
 
-    convenience init(image: UIImage?, circularBackgroundColor: UIColor?, target: Any?, action: Selector) {
+    static func circularItem(
+        with image: UIImage?,
+        backgroundColor: UIColor? = ColorCompatibility.secondarySystemBackground.withAlphaComponent(0.9),
+        target: Any?,
+        action: Selector
+    ) -> UIBarButtonItem {
         let button = CircularButton(type: .custom)
         button.setImage(image, for: .normal)
-        button.backgroundColor = circularBackgroundColor
+        button.backgroundColor = backgroundColor
         button.addTarget(target, action: action, for: .touchUpInside)
-        self.init(customView: button)
+        return UIBarButtonItem(customView: button)
     }
 
 }

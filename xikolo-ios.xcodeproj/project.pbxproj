@@ -192,6 +192,7 @@
 		507F7FD62371B5E70031DC0B /* BingeMediaSelectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FD52371B5E70031DC0B /* BingeMediaSelectionDataSource.swift */; };
 		507F7FDA2372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FD92372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift */; };
 		507F7FDC2372DA530031DC0B /* CourseProgressHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FDB2372DA530031DC0B /* CourseProgressHelper.swift */; };
+		5083329C2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083329B2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift */; };
 		508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */; };
 		508AB2C02109F0A10079EAE5 /* DocumentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */; };
 		508AB2C22109F0DE0079EAE5 /* DocumentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */; };
@@ -839,6 +840,7 @@
 		507F7FD52371B5E70031DC0B /* BingeMediaSelectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingeMediaSelectionDataSource.swift; sourceTree = "<group>"; };
 		507F7FD92372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseProgressHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		507F7FDB2372DA530031DC0B /* CourseProgressHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgressHelper.swift; sourceTree = "<group>"; };
+		5083329B2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+CircularBackground.swift"; sourceTree = "<group>"; };
 		508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFWebViewController.storyboard; sourceTree = "<group>"; };
 		508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentHeader.xib; sourceTree = "<group>"; };
 		508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHeader.swift; sourceTree = "<group>"; };
@@ -1996,6 +1998,7 @@
 				5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */,
 				82D55A1D23CF31D000EB2768 /* Sequence+sort.swift */,
 				5044C8E221A8105C006490CE /* UIAlertViewController+downloadedContent.swift */,
+				5083329B2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift */,
 				50253A2A22BA2F2A00FB63FD /* UICollectionViewFlowLayout+RTL.swift */,
 				AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */,
 				508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */,
@@ -3119,6 +3122,7 @@
 				50CF1FA620DCDBFC0011BFE9 /* CourseCell.swift in Sources */,
 				82D13D0C235726E70006A0D9 /* HelpdeskViewController.swift in Sources */,
 				504AC11F239C46F1007F097B /* UserDefaults+logoutTestAccount.swift in Sources */,
+				5083329C2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift in Sources */,
 				506BDB94242380A80002DBDE /* AdditionalLearningMaterialListViewController.swift in Sources */,
 				50CF1FA820DCDBFC0011BFE9 /* CourseAreaListViewController.swift in Sources */,
 				50CF1FAD20DCDBFC0011BFE9 /* R.generated.swift in Sources */,

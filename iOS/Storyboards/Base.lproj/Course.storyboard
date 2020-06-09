@@ -115,11 +115,6 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="K1m-mm-Pjy">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="Lu2-d8-THe">
-                            <connections>
-                                <action selector="tappedCloseButton:" destination="GW9-XM-IkA" id="hks-dm-2X6"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cardHeaderView" destination="bmv-rC-bZT" id="ddf-rm-t7W"/>

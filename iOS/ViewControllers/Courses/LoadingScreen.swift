@@ -13,6 +13,12 @@ public class LoadingScreen: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        self.view.alpha = 0.0
+
+        // swiftlint:disable trailing_closure
+        UIView.animate(withDuration: 0.25, delay: 0.25, options: .curveLinear, animations: {
+            self.view.alpha = 1.0
+        })
 
         let progressValue: CGFloat? = nil
         progressView.updateProgress(progressValue)

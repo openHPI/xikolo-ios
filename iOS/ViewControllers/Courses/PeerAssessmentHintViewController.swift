@@ -74,12 +74,6 @@ class PeerAssessmentHintViewController: UIViewController {
         self.deadlineExpiredView.isHidden = true
         self.launchInfoView.isHidden = true
         self.loadingScreen.isHidden = false
-        self.loadingScreen.alpha = 0.0
-
-        // swiftlint:disable trailing_closure
-        UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveLinear, animations: {
-            self.loadingScreen.alpha = 1.0
-        })
 
         self.launchButton.layer.roundCorners(for: .default)
         self.launchButton.backgroundColor = Brand.default.colors.primary

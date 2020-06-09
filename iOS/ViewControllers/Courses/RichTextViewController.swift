@@ -49,12 +49,6 @@ class RichTextViewController: UIViewController {
         self.descriptionView.isHidden = true
         self.displayIssuesButton.isHidden = true
         self.loadingScreen.isHidden = false
-        self.loadingScreen.alpha = 0.0
-
-        // swiftlint:disable trailing_closure
-        UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveLinear, animations: {
-            self.loadingScreen.alpha = 1.0
-        })
 
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero

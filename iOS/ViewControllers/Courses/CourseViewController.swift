@@ -3,7 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-// swiftlint:disable file_length
+// swiftlint:disable file_length type_body_length
 
 import Common
 import SDWebImage
@@ -207,8 +207,11 @@ class CourseViewController: UIViewController {
         let imageScale = image.size.width / self.view.bounds.width
         let transform = CGAffineTransform(scaleX: imageScale, y: imageScale)
         let yOffset = (image.size.height - self.headerImageView.bounds.height * imageScale) / 2 / imageScale
-        let subImageRect = CGRect(x: 0, y: max(0, yOffset), width: self.view.bounds.width, height: UIApplication.shared.statusBarFrame.height).applying(transform)
-        return image.cgImage?.cropping(to: subImageRect)
+        let subImageRect = CGRect(x: 0,
+                                  y: max(0, yOffset),
+                                  width: self.view.bounds.width,
+                                  height: UIApplication.shared.statusBarFrame.height)
+        return image.cgImage?.cropping(to: subImageRect.applying(transform))
     }
 
     // swiftlint:disable:next large_tuple

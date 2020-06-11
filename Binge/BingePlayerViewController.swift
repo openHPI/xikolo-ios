@@ -487,7 +487,7 @@ public class BingePlayerViewController: UIViewController {
         self.didPlayToEnd = true
         self.showControlsOverlay()
         self.updateMediaPlayerInfoCenter()
-        self.delegate?.didReachEndofPlayback()
+        self.delegate?.didReachEndOfPlayback()
     }
 
     @objc private func toggleControlOverlay() {
@@ -826,11 +826,11 @@ extension BingePlayerViewController {
                           animations: { [weak self] in
             self?.volumeIndicator.alpha = 1
         }, completion: { [weak self] _ in
-            self?.autoHideVolumenIndicator()
+            self?.autoHideVolumeIndicator()
         })
     }
 
-    private func autoHideVolumenIndicator() {
+    private func autoHideVolumeIndicator() {
         self.volumeIndicatorDispatchWorkItem?.cancel()
         let workItem = DispatchWorkItem { [weak self] in
             guard let indicator = self?.volumeIndicator else { return }

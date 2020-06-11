@@ -12,7 +12,7 @@ public protocol BingePlayerDelegate: AnyObject {
     func didPausePlayback()
     func didChangePlaybackRate(from oldRate: Float, to newRate: Float)
     func didSeek(from oldTime: TimeInterval, to newTime: TimeInterval)
-    func didReachEndofPlayback()
+    func didReachEndOfPlayback()
     func didChangeSubtitles(from oldLanguageCode: String?, to newLanguageCode: String?)
     func didChangeLayout(from oldLayout: LayoutState, to newLayout: LayoutState)
     func didChangeOrientation(to orientation: UIInterfaceOrientation)
@@ -26,7 +26,7 @@ public extension BingePlayerDelegate {
     func didPausePlayback() {}
     func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {}
     func didSeek(from oldTime: TimeInterval, to newTime: TimeInterval) {}
-    func didReachEndofPlayback() {}
+    func didReachEndOfPlayback() {}
     func didChangeSubtitles(from oldLanguageCode: String?, to newLanguageCode: String?) {}
     func didChangeLayout(from oldLayout: LayoutState, to newLayout: LayoutState) {}
     func didChangeOrientation(to orientation: UIInterfaceOrientation) {}

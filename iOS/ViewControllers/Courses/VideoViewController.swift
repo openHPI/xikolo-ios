@@ -458,7 +458,7 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         TrackingHelper.createEvent(.videoPlaybackSeek, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 
-    func didReachEndofPlayback() {
+    func didReachEndOfPlayback() {
         guard let video = self.video else { return }
         TrackingHelper.createEvent(.videoPlaybackEnd, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }

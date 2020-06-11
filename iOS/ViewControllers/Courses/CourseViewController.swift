@@ -52,11 +52,25 @@ class CourseViewController: UIViewController {
     }
 
     private lazy var closeButton: UIBarButtonItem = {
-        return UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.xmark(), target: self, action: #selector(closeCourse))
+        let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.xmark(),
+                                                target: self,
+                                                action: #selector(closeCourse))
+        item.accessibilityLabel = NSLocalizedString(
+            "accessibility-label.course.navigation-bar.item.close",
+            comment: "Accessibility label for close button in navigation bar of the course card view"
+        )
+        return item
     }()
 
     private lazy var actionMenuButton: UIBarButtonItem = {
-        return UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(), target: self, action: #selector(showActionMenu(_:)))
+        let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(),
+                                                target: self,
+                                                action: #selector(showActionMenu(_:)))
+        item.accessibilityLabel = NSLocalizedString(
+            "accessibility-label.course.navigation-bar.item.actions",
+            comment: "Accessibility label for actions button in navigation bar of the course card view"
+        )
+        return item
     }()
 
     private var downUpwardsInitialHeaderOffset: CGFloat = 0

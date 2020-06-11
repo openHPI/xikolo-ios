@@ -20,6 +20,10 @@ class CourseItemViewController: UIPageViewController {
     private lazy var actionMenuButton: UIBarButtonItem = {
         let button = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(), target: self, action: #selector(showActionMenu(_:)))
         button.isEnabled = true
+        button.accessibilityLabel = NSLocalizedString(
+            "accessibility-label.course-item.navigation-bar.item.actions",
+            comment: "Accessibility label for actions button in navigation bar of the course item view"
+        )
         return button
     }()
 

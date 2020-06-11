@@ -51,10 +51,26 @@ class CourseCell: UICollectionViewCell {
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var statusView: UIView!
 
+    override var isAccessibilityElement: Bool {
+        get { true }
+        set {}
+    }
+
+    override var accessibilityIdentifier: String? {
+        get { "CourseCell" }
+        set {}
+    }
+
+    override var accessibilityLabel: String? {
+        get {
+            let labels = [self.titleLabel, self.teacherLabel, self.dateLabel, self.languageLabel].compactMap { $0 }
+            return labels.compactMap(\.accessibilityLabel).joined(separator: ", ")
+        }
+        set {}
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.isAccessibilityElement = true
-        self.accessibilityIdentifier = "CourseCell"
 
         self.shadowView.layer.roundCorners(for: .default, masksToBounds: false)
         self.courseImage.layer.roundCorners(for: .default)

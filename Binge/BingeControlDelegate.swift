@@ -13,7 +13,7 @@ protocol BingeControlDelegate: AnyObject {
     func seekForwards()
     func seekBackwards()
 
-    func stopAutoHideOfControlsView()
+    func stopAutoHideOfControlsOverlay()
     func toggleFullScreenMode()
     func togglePictureInPictureMode()
     func showMediaSelection(for sourceView: UIView)

@@ -525,7 +525,7 @@ public class BingePlayerViewController: UIViewController {
         guard self.controlsContainer.isHidden else { return }
         if self.pictureInPictureController?.isPictureInPictureActive ?? false { return }
 
-        self.controlsOverlayDispatchWorkItem?.cancel()
+        self.stopAutoHideOfControlsOverlay()
 
         UIView.transition(with: self.controlsContainer,
                           duration: 0.25,
@@ -544,7 +544,7 @@ public class BingePlayerViewController: UIViewController {
     }
 
     private func hideControlsOverlay(animated: Bool = true) {
-        self.controlsOverlayDispatchWorkItem?.cancel()
+        self.stopAutoHideOfControlsOverlay()
 
         let animationDuration = animated ? 0.25 : 0.0
         UIView.transition(with: self.view,
@@ -685,12 +685,12 @@ extension BingePlayerViewController: BingeMediaSelectionDataSource, BingeMediaSe
 
 extension BingePlayerViewController: BingeControlDelegate {
 
-    func stopAutoHideOfControlsView() {
+    func stopAutoHideOfControlsOverlay() {
         self.controlsOverlayDispatchWorkItem?.cancel()
     }
 
     func showMediaSelection(for sourceView: UIView) {
-        self.controlsOverlayDispatchWorkItem?.cancel()
+        self.stopAutoHideOfControlsOverlay()
 
         let mediaSelectionViewController = BingeMediaSelectionViewController(delegate: self)
 
@@ -740,7 +740,7 @@ extension BingePlayerViewController: BingeControlDelegate {
         if self.player.timeControlStatus == .paused { return }
 
         self.player.pause()
-        self.controlsOverlayDispatchWorkItem?.cancel()
+        self.stopAutoHideOfControlsOverlay()
         self.updateMediaPlayerInfoCenter()
         self.delegate?.didPausePlayback()
 
@@ -851,7 +851,7 @@ extension BingePlayerViewController {
         guard self.presentedViewController == nil else { return } // Shows media selection options
         guard self.shouldToggleControls else { return }
 
-        self.controlsOverlayDispatchWorkItem?.cancel()
+        self.stopAutoHideOfControlsOverlay()
 
         let workItem = DispatchWorkItem { [weak self] in
             guard let view = self?.view else { return }
@@ -919,7 +919,7 @@ extension BingePlayerViewController: AVRoutePickerViewDelegate {
 
     @available(iOS 11, *)
     public func routePickerViewWillBeginPresentingRoutes(_ routePickerView: AVRoutePickerView) {
-        self.controlsOverlayDispatchWorkItem?.cancel()
+        self.stopAutoHideOfControlsOverlay()
     }
 
     @available(iOS 11, *)

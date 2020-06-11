@@ -299,6 +299,11 @@ public class BingePlayerViewController: UIViewController {
         tapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
         self.view.addGestureRecognizer(tapGestureRecognizer)
 
+        if #available(iOS 13, *) {
+            let hoverGestureRecognizer = UIHoverGestureRecognizer(target: self, action: #selector(handleHover))
+            self.view.addGestureRecognizer(hoverGestureRecognizer)
+        }
+
         if self.isAirPlayActivated {
             self.layoutState = .remote
         }
@@ -563,6 +568,18 @@ public class BingePlayerViewController: UIViewController {
             self.seekBackwards()
         } else if relativeHorizontalLocation > 0.6 {
             self.seekForwards()
+        }
+    }
+
+    @available(iOS 13.0, *)
+    @objc private func handleHover(sender: UIHoverGestureRecognizer) {
+        switch sender.state {
+        case .began, .changed:
+            self.showControlsOverlay()
+        case .ended:
+            self.autoHideControlsOverlay(withDelay: 0)
+        default:
+            break
         }
     }
 

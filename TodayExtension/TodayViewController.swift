@@ -87,7 +87,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
         coordinator.animate(alongsideTransition: { [weak self] _ in
             self?.nextCourseDateContainer.alpha = isInCompactMode ? 0 : 1
-            self?.view.layoutIfNeeded()
         }, completion: nil)
     }
 
@@ -104,9 +103,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             // The compact view is a fixed size.
             self.preferredContentSize = maxSize
         case .expanded:
-            let boundingSize = CGSize(width: self.view.bounds.width, height: CGFloat.infinity)
-            let computedHeight = self.datesAvailableView.sizeThatFits(boundingSize).height
-            self.preferredContentSize = CGSize(width: maxSize.width, height: min(computedHeight, maxSize.height))
+            let boundingSize = CGSize(width: maxSize.width, height: CGFloat.infinity)
+            let computedSize = self.datesAvailableView.systemLayoutSizeFitting(boundingSize,
+                                                                               withHorizontalFittingPriority: UILayoutPriority(rawValue: 1000),
+                                                                               verticalFittingPriority: UILayoutPriority(rawValue: 10))
+            self.preferredContentSize = CGSize(width: maxSize.width, height: min(computedSize.height, maxSize.height))
         @unknown default:
             preconditionFailure("Unexpected value for activeDisplayMode.")
         }

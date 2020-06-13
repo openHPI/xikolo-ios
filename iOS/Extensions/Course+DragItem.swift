@@ -47,12 +47,12 @@ extension Course: NSItemProviderWriting {
         if typeIdentifier == kUTTypeUTF8PlainText as String {
             let titleUrl: String = [self.title, self.url?.absoluteString].compactMap({ $0 }).joined(separator: "\n")
             completionHandler(titleUrl.data(using: .utf8), nil)
-        }
-        else if typeIdentifier == kUTTypeURL as String {
+        } else if typeIdentifier == kUTTypeURL as String {
             let dropRepresentation = self.url.flatMap({ URLDropRepresentation(url: $0, title: self.title) })
             let data = try? dropRepresentation.map(PropertyListEncoder().encode)
             completionHandler(data, nil)
         }
+
         return nil
     }
 }
@@ -72,6 +72,7 @@ private struct URLDropRepresentation: Encodable {
         guard let title = self.title else {
             return [:]
         }
+
         return ["title": title]
     }
 }

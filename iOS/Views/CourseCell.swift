@@ -57,12 +57,12 @@ class CourseCell: UICollectionViewCell {
 
     override var isAccessibilityElement: Bool {
         get { true }
-        set {}
+        set {} // swiftlint:disable:this unused_setter_value
     }
 
     override var accessibilityIdentifier: String? {
         get { "CourseCell" }
-        set {}
+        set {} // swiftlint:disable:this unused_setter_value
     }
 
     override var accessibilityLabel: String? {
@@ -70,7 +70,7 @@ class CourseCell: UICollectionViewCell {
             let labels = [self.titleLabel, self.teacherLabel, self.dateLabel, self.languageLabel].compactMap { $0 }
             return labels.compactMap(\.accessibilityLabel).joined(separator: ", ")
         }
-        set {}
+        set {} // swiftlint:disable:this unused_setter_value
     }
 
     override func awakeFromNib() {

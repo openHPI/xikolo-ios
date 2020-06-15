@@ -499,9 +499,11 @@ extension CourseViewController: UINavigationControllerDelegate {
 
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         guard viewController == self else {
-            navigationController.transitionCoordinator?.animate(alongsideTransition: { context in
+            // swiftlint:disable:next trailing_closure
+            navigationController.transitionCoordinator?.animate(alongsideTransition: { _ in
                 self.courseNavigationController?.updateNavigationBarTintColor(forMappedProgress: 1)
             })
+
             return
         }
 

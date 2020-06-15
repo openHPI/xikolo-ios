@@ -18,10 +18,10 @@ extension Course: NSItemProviderWriting {
     public func loadData(withTypeIdentifier typeIdentifier: String,
                          forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
         if typeIdentifier == kUTTypeUTF8PlainText as String {
-            let titleUrl = [self.title, self.url?.absoluteString].compactMap({ $0 }).joined(separator: "\n")
+            let titleUrl = [self.title, self.url?.absoluteString].compactMap { $0 }.joined(separator: "\n")
             completionHandler(titleUrl.data(using: .utf8), nil)
         } else if typeIdentifier == kUTTypeURL as String {
-            let dropRepresentation = self.url.flatMap({ URLDropRepresentation(url: $0, title: self.title) })
+            let dropRepresentation = self.url.flatMap { URLDropRepresentation(url: $0, title: self.title) }
             let data = try? dropRepresentation.map(PropertyListEncoder().encode)
             completionHandler(data, nil)
         }

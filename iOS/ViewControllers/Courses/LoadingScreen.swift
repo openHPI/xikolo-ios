@@ -16,7 +16,7 @@ public class LoadingScreen: UIViewController {
         self.view.alpha = 0.0
 
         // swiftlint:disable trailing_closure
-        UIView.animate(withDuration: 0.25, delay: 0.25, options: .curveLinear, animations: {
+        UIView.animate(withDuration: 0.25, delay: 1.25, options: .curveEaseIn, animations: {
             self.view.alpha = 1.0
         })
 

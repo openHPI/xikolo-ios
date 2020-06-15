@@ -1925,7 +1925,6 @@
 				5017B3BB204983E7001D90A1 /* CourseAreaListViewController.swift */,
 				828FF16423EF4424006515B5 /* PeerAssessmentHintViewController.swift */,
 				70893B5521C3D1F600AF22E3 /* LTIExerciseHintViewController.swift */,
-				82CF971E245D9878008EC208 /* LoadingScreen.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -2102,6 +2101,7 @@
 				ABCE242F1E8B938E00D55CB7 /* CustomHeaderWebView.swift */,
 				24B651441D351AF100624DBC /* CoreDataTableViewDataSource.swift */,
 				2433A5AC1CE642AC0060DD98 /* CoreDataCollectionViewDataSource.swift */,
+				82CF971E245D9878008EC208 /* LoadingScreen.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -2165,7 +2165,6 @@
 				50044FD423278F19004D1AD8 /* CourseLearningsRichtext.storyboard */,
 				50044FC52327815F004D1AD8 /* CourseLearningsLTI.storyboard */,
 				828FF16C23EF5DE1006515B5 /* CourseLearningsPeerAssessment.storyboard */,
-				82CF9720245D989F008EC208 /* LoadingScreen.storyboard */,
 				50044FCA2327816B004D1AD8 /* CourseLearningsUnavailable.storyboard */,
 				50044FCF23278F03004D1AD8 /* CourseLearningsProctored.storyboard */,
 				50044FB9232773F2004D1AD8 /* CourseLearningsWeb.storyboard */,
@@ -2187,6 +2186,7 @@
 				B4E079EA218791A600EA53F5 /* CertificateCell.xib */,
 				5066DF79243463B30041BD9B /* CoursePreview.storyboard */,
 				507D02FE243705240009F12B /* CourseItemPreview.storyboard */,
+				82CF9720245D989F008EC208 /* LoadingScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";

@@ -16,6 +16,9 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var videoContainer: UIView!
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
+    @IBOutlet private weak var learningMaterialsView: UIStackView!
+    @IBOutlet private weak var loadingScreen: UIView!
+    @IBOutlet private weak var loadingScreenHeight: NSLayoutConstraint!
 
     @IBOutlet private weak var videoActionsButton: UIButton!
     @IBOutlet private weak var videoProgressView: CircularProgressView!
@@ -90,6 +93,11 @@ class VideoViewController: UIViewController {
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self
+
+        self.titleView.text = self.courseItem.title
+        self.descriptionView.isHidden = true
+        self.learningMaterialsView.isHidden = true
+        self.loadingScreen.isHidden = false
 
         self.updateCornersOfVideoContainer(for: self.traitCollection)
 
@@ -193,6 +201,11 @@ class VideoViewController: UIViewController {
         self.updateCornersOfVideoContainer(for: newCollection)
     }
 
+    override func viewWillLayoutSubviews() {
+        self.view.layoutSubviews()
+        self.loadingScreenHeight.constant = self.view.bounds.height - self.videoContainer.bounds.height
+    }
+
     override var childForStatusBarStyle: UIViewController? {
         guard self.playerViewController?.layoutState == .fullScreen else { return nil }
         return self.playerViewController
@@ -209,10 +222,12 @@ class VideoViewController: UIViewController {
     }
 
     private func updateView(for courseItem: CourseItem) {
-        self.titleView.text = courseItem.title
-
         guard let video = courseItem.content as? Video else { return }
         self.video = video
+
+        self.loadingScreen.isHidden = true
+        self.learningMaterialsView.isHidden = false
+        self.descriptionView.isHidden = false
 
         self.show(video: video)
     }

@@ -29,18 +29,31 @@ class PeerAssessmentHintViewController: UIViewController {
     private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .long)
 
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var metaDataView: UIView!
+
+    @IBOutlet private weak var peerAssessmentTypeView: UIStackView!
     @IBOutlet private weak var peerAssessmentTypeLabel: UILabel!
     @IBOutlet private weak var peerAssessmentTypeImage: UIImageView!
+
     @IBOutlet private weak var exerciseTypeLabel: UILabel!
     @IBOutlet private weak var pointsLabel: UILabel!
+
     @IBOutlet private weak var timeEffortView: UIView!
     @IBOutlet private weak var timeEffortLabel: UILabel!
+
     @IBOutlet private weak var deadlineLabel: UILabel!
     @IBOutlet private weak var deadlineDateView: UIView!
+
     @IBOutlet private weak var launchInfoView: UIView!
     @IBOutlet private weak var instructionsView: UITextView!
     @IBOutlet private weak var launchButton: UIButton!
     @IBOutlet private weak var deadlineExpiredView: UIView!
+
+    @IBOutlet private weak var peerAssessmentInfoView: UIStackView!
+    @IBOutlet private weak var loadingScreen: UIView!
+    @IBOutlet private weak var loadingScreenHeight: NSLayoutConstraint!
+
+    weak var delegate: CourseItemViewController?
 
     private var courseItemObserver: ManagedObjectObserver?
 
@@ -58,6 +71,11 @@ class PeerAssessmentHintViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.titleLabel.text = self.courseItem.title
+        self.deadlineExpiredView.isHidden = true
+        self.launchInfoView.isHidden = true
+        self.loadingScreen.isHidden = false
+
         self.launchButton.layer.roundCorners(for: .default)
         self.launchButton.backgroundColor = Brand.default.colors.primary
 
@@ -70,13 +88,6 @@ class PeerAssessmentHintViewController: UIViewController {
     }
 
     func updateView() {
-        guard let peerAssessment = self.courseItem?.content as? PeerAssessment else { return }
-
-        let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
-        self.deadlineExpiredView.isHidden = !deadlineExpired
-        self.launchInfoView.isHidden = deadlineExpired
-
-        self.titleLabel.text = courseItem.title
 
         // Set exercise type label
         switch self.courseItem.exerciseType {
@@ -95,6 +106,19 @@ class PeerAssessmentHintViewController: UIViewController {
         let number = NSNumber(value: self.courseItem.maxPoints)
         self.pointsLabel.text = Self.pointsFormatter.string(from: number).flatMap { String.localizedStringWithFormat(format, $0) }
 
+        // Set time effort label
+        let roundedTimeEffort = ceil(TimeInterval(self.courseItem.timeEffort) / 60) * 60 // round up to full minutes
+        self.timeEffortLabel.text = Self.timeEffortFormatter.string(from: roundedTimeEffort)
+        self.timeEffortView.isHidden = self.courseItem.timeEffort == 0
+
+        // Set deadline label
+        self.deadlineLabel.text = self.courseItem.deadline.map(Self.dateFormatter.string(from:))
+        self.deadlineDateView.isHidden = self.courseItem.deadline == nil
+
+        self.peerAssessmentTypeView.isHidden = true
+
+        guard let peerAssessment = self.courseItem?.content as? PeerAssessment else { return }
+
         // Set peer assessment type label and image
         switch peerAssessment.type {
         case "team":
@@ -105,17 +129,15 @@ class PeerAssessmentHintViewController: UIViewController {
             self.peerAssessmentTypeImage.image = R.image.personFill()
         }
 
-        // Set time effort label
-        let roundedTimeEffort = ceil(TimeInterval(self.courseItem.timeEffort) / 60) * 60 // round up to full minutes
-        self.timeEffortLabel.text = Self.timeEffortFormatter.string(from: roundedTimeEffort)
-        self.timeEffortView.isHidden = self.courseItem.timeEffort == 0
+        self.loadingScreen.isHidden = true
+        self.peerAssessmentTypeView.isHidden = false
 
-        // Set deadline label
-        self.deadlineLabel.text = self.courseItem.deadline.map(Self.dateFormatter.string(from:))
-        self.deadlineDateView.isHidden = self.courseItem.deadline == nil
+        let deadlineExpired = self.courseItem?.deadline?.inPast ?? false
+        self.deadlineExpiredView.isHidden = !deadlineExpired
 
-        // Set instructions label
+        self.launchInfoView.isHidden = deadlineExpired
         self.instructionsView.setMarkdownWithImages(from: peerAssessment.instructions)
+
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -123,6 +145,11 @@ class PeerAssessmentHintViewController: UIViewController {
         if let typedInfo = R.segue.peerAssessmentHintViewController.openPeerAssessmentURL(segue: segue) {
             typedInfo.destination.url = item.url
         }
+    }
+
+    override func viewWillLayoutSubviews() {
+        self.view.layoutSubviews()
+        self.loadingScreenHeight.constant = self.view.bounds.height - self.metaDataView.bounds.height
     }
 }
 

@@ -24,6 +24,10 @@ class RichTextViewController: UIViewController {
     @IBOutlet private weak var timeEffortLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var scrollViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var loadingScreen: UIView!
+    @IBOutlet private weak var loadingScreenHeight: NSLayoutConstraint!
+    @IBOutlet private weak var descriptionView: UITextView!
+    @IBOutlet private weak var displayIssuesButton: UIButton!
 
     private var courseItemObserver: ManagedObjectObserver?
 
@@ -41,6 +45,11 @@ class RichTextViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.titleView.text = self.courseItem.title
+        self.descriptionView.isHidden = true
+        self.displayIssuesButton.isHidden = true
+        self.loadingScreen.isHidden = false
+
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero
         self.textView.textContainer.lineFragmentPadding = 0
@@ -55,28 +64,33 @@ class RichTextViewController: UIViewController {
         }
 
         self.updateView()
-
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
     }
 
     private func updateView() {
         guard self.viewIfLoaded != nil else { return }
 
-        self.titleView.text = self.courseItem.title
-
         // Set time effort label
         let roundedTimeEffort = ceil(TimeInterval(self.courseItem.timeEffort) / 60) * 60 // round up to full minutes
         self.timeEffortLabel.text = Self.timeEffortFormatter.string(from: roundedTimeEffort)
         self.timeEffortView.isHidden = self.courseItem.timeEffort == 0
 
-        let markdown = (self.courseItem.content as? RichText)?.text
-        self.textView.setMarkdownWithImages(from: markdown)
+        guard let richtext = self.courseItem.content as? RichText else { return }
+
+        self.loadingScreen.isHidden = true
+        self.textView.setMarkdownWithImages(from: richtext.text)
+        self.displayIssuesButton.isHidden = false
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let typedInfo = R.segue.richTextViewController.openInWebView(segue: segue) {
             typedInfo.destination.courseItem = self.courseItem
         }
+    }
+
+    override func viewWillLayoutSubviews() {
+        self.view.layoutSubviews()
+        self.loadingScreenHeight.constant = self.view.bounds.height
     }
 
 }

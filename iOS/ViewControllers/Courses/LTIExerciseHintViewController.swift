@@ -29,6 +29,8 @@ class LTIExerciseHintViewController: UIViewController {
     private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .long)
 
     @IBOutlet private weak var itemTitleLabel: UILabel!
+    @IBOutlet private weak var metaDataView: UIView!
+
     @IBOutlet private weak var exerciseTypeLabel: UILabel!
     @IBOutlet private weak var pointsLabel: UILabel!
     @IBOutlet private weak var timeEffortView: UIView!
@@ -36,6 +38,10 @@ class LTIExerciseHintViewController: UIViewController {
     @IBOutlet private weak var deadlineDateView: UIView!
     @IBOutlet private weak var deadlineLabel: UILabel!
     @IBOutlet private weak var instructionsView: UITextView!
+
+    @IBOutlet private weak var launchExerciseView: UIStackView!
+    @IBOutlet private weak var loadingScreen: UIView!
+    @IBOutlet private weak var loadingScreenHeight: NSLayoutConstraint!
     @IBOutlet private weak var launchButton: UIButton!
 
     private var courseItemObserver: ManagedObjectObserver?
@@ -54,6 +60,10 @@ class LTIExerciseHintViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.itemTitleLabel.text = self.courseItem?.title
+        self.launchExerciseView.isHidden = true
+        self.loadingScreen.isHidden = false
+
         self.launchButton.layer.roundCorners(for: .default)
         self.launchButton.backgroundColor = Brand.default.colors.primary
 
@@ -66,21 +76,6 @@ class LTIExerciseHintViewController: UIViewController {
     }
 
     func updateView() {
-        guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }
-
-        self.itemTitleLabel.text = self.courseItem?.title
-
-        // Set exercise type label
-        switch self.courseItem.exerciseType {
-        case "main":
-            self.exerciseTypeLabel.text = NSLocalizedString("course.item.exercise-type.disclaimer.main", comment: "course item main type")
-        case "bonus":
-            self.exerciseTypeLabel.text = NSLocalizedString("course.item.exercise-type.disclaimer.bonus", comment: "course item bonus type")
-        case "selftest":
-            self.exerciseTypeLabel.text = NSLocalizedString("course.item.exercise-type.disclaimer.ungraded", comment: "course item ungraded type")
-        default:
-            self.exerciseTypeLabel.text = nil
-        }
 
         // Set points label
         let format = NSLocalizedString("course-item.max-points", comment: "maximum points for course item")
@@ -96,7 +91,22 @@ class LTIExerciseHintViewController: UIViewController {
         self.deadlineLabel.text = self.courseItem.deadline.map(Self.dateFormatter.string(from:))
         self.deadlineDateView.isHidden = self.courseItem.deadline == nil
 
-        // Set instructions label
+        // Set exercise type label
+        switch self.courseItem.exerciseType {
+        case "main":
+            self.exerciseTypeLabel.text = NSLocalizedString("course.item.exercise-type.disclaimer.main", comment: "course item main type")
+        case "bonus":
+            self.exerciseTypeLabel.text = NSLocalizedString("course.item.exercise-type.disclaimer.bonus", comment: "course item bonus type")
+        case "selftest":
+            self.exerciseTypeLabel.text = NSLocalizedString("course.item.exercise-type.disclaimer.ungraded", comment: "course item ungraded type")
+        default:
+            self.exerciseTypeLabel.text = nil
+        }
+
+        guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }
+
+        self.loadingScreen.isHidden = true
+        self.launchExerciseView.isHidden = false
         self.instructionsView.setMarkdownWithImages(from: ltiExercise.instructions)
     }
 
@@ -105,6 +115,11 @@ class LTIExerciseHintViewController: UIViewController {
         if let typedInfo = R.segue.ltiExerciseHintViewController.openLTIURL(segue: segue) {
             typedInfo.destination.url = ltiExercise.launchURL
         }
+    }
+
+    override func viewWillLayoutSubviews() {
+        self.view.layoutSubviews()
+        self.loadingScreenHeight.constant = self.view.bounds.height - self.metaDataView.bounds.height
     }
 }
 

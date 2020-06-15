@@ -51,10 +51,30 @@ class CourseCell: UICollectionViewCell {
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var statusView: UIView!
 
+    var previewView: UIView? {
+        return self.courseImage
+    }
+
+    override var isAccessibilityElement: Bool {
+        get { true }
+        set {} // swiftlint:disable:this unused_setter_value
+    }
+
+    override var accessibilityIdentifier: String? {
+        get { "CourseCell" }
+        set {} // swiftlint:disable:this unused_setter_value
+    }
+
+    override var accessibilityLabel: String? {
+        get {
+            let labels = [self.titleLabel, self.teacherLabel, self.dateLabel, self.languageLabel].compactMap { $0 }
+            return labels.compactMap(\.accessibilityLabel).joined(separator: ", ")
+        }
+        set {} // swiftlint:disable:this unused_setter_value
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.isAccessibilityElement = true
-        self.accessibilityIdentifier = "CourseCell"
 
         self.shadowView.layer.roundCorners(for: .default, masksToBounds: false)
         self.courseImage.layer.roundCorners(for: .default)

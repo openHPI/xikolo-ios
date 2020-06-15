@@ -253,7 +253,7 @@ extension CourseListViewController: ChannelHeaderViewDelegate {
         playerViewController.asset = AVURLAsset(url: url)
         self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
             playerViewController.startPlayback()
-            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
         }
     }
 
@@ -504,7 +504,8 @@ extension CourseListViewController: UICollectionViewDragDelegate {
 
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         let selectedCourse = self.dataSource.object(at: indexPath)
-        return [selectedCourse.dragItem(for: self.collectionView.traitCollection)]
+        let courseCell = collectionView.cellForItem(at: indexPath) as? CourseCell
+        return [selectedCourse.dragItem(with: courseCell?.previewView)]
     }
 
 }

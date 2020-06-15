@@ -51,7 +51,7 @@ enum CourseSearchFilter: CaseIterable {
         case .language:
             let fetchRequest = CourseHelper.FetchRequest.distinctLanguages
             let dicts = try? CoreDataHelper.viewContext.fetch(fetchRequest)
-            let values = dicts?.flatMap { $0.allValues }.compactMap { $0 as? String }
+            let values = dicts?.flatMap(\.allValues).compactMap { $0 as? String }
             return values ?? []
         case .category:
             let fetchRequest = CourseHelper.FetchRequest.categories
@@ -65,7 +65,7 @@ enum CourseSearchFilter: CaseIterable {
     }
 
     private func extractUniqueValues(from dicts: [NSDictionary]?) -> [String] {
-        let combinedValues = dicts?.flatMap { $0.allValues }.compactMap { $0 as? String }
+        let combinedValues = dicts?.flatMap(\.allValues).compactMap { $0 as? String }
         let values = combinedValues?.compactMap(Course.arrayValues).flatMap { $0 }
         let valueSet = Set(values ?? [])
         return Array(valueSet).sorted()
@@ -106,6 +106,6 @@ enum CourseSearchFilter: CaseIterable {
     }
 
     static var availableCases: [CourseSearchFilter] {
-        return Self.allCases.filter { $0.isAvailable }
+        return Self.allCases.filter(\.isAvailable)
     }
 }

@@ -23,7 +23,7 @@ extension JSONAPIPushable {
                     if let resource = object as? ResourceRepresentable {
                         relationships[relationshipName] = ["data": resource.identifier]
                     } else if let resources = object as? [ResourceRepresentable] {
-                        relationships[relationshipName] = ["data": resources.map { $0.identifier }]
+                        relationships[relationshipName] = ["data": resources.map(\.identifier)]
                     }
                 }
 
@@ -61,7 +61,7 @@ extension JSONAPIPushable {
                 if let resource = object as? ResourceRepresentable {
                     relationships[relationshipName] = ["data": resource.identifier]
                 } else if let resources = object as? [ResourceRepresentable] {
-                    relationships[relationshipName] = ["data": resources.map { $0.identifier }]
+                    relationships[relationshipName] = ["data": resources.map(\.identifier)]
                 }
             }
 

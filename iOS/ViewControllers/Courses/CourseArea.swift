@@ -29,7 +29,7 @@ enum CourseArea {
             .certificates,
         ]
 
-        return values.filter { $0.isAvailable }
+        return values.filter(\.isAvailable)
     }()
 
     var accessibleWithoutEnrollment: Bool {

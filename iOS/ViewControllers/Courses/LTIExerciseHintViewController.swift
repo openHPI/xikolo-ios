@@ -29,6 +29,7 @@ class LTIExerciseHintViewController: UIViewController {
     private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .long)
 
     @IBOutlet private weak var itemTitleLabel: UILabel!
+    @IBOutlet private weak var metaDataView: UIView!
 
     @IBOutlet private weak var exerciseTypeLabel: UILabel!
     @IBOutlet private weak var pointsLabel: UILabel!
@@ -118,7 +119,7 @@ class LTIExerciseHintViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         self.view.layoutSubviews()
-        self.loadingScreenHeight.constant = self.view.frame.height / 2
+        self.loadingScreenHeight.constant = self.view.bounds.height - self.metaDataView.bounds.height
     }
 }
 

@@ -90,7 +90,7 @@ class RichTextViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         self.view.layoutSubviews()
-        self.loadingScreenHeight.constant = self.view.frame.height / 5
+        self.loadingScreenHeight.constant = self.view.bounds.height
     }
 
 }

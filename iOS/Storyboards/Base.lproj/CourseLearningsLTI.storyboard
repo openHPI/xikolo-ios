@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SwG-d6-2vg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SwG-d6-2vg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -208,6 +208,7 @@
                         <outlet property="launchExerciseView" destination="6H2-rR-a9u" id="kgN-we-YkW"/>
                         <outlet property="loadingScreen" destination="tRB-US-R03" id="c5c-rM-pbh"/>
                         <outlet property="loadingScreenHeight" destination="Kef-43-7Hf" id="lWr-Ti-1Pf"/>
+                        <outlet property="metaDataView" destination="uDE-dK-ZAy" id="HoK-X8-HbH"/>
                         <outlet property="pointsLabel" destination="Td9-5s-WRE" id="KjM-w6-87w"/>
                         <outlet property="timeEffortLabel" destination="jbu-gA-ILD" id="x3w-ra-5cd"/>
                         <outlet property="timeEffortView" destination="Pey-sr-JVF" id="RFI-9N-Npg"/>

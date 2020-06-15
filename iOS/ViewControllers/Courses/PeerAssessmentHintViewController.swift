@@ -29,6 +29,7 @@ class PeerAssessmentHintViewController: UIViewController {
     private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .long)
 
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var metaDataView: UIView!
 
     @IBOutlet private weak var peerAssessmentTypeView: UIStackView!
     @IBOutlet private weak var peerAssessmentTypeLabel: UILabel!
@@ -148,7 +149,7 @@ class PeerAssessmentHintViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         self.view.layoutSubviews()
-        self.loadingScreenHeight.constant = self.view.frame.height / 5
+        self.loadingScreenHeight.constant = self.view.bounds.height - self.metaDataView.bounds.height
     }
 }
 

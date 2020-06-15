@@ -203,7 +203,7 @@ class VideoViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         self.view.layoutSubviews()
-        self.loadingScreenHeight.constant = self.view.frame.height / 2
+        self.loadingScreenHeight.constant = self.view.bounds.height - self.videoContainer.bounds.height
     }
 
     override var childForStatusBarStyle: UIViewController? {

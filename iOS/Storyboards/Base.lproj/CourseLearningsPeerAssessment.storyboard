@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xQv-lS-yqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xQv-lS-yqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -248,6 +248,7 @@
                         <outlet property="launchInfoView" destination="GQ0-pu-ThV" id="9Tn-4B-jDb"/>
                         <outlet property="loadingScreen" destination="qda-eF-fZG" id="xkc-89-czy"/>
                         <outlet property="loadingScreenHeight" destination="Lbs-V3-rqL" id="BtM-HO-D90"/>
+                        <outlet property="metaDataView" destination="ja6-Mg-WV5" id="Nfp-1K-MoG"/>
                         <outlet property="peerAssessmentInfoView" destination="0VN-4a-iaG" id="m1b-ec-ArO"/>
                         <outlet property="peerAssessmentTypeImage" destination="MFi-FL-Tvh" id="IJ5-jg-73k"/>
                         <outlet property="peerAssessmentTypeLabel" destination="evK-Xb-vZR" id="qBr-wo-dea"/>

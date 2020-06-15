@@ -10,8 +10,8 @@ extension Course: NSItemProviderWriting {
 
     public static var writableTypeIdentifiersForItemProvider: [String] {
         return [
-            kUTTypeUTF8PlainText as String,
             kUTTypeURL as String,
+            kUTTypeUTF8PlainText as String,
         ]
     }
 

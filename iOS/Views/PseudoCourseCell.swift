@@ -18,6 +18,24 @@ class PseudoCourseCell: UICollectionViewCell {
     @IBOutlet private weak var actionLabel: UILabel!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
 
+    override var isAccessibilityElement: Bool {
+        get { true }
+        set {} // swiftlint:disable:this unused_setter_value
+    }
+
+    override var accessibilityLabel: String? {
+        get {
+            let labels = [self.messageLabel, self.actionLabel].compactMap { $0 }
+            return labels.compactMap(\.accessibilityLabel).joined(separator: ", ")
+        }
+        set {} // swiftlint:disable:this unused_setter_value
+    }
+
+    override var accessibilityTraits: UIAccessibilityTraits {
+        get { .button }
+        set {} // swiftlint:disable:this unused_setter_value
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.cardView.layer.roundCorners(for: .default, masksToBounds: false)

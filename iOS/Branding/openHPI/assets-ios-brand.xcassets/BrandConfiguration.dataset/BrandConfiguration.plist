@@ -37,7 +37,7 @@
 	<key>features</key>
 	<dict>
 		<key>enableChannels</key>
-		<false/>
+		<true/>
 		<key>enableDocuments</key>
 		<false/>
 		<key>enableRecap</key>

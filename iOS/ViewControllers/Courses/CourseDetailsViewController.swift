@@ -170,7 +170,7 @@ class CourseDetailsViewController: UIViewController {
 
         self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
             playerViewController.startPlayback()
-            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
         }
     }
 

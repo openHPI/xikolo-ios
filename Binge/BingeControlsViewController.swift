@@ -446,7 +446,7 @@ class BingeControlsViewController: UIViewController {
     @objc private func changeProgress(sender: UISlider, event: UIEvent) {
         switch event.allTouches?.first?.phase {
         case .began:
-            self.delegate?.stopAutoHideOfControlsView()
+            self.delegate?.stopAutoHideOfControlsOverlay()
         case .ended:
             self.delegate?.seekTo(progress: Double(sender.value))
         default:

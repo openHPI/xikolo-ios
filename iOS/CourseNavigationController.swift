@@ -22,14 +22,18 @@ class CourseNavigationController: UINavigationController {
         }
     }
 
-    private var pendingGestureRecognizer: UIGestureRecognizer?
     private var lastNavigationBarProgress: CGFloat?
     private var barTintStyle: BarTintStyle = .light {
         didSet {
             self.setNeedsStatusBarAppearanceUpdate()
-            if let lastNavigationBarProgress = self.lastNavigationBarProgress {
-                self.updateNavigationBar(forProgress: lastNavigationBarProgress)
-            }
+        }
+    }
+
+    var dismissalGestureRecognizer: UIGestureRecognizer? {
+        didSet {
+            guard let view = self.viewIfLoaded else { return }
+            guard let gestureRecognizer = self.dismissalGestureRecognizer else { return }
+            view.addGestureRecognizer(gestureRecognizer)
         }
     }
 
@@ -47,7 +51,7 @@ class CourseNavigationController: UINavigationController {
         self.navigationBar.isTranslucent = true
         self.navigationBar.tintColor = .white
 
-        if let gestureRecognizer = self.pendingGestureRecognizer {
+        if let gestureRecognizer = self.dismissalGestureRecognizer {
             self.view.addGestureRecognizer(gestureRecognizer)
         }
     }
@@ -108,7 +112,7 @@ class CourseNavigationController: UINavigationController {
         var blue: CGFloat = 0
         color.getRed(&red, green: &green, blue: &blue, alpha: nil)
 
-        // Refers to this suggeted formula: https://www.w3.org/WAI/ER/WD-AERT/#color-contrast
+        // Refers to this suggested formula: https://www.w3.org/WAI/ER/WD-AERT/#color-contrast
         let brightnessValue = (red * 299 + green * 587 + blue * 114) / 1000 * 255
         let isBright = brightnessValue > 125
 
@@ -119,28 +123,40 @@ class CourseNavigationController: UINavigationController {
         self.lastNavigationBarProgress = progress
 
         let headerHidden = self.traitCollection.verticalSizeClass == .compact
-        var mappedProgress = headerHidden || self.viewControllers.count > 1 ? 1.0 : progress
+        var mappedProgress = headerHidden ? 1.0 : progress
         mappedProgress = max(0, min(mappedProgress, 1)) // clamping
         mappedProgress = pow(mappedProgress, 3) // ease in
         mappedProgress = min(mappedProgress, 0.995) // otherwise the bar switches to translucent
 
-        let navigationBarAlpha = mappedProgress
+        self.updateNavigationBarTintColor(forMappedProgress: mappedProgress)
+        self.updateNavigationBarBackground(forMappedProgress: mappedProgress)
+    }
 
+    func updateNavigationBarTintColor(forMappedProgress mappedProgress: CGFloat) {
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
         var brightness: CGFloat = 0
         var alpha: CGFloat = 1
         Brand.default.colors.window.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
 
-        let tintColor: UIColor
-        switch self.barTintStyle {
-        case .light:
-            tintColor = UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: (1 - mappedProgress * (1 - brightness)), alpha: alpha)
-        case .dark:
-            tintColor = UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: mappedProgress * brightness, alpha: alpha)
-        }
+        let tintColor: UIColor = {
+            if #available(iOS 13, *) {
+                if self.traitCollection.userInterfaceStyle == .dark {
+                    return UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: (1 - mappedProgress * (1 - brightness)), alpha: alpha)
+                } else {
+                    return UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: mappedProgress * brightness, alpha: alpha)
+                }
+
+            } else {
+                return UIColor(hue: hue, saturation: saturation * mappedProgress, brightness: mappedProgress * brightness, alpha: alpha)
+            }
+        }()
 
         self.navigationBar.tintColor = tintColor
+    }
+
+    private func updateNavigationBarBackground(forMappedProgress mappedProgress: CGFloat) {
+        let navigationBarAlpha = mappedProgress
 
         var transparentBackground: UIImage
 
@@ -167,14 +183,6 @@ class CourseNavigationController: UINavigationController {
         self.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(mappedProgress),
         ]
-    }
-
-    func addDismissalGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {
-        if let view = self.viewIfLoaded {
-            view.addGestureRecognizer(gestureRecognizer)
-        } else {
-            self.pendingGestureRecognizer = gestureRecognizer
-        }
     }
 
     @objc func closeCourse() {

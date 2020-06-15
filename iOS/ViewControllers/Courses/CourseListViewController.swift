@@ -253,7 +253,7 @@ extension CourseListViewController: ChannelHeaderViewDelegate {
         playerViewController.asset = AVURLAsset(url: url)
         self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
             playerViewController.startPlayback()
-            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
         }
     }
 

@@ -252,7 +252,7 @@ class VideoViewController: UIViewController {
         video.managedObjectContext?.refresh(video, mergeChanges: true)
 
         self.playerViewController?.configure(for: video)
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
     }
 
     @IBAction private func openSlides() {
@@ -458,7 +458,7 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         TrackingHelper.createEvent(.videoPlaybackSeek, resourceType: .video, resourceId: video.id, on: self, context: context)
     }
 
-    func didReachEndofPlayback() {
+    func didReachEndOfPlayback() {
         guard let video = self.video else { return }
         TrackingHelper.createEvent(.videoPlaybackEnd, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }

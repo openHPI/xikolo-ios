@@ -1,4 +1,13 @@
 
+/* Accessibility label for actions button in navigation bar of the course item view */
+"accessibility-label.course-item.navigation-bar.item.actions" = "Actions for item";
+
+/* Accessibility label for actions button in navigation bar of the course card view */
+"accessibility-label.course.navigation-bar.item.actions" = "Actions for course";
+
+/* Accessibility label for close button in navigation bar of the course card view */
+"accessibility-label.course.navigation-bar.item.close" = "Course course";
+
 /* title of alert for stream download errors */
 "alert.download-error.documents.title" = "Error while downloading document";
 

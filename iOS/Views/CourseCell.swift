@@ -51,6 +51,10 @@ class CourseCell: UICollectionViewCell {
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var statusView: UIView!
 
+    var previewView: UIView? {
+        return self.courseImage
+    }
+
     override var isAccessibilityElement: Bool {
         get { true }
         set {}

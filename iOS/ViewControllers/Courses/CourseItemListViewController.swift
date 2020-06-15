@@ -41,6 +41,10 @@ class CourseItemListViewController: UITableViewController {
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 40.0, bottom: 0, right: 0)
         if #available(iOS 11.0, *) {
             self.tableView.separatorInsetReference = .fromAutomaticInsets
+
+            self.tableView.dragInteractionEnabled = true
+            self.tableView.dragDelegate = self
+
         }
 
         NotificationCenter.default.addObserver(self,
@@ -332,4 +336,14 @@ extension CourseItemListViewController: CourseAreaViewController {
         self.scrollDelegate = delegate
     }
 
+}
+
+@available(iOS 11.0, *)
+extension CourseItemListViewController: UITableViewDragDelegate {
+
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let selectedItem = self.dataSource.object(at: indexPath)
+        let itemCell = tableView.cellForRow(at: indexPath) as? CourseItemCell
+        return [selectedItem.dragItem(with: itemCell?.previewView)]
+    }
 }

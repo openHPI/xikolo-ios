@@ -22,6 +22,8 @@
 		0280CB14237CBD4100B774BE /* SectionProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0280CB13237CBD4100B774BE /* SectionProgressCell.swift */; };
 		02AA78BB23A0176F00CD13F5 /* CourseProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02AA78BD23A0176F00CD13F5 /* CourseProgress.storyboard */; };
 		02E20BE823882CFB006C9345 /* VisitProgressStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */; };
+		02F6D81F24977B6900BB2B80 /* CourseItem+NSItemProviderWriting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F6D81E24977B6900BB2B80 /* CourseItem+NSItemProviderWriting.swift */; };
+		02F6D821249793C700BB2B80 /* CourseItem+DragItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F6D820249793C700BB2B80 /* CourseItem+DragItem.swift */; };
 		02FE3EAE235502C300E3ECB4 /* CourseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */; };
 		10DF870DD59FA369A3E513B3 /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D642EAB767C449225D952C21 /* Pods_Common.framework */; };
 		4A3AD2E1F775A9AFF5F1D401 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7425AC35D1422FBFEBAB2B64 /* Pods_iOS.framework */; };
@@ -536,6 +538,8 @@
 		02AA78BF23A0177B00CD13F5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseProgress.strings; sourceTree = "<group>"; };
 		02D9353E23C7BE94008BE0C7 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitProgressStackView.swift; sourceTree = "<group>"; };
+		02F6D81E24977B6900BB2B80 /* CourseItem+NSItemProviderWriting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseItem+NSItemProviderWriting.swift"; sourceTree = "<group>"; };
+		02F6D820249793C700BB2B80 /* CourseItem+DragItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseItem+DragItem.swift"; sourceTree = "<group>"; };
 		02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgress.swift; sourceTree = "<group>"; };
 		03E1911F3C87B02F9B30465F /* Pods-Stockpile-Tests.opensap-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile-Tests.opensap-ios-release.xcconfig"; path = "Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests.opensap-ios-release.xcconfig"; sourceTree = "<group>"; };
 		0675EF0736772D5AB19C88BB /* Pods-Common.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.openhpi-ios-release.xcconfig"; path = "Target Support Files/Pods-Common/Pods-Common.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
@@ -1423,6 +1427,8 @@
 				02842F192458DCF60036411D /* Course+DragItem.swift */,
 				50F6DAD62497440900A85A8B /* Course+NSItemProviderWriting.swift */,
 				820CCEE523D05B140066CE11 /* CourseItem+share.swift */,
+				02F6D820249793C700BB2B80 /* CourseItem+DragItem.swift */,
+				02F6D81E24977B6900BB2B80 /* CourseItem+NSItemProviderWriting.swift */,
 				50F6DAD82497444A00A85A8B /* URLDropRepresentation.swift */,
 			);
 			path = Model;
@@ -3088,6 +3094,7 @@
 				507D02F92436279F0009F12B /* Course+Actions.swift in Sources */,
 				508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */,
 				50CF1F7D20DCDBFC0011BFE9 /* CourseDetailsViewController.swift in Sources */,
+				02F6D81F24977B6900BB2B80 /* CourseItem+NSItemProviderWriting.swift in Sources */,
 				503CEE962177082D00F34694 /* ProcotoredItemViewController.swift in Sources */,
 				502CBE2824338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift in Sources */,
 				0280CB14237CBD4100B774BE /* SectionProgressCell.swift in Sources */,
@@ -3121,6 +3128,7 @@
 				50CF1F9F20DCDBFC0011BFE9 /* CourseHeaderView.swift in Sources */,
 				50CF1FA020DCDBFC0011BFE9 /* VideoViewController.swift in Sources */,
 				508AB2C22109F0DE0079EAE5 /* DocumentHeader.swift in Sources */,
+				02F6D821249793C700BB2B80 /* CourseItem+DragItem.swift in Sources */,
 				50CF1FA520DCDBFC0011BFE9 /* CourseViewController.swift in Sources */,
 				820CCEE623D05B140066CE11 /* CourseItem+share.swift in Sources */,
 				508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguration.swift in Sources */,

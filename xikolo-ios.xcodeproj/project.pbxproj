@@ -220,6 +220,7 @@
 		50A2042722FAD324004371C0 /* UITraitCollection+performAsCurrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2042622FAD324004371C0 /* UITraitCollection+performAsCurrent.swift */; };
 		50A7258F2339188000DE8338 /* CourseDates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A725912339188000DE8338 /* CourseDates.storyboard */; };
 		50A725942339188E00DE8338 /* CourseDateOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A725962339188E00DE8338 /* CourseDateOverview.storyboard */; };
+		50A9715C2498F14300D78FCA /* CourseItem+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A9715B2498F14300D78FCA /* CourseItem+URL.swift */; };
 		50B31DFB22C49D11007DDDA4 /* DateLabelHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */; };
 		50B31DFD22C4B660007DDDA4 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFC22C4B660007DDDA4 /* Locale.swift */; };
 		50B31DFF22C4C570007DDDA4 /* BrightFuturesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */; };
@@ -873,6 +874,7 @@
 		50A725932339188400DE8338 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDates.strings; sourceTree = "<group>"; };
 		50A725952339188E00DE8338 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseDateOverview.storyboard; sourceTree = "<group>"; };
 		50A725982339189600DE8338 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateOverview.strings; sourceTree = "<group>"; };
+		50A9715B2498F14300D78FCA /* CourseItem+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseItem+URL.swift"; sourceTree = "<group>"; };
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
@@ -1344,6 +1346,7 @@
 				50046F70216BBAD200D59073 /* BrightFuture+earliest.swift */,
 				50B31DFC22C4B660007DDDA4 /* Locale.swift */,
 				5050D66623A00FDA00E48498 /* CourseItem+base62UUID.swift */,
+				50A9715B2498F14300D78FCA /* CourseItem+URL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3314,6 +3317,7 @@
 				50FA2E0820E4B22E00656776 /* CoursePeriodFormatter.swift in Sources */,
 				5037FC1A242DF83100B4E8CE /* AsyncImageTextAttachement.swift in Sources */,
 				50FA2E2620E4B24A00656776 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
+				50A9715C2498F14300D78FCA /* CourseItem+URL.swift in Sources */,
 				508AB2EC211448E40079EAE5 /* BrandFeatures.swift in Sources */,
 				8251A50B237182F200A443A9 /* HelpdeskTicket.swift in Sources */,
 				50FA2E4B20E4B25800656776 /* UserProfile.swift in Sources */,

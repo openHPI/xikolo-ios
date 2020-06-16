@@ -16,7 +16,9 @@ extension CourseItem {
         // Use default preview if no preview view was passed
         dragItem.previewProvider = previewView.flatMap { view -> (() -> UIDragPreview?) in
             return { () -> UIDragPreview? in
-                return UIDragPreview(view: view)
+                let parameters = UIDragPreviewParameters()
+                parameters.visiblePath = UIBezierPath(roundedRect: view.bounds, cornerRadius: CALayer.CornerStyle.default.rawValue)
+                return UIDragPreview(view: view, parameters: parameters)
             }
         }
 

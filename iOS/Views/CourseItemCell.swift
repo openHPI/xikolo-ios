@@ -18,7 +18,7 @@ class CourseItemCell: UITableViewCell {
     weak var delegate: (CourseItemCellDelegate & UserActionsDelegate)?
 
     var previewView: UIView? {
-        return self.iconView
+        return self
     }
 
     override func awakeFromNib() {

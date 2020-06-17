@@ -9,14 +9,34 @@ import Stockpile
 
 public struct XikoloNetworker: SyncNetworker {
 
-    private var session: URLSession {
+    // TODO: move session configuration to nested enum?
+
+    public static let defaultSessionConfiguration: URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForResource = 90
         if #available(iOS 11, *) {
             configuration.waitsForConnectivity = true
         }
+        return configuration
+    }()
 
-        return URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
+    public static let nonExpensiveSessionConfiguration: URLSessionConfiguration = {
+        let configuration = Self.defaultSessionConfiguration
+
+        if #available(iOS 13, *) {
+            configuration.allowsExpensiveNetworkAccess = false
+        } else {
+            configuration.allowsCellularAccess = false
+        }
+
+        return configuration
+    }()
+
+    private let session: URLSession
+
+    public init(sessionConfiguration: URLSessionConfiguration? = nil) {
+        let sessionConfiguration = sessionConfiguration ?? Self.defaultSessionConfiguration
+        self.session = URLSession(configuration: sessionConfiguration, delegate: nil, delegateQueue: nil)
     }
 
     public func perform(request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
@@ -45,7 +65,7 @@ public struct XikoloSyncEngine: SyncEngine {
         return persistentContainerQueue
     }()
 
-    public let networker = XikoloNetworker()
+    public let networker: XikoloNetworker
 
     public let baseURL: URL = Routes.api
 
@@ -63,7 +83,9 @@ public struct XikoloSyncEngine: SyncEngine {
         return Self.persistentContainerQueue
     }()
 
-    public init() {}
+    public init(networker: XikoloNetworker = XikoloNetworker()) {
+        self.networker = networker
+    }
 
     public func convertSyncError(_ error: SyncError) -> XikoloError {
         return XikoloError.synchronization(error)

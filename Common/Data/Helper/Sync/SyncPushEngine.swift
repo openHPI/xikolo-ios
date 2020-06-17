@@ -16,12 +16,9 @@ public class SyncPushEngineManager {
         return queue
     }()
 
-    let syncEngine: XikoloSyncEngine
     private var pushEngines: [SyncPushEngine] = []
 
-    public init(syncEngine: XikoloSyncEngine) {
-        self.syncEngine = syncEngine
-    }
+    public init() {}
 
     public func startObserving() {
         NotificationCenter.default.addObserver(self,
@@ -34,13 +31,17 @@ public class SyncPushEngineManager {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: CoreDataHelper.viewContext)
     }
 
-    public func register<Resource>(_ newType: Resource.Type) where Resource: NSManagedObject & Pushable {
-        let pushEngine = SyncPushEnginePush(type: Resource.self, manager: self)
+    public func register<Resource>(_ newType: Resource.Type, with sessionConfiguration: URLSessionConfiguration? = nil) where Resource: NSManagedObject & Pushable {
+        let networker = XikoloNetworker(sessionConfiguration: sessionConfiguration)
+        let syncEngine = XikoloSyncEngine(networker: networker)
+        let pushEngine = SyncPushEnginePush(type: Resource.self, manager: self, syncEngine: syncEngine)
         self.pushEngines.append(pushEngine)
     }
 
-    public func register<Resource>(_ newType: Resource.Type) where Resource: NSManagedObject & Pushable & Pullable {
-        let pushEngine = SyncPushEnginePushPull(type: Resource.self, manager: self)
+    public func register<Resource>(_ newType: Resource.Type, with sessionConfiguration: URLSessionConfiguration? = nil) where Resource: NSManagedObject & Pushable & Pullable {
+        let networker = XikoloNetworker(sessionConfiguration: sessionConfiguration)
+        let syncEngine = XikoloSyncEngine(networker: networker)
+        let pushEngine = SyncPushEnginePushPull(type: Resource.self, manager: self, syncEngine: syncEngine)
         self.pushEngines.append(pushEngine)
     }
 
@@ -69,11 +70,13 @@ protocol SyncPushEngine {
 class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObject & Pushable {
 
     private let resourceType: Resource.Type
+    private let syncEngine: XikoloSyncEngine
     weak var manager: SyncPushEngineManager?
 
-    init(type: Resource.Type, manager: SyncPushEngineManager) {
+    init(type: Resource.Type, manager: SyncPushEngineManager, syncEngine: XikoloSyncEngine) {
         self.resourceType = type
         self.manager = manager
+        self.syncEngine = syncEngine
     }
 
     func check() {
@@ -112,9 +115,9 @@ class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObje
                 var pushFuture: Future<Void, XikoloError>?
 
                 if resource.objectState == .new {
-                    pushFuture = self.manager?.syncEngine.createResource(resource)
+                    pushFuture = self.syncEngine.createResource(resource)
                 } else {
-                    logger.warning("unhandle resource modification")
+                    logger.warning("Unhandled resource modification")
                 }
 
                 if let error = pushFuture?.forced().error {
@@ -146,11 +149,13 @@ class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObje
 class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManagedObject & Pushable & Pullable {
 
     private let resourceType: Resource.Type
+    private let syncEngine: XikoloSyncEngine
     weak var manager: SyncPushEngineManager?
 
-    init(type: Resource.Type, manager: SyncPushEngineManager) {
+    init(type: Resource.Type, manager: SyncPushEngineManager, syncEngine: XikoloSyncEngine) {
         self.resourceType = type
         self.manager = manager
+        self.syncEngine = syncEngine
     }
 
     func check() {
@@ -189,11 +194,11 @@ class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManaged
 
                 var pushFuture: Future<Void, XikoloError>?
                 if resource.objectState == .modified {
-                    pushFuture = self.manager?.syncEngine.saveResource(resource)
+                    pushFuture = self.syncEngine.saveResource(resource)
                 } else if resource.objectState == .deleted {
-                    pushFuture = self.manager?.syncEngine.deleteResource(resource)
+                    pushFuture = self.syncEngine.deleteResource(resource)
                 } else {
-                    logger.warning("unhandle resource modification")
+                    logger.warning("Unhandled resource modification")
                 }
 
                 // it makes only sense to retry on network errors

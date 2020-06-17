@@ -18,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let userProfileHelperDelegateInstance = UserProfileHelperDelegateInstance()
 
     private lazy var pushEngineManager: SyncPushEngineManager = {
-        let engine = XikoloSyncEngine()
-        return SyncPushEngineManager(syncEngine: engine)
+        return SyncPushEngineManager()
     }()
 
     @available(iOS, obsoleted: 13.0)
@@ -96,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.pushEngineManager.register(Announcement.self)
             self.pushEngineManager.register(CourseItem.self)
             self.pushEngineManager.register(Enrollment.self)
-            self.pushEngineManager.register(TrackingEvent.self)
+            self.pushEngineManager.register(TrackingEvent.self, with: XikoloNetworker.nonExpensiveSessionConfiguration)
             self.pushEngineManager.startObserving()
 
             StreamPersistenceManager.shared.restoreDownloads()

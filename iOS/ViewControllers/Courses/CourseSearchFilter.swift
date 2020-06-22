@@ -51,8 +51,10 @@ enum CourseSearchFilter: CaseIterable {
         case .language:
             let fetchRequest = CourseHelper.FetchRequest.distinctLanguages
             let dicts = try? CoreDataHelper.viewContext.fetch(fetchRequest)
-            let values = dicts?.flatMap(\.allValues).compactMap { $0 as? String }
-            return values ?? []
+            let allValues = dicts?.flatMap(\.allValues).compactMap { $0 as? String } ?? []
+            let preferredLocalizations = Bundle.preferredLocalizations(from: allValues)
+            let otherLocalizations = allValues.filter { !preferredLocalizations.contains($0) }
+            return preferredLocalizations + otherLocalizations
         case .category:
             let fetchRequest = CourseHelper.FetchRequest.categories
             let dicts = try? CoreDataHelper.viewContext.fetch(fetchRequest)

@@ -42,7 +42,7 @@ class CoursePreviewViewController: UIViewController {
         self.teacherLabel.text = self.course.teachers
 
         self.dateLabel.text = CoursePeriodFormatter.string(from: self.course)
-        self.languageLabel.text = self.course.localizedLanguage
+        self.languageLabel.text = self.course.language.flatMap(LanguageLocalizer.nativeDisplayName(for:))
 
         self.descriptionView.textContainerInset = .zero
         self.descriptionView.textContainer.lineFragmentPadding = 0

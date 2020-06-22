@@ -56,17 +56,6 @@ public final class Course: NSManagedObject {
         }
     }
 
-    public static func localize(language: String) -> String? {
-        let localeIdentifier = language == "cn" ? "zh" : language
-        let locale = NSLocale(localeIdentifier: localeIdentifier)
-        let displayName = locale.displayName(forKey: NSLocale.Key.languageCode, value: localeIdentifier)
-        return displayName?.capitalized
-    }
-
-    public var localizedLanguage: String? {
-        return self.language.flatMap(Self.localize)
-    }
-
     public var url: URL? {
         guard let slug = self.slug else {
             return nil

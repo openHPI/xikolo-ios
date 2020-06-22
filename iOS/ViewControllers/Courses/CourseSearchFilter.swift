@@ -76,7 +76,7 @@ enum CourseSearchFilter: CaseIterable {
     func title(for option: String) -> String? {
         switch self {
         case .language:
-            return Course.localize(language: option)
+            return LanguageLocalizer.nativeDisplayName(for: option)
         default:
             return option
         }
@@ -85,9 +85,7 @@ enum CourseSearchFilter: CaseIterable {
     func subtitle(for option: String) -> String? {
         switch self {
         case .language:
-            let localeIdentifier = option == "cn" ? "zh" : option
-            let locale = NSLocale(localeIdentifier: Locale.current.identifier)
-            return locale.displayName(forKey: .languageCode, value: localeIdentifier)
+            return LanguageLocalizer.localizedDisplayName(for: option)
         default:
             return nil
         }

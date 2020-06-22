@@ -178,6 +178,7 @@
 		506BDB962423822C0002DBDE /* AdditionalLearningMaterialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506BDB952423822C0002DBDE /* AdditionalLearningMaterialCell.xib */; };
 		506BDB98242385D40002DBDE /* AdditionalLearningMaterialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506BDB97242385D40002DBDE /* AdditionalLearningMaterialCell.swift */; };
 		506D7E1B2104B7730018D9E2 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506D7E1A2104B7730018D9E2 /* CourseCell.xib */; };
+		506E5B2224A102AA00AE899C /* LanguageLocalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E5B2124A102AA00AE899C /* LanguageLocalizer.swift */; };
 		50761B5820FCADD700CEDAF9 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
 		5077012E218F38BC005568A6 /* InnerPillLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5077012D218F38BC005568A6 /* InnerPillLabel.swift */; };
 		507896C8233DEA1A00EA65E5 /* Course+share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507896C7233DEA1A00EA65E5 /* Course+share.swift */; };
@@ -820,6 +821,7 @@
 		506BDB952423822C0002DBDE /* AdditionalLearningMaterialCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalLearningMaterialCell.xib; sourceTree = "<group>"; };
 		506BDB97242385D40002DBDE /* AdditionalLearningMaterialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalLearningMaterialCell.swift; sourceTree = "<group>"; };
 		506D7E1A2104B7730018D9E2 /* CourseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseCell.xib; sourceTree = "<group>"; };
+		506E5B2124A102AA00AE899C /* LanguageLocalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageLocalizer.swift; sourceTree = "<group>"; };
 		5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNavigationController.swift; sourceTree = "<group>"; };
 		50761B3F20FCAC5900CEDAF9 /* iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50761B4320FCAC5A00CEDAF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1205,6 +1207,7 @@
 				5037FC14242DF6E600B4E8CE /* Markdown */,
 				2490C4CA1D1C5A9900F42949 /* Settings.swift */,
 				ABA0BB411E71AD4A007C6C9E /* CoursePeriodFormatter.swift */,
+				506E5B2124A102AA00AE899C /* LanguageLocalizer.swift */,
 				50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */,
 				24B651501D3595C100624DBC /* NetworkIndicator.swift */,
 				504D83F9215B57D4006F2447 /* ErrorReporter.swift */,
@@ -3336,6 +3339,7 @@
 				50FA2E1B20E4B24300656776 /* QuizHelper.swift in Sources */,
 				5037FC18242DF7BE00B4E8CE /* NSLayoutManager+setNeedLayout.swift in Sources */,
 				50FA2DFE20E4B1FB00656776 /* Error.swift in Sources */,
+				506E5B2224A102AA00AE899C /* LanguageLocalizer.swift in Sources */,
 				0262E6C523729C29007C9057 /* ExerciseProgress.swift in Sources */,
 				50FA2E2120E4B24A00656776 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				50FA2E5A20E4B26400656776 /* Optional+require.swift in Sources */,

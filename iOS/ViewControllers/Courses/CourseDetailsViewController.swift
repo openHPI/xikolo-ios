@@ -71,7 +71,7 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func updateView(animated: Bool = false) {
-        self.languageView.text = self.course.localizedLanguage
+        self.languageView.text = self.course.language.flatMap(LanguageLocalizer.nativeDisplayName(for:))
         self.teacherView.text = self.course.teachers
 
         self.dateView.text = CoursePeriodFormatter.string(from: self.course)

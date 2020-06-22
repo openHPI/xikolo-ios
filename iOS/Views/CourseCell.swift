@@ -121,7 +121,7 @@ class CourseCell: UICollectionViewCell {
             return " " // forces text into teachers label to avoid misplacement for course image
         }()
         self.teacherLabel.isHidden = !Brand.default.features.showCourseTeachers
-        self.languageLabel.text = course.localizedLanguage
+        self.languageLabel.text = course.language.flatMap(LanguageLocalizer.nativeDisplayName(for:))
         self.dateLabel.text = CoursePeriodFormatter.string(from: course)
 
         self.statusView.isHidden = true

@@ -7,10 +7,14 @@ import UIKit
 
 extension CALayer {
 
-    enum CornerStyle: CGFloat {
-        case searchField = 10
-        case `default` = 6
-        case inner = 4
+    struct CornerStyle: Hashable, Equatable, RawRepresentable {
+
+        static let searchField = CALayer.CornerStyle(rawValue: 10)
+        static let `default` = CALayer.CornerStyle(rawValue: 6)
+        static let inner = CALayer.CornerStyle(rawValue: 4)
+
+        let rawValue: CGFloat
+
     }
 
     func roundCorners(for style: CALayer.CornerStyle, masksToBounds: Bool = true) {

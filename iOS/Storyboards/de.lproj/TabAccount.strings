@@ -58,3 +58,6 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Category"; ObjectID = "His-qi-4tJ"; */
 "His-qi-4tJ.headerTitle" = "Kategorie";
+
+/* Class = "UINavigationItem"; title = "Appearance"; ObjectID = "V5t-n8-zZr"; */
+"V5t-n8-zZr.title" = "Erscheinungsbild";

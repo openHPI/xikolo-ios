@@ -418,6 +418,7 @@
 		8251A50B237182F200A443A9 /* HelpdeskTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50A237182F200A443A9 /* HelpdeskTicket.swift */; };
 		8251A50D23718A4500A443A9 /* HelpdeskTicketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */; };
 		82773EF6242E245C0007F651 /* UIActivityViewController+share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82773EF5242E245C0007F651 /* UIActivityViewController+share.swift */; };
+		828707E924AB8ECE00CE60CB /* AppearanceSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828707E824AB8ECE00CE60CB /* AppearanceSettingsViewController.swift */; };
 		828FF16523EF4424006515B5 /* PeerAssessmentHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FF16423EF4424006515B5 /* PeerAssessmentHintViewController.swift */; };
 		828FF16A23EF5DE1006515B5 /* CourseLearningsPeerAssessment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 828FF16C23EF5DE1006515B5 /* CourseLearningsPeerAssessment.storyboard */; };
 		82BE606D232FBB86000353B4 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82BE606F232FBB86000353B4 /* CourseDetails.storyboard */; };
@@ -1009,6 +1010,7 @@
 		8251A50A237182F200A443A9 /* HelpdeskTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskTicket.swift; sourceTree = "<group>"; };
 		8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskTicketHelper.swift; sourceTree = "<group>"; };
 		82773EF5242E245C0007F651 /* UIActivityViewController+share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityViewController+share.swift"; sourceTree = "<group>"; };
+		828707E824AB8ECE00CE60CB /* AppearanceSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsViewController.swift; sourceTree = "<group>"; };
 		828FF16423EF4424006515B5 /* PeerAssessmentHintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerAssessmentHintViewController.swift; sourceTree = "<group>"; };
 		828FF16B23EF5DE1006515B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseLearningsPeerAssessment.storyboard; sourceTree = "<group>"; };
 		828FF16E23EF5E3B006515B5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseLearningsPeerAssessment.strings; sourceTree = "<group>"; };
@@ -1913,6 +1915,7 @@
 				5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */,
 				7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */,
 				5044C8E421A85488006490CE /* DownloadedContentTypeListViewController.swift */,
+				828707E824AB8ECE00CE60CB /* AppearanceSettingsViewController.swift */,
 				508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguration.swift */,
 				700398C121A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift */,
 				82D13D0B235726E70006A0D9 /* HelpdeskViewController.swift */,
@@ -3203,6 +3206,7 @@
 				507D02F424360A090009F12B /* HelpdeskTicketTopicListViewController.swift in Sources */,
 				50CF1FD920DCDBFC0011BFE9 /* CoursePresentationController.swift in Sources */,
 				50CF1FDA20DCDBFC0011BFE9 /* CourseNavigationController.swift in Sources */,
+				828707E924AB8ECE00CE60CB /* AppearanceSettingsViewController.swift in Sources */,
 				50CF1FE020DCDBFC0011BFE9 /* CoreDataTableViewDataSource.swift in Sources */,
 				5054B2E72108B30E00CE9067 /* DocumentListViewController.swift in Sources */,
 				50CF1FE120DCDBFC0011BFE9 /* CourseAreaViewController.swift in Sources */,

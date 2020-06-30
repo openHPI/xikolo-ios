@@ -326,6 +326,9 @@
 /* cell title for helpdesk */
 "settings.cell-title.app-helpdesk" = "Helpdesk";
 
+/* cell title for appearance settings */
+"settings.cell-title.appearance-settings" = "Erscheinungsbild";
+
 /* cell title for certificates */
 "settings.cell-title.certificates" = "Leistungsnachweise";
 
@@ -412,3 +415,12 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video-Qualität mit WLAN";
+
+/* Title for selecting dark apperance option */
+"appearance.settings-dark" = "Dunkel";
+
+/* Title for selecting device apperance option */
+"appearance.settings-device" = "System";
+
+/* Title for selecting light apperance option */
+"appearance.settings-light" = "Hell";

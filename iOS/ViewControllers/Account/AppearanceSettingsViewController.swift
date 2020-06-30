@@ -21,14 +21,14 @@ class AppearanceSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsOptionBasicCell", for: indexPath)
         switch indexPath.row {
-            case 0:
-                cell.textLabel?.text = NSLocalizedString("appearance.settings-device", comment: "Title for selecting device apperance option")
-            case 1:
-                cell.textLabel?.text = NSLocalizedString("appearance.settings-light", comment: "Title for selecting light apperance option")
-            case 2:
-                cell.textLabel?.text = NSLocalizedString("appearance.settings-dark", comment: "Title for selecting dark apperance option")
-            default:
-                cell.textLabel?.text = nil
+        case 0:
+            cell.textLabel?.text = NSLocalizedString("appearance.settings-device", comment: "Title for selecting device apperance option")
+        case 1:
+            cell.textLabel?.text = NSLocalizedString("appearance.settings-light", comment: "Title for selecting light apperance option")
+        case 2:
+            cell.textLabel?.text = NSLocalizedString("appearance.settings-dark", comment: "Title for selecting dark apperance option")
+        default:
+            cell.textLabel?.text = nil
         }
 
         return cell
@@ -36,10 +36,10 @@ class AppearanceSettingsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-            case 0:
-                return NSLocalizedString("settings.cell-title.appearance-settings", comment: "cell title for appearance settings")
-            default:
-                return nil
+        case 0:
+            return NSLocalizedString("settings.cell-title.appearance-settings", comment: "cell title for appearance settings")
+        default:
+            return nil
         }
 
     }

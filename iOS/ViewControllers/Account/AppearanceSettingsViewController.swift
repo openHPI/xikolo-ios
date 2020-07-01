@@ -48,6 +48,7 @@ class AppearanceSettingsViewController: UITableViewController {
             default:
                 userInterfaceStyle = .unspecified
             }
+            
             sceneDelegate.configureStyle(for: userInterfaceStyle)
         }
     }

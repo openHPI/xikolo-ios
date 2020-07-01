@@ -29,6 +29,15 @@
 /* App state message for server maintenance */
 "app-state.maintenance.server maintenance on %@" = "Server maintenance on %@";
 
+/* Title for selecting dark apperance option */
+"appearance.settings-dark" = "Dark";
+
+/* Title for selecting device apperance option */
+"appearance.settings-device" = "System";
+
+/* Title for selecting light apperance option */
+"appearance.settings-light" = "Light";
+
 /* button title for starting playback for channel teaser video */
 "channel-header.play-teaser" = "Play Teaser";
 
@@ -415,12 +424,3 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video Quality using WiFi";
-
-/* Title for selecting dark apperance option */
-"appearance.settings-dark" = "Dark";
-
-/* Title for selecting device apperance option */
-"appearance.settings-device" = "Device";
-
-/* Title for selecting light apperance option */
-"appearance.settings-light" = "Light";

@@ -20,7 +20,7 @@ class AccountViewControllerDataSource: NSObject {
         return SegueItem(title: title, segueIdentifier: R.segue.accountViewController.showDownloadSettings)
     }()
 
-    private lazy var showAppearanseettingsItem: DataSourceItem = {
+    private lazy var showAppearanceSettingsItem: DataSourceItem = {
         let title = NSLocalizedString("settings.cell-title.appearance-settings", comment: "cell title for appearance settings")
         return SegueItem(title: title, segueIdentifier: R.segue.accountViewController.showAppearanceSettings)
     }()
@@ -78,9 +78,16 @@ class AccountViewControllerDataSource: NSObject {
             DataSourceSection(title: settingsSectionTitle, items: [
                 self.showStreamingSettingsItem,
                 self.showDownloadSettingsItem,
-                self.showAppearanseettingsItem,
             ]),
         ]
+
+        if #available(iOS 13, *) {
+            sections += [
+                DataSourceSection(items: [
+                    self.showAppearanceSettingsItem,
+                ]),
+            ]
+        }
 
         if UserProfileHelper.shared.isLoggedIn {
             sections += [

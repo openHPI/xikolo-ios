@@ -72,6 +72,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return scene.userActivity
     }
 
+    func configureStyle(for style: UIUserInterfaceStyle) {
+        window?.overrideUserInterfaceStyle = style
+    }
 }
 
 @available(iOS 13.0, *)

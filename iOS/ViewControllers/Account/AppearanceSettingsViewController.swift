@@ -34,6 +34,24 @@ class AppearanceSettingsViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if #available(iOS 13.0, *) {
+            guard let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate else { return }
+            let userInterfaceStyle: UIUserInterfaceStyle
+            switch indexPath.row {
+            case 0:
+                userInterfaceStyle = .unspecified
+            case 1:
+                userInterfaceStyle = .light
+            case 2:
+                userInterfaceStyle = .dark
+            default:
+                userInterfaceStyle = .unspecified
+            }
+            sceneDelegate.configureStyle(for: userInterfaceStyle)
+        }
+    }
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:

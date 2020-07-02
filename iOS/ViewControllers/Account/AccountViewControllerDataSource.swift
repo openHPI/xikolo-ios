@@ -79,6 +79,8 @@ class AccountViewControllerDataSource: NSObject {
             sections += [
                 DataSourceSection(items: [
                     self.showUserProfile,
+                    self.showCertificatesItem,
+                    self.showDownloadedContentItem,
                 ]),
             ]
         }
@@ -89,15 +91,6 @@ class AccountViewControllerDataSource: NSObject {
                 self.showDownloadSettingsItem,
             ]),
         ]
-
-        if UserProfileHelper.shared.isLoggedIn {
-            sections += [
-                DataSourceSection(items: [
-                    self.showDownloadedContentItem,
-                    self.showCertificatesItem,
-                ]),
-            ]
-        }
 
         sections += [
             DataSourceSection(title: aboutSectionTitle, items: [

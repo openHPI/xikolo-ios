@@ -51,6 +51,8 @@ public enum Routes {
             .appendingQueryItem(URLQueryItem(name: "redirect_to", value: "/auth/" + platformTitle))
     }()
 
+    public static let profile = Self.base.appendingPathComponents(["dashboard", "profile"]).appendingInAppParameter()
+
     public static let courses = Self.base.appendingPathComponent("courses")
     public static let recap = Self.base.appendingPathComponent("learn")
 

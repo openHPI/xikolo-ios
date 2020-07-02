@@ -12,6 +12,7 @@ import UIKit
 class AccountViewController: UITableViewController {
 
     private lazy var dataSource = AccountViewControllerDataSource()
+    private lazy var shouldSynchronizeUser = false
 
     @IBOutlet private weak var headerImage: UIImageView!
 
@@ -24,6 +25,7 @@ class AccountViewController: UITableViewController {
         super.viewDidLoad()
 
         self.tableView.dataSource = self.dataSource
+        self.navigationController?.delegate = self
 
         self.updateUIAfterLoginStateChanged()
 
@@ -38,19 +40,6 @@ class AccountViewController: UITableViewController {
                                                selector: #selector(updateUIAfterLoginStateChanged),
                                                name: UserProfileHelper.loginStateDidChangeNotification,
                                                object: nil)
-    }
-
-    @objc func updateUIAfterLoginStateChanged() {
-        self.dataSource.reloadContent()
-        self.tableView.reloadData()
-
-        if UserProfileHelper.shared.isLoggedIn {
-            UserHelper.syncMe().onComplete { [weak self] _ in
-                let indexPath = IndexPath(row: 0, section: 0)
-                let userProfileCell = self?.tableView.cellForRow(at: indexPath) as? UserProfileCell
-                userProfileCell?.loadData()
-            }
-        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -68,10 +57,43 @@ class AccountViewController: UITableViewController {
         }
     }
 
-    func open(url: URL) {
-        let safariVC = SFSafariViewController(url: url)
-        safariVC.preferredControlTintColor = Brand.default.colors.window
-        self.present(safariVC, animated: trueUnlessReduceMotionEnabled)
+    func open(url: URL, inApp: Bool = false) {
+        if inApp {
+            let webViewController = R.storyboard.webViewController.instantiateInitialViewController().require()
+            webViewController.url = url
+            self.navigationController?.pushViewController(webViewController, animated: trueUnlessReduceMotionEnabled)
+            self.shouldSynchronizeUser = true
+        } else {
+            let safariVC = SFSafariViewController(url: url)
+            safariVC.preferredControlTintColor = Brand.default.colors.window
+            self.present(safariVC, animated: trueUnlessReduceMotionEnabled)
+        }
+    }
+
+    @objc private func updateUIAfterLoginStateChanged() {
+        self.dataSource.reloadContent()
+        self.tableView.reloadData()
+    }
+
+    private func synchronizeUser() {
+        if UserProfileHelper.shared.isLoggedIn {
+            UserHelper.syncMe().onComplete { [weak self] _ in
+                let indexPath = IndexPath(row: 0, section: 0)
+                let userProfileCell = self?.tableView.cellForRow(at: indexPath) as? UserProfileCell
+                userProfileCell?.loadData()
+            }
+        }
+    }
+
+}
+
+extension AccountViewController: UINavigationControllerDelegate {
+
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        guard viewController == self else { return }
+        guard self.shouldSynchronizeUser else { return }
+        self.shouldSynchronizeUser = false
+        self.synchronizeUser()
     }
 
 }

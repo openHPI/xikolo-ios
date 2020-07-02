@@ -242,7 +242,9 @@ private struct UserProfileItem: ConfigurableDataSourceItem {
         userProfileCell.loadData()
     }
 
-    func performAction(on viewController: AccountViewController) {}
+    func performAction(on viewController: AccountViewController) {
+        viewController.open(url: Routes.profile, inApp: true)
+    }
 }
 
 private struct LogoutItem: DataSourceItem {

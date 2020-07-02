@@ -75,11 +75,3 @@ class AccountViewController: UITableViewController {
     }
 
 }
-
-extension AccountViewController: MFMailComposeViewControllerDelegate {
-
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: trueUnlessReduceMotionEnabled)
-    }
-
-}

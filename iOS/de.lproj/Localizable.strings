@@ -317,20 +317,20 @@
 /* subtitle for homescreen quick actions */
 "quickactions.subtitle" = "Lernen fortsetzen";
 
-/* Title for selecting dark apperance option */
-"setting.appearance.dark" = "Dunkel";
-
-/* Title for selecting device apperance option */
-"setting.appearance.device" = "System";
-
-/* Title for selecting light apperance option */
-"setting.appearance.light" = "Hell";
-
 /* label for app build */
 "settings.app.build.label" = "Build";
 
 /* label for app version */
 "settings.app.version.label" = "Version";
+
+/* Title for selecting dark apperance option */
+"settings.appearance.dark" = "Dunkel";
+
+/* Title for selecting device apperance option */
+"settings.appearance.device" = "System";
+
+/* Title for selecting light apperance option */
+"settings.appearance.light" = "Hell";
 
 /* cell title for helpdesk */
 "settings.cell-title.app-helpdesk" = "Helpdesk";
@@ -424,6 +424,3 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video-Qualität mit WLAN";
-
-/* cell title for appearance settings */
-"settings.cell-title.appearance-settings" = "";

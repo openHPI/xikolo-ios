@@ -323,6 +323,15 @@
 /* label for app version */
 "settings.app.version.label" = "Version";
 
+/* Title for selecting dark apperance option */
+"settings.appearance.dark" = "Dark";
+
+/* Title for selecting device apperance option */
+"settings.appearance.device" = "System";
+
+/* Title for selecting light apperance option */
+"settings.appearance.light" = "Light";
+
 /* cell title for helpdesk */
 "settings.cell-title.app-helpdesk" = "Helpdesk";
 
@@ -415,15 +424,3 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video Quality using WiFi";
-
-/* Title for selecting dark apperance option */
-"setting.appearance.dark" = "";
-
-/* Title for selecting device apperance option */
-"setting.appearance.device" = "";
-
-/* Title for selecting light apperance option */
-"setting.appearance.light" = "";
-
-/* cell title for appearance settings */
-"settings.cell-title.appearance-settings" = "";

@@ -74,20 +74,17 @@ class AccountViewControllerDataSource: NSObject {
         let settingsSectionTitle = NSLocalizedString("settings.section-title.settings", comment: "section title for settings")
         let aboutSectionTitle = NSLocalizedString("settings.section-title.about", comment: "section title for about")
 
-        var sections = [
-            DataSourceSection(title: settingsSectionTitle, items: [
-                self.showStreamingSettingsItem,
-                self.showDownloadSettingsItem,
-            ]),
+        var settings = [
+            self.showStreamingSettingsItem,
+            self.showDownloadSettingsItem,
         ]
-
         if #available(iOS 13, *) {
-            sections += [
-                DataSourceSection(items: [
-                    self.showAppearanceSettingsItem,
-                ]),
-            ]
+            settings += [self.showAppearanceSettingsItem]
         }
+
+        var sections = [
+            DataSourceSection(title: settingsSectionTitle, items: settings),
+        ]
 
         if UserProfileHelper.shared.isLoggedIn {
             sections += [

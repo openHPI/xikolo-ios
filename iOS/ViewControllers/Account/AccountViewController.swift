@@ -73,6 +73,7 @@ class AccountViewController: UITableViewController {
     @objc private func updateUIAfterLoginStateChanged() {
         self.dataSource.reloadContent()
         self.tableView.reloadData()
+        self.synchronizeUser()
     }
 
     private func synchronizeUser() {

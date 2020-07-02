@@ -52,6 +52,13 @@ target 'iOS' do
 end
 
 post_install do |installer|
+    Pod::UI.info "Fix deployment targets"
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'
+        end
+    end
+
     Pod::UI.info "Installing BartyCrouch manually"
     system("make installables -C ./Pods/BartyCrouch >> /dev/null")
     system("cp -f /tmp/BartyCrouch.dst/usr/local/bin/bartycrouch ./Pods/BartyCrouch/bartycrouch")

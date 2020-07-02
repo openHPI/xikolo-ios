@@ -10,6 +10,10 @@ import UIKit
 
 class AccountViewControllerDataSource: NSObject {
 
+    private lazy var showUserProfile: DataSourceItem = {
+        return UserProfileItem()
+    }()
+
     private lazy var showStreamingSettingsItem: DataSourceItem = {
         let title = NSLocalizedString("settings.cell-title.streaming-settings", comment: "section title for streaming settings")
         return SegueItem(title: title, segueIdentifier: R.segue.accountViewController.showStreamingSettings)
@@ -69,7 +73,17 @@ class AccountViewControllerDataSource: NSObject {
         let settingsSectionTitle = NSLocalizedString("settings.section-title.settings", comment: "section title for settings")
         let aboutSectionTitle = NSLocalizedString("settings.section-title.about", comment: "section title for about")
 
-        var sections = [
+        var sections: [DataSourceSection] = []
+
+        if UserProfileHelper.shared.isLoggedIn {
+            sections += [
+                DataSourceSection(items: [
+                    self.showUserProfile,
+                ]),
+            ]
+        }
+
+        sections += [
             DataSourceSection(title: settingsSectionTitle, items: [
                 self.showStreamingSettingsItem,
                 self.showDownloadSettingsItem,
@@ -137,6 +151,10 @@ extension AccountViewControllerDataSource: UITableViewDataSource {
             configurableItem.configure(cell)
         }
 
+        if let userProfileCell = cell as? UserProfileCell {
+            userProfileCell.tableView = tableView
+        }
+
         cell.addDefaultPointerInteraction()
 
         return cell
@@ -166,18 +184,20 @@ protocol DataSourceItem {
 }
 
 protocol ConfigurableDataSourceItem: DataSourceItem {
-    var title: String { get }
-
     func configure(_ cell: UITableViewCell)
 }
 
-extension ConfigurableDataSourceItem {
+protocol TitledDataSourceItem: ConfigurableDataSourceItem {
+    var title: String { get }
+}
+
+extension TitledDataSourceItem {
     func configure(_ cell: UITableViewCell) {
         cell.textLabel?.text = self.title
     }
 }
 
-private struct SegueItem<T: StoryboardSegueIdentifierType>: ConfigurableDataSourceItem where T.SourceType == AccountViewController {
+private struct SegueItem<T: StoryboardSegueIdentifierType>: TitledDataSourceItem where T.SourceType == AccountViewController {
     let title: String
     let segueIdentifier: T
     let cellReuseIdentifier = R.reuseIdentifier.defaultCell.identifier
@@ -187,7 +207,7 @@ private struct SegueItem<T: StoryboardSegueIdentifierType>: ConfigurableDataSour
     }
 }
 
-private struct URLItem: ConfigurableDataSourceItem {
+private struct URLItem: TitledDataSourceItem {
     let title: String
     let url: URL
     let cellReuseIdentifier = R.reuseIdentifier.defaultCell.identifier
@@ -197,7 +217,7 @@ private struct URLItem: ConfigurableDataSourceItem {
     }
 }
 
-private struct ActionItem: ConfigurableDataSourceItem {
+private struct ActionItem: TitledDataSourceItem {
     let cellReuseIdentifier = R.reuseIdentifier.defaultCell.identifier
     let title: String
     let action: (AccountViewController) -> Void
@@ -205,6 +225,17 @@ private struct ActionItem: ConfigurableDataSourceItem {
     func performAction(on viewController: AccountViewController) {
         self.action(viewController)
     }
+}
+
+private struct UserProfileItem: ConfigurableDataSourceItem {
+    let cellReuseIdentifier = R.reuseIdentifier.userProfileCell.identifier
+
+    func configure(_ cell: UITableViewCell) {
+        guard let userProfileCell = cell as? UserProfileCell else { return }
+        userProfileCell.loadData()
+    }
+
+    func performAction(on viewController: AccountViewController) {}
 }
 
 private struct LogoutItem: DataSourceItem {

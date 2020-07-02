@@ -8,9 +8,22 @@ import UIKit
 
 class AppearanceSettingsViewController: UITableViewController {
 
-    // data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    var defaults = UserDefaults.standard
+    @available(iOS 13.0, *)
+    private var theme: Theme {
+        get {
+            return defaults.theme
+        }
+        set {
+            defaults.theme = newValue
+            self.configureStyle(for: newValue)
+        }
+    }
+
+    @available(iOS 13.0, *)
+    private func configureStyle(for theme: Theme) {
+        guard let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate else { return }
+        sceneDelegate.configureStyle(for: theme.userInterfaceStyle)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,19 +50,11 @@ class AppearanceSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if #available(iOS 13.0, *) {
             guard let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate else { return }
-            let userInterfaceStyle: UIUserInterfaceStyle
-            switch indexPath.row {
-            case 0:
-                userInterfaceStyle = .unspecified
-            case 1:
-                userInterfaceStyle = .light
-            case 2:
-                userInterfaceStyle = .dark
-            default:
-                userInterfaceStyle = .unspecified
-            }
 
-            sceneDelegate.configureStyle(for: userInterfaceStyle)
+            if indexPath.row != theme.rawValue {
+                theme = Theme(rawValue: indexPath.row) ?? .device
+                sceneDelegate.configureStyle(for: theme.userInterfaceStyle)
+            }
         }
     }
 

@@ -10,9 +10,8 @@ import UIKit
 
 class AccountViewControllerDataSource: NSObject {
 
-    private lazy var showUserProfile: DataSourceItem = {
-        return UserProfileItem()
-    }()
+    private lazy var loginItem: DataSourceItem = LoginItem()
+    private lazy var showUserProfile: DataSourceItem = UserProfileItem()
 
     private lazy var showStreamingSettingsItem: DataSourceItem = {
         let title = NSLocalizedString("settings.cell-title.streaming-settings", comment: "section title for streaming settings")
@@ -81,6 +80,12 @@ class AccountViewControllerDataSource: NSObject {
                     self.showUserProfile,
                     self.showCertificatesItem,
                     self.showDownloadedContentItem,
+                ]),
+            ]
+        } else {
+            sections += [
+                DataSourceSection(items: [
+                    self.loginItem,
                 ]),
             ]
         }
@@ -217,6 +222,15 @@ private struct ActionItem: TitledDataSourceItem {
 
     func performAction(on viewController: AccountViewController) {
         self.action(viewController)
+    }
+}
+
+private struct LoginItem: DataSourceItem {
+    let cellReuseIdentifier = R.reuseIdentifier.loginCell.identifier
+
+    func performAction(on viewController: AccountViewController) {
+        let identifier = R.segue.accountViewController.showLogin.identifier
+        viewController.performSegue(withIdentifier: identifier, sender: nil)
     }
 }
 

@@ -13,8 +13,6 @@ class AccountViewController: UITableViewController {
 
     private lazy var dataSource = AccountViewControllerDataSource()
 
-    @IBOutlet private var loginButton: UIBarButtonItem!
-
     @IBOutlet private weak var headerImage: UIImageView!
 
     @IBOutlet private weak var copyrightLabel: UILabel!
@@ -43,14 +41,8 @@ class AccountViewController: UITableViewController {
     }
 
     @objc func updateUIAfterLoginStateChanged() {
-        if UserProfileHelper.shared.isLoggedIn {
-            self.navigationItem.rightBarButtonItem = nil
-        } else {
-            self.navigationItem.rightBarButtonItem = self.loginButton
-        }
-
         self.dataSource.reloadContent()
-        self.tableView.reloadData() // TODO: explicit animation
+        self.tableView.reloadData()
 
         if UserProfileHelper.shared.isLoggedIn {
             UserHelper.syncMe().onComplete { [weak self] _ in

@@ -16,7 +16,16 @@ class AnnouncementListViewController: UITableViewController {
 
     var course: Course?
 
-    @IBOutlet private var actionButton: UIBarButtonItem!
+    private lazy var actionButton: UIBarButtonItem = {
+        let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(),
+                                                target: self,
+                                                action: #selector(showActionMenu(_:)))
+        item.accessibilityLabel = NSLocalizedString(
+            "accessibility-label.announcements.navigation-bar.item.actions",
+            comment: "Accessibility label for actions button in navigation bar of the course card view"
+        )
+        return item
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,11 +103,12 @@ class AnnouncementListViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = UserProfileHelper.shared.isLoggedIn ? self.actionButton : nil
     }
 
-    @IBAction private func tappedActionButton(_ sender: UIBarButtonItem) {
+    @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = sender
 
-        let markAllAsReadActionTitle = NSLocalizedString("announcement.alert.mark all as read", comment: "alert action title to mark all announcements as read")
+        let markAllAsReadActionTitle = NSLocalizedString("announcement.alert.mark all as read",
+                                                         comment: "alert action title to mark all announcements as read")
         let markAllAsReadAction = UIAlertAction(title: markAllAsReadActionTitle, style: .default) { _ in
             AnnouncementHelper.markAllAsVisited()
         }

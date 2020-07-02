@@ -21,7 +21,7 @@ class AccountViewControllerDataSource: NSObject {
     }()
 
     private lazy var showAppearanceSettingsItem: DataSourceItem = {
-        let title = NSLocalizedString("settings.cell-title.appearance-settings", comment: "cell title for appearance settings")
+        let title = NSLocalizedString("settings.cell-title.appearance", comment: "cell title for appearance settings")
         return SegueItem(title: title, segueIdentifier: R.segue.accountViewController.showAppearanceSettings)
     }()
 

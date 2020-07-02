@@ -35,11 +35,11 @@ class AppearanceSettingsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsOptionBasicCell", for: indexPath)
         switch indexPath.row {
         case 0:
-            cell.textLabel?.text = NSLocalizedString("appearance.settings-device", comment: "Title for selecting device apperance option")
+            cell.textLabel?.text = NSLocalizedString("setting.appearance.device", comment: "Title for selecting device apperance option")
         case 1:
-            cell.textLabel?.text = NSLocalizedString("appearance.settings-light", comment: "Title for selecting light apperance option")
+            cell.textLabel?.text = NSLocalizedString("setting.appearance.light", comment: "Title for selecting light apperance option")
         case 2:
-            cell.textLabel?.text = NSLocalizedString("appearance.settings-dark", comment: "Title for selecting dark apperance option")
+            cell.textLabel?.text = NSLocalizedString("setting.appearance.dark", comment: "Title for selecting dark apperance option")
         default:
             cell.textLabel?.text = nil
         }

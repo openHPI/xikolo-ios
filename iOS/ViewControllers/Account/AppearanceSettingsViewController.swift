@@ -65,6 +65,17 @@ class AppearanceSettingsViewController: UITableViewController {
         default:
             return nil
         }
+    }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // swiftlint:disable:next trailing_closure
+        let observer: NSKeyValueObservation = UserDefaults.standard.observe(\UserDefaults.theme, options: .initial, changeHandler: { [weak self] _, _ in
+            let controller = self?.navigationController
+            if #available(iOS 13.0, *) {
+                controller?.overrideUserInterfaceStyle = UserDefaults.standard.theme.userInterfaceStyle
+            }
+        })
     }
 }

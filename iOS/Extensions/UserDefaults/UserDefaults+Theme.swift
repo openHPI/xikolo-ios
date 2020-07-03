@@ -6,7 +6,7 @@
 import Common
 import Foundation
 
-enum Theme: Int {
+@objc enum Theme: Int {
   case device
   case light
   case dark
@@ -27,13 +27,13 @@ extension Theme {
 }
 
 extension UserDefaults {
-  var theme: Theme {
-    get {
-      register(defaults: [#function: Theme.device.rawValue])
-      return Theme(rawValue: integer(forKey: #function)) ?? .device
+    @objc dynamic var theme: Theme {
+        get {
+            register(defaults: [#function: Theme.device.rawValue])
+            return Theme(rawValue: integer(forKey: #function)) ?? .device
+        }
+        set {
+            set(newValue.rawValue, forKey: #function)
+        }
     }
-    set {
-      set(newValue.rawValue, forKey: #function)
-    }
-  }
 }

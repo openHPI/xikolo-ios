@@ -1,4 +1,7 @@
 
+/* Accessibility label for actions button in navigation bar of the course card view */
+"accessibility-label.announcements.navigation-bar.item.actions" = "Actions for announcements";
+
 /* Accessibility label for actions button in navigation bar of the course item view */
 "accessibility-label.course-item.navigation-bar.item.actions" = "Actions for item";
 

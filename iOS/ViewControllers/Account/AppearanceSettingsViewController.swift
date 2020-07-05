@@ -8,22 +8,22 @@ import UIKit
 
 class AppearanceSettingsViewController: UITableViewController {
 
-    var defaults = UserDefaults.standard
     @available(iOS 13.0, *)
     private var theme: Theme {
         get {
-            return defaults.theme
+            return UserDefaults.standard.theme
         }
         set {
-            defaults.theme = newValue
+            UserDefaults.standard.theme = newValue
             self.configureStyle(for: newValue)
         }
     }
 
     @available(iOS 13.0, *)
     private func configureStyle(for theme: Theme) {
-        guard let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate else { return }
-        sceneDelegate.configureStyle(for: theme.userInterfaceStyle)
+        UIApplication.shared.windows.forEach { window in
+            window.overrideUserInterfaceStyle = theme.userInterfaceStyle
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,16 +44,18 @@ class AppearanceSettingsViewController: UITableViewController {
             cell.textLabel?.text = nil
         }
 
+        if #available(iOS 13.0, *), indexPath.row == theme.rawValue {
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        }
+
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if #available(iOS 13.0, *) {
-            guard let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate else { return }
-
             if indexPath.row != theme.rawValue {
                 theme = Theme(rawValue: indexPath.row) ?? .device
-                sceneDelegate.configureStyle(for: theme.userInterfaceStyle)
+                self.configureStyle(for: theme)
             }
         }
     }
@@ -65,17 +67,5 @@ class AppearanceSettingsViewController: UITableViewController {
         default:
             return nil
         }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // swiftlint:disable:next trailing_closure
-        let observer: NSKeyValueObservation = UserDefaults.standard.observe(\UserDefaults.theme, options: .initial, changeHandler: { [weak self] _, _ in
-            let controller = self?.navigationController
-            if #available(iOS 13.0, *) {
-                controller?.overrideUserInterfaceStyle = UserDefaults.standard.theme.userInterfaceStyle
-            }
-        })
     }
 }

@@ -99,7 +99,7 @@ class AccountViewControllerDataSource: NSObject {
             self.showStreamingSettingsItem,
             self.showDownloadSettingsItem,
         ]
-        
+
         if #available(iOS 13, *) {
             settings += [self.showAppearanceSettingsItem]
         }

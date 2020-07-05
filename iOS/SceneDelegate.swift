@@ -42,8 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabToSelect: XikoloTabBarController.Tabs = UserProfileHelper.shared.isLoggedIn ? .dashboard : .courses
         self.tabBarController.selectedIndex = tabToSelect.index
 
-        let defaults = UserDefaults.standard
-        window?.overrideUserInterfaceStyle = defaults.theme.userInterfaceStyle
+        self.configureStyle(for: UserDefaults.standard.theme.userInterfaceStyle)
     }
 
     func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {

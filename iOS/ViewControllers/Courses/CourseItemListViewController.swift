@@ -177,7 +177,7 @@ extension CourseItemListViewController { // TableViewDelegate
             return nil
         }
 
-        header.configure(for: courseSection, inOfflineMode: self.inOfflineMode)
+        header.configure(for: courseSection, inOfflineMode: { [weak self] in self?.inOfflineMode ?? false })
         header.delegate = self
 
         return header

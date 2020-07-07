@@ -109,9 +109,6 @@
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
-                                            <connections>
-                                                <action selector="tappedActionsButton" destination="G9e-ER-HXC" eventType="touchUpInside" id="vGw-Rl-VbC"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>

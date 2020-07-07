@@ -8,7 +8,7 @@ import UIKit
 
 class DocumentLocalizationCell: UITableViewCell {
 
-    typealias Delegate = DocumentListViewController & UserActionsDelegate
+    typealias Delegate = DocumentListViewController // & UserActionsDelegate
 
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var actionsButton: UIButton!
@@ -51,18 +51,17 @@ class DocumentLocalizationCell: UITableViewCell {
         self.actionsButton.isEnabled = isAvailable
         self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.disabled
 
+        self.actionsButton.add(
+            menuActions: documentLocalization.userActions,
+            menuTitle: documentLocalization.document.title,
+            menuMessage: documentLocalization.languageCode,
+            on: self.delegate
+        )
+
         let downloadState = DocumentsPersistenceManager.shared.downloadState(for: documentLocalization)
         self.progressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
         self.progressView.updateProgress(DocumentsPersistenceManager.shared.downloadProgress(for: documentLocalization))
         self.downloadedIcon.isHidden = downloadState != .downloaded
-    }
-
-    @IBAction private func tappedActionsButton() {
-        guard let documentLocalization = self.documentLocalization else { return }
-        self.delegate?.showAlert(with: documentLocalization.userActions,
-                                 title: documentLocalization.document.title,
-                                 message: documentLocalization.languageCode,
-                                 on: self.actionsButton)
     }
 
     @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {

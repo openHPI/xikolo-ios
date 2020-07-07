@@ -17,6 +17,29 @@ class CircularButton: UIButton {
 
 extension UIBarButtonItem {
 
+    static func circularItem(
+        with image: UIImage?,
+        backgroundColor: UIColor? = ColorCompatibility.secondarySystemBackground.withAlphaComponent(0.9),
+        target: UIViewController, // for iOS 13 and prior
+        primaryAction: Action? = nil,
+        menuActions: [Action]? = nil
+    ) -> UIBarButtonItem {
+        let item = UIBarButtonItem()
+
+        let button = CircularButton(type: .custom)
+        button.setImage(image, for: .normal)
+        button.backgroundColor = backgroundColor
+        button.add(primaryAction: primaryAction, menuActions: menuActions, on: target, barButtonItem: item)
+
+        item.customView = button
+
+        return item
+    }
+
+}
+
+extension UIButton {
+
     private final class ActionWrapper: NSObject {
 
         private let action: () -> Void
@@ -32,37 +55,38 @@ extension UIBarButtonItem {
 
     }
 
-    static func circularItem(
-        with image: UIImage?,
-        backgroundColor: UIColor? = ColorCompatibility.secondarySystemBackground.withAlphaComponent(0.9),
-        target: UIViewController, // for iOS 13 and prior
+    func add(
         primaryAction: Action? = nil,
-        menuActions: [Action]? = nil
-    ) -> UIBarButtonItem {
-        let item = UIBarButtonItem()
-
-        let button = CircularButton(type: .custom)
-        button.setImage(image, for: .normal)
-        button.backgroundColor = backgroundColor
-
+        menuActions: [Action]? = nil,
+        menuTitle: String? = nil,
+        menuMessage: String? = nil,
+        on target: UIViewController?,
+        barButtonItem: UIBarButtonItem? = nil
+    ) {
         if let primaryAction = primaryAction {
             if #available(iOS 14, *) {
                 let action = UIAction(action: primaryAction)
-                button.addAction(action, for: .touchUpInside)
+                self.addAction(action, for: .touchUpInside)
             } else {
-                let actionWrapper = UIBarButtonItem.ActionWrapper(action: primaryAction.handler)
-                button.addTarget(actionWrapper, action: #selector(actionWrapper.performAction), for: .touchUpInside)
+                let actionWrapper = UIButton.ActionWrapper(action: primaryAction.handler)
+                self.addTarget(actionWrapper, action: #selector(actionWrapper.performAction), for: .touchUpInside)
             }
         }
 
         if let menuActions = menuActions {
             if #available(iOS 14, *) {
-                button.menu = UIMenu(title: "", children: menuActions.asActions())
-                button.showsMenuAsPrimaryAction = primaryAction == nil
+                self.menu = UIMenu(title: "", children: menuActions.asActions())
+                self.showsMenuAsPrimaryAction = primaryAction == nil
             } else {
-                let showAlertController = { [weak item, weak target] in
-                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                    alert.popoverPresentationController?.barButtonItem = item
+                let showAlertController = { [weak self, weak target, weak barButtonItem] in
+                    let alert = UIAlertController(title: menuTitle, message: menuMessage, preferredStyle: .actionSheet)
+
+                    if let item = barButtonItem {
+                        alert.popoverPresentationController?.barButtonItem = item
+                    } else {
+                        alert.popoverPresentationController?.sourceView = self
+                        alert.popoverPresentationController?.sourceRect = self?.bounds ?? .zero
+                    }
 
                     for action in menuActions.asAlertActions() {
                         alert.addAction(action)
@@ -73,21 +97,16 @@ extension UIBarButtonItem {
                     target?.present(alert, animated: trueUnlessReduceMotionEnabled)
                 }
 
-                let actionWrapper = UIBarButtonItem.ActionWrapper(action: showAlertController)
+                let actionWrapper = UIButton.ActionWrapper(action: showAlertController)
 
                 if primaryAction == nil {
-                    button.addTarget(actionWrapper, action: #selector(actionWrapper.performAction), for: .touchUpInside)
+                    self.addTarget(actionWrapper, action: #selector(actionWrapper.performAction), for: .touchUpInside)
                 } else {
                     let longPress = UILongPressGestureRecognizer(target: actionWrapper, action: #selector(actionWrapper.performAction))
-                    button.addGestureRecognizer(longPress)
+                    self.addGestureRecognizer(longPress)
                 }
             }
         }
-
-        item.customView = button
-
-        return item
-
     }
 
 }

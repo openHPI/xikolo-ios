@@ -7,6 +7,8 @@ import BrightFutures
 import Common
 import UIKit
 
+
+// TODO: remove
 protocol UserActionsDelegate: AnyObject {
 
     func showAlert(with actions: [UIAlertAction], title: String?, on anchor: UIView)

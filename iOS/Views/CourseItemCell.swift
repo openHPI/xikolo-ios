@@ -15,7 +15,7 @@ class CourseItemCell: UITableViewCell {
     @IBOutlet private weak var actionsButton: UIButton!
 
     var item: CourseItem?
-    weak var delegate: (CourseItemCellDelegate & UserActionsDelegate)?
+    weak var delegate: (CourseItemCellDelegate & UIViewController)? // Remove UserActionsDelegate
 
     var previewView: UIView? {
         return self
@@ -67,8 +67,9 @@ class CourseItemCell: UITableViewCell {
         let isAvailable = !(self.delegate?.isInOfflineMode ?? true) || video.isAvailableOffline
         self.actionsButton.isEnabled = isAvailable
         self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.disabled
-
         self.actionsButton.alpha = 1
+
+        self.actionsButton.add(menuActions: video.actions, menuTitle: self.item?.title, on: self.delegate)
     }
 
     private func configureDetailView(for courseItem: CourseItem) {
@@ -91,10 +92,10 @@ class CourseItemCell: UITableViewCell {
         }
     }
 
-    @IBAction private func tappedActionsButton() {
-        guard let video = self.item?.content as? Video else { return }
-        self.delegate?.showAlert(with: video.actions.asAlertActions(), title: self.item?.title, on: self.actionsButton)
-    }
+//    @IBAction private func tappedActionsButton() {
+//        guard let video = self.item?.content as? Video else { return }
+//        self.delegate?.showAlert(with: video.actions.asAlertActions(), title: self.item?.title, on: self.actionsButton)
+//    }
 
     @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
         guard let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,

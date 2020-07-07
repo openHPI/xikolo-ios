@@ -18,7 +18,20 @@ class CourseItemViewController: UIPageViewController {
     }()
 
     private lazy var actionMenuButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(), target: self, action: #selector(showActionMenu(_:)))
+        var menuActions = [
+            self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() },
+        ].compactMap { $0 }
+
+        if let video = self.currentItem?.content as? Video {
+            menuActions += video.actions
+        }
+
+        let button = UIBarButtonItem.circularItem(
+            with: R.image.navigationBarIcons.dots(),
+            target: self,
+            menuActions: menuActions
+        )
+
         button.isEnabled = true
         button.accessibilityLabel = NSLocalizedString(
             "accessibility-label.course-item.navigation-bar.item.actions",
@@ -27,6 +40,7 @@ class CourseItemViewController: UIPageViewController {
         return button
     }()
 
+    // TODO: refactor to return [Action]
     private var userActions: [UIAlertAction] {
         var alertActions = [
             self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() },

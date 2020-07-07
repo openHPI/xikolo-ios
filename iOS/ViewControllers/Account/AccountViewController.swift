@@ -40,6 +40,21 @@ class AccountViewController: UITableViewController {
                                                selector: #selector(updateUIAfterLoginStateChanged),
                                                name: UserProfileHelper.loginStateDidChangeNotification,
                                                object: nil)
+
+        if #available(iOS 14, *) {
+            let menu = UIMenu(title: "", children: (1...2).map { UIAction(title: "item \($0)") { _ in }})
+            let item = UIBarButtonItem(systemItem: .add, menu: menu)
+            self.navigationItem.leftBarButtonItem = item
+        }
+        else if #available(iOS 13, *) {
+            let item = UIBarButtonItem.circularItem(
+                with: R.image.navigationBarIcons.dots(),
+                target: self,
+                menuActions: (1...2).map { Action(title: "item \($0)", image: nil) { }}
+            )
+
+            self.navigationItem.leftBarButtonItem = item
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

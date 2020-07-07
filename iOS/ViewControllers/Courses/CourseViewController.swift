@@ -52,24 +52,37 @@ class CourseViewController: UIViewController {
     }
 
     private lazy var closeButton: UIBarButtonItem = {
-        let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.xmark(),
-                                                target: self,
-                                                action: #selector(closeCourse))
+        let item = UIBarButtonItem.circularItem(
+            with: R.image.navigationBarIcons.xmark(),
+            target: self,
+            primaryAction: Action(title: "", image: nil, handler: { [weak self] in self?.closeCourse() })
+        )
+
         item.accessibilityLabel = NSLocalizedString(
             "accessibility-label.course.navigation-bar.item.close",
             comment: "Accessibility label for close button in navigation bar of the course card view"
         )
+
         return item
     }()
 
     private lazy var actionMenuButton: UIBarButtonItem = {
-        let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(),
-                                                target: self,
-                                                action: #selector(showActionMenu(_:)))
+        let menuActions = [
+            self.course?.shareAction { [weak self] in self?.shareCourse() },
+            self.course?.showCourseDatesAction { [weak self] in self?.showCourseDates() },
+        ].compactMap { $0 }
+
+        let item = UIBarButtonItem.circularItem(
+            with: R.image.navigationBarIcons.dots(),
+            target: self,
+            menuActions: menuActions
+        )
+
         item.accessibilityLabel = NSLocalizedString(
             "accessibility-label.course.navigation-bar.item.actions",
             comment: "Accessibility label for actions button in navigation bar of the course card view"
         )
+
         return item
     }()
 

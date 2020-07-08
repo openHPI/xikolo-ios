@@ -391,7 +391,14 @@ public class BingePlayerViewController: UIViewController {
         }
 
         coordinator.animateAlongsideTransition(in: nil, animation: nil) { _ in
-            let currentOrientation = UIApplication.shared.statusBarOrientation
+            let currentOrientation: UIInterfaceOrientation? = {
+                if #available(iOS 13, *) {
+                    return self.view.window?.windowScene?.interfaceOrientation
+                } else {
+                    return UIApplication.shared.statusBarOrientation
+                }
+            }()
+
             self.delegate?.didChangeOrientation(to: currentOrientation)
         }
     }
@@ -711,7 +718,7 @@ extension BingePlayerViewController: BingeControlDelegate {
         let navigationController = UINavigationController()
         navigationController.viewControllers = [mediaSelectionViewController]
         navigationController.modalPresentationStyle = .popover
-        navigationController.navigationBar.barStyle = .blackOpaque
+        navigationController.navigationBar.barStyle = .black
         navigationController.navigationBar.barTintColor = UIColor(white: 0.1, alpha: 1.0)
         navigationController.navigationBar.tintColor = .white
         navigationController.navigationBar.titleTextAttributes = [

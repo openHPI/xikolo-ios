@@ -354,7 +354,7 @@ extension CourseListViewController: UISearchControllerDelegate {
         if #available(iOS 11.0, *) {
             // nothing to do here
         } else {
-            // on iOS 10 the search bar's backgorund will not overlap with the status bar, so we need the cover the status bar manually
+            // on iOS 10 the search bar's background will not overlap with the status bar, so we need the cover the status bar manually
             let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: UIApplication.shared.statusBarFrame.height)
             let statusBarBackground = UIView(frame: frame)
             statusBarBackground.backgroundColor = ColorCompatibility.systemBackground

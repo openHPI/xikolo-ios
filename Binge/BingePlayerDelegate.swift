@@ -15,7 +15,7 @@ public protocol BingePlayerDelegate: AnyObject {
     func didReachEndOfPlayback()
     func didChangeSubtitles(from oldLanguageCode: String?, to newLanguageCode: String?)
     func didChangeLayout(from oldLayout: LayoutState, to newLayout: LayoutState)
-    func didChangeOrientation(to orientation: UIInterfaceOrientation)
+    func didChangeOrientation(to orientation: UIInterfaceOrientation?)
 
 }
 
@@ -29,6 +29,6 @@ public extension BingePlayerDelegate {
     func didReachEndOfPlayback() {}
     func didChangeSubtitles(from oldLanguageCode: String?, to newLanguageCode: String?) {}
     func didChangeLayout(from oldLayout: LayoutState, to newLayout: LayoutState) {}
-    func didChangeOrientation(to orientation: UIInterfaceOrientation) {}
+    func didChangeOrientation(to orientation: UIInterfaceOrientation?) {}
 
 }

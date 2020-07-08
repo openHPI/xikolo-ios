@@ -417,11 +417,30 @@ class VideoViewController: UIViewController {
 extension VideoViewController: BingePlayerDelegate { // Video tracking
 
     private var newTrackingContext: [String: String?] {
+        let currentOrientation: UIInterfaceOrientation? = {
+            if #available(iOS 13, *) {
+                return self.view.window?.windowScene?.interfaceOrientation
+            } else {
+                return UIApplication.shared.statusBarOrientation
+            }
+        }()
+
+        let currentOrientationValue: String? = {
+            switch currentOrientation?.isLandscape {
+            case true:
+                return "landscape"
+            case false:
+                return "portrait"
+            default:
+                return nil
+            }
+        }()
+
         return [
             "section_id": self.video?.item?.section?.id,
             "course_id": self.video?.item?.section?.course?.id,
             "current_speed": (self.playerViewController?.playbackRate).map { String($0) },
-            "current_orientation": UIApplication.shared.statusBarOrientation.isLandscape ? "landscape" : "portrait",
+            "current_orientation": currentOrientationValue,
             "current_quality": "hls",
             "current_source": self.currentSourceValue(for: self.playerViewController?.asset),
             "current_time": self.playerViewController?.currentTime.map { String($0) },
@@ -483,9 +502,10 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         TrackingHelper.createEvent(.videoPlaybackClose, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }
 
-    func didChangeOrientation(to orientation: UIInterfaceOrientation) {
+    func didChangeOrientation(to orientation: UIInterfaceOrientation?) {
         guard let video = self.video else { return }
         guard self.isInForeground else { return }
+        guard let orientation = orientation else { return }
 
         let verb: TrackingHelper.AnalyticsVerb = orientation.isLandscape ? .videoPlaybackDeviceOrientationLandscape : .videoPlaybackDeviceOrientationPortrait
         var context = self.newTrackingContext

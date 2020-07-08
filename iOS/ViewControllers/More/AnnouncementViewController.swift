@@ -4,7 +4,6 @@
 //
 
 import Common
-import Down
 import SafariServices
 import UIKit
 

@@ -12,9 +12,8 @@ class CourseItemHeader: UITableViewHeaderFooterView {
     @IBOutlet private weak var actionsButton: UIButton!
 
     private weak var section: CourseSection?
+    private weak var delegate: UIViewController?
     private var inOfflineMode: (() -> Bool)?
-
-    weak var delegate: UIViewController?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,8 +27,9 @@ class CourseItemHeader: UITableViewHeaderFooterView {
         self.actionsButton.addDefaultPointerInteraction()
     }
 
-    func configure(for section: CourseSection, inOfflineMode: @escaping () -> Bool) {
+    func configure(for section: CourseSection, delegate: UIViewController, inOfflineMode: @escaping () -> Bool) {
         self.section = section
+        self.delegate = delegate
         self.inOfflineMode = inOfflineMode
         self.updateContent()
     }

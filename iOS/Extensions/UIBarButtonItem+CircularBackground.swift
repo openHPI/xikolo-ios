@@ -73,6 +73,8 @@ extension UIButton {
         on target: UIViewController?,
         barButtonItem: UIBarButtonItem? = nil
     ) {
+        var actionWrappers: [UIButton.ActionWrapper] = []
+
         if let primaryAction = primaryAction {
             if #available(iOS 14, *) {
                 let action = UIAction(action: primaryAction)
@@ -80,6 +82,7 @@ extension UIButton {
             } else {
                 let actionWrapper = UIButton.ActionWrapper(action: primaryAction.handler)
                 self.addTarget(actionWrapper, action: #selector(actionWrapper.performAction), for: .touchUpInside)
+                actionWrappers.append(actionWrapper)
             }
         }
 
@@ -115,6 +118,8 @@ extension UIButton {
                     let longPress = UILongPressGestureRecognizer(target: actionWrapper, action: #selector(actionWrapper.performAction))
                     self.addGestureRecognizer(longPress)
                 }
+
+                actionWrappers.append(actionWrapper)
             }
         } else if let deferredMenuActionsConfiguration = deferredMenuActions {
             if #available(iOS 14, *) {
@@ -167,13 +172,15 @@ extension UIButton {
                     }
                 }
 
-                let actionWrapper: UIButton.ActionWrapper = {
+                let action = {
                     if deferredMenuActionsConfiguration.isLoadingRequired() {
-                        return UIButton.ActionWrapper(action: showSpinner)
+                        showSpinner()
                     } else {
-                        return UIButton.ActionWrapper(action: showAlertController)
+                        showAlertController()
                     }
-                }()
+                }
+
+                let actionWrapper = UIButton.ActionWrapper(action: action)
 
                 if primaryAction == nil {
                     self.addTarget(actionWrapper, action: #selector(actionWrapper.performAction), for: .touchUpInside)
@@ -181,7 +188,14 @@ extension UIButton {
                     let longPress = UILongPressGestureRecognizer(target: actionWrapper, action: #selector(actionWrapper.performAction))
                     self.addGestureRecognizer(longPress)
                 }
+
+                actionWrappers.append(actionWrapper)
             }
+        }
+
+        if #available(iOS 14, *) {} else {
+            var associatedKey = "legacy_action_wrappers"
+            objc_setAssociatedObject(self, &associatedKey, actionWrappers, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 

@@ -4,7 +4,6 @@
 //
 
 import Common
-import SDWebImage
 import UIKit
 
 class CertificateCell: UICollectionViewCell {

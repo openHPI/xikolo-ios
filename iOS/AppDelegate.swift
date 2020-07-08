@@ -7,7 +7,6 @@ import Common
 import Firebase
 import FirebaseCrashlytics
 import NotificationCenter
-import SDWebImage
 import UIKit
 
 let logger = Logger(subsystem: "de.xikolo.iOS", category: "iOS")

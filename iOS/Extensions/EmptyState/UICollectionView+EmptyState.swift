@@ -38,6 +38,10 @@ extension UICollectionView: EmptyStateProtocol {
     }
 
     func reloadEmptyState() {
+        guard self.emptyStateDataSource != nil else {
+            return
+        }
+
         if self.hasItemsToDisplay {
             self.backgroundView = nil
         } else {

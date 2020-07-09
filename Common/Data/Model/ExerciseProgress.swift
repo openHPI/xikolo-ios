@@ -33,17 +33,17 @@ public class ExerciseProgress: NSObject, NSSecureCoding, IncludedPullable {
     }
 
     public required init(coder decoder: NSCoder) {
-        self.exercisesAvailable = decoder.decodeObject(forKey: "exercise_available") as? Int
-        self.exercisesTaken = decoder.decodeObject(forKey: "exercise_taken") as? Int
-        self.pointsPossible = decoder.decodeObject(forKey: "points_possible") as? Double
-        self.pointsScored = decoder.decodeObject(forKey: "points_scored") as? Double
+        self.exercisesAvailable = decoder.decodeObject(of: NSNumber.self, forKey: "exercise_available")?.intValue
+        self.exercisesTaken = decoder.decodeObject(of: NSNumber.self, forKey: "exercise_taken")?.intValue
+        self.pointsPossible = decoder.decodeObject(of: NSNumber.self, forKey: "points_possible")?.doubleValue
+        self.pointsScored = decoder.decodeObject(of: NSNumber.self, forKey: "points_scored")?.doubleValue
 }
 
     public func encode(with coder: NSCoder) {
-        coder.encode(self.exercisesAvailable, forKey: "exercise_available")
-        coder.encode(self.exercisesTaken, forKey: "exercise_taken")
-        coder.encode(self.pointsPossible, forKey: "points_possible")
-        coder.encode(self.pointsScored, forKey: "points_scored")
+        coder.encode(self.exercisesAvailable.map(NSNumber.init(value:)), forKey: "exercise_available")
+        coder.encode(self.exercisesTaken.map(NSNumber.init(value:)), forKey: "exercise_taken")
+        coder.encode(self.pointsPossible.map(NSNumber.init(value:)), forKey: "points_possible")
+        coder.encode(self.pointsScored.map(NSNumber.init(value:)), forKey: "points_scored")
     }
 
 }

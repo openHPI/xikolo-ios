@@ -19,8 +19,8 @@ class TrackingEventResource: NSObject, NSSecureCoding {
     }
 
     required init?(coder decoder: NSCoder) {
-        guard let uuid = decoder.decodeObject(forKey: "uuid") as? String,
-            let type = decoder.decodeObject(forKey: "type") as? String else {
+        guard let uuid = decoder.decodeObject(of: NSString.self, forKey: "uuid") as String?,
+              let type = decoder.decodeObject(of: NSString.self, forKey: "type") as String? else {
             return nil
         }
 
@@ -29,8 +29,8 @@ class TrackingEventResource: NSObject, NSSecureCoding {
     }
 
     func encode(with coder: NSCoder) {
-        coder.encode(self.resourceType, forKey: "type")
-        coder.encode(self.uuid, forKey: "uuid")
+        coder.encode(NSString(string: self.resourceType), forKey: "type")
+        coder.encode(NSString(string: self.uuid), forKey: "uuid")
     }
 
 }

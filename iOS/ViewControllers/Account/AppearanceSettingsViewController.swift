@@ -9,17 +9,6 @@ import UIKit
 class AppearanceSettingsViewController: UITableViewController {
 
     @available(iOS 13.0, *)
-    private var theme: Theme {
-        get {
-            return UserDefaults.standard.theme
-        }
-        set {
-            UserDefaults.standard.theme = newValue
-            self.configureStyle(for: newValue)
-        }
-    }
-
-    @available(iOS 13.0, *)
     private func configureStyle(for theme: Theme) {
         UIApplication.shared.windows.forEach { window in
             window.overrideUserInterfaceStyle = theme.userInterfaceStyle
@@ -27,16 +16,20 @@ class AppearanceSettingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if #available(iOS 13.0, *) {
+            return Theme.allCases.count
+        } else {
+            return 0
+        }
     }
 
     // delegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsOptionBasicCell", for: indexPath)
-        cell.textLabel?.text = Theme.allCases[indexPath.row].title
 
         if #available(iOS 13.0, *) {
-            cell.accessoryType = indexPath.row == self.theme.rawValue ? .checkmark : .none
+            cell.textLabel?.text = Theme.allCases[indexPath.row].title
+            cell.accessoryType = indexPath.row == UserDefaults.standard.theme.rawValue ? .checkmark : .none
         }
 
         return cell
@@ -44,20 +37,16 @@ class AppearanceSettingsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if #available(iOS 13.0, *) {
-            if indexPath.row != self.theme.rawValue {
-                let oldAppearanceSettingIndexPath = IndexPath(row: self.theme.rawValue, section: indexPath.section)
-                self.theme = Theme(rawValue: indexPath.row) ?? .device
+            if indexPath.row != UserDefaults.standard.theme.rawValue {
+                let oldAppearanceSettingIndexPath = IndexPath(row: UserDefaults.standard.theme.rawValue, section: indexPath.section)
+                UserDefaults.standard.theme = Theme(rawValue: indexPath.row) ?? .device
                 tableView.reloadRows(at: [oldAppearanceSettingIndexPath, indexPath], with: .none)
+                self.configureStyle(for: UserDefaults.standard.theme)
             }
         }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return NSLocalizedString("settings.cell-title.appearance", comment: "cell title for appearance settings")
-        default:
-            return nil
-        }
+        return NSLocalizedString("settings.cell-title.appearance", comment: "cell title for appearance settings")
     }
 }

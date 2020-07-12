@@ -44,8 +44,9 @@ class AppearanceSettingsViewController: UITableViewController {
             cell.textLabel?.text = nil
         }
 
-        if #available(iOS 13.0, *), indexPath.row == self.theme.rawValue {
-            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        if #available(iOS 13.0, *) {
+            cell.accessoryType = indexPath.row == self.theme.rawValue ? .checkmark : .none
+//            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         }
 
         return cell
@@ -54,7 +55,9 @@ class AppearanceSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if #available(iOS 13.0, *) {
             if indexPath.row != self.theme.rawValue {
+                let oldAppearanceSettingIndexPath = IndexPath(row: self.theme.rawValue, section: indexPath.section)
                 self.theme = Theme(rawValue: indexPath.row) ?? .device
+                tableView.reloadRows(at: [oldAppearanceSettingIndexPath, indexPath], with: .none)
             }
         }
     }

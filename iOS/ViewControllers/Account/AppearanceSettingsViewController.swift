@@ -33,20 +33,10 @@ class AppearanceSettingsViewController: UITableViewController {
     // delegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsOptionBasicCell", for: indexPath)
-        switch indexPath.row {
-        case 0:
-            cell.textLabel?.text = NSLocalizedString("settings.appearance.device", comment: "Title for selecting device apperance option")
-        case 1:
-            cell.textLabel?.text = NSLocalizedString("settings.appearance.light", comment: "Title for selecting light apperance option")
-        case 2:
-            cell.textLabel?.text = NSLocalizedString("settings.appearance.dark", comment: "Title for selecting dark apperance option")
-        default:
-            cell.textLabel?.text = nil
-        }
+        cell.textLabel?.text = Theme.allCases[indexPath.row].title
 
         if #available(iOS 13.0, *) {
             cell.accessoryType = indexPath.row == self.theme.rawValue ? .checkmark : .none
-//            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         }
 
         return cell

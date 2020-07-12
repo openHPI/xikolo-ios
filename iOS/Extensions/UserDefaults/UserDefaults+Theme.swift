@@ -6,10 +6,27 @@
 import Common
 import Foundation
 
-enum Theme: Int {
-  case device
-  case light
-  case dark
+enum Theme: Int, CaseIterable {
+    case device 
+    case light
+    case dark
+
+    static var orderedValues: [Theme] {
+        return [.device, .light, .dark]
+    }
+
+    var title: String? {
+        switch self {
+        case .device:
+            return NSLocalizedString("settings.appearance.device", comment: "Title for selecting device apperance option")
+        case .light:
+            return NSLocalizedString("settings.appearance.light", comment: "Title for selecting light apperance option")
+        case .dark:
+            return NSLocalizedString("settings.appearance.dark", comment: "Title for selecting dark apperance option")
+        default:
+            return nil
+        }
+    }
 }
 
 @available(iOS 12.0, *)
@@ -27,13 +44,26 @@ extension Theme {
 }
 
 extension UserDefaults {
+//    var theme: Theme {
+//        get {
+//            register(defaults: [#function: Theme.device.rawValue])
+//            return Theme(rawValue: integer(forKey: #function)) ?? .device
+//        }
+//        set {
+//            set(newValue.rawValue, forKey: #function)
+//        }
+//    }
+
+    private static let appearanceKey = "de.xikolo.ios.appearance"
+
     var theme: Theme {
         get {
-            register(defaults: [#function: Theme.device.rawValue])
-            return Theme(rawValue: integer(forKey: #function)) ?? .device
+            let rawValue = self.integer(forKey: Self.appearanceKey)
+            guard let value = Theme(rawValue: rawValue) else { return .device }
+            return value
         }
         set {
-            set(newValue.rawValue, forKey: #function)
+            self.set(newValue.rawValue, forKey: Self.appearanceKey)
         }
     }
 }

@@ -36,13 +36,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window?.makeKeyAndVisible()
         }
 
+        // swiftlint:disable:next trailing_closure
+        let _: NSKeyValueObservation = UserDefaults.standard.observe(\UserDefaults.theme, options: .initial, changeHandler: { [self] _, _ in
+            self.configureStyle(for: UserDefaults.standard.theme)
+            })
+
         shortcutItemToProcess = connectionOptions.shortcutItem
 
         // Select initial tab
         let tabToSelect: XikoloTabBarController.Tabs = UserProfileHelper.shared.isLoggedIn ? .dashboard : .courses
         self.tabBarController.selectedIndex = tabToSelect.index
-
-        self.configureStyle(for: UserDefaults.standard.theme)
     }
 
     func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
@@ -75,7 +78,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func configureStyle(for theme: Theme) {
-        window?.overrideUserInterfaceStyle = theme.userInterfaceStyle
+        self.window?.overrideUserInterfaceStyle = theme.userInterfaceStyle
     }
 }
 

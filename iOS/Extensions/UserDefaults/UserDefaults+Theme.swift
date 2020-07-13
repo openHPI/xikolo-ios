@@ -7,14 +7,10 @@ import Common
 import Foundation
 
 @available(iOS 13.0, *)
-enum Theme: Int, CaseIterable {
+@objc enum Theme: Int, CaseIterable {
     case device
     case light
     case dark
-
-    static var orderedValues: [Theme] {
-        return [.device, .light, .dark]
-    }
 
     var title: String? {
         switch self {
@@ -47,14 +43,13 @@ extension UserDefaults {
 
     private static let appearanceKey = "de.xikolo.ios.appearance"
 
-    var theme: Theme {
+    @objc dynamic var theme: Theme {
         get {
-            let rawValue = self.integer(forKey: Self.appearanceKey)
-            guard let value = Theme(rawValue: rawValue) else { return .device }
-            return value
+            register(defaults: [#function: Theme.device.rawValue])
+            return Theme(rawValue: integer(forKey: #function)) ?? .device
         }
         set {
-            self.set(newValue.rawValue, forKey: Self.appearanceKey)
+            set(newValue.rawValue, forKey: #function)
         }
     }
 }

@@ -10,9 +10,8 @@ class AppearanceSettingsViewController: UITableViewController {
 
     @available(iOS 13.0, *)
     private func configureStyle(for theme: Theme) {
-        UIApplication.shared.windows.forEach { window in
-            window.overrideUserInterfaceStyle = theme.userInterfaceStyle
-        }
+        guard let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate else { return }
+        sceneDelegate.configureStyle(for: theme)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

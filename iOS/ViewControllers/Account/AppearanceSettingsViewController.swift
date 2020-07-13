@@ -8,12 +8,6 @@ import UIKit
 
 class AppearanceSettingsViewController: UITableViewController {
 
-    @available(iOS 13.0, *)
-    private func configureStyle(for theme: Theme) {
-        guard let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate else { return }
-        sceneDelegate.configureStyle(for: theme)
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if #available(iOS 13.0, *) {
             return Theme.allCases.count
@@ -40,7 +34,6 @@ class AppearanceSettingsViewController: UITableViewController {
                 let oldAppearanceSettingIndexPath = IndexPath(row: UserDefaults.standard.theme.rawValue, section: indexPath.section)
                 UserDefaults.standard.theme = Theme(rawValue: indexPath.row) ?? .device
                 tableView.reloadRows(at: [oldAppearanceSettingIndexPath, indexPath], with: .none)
-                self.configureStyle(for: UserDefaults.standard.theme)
             }
         }
     }

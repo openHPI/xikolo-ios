@@ -45,11 +45,11 @@ extension UserDefaults {
 
     @objc dynamic var theme: Theme {
         get {
-            register(defaults: [#function: Theme.device.rawValue])
-            return Theme(rawValue: integer(forKey: #function)) ?? .device
+            self.register(defaults: [Self.appearanceKey: Theme.device.rawValue])
+            return Theme(rawValue: self.integer(forKey: Self.appearanceKey)) ?? .device
         }
         set {
-            set(newValue.rawValue, forKey: #function)
+            self.set(newValue.rawValue, forKey: Self.appearanceKey)
         }
     }
 }

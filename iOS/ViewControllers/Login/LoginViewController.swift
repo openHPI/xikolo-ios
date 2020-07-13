@@ -95,7 +95,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
         self.performSegue(withIdentifier: R.segue.loginViewController.showSSOWebView, sender: self)
     }
 
-    @IBAction private func tappedBackground() {
+    @IBAction private func dismissKeyboard() {
         self.emailField.resignFirstResponder()
         self.passwordField.resignFirstResponder()
     }

@@ -69,7 +69,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
 
         self.onFailureLabel.isHidden = true
 
-        let hintTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnFAQHintLabel))
+        let hintTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showFAQs))
         self.hintWrapper.addGestureRecognizer(hintTapGestureRecognizer)
         self.hintWrapper.layer.roundCorners(for: .default)
 
@@ -91,7 +91,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
             }
         }
 
-        let backgroundTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedBackground))
+        let backgroundTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         backgroundTapGestureRecognizer.cancelsTouchesInView = false
         self.tableView.addGestureRecognizer(backgroundTapGestureRecognizer)
     }
@@ -178,13 +178,13 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         }
     }
 
-    @IBAction private func tappedBackground() {
+    @IBAction private func dismissKeyboard() {
         self.titleTextField.resignFirstResponder()
         self.mailAddressTextField.resignFirstResponder()
         self.reportTextView.resignFirstResponder()
     }
 
-    @objc private func tappedOnFAQHintLabel() {
+    @objc private func showFAQs() {
         let safariVC = SFSafariViewController(url: Routes.faq)
         safariVC.preferredControlTintColor = Brand.default.colors.window
         self.present(safariVC, animated: trueUnlessReduceMotionEnabled)

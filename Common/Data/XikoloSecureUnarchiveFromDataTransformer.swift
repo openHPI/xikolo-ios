@@ -11,7 +11,7 @@ class XikoloSecureUnarchiveFromDataTransformer: NSSecureUnarchiveFromDataTransfo
 
     static let name = NSValueTransformerName(rawValue: String(describing: XikoloSecureUnarchiveFromDataTransformer.self))
 
-    class override var allowedTopLevelClasses: [AnyClass] {
+    override class var allowedTopLevelClasses: [AnyClass] {
         return [
             ExerciseProgress.self,
             CourseCertificates.self,

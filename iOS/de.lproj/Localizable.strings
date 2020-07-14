@@ -132,10 +132,10 @@
 "course-list.title.Courses" = "Kurse";
 
 /* title for list of completed courses */
-"course-list.title.My completed courses" = "Meine abgeschlossenen Kurse";
+"course-list.title.My completed courses" = "Meine Abgeschlossenen Kurse";
 
 /* title for list of current courses */
-"course-list.title.My current courses" = "Meine aktuellen Kurse";
+"course-list.title.My current courses" = "Meine Aktuellen Kurse";
 
 /* delete all downloads in section */
 "course-section.combined-download-action.delete-downloads.title" = "Alle Lernmaterialien löschen";

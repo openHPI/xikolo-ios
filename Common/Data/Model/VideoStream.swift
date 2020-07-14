@@ -13,8 +13,8 @@ public final class VideoStream: NSObject, NSSecureCoding, IncludedPullable {
     public var hdURL: URL?
     public var sdURL: URL?
     public var hlsURL: URL?
-    public var hdSize: Int32?
-    public var sdSize: Int32?
+    public var hdSize: Int?
+    public var sdSize: Int?
     public var thumbnailURL: URL?
 
     public required init(object: ResourceData) throws {
@@ -27,21 +27,22 @@ public final class VideoStream: NSObject, NSSecureCoding, IncludedPullable {
     }
 
     public required init(coder decoder: NSCoder) {
-        self.hdURL = decoder.decodeObject(forKey: "hd_url") as? URL
-        self.sdURL = decoder.decodeObject(forKey: "sd_url") as? URL
-        self.hlsURL = decoder.decodeObject(forKey: "hls_url") as? URL
-        self.hdSize = decoder.decodeObject(forKey: "hd_size") as? Int32
-        self.sdSize = decoder.decodeObject(forKey: "sd_size") as? Int32
-        self.thumbnailURL = decoder.decodeObject(forKey: "thumbnail_url") as? URL
+        self.hdURL = decoder.decodeObject(of: NSURL.self, forKey: "hd_url")?.absoluteURL
+        self.sdURL = decoder.decodeObject(of: NSURL.self, forKey: "sd_url")?.absoluteURL
+        self.hlsURL = decoder.decodeObject(of: NSURL.self, forKey: "hls_url")?.absoluteURL
+        self.hdSize = decoder.decodeObject(of: NSNumber.self, forKey: "hd_size")?.intValue
+        self.sdSize = decoder.decodeObject(of: NSNumber.self, forKey: "sd_size")?.intValue
+        self.thumbnailURL = decoder.decodeObject(of: NSURL.self, forKey: "thumbnail_url")?.absoluteURL
     }
 
     public func encode(with coder: NSCoder) {
-        coder.encode(self.hdURL, forKey: "hd_url")
-        coder.encode(self.sdURL, forKey: "sd_url")
-        coder.encode(self.hlsURL, forKey: "hls_url")
-        coder.encode(self.hdSize, forKey: "hd_size")
-        coder.encode(self.sdSize, forKey: "sd_size")
-        coder.encode(self.thumbnailURL, forKey: "thumbnail_url")
+
+        coder.encode(self.hdURL?.asNSURL(), forKey: "hd_url")
+        coder.encode(self.sdURL?.asNSURL(), forKey: "sd_url")
+        coder.encode(self.hlsURL?.asNSURL(), forKey: "hls_url")
+        coder.encode(self.hdSize.map(NSNumber.init(value:)), forKey: "hd_size")
+        coder.encode(self.sdSize.map(NSNumber.init(value:)), forKey: "sd_size")
+        coder.encode(self.thumbnailURL?.asNSURL(), forKey: "thumbnail_url")
     }
 
 }

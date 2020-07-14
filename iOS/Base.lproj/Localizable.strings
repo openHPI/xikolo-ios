@@ -326,8 +326,20 @@
 /* label for app version */
 "settings.app.version.label" = "Version";
 
+/* Title for selecting dark apperance option */
+"settings.appearance.dark" = "Dark";
+
+/* Title for selecting device apperance option */
+"settings.appearance.device" = "System";
+
+/* Title for selecting light apperance option */
+"settings.appearance.light" = "Light";
+
 /* cell title for helpdesk */
 "settings.cell-title.app-helpdesk" = "Helpdesk";
+
+/* cell title for appearance settings */
+"settings.cell-title.appearance" = "Appearance";
 
 /* cell title for certificates */
 "settings.cell-title.certificates" = "Certificates";

@@ -49,7 +49,7 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        AppDelegate.instance().setHomescreenQuickActions()
+        QuickActionHelper.setHomescreenQuickActions()
     }
 
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {

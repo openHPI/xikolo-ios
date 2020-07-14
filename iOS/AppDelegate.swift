@@ -35,26 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private var shortcutItemToProcess: UIApplicationShortcutItem?
 
-    static func instance() -> AppDelegate {
-        let instance = UIApplication.shared.delegate as? AppDelegate
-        return instance.require(hint: "Unable to find AppDelegate")
-    }
-
-    func setHomescreenQuickActions() {
-        let fetchRequest = CourseHelper.FetchRequest.enrolledCurrentCoursesRequest
-        let enrolledCurrentCourses = CoreDataHelper.viewContext.fetchMultiple(fetchRequest).value ?? []
-        let subtitle = NSLocalizedString("quickactions.subtitle", comment: "subtitle for homescreen quick actions")
-
-        UIApplication.shared.shortcutItems = enrolledCurrentCourses.map { enrolledCurrentCourses -> UIApplicationShortcutItem in
-            return UIApplicationShortcutItem(type: "FavoriteAction",
-                                             localizedTitle: enrolledCurrentCourses.title ?? "",
-                                             localizedSubtitle: subtitle,
-                                             icon: UIApplicationShortcutIcon(templateImageName: "rectangle.fill.badge.arrow.right"),
-                                             userInfo: ["courseID": enrolledCurrentCourses.id as NSSecureCoding]
-            )
-        }
-    }
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
@@ -132,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        self.setHomescreenQuickActions()
+        QuickActionHelper.setHomescreenQuickActions()
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions
         // (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

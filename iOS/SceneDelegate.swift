@@ -62,7 +62,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        AppDelegate.instance().setHomescreenQuickActions()
+        QuickActionHelper.setHomescreenQuickActions()
     }
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {

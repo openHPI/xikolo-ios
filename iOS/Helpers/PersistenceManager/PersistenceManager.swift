@@ -345,7 +345,22 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
                 alert.dismiss(animated: trueUnlessReduceMotionEnabled)
             })
 
-            let rootViewController = AppDelegate.instance().window?.rootViewController
+            let rootViewController: UIViewController? = {
+                if #available(iOS 13, *) {
+                    let activeScene = UIApplication.shared.connectedScenes.first { $0.activationState == .foregroundActive }
+                    if let sceneDelegate = activeScene?.delegate as? SceneDelegate {
+                        return sceneDelegate.window?.rootViewController
+                    } else if let sceneDelegate = activeScene?.delegate as? CourseSceneDelegate {
+                        return sceneDelegate.window?.rootViewController
+                    } else {
+                        return nil
+                    }
+                } else {
+                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    return appDelegate?.window?.rootViewController
+                }
+            }()
+
             let presentingViewController = rootViewController?.presentedViewController ?? rootViewController
             presentingViewController?.present(alert, animated: trueUnlessReduceMotionEnabled)
         }

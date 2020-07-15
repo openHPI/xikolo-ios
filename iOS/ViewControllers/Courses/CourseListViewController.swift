@@ -503,6 +503,7 @@ extension CourseListViewController: CourseSearchFiltersViewControllerDelegate {
 extension CourseListViewController: UICollectionViewDragDelegate {
 
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        guard UIDevice.current.userInterfaceIdiom == .pad else { return [] }
         let selectedCourse = self.dataSource.object(at: indexPath)
         let courseCell = collectionView.cellForItem(at: indexPath) as? CourseCell
         return [selectedCourse.dragItem(with: courseCell?.previewView)]

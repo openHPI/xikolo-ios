@@ -342,6 +342,7 @@ extension CourseItemListViewController: CourseAreaViewController {
 extension CourseItemListViewController: UITableViewDragDelegate {
 
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        guard UIDevice.current.userInterfaceIdiom == .pad else { return [] }
         let selectedItem = self.dataSource.object(at: indexPath)
         let itemCell = tableView.cellForRow(at: indexPath) as? CourseItemCell
         return [selectedItem.dragItem(with: itemCell?.previewView)]

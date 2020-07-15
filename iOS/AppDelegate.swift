@@ -63,6 +63,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.tabBarController.selectedIndex = tabToSelect.index
         }
 
+        if Brand.default.features.showCourseDates {
+            UIApplication.shared.setMinimumBackgroundFetchInterval(86400) // approx. every 24 hours
+        }
+
         DispatchQueue.main.async {
             // Configure Firebase
             FirebaseApp.configure()
@@ -150,6 +154,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ReachabilityHelper.stopObserving()
         self.pushEngineManager.stopObserving()
         SpotlightHelper.shared.stopObserving()
+    }
+
+    func application(_ application: UIApplication,
+                     performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        guard Brand.default.features.showCourseDates && UserProfileHelper.shared.isLoggedIn else {
+            completionHandler(.noData)
+            return
+        }
+
+        CourseHelper.syncAllCourses().flatMap { _ in
+            return CourseDateHelper.syncAllCourseDates()
+        }.onSuccess { syncResult in
+            let newData = Set(syncResult.oldObjectIds) != Set(syncResult.newObjectIds)
+            let backgroundFetchResult: UIBackgroundFetchResult = newData ? .newData : .noData
+            completionHandler(backgroundFetchResult)
+        }.onFailure { _ in
+            completionHandler(.failed)
+        }
     }
 
     @available(iOS 13.0, *)

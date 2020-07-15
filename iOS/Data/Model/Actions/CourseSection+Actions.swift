@@ -25,14 +25,14 @@ extension CourseSection {
         }
     }
 
-    var hasUserActions: Bool {
+    var hasActions: Bool {
         return self.items.contains { item in
             return item.contentType == Video.contentType
         }
     }
 
-    var userActions: [UIAlertAction] {
-        var actions: [UIAlertAction] = []
+    var actions: [Action] {
+        var actions: [Action] = []
         var itemCounter = ItemCounter()
 
         self.items.compactMap { item in
@@ -60,7 +60,7 @@ extension CourseSection {
         if itemCounter.stream.numberOfDownloadableItems > 0, ReachabilityHelper.hasConnection {
             let downloadActionTitle = NSLocalizedString("course-section.stream-download-action.start-downloads.title",
                                                         comment: "start stream downloads for all videos in section")
-            actions.append(UIAlertAction(title: downloadActionTitle, style: .default) { _ in
+            actions.append(Action(title: downloadActionTitle) {
                 StreamPersistenceManager.shared.startDownloads(for: self)
             })
         }
@@ -68,7 +68,7 @@ extension CourseSection {
         if itemCounter.stream.numberOfDownloadedItems > 0 {
             let deleteActionTitle = NSLocalizedString("course-section.stream-download-action.delete-downloads.title",
                                                       comment: "delete all downloaded streams downloads in section")
-            actions.append(UIAlertAction(title: deleteActionTitle, style: .default) { _ in
+            actions.append(Action(title: deleteActionTitle) {
                 StreamPersistenceManager.shared.deleteDownloads(for: self)
             })
         }
@@ -76,7 +76,7 @@ extension CourseSection {
         if itemCounter.stream.numberOfDownloadingItems > 0 {
             let stopActionTitle = NSLocalizedString("course-section.stream-download-action.stop-downloads.title",
                                                     comment: "stop all stream downloads in section")
-            actions.append(UIAlertAction(title: stopActionTitle, style: .default) { _ in
+            actions.append(Action(title: stopActionTitle) {
                 StreamPersistenceManager.shared.cancelDownloads(for: self)
             })
         }
@@ -86,7 +86,7 @@ extension CourseSection {
         if itemCounter.slides.numberOfDownloadableItems > 0, ReachabilityHelper.hasConnection {
             let downloadActionTitle = NSLocalizedString("course-section.slides-download-action.start-downloads.title",
                                                         comment: "start slides downloads for all videos in section")
-            actions.append(UIAlertAction(title: downloadActionTitle, style: .default) { _ in
+            actions.append(Action(title: downloadActionTitle) {
                 SlidesPersistenceManager.shared.startDownloads(for: self)
             })
         }
@@ -94,7 +94,7 @@ extension CourseSection {
         if itemCounter.slides.numberOfDownloadedItems > 0 {
             let deleteActionTitle = NSLocalizedString("course-section.slides-download-action.delete-downloads.title",
                                                       comment: "delete all downloaded slides downloads in section")
-            actions.append(UIAlertAction(title: deleteActionTitle, style: .default) { _ in
+            actions.append(Action(title: deleteActionTitle) {
                 SlidesPersistenceManager.shared.deleteDownloads(for: self)
             })
         }
@@ -102,7 +102,7 @@ extension CourseSection {
         if itemCounter.slides.numberOfDownloadingItems > 0 {
             let stopActionTitle = NSLocalizedString("course-section.slides-download-action.stop-downloads.title",
                                                     comment: "stop all slides downloads in section")
-            actions.append(UIAlertAction(title: stopActionTitle, style: .default) { _ in
+            actions.append(Action(title: stopActionTitle) {
                 SlidesPersistenceManager.shared.cancelDownloads(for: self)
             })
         }
@@ -112,7 +112,7 @@ extension CourseSection {
         if itemCounter.stream.numberOfDownloadableItems > 0, itemCounter.slides.numberOfDownloadableItems > 0, ReachabilityHelper.hasConnection {
             let downloadActionTitle = NSLocalizedString("course-section.combined-download-action.start-downloads.title",
                                                         comment: "start all downloads for all videos in section")
-            actions.append(UIAlertAction(title: downloadActionTitle, style: .default) { _ in
+            actions.append(Action(title: downloadActionTitle) {
                 StreamPersistenceManager.shared.startDownloads(for: self)
                 SlidesPersistenceManager.shared.startDownloads(for: self)
             })
@@ -121,7 +121,7 @@ extension CourseSection {
         if itemCounter.stream.numberOfDownloadedItems > 0, itemCounter.slides.numberOfDownloadedItems > 0 {
             let deleteActionTitle = NSLocalizedString("course-section.combined-download-action.delete-downloads.title",
                                                       comment: "delete all downloads in section")
-            actions.append(UIAlertAction(title: deleteActionTitle, style: .default) { _ in
+            actions.append(Action(title: deleteActionTitle) {
                 StreamPersistenceManager.shared.deleteDownloads(for: self)
                 SlidesPersistenceManager.shared.deleteDownloads(for: self)
             })
@@ -130,7 +130,7 @@ extension CourseSection {
         if itemCounter.stream.numberOfDownloadingItems > 0, itemCounter.slides.numberOfDownloadingItems > 0 {
             let stopActionTitle = NSLocalizedString("course-section.combined-download-action.stop-downloads.title",
                                                     comment: "stop all downloads in section")
-            actions.append(UIAlertAction(title: stopActionTitle, style: .default) { _ in
+            actions.append(Action(title: stopActionTitle) {
                 StreamPersistenceManager.shared.cancelDownloads(for: self)
                 SlidesPersistenceManager.shared.cancelDownloads(for: self)
             })

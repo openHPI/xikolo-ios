@@ -361,7 +361,7 @@ public extension SyncEngine {
                         deleteNotExistingResources: deleteNotExistingResources,
                         in: context
                     ).map { resources in
-                        return MergeMultipleResult(resources: resources, headers: networkResult.headers)
+                        return MergeMultipleResult(oldResources: objects, newResources: resources, headers: networkResult.headers)
                     }
                 }.inject(ImmediateExecutionContext) {
                     return Result<Void, Error> {
@@ -370,7 +370,11 @@ public extension SyncEngine {
                         return .coreData(error)
                     }
                 }.map(ImmediateExecutionContext) { mergeResult in
-                    return SyncMultipleResult(objectIds: mergeResult.resources.map(\.objectID), headers: mergeResult.headers)
+                    return SyncMultipleResult(
+                        oldObjectIds: mergeResult.oldResources.map(\.objectID),
+                        newObjectIds: mergeResult.newResources.map(\.objectID),
+                        headers: mergeResult.headers
+                    )
                 }.onComplete(ImmediateExecutionContext) { result in
                     promise.complete(result)
                 }

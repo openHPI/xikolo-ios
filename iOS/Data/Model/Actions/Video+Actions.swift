@@ -8,6 +8,10 @@ import UIKit
 
 extension Video {
 
+    private static var actionDispatchQueue: DispatchQueue {
+        return DispatchQueue(label: "video-actions", qos: .userInitiated)
+    }
+
     var streamURLForDownload: URL? {
         return self.singleStream?.hlsURL
     }
@@ -32,7 +36,9 @@ extension Video {
             let downloadActionTitle = NSLocalizedString("course-item.stream-download-action.start-download.title",
                                                         comment: "start download of stream for video")
             return Action(title: downloadActionTitle, image: Action.Image.download) {
-                StreamPersistenceManager.shared.startDownload(with: url, for: self)
+                Self.actionDispatchQueue.async {
+                    StreamPersistenceManager.shared.startDownload(with: url, for: self)
+                }
             }
         }
 
@@ -40,7 +46,9 @@ extension Video {
             let abortActionTitle = NSLocalizedString("course-item.stream-download-action.stop-download.title",
                                                      comment: "stop stream download for video")
             return Action(title: abortActionTitle, image: Action.Image.stop) {
-                StreamPersistenceManager.shared.cancelDownload(for: self)
+                Self.actionDispatchQueue.async {
+                    StreamPersistenceManager.shared.cancelDownload(for: self)
+                }
             }
         }
 
@@ -48,7 +56,9 @@ extension Video {
             let deleteActionTitle = NSLocalizedString("course-item.stream-download-action.delete-download.title",
                                                       comment: "delete stream download for video")
             return Action(title: deleteActionTitle, image: Action.Image.delete) {
-                StreamPersistenceManager.shared.deleteDownload(for: self)
+                Self.actionDispatchQueue.async {
+                    StreamPersistenceManager.shared.deleteDownload(for: self)
+                }
             }
         }
 
@@ -63,7 +73,9 @@ extension Video {
             let downloadActionTitle = NSLocalizedString("course-item.slides-download-action.start-download.title",
                                                         comment: "start download of slides for video")
             return Action(title: downloadActionTitle, image: Action.Image.download) {
-                SlidesPersistenceManager.shared.startDownload(with: url, for: self)
+                Self.actionDispatchQueue.async {
+                    SlidesPersistenceManager.shared.startDownload(with: url, for: self)
+                }
             }
         }
 
@@ -71,7 +83,9 @@ extension Video {
             let abortActionTitle = NSLocalizedString("course-item.slides-download-action.stop-download.title",
                                                      comment: "stop slides download for video")
             return Action(title: abortActionTitle, image: Action.Image.stop) {
-                SlidesPersistenceManager.shared.cancelDownload(for: self)
+                Self.actionDispatchQueue.async {
+                    SlidesPersistenceManager.shared.cancelDownload(for: self)
+                }
             }
         }
 
@@ -79,7 +93,9 @@ extension Video {
             let deleteActionTitle = NSLocalizedString("course-item.slides-download-action.delete-download.title",
                                                       comment: "delete slides download for video")
             return Action(title: deleteActionTitle, image: Action.Image.delete) {
-                SlidesPersistenceManager.shared.deleteDownload(for: self)
+                Self.actionDispatchQueue.async {
+                    SlidesPersistenceManager.shared.deleteDownload(for: self)
+                }
             }
         }
 
@@ -98,8 +114,10 @@ extension Video {
             let downloadActionTitle = NSLocalizedString("course-item.combined-download-action.start-download.title",
                                                         comment: "start all downloads for video")
             actions.append(Action(title: downloadActionTitle, image: Action.Image.aggregatedDownload) {
-                StreamPersistenceManager.shared.startDownload(with: streamURL, for: self)
-                SlidesPersistenceManager.shared.startDownload(with: slidesURL, for: self)
+                Self.actionDispatchQueue.async {
+                    StreamPersistenceManager.shared.startDownload(with: streamURL, for: self)
+                    SlidesPersistenceManager.shared.startDownload(with: slidesURL, for: self)
+                }
             })
         }
 
@@ -107,8 +125,10 @@ extension Video {
             let abortActionTitle = NSLocalizedString("course-item.combined-download-action.stop-download.title",
                                                      comment: "stop all downloads for video")
             actions.append(Action(title: abortActionTitle, image: Action.Image.stop) {
-                StreamPersistenceManager.shared.cancelDownload(for: self)
-                SlidesPersistenceManager.shared.cancelDownload(for: self)
+                Self.actionDispatchQueue.async {
+                    StreamPersistenceManager.shared.cancelDownload(for: self)
+                    SlidesPersistenceManager.shared.cancelDownload(for: self)
+                }
             })
         }
 
@@ -116,8 +136,10 @@ extension Video {
             let deleteActionTitle = NSLocalizedString("course-item.combined-download-action.delete-download.title",
                                                       comment: "delete all downloads for video")
             actions.append(Action(title: deleteActionTitle, image: Action.Image.delete) {
-                StreamPersistenceManager.shared.deleteDownload(for: self)
-                SlidesPersistenceManager.shared.deleteDownload(for: self)
+                Self.actionDispatchQueue.async {
+                    StreamPersistenceManager.shared.deleteDownload(for: self)
+                    SlidesPersistenceManager.shared.deleteDownload(for: self)
+                }
             })
         }
 

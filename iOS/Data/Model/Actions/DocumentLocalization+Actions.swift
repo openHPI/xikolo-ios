@@ -8,6 +8,10 @@ import UIKit
 
 extension DocumentLocalization {
 
+    private static var actionDispatchQueue: DispatchQueue {
+        return DispatchQueue(label: "document-actions", qos: .userInitiated)
+    }
+
     var actions: [Action] {
         return [self.downloadAction].compactMap { $0 }
     }
@@ -20,7 +24,9 @@ extension DocumentLocalization {
             let downloadActionTitle = NSLocalizedString("document-localization.download-action.start-download.title",
                                                         comment: "start download of a document localization")
             return Action(title: downloadActionTitle) {
-                DocumentsPersistenceManager.shared.startDownload(with: url, for: self)
+                Self.actionDispatchQueue.async {
+                    DocumentsPersistenceManager.shared.startDownload(with: url, for: self)
+                }
             }
         }
 
@@ -28,7 +34,9 @@ extension DocumentLocalization {
             let abortActionTitle = NSLocalizedString("document-localization.download-action.stop-download.title",
                                                      comment: "stop download of a document localization")
             return Action(title: abortActionTitle) {
-                DocumentsPersistenceManager.shared.cancelDownload(for: self)
+                Self.actionDispatchQueue.async {
+                    DocumentsPersistenceManager.shared.cancelDownload(for: self)
+                }
             }
         }
 
@@ -36,7 +44,9 @@ extension DocumentLocalization {
             let deleteActionTitle = NSLocalizedString("document-localization.download-action.delete-download.title",
                                                       comment: "delete download of a document localization")
             return Action(title: deleteActionTitle) {
-                DocumentsPersistenceManager.shared.deleteDownload(for: self)
+                Self.actionDispatchQueue.async {
+                    DocumentsPersistenceManager.shared.deleteDownload(for: self)
+                }
             }
         }
 

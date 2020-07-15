@@ -19,6 +19,10 @@ extension CourseSection {
         var slides = DownloadItemCounter()
     }
 
+    private static var actionDispatchQueue: DispatchQueue {
+        return DispatchQueue(label: "section-actions", qos: .userInitiated)
+    }
+
     var allVideosPreloaded: Bool {
         return !self.items.contains { item in
             return item.contentType == Video.contentType && item.content == nil
@@ -61,7 +65,9 @@ extension CourseSection {
             let downloadActionTitle = NSLocalizedString("course-section.stream-download-action.start-downloads.title",
                                                         comment: "start stream downloads for all videos in section")
             actions.append(Action(title: downloadActionTitle) {
-                StreamPersistenceManager.shared.startDownloads(for: self)
+                Self.actionDispatchQueue.async {
+                    StreamPersistenceManager.shared.startDownloads(for: self)
+                }
             })
         }
 
@@ -69,7 +75,9 @@ extension CourseSection {
             let deleteActionTitle = NSLocalizedString("course-section.stream-download-action.delete-downloads.title",
                                                       comment: "delete all downloaded streams downloads in section")
             actions.append(Action(title: deleteActionTitle) {
-                StreamPersistenceManager.shared.deleteDownloads(for: self)
+                Self.actionDispatchQueue.async {
+                    StreamPersistenceManager.shared.deleteDownloads(for: self)
+                }
             })
         }
 
@@ -77,7 +85,9 @@ extension CourseSection {
             let stopActionTitle = NSLocalizedString("course-section.stream-download-action.stop-downloads.title",
                                                     comment: "stop all stream downloads in section")
             actions.append(Action(title: stopActionTitle) {
-                StreamPersistenceManager.shared.cancelDownloads(for: self)
+                Self.actionDispatchQueue.async {
+                    StreamPersistenceManager.shared.cancelDownloads(for: self)
+                }
             })
         }
 
@@ -87,7 +97,9 @@ extension CourseSection {
             let downloadActionTitle = NSLocalizedString("course-section.slides-download-action.start-downloads.title",
                                                         comment: "start slides downloads for all videos in section")
             actions.append(Action(title: downloadActionTitle) {
-                SlidesPersistenceManager.shared.startDownloads(for: self)
+                Self.actionDispatchQueue.async {
+                    SlidesPersistenceManager.shared.startDownloads(for: self)
+                }
             })
         }
 
@@ -95,7 +107,9 @@ extension CourseSection {
             let deleteActionTitle = NSLocalizedString("course-section.slides-download-action.delete-downloads.title",
                                                       comment: "delete all downloaded slides downloads in section")
             actions.append(Action(title: deleteActionTitle) {
-                SlidesPersistenceManager.shared.deleteDownloads(for: self)
+                Self.actionDispatchQueue.async {
+                    SlidesPersistenceManager.shared.deleteDownloads(for: self)
+                }
             })
         }
 
@@ -103,7 +117,9 @@ extension CourseSection {
             let stopActionTitle = NSLocalizedString("course-section.slides-download-action.stop-downloads.title",
                                                     comment: "stop all slides downloads in section")
             actions.append(Action(title: stopActionTitle) {
-                SlidesPersistenceManager.shared.cancelDownloads(for: self)
+                Self.actionDispatchQueue.async {
+                    SlidesPersistenceManager.shared.cancelDownloads(for: self)
+                }
             })
         }
 
@@ -113,8 +129,10 @@ extension CourseSection {
             let downloadActionTitle = NSLocalizedString("course-section.combined-download-action.start-downloads.title",
                                                         comment: "start all downloads for all videos in section")
             actions.append(Action(title: downloadActionTitle) {
-                StreamPersistenceManager.shared.startDownloads(for: self)
-                SlidesPersistenceManager.shared.startDownloads(for: self)
+                Self.actionDispatchQueue.async {
+                    StreamPersistenceManager.shared.startDownloads(for: self)
+                    SlidesPersistenceManager.shared.startDownloads(for: self)
+                }
             })
         }
 
@@ -122,8 +140,10 @@ extension CourseSection {
             let deleteActionTitle = NSLocalizedString("course-section.combined-download-action.delete-downloads.title",
                                                       comment: "delete all downloads in section")
             actions.append(Action(title: deleteActionTitle) {
-                StreamPersistenceManager.shared.deleteDownloads(for: self)
-                SlidesPersistenceManager.shared.deleteDownloads(for: self)
+                Self.actionDispatchQueue.async {
+                    StreamPersistenceManager.shared.deleteDownloads(for: self)
+                    SlidesPersistenceManager.shared.deleteDownloads(for: self)
+                }
             })
         }
 
@@ -131,8 +151,10 @@ extension CourseSection {
             let stopActionTitle = NSLocalizedString("course-section.combined-download-action.stop-downloads.title",
                                                     comment: "stop all downloads in section")
             actions.append(Action(title: stopActionTitle) {
-                StreamPersistenceManager.shared.cancelDownloads(for: self)
-                SlidesPersistenceManager.shared.cancelDownloads(for: self)
+                Self.actionDispatchQueue.async {
+                    StreamPersistenceManager.shared.cancelDownloads(for: self)
+                    SlidesPersistenceManager.shared.cancelDownloads(for: self)
+                }
             })
         }
 

@@ -59,7 +59,7 @@ class DocumentLocalizationCell: UITableViewCell {
 
     @IBAction private func tappedActionsButton() {
         guard let documentLocalization = self.documentLocalization else { return }
-        self.delegate?.showAlert(with: documentLocalization.userActions,
+        self.delegate?.showAlert(with: documentLocalization.actions.asAlertActions(),
                                  title: documentLocalization.document.title,
                                  message: documentLocalization.languageCode,
                                  on: self.actionsButton)

@@ -10,7 +10,7 @@ public enum LanguageLocalizer {
     public static func localizedDisplayName(for identifier: String) -> String? {
         let localeIdentifier = identifier == "cn" ? "zh" : identifier
         let locale = NSLocale(localeIdentifier: Locale.current.identifier)
-        let displayName =  locale.displayName(forKey: .languageCode, value: localeIdentifier)
+        let displayName = locale.displayName(forKey: .languageCode, value: localeIdentifier)
         return displayName?.capitalized(with: Locale.current)
     }
 
@@ -20,6 +20,5 @@ public enum LanguageLocalizer {
         let displayName = locale.displayName(forKey: .languageCode, value: localeIdentifier)
         return displayName?.capitalized(with: Locale(identifier: localeIdentifier))
     }
-
 
 }

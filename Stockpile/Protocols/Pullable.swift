@@ -13,6 +13,7 @@ public protocol Pullable: ResourceRepresentable, Validatable {
 
     // strategy
     static var resourceKeyAttribute: String { get }
+
     static func queryItems<Query>(forQuery query: Query) -> [URLQueryItem] where Query: ResourceQuery
     static func validateObjectCreation(object: ResourceData) throws
     static func extractResourceData(from object: ResourceData) throws -> ResourceData
@@ -73,7 +74,7 @@ extension Pullable where Self: NSManagedObject {
                 self[keyPath: keyPath] = fetchedResource
             } else {
                 // TODO: logging
-                //SyncEngine.log?("relationship update saved (\(Self.type) --> \(A.type)?)", .info)
+                // SyncEngine.log?("relationship update saved (\(Self.type) --> \(A.type)?)", .info)
             }
         case .notExisting:
             // relationship does not exist, so we reset delete the possible relationship

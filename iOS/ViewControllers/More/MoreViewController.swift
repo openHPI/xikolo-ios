@@ -61,7 +61,6 @@ class MoreViewController: UIViewController {
         }
     }
 
-
     @objc private func updateUIAfterLoginStateChanged() {
         self.navigationItem.rightBarButtonItem = UserProfileHelper.shared.isLoggedIn ? self.actionButton : nil
     }

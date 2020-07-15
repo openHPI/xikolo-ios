@@ -26,7 +26,7 @@ extension CourseDateHelper {
         private static var defaultPredicate: NSPredicate {
             return NSCompoundPredicate(andPredicateWithSubpredicates: [
                 self.inFuturePredicate,
-                self.enrolledCoursePredicate
+                self.enrolledCoursePredicate,
             ])
         }
 

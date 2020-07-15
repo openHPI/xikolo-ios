@@ -37,11 +37,11 @@ public enum SerializationError: Error {
 }
 
 public enum SynchronizationError: Error {
-    case noRelationshipBetweenEnities(from: Any, to: Any)
-    case toManyRelationshipBetweenEnities(from: Any, to: Any)
+    case noRelationshipBetweenEntities(from: Any, to: Any)
+    case toManyRelationshipBetweenEntities(from: Any, to: Any)
     case abstractRelationshipNotUpdated(from: Any, to: Any, withKey: KeyType)
     case missingIncludedResource(from: Any, to: Any, withKey: KeyType)
-    case missingEnityNameForResource(Any)
+    case missingEntityNameForResource(Any)
     case noMatchAbstractType(resourceType: Any, abstractType: Any)
 }
 

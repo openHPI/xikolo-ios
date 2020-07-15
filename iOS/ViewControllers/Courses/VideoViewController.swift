@@ -30,7 +30,7 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var slidesProgressView: CircularProgressView!
     @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
-    @IBOutlet private var fullScreenContraints: [NSLayoutConstraint]!
+    @IBOutlet private var fullScreenConstraints: [NSLayoutConstraint]!
 
     private var adjustedVideoContainerRatioConstraint: NSLayoutConstraint? {
         didSet {
@@ -153,11 +153,7 @@ class VideoViewController: UIViewController {
 
         self.isFirstAppearance = false
 
-        self.playerViewController?.automaticallyStopPicutureinPictureModeIfNecessary()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        self.playerViewController?.automaticallyStopPictureInPictureModeIfNecessary()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -173,7 +169,7 @@ class VideoViewController: UIViewController {
         }
 
         if self.didViewAppear {
-            self.playerViewController?.automaticallyStopPicutureinPictureModeIfNecessary(force: true)
+            self.playerViewController?.automaticallyStopPictureInPictureModeIfNecessary(force: true)
             self.trackVideoClose()
         }
 
@@ -272,7 +268,7 @@ class VideoViewController: UIViewController {
 
     @IBAction private func openSlides() {
         self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
-        self.playerViewController?.automaticallyStartPicutureinPictureModeIfPossible()
+        self.playerViewController?.automaticallyStartPictureInPictureModeIfPossible()
     }
 
     @IBAction private func showVideoActionMenu(_ sender: UIButton) {
@@ -377,9 +373,9 @@ class VideoViewController: UIViewController {
             self.toggleControlBars(animated)
 
             if self.videoIsShownInFullScreen {
-                NSLayoutConstraint.activate(self.fullScreenContraints)
+                NSLayoutConstraint.activate(self.fullScreenConstraints)
             } else {
-                NSLayoutConstraint.deactivate(self.fullScreenContraints)
+                NSLayoutConstraint.deactivate(self.fullScreenConstraints)
             }
 
             let animationDuration = animated ? 0.25 : 0

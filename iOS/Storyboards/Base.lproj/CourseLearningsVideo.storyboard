@@ -277,10 +277,10 @@
                         <outlet property="videoContainer" destination="b3I-76-iXF" id="5iO-cR-rH2"/>
                         <outlet property="videoDownloadedIcon" destination="OF0-N3-xWy" id="qFE-vt-MDK"/>
                         <outlet property="videoProgressView" destination="jjo-QM-UbQ" id="0zC-UH-xxJ"/>
-                        <outletCollection property="fullScreenContraints" destination="HSD-ee-D4T" collectionClass="NSMutableArray" id="pbc-JW-3KT"/>
-                        <outletCollection property="fullScreenContraints" destination="nE2-TU-3J1" collectionClass="NSMutableArray" id="Uqx-h9-qfP"/>
-                        <outletCollection property="fullScreenContraints" destination="vVb-oG-2Cj" collectionClass="NSMutableArray" id="lco-Hq-sTy"/>
-                        <outletCollection property="fullScreenContraints" destination="TKU-Ld-itT" collectionClass="NSMutableArray" id="2rI-sL-Tc3"/>
+                        <outletCollection property="fullScreenConstraints" destination="HSD-ee-D4T" collectionClass="NSMutableArray" id="pbc-JW-3KT"/>
+                        <outletCollection property="fullScreenConstraints" destination="nE2-TU-3J1" collectionClass="NSMutableArray" id="Uqx-h9-qfP"/>
+                        <outletCollection property="fullScreenConstraints" destination="vVb-oG-2Cj" collectionClass="NSMutableArray" id="lco-Hq-sTy"/>
+                        <outletCollection property="fullScreenConstraints" destination="TKU-Ld-itT" collectionClass="NSMutableArray" id="2rI-sL-Tc3"/>
                         <segue destination="fYO-1K-Qdy" kind="show" identifier="ShowSlides" id="Vee-Qu-tfP"/>
                     </connections>
                 </viewController>

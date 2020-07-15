@@ -617,7 +617,7 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
-    public func automaticallyStartPicutureinPictureModeIfPossible() {
+    public func automaticallyStartPictureInPictureModeIfPossible() {
         guard let pictureInPictureController = self.pictureInPictureController else { return }
         if self.player.timeControlStatus == .paused { return }
         if pictureInPictureController.isPictureInPictureActive { return }
@@ -625,7 +625,7 @@ public class BingePlayerViewController: UIViewController {
         self.pictureInPictureWasStartedAutomatically = true
     }
 
-    public func automaticallyStopPicutureinPictureModeIfNecessary(force: Bool = false) {
+    public func automaticallyStopPictureInPictureModeIfNecessary(force: Bool = false) {
         guard let pictureInPictureController = self.pictureInPictureController else { return }
         guard pictureInPictureController.isPictureInPictureActive else { return }
         guard self.pictureInPictureWasStartedAutomatically || force else { return }

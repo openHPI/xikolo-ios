@@ -37,12 +37,8 @@ public enum SerializationError: Error {
 }
 
 public enum SynchronizationError: Error {
-    case noRelationshipBetweenEntities(from: Any, to: Any)
-    case toManyRelationshipBetweenEntities(from: Any, to: Any)
-    case abstractRelationshipNotUpdated(from: Any, to: Any, withKey: KeyType)
     case missingIncludedResource(from: Any, to: Any, withKey: KeyType)
     case missingEntityNameForResource(Any)
-    case noMatchAbstractType(resourceType: Any, abstractType: Any)
 }
 
 enum NestedMarshalError: Error {

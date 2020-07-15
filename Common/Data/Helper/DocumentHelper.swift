@@ -25,7 +25,7 @@ public enum DocumentHelper {
             CoreDataHelper.persistentContainer.performBackgroundTask { context in
                 let course = context.typedObject(with: courseObjectId) as Course
 
-                for documentObjectId in syncResult.objectIds {
+                for documentObjectId in syncResult.newObjectIds {
                     let document = context.typedObject(with: documentObjectId) as Document
                     document.courses.insert(course)
 

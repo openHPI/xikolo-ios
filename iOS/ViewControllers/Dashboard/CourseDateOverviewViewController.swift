@@ -62,10 +62,10 @@ class CourseDateOverviewViewController: UIViewController {
 
         self.loadData()
 
-        let summaryGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnSummary))
+        let summaryGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showAllCourseDates))
         self.summaryContainer.addGestureRecognizer(summaryGestureRecognizer)
 
-        let nextUpGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnNextUp))
+        let nextUpGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showCourseForNextCourseDate))
         self.nextUpContainer.addGestureRecognizer(nextUpGestureRecognizer)
 
         NotificationCenter.default.addObserver(self,
@@ -121,11 +121,11 @@ class CourseDateOverviewViewController: UIViewController {
         self.nextUpWidthConstraint.constant = cellWidth - 2 * CourseCell.cardInset
     }
 
-    @objc private func tappedOnSummary() {
+    @objc private func showAllCourseDates() {
         self.performSegue(withIdentifier: R.segue.courseDateOverviewViewController.showCourseDates, sender: nil)
     }
 
-    @objc private func tappedOnNextUp() {
+    @objc private func showCourseForNextCourseDate() {
         guard let course = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value?.course else { return }
         self.appNavigator?.show(course: course)
     }

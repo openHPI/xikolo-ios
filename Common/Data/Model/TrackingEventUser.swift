@@ -18,15 +18,16 @@ class TrackingEventUser: NSObject, NSSecureCoding {
     }
 
     required init?(coder decoder: NSCoder) {
-        guard let uuid = decoder.decodeObject(forKey: "uuid") as? String else {
+        guard let uuid = decoder.decodeObject(of: NSString.self, forKey: "uuid") as String? else {
             return nil
         }
 
         self.uuid = uuid
+
     }
 
     func encode(with coder: NSCoder) {
-        coder.encode(self.uuid, forKey: "uuid")
+        coder.encode(NSString(string: self.uuid), forKey: "uuid")
     }
 
 }

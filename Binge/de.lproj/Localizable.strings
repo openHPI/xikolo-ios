@@ -19,3 +19,6 @@
 
 /* section title for subtitles and closed captions in the media option selection */
 "media-option-selection.section.title.subtitles" = "Untertitel & CC";
+
+/* Text indicating a video playback with a local source */
+"offline-label.text" = "Offline";

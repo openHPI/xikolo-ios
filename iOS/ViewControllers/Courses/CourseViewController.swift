@@ -228,10 +228,16 @@ class CourseViewController: UIViewController {
         let imageScale = image.size.width / self.view.bounds.width
         let transform = CGAffineTransform(scaleX: imageScale, y: imageScale)
         let yOffset = (image.size.height - self.headerImageView.bounds.height * imageScale) / 2 / imageScale
-        let subImageRect = CGRect(x: 0,
-                                  y: max(0, yOffset),
-                                  width: self.view.bounds.width,
-                                  height: UIApplication.shared.statusBarFrame.height)
+
+        let statusBarHeight: CGFloat = {
+            if #available(iOS 13, *) {
+                return self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 12
+            } else {
+                return UIApplication.shared.statusBarFrame.height
+            }
+        }()
+
+        let subImageRect = CGRect(x: 0, y: max(0, yOffset), width: self.view.bounds.width, height: statusBarHeight)
         return image.cgImage?.cropping(to: subImageRect.applying(transform))
     }
 

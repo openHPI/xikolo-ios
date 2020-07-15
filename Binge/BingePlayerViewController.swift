@@ -28,6 +28,7 @@ public class BingePlayerViewController: UIViewController {
         return view
     }()
 
+    @available(iOS, obsoleted: 13.0)
     private lazy var volumeIndicator: MPVolumeView = {
         let view = MPVolumeView()
         view.showsRouteButton = false
@@ -82,6 +83,7 @@ public class BingePlayerViewController: UIViewController {
     private var pictureInPictureController: AVPictureInPictureController?
     private var pictureInPictureWasStartedAutomatically = false
 
+    @available(iOS, obsoleted: 13.0)
     private var volumeIndicatorDispatchWorkItem: DispatchWorkItem?
     private var controlsOverlayDispatchWorkItem: DispatchWorkItem?
 
@@ -230,8 +232,11 @@ public class BingePlayerViewController: UIViewController {
         view.addSubview(self.playerView)
         view.addSubview(self.controlsContainer)
         view.addSubview(self.errorView)
-        view.addSubview(self.volumeIndicator)
         view.addSubview(self.loadingIndicator)
+
+        if #available(iOS 13, *) {} else {
+            view.addSubview(self.volumeIndicator)
+        }
 
         self.controlsContainer.isHidden = true
         self.controlsContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -256,20 +261,25 @@ public class BingePlayerViewController: UIViewController {
             self.errorView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor),
             self.errorView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor),
             self.errorView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor),
-            self.volumeIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            self.volumeIndicator.topAnchor.constraint(equalTo: view.topAnchor),
-            NSLayoutConstraint(item: self.volumeIndicator,
-                               attribute: .width,
-                               relatedBy: .equal,
-                               toItem: self.playerView,
-                               attribute: .width,
-                               multiplier: 0.5,
-                               constant: 0),
             self.loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             self.loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             self.loadingIndicator.heightAnchor.constraint(equalToConstant: 75), // including 2 * shadowRadius
             self.loadingIndicator.widthAnchor.constraint(equalToConstant: 75), // including 2 * shadowRadius
         ])
+
+        if #available(iOS 13, *) {} else {
+            NSLayoutConstraint.activate([
+                self.volumeIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                self.volumeIndicator.topAnchor.constraint(equalTo: view.topAnchor),
+                NSLayoutConstraint(item: self.volumeIndicator,
+                                   attribute: .width,
+                                   relatedBy: .equal,
+                                   toItem: self.playerView,
+                                   attribute: .width,
+                                   multiplier: 0.5,
+                                   constant: 0),
+            ])
+        }
 
         self.view = view
     }
@@ -334,8 +344,10 @@ public class BingePlayerViewController: UIViewController {
             self?.reactOnStatusChange()
         }
 
-        self.outputVolumeObservation = AVAudioSession.sharedInstance().observe(\.outputVolume, options: [.new]) { [weak self] _, _ in
-            self?.showVolumeIndicator()
+        if #available(iOS 13, *) {} else {
+            self.outputVolumeObservation = AVAudioSession.sharedInstance().observe(\.outputVolume, options: [.new]) { [weak self] _, _ in
+                self?.showVolumeIndicator()
+            }
         }
 
         NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChanged), name: AVAudioSession.routeChangeNotification, object: nil)
@@ -379,7 +391,14 @@ public class BingePlayerViewController: UIViewController {
         }
 
         coordinator.animateAlongsideTransition(in: nil, animation: nil) { _ in
-            let currentOrientation = UIApplication.shared.statusBarOrientation
+            let currentOrientation: UIInterfaceOrientation? = {
+                if #available(iOS 13, *) {
+                    return self.view.window?.windowScene?.interfaceOrientation
+                } else {
+                    return UIApplication.shared.statusBarOrientation
+                }
+            }()
+
             self.delegate?.didChangeOrientation(to: currentOrientation)
         }
     }
@@ -409,7 +428,9 @@ public class BingePlayerViewController: UIViewController {
                                                        allowFullScreenMode: self.allowFullScreenMode,
                                                        isStandAlone: self.isStandAlone)
 
-        self.volumeIndicator.isHidden = self.layoutState != .fullScreen
+        if #available(iOS 13, *) {} else {
+            self.volumeIndicator.isHidden = self.layoutState != .fullScreen
+        }
 
         if self.layoutState == .pictureInPicture {
             self.hideControlsOverlay()
@@ -596,7 +617,7 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
-    public func automaticallyStartPicutureinPictureModeIfPossible() {
+    public func automaticallyStartPictureInPictureModeIfPossible() {
         guard let pictureInPictureController = self.pictureInPictureController else { return }
         if self.player.timeControlStatus == .paused { return }
         if pictureInPictureController.isPictureInPictureActive { return }
@@ -604,7 +625,7 @@ public class BingePlayerViewController: UIViewController {
         self.pictureInPictureWasStartedAutomatically = true
     }
 
-    public func automaticallyStopPicutureinPictureModeIfNecessary(force: Bool = false) {
+    public func automaticallyStopPictureInPictureModeIfNecessary(force: Bool = false) {
         guard let pictureInPictureController = self.pictureInPictureController else { return }
         guard pictureInPictureController.isPictureInPictureActive else { return }
         guard self.pictureInPictureWasStartedAutomatically || force else { return }
@@ -697,7 +718,7 @@ extension BingePlayerViewController: BingeControlDelegate {
         let navigationController = UINavigationController()
         navigationController.viewControllers = [mediaSelectionViewController]
         navigationController.modalPresentationStyle = .popover
-        navigationController.navigationBar.barStyle = .blackOpaque
+        navigationController.navigationBar.barStyle = .black
         navigationController.navigationBar.barTintColor = UIColor(white: 0.1, alpha: 1.0)
         navigationController.navigationBar.tintColor = .white
         navigationController.navigationBar.titleTextAttributes = [
@@ -819,6 +840,7 @@ extension BingePlayerViewController: BingeControlDelegate {
 
 extension BingePlayerViewController {
 
+    @available(iOS, obsoleted: 13.0)
     private func showVolumeIndicator() {
         UIView.transition(with: self.volumeIndicator,
                           duration: 0.25,
@@ -830,6 +852,7 @@ extension BingePlayerViewController {
         })
     }
 
+    @available(iOS, obsoleted: 13.0)
     private func autoHideVolumeIndicator() {
         self.volumeIndicatorDispatchWorkItem?.cancel()
         let workItem = DispatchWorkItem { [weak self] in

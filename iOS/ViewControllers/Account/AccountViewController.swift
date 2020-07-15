@@ -6,7 +6,6 @@
 import Common
 import MessageUI
 import SafariServices
-import SDWebImage
 import UIKit
 
 class AccountViewController: UITableViewController {

@@ -36,9 +36,9 @@ class CourseItemHeader: UITableViewHeaderFooterView {
 
     private func updateContent() {
         let isInOfflineMode = self.inOfflineMode?() ?? false
-        let hasContentToShow = !isInOfflineMode || !(self.section?.userActions.isEmpty ?? false)
+        let hasContentToShow = !isInOfflineMode || !(self.section?.actions.isEmpty ?? false)
         self.titleView.text = self.section?.title
-        self.actionsButton.isHidden = !(self.section?.hasUserActions ?? false)
+        self.actionsButton.isHidden = !(self.section?.hasActions ?? false)
         self.actionsButton.isEnabled = hasContentToShow
         self.actionsButton.tintColor = hasContentToShow ? Brand.default.colors.primary : ColorCompatibility.secondaryLabel
 
@@ -54,7 +54,7 @@ class CourseItemHeader: UITableViewHeaderFooterView {
                 completion()
             }
         }
-        let actions = { self.section?.userActions ?? [] }
+        let actions = { self.section?.actions ?? [] }
         let deferredMenuActionsConfiguration = DeferredMenuActionConfiguration(loadingMessage: spinnerTitle, isLoadingRequired: isLoadingRequired, load: load, actions: actions)
 
         self.actionsButton.add(deferredMenuActions: deferredMenuActionsConfiguration, menuTitle: self.section?.title, on: self.delegate)

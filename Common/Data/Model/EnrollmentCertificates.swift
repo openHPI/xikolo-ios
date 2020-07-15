@@ -21,15 +21,15 @@ public final class EnrollmentCertificates: NSObject, NSSecureCoding, IncludedPul
     }
 
     public required init(coder decoder: NSCoder) {
-        self.confirmationOfParticipation = decoder.decodeObject(forKey: "confirmation_of_participation") as? URL
-        self.recordOfAchievement = decoder.decodeObject(forKey: "record_of_achievement") as? URL
-        self.qualifiedCertificate = decoder.decodeObject(forKey: "qualified_certificate") as? URL
+        self.confirmationOfParticipation = decoder.decodeObject(of: NSURL.self, forKey: "confirmation_of_participation")?.absoluteURL
+        self.recordOfAchievement = decoder.decodeObject(of: NSURL.self, forKey: "record_of_achievement")?.absoluteURL
+        self.qualifiedCertificate = decoder.decodeObject(of: NSURL.self, forKey: "qualified_certificate")?.absoluteURL
     }
 
     public func encode(with coder: NSCoder) {
-        coder.encode(self.confirmationOfParticipation, forKey: "confirmation_of_participation")
-        coder.encode(self.recordOfAchievement, forKey: "record_of_achievement")
-        coder.encode(self.qualifiedCertificate, forKey: "qualified_certificate")
+        coder.encode(self.confirmationOfParticipation?.asNSURL(), forKey: "confirmation_of_participation")
+        coder.encode(self.recordOfAchievement?.asNSURL(), forKey: "record_of_achievement")
+        coder.encode(self.qualifiedCertificate?.asNSURL(), forKey: "qualified_certificate")
     }
 
 }

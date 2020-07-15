@@ -27,15 +27,15 @@ public class VisitProgress: NSObject, NSSecureCoding, IncludedPullable {
     }
 
     public required init(coder decoder: NSCoder) {
-        self.itemsAvailable = decoder.decodeObject(forKey: "items_available") as? Int
-        self.itemsVisited = decoder.decodeObject(forKey: "items_visited") as? Int
-        self.visitsPercentage = decoder.decodeObject(forKey: "visits_percentage") as? Double
+        self.itemsAvailable = decoder.decodeObject(of: NSNumber.self, forKey: "items_available")?.intValue
+        self.itemsVisited = decoder.decodeObject(of: NSNumber.self, forKey: "items_visited")?.intValue
+        self.visitsPercentage = decoder.decodeObject(of: NSNumber.self, forKey: "visits_percentage")?.doubleValue
     }
 
     public func encode(with coder: NSCoder) {
-        coder.encode(self.itemsAvailable, forKey: "items_available")
-        coder.encode(self.itemsVisited, forKey: "items_visited")
-        coder.encode(self.visitsPercentage, forKey: "visits_percentage")
+        coder.encode(self.itemsAvailable.map(NSNumber.init(value:)), forKey: "items_available")
+        coder.encode(self.itemsVisited.map(NSNumber.init(value:)), forKey: "items_visited")
+        coder.encode(self.visitsPercentage.map(NSNumber.init(value:)), forKey: "visits_percentage")
     }
 
 }

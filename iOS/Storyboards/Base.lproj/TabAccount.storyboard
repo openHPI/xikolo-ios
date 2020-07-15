@@ -305,6 +305,7 @@
                         <segue destination="PYC-Vo-6CG" kind="show" identifier="ShowDownloadedContent" id="Phq-AU-qN0"/>
                         <segue destination="qKI-ZD-LTA" kind="show" identifier="ShowCertificates" id="EO4-Pa-ial"/>
                         <segue destination="qyy-Fc-AvL" kind="presentation" identifier="sendFeedback" id="SMF-3P-01I"/>
+                        <segue destination="BRt-Cd-Zem" kind="show" identifier="showAppearanceSettings" id="dsW-0g-Za2"/>
                         <segue destination="O8W-IG-m3E" kind="show" identifier="ShowLogin" id="MdB-fC-x2z"/>
                     </connections>
                 </tableViewController>
@@ -366,6 +367,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PKh-MJ-Tiz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1228" y="1730"/>
+        </scene>
+        <!--Appearance-->
+        <scene sceneID="UbL-ql-1Vn">
+            <objects>
+                <tableViewController id="BRt-Cd-Zem" customClass="AppearanceSettingsViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="NWb-D6-0NF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsOptionBasicCell" textLabel="XgC-qU-B0w" style="IBUITableViewCellStyleDefault" id="cex-wR-MyW">
+                                <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cex-wR-MyW" id="7ef-jh-UuN">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Basic Settings Option" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="XgC-qU-B0w">
+                                            <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <attributedString key="userComments">
+                                                <fragment content="#bc-ignore!">
+                                                    <attributes>
+                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BRt-Cd-Zem" id="xvy-3n-BhP"/>
+                            <outlet property="delegate" destination="BRt-Cd-Zem" id="f7w-EO-6h4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Appearance" largeTitleDisplayMode="never" id="V5t-n8-zZr"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dh8-Hd-OIZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-186" y="1730"/>
         </scene>
         <!--Video Streaming-->
         <scene sceneID="ceG-Mj-fvt">

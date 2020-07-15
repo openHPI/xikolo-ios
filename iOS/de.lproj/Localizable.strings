@@ -132,10 +132,10 @@
 "course-list.title.Courses" = "Kurse";
 
 /* title for list of completed courses */
-"course-list.title.My completed courses" = "Meine abgeschlossenen Kurse";
+"course-list.title.My completed courses" = "Meine Abgeschlossenen Kurse";
 
 /* title for list of current courses */
-"course-list.title.My current courses" = "Meine aktuellen Kurse";
+"course-list.title.My current courses" = "Meine Aktuellen Kurse";
 
 /* delete all downloads in section */
 "course-section.combined-download-action.delete-downloads.title" = "Alle Lernmaterialien löschen";
@@ -326,8 +326,20 @@
 /* label for app version */
 "settings.app.version.label" = "Version";
 
+/* Title for selecting dark apperance option */
+"settings.appearance.dark" = "Dunkel";
+
+/* Title for selecting device apperance option */
+"settings.appearance.device" = "System";
+
+/* Title for selecting light apperance option */
+"settings.appearance.light" = "Hell";
+
 /* cell title for helpdesk */
 "settings.cell-title.app-helpdesk" = "Helpdesk";
+
+/* cell title for appearance settings */
+"settings.cell-title.appearance" = "Erscheinungsbild";
 
 /* cell title for certificates */
 "settings.cell-title.certificates" = "Leistungsnachweise";

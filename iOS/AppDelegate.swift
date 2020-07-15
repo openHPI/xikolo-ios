@@ -7,7 +7,6 @@ import Common
 import Firebase
 import FirebaseCrashlytics
 import NotificationCenter
-import SDWebImage
 import UIKit
 
 let logger = Logger(subsystem: "de.xikolo.iOS", category: "iOS")
@@ -36,26 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private var shortcutItemToProcess: UIApplicationShortcutItem?
 
-    static func instance() -> AppDelegate {
-        let instance = UIApplication.shared.delegate as? AppDelegate
-        return instance.require(hint: "Unable to find AppDelegate")
-    }
-
-    func setHomescreenQuickActions() {
-        let fetchRequest = CourseHelper.FetchRequest.enrolledCurrentCoursesRequest
-        let enrolledCurrentCourses = CoreDataHelper.viewContext.fetchMultiple(fetchRequest).value ?? []
-        let subtitle = NSLocalizedString("quickactions.subtitle", comment: "subtitle for homescreen quick actions")
-
-        UIApplication.shared.shortcutItems = enrolledCurrentCourses.map { enrolledCurrentCourses -> UIApplicationShortcutItem in
-            return UIApplicationShortcutItem(type: "FavoriteAction",
-                                             localizedTitle: enrolledCurrentCourses.title ?? "",
-                                             localizedSubtitle: subtitle,
-                                             icon: UIApplicationShortcutIcon(templateImageName: "rectangle.fill.badge.arrow.right"),
-                                             userInfo: ["courseID": enrolledCurrentCourses.id as NSSecureCoding]
-            )
-        }
-    }
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
@@ -82,6 +61,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Select initial tab
             let tabToSelect: XikoloTabBarController.Tabs = UserProfileHelper.shared.isLoggedIn ? .dashboard : .courses
             self.tabBarController.selectedIndex = tabToSelect.index
+        }
+
+        if Brand.default.features.showCourseDates {
+            UIApplication.shared.setMinimumBackgroundFetchInterval(86400) // approx. every 24 hours
         }
 
         DispatchQueue.main.async {
@@ -133,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        self.setHomescreenQuickActions()
+        QuickActionHelper.setHomescreenQuickActions()
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions
         // (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -171,6 +154,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ReachabilityHelper.stopObserving()
         self.pushEngineManager.stopObserving()
         SpotlightHelper.shared.stopObserving()
+    }
+
+    func application(_ application: UIApplication,
+                     performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        guard Brand.default.features.showCourseDates && UserProfileHelper.shared.isLoggedIn else {
+            completionHandler(.noData)
+            return
+        }
+
+        CourseHelper.syncAllCourses().flatMap { _ in
+            return CourseDateHelper.syncAllCourseDates()
+        }.onSuccess { syncResult in
+            let newData = Set(syncResult.oldObjectIds) != Set(syncResult.newObjectIds)
+            let backgroundFetchResult: UIBackgroundFetchResult = newData ? .newData : .noData
+            completionHandler(backgroundFetchResult)
+        }.onFailure { _ in
+            completionHandler(.failed)
+        }
     }
 
     @available(iOS 13.0, *)

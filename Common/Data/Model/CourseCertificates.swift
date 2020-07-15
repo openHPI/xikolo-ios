@@ -21,9 +21,9 @@ public final class CourseCertificates: NSObject, NSSecureCoding, IncludedPullabl
     }
 
     public required init(coder decoder: NSCoder) {
-        self.confirmationOfParticipation = decoder.decodeObject(forKey: "confirmation_of_participation") as? CourseCertificatesHash
-        self.recordOfAchievement = decoder.decodeObject(forKey: "record_of_achievement") as? CourseCertificatesHash
-        self.qualifiedCertificate = decoder.decodeObject(forKey: "qualified_certificate") as? CourseCertificatesHash
+        self.confirmationOfParticipation = decoder.decodeObject(of: CourseCertificatesHash.self, forKey: "confirmation_of_participation")
+        self.recordOfAchievement = decoder.decodeObject(of: CourseCertificatesHash.self, forKey: "record_of_achievement")
+        self.qualifiedCertificate = decoder.decodeObject(of: CourseCertificatesHash.self, forKey: "qualified_certificate")
     }
 
     public func encode(with coder: NSCoder) {

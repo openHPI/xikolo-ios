@@ -11,7 +11,7 @@ public final class CourseCertificatesHash: NSObject, NSSecureCoding, IncludedPul
     public static var supportsSecureCoding: Bool { return true }
 
     public var available: Bool
-    public var threshold: Int32?
+    public var threshold: Int?
 
     public required init(object: ResourceData) throws {
         self.available = try object.value(for: "available")
@@ -19,13 +19,13 @@ public final class CourseCertificatesHash: NSObject, NSSecureCoding, IncludedPul
     }
 
     public required init(coder decoder: NSCoder) {
-        available = decoder.decodeBool(forKey: "available")
-        threshold = decoder.decodeObject(forKey: "threshold") as? Int32
+        self.available = decoder.decodeBool(forKey: "available")
+        self.threshold = decoder.decodeObject(of: NSNumber.self, forKey: "threshold")?.intValue
     }
 
     public func encode(with coder: NSCoder) {
-        coder.encode(available, forKey: "available")
-        coder.encode(threshold, forKey: "threshold")
+        coder.encode(self.available, forKey: "available")
+        coder.encode(self.threshold.map(NSNumber.init(value:)), forKey: "threshold")
     }
 
 }

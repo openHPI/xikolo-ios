@@ -91,12 +91,14 @@ platform :ios do
       commit_id = sh("git rev-parse --short #{branch_name}~#{commit_count_diff}").strip!
       commit_title = sh("git log #{commit_id} --pretty=format:'%s' --max-count=1")
       commit_author = sh("git log #{commit_id} --pretty=format:'%an' --max-count=1")
+      commit_date = sh("git log #{commit_id} --pretty=format:'%ai' --max-count=1")
 
       UI.header "Found commit for build_number #{options[:build_number]}"
       UI.success "Branch: #{branch_name}"
       UI.success "Commit id: #{commit_id}"
       UI.success "Commit title: #{commit_title}"
       UI.success "Commit author: #{commit_author}"
+      UI.success "Commit date: #{commit_date}"
     else
       UI.user_error! "No build number supplied (use `fastlane determine_commit build_number:xxx`)"
     end

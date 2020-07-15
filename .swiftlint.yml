@@ -86,6 +86,7 @@ line_length: 160
 identifier_name:
   excluded:
     - id
+    - to
 
 trailing_comma:
   mandatory_comma: true

@@ -1,5 +1,5 @@
 <h1 align="center">
-    xikolo-ios
+    Xikolo iOS App
 </h1>
 
 <img align="center" src="assets/banner.png?raw=true" alt="xikolo-ios banner" width="933" />

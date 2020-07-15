@@ -26,7 +26,7 @@ public struct SynchronizationContext {
     func findExistingResource<Resource>(withId objectId: String,
                                         ofType type: Resource.Type) throws -> Resource? where Resource: NSManagedObject & Pullable {
         guard let entityName = Resource.entity().name else {
-            throw SynchronizationError.missingEnityNameForResource(Resource.self)
+            throw SynchronizationError.missingEntityNameForResource(Resource.self)
         }
 
         let fetchRequest: NSFetchRequest<Resource> = NSFetchRequest(entityName: entityName)

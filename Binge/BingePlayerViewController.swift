@@ -19,6 +19,8 @@ public enum LayoutState: String {
     case pictureInPicture
 }
 
+public var playerList: Array<BingePlayerViewController?> = []
+
 public class BingePlayerViewController: UIViewController {
 
     private lazy var playerView: BingePlayerView = {
@@ -146,6 +148,7 @@ public class BingePlayerViewController: UIViewController {
 
             self.updateMediaPlayerInfoCenter()
             self.setupMediaPlayerCommands()
+            playerList.append(self)
         }
     }
 
@@ -744,6 +747,12 @@ extension BingePlayerViewController: BingeControlDelegate {
         guard self.player.timeControlStatus == .paused else { return }
 
         try? AVAudioSession.sharedInstance().setActive(true)
+
+        for item in playerList {
+            if item != self {
+                item?.pausePlayback()
+            }
+        }
 
         if self.didPlayToEnd {
             let newTime = CMTime(seconds: 0, preferredTimescale: CMTimeScale(NSEC_PER_SEC))

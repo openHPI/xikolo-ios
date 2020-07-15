@@ -5,11 +5,11 @@
 /* Class = "UILabel"; text = "All"; ObjectID = "2wZ-Gq-hfe"; */
 "2wZ-Gq-hfe.text" = "Alle";
 
-/* Class = "UILabel"; text = "Course date overview"; ObjectID = "8gI-pn-L8I"; */
+/* Class = "UILabel"; text = "Course Date Overview"; ObjectID = "8gI-pn-L8I"; */
 "8gI-pn-L8I.text" = "Termin-Übersicht";
 
 /* Class = "UILabel"; text = "Next 7 Days"; ObjectID = "ftB-Ap-hHB"; */
 "ftB-Ap-hHB.text" = "Nächste 7 Tage";
 
-/* Class = "UILabel"; text = "Next up"; ObjectID = "v6H-XX-Fq4"; */
+/* Class = "UILabel"; text = "Next Up"; ObjectID = "v6H-XX-Fq4"; */
 "v6H-XX-Fq4.text" = "Als Nächstes";

@@ -113,6 +113,7 @@ class BingeControlsViewController: UIViewController {
         label.layer.cornerRadius = 3
         label.layer.masksToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
         return label
     }()
 

@@ -103,7 +103,8 @@ class BingeControlsViewController: UIViewController {
 
     private lazy var offlineLabel: UILabel = {
         let label = BingePaddedLabel()
-        label.text = "Offline"
+        label.text = BingeLocalizedString("offline-label.text",
+                                          comment: "Text indicating a video playback with a local source")
         label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.regular)
         label.textAlignment = .center
         label.textColor = .white

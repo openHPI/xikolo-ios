@@ -133,6 +133,14 @@ class VideoViewController: UIViewController {
                                        selector: #selector(reachabilityChanged),
                                        name: Notification.Name.reachabilityChanged,
                                        object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(didEnterBackground),
+                                       name: UIApplication.didEnterBackgroundNotification,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(willEnterForeground),
+                                       name: UIApplication.willEnterForegroundNotification,
+                                       object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -356,6 +364,14 @@ class VideoViewController: UIViewController {
     @objc private func reachabilityChanged() {
         self.updateView(for: self.courseItem)
         self.playerViewController?.preferredPeakBitRate = self.video?.preferredPeakBitRate()
+    }
+
+    @objc func didEnterBackground() {
+        self.playerViewController?.disconnectPlayer()
+    }
+
+    @objc func willEnterForeground() {
+        self.playerViewController?.reconnectPlayer()
     }
 
     private func toggleControlBars(_ animated: Bool) {

@@ -23,7 +23,7 @@ extension DocumentLocalization {
         if let url = self.fileURL, downloadState == .notDownloaded, !isOffline {
             let downloadActionTitle = NSLocalizedString("document-localization.download-action.start-download.title",
                                                         comment: "start download of a document localization")
-            return Action(title: downloadActionTitle) {
+            return Action(title: downloadActionTitle, image: Action.Image.download) {
                 Self.actionDispatchQueue.async {
                     DocumentsPersistenceManager.shared.startDownload(with: url, for: self)
                 }
@@ -33,7 +33,7 @@ extension DocumentLocalization {
         if downloadState == .pending || downloadState == .downloading {
             let abortActionTitle = NSLocalizedString("document-localization.download-action.stop-download.title",
                                                      comment: "stop download of a document localization")
-            return Action(title: abortActionTitle) {
+            return Action(title: abortActionTitle, image: Action.Image.stop) {
                 Self.actionDispatchQueue.async {
                     DocumentsPersistenceManager.shared.cancelDownload(for: self)
                 }
@@ -43,7 +43,7 @@ extension DocumentLocalization {
         if downloadState == .downloaded {
             let deleteActionTitle = NSLocalizedString("document-localization.download-action.delete-download.title",
                                                       comment: "delete download of a document localization")
-            return Action(title: deleteActionTitle) {
+            return Action(title: deleteActionTitle, image: Action.Image.delete) {
                 Self.actionDispatchQueue.async {
                     DocumentsPersistenceManager.shared.deleteDownload(for: self)
                 }

@@ -19,7 +19,7 @@ public enum LayoutState: String {
     case pictureInPicture
 }
 
-public var playerList: Array<BingePlayerViewController?> = []
+public var initializedPlayerViewControllers: Array<BingePlayerViewController?> = []
 
 public class BingePlayerViewController: UIViewController {
 
@@ -148,7 +148,7 @@ public class BingePlayerViewController: UIViewController {
 
             self.updateMediaPlayerInfoCenter()
             self.setupMediaPlayerCommands()
-            playerList.append(self)
+            initializedPlayerViewControllers.append(self)
         }
     }
 
@@ -748,9 +748,9 @@ extension BingePlayerViewController: BingeControlDelegate {
 
         try? AVAudioSession.sharedInstance().setActive(true)
 
-        for item in playerList {
-            if item != self {
-                item?.pausePlayback()
+        for player in initializedPlayerViewControllers {
+            if player != self {
+                player?.pausePlayback()
             }
         }
 

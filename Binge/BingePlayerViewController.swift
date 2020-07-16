@@ -636,6 +636,14 @@ public class BingePlayerViewController: UIViewController {
         self.pictureInPictureWasStartedAutomatically = false
     }
 
+    public func disconnectPlayer() {
+        self.playerView.player = nil
+    }
+
+    public func reconnectPlayer() {
+        self.playerView.player = self.player
+    }
+
     private func updateMediaPlayerInfoCenter() {
         let duration = self.player.currentItem?.duration
 

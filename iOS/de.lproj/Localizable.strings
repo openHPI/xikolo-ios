@@ -90,7 +90,7 @@
 "course-item.preview.slides.not-downloaded" = "Folien verfügbar";
 
 /* text for downloaded video in course item preview */
-"course-item.preview.video.downloaded" = "Offline verfügbar";
+"course-item.preview.video.downloaded" = "Video heruntergeladen";
 
 /* title to cancel alert */
 "course-item.slides-alert.open-action.title" = "Folien anschauen";

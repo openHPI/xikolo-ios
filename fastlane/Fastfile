@@ -319,4 +319,48 @@ platform :ios do
       UI.success "Feel you to make further changes."
     end
   end
+
+  desc "Export localizations and strip unwanted strings"
+  lane :export_localizations do
+
+    require 'nokogiri'
+
+    project = '../xikolo-ios.xcodeproj'
+    localization_path = 'localization-export'
+    xliff_location = "#{localization_path}/en.xcloc/Localized Contents/en.xliff"
+
+    sh("xcodebuild -exportLocalizations -project #{project} -localizationPath #{localization_path}")
+
+    # remove unwanted translation units
+    file = File.read(xliff_location)
+    xml = Nokogiri::XML(file)
+
+    exclude_indicators = [
+      '#bc-ignore!',
+      'No comment provided by engineer',
+      'Bundle name',
+    ]
+
+    xml.search("trans-unit").each do |node|
+      note = node.search("note").inner_text
+      should_exclude = exclude_indicators.any? { |indicator| note.include?(indicator) }
+      node.remove if should_exclude
+    end
+
+    File.open(xliff_location, "w") do |f|
+      f.write xml.to_xml
+    end
+
+    # remove files without translation units
+    file = File.read(xliff_location)
+    xml = Nokogiri::XML(file)
+
+    xml.search("file").each do |node|
+      node.remove if node.search("body").children.length < 2
+    end
+
+    File.open(xliff_location, "w") do |f|
+      f.write xml.to_xml
+    end
+  end
 end

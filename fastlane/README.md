@@ -260,6 +260,11 @@ fastlane ios changelog
 fastlane ios check_core_data
 ```
 Check if the core data model was modified since the last release
+### ios export_localizations
+```
+fastlane ios export_localizations
+```
+Export localizations and strip unwanted strings
 
 ----
 

@@ -7,6 +7,8 @@ import Common
 
 class FilePersistenceManager<Configuration: PersistenceManagerConfiguration>: PersistenceManager<Configuration>, URLSessionDownloadDelegate {
 
+    var backgroundCompletionHandler: (() -> Void)?
+
     func createURLSession(withIdentifier identifier: String) -> URLSession {
         let backgroundConfiguration = URLSessionConfiguration.background(withIdentifier: identifier)
         return URLSession(configuration: backgroundConfiguration, delegate: self, delegateQueue: OperationQueue.main)
@@ -61,6 +63,10 @@ class FilePersistenceManager<Configuration: PersistenceManagerConfiguration>: Pe
         userInfo[DownloadNotificationKey.downloadProgress] = percentComplete
 
         NotificationCenter.default.post(name: DownloadProgress.didChangeNotification, object: nil, userInfo: userInfo)
+    }
+
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        self.backgroundCompletionHandler?()
     }
 
 }

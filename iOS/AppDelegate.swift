@@ -174,6 +174,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    func application(_ application: UIApplication,
+                     handleEventsForBackgroundURLSession identifier: String,
+                     completionHandler: @escaping () -> Void) {
+        if StreamPersistenceManager.shared.session.configuration.identifier == identifier {
+            StreamPersistenceManager.shared.backgroundCompletionHandler = completionHandler
+        } else if SlidesPersistenceManager.shared.session.configuration.identifier == identifier  {
+            SlidesPersistenceManager.shared.backgroundCompletionHandler = completionHandler
+        } else if DocumentsPersistenceManager.shared.session.configuration.identifier == identifier  {
+            DocumentsPersistenceManager.shared.backgroundCompletionHandler = completionHandler
+        }
+    }
+
     @available(iOS 13.0, *)
     func application(_ application: UIApplication,
                      configurationForConnecting connectingSceneSession: UISceneSession,

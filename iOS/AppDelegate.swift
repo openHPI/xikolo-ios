@@ -179,9 +179,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      completionHandler: @escaping () -> Void) {
         if StreamPersistenceManager.shared.session.configuration.identifier == identifier {
             StreamPersistenceManager.shared.backgroundCompletionHandler = completionHandler
-        } else if SlidesPersistenceManager.shared.session.configuration.identifier == identifier  {
+        } else if SlidesPersistenceManager.shared.session.configuration.identifier == identifier {
             SlidesPersistenceManager.shared.backgroundCompletionHandler = completionHandler
-        } else if DocumentsPersistenceManager.shared.session.configuration.identifier == identifier  {
+        } else if DocumentsPersistenceManager.shared.session.configuration.identifier == identifier {
             DocumentsPersistenceManager.shared.backgroundCompletionHandler = completionHandler
         }
     }

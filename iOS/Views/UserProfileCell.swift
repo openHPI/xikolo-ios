@@ -35,6 +35,8 @@ class UserProfileCell: UITableViewCell {
              self.profileImage.layer.borderColor = ColorCompatibility.systemGray.cgColor
         }
 
+        self.profileImage.sd_imageTransition = .fade
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(adaptToContentSizeCategoryChange),
                                                name: UIContentSizeCategory.didChangeNotification,

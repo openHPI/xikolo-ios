@@ -110,6 +110,7 @@ class CourseViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = self.closeButton
         self.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.headerImageView.backgroundColor = Brand.default.colors.secondary
+        self.headerImageView.sd_imageTransition = .fade
 
         self.cornerView.layer.cornerRadius = self.cornerView.frame.height / 2
 

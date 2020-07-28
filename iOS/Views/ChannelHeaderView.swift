@@ -23,6 +23,7 @@ class ChannelHeaderView: UICollectionReusableView {
         self.channelTeaserView.addGestureRecognizer(tap)
         self.channelTeaserView.layer.roundCorners(for: .default)
         self.playTeaserLabel.text = NSLocalizedString("channel-header.play-teaser", comment: "button title for starting playback for channel teaser video")
+        self.imageView.sd_imageTransition = .fade
     }
 
     func configure(for channel: Channel) {

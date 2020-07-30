@@ -66,7 +66,7 @@ class CourseViewController: UIViewController {
     private lazy var actionMenuButton: UIBarButtonItem = {
         let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(),
                                                 target: self,
-                                                action: #selector(showActionMenu(_:)))
+                                                action: #selector(showActionMenu))
         item.accessibilityLabel = NSLocalizedString(
             "accessibility-label.course.navigation-bar.item.actions",
             comment: "Accessibility label for actions button in navigation bar of the course card view"
@@ -314,9 +314,9 @@ class CourseViewController: UIViewController {
         courseNavigationController?.closeCourse()
     }
 
-    @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
+    @IBAction private func showActionMenu() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.barButtonItem = sender
+        alert.popoverPresentationController?.barButtonItem = self.actionMenuButton
 
         let userActions = [
             self.course?.shareAction { [weak self] in self?.shareCourse() },

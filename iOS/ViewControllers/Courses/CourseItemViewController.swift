@@ -18,7 +18,7 @@ class CourseItemViewController: UIPageViewController {
     }()
 
     private lazy var actionMenuButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(), target: self, action: #selector(showActionMenu(_:)))
+        let button = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(), target: self, action: #selector(showActionMenu))
         button.isEnabled = true
         button.accessibilityLabel = NSLocalizedString(
             "accessibility-label.course-item.navigation-bar.item.actions",
@@ -135,11 +135,11 @@ class CourseItemViewController: UIPageViewController {
         TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, on: self, context: context)
     }
 
-    @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
+    @IBAction private func showActionMenu() {
         let actions = self.userActions
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.barButtonItem = sender
+        alert.popoverPresentationController?.barButtonItem = self.actionMenuButton
 
         for action in actions {
             alert.addAction(action)

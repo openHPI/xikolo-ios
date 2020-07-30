@@ -19,7 +19,7 @@ class AnnouncementListViewController: UITableViewController {
     private lazy var actionButton: UIBarButtonItem = {
         let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(),
                                                 target: self,
-                                                action: #selector(showActionMenu(_:)))
+                                                action: #selector(showActionMenu))
         item.accessibilityLabel = NSLocalizedString(
             "accessibility-label.announcements.navigation-bar.item.actions",
             comment: "Accessibility label for actions button in navigation bar of the course card view"
@@ -103,9 +103,9 @@ class AnnouncementListViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = UserProfileHelper.shared.isLoggedIn ? self.actionButton : nil
     }
 
-    @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
+    @IBAction private func showActionMenu() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.barButtonItem = sender
+        alert.popoverPresentationController?.barButtonItem = self.actionButton
 
         let markAllAsReadActionTitle = NSLocalizedString("announcement.alert.mark all as read",
                                                          comment: "alert action title to mark all announcements as read")

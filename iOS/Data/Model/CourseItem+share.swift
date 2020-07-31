@@ -9,7 +9,7 @@ import UIKit
 
 extension CourseItem: UIActivityItemSource {
 
-    var combinedTitle: String {
+    private var combinedTitle: String {
         return [self.title, self.section?.course?.title].compactMap { $0 }.joined(separator: " - ")
     }
 

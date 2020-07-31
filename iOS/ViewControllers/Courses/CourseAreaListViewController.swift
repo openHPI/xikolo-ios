@@ -148,8 +148,8 @@ extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        let leftPadding = collectionView.layoutMargins.left - self.cellHeight / 4
-        let rightPadding = collectionView.layoutMargins.right - self.cellHeight / 4
+        let leftPadding = collectionView.layoutMargins.left
+        let rightPadding = collectionView.layoutMargins.right
 
         guard collectionView.traitCollection.horizontalSizeClass != .compact else {
             return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)

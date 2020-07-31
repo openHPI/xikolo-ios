@@ -32,6 +32,8 @@ class VideoViewController: UIViewController {
 
     @IBOutlet private var fullScreenConstraints: [NSLayoutConstraint]!
 
+    static let didStartPlaybackNotification = Notification.Name("de.xikolo.ios.download.didStartPlayback")
+
     private var adjustedVideoContainerRatioConstraint: NSLayoutConstraint? {
         didSet {
             if let oldConstraint = oldValue {
@@ -207,6 +209,10 @@ class VideoViewController: UIViewController {
     private func registerObservers() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
+                                       selector: #selector(startedPlayback(_:)),
+                                       name: Self.didStartPlaybackNotification,
+                                       object: nil)
+        notificationCenter.addObserver(self,
                                        selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
                                        name: DownloadState.didChangeNotification,
                                        object: nil)
@@ -316,6 +322,11 @@ class VideoViewController: UIViewController {
         alert.addCancelAction()
 
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    @objc private func startedPlayback(_ notification: Notification) {
+        guard let player = notification.userInfo?["playerViewController"] as? BingePlayerViewController, player != self.playerViewController else { return }
+        self.playerViewController?.pausePlayback()
     }
 
     @objc private func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
@@ -474,6 +485,8 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
 
     func didStartPlayback() {
         guard let video = self.video else { return }
+        let startedPlayer = ["playerViewController": self.playerViewController]
+        NotificationCenter.default.post(name: Self.didStartPlaybackNotification, object: nil, userInfo: startedPlayer as [AnyHashable : Any])
         TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }
 

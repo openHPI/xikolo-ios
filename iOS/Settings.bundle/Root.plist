@@ -10,15 +10,7 @@
 			<key>File</key>
 			<string>PodLicenses</string>
 			<key>Title</key>
-			<string>Pod Licenses</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>File</key>
-			<string>IconLicenses</string>
-			<key>Title</key>
-			<string>Icon Licenses</string>
+			<string>Acknowledgements</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

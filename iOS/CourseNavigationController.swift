@@ -181,7 +181,7 @@ class CourseNavigationController: UINavigationController {
         self.navigationBar.setBackgroundImage(transparentBackground, for: .compact)
 
         self.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(mappedProgress),
+            NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(pow(mappedProgress, 10)),
         ]
     }
 

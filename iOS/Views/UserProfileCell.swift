@@ -28,6 +28,10 @@ class UserProfileCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        self.nameView.text = nil
+        self.displayNameView.text = nil
+        self.emailView.text = nil
+
         self.loadData()
         self.adaptToContentSizeCategoryChange()
 
@@ -66,6 +70,8 @@ class UserProfileCell: UITableViewCell {
             if let userId = UserProfileHelper.shared.userId {
                 let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
                 self.user = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value
+            } else {
+                self.user = nil
             }
         }
     }

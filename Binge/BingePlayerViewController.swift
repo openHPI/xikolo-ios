@@ -770,6 +770,7 @@ extension BingePlayerViewController: BingeControlDelegate {
 
         self.player.pause()
         self.stopAutoHideOfControlsOverlay()
+        self.showControlsOverlay()
         self.updateMediaPlayerInfoCenter()
         self.delegate?.didPausePlayback()
 

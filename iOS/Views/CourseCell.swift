@@ -80,6 +80,8 @@ class CourseCell: UICollectionViewCell {
         self.courseImage.layer.roundCorners(for: .default)
         self.statusView.layer.roundCorners(for: .default)
 
+        self.courseImage.sd_imageTransition = .fade
+
         let gradient = CAGradientLayer()
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
         gradient.locations = [0.0, 1.0]

@@ -32,7 +32,7 @@ class VideoViewController: UIViewController {
 
     @IBOutlet private var fullScreenConstraints: [NSLayoutConstraint]!
 
-    static let didStartPlaybackNotification = Notification.Name("de.xikolo.ios.video.didStartPlayback")
+    static let didStartPlaybackNotification = Notification.Name("de.xikolo.ios.video.playback.started")
 
     private var adjustedVideoContainerRatioConstraint: NSLayoutConstraint? {
         didSet {
@@ -209,7 +209,7 @@ class VideoViewController: UIViewController {
     private func registerObservers() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
-                                       selector: #selector(startedPlayback(_:)),
+                                       selector: #selector(handleVideoPlaybackStartedNotification(_:)),
                                        name: Self.didStartPlaybackNotification,
                                        object: nil)
         notificationCenter.addObserver(self,
@@ -324,8 +324,8 @@ class VideoViewController: UIViewController {
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
-    @objc private func startedPlayback(_ notification: Notification) {
-        guard let player = notification.userInfo?["playerViewController"] as? BingePlayerViewController, player != self.playerViewController else { return }
+    @objc private func handleVideoPlaybackStartedNotification(_ notification: Notification) {
+        guard notification.object as? Self != self else { return }
         self.playerViewController?.pausePlayback()
     }
 
@@ -485,8 +485,8 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
 
     func didStartPlayback() {
         guard let video = self.video else { return }
-        let startedPlayer = ["playerViewController": self.playerViewController as Any]
-        NotificationCenter.default.post(name: Self.didStartPlaybackNotification, object: nil, userInfo: startedPlayer)
+//        let startedPlayer = ["playerViewController": self.playerViewController as Any]
+        NotificationCenter.default.post(name: Self.didStartPlaybackNotification, object: self, userInfo: nil)
         TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }
 

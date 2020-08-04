@@ -32,7 +32,7 @@ class VideoViewController: UIViewController {
 
     @IBOutlet private var fullScreenConstraints: [NSLayoutConstraint]!
 
-    static let didStartPlaybackNotification = Notification.Name("de.xikolo.ios.download.didStartPlayback")
+    static let didStartPlaybackNotification = Notification.Name("de.xikolo.ios.video.didStartPlayback")
 
     private var adjustedVideoContainerRatioConstraint: NSLayoutConstraint? {
         didSet {

@@ -484,10 +484,11 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
     }
 
     func didStartPlayback() {
-        guard let video = self.video else { return }
-//        let startedPlayer = ["playerViewController": self.playerViewController as Any]
         NotificationCenter.default.post(name: Self.didStartPlaybackNotification, object: self, userInfo: nil)
-        TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+
+        if let video = self.video {
+            TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+        }
     }
 
     func didPausePlayback() {

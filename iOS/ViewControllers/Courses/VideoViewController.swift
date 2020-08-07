@@ -13,6 +13,8 @@ import UIKit
 
 class VideoViewController: UIViewController {
 
+    static let didStartPlaybackNotification = Notification.Name("de.xikolo.ios.video.playback.started")
+
     @IBOutlet private weak var videoContainer: UIView!
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
@@ -207,6 +209,10 @@ class VideoViewController: UIViewController {
     private func registerObservers() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
+                                       selector: #selector(handleVideoPlaybackStartedNotification(_:)),
+                                       name: Self.didStartPlaybackNotification,
+                                       object: nil)
+        notificationCenter.addObserver(self,
                                        selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
                                        name: DownloadState.didChangeNotification,
                                        object: nil)
@@ -316,6 +322,11 @@ class VideoViewController: UIViewController {
         alert.addCancelAction()
 
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    @objc private func handleVideoPlaybackStartedNotification(_ notification: Notification) {
+        guard notification.object as? Self != self else { return }
+        self.playerViewController?.pausePlayback()
     }
 
     @objc private func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
@@ -473,8 +484,11 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
     }
 
     func didStartPlayback() {
-        guard let video = self.video else { return }
-        TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+        NotificationCenter.default.post(name: Self.didStartPlaybackNotification, object: self, userInfo: nil)
+
+        if let video = self.video {
+            TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+        }
     }
 
     func didPausePlayback() {

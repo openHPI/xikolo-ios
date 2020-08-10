@@ -10,7 +10,7 @@ import UIKit
 
 class AnnouncementListViewController: UITableViewController {
 
-    private var dataSource: CoreDataTableViewDataSource<AnnouncementListViewController>!
+    private var dataSource: CoreDataTableViewDataSourceWrapper<Announcement>!
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
@@ -57,10 +57,10 @@ class AnnouncementListViewController: UITableViewController {
 
         let reuseIdentifier = R.reuseIdentifier.announcementCell.identifier
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-        self.dataSource = CoreDataTableViewDataSource(self.tableView,
-                                                      fetchedResultsController: resultsController,
-                                                      cellReuseIdentifier: reuseIdentifier,
-                                                      delegate: self)
+        self.dataSource = CoreDataTableViewDataSource.dataSource(for: self.tableView,
+                                                                 fetchedResultsController: resultsController,
+                                                                 cellReuseIdentifier: reuseIdentifier,
+                                                                 delegate: self)
 
         self.refresh()
         self.setupEmptyState()

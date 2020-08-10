@@ -11,11 +11,11 @@ import UIKit
 
 class CourseProgressViewController: UITableViewController {
 
-    private var dataSource: CoreDataTableViewDataSource<CourseProgressViewController>!
-    var course: Course!
+    private var dataSource: CoreDataTableViewDataSourceWrapper<SectionProgress>!
 
     @IBOutlet private weak var courseProgressView: CourseProgressView!
 
+    var course: Course!
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
     override func viewDidLoad() {
@@ -28,10 +28,10 @@ class CourseProgressViewController: UITableViewController {
         let request = SectionProgressHelper.FetchRequest.sectionProgresses(forCourse: course)
         let reuseIdentifier = R.reuseIdentifier.sectionProgressCell.identifier
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-        self.dataSource = CoreDataTableViewDataSource(self.tableView,
-                                                      fetchedResultsController: resultsController,
-                                                      cellReuseIdentifier: reuseIdentifier,
-                                                      delegate: self)
+        self.dataSource = CoreDataTableViewDataSource.dataSource(for: self.tableView,
+                                                                 fetchedResultsController: resultsController,
+                                                                 cellReuseIdentifier: reuseIdentifier,
+                                                                 delegate: self)
 
         self.refresh()
         self.configureCourseProgress()

@@ -43,7 +43,6 @@ class CoreDataTableViewDataSourceWrapper<Object: NSFetchRequestResult>: NSObject
     let dataSource: AnyObject
     let fetchedResultsController: NSFetchedResultsController<Object>
 
-
     init<Delegate>(dataSource: CoreDataTableLegacyViewDataSource<Delegate>) where Delegate.Object == Object {
         self.dataSource = dataSource
         self.fetchedResultsController = dataSource.fetchedResultsController
@@ -67,15 +66,17 @@ class CoreDataTableViewDataSourceWrapper<Object: NSFetchRequestResult>: NSObject
 
 enum CoreDataTableViewDataSource {
 
-    static func dataSource<Delegate>(for tableView: UITableView,
-                                     fetchedResultsController: NSFetchedResultsController<Delegate.Object>,
-                                     cellReuseIdentifier: String,
-                                     delegate: Delegate) -> CoreDataTableViewDataSourceWrapper<Delegate.Object> where Delegate: CoreDataTableViewDataSourceDelegate {
+    static func dataSource<Delegate>(
+        for tableView: UITableView,
+        fetchedResultsController: NSFetchedResultsController<Delegate.Object>,
+        cellReuseIdentifier: String,
+        delegate: Delegate
+    ) -> CoreDataTableViewDataSourceWrapper<Delegate.Object> where Delegate: CoreDataTableViewDataSourceDelegate {
         if #available(iOS 13, *) {
             let dataSource = CoreDataTableViewDiffableDataSource(tableView,
-                                                       fetchedResultsController: fetchedResultsController,
-                                                       cellReuseIdentifier: cellReuseIdentifier,
-                                                       delegate: delegate)
+                                                                 fetchedResultsController: fetchedResultsController,
+                                                                 cellReuseIdentifier: cellReuseIdentifier,
+                                                                 delegate: delegate)
             return CoreDataTableViewDataSourceWrapper(dataSource: dataSource)
         } else {
             let dataSource = CoreDataTableLegacyViewDataSource(tableView,
@@ -88,15 +89,13 @@ enum CoreDataTableViewDataSource {
 
 }
 
-
-
 @available(iOS 13, *)
-class CoreDataTableViewDiffableDataSource<Delegate: CoreDataTableViewDataSourceDelegate>: UITableViewDiffableDataSource<String, NSManagedObjectID>, NSFetchedResultsControllerDelegate {
+class CoreDataTableViewDiffableDataSource<Delegate: CoreDataTableViewDataSourceDelegate>: UITableViewDiffableDataSource<String, NSManagedObjectID>, NSFetchedResultsControllerDelegate { // swiftlint:disable:this line_length
 
     typealias Object = Delegate.Object
     typealias Cell = Delegate.Cell
 
-    fileprivate let fetchedResultsController: NSFetchedResultsController<Object>
+    fileprivate let fetchedResultsController: NSFetchedResultsController<Object> // swiftlint:disable:this strict_fileprivate
     private weak var delegate: Delegate?
 
     required init(_ tableView: UITableView,
@@ -106,7 +105,7 @@ class CoreDataTableViewDiffableDataSource<Delegate: CoreDataTableViewDataSourceD
         self.fetchedResultsController = fetchedResultsController
         self.delegate = delegate
 
-        super.init(tableView: tableView) { (tableView, indexPath, objectID) -> UITableViewCell? in
+        super.init(tableView: tableView) { tableView, indexPath, _ -> UITableViewCell? in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as? Cell else { return nil }
             let object = fetchedResultsController.object(at: indexPath)
             delegate.configure(cell, for: object)
@@ -154,7 +153,7 @@ class CoreDataTableLegacyViewDataSource<Delegate: CoreDataTableViewDataSourceDel
     typealias Cell = Delegate.Cell
 
     private weak var tableView: UITableView?
-    fileprivate let fetchedResultsController: NSFetchedResultsController<Object>
+    fileprivate let fetchedResultsController: NSFetchedResultsController<Object> // swiftlint:disable:this strict_fileprivate
     private let cellReuseIdentifier: String
     private weak var delegate: Delegate?
 

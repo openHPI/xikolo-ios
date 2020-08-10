@@ -27,7 +27,7 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
     private lazy var deleteBarButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteSelectedIndexPaths))
 
     private var courseId: String
-    private var dataSource: CoreDataTableViewDataSource<DownloadedContentTypeListViewController>!
+    private var dataSource: CoreDataTableViewDataSourceWrapper<Resource>!
 
     init(forCourseId courseId: String, configuration: Configuration.Type) {
         self.courseId = courseId
@@ -68,10 +68,10 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
 
         guard let course = self.fetchCourse(withID: self.courseId) else { return }
         let resultsController = Configuration.resultsController(for: course)
-        self.dataSource = CoreDataTableViewDataSource(self.tableView,
-                                                      fetchedResultsController: resultsController,
-                                                      cellReuseIdentifier: self.cellReuseIdentifier,
-                                                      delegate: self)
+        self.dataSource = CoreDataTableViewDataSource.dataSource(for: self.tableView,
+                                                                 fetchedResultsController: resultsController,
+                                                                 cellReuseIdentifier: self.cellReuseIdentifier,
+                                                                 delegate: self)
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {

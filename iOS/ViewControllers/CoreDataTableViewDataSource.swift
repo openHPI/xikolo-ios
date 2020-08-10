@@ -9,7 +9,7 @@ import UIKit
 
 protocol CoreDataTableViewDataSourceDelegate: AnyObject {
 
-    associatedtype Object: NSFetchRequestResult
+    associatedtype Object: NSFetchRequestResult, Hashable
     associatedtype Cell: UITableViewCell
 
     func configure(_ cell: Cell, for object: Object)
@@ -38,13 +38,123 @@ extension CoreDataTableViewDataSourceDelegate {
 
 }
 
-class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>: NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class CoreDataTableViewDataSourceWrapper<Object: NSFetchRequestResult>: NSObject {
+
+    let dataSource: AnyObject
+    let fetchedResultsController: NSFetchedResultsController<Object>
+
+
+    init<Delegate>(dataSource: CoreDataTableLegacyViewDataSource<Delegate>) where Delegate.Object == Object {
+        self.dataSource = dataSource
+        self.fetchedResultsController = dataSource.fetchedResultsController
+    }
+
+    @available(iOS 13, *)
+    init<Delegate>(dataSource: CoreDataTableViewDiffableDataSource<Delegate>) where Delegate.Object == Object {
+        self.dataSource = dataSource
+        self.fetchedResultsController = dataSource.fetchedResultsController
+    }
+
+    var sectionInfos: [NSFetchedResultsSectionInfo]? {
+        return self.fetchedResultsController.sections
+    }
+
+    func object(at indexPath: IndexPath) -> Object {
+        return self.fetchedResultsController.object(at: indexPath)
+    }
+
+}
+
+enum CoreDataTableViewDataSource {
+
+    static func dataSource<Delegate>(for tableView: UITableView,
+                                     fetchedResultsController: NSFetchedResultsController<Delegate.Object>,
+                                     cellReuseIdentifier: String,
+                                     delegate: Delegate) -> CoreDataTableViewDataSourceWrapper<Delegate.Object> where Delegate: CoreDataTableViewDataSourceDelegate {
+        if #available(iOS 13, *) {
+            let dataSource = CoreDataTableViewDiffableDataSource(tableView,
+                                                       fetchedResultsController: fetchedResultsController,
+                                                       cellReuseIdentifier: cellReuseIdentifier,
+                                                       delegate: delegate)
+            return CoreDataTableViewDataSourceWrapper(dataSource: dataSource)
+        } else {
+            let dataSource = CoreDataTableLegacyViewDataSource(tableView,
+                                                               fetchedResultsController: fetchedResultsController,
+                                                               cellReuseIdentifier: cellReuseIdentifier,
+                                                               delegate: delegate)
+            return CoreDataTableViewDataSourceWrapper(dataSource: dataSource)
+        }
+    }
+
+}
+
+
+
+@available(iOS 13, *)
+class CoreDataTableViewDiffableDataSource<Delegate: CoreDataTableViewDataSourceDelegate>: UITableViewDiffableDataSource<String, NSManagedObjectID>, NSFetchedResultsControllerDelegate {
+
+    typealias Object = Delegate.Object
+    typealias Cell = Delegate.Cell
+
+    fileprivate let fetchedResultsController: NSFetchedResultsController<Object>
+    private weak var delegate: Delegate?
+
+    required init(_ tableView: UITableView,
+                  fetchedResultsController: NSFetchedResultsController<Object>,
+                  cellReuseIdentifier: String,
+                  delegate: Delegate) {
+        self.fetchedResultsController = fetchedResultsController
+        self.delegate = delegate
+
+        super.init(tableView: tableView) { (tableView, indexPath, objectID) -> UITableViewCell? in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as? Cell else { return nil }
+            let object = fetchedResultsController.object(at: indexPath)
+            delegate.configure(cell, for: object)
+            return cell
+        }
+
+        do {
+            self.fetchedResultsController.delegate = self
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            ErrorManager.shared.report(error)
+            logger.error("Error fetching items", error: error)
+        }
+
+        tableView.dataSource = self
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
+        let snapshot = snapshot as NSDiffableDataSourceSnapshot<String, NSManagedObjectID>
+        let animated = self.snapshot().numberOfItems == 0 ? false : trueUnlessReduceMotionEnabled
+        self.apply(snapshot, animatingDifferences: animated)
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.delegate?.titleForDefaultHeader(forSection: section)
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return self.delegate?.titleForDefaultFooter(forSection: section)
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return self.delegate?.canEditRow(at: indexPath) ?? false
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        self.delegate?.commit(editingStyle: editingStyle, forRowAt: indexPath)
+    }
+
+}
+
+class CoreDataTableLegacyViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>: NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
 
     typealias Object = Delegate.Object
     typealias Cell = Delegate.Cell
 
     private weak var tableView: UITableView?
-    private let fetchedResultsController: NSFetchedResultsController<Object>
+    fileprivate let fetchedResultsController: NSFetchedResultsController<Object>
     private let cellReuseIdentifier: String
     private weak var delegate: Delegate?
 

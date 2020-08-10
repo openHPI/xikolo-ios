@@ -18,7 +18,7 @@ class CourseItemListViewController: UITableViewController {
     @IBOutlet private weak var nextSectionStartLabel: UILabel!
 
     private var course: Course!
-    private var dataSource: CoreDataTableViewDataSource<CourseItemListViewController>!
+    private var dataSource: CoreDataTableViewDataSourceWrapper<CourseItem>!
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
@@ -60,10 +60,10 @@ class CourseItemListViewController: UITableViewController {
         let reuseIdentifier = R.reuseIdentifier.courseItemCell.identifier
         let request = CourseItemHelper.FetchRequest.orderedCourseItems(forCourse: course)
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position") // must be the first sort descriptor
-        self.dataSource = CoreDataTableViewDataSource(self.tableView,
-                                                      fetchedResultsController: resultsController,
-                                                      cellReuseIdentifier: reuseIdentifier,
-                                                      delegate: self)
+        self.dataSource = CoreDataTableViewDataSource.dataSource(for: self.tableView,
+                                                                 fetchedResultsController: resultsController,
+                                                                 cellReuseIdentifier: reuseIdentifier,
+                                                                 delegate: self)
 
         self.refresh()
     }
@@ -169,7 +169,7 @@ extension CourseItemListViewController { // TableViewDelegate
             return nil
         }
 
-        guard let firstItemInSection = self.dataSource.sectionInfos?[section].objects?.first as? CourseItem else {
+        guard let firstItemInSection = self.dataSource?.sectionInfos?[section].objects?.first as? CourseItem else {
             return nil
         }
 

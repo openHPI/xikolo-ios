@@ -51,10 +51,6 @@ public enum CourseItemHelper {
     }
 
     @discardableResult public static func markAsVisited(_ item: CourseItem) -> Future<Void, XikoloError> {
-        guard !item.visited else {
-            return Future(value: ())
-        }
-
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in

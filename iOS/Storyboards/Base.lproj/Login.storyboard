@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lar-wX-O6M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lar-wX-O6M">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +13,7 @@
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" automaticallyAdjustsScrollViewInsets="NO" id="Njp-vV-ZS8" customClass="LoginViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WDJ-Nc-ZGm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lB6-xF-rnO" userLabel="Spacer View">
@@ -22,7 +24,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brand logo" translatesAutoresizingMaskIntoConstraints="NO" id="hWt-85-KH5">
-                                <rect key="frame" x="64" y="186" width="286.5" height="49.000000000000014"/>
+                                <rect key="frame" x="64" y="160.5" width="286.5" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="3dQ-ZL-4Q0"/>
                                     <constraint firstAttribute="width" secondItem="hWt-85-KH5" secondAttribute="height" constant="1" id="gnF-Gj-6Wq"/>
@@ -252,10 +254,10 @@
             </objects>
             <point key="canvasLocation" x="1438" y="-1"/>
         </scene>
-        <!--Xikolo Navigation Controller-->
+        <!--Custom Width Navigation Controller-->
         <scene sceneID="Gmc-mz-4l1">
             <objects>
-                <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Lar-wX-O6M" customClass="XikoloNavigationController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Lar-wX-O6M" customClass="CustomWidthNavigationController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="8qq-z9-0uF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -273,7 +275,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="brand logo" width="400" height="49"/>
+        <image name="brand logo" width="839" height="100"/>
         <image name="sso logo" width="404" height="200"/>
     </resources>
 </document>

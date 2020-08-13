@@ -7,7 +7,7 @@ import BrightFutures
 import Common
 import UIKit
 
-class DashboardViewController: UIViewController {
+class DashboardViewController: CustomWidthViewController {
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var stackView: UIStackView!

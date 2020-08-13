@@ -10,6 +10,7 @@ import UIKit
 class AdditionalLearningMaterialListViewController: UICollectionViewController {
 
     override func viewDidLoad() {
+        self.view.preservesSuperviewLayoutMargins = true
         self.collectionView?.register(R.nib.additionalLearningMaterialCell)
 
         super.viewDidLoad()

@@ -12,7 +12,7 @@ import Common
 import CoreData
 import UIKit
 
-class CourseListViewController: UICollectionViewController {
+class CourseListViewController: CustomWidthCollectionViewController {
 
     private var dataSource: CoreDataCollectionViewDataSource<CourseListViewController>!
     private var channelObserver: ManagedObjectObserver?
@@ -122,6 +122,7 @@ class CourseListViewController: UICollectionViewController {
 
     private func addFilterView() {
         let filterContainer = UIView()
+        filterContainer.preservesSuperviewLayoutMargins = true
         self.collectionView.addSubview(filterContainer)
 
         filterContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -140,6 +141,7 @@ class CourseListViewController: UICollectionViewController {
 
         filterContainer.addSubview(self.searchFilterViewController.view)
         self.searchFilterViewController.view.frame = filterContainer.frame
+        self.searchFilterViewController.view.preservesSuperviewLayoutMargins = true
         self.addChild(self.searchFilterViewController)
         self.searchFilterViewController.didMove(toParent: self)
     }
@@ -167,7 +169,7 @@ class CourseListViewController: UICollectionViewController {
     private func showCourseDates(course: Course) {
         let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
         courseDatesViewController.course = course
-        let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
+        let navigationController = CustomWidthNavigationController(rootViewController: courseDatesViewController)
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
@@ -191,9 +193,11 @@ class CourseListViewController: UICollectionViewController {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: nil) { _ in
+
+        // swiftlint:disable:next trailing_closure
+        coordinator.animate(alongsideTransition: { _  in
             self.collectionViewLayout.invalidateLayout()
-        }
+        })
     }
 
     @available(iOS 13.0, *)

@@ -461,7 +461,7 @@
         <!--Account-->
         <scene sceneID="SqX-yr-lhw">
             <objects>
-                <navigationController storyboardIdentifier="AccountNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Fka-gm-6EA" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AccountNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Fka-gm-6EA" customClass="ReadableWidthNavigationController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Account" image="tab bar items/account" id="KhH-tO-TnH"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

@@ -5,7 +5,7 @@
 
 import UIKit
 
-class XikoloNavigationController: UINavigationController {
+class CustomWidthNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +25,46 @@ class XikoloNavigationController: UINavigationController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateCustomLayoutMargins()
+    }
+
+    @available(iOS 11, *)
+    override func viewLayoutMarginsDidChange() {
+        super.viewLayoutMarginsDidChange()
+        self.updateCustomLayoutMargins()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         if #available(iOS 13, *) {} else {
             self.hideShadowImage(inView: self.view)
+        }
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.updateCustomLayoutMargins()
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        // swiftlint:disable:next trailing_closure
+        coordinator.animate(alongsideTransition: { _  in
+            self.updateCustomLayoutMargins()
+        })
+    }
+
+    private func updateCustomLayoutMargins() {
+        if #available(iOS 11, *) {
+            let customInsets = NSDirectionalEdgeInsets.customInsets(for: self)
+            self.view.directionalLayoutMargins = customInsets
+            self.navigationBar.directionalLayoutMargins.leading = customInsets.leading
+            self.navigationBar.directionalLayoutMargins.trailing = customInsets.trailing
+            self.navigationBar.layoutMarginsDidChange()
         }
     }
 

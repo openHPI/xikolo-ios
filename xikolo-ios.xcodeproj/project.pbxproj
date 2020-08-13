@@ -102,6 +102,9 @@
 		502E718920207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
 		5035232E21806FA600F2E7A4 /* SingleSignOnConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5035232D21806FA600F2E7A4 /* SingleSignOnConfiguration.swift */; };
 		503578942195BF1500982093 /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503578932195BF1500982093 /* Accessibility.swift */; };
+		5035D90F24E526CD00431A6B /* CustomWidthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5035D90E24E526CD00431A6B /* CustomWidthCollectionViewController.swift */; };
+		5035D91124E526E600431A6B /* CustomWidthTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5035D91024E526E600431A6B /* CustomWidthTableViewController.swift */; };
+		5035D91324E5282000431A6B /* CustomWidthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5035D91224E5282000431A6B /* CustomWidthViewController.swift */; };
 		5036A537211C0EC7003B0C6B /* RefreshableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036A536211C0EC7003B0C6B /* RefreshableViewController.swift */; };
 		5036A9B323190E4100F7A63F /* UIViewController+AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036A9B223190E4100F7A63F /* UIViewController+AppNavigator.swift */; };
 		5036A9B52319232800F7A63F /* UIWindow+FullScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036A9B42319232800F7A63F /* UIWindow+FullScreen.swift */; };
@@ -129,6 +132,8 @@
 		504AC121239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504AC120239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift */; };
 		504BA9AD245C02AF004C836C /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
 		504BA9AE245C02C8004C836C /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
+		504D6ED124E424D900426BDC /* NSDirectionalEdgeInsets+custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D6ED024E424D900426BDC /* NSDirectionalEdgeInsets+custom.swift */; };
+		504D6ED324E4251F00426BDC /* ReadableWidthNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D6ED224E4251F00426BDC /* ReadableWidthNavigationController.swift */; };
 		504D83FA215B57D4006F2447 /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83F9215B57D4006F2447 /* ErrorReporter.swift */; };
 		504D83FC215B64EC006F2447 /* APIStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83FB215B64EC006F2447 /* APIStatus.swift */; };
 		504FF508231E472500AAF595 /* URL+Marschal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504FF507231E472500AAF595 /* URL+Marschal.swift */; };
@@ -253,7 +258,7 @@
 		50CF1F7A20DCDBFC0011BFE9 /* CourseItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */; };
 		50CF1F7B20DCDBFC0011BFE9 /* CourseArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D91643207D080000DDB6E1 /* CourseArea.swift */; };
 		50CF1F7D20DCDBFC0011BFE9 /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9A3D8C1E61CE2500384B1E /* CourseDetailsViewController.swift */; };
-		50CF1F8020DCDBFC0011BFE9 /* XikoloNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */; };
+		50CF1F8020DCDBFC0011BFE9 /* CustomWidthNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* CustomWidthNavigationController.swift */; };
 		50CF1F8120DCDBFC0011BFE9 /* UserActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022901205928E2003301A7 /* UserActionsDelegate.swift */; };
 		50CF1F8320DCDBFC0011BFE9 /* XikoloTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B10D0200790560042AA7D /* XikoloTabBarController.swift */; };
 		50CF1F8420DCDBFC0011BFE9 /* UserDefaults+VideoQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520801F6FFFD6003E0F80 /* UserDefaults+VideoQuality.swift */; };
@@ -717,6 +722,9 @@
 		5035232D21806FA600F2E7A4 /* SingleSignOnConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSignOnConfiguration.swift; sourceTree = "<group>"; };
 		503578932195BF1500982093 /* Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessibility.swift; sourceTree = "<group>"; };
 		503585041F3AF6AA002A666C /* String+ascii.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ascii.swift"; sourceTree = "<group>"; };
+		5035D90E24E526CD00431A6B /* CustomWidthCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWidthCollectionViewController.swift; sourceTree = "<group>"; };
+		5035D91024E526E600431A6B /* CustomWidthTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWidthTableViewController.swift; sourceTree = "<group>"; };
+		5035D91224E5282000431A6B /* CustomWidthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWidthViewController.swift; sourceTree = "<group>"; };
 		5036A536211C0EC7003B0C6B /* RefreshableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableViewController.swift; sourceTree = "<group>"; };
 		5036A9B223190E4100F7A63F /* UIViewController+AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AppNavigator.swift"; sourceTree = "<group>"; };
 		5036A9B42319232800F7A63F /* UIWindow+FullScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+FullScreen.swift"; sourceTree = "<group>"; };
@@ -754,6 +762,8 @@
 		5046BD09212B4DC700B9F2CD /* DocumentLocalization+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentLocalization+Actions.swift"; sourceTree = "<group>"; };
 		504AC11E239C46F1007F097B /* UserDefaults+logoutTestAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+logoutTestAccount.swift"; sourceTree = "<group>"; };
 		504AC120239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileHelper+logoutTestAccount.swift"; sourceTree = "<group>"; };
+		504D6ED024E424D900426BDC /* NSDirectionalEdgeInsets+custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDirectionalEdgeInsets+custom.swift"; sourceTree = "<group>"; };
+		504D6ED224E4251F00426BDC /* ReadableWidthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadableWidthNavigationController.swift; sourceTree = "<group>"; };
 		504D83F9215B57D4006F2447 /* ErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReporter.swift; sourceTree = "<group>"; };
 		504D83FB215B64EC006F2447 /* APIStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStatus.swift; sourceTree = "<group>"; };
 		504FF507231E472500AAF595 /* URL+Marschal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Marschal.swift"; sourceTree = "<group>"; };
@@ -829,7 +839,7 @@
 		506BDB97242385D40002DBDE /* AdditionalLearningMaterialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalLearningMaterialCell.swift; sourceTree = "<group>"; };
 		506D7E1A2104B7730018D9E2 /* CourseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseCell.xib; sourceTree = "<group>"; };
 		506E5B2124A102AA00AE899C /* LanguageLocalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageLocalizer.swift; sourceTree = "<group>"; };
-		5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNavigationController.swift; sourceTree = "<group>"; };
+		5071BA1D1FCD901600BF5C5F /* CustomWidthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWidthNavigationController.swift; sourceTree = "<group>"; };
 		50761B3F20FCAC5900CEDAF9 /* iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50761B4320FCAC5A00CEDAF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50761B5320FCADD600CEDAF9 /* Common-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Common-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1907,7 +1917,11 @@
 				023B8E68230615E90027E370 /* SceneDelegate.swift */,
 				020E853F2449E128006BD700 /* CourseSceneDelegate.swift */,
 				50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */,
-				5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */,
+				504D6ED224E4251F00426BDC /* ReadableWidthNavigationController.swift */,
+				5071BA1D1FCD901600BF5C5F /* CustomWidthNavigationController.swift */,
+				5035D91224E5282000431A6B /* CustomWidthViewController.swift */,
+				5035D90E24E526CD00431A6B /* CustomWidthCollectionViewController.swift */,
+				5035D91024E526E600431A6B /* CustomWidthTableViewController.swift */,
 				5040A63020797ED800E98351 /* CourseNavigationController.swift */,
 				509B10D0200790560042AA7D /* XikoloTabBarController.swift */,
 				F80D679A1B98751700E27520 /* Localizable.strings */,
@@ -2055,6 +2069,7 @@
 				5036A9B42319232800F7A63F /* UIWindow+FullScreen.swift */,
 				5067AD6A236717D000ADEAB9 /* Binge+Video.swift */,
 				504AC120239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift */,
+				504D6ED024E424D900426BDC /* NSDirectionalEdgeInsets+custom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3077,6 +3092,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50CF1F4620DCDBFC0011BFE9 /* PDFWebViewController.swift in Sources */,
+				5035D91124E526E600431A6B /* CustomWidthTableViewController.swift in Sources */,
 				50CF1F4E20DCDBFC0011BFE9 /* RichTextViewController.swift in Sources */,
 				50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */,
 				5095B1E220EBB45800572924 /* UserProfileHelperDelegateInstance.swift in Sources */,
@@ -3132,7 +3148,7 @@
 				503CEE962177082D00F34694 /* ProcotoredItemViewController.swift in Sources */,
 				502CBE2824338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift in Sources */,
 				0280CB14237CBD4100B774BE /* SectionProgressCell.swift in Sources */,
-				50CF1F8020DCDBFC0011BFE9 /* XikoloNavigationController.swift in Sources */,
+				50CF1F8020DCDBFC0011BFE9 /* CustomWidthNavigationController.swift in Sources */,
 				50CF1F8120DCDBFC0011BFE9 /* UserActionsDelegate.swift in Sources */,
 				700398C221A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift in Sources */,
 				50F3DD4B245859E00008CE27 /* DocumentLocalization+Persistence.swift in Sources */,
@@ -3154,10 +3170,12 @@
 				5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */,
 				50F3DD49245859710008CE27 /* Video+Persistence.swift in Sources */,
 				50CF1F9620DCDBFC0011BFE9 /* CourseTransitioningDelegate.swift in Sources */,
+				504D6ED124E424D900426BDC /* NSDirectionalEdgeInsets+custom.swift in Sources */,
 				50CF1F9720DCDBFC0011BFE9 /* CoreDataCollectionViewDataSource.swift in Sources */,
 				B4E079ED21879C9200EA53F5 /* CertificateCell.swift in Sources */,
 				50092A90237D89BD00A1503F /* ChannelCell.swift in Sources */,
 				5037FC13242DF32900B4E8CE /* UITextView+Markdown.swift in Sources */,
+				5035D90F24E526CD00431A6B /* CustomWidthCollectionViewController.swift in Sources */,
 				50CF1F9E20DCDBFC0011BFE9 /* AppNavigator.swift in Sources */,
 				50913F27218C9E90006C7F11 /* String+height.swift in Sources */,
 				50CF1F9F20DCDBFC0011BFE9 /* CourseHeaderView.swift in Sources */,
@@ -3169,6 +3187,7 @@
 				508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguration.swift in Sources */,
 				508FF44621AB42B200801530 /* UITableViewController+resizeViews.swift in Sources */,
 				50CF1FA620DCDBFC0011BFE9 /* CourseCell.swift in Sources */,
+				5035D91324E5282000431A6B /* CustomWidthViewController.swift in Sources */,
 				82D13D0C235726E70006A0D9 /* HelpdeskViewController.swift in Sources */,
 				504AC11F239C46F1007F097B /* UserDefaults+logoutTestAccount.swift in Sources */,
 				5083329C2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift in Sources */,
@@ -3209,6 +3228,7 @@
 				026122F42459AB8F005440EA /* Course+DragItem.swift in Sources */,
 				50CF1FCD20DCDBFC0011BFE9 /* UIAlertViewController+cancel.swift in Sources */,
 				50272508235466FA00815914 /* EmptyState.swift in Sources */,
+				504D6ED324E4251F00426BDC /* ReadableWidthNavigationController.swift in Sources */,
 				50CF1FD020DCDBFC0011BFE9 /* CourseItemWebViewController.swift in Sources */,
 				50CF1FD320DCDBFC0011BFE9 /* Video+Preloading.swift in Sources */,
 				5036A9B52319232800F7A63F /* UIWindow+FullScreen.swift in Sources */,

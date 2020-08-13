@@ -8,7 +8,7 @@ import Common
 import CoreData
 import UIKit
 
-class AnnouncementListViewController: UITableViewController {
+class AnnouncementListViewController: CustomWidthTableViewController {
 
     private var dataSource: CoreDataTableViewDataSourceWrapper<Announcement>!
 
@@ -28,6 +28,8 @@ class AnnouncementListViewController: UITableViewController {
     }()
 
     override func viewDidLoad() {
+        self.view.preservesSuperviewLayoutMargins = true
+
         super.viewDidLoad()
 
         self.addRefreshControl()

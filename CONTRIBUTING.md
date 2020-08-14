@@ -11,15 +11,26 @@ Check out the [good first issues](https://github.com/openHPI/xikolo-ios/issues?q
 ### Fastlane
 We use [fastlane](https://github.com/fastlane/fastlane) for repetitive tasks. Have a look at the [fastlane README](fastlane/README.md).
 
+#### Useful Commands When Developing
+These custom commands ease the development process.
+
+- `bundle exec fastlane lint`: Report linting warnings for the project (via swiftlint)
+- `bundle exec fastlane format`: Resolve linting warning for the project -- not applicable to all warnings (via swiftlint)
+- `bundle exec fastlane localize`: Extract keys for localized strings and add them to the respective `.strings` files (via BartyCrouch)
+- `bundle exec fastlane check_core_data`: Check if the core data model was modified since the last tagged release
+- `bundle exec fastlane increment_version_(patch|minor|major)`: Increase the app version project-wide in all modules
+- `bundle exec fastlane changelog`: List all commits since the last tagged release
+- `bundle exec fastlane export_localizations`: Export localizations and strip unwanted strings, that excluded by BartyCrouch
+
 ### Code Formatting
 In order to have a consistent code formatting, we would like you to set some settings:
 - For fewer unneccessary whitespace changes, please set both checkboxes in `Xcode > Preferences > Text Editing` regarding whitespaces
 - Use Unix-style line endings (LF)
 
 ### R.swift
-We use [R.swift](https://github.com/mac-cain13/R.swift) to keep a certain level of code quality. The linter will run for every pull request and there is also a fastlane command for this.
+We use [R.swift](https://github.com/mac-cain13/R.swift) to avoid static string in the codebase.
 
-#### Using self
+### Using self
 One thing we can't enforce with R.swift is not to omit `self`. We prefer writing `self` explicitly because we believe this helps to distinguish between member attributes and local variabels.
 
 ### Localization

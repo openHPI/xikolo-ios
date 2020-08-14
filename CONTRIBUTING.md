@@ -13,8 +13,8 @@ We use [fastlane](https://github.com/fastlane/fastlane) for repetitive tasks. Ha
 
 ### Code Formatting
 In order to have a consistent code formatting, we would like you to set some settings:
-- for less unneccessary whitespace changes please set both checkboxes in Xcode->Preferences->Text Editing regarding whitespaces
-- use Unix-style line endings (LF)
+- For fewer unneccessary whitespace changes, please set both checkboxes in `Xcode > Preferences > Text Editing` regarding whitespaces
+- Use Unix-style line endings (LF)
 
 ### R.swift
 We use [R.swift](https://github.com/mac-cain13/R.swift) to keep a certain level of code quality. The linter will run for every pull request and there is also a fastlane command for this.

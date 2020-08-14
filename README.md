@@ -22,7 +22,7 @@ The following tools will be installed via CocoaPods:
 - [SwiftLint](https://github.com/realm/SwiftLint)
 - [BartyCrouch](https://github.com/Flinesoft/BartyCrouch)
 
-## Contribute to _xikolo-ios_
+## Contribute to this Project
 
 Take a look at our [Contribution Guide](CONTRIBUTING.md) to learn about the key components, our development process, the tools we use, programming guidelines and more.
 

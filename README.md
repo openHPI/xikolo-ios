@@ -24,7 +24,7 @@ The following tools will be installed via CocoaPods:
 
 ## Contribute to _xikolo-ios_
 
-Check out [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
+Take a look at our [Contribution Guide](CONTRIBUTING.md) to learn about the key components, our development process, the tools we use, programming guidelines and more.
 
 ### How to get started
 

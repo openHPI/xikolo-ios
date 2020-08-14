@@ -9,7 +9,7 @@
     iOS application for openHPI, openSAP, mooc.house, lernen.cloud and OpenWHO
 </p>
 
-## Development toolchain
+## Development Toolchain
 
 - Xcode 11.5
 - bundler: `gem install bundler`
@@ -26,7 +26,7 @@ The following tools will be installed via CocoaPods:
 
 Take a look at our [Contribution Guide](CONTRIBUTING.md) to learn about the key components, our development process, the tools we use, programming guidelines and more.
 
-### How to get started
+### How to Get Started
 
 1. Clone this repository 
 1. Install development tools
@@ -45,7 +45,7 @@ Take a look at our [Contribution Guide](CONTRIBUTING.md) to learn about the key 
 1. Open `xikolo-ios.xcworkspace` (or simply `xed .` in the terminal)
 1. Build and run one of the targets
 
-### Setup testing
+### Setup Testing
 
 1. Copy the credentials plist dummy file
    ```

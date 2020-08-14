@@ -1,4 +1,4 @@
-# Contributing to _xikolo-ios_
+# How to Contribute
 
 ### I want to report a problem or ask a question
 Before submitting a new GitHub issue, please make sure to check the [existing GitHub issues](https://github.com/openHPI/xikolo-ios/issues). If this doesn't help, please [submit an issue](https://github.com/openHPI/xikolo-ios/issues/new/choose) on GitHub and provide detailed information.

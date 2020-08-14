@@ -28,11 +28,21 @@ Check out [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
 
 ### How to get started
 
-1. Clone this repository
-1. Run `bundle install`
-1. Run `bundle exec pod repo update` and `bundle exec pod install`
-1. Run `cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets`
-1. Open xikolo-ios.xcworkspace in Xcode (or simply `xed .` in the terminal)
+1. Clone this repository 
+1. Install development tools
+   ```
+   bundle install
+   ```
+1. Update CocoaPods index & install dependencies
+   ```
+   bundle exec pod repo update
+   bundle exec pod install
+   ```
+1. Copy initial branded app assets to prevent build errors
+   ```
+   cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
+   ```
+1. Open `xikolo-ios.xcworkspace` (or simply `xed .` in the terminal)
 1. Build and run one of the targets
 
 ### Setup testing

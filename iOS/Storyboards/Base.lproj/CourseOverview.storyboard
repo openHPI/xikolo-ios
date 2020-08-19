@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nqh-d5-nYg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nqh-d5-nYg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -33,37 +34,52 @@
                                     <outlet property="delegate" destination="nqh-d5-nYg" id="xcx-3h-rgC"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Overview Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45R-pL-NFp">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EwB-7V-aR9">
                                 <rect key="frame" x="20" y="0.0" width="374" height="39"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <nil key="highlightedColor"/>
-                                <attributedString key="userComments">
-                                    <fragment content="#bc-ignore!">
-                                        <attributes>
-                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                            </label>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Overview Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45R-pL-NFp">
+                                        <rect key="frame" x="0.0" y="0.0" width="308" height="39"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="userComments">
+                                            <fragment content="#bc-ignore!">
+                                                <attributes>
+                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0A1-Ox-mcI">
+                                        <rect key="frame" x="316" y="0.0" width="58" height="39"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                        <state key="normal" title="See all"/>
+                                        <connections>
+                                            <action selector="showCompleteList" destination="nqh-d5-nYg" eventType="touchUpInside" id="6KK-xS-pqR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="45R-pL-NFp" firstAttribute="top" secondItem="dqL-Ck-wyy" secondAttribute="top" id="4tC-Ov-N66"/>
+                            <constraint firstItem="EwB-7V-aR9" firstAttribute="leading" secondItem="dqL-Ck-wyy" secondAttribute="leadingMargin" id="GSb-LF-wbk"/>
                             <constraint firstItem="i6y-8o-FhA" firstAttribute="leading" secondItem="dqL-Ck-wyy" secondAttribute="leading" id="MHw-bV-jNo"/>
                             <constraint firstAttribute="trailing" secondItem="i6y-8o-FhA" secondAttribute="trailing" id="W8d-4S-0kq"/>
-                            <constraint firstItem="i6y-8o-FhA" firstAttribute="top" secondItem="45R-pL-NFp" secondAttribute="bottom" constant="-4" id="i0e-gr-Vsb"/>
-                            <constraint firstItem="45R-pL-NFp" firstAttribute="leading" secondItem="dqL-Ck-wyy" secondAttribute="leadingMargin" id="no7-oi-GQd"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="45R-pL-NFp" secondAttribute="trailing" id="oit-Ok-mZ5"/>
                             <constraint firstAttribute="bottom" secondItem="i6y-8o-FhA" secondAttribute="bottom" constant="16" id="qOv-Io-ODb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EwB-7V-aR9" secondAttribute="trailing" id="rgt-i3-bjA"/>
+                            <constraint firstItem="i6y-8o-FhA" firstAttribute="top" secondItem="EwB-7V-aR9" secondAttribute="bottom" constant="-4" id="wGC-x4-hRD"/>
+                            <constraint firstItem="EwB-7V-aR9" firstAttribute="top" secondItem="dqL-Ck-wyy" secondAttribute="top" id="wWN-b2-kHa"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="MAt-is-ZXc"/>
                     </view>
                     <size key="freeformSize" width="414" height="301"/>
                     <connections>
+                        <outlet property="buttonToCompleteList" destination="0A1-Ox-mcI" id="nhX-wr-Hna"/>
                         <outlet property="collectionView" destination="i6y-8o-FhA" id="TI5-j8-aGd"/>
                         <outlet property="collectionViewHeightConstraint" destination="5AS-Kt-uDc" id="gVW-Dm-AI3"/>
                         <outlet property="titleLabel" destination="45R-pL-NFp" id="6sQ-3u-XOo"/>
-                        <segue destination="q7o-xz-oks" kind="show" identifier="showCourseList" id="V2p-CO-Stb"/>
+                        <segue destination="q7o-xz-oks" kind="show" identifier="showCompleteList" id="V2p-CO-Stb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RtX-mt-xMM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

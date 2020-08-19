@@ -112,8 +112,13 @@ extension AdditionalLearningMaterialListViewController: UICollectionViewDelegate
 
         if self.traitCollection.horizontalSizeClass == .regular {
             let numberOfItems = CGFloat(self.collectionView(collectionView, numberOfItemsInSection: indexPath.section))
-            let width = min(height * 2, availableWidth / numberOfItems)
-            return CGSize(width: width, height: height)
+            if numberOfItems == 1 {
+                let width = min(availableWidth, 360 + 2 * AdditionalLearningMaterialCell.cardInset)
+                return CGSize(width: width, height: height)
+            } else {
+                let width = availableWidth / numberOfItems
+                return CGSize(width: width, height: height)
+            }
         } else {
             return CGSize(width: availableWidth, height: height)
         }

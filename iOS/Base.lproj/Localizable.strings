@@ -206,12 +206,6 @@
 /* message text for course overview with no current courses */
 "dashboard.course-overview.no-courses.current.message" = "You aren't enrolled in any courses yet";
 
-/* action text for showing all completed courses */
-"dashboard.course-overview.show-all-courses.completed.action" = "Show all completed courses";
-
-/* action text for showing all current courses */
-"dashboard.course-overview.show-all-courses.current.action" = "Show all my current courses";
-
 /* delete download of a document localization */
 "document-localization.download-action.delete-download.title" = "Delete document";
 

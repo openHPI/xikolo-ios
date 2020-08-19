@@ -156,6 +156,8 @@ extension CourseCell {
             return 290
         case .medium:
             return 300
+        case .large:
+            return 310
         case .extraLarge:
             return 320
         case .extraExtraLarge:
@@ -221,6 +223,40 @@ extension CourseCell {
 }
 
 extension CourseCell {
+
+    static func minimalWidthInOverviewList(for traitCollection: UITraitCollection) -> CGFloat { // swiftlint:disable:this cyclomatic_complexity
+        switch traitCollection.preferredContentSizeCategory {
+        case .extraSmall:
+            return 260
+        case .small:
+            return 270
+        case .medium:
+            return 280
+        case .large:
+            return 290
+        case .extraLarge:
+            return 300
+        case .extraExtraLarge:
+            return 310
+        case .extraExtraExtraLarge:
+            return 320
+
+        // Accessibility sizes
+        case .accessibilityMedium:
+            return 340
+        case .accessibilityLarge:
+            return 360
+        case .accessibilityExtraLarge:
+            return 380
+        case .accessibilityExtraExtraLarge:
+            return 400
+        case .accessibilityExtraExtraExtraLarge:
+            return 420
+
+        default: // large
+            return 290
+        }
+    }
 
     static func heightForOverviewList(forWidth width: CGFloat) -> CGFloat {
         var height: CGFloat = Self.cardInset

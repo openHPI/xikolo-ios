@@ -52,6 +52,8 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         return true
     }
 
+    var course: Course? 
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -79,6 +81,10 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         let attributedText = NSMutableAttributedString(string: hintText, attributes: [.font: UIFont.preferredFont(forTextStyle: .callout)])
         attributedText.addAttributes([.foregroundColor: Brand.default.colors.window], range: range)
         self.hintLabel.attributedText = attributedText
+
+        if let course = self.course {
+            self.topic = .courseSpecific(course)
+        }
 
         if UserProfileHelper.shared.isLoggedIn {
             CoreDataHelper.viewContext.perform {

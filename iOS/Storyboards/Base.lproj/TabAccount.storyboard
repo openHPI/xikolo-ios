@@ -15,27 +15,8 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="cms-7f-ddL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="dLc-yy-eE8">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="182"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile header" translatesAutoresizingMaskIntoConstraints="NO" id="TMZ-jn-WLn">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="150" id="TvJ-ne-tV4"/>
-                                    </constraints>
-                                </imageView>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="TMZ-jn-WLn" secondAttribute="trailing" id="ci3-K1-rza"/>
-                                <constraint firstItem="TMZ-jn-WLn" firstAttribute="leading" secondItem="dLc-yy-eE8" secondAttribute="leading" id="j0R-PW-ncA"/>
-                                <constraint firstAttribute="bottom" secondItem="TMZ-jn-WLn" secondAttribute="bottom" constant="32" id="jvo-cL-7Sa"/>
-                                <constraint firstItem="TMZ-jn-WLn" firstAttribute="top" secondItem="dLc-yy-eE8" secondAttribute="top" id="o7O-mH-ie4"/>
-                            </constraints>
-                        </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="CNv-5F-H2z">
-                            <rect key="frame" x="0.0" y="558.5" width="414" height="106"/>
+                            <rect key="frame" x="0.0" y="376.5" width="414" height="106"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="3hW-7O-EQj">
@@ -110,7 +91,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoginCell" id="tgE-Qj-wV2">
-                                <rect key="frame" x="20" y="237.5" width="374" height="80.5"/>
+                                <rect key="frame" x="20" y="55.5" width="374" height="80.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tgE-Qj-wV2" id="NrQ-Dt-f9X">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="80.5"/>
@@ -144,7 +125,7 @@
                                 <accessibility key="accessibilityConfiguration" identifier="logoutCell"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserProfileCell" id="rc9-hb-o0L" customClass="UserProfileCell" customModule="iOS" customModuleProvider="target">
-                                <rect key="frame" x="20" y="318" width="374" height="130"/>
+                                <rect key="frame" x="20" y="136" width="374" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rc9-hb-o0L" id="Pkj-x1-4Rm">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="130"/>
@@ -244,7 +225,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DefaultCell" textLabel="TFS-M6-7DR" style="IBUITableViewCellStyleDefault" id="m1w-3a-r50">
-                                <rect key="frame" x="20" y="448" width="374" height="43.5"/>
+                                <rect key="frame" x="20" y="266" width="374" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m1w-3a-r50" id="HiQ-tr-oIt">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
@@ -264,7 +245,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LogoutCell" id="gb5-GE-gbr">
-                                <rect key="frame" x="20" y="491.5" width="374" height="49"/>
+                                <rect key="frame" x="20" y="309.5" width="374" height="49"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gb5-GE-gbr" id="n19-zg-ozR">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="49"/>
@@ -297,7 +278,6 @@
                     <connections>
                         <outlet property="buildLabel" destination="BYP-h5-ZvT" id="l87-4p-9q6"/>
                         <outlet property="copyrightLabel" destination="12x-tZ-Fjh" id="FhA-RO-dC6"/>
-                        <outlet property="headerImage" destination="TMZ-jn-WLn" id="aon-bc-agD"/>
                         <outlet property="poweredByLabel" destination="Bht-q0-3w4" id="hNp-a9-cct"/>
                         <outlet property="versionLabel" destination="vaA-TB-qLC" id="7dc-yl-nVB"/>
                         <segue destination="eyj-JL-OJ2" kind="show" identifier="ShowDownloadSettings" id="uch-re-Tdq"/>
@@ -880,7 +860,6 @@
     <resources>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle" width="60" height="60"/>
-        <image name="profile header" width="1441" height="597"/>
         <image name="tab bar items/account" width="28" height="28"/>
     </resources>
 </document>

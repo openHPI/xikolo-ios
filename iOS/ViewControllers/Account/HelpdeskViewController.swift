@@ -52,7 +52,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         return true
     }
 
-    var course: Course? 
+    var course: Course?
 
     override func viewDidLoad() {
         super.viewDidLoad()

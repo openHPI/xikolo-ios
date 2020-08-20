@@ -23,5 +23,4 @@ extension Course {
         return Action(title: title, image: nil, handler: handler)
     }
 
-
 }

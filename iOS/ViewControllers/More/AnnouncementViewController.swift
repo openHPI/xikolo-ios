@@ -38,7 +38,6 @@ class AnnouncementViewController: UIViewController {
         super.viewDidLoad()
 
         self.courseButton.tintColor = Brand.default.colors.secondary
-        self.courseButton.titleLabel?.adjustsFontForContentSizeCategory = true
         self.courseButton.addDefaultPointerInteraction()
 
         self.textView.delegate = self

@@ -96,6 +96,7 @@
 		502CBE212433718F00BF6001 /* ResourceRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBE082433718E00BF6001 /* ResourceRepresentable.swift */; };
 		502CBE262433780000BF6001 /* BrightFutureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBE252433780000BF6001 /* BrightFutureTests.swift */; };
 		502CBE2824338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502CBE2724338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift */; };
+		502E55CF24ED5CE4005FB624 /* DynamicSizeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E55CE24ED5CE4005FB624 /* DynamicSizeButton.swift */; };
 		502E712E2018D8BF007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
 		502E716C2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
 		502E7172201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
@@ -712,6 +713,7 @@
 		502CBE082433718E00BF6001 /* ResourceRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceRepresentable.swift; sourceTree = "<group>"; };
 		502CBE252433780000BF6001 /* BrightFutureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrightFutureTests.swift; sourceTree = "<group>"; };
 		502CBE2724338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+defaultPointerInteraction.swift"; sourceTree = "<group>"; };
+		502E55CE24ED5CE4005FB624 /* DynamicSizeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicSizeButton.swift; sourceTree = "<group>"; };
 		502E712B2018D8BF007FC8C0 /* iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		502E712D2018D8BF007FC8C0 /* Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
 		502E712F2018D8BF007FC8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1296,6 +1298,7 @@
 		24B651471D3551C400624DBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				502E55CE24ED5CE4005FB624 /* DynamicSizeButton.swift */,
 				50046F6E216B938D00D59073 /* LoadingButton.swift */,
 				503988722166920400F9043B /* ShadowContainerView.swift */,
 				5077012D218F38BC005568A6 /* InnerPillLabel.swift */,
@@ -3218,6 +3221,7 @@
 				5044C8DD21A8089C006490CE /* ContentPersistenceManager.swift in Sources */,
 				50CF1FBD20DCDBFC0011BFE9 /* WebViewController.swift in Sources */,
 				5060EC6923831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift in Sources */,
+				502E55CF24ED5CE4005FB624 /* DynamicSizeButton.swift in Sources */,
 				50CF1FC820DCDBFC0011BFE9 /* CourseInteractionController.swift in Sources */,
 				5039887521679A0600F9043B /* CourseItemCellDelegate.swift in Sources */,
 				50FA2E6220E51A0500656776 /* SpotlightHelper.swift in Sources */,

@@ -24,7 +24,7 @@ class CourseDateOverviewViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private var nextUpWidthConstraint: NSLayoutConstraint!
 
-    @IBOutlet private weak var equalTitleWrapperHeightContraint: NSLayoutConstraint!
+    @IBOutlet private weak var equalTitleWrapperHeightConstraint: NSLayoutConstraint!
 
     private lazy var courseDateFormatter: DateFormatter = {
         return DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .long)
@@ -58,7 +58,7 @@ class CourseDateOverviewViewController: UIViewController {
         self.courseLabel.textColor = Brand.default.colors.secondary
         self.nextUpView.isHidden = true
         self.nextUpContainer.isHidden = true
-        self.equalTitleWrapperHeightContraint.isActive = false
+        self.equalTitleWrapperHeightConstraint.isActive = false
 
         self.loadData()
 
@@ -89,7 +89,7 @@ class CourseDateOverviewViewController: UIViewController {
             self.titleLabel.text = courseDate.contextAwareTitle
             self.nextUpView.isHidden = false
             self.nextUpContainer.isHidden = false
-            self.equalTitleWrapperHeightContraint.isActive = true
+            self.equalTitleWrapperHeightConstraint.isActive = true
 
             if #available(iOS 13, *) {
                 self.nextUpImageView.image = R.image.calendarLarge()
@@ -103,7 +103,7 @@ class CourseDateOverviewViewController: UIViewController {
         } else {
             self.nextUpView.isHidden = true
             self.nextUpContainer.isHidden = true
-            self.equalTitleWrapperHeightContraint.isActive = false
+            self.equalTitleWrapperHeightConstraint.isActive = false
         }
     }
 

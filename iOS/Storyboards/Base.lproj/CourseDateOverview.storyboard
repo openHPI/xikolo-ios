@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hhS-q8-HuO">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hhS-q8-HuO">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -307,7 +305,7 @@
                         <outlet property="allCountLabel" destination="CTk-R2-F7f" id="OAt-IW-vSg"/>
                         <outlet property="courseLabel" destination="xGq-3u-qqc" id="C2B-jK-1zs"/>
                         <outlet property="dateLabel" destination="uwO-xj-R53" id="wgb-Uu-Pb4"/>
-                        <outlet property="equalTitleWrapperHeightContraint" destination="RHj-kE-bjR" id="Fzh-4z-1DA"/>
+                        <outlet property="equalTitleWrapperHeightConstraint" destination="RHj-kE-bjR" id="Fzh-4z-1DA"/>
                         <outlet property="nextCountLabel" destination="lsj-eQ-Adf" id="DSL-29-VWP"/>
                         <outlet property="nextUpContainer" destination="lRM-3x-ACb" id="HdN-20-a6D"/>
                         <outlet property="nextUpImageView" destination="6Wq-Fz-ydS" id="8vh-Oq-bwU"/>

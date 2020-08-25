@@ -12,7 +12,7 @@ extension CourseItem {
         return Action(title: title, image: Action.Image.share, handler: handler)
     }
 
-    func openHelpdesk(handler: @escaping () -> Void) -> Action? {
+    func openHelpdesk(handler: @escaping () -> Void) -> Action {
         let title = NSLocalizedString("settings.cell-title.app-helpdesk", comment: "cell title for helpdesk")
         return Action(title: title, image: nil, handler: handler)
     }

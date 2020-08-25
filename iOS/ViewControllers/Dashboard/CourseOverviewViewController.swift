@@ -180,8 +180,8 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
 
         let actionProvider: UIContextMenuActionProvider = { _ in
             let userActions = [
-                course.shareAction { [weak self] in self?.shareCourse(at: indexPath) },
                 course.showCourseDatesAction { [weak self] in self?.showCourseDates(course: course) },
+                course.shareAction { [weak self] in self?.shareCourse(at: indexPath) },
             ].compactMap { $0 }
 
             return UIMenu(title: "", children: userActions.asActions())

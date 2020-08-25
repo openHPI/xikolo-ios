@@ -320,8 +320,8 @@ class CourseViewController: UIViewController {
         alert.popoverPresentationController?.barButtonItem = self.actionMenuButton
 
         let userActions = [
-            self.course?.shareAction { [weak self] in self?.shareCourse() },
             self.course?.showCourseDatesAction { [weak self] in self?.showCourseDates() },
+            self.course?.shareAction { [weak self] in self?.shareCourse() },
             self.course?.openHelpdesk { [weak self] in self?.openHelpdesk() },
         ].compactMap { $0 }
 

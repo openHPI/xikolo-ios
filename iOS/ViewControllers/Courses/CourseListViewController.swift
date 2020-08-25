@@ -210,8 +210,8 @@ class CourseListViewController: UICollectionViewController {
 
         let actionProvider: UIContextMenuActionProvider = { _ in
             let userActions = [
-                course.shareAction { self.shareCourse(at: indexPath) },
                 course.showCourseDatesAction { self.showCourseDates(course: course) },
+                course.shareAction { self.shareCourse(at: indexPath) },
             ].compactMap { $0 }
 
             return UIMenu(title: "", children: userActions.asActions())

@@ -28,14 +28,20 @@ class CourseItemViewController: UIPageViewController {
     }()
 
     private var userActions: [UIAlertAction] {
-        var alertActions = [
-            self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() },
-            self.currentItem?.openHelpdesk { [weak self] in self?.openHelpdesk() },
-        ].compactMap { $0 }.asAlertActions()
+        guard let item = self.currentItem else {
+            return []
+        }
 
-        if let video = self.currentItem?.content as? Video {
+        var alertActions: [UIAlertAction] = []
+
+        if let video = item.content as? Video {
             alertActions += video.actions.asAlertActions()
         }
+
+        alertActions += [
+            item.shareAction { [weak self] in self?.shareCourseItem() },
+            item.openHelpdesk { [weak self] in self?.openHelpdesk() },
+        ].asAlertActions()
 
         return alertActions
     }

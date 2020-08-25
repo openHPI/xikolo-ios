@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-    <img src="assets/banner.png?raw=true" alt="xikolo-ios banner" height=style="height: 500px; object-fit: contain;" />
+    <img src="assets/banner.png?raw=true" alt="xikolo-ios banner" />
 </p>
 
 <p align="center">

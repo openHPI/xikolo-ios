@@ -82,6 +82,8 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         attributedText.addAttributes([.foregroundColor: Brand.default.colors.window], range: range)
         self.hintLabel.attributedText = attributedText
 
+        self.tableView.resizeTableHeaderView()
+
         if let course = self.course {
             self.topic = .courseSpecific(course)
         }
@@ -89,7 +91,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         if UserProfileHelper.shared.isLoggedIn {
             CoreDataHelper.viewContext.perform {
                 guard let userId = UserProfileHelper.shared.userId else { return }
-                    let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
+                let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
                 guard let user = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value else { return }
                 self.mailAddressTextField.text = user.profile?.email
                 self.mailAddressTextField.isUserInteractionEnabled = false

@@ -35,7 +35,7 @@ class CourseItemCell: UITableViewCell {
                                                name: DownloadState.didChangeNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector:#selector(adaptToTextSizeChange),
+                                               selector: #selector(adaptToTextSizeChange),
                                                name: UIContentSizeCategory.didChangeNotification,
                                                object: nil)
 

@@ -322,6 +322,7 @@ class CourseViewController: UIViewController {
         let userActions = [
             self.course?.shareAction { [weak self] in self?.shareCourse() },
             self.course?.showCourseDatesAction { [weak self] in self?.showCourseDates() },
+            self.course?.openHelpdesk { [weak self] in self?.openHelpdesk() },
         ].compactMap { $0 }
 
         userActions.asAlertActions().forEach { action in
@@ -344,6 +345,13 @@ class CourseViewController: UIViewController {
         let activityViewController = UIActivityViewController.make(for: course, on: self)
         activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    private func openHelpdesk() {
+        let helpdeskViewController = R.storyboard.tabAccount.helpdeskViewController().require()
+        helpdeskViewController.course = self.course
+        let navigationController = XikoloNavigationController(rootViewController: helpdeskViewController)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
     private func updateHeaderConstraints() {

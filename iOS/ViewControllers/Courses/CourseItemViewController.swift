@@ -30,6 +30,7 @@ class CourseItemViewController: UIPageViewController {
     private var userActions: [UIAlertAction] {
         var alertActions = [
             self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() },
+            self.currentItem?.openHelpdesk { [weak self] in self?.openHelpdesk() },
         ].compactMap { $0 }.asAlertActions()
 
         if let video = self.currentItem?.content as? Video {
@@ -155,6 +156,13 @@ class CourseItemViewController: UIPageViewController {
         let activityViewController = UIActivityViewController(activityItems: [item], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    @IBAction private func openHelpdesk() {
+        let helpdeskViewController = R.storyboard.tabAccount.helpdeskViewController().require()
+        helpdeskViewController.course = self.currentItem?.section?.course
+        let navigationController = XikoloNavigationController(rootViewController: helpdeskViewController)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
 }

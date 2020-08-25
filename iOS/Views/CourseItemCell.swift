@@ -14,6 +14,10 @@ class CourseItemCell: UITableViewCell {
     @IBOutlet private weak var detailStackView: UIStackView!
     @IBOutlet private weak var actionsButton: UIButton!
 
+    @IBOutlet private weak var leadingSpacerView: UIView!
+    @IBOutlet private weak var readStateViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var iconWidthConstraint: NSLayoutConstraint!
+
     var item: CourseItem?
     weak var delegate: (CourseItemCellDelegate & UserActionsDelegate)?
 
@@ -24,11 +28,15 @@ class CourseItemCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.readStateView.layer.cornerRadius = self.readStateView.bounds.width / 2
+        self.adaptToTextSizeChange()
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
                                                name: DownloadState.didChangeNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(adaptToTextSizeChange),
+                                               name: UIContentSizeCategory.didChangeNotification,
                                                object: nil)
 
         self.addDefaultPointerInteraction()
@@ -104,6 +112,21 @@ class CourseItemCell: UITableViewCell {
 
         DispatchQueue.main.async {
             self.configure(for: item)
+        }
+    }
+
+    @objc private func adaptToTextSizeChange() {
+        if #available(iOS 11, *) {
+            let maximalWidth = self.leadingSpacerView.bounds.width - 8
+            let preferredWidth = UIFontMetrics.default.scaledValue(for: 8)
+            let width = min(preferredWidth, maximalWidth)
+            self.readStateViewWidthConstraint.constant = width
+            self.readStateView.layer.cornerRadius = width / 2
+
+            let value = UIFontMetrics.default.scaledValue(for: 28)
+            self.iconWidthConstraint.constant = value
+        } else {
+            self.readStateView.layer.cornerRadius = self.readStateView.bounds.width / 2
         }
     }
 

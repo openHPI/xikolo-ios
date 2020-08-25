@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CUD-8G-le9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CUD-8G-le9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -67,7 +67,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L8U-Fp-wH1">
                                                     <rect key="frame" x="0.0" y="22.5" width="28" height="28"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="SKE-Ma-GnJ"/>
+                                                        <constraint firstAttribute="width" secondItem="L8U-Fp-wH1" secondAttribute="height" multiplier="1:1" id="F0V-tD-a2N"/>
                                                         <constraint firstAttribute="width" constant="28" id="mLi-L0-3YS"/>
                                                     </constraints>
                                                 </imageView>
@@ -148,7 +148,10 @@
                                     <outlet property="actionsButton" destination="fOH-l8-5Rz" id="yNy-Ag-Y7s"/>
                                     <outlet property="detailStackView" destination="Qwj-mh-6JE" id="5ZO-Y4-RfZ"/>
                                     <outlet property="iconView" destination="L8U-Fp-wH1" id="ZYN-fe-P6P"/>
+                                    <outlet property="iconWidthConstraint" destination="mLi-L0-3YS" id="oVN-qy-J27"/>
+                                    <outlet property="leadingSpacerView" destination="ruK-fv-bts" id="8mM-HS-RCr"/>
                                     <outlet property="readStateView" destination="f0u-JP-r4C" id="Dda-eM-RsX"/>
+                                    <outlet property="readStateViewWidthConstraint" destination="bCL-MM-IsZ" id="qwR-wB-wYC"/>
                                     <outlet property="titleView" destination="vm4-Hr-k3d" id="OqI-3b-6NJ"/>
                                     <segue destination="qjq-Jf-C4q" kind="show" identifier="ShowCourseItem" id="ocO-cc-Njs"/>
                                 </connections>

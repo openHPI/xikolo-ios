@@ -38,7 +38,8 @@ class CourseItemListViewController: UITableViewController {
 
         self.addRefreshControl()
 
-        self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 40.0, bottom: 0, right: 0)
+        self.adaptToTextSizeChange()
+
         if #available(iOS 11.0, *) {
             self.tableView.separatorInsetReference = .fromAutomaticInsets
 
@@ -50,6 +51,10 @@ class CourseItemListViewController: UITableViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
                                                name: Notification.Name.reachabilityChanged,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector:#selector(adaptToTextSizeChange),
+                                               name: UIContentSizeCategory.didChangeNotification,
                                                object: nil)
 
         self.setupEmptyState()
@@ -78,6 +83,15 @@ class CourseItemListViewController: UITableViewController {
 
     @objc func reachabilityChanged() {
         self.inOfflineMode = !ReachabilityHelper.hasConnection
+    }
+
+    @objc private func adaptToTextSizeChange() {
+        if #available(iOS 11, *) {
+            let width = UIFontMetrics.default.scaledValue(for: 28)
+            self.tableView.separatorInset = UIEdgeInsets(top: 0, left: width + 12, bottom: 0, right: 0)
+        } else {
+            self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 40.0, bottom: 0, right: 0)
+        }
     }
 
     func preloadCourseContent() {

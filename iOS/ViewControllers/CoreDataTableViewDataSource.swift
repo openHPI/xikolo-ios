@@ -125,8 +125,10 @@ class CoreDataTableViewDiffableDataSource<Delegate: CoreDataTableViewDataSourceD
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
         let snapshot = snapshot as NSDiffableDataSourceSnapshot<String, NSManagedObjectID>
-        let animated = self.snapshot().numberOfItems == 0 ? false : trueUnlessReduceMotionEnabled
-        self.apply(snapshot, animatingDifferences: animated)
+        // Workaround: Calling with `animatingDifferences` set to `false`.
+        // When using diffable data sources in combination the Core Data and utilizing `NSManagedObjectID` as item identifier, updates to the model layer
+        // will not be propagated to the table view. However, when not animating the differences the table view will updated correctly (as of now).
+        self.apply(snapshot, animatingDifferences: false)
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

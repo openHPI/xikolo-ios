@@ -350,7 +350,7 @@ class CourseViewController: UIViewController {
     private func openHelpdesk() {
         let helpdeskViewController = R.storyboard.tabAccount.helpdeskViewController().require()
         helpdeskViewController.course = self.course
-        let navigationController = XikoloNavigationController(rootViewController: helpdeskViewController)
+        let navigationController = CustomWidthNavigationController(rootViewController: helpdeskViewController)
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 

@@ -167,7 +167,7 @@ class CourseItemViewController: UIPageViewController {
     @IBAction private func openHelpdesk() {
         let helpdeskViewController = R.storyboard.tabAccount.helpdeskViewController().require()
         helpdeskViewController.course = self.currentItem?.section?.course
-        let navigationController = XikoloNavigationController(rootViewController: helpdeskViewController)
+        let navigationController = CustomWidthNavigationController(rootViewController: helpdeskViewController)
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 

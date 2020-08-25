@@ -2,7 +2,9 @@
     Xikolo iOS App
 </h1>
 
-<img align="center" src="assets/banner.png?raw=true" alt="xikolo-ios banner" style="height: 500px; object-fit: contain;" />
+<p align="center">
+    <img src="assets/banner.png?raw=true" alt="xikolo-ios banner" height=style="height: 500px; object-fit: contain;" />
+</p>
 
 <p align="center">
     iOS application for openHPI, openSAP, mooc.house, lernen.cloud and OpenWHO

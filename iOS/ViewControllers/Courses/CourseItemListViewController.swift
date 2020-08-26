@@ -15,6 +15,9 @@ class CourseItemListViewController: UITableViewController {
     private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
     private static let timeFormatter = DateFormatter.localizedFormatter(dateStyle: .none, timeStyle: .short)
 
+    @IBOutlet private weak var continueLearningHint: UIView!
+    @IBOutlet private weak var continueLearningDetailsLabel: UILabel!
+    @IBOutlet private weak var continueLearningItemIconView: UIImageView!
     @IBOutlet private weak var nextSectionStartLabel: UILabel!
 
     private var course: Course!
@@ -48,6 +51,17 @@ class CourseItemListViewController: UITableViewController {
 
         }
 
+        self.continueLearningHint.layer.roundCorners(for: .default)
+        self.continueLearningHint.addDefaultPointerInteraction()
+
+        if #available(iOS 13, *) {
+            let interaction = UIContextMenuInteraction(delegate: self)
+            self.continueLearningHint.addInteraction(interaction)
+        }
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openContinueLearningItem))
+        self.continueLearningHint.addGestureRecognizer(tapGesture)
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
                                                name: Notification.Name.reachabilityChanged,
@@ -57,7 +71,11 @@ class CourseItemListViewController: UITableViewController {
                                                name: UIContentSizeCategory.didChangeNotification,
                                                object: nil)
 
+        self.continueLearningHint.isHidden = true
+        self.tableView.resizeTableHeaderView()
+
         self.setupEmptyState()
+        self.updateHeaderView()
         self.updateFooterView()
         self.navigationItem.title = self.course.title
 
@@ -77,6 +95,7 @@ class CourseItemListViewController: UITableViewController {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: nil) { _ in
+            self.tableView.resizeTableHeaderView()
             self.tableView.resizeTableFooterView()
         }
     }
@@ -141,15 +160,49 @@ class CourseItemListViewController: UITableViewController {
         self.scrollDelegate?.scrollViewDidEndDecelerating(scrollView)
     }
 
+    private func updateHeaderView() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            let lastVisitedItem = {
+                return Array(self.course.sections.first?.items ?? Set()).last
+            }
+
+            guard let item = lastVisitedItem() else {
+                self.continueLearningHint.isHidden = true
+                UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+                    self.tableView.resizeTableHeaderView()
+                }
+                return
+            }
+
+            self.continueLearningDetailsLabel.text = item.title
+            self.continueLearningItemIconView.image = item.image
+            self.continueLearningHint.isHidden = false
+
+            UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+                self.tableView.resizeTableHeaderView()
+            }
+        }
+    }
+
     private func updateFooterView() {
         guard self.course.startsAt?.inPast ?? true else {
             self.nextSectionStartLabel.isHidden = true
+
+            UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+                self.tableView.resizeTableFooterView()
+            }
+
             return
         }
 
         let request = CourseSectionHelper.FetchRequest.nextUnpublishedSection(for: self.course)
         guard let sectionStartDate = CoreDataHelper.viewContext.fetchSingle(request).value?.startsAt else {
             self.nextSectionStartLabel.isHidden = true
+
+            UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+                self.tableView.resizeTableFooterView()
+            }
+
             return
         }
 
@@ -167,7 +220,41 @@ class CourseItemListViewController: UITableViewController {
         self.nextSectionStartLabel.text = String(format: format, dateText, timeText)
         self.nextSectionStartLabel.isHidden = false
 
-        self.tableView.resizeTableFooterView()
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+            self.tableView.resizeTableFooterView()
+        }
+    }
+
+    @objc private func openContinueLearningItem() {
+        self.scrollToContinueLearningItemAndHighlight() { [weak self] cell in
+            self?.performSegue(withIdentifier: R.segue.courseItemListViewController.showCourseItem, sender: cell)
+        }
+    }
+
+    private func scrollToContinueLearningItemAndHighlight(completionHandler: ((UITableViewCell) -> Void)? = nil) {
+        guard let item = Array(self.course.sections.first?.items ?? Set()).last else { return }
+        guard let indexPath = self.dataSource.indexPath(for: item) else { return }
+
+        self.scrollDelegate?.scrollToTop()
+
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled, animations: {
+            self.tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+        }, completion: { _ in
+            let cell = self.tableView.cellForRow(at: indexPath)
+            let originalColor = cell?.backgroundColor
+
+            _ = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.25, options: [.curveEaseOut], animations: {
+                cell?.backgroundColor = ColorCompatibility.secondarySystemFill
+            }, completion: { _ in
+                _ = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.25, options: [.curveEaseIn], animations: {
+                    cell?.backgroundColor = originalColor
+                }, completion: nil)
+
+                if let cell = cell {
+                    completionHandler?(cell)
+                }
+            })
+        })
     }
 
 }
@@ -361,4 +448,20 @@ extension CourseItemListViewController: UITableViewDragDelegate {
         let itemCell = tableView.cellForRow(at: indexPath) as? CourseItemCell
         return [selectedItem.dragItem(with: itemCell?.previewView)]
     }
+}
+
+@available(iOS 13, *)
+extension CourseItemListViewController: UIContextMenuInteractionDelegate {
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        // TODO: localize
+        let scrollAction = UIAction(title: "Show item in list", image: UIImage(systemName: "arrow.down")) { action in
+            self.scrollToContinueLearningItemAndHighlight()
+        }
+
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            return UIMenu(title: "", children: [scrollAction])
+        }
+    }
+
 }

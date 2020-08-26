@@ -23,6 +23,22 @@ class CourseItemListViewController: UITableViewController {
     private var course: Course!
     private var dataSource: CoreDataTableViewDataSourceWrapper<CourseItem>!
 
+    private var lastVisitObserver: ManagedObjectObserver?
+    private var lastVisit: LastVisit? {
+        didSet {
+            self.updateHeaderView()
+            if let lastVisit = self.lastVisit {
+                self.lastVisitObserver = ManagedObjectObserver(object: lastVisit) { [weak self] type in
+                    DispatchQueue.main.async {
+                        self?.updateHeaderView()
+                    }
+                }
+            } else {
+                self.lastVisitObserver = nil
+            }
+        }
+    }
+
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
     var inOfflineMode = !ReachabilityHelper.hasConnection {
@@ -48,7 +64,6 @@ class CourseItemListViewController: UITableViewController {
 
             self.tableView.dragInteractionEnabled = true
             self.tableView.dragDelegate = self
-
         }
 
         self.continueLearningHint.layer.roundCorners(for: .default)
@@ -75,7 +90,7 @@ class CourseItemListViewController: UITableViewController {
         self.tableView.resizeTableHeaderView()
 
         self.setupEmptyState()
-        self.updateHeaderView()
+        self.updateLastVisit()
         self.updateFooterView()
         self.navigationItem.title = self.course.title
 
@@ -130,17 +145,8 @@ class CourseItemListViewController: UITableViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-        guard let footerView = tableView.tableFooterView else {
-            return
-        }
-
-        let size = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        if footerView.frame.size.height != size.height {
-            footerView.frame.size.height = size.height
-            tableView.tableFooterView = footerView
-            tableView.layoutIfNeeded()
-        }
+        self.tableView.resizeTableHeaderView()
+        self.tableView.resizeTableFooterView()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -160,27 +166,26 @@ class CourseItemListViewController: UITableViewController {
         self.scrollDelegate?.scrollViewDidEndDecelerating(scrollView)
     }
 
+    private func updateLastVisit() {
+        let fetchRequest = LastVisitHelper.FetchRequest.lastVisit(forCourse: self.course)
+        self.lastVisit = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value
+    }
+
     private func updateHeaderView() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            let lastVisitedItem = {
-                return Array(self.course.sections.first?.items ?? Set()).last
-            }
-
-            guard let item = lastVisitedItem() else {
-                self.continueLearningHint.isHidden = true
-                UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
-                    self.tableView.resizeTableHeaderView()
-                }
-                return
-            }
-
-            self.continueLearningDetailsLabel.text = item.title
-            self.continueLearningItemIconView.image = item.image
-            self.continueLearningHint.isHidden = false
-
+        guard let item = self.lastVisit?.item else {
+            self.continueLearningHint.isHidden = true
             UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
                 self.tableView.resizeTableHeaderView()
             }
+            return
+        }
+
+        self.continueLearningDetailsLabel.text = item.title
+        self.continueLearningItemIconView.image = item.image
+        self.continueLearningHint.isHidden = false
+
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+            self.tableView.resizeTableHeaderView()
         }
     }
 
@@ -232,7 +237,7 @@ class CourseItemListViewController: UITableViewController {
     }
 
     private func scrollToContinueLearningItemAndHighlight(completionHandler: ((UITableViewCell) -> Void)? = nil) {
-        guard let item = Array(self.course.sections.first?.items ?? Set()).last else { return }
+        guard let item = self.lastVisit?.item else { return }
         guard let indexPath = self.dataSource.indexPath(for: item) else { return }
 
         self.scrollDelegate?.scrollToTop()
@@ -351,10 +356,13 @@ extension CourseItemListViewController: RefreshableViewController {
     func refreshingAction() -> Future<Void, XikoloError> {
         return CourseSectionHelper.syncCourseSections(forCourse: self.course).flatMap { _ in
             return CourseItemHelper.syncCourseItems(forCourse: self.course)
+        }.flatMap { _ in
+            return LastVisitHelper.syncLastVisit(forCourse: self.course)
         }.asVoid()
     }
 
     func didRefresh() {
+        self.updateLastVisit()
         self.updateFooterView()
 
         guard self.preloadingWanted else { return }
@@ -448,6 +456,7 @@ extension CourseItemListViewController: UITableViewDragDelegate {
         let itemCell = tableView.cellForRow(at: indexPath) as? CourseItemCell
         return [selectedItem.dragItem(with: itemCell?.previewView)]
     }
+
 }
 
 @available(iOS 13, *)
@@ -455,12 +464,17 @@ extension CourseItemListViewController: UIContextMenuInteractionDelegate {
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         // TODO: localize
-        let scrollAction = UIAction(title: "Show item in list", image: UIImage(systemName: "arrow.down")) { action in
+        let openAction = UIAction(title: "Open item", image: UIImage(systemName: "arrow.right.circle.fill")) { action in
+            self.openContinueLearningItem()
+        }
+
+        // TODO: localize
+        let scrollAction = UIAction(title: "Show item in list", image: UIImage(systemName: "list.dash")) { action in
             self.scrollToContinueLearningItemAndHighlight()
         }
 
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
-            return UIMenu(title: "", children: [scrollAction])
+            return UIMenu(title: "", children: [openAction, scrollAction])
         }
     }
 

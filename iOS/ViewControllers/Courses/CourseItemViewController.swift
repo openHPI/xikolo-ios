@@ -134,6 +134,8 @@ class CourseItemViewController: UIPageViewController {
         guard item.hasAvailableContent else { return }
 
         CourseItemHelper.markAsVisited(item)
+        LastVisitHelper.recordVisit(for: item)
+
         let context = [
             "content_type": item.contentType,
             "section_id": item.section?.id,

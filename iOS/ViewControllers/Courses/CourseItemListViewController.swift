@@ -16,7 +16,8 @@ class CourseItemListViewController: UITableViewController {
     private static let timeFormatter = DateFormatter.localizedFormatter(dateStyle: .none, timeStyle: .short)
 
     @IBOutlet private weak var continueLearningHint: UIView!
-    @IBOutlet private weak var continueLearningDetailsLabel: UILabel!
+    @IBOutlet private weak var continueLearningSectionTitleLabel: UILabel!
+    @IBOutlet private weak var continueLearningItemTitleLabel: UILabel!
     @IBOutlet private weak var continueLearningItemIconView: UIImageView!
     @IBOutlet private weak var nextSectionStartLabel: UILabel!
 
@@ -180,7 +181,8 @@ class CourseItemListViewController: UITableViewController {
             return
         }
 
-        self.continueLearningDetailsLabel.text = item.title
+        self.continueLearningSectionTitleLabel.text = item.section?.title
+        self.continueLearningItemTitleLabel.text = item.title
         self.continueLearningItemIconView.image = item.image
         self.continueLearningHint.isHidden = false
 

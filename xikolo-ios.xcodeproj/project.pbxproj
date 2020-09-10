@@ -142,6 +142,7 @@
 		5050D665239F971100E48498 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 2493481A1D9550FD006D4F2C /* Localizable.stringsdict */; };
 		5050D66723A00FDA00E48498 /* CourseItem+base62UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5050D66623A00FDA00E48498 /* CourseItem+base62UUID.swift */; };
 		5050D66923A0125700E48498 /* CourseItemBase62UUIDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5050D66823A0125700E48498 /* CourseItemBase62UUIDTests.swift */; };
+		50522A4C24FCEEC800A0171F /* RichFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50522A4B24FCEEC800A0171F /* RichFetchRequest.swift */; };
 		5052D27721591E9400927D52 /* SyncPushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D27621591E9400927D52 /* SyncPushEngine.swift */; };
 		5052D27A2159208100927D52 /* XikoloSyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D2792159208100927D52 /* XikoloSyncEngine.swift */; };
 		5054B2DD21087D6800CE9067 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2DC21087D6800CE9067 /* Document.swift */; };
@@ -775,6 +776,7 @@
 		50502E2F1FD04E59000A8D35 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseLearnings.strings; sourceTree = "<group>"; };
 		5050D66623A00FDA00E48498 /* CourseItem+base62UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseItem+base62UUID.swift"; sourceTree = "<group>"; };
 		5050D66823A0125700E48498 /* CourseItemBase62UUIDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemBase62UUIDTests.swift; sourceTree = "<group>"; };
+		50522A4B24FCEEC800A0171F /* RichFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichFetchRequest.swift; sourceTree = "<group>"; };
 		5052D27621591E9400927D52 /* SyncPushEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncPushEngine.swift; sourceTree = "<group>"; };
 		5052D2792159208100927D52 /* XikoloSyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloSyncEngine.swift; sourceTree = "<group>"; };
 		5054B2DB21086CF600CE9067 /* xikolo 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 7.xcdatamodel"; sourceTree = "<group>"; };
@@ -1355,6 +1357,7 @@
 				501212081FCC65B00022A7AF /* ModelObserver.swift */,
 				505641E42119B9A6009FC4F0 /* ObjectsDidChangeNotification.swift */,
 				5095168824B75ED300B25F56 /* XikoloSecureUnarchiveFromDataTransformer.swift */,
+				50522A4B24FCEEC800A0171F /* RichFetchRequest.swift */,
 				24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */,
 			);
 			path = Data;
@@ -3362,6 +3365,7 @@
 				50FA2E2720E4B24A00656776 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				50FA2E4C20E4B25800656776 /* Video.swift in Sources */,
 				507F7FDA2372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift in Sources */,
+				50522A4C24FCEEC800A0171F /* RichFetchRequest.swift in Sources */,
 				50FA2E4520E4B25800656776 /* RichText.swift in Sources */,
 				50046F6D216B53EB00D59073 /* Notification+CoreData.swift in Sources */,
 				5037FC16242DF76700B4E8CE /* UIImage+placeholder.swift in Sources */,

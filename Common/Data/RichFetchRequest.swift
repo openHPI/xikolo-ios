@@ -125,7 +125,7 @@ public final class RelationshipKeyPathsObserver<Object: NSManagedObject>: NSObje
 
                 managedObjectContext.performAndWait {
                     for object in objects {
-                        let value = object.value(forKey: lastInverseRelationshipKeyPath)
+                        guard let value = object.value(forKey: lastInverseRelationshipKeyPath) else { continue }
 
                         if let toManyObjects = value as? Set<NSManagedObject> {
                             toManyObjects.forEach { $0.setValue(object, forKeyPath: firstKeyPath) }

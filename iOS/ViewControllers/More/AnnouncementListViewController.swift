@@ -11,7 +11,7 @@ import UIKit
 class AnnouncementListViewController: CustomWidthTableViewController {
 
     private var dataSource: CoreDataTableViewDataSourceWrapper<Announcement>!
-    private var relationshipKeyPathsObserver: RelationshipKeyPathsObserver2<Announcement>?
+    private var relationshipKeyPathsObserver: RelationshipKeyPathsObserver<Announcement>?
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
@@ -60,13 +60,9 @@ class AnnouncementListViewController: CustomWidthTableViewController {
                                                                  fetchedResultsController: resultsController,
                                                                  cellReuseIdentifier: reuseIdentifier,
                                                                  delegate: self)
-//        self.relationshipKeyPathsObserver = RelationshipKeyPathsObserver(fetchedResultsController: resultsController, keyPaths: [
-//            #keyPath(Announcement.course.enrollment),
-//        ])
-
-        self.relationshipKeyPathsObserver = RelationshipKeyPathsObserver2(for: Announcement.self,
-                                                                          managedObjectContext: resultsController.managedObjectContext,
-                                                                          keyPaths: [#keyPath(Announcement.course.enrollment.objectStateValue)])
+        self.relationshipKeyPathsObserver = RelationshipKeyPathsObserver(for: Announcement.self,
+                                                                         managedObjectContext: resultsController.managedObjectContext,
+                                                                         keyPaths: [#keyPath(Announcement.course.enrollment)])
 
         self.refresh()
         self.setupEmptyState()

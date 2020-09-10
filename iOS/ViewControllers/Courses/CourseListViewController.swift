@@ -15,7 +15,7 @@ import UIKit
 class CourseListViewController: CustomWidthCollectionViewController {
 
     private var dataSource: CoreDataCollectionViewDataSource<CourseListViewController>!
-    private var relationshipKeyPathsObserver: RelationshipKeyPathsObserver2<Course>?
+    private var relationshipKeyPathsObserver: RelationshipKeyPathsObserver<Course>?
     private var channelObserver: ManagedObjectObserver?
 
     @available(iOS, obsoleted: 11.0)
@@ -74,7 +74,7 @@ class CourseListViewController: CustomWidthCollectionViewController {
                                                            cellReuseIdentifier: reuseIdentifier,
                                                            headerReuseIdentifier: R.nib.courseHeaderView.name,
                                                            delegate: self)
-        self.relationshipKeyPathsObserver = RelationshipKeyPathsObserver2(for: Course.self, managedObjectContext: CoreDataHelper.viewContext, keyPaths: [
+        self.relationshipKeyPathsObserver = RelationshipKeyPathsObserver(for: Course.self,managedObjectContext: CoreDataHelper.viewContext, keyPaths: [
             #keyPath(Course.enrollment),
             #keyPath(Course.channel),
         ])

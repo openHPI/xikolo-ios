@@ -57,10 +57,10 @@ You have to be part of out core dev team to do this.
     - set the following values
         - `apple_id`
         - `itunes_connect_id`
-    - for all available fastlane commands have a look at the [fastlane Readme](https://github.com/openHPI/xikolo-ios/tree/master/fastlane/)
+    - for all available fastlane commands have a look at the [fastlane Readme](https://github.com/openHPI/xikolo-ios/tree/dev/fastlane/)
 - Unlock the configuration files
   - Install git-crypt via `brew install git-crypt`
-  - Retrieve the `xikolo-ios.key` from the openHPI team and run `git-crypt unlock   /path/to/xikolo-ios.key`
+  - Retrieve the `xikolo-ios.key` from the openHPI team and run `git-crypt unlock /path/to/xikolo-ios.key`
 
 ### Release the apps
 There is a fastlane command for each step. One for all flavor and one for each flavor (suffix: `_flavorname`)

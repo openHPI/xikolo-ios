@@ -27,46 +27,30 @@ public final class RelationshipKeyPathsObserver<Object: NSManagedObject>: NSObje
 
     @objc private func contextDidChangeNotification(notification: NSNotification) {
         guard let managedObjectContext = notification.object as? NSManagedObjectContext else { return }
+        guard let updatedObjects = notification.userInfo?[NSRefreshedObjectsKey] as? Set<NSManagedObject> else { return }
 
-        if let updatedObjects = notification.userInfo?[NSRefreshedObjectsKey] as? Set<NSManagedObject> {
-            updatedObjects.forEach { object in
-                guard let changedRelationshipKeyPath = object.changedKeyPath(from: self.keyPaths, refreshed: true) else { return }
+        updatedObjects.forEach { object in
+            guard let changedRelationshipKeyPath = object.changedKeyPath(from: self.keyPaths, refreshed: true) else { return }
 
-                let firstKeyPath = changedRelationshipKeyPath.relationshipKeyPaths.first ?? ""
+            let firstKeyPath = changedRelationshipKeyPath.relationshipKeyPaths.first ?? ""
 
-                var inverseRelationshipKeyPaths: [String] = changedRelationshipKeyPath.inverseRelationshipKeyPaths.reversed()
-                let lastInverseRelationshipKeyPath = inverseRelationshipKeyPaths.popLast() ?? ""
+            var inverseRelationshipKeyPaths: [String] = changedRelationshipKeyPath.inverseRelationshipKeyPaths.reversed()
+            let lastInverseRelationshipKeyPath = inverseRelationshipKeyPaths.popLast() ?? ""
 
-                var objects: Set<NSManagedObject> = [object]
+            var objects: Set<NSManagedObject> = [object]
+            objects = objects.objects(whenFollowingKeyPaths: inverseRelationshipKeyPaths)
 
-                for inverseRelationshipKeyPath in inverseRelationshipKeyPaths {
-                    let values = objects.compactMap { object in object.value(forKey: inverseRelationshipKeyPath) }
-                    objects.removeAll()
+            managedObjectContext.performAndWait {
+                for object in objects {
+                    guard let value = object.value(forKey: lastInverseRelationshipKeyPath) else { continue }
 
-                    for value in values {
-                        if let toManyObjects = value as? Set<NSManagedObject> {
-                            objects.formUnion(toManyObjects)
-                        } else if let toOneObject = value as? NSManagedObject {
-                            objects.insert(toOneObject)
-                        } else {
-                            assertionFailure("Invalid relationship observed for keyPath: \(changedRelationshipKeyPath)")
-                            return
-                        }
-                    }
-                }
-
-                managedObjectContext.performAndWait {
-                    for object in objects {
-                        guard let value = object.value(forKey: lastInverseRelationshipKeyPath) else { continue }
-
-                        if let toManyObjects = value as? Set<NSManagedObject> {
-                            toManyObjects.forEach { $0.setValue(object, forKeyPath: firstKeyPath) }
-                        } else if let toOneObject = value as? NSManagedObject {
-                            toOneObject.setValue(object, forKeyPath: firstKeyPath)
-                        } else {
-                            assertionFailure("Invalid relationship observed for keyPath: \(lastInverseRelationshipKeyPath)")
-                            return
-                        }
+                    if let toManyObjects = value as? Set<NSManagedObject> {
+                        toManyObjects.forEach { $0.setValue(object, forKeyPath: firstKeyPath) }
+                    } else if let toOneObject = value as? NSManagedObject {
+                        toOneObject.setValue(object, forKeyPath: firstKeyPath)
+                    } else {
+                        assertionFailure("Invalid relationship observed for keyPath: \(lastInverseRelationshipKeyPath)")
+                        return
                     }
                 }
             }
@@ -85,6 +69,34 @@ private extension NSManagedObject {
             guard keyPath.destinationEntityName == entity.name || keyPath.destinationEntityName == entity.superentity?.name else { return false }
             return refreshed || changedValues().keys.contains(keyPath.destinationPropertyName)
         }
+    }
+
+}
+
+private extension Set where Element: NSManagedObject {
+
+    /// Follow the given key paths to get from one set of object to a another
+    /// - Parameter keyPaths: The key paths to follow
+    /// - Returns: The objects when following the given key paths
+    func objects(whenFollowingKeyPaths keyPaths: [String]) -> Set<NSManagedObject> {
+        var objects: Set<NSManagedObject> = self
+
+        for keyPath in keyPaths {
+            let values = objects.compactMap { object in object.value(forKey: keyPath) }
+            objects.removeAll()
+
+            for value in values {
+                if let toManyObjects = value as? Set<NSManagedObject> {
+                    objects.formUnion(toManyObjects)
+                } else if let toOneObject = value as? NSManagedObject {
+                    objects.insert(toOneObject)
+                } else {
+                    assertionFailure("Invalid relationship when following keyPaths: \(keyPaths) at '\(keyPath)'")
+                }
+            }
+        }
+
+        return objects
     }
 
 }

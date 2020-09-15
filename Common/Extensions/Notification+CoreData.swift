@@ -15,10 +15,14 @@ extension Notification {
 
         var keyName: String {
             switch self {
-            case .updated: return NSUpdatedObjectsKey
-            case .inserted: return NSInsertedObjectsKey
-            case .deleted: return NSDeletedObjectsKey
-            case .refreshed: return NSRefreshedObjectsKey
+            case .updated:
+                return NSUpdatedObjectsKey
+            case .inserted:
+                return NSInsertedObjectsKey
+            case .deleted:
+                return NSDeletedObjectsKey
+            case .refreshed:
+                return NSRefreshedObjectsKey
             }
         }
     }

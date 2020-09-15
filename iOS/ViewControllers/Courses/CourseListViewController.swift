@@ -74,7 +74,7 @@ class CourseListViewController: CustomWidthCollectionViewController {
                                                            cellReuseIdentifier: reuseIdentifier,
                                                            headerReuseIdentifier: R.nib.courseHeaderView.name,
                                                            delegate: self)
-        self.relationshipKeyPathsObserver = RelationshipKeyPathsObserver(for: Course.self,managedObjectContext: CoreDataHelper.viewContext, keyPaths: [
+        self.relationshipKeyPathsObserver = RelationshipKeyPathsObserver(for: Course.self, managedObjectContext: CoreDataHelper.viewContext, keyPaths: [
             #keyPath(Course.enrollment),
             #keyPath(Course.channel),
         ])

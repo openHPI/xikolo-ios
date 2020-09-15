@@ -145,7 +145,7 @@ class CourseOverviewViewController: UIViewController {
         let courseChanged = notification.includesChanges(for: Course.self)
         let enrollmentRefreshed = notification.includesChanges(for: Enrollment.self, key: .refreshed)
 
-        if courseChanged  || enrollmentRefreshed {
+        if courseChanged || enrollmentRefreshed {
             self.refresh()
         }
     }

@@ -11,49 +11,48 @@ public struct RelationshipKeyPath: Hashable {
     /// The destination property name we're observing
     let destinationPropertyName: String
 
+    /// The destination entity name we're observing
     let destinationEntityName: String
 
+    /// The property names of this relationship
     let relationshipKeyPaths: [String]
 
-    /// The inverse property names of this relationship. Can be used to get the affected object IDs.
+    /// The inverse property names of this relationship. Can be used to get the affected objects.
     let inverseRelationshipKeyPaths: [String]
 
-    public init(keyPath: String, relationships: [String: NSRelationshipDescription]?) {
-        let splittedKeyPath = keyPath.split(separator: ".").map(String.init)
+    public init(keyPath: String, relationships initialRelationshipsByName: [String: NSRelationshipDescription]?) {
+        let keyPathSplit = keyPath.split(separator: ".").map(String.init)
 
-        var destinationEntity: NSEntityDescription?
-        var relationships2: [NSRelationshipDescription?] = []
-        var inverseRelationship: [NSRelationshipDescription?] = []
-        var destinationProperty: NSPropertyDescription?
+        var lastDestinationEntity: NSEntityDescription?
+        var lastDestinationProperty: NSPropertyDescription?
+        var relationships: [NSRelationshipDescription?] = []
+        var inverseRelationships: [NSRelationshipDescription?] = []
 
-        var relationshipsByName: [String: NSRelationshipDescription]? = relationships
+        var relationshipsByName: [String: NSRelationshipDescription]? = initialRelationshipsByName
         var propertiesByName: [String: NSPropertyDescription]? = [:]
-        for relationshipName in splittedKeyPath {
+
+        for relationshipName in keyPathSplit {
             if let relationship = relationshipsByName?[relationshipName] {
-                destinationEntity = relationship.destinationEntity
-                relationships2.append(relationship)
-                inverseRelationship.append(relationship.inverseRelationship)
+                lastDestinationEntity = relationship.destinationEntity
+                relationships.append(relationship)
+                inverseRelationships.append(relationship.inverseRelationship)
                 relationshipsByName = relationship.destinationEntity?.relationshipsByName
                 propertiesByName = relationship.destinationEntity?.propertiesByName
             } else if let property = propertiesByName?[relationshipName] {
-                destinationProperty = property
+                lastDestinationProperty = property
             } else {
                 assertionFailure("Invalid key path is used")
             }
         }
 
-        self.destinationEntityName = destinationEntity?.name ?? ""
-        self.destinationPropertyName = destinationProperty?.name ?? ""
-        self.relationshipKeyPaths = relationships2.map { $0?.name ?? "" }
-        self.inverseRelationshipKeyPaths = inverseRelationship.map { $0?.name ?? "" }
+        self.destinationEntityName = lastDestinationEntity?.name ?? ""
+        self.destinationPropertyName = lastDestinationProperty?.name ?? ""
+        self.relationshipKeyPaths = relationships.map { $0?.name ?? "" }
+        self.inverseRelationshipKeyPaths = inverseRelationships.map { $0?.name ?? "" }
 
         assert(!self.destinationEntityName.isEmpty, "Invalid key path is used")
-        self.relationshipKeyPaths.forEach { property in
-            assert(!property.isEmpty, "Invalid key path is used")
-        }
-        self.inverseRelationshipKeyPaths.forEach { property in
-            assert(!property.isEmpty, "Invalid key path is used")
-        }
+        self.relationshipKeyPaths.forEach { property in assert(!property.isEmpty, "Invalid key path is used") }
+        self.inverseRelationshipKeyPaths.forEach { property in assert(!property.isEmpty, "Invalid key path is used") }
     }
 
 }

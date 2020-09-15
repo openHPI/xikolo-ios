@@ -464,13 +464,15 @@ extension CourseItemListViewController: UITableViewDragDelegate {
 extension CourseItemListViewController: UIContextMenuInteractionDelegate {
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        // TODO: localize
-        let openAction = UIAction(title: "Open item", image: UIImage(systemName: "arrow.right.circle.fill")) { action in
+        let openActonTitle = NSLocalizedString("course-item-list.header.continue-learning.Open item",
+                                               comment: "Action title to open the suggested course item to continue learning")
+        let openAction = UIAction(title: openActonTitle, image: UIImage(systemName: "arrow.right.circle.fill")) { action in
             self.openContinueLearningItem()
         }
 
-        // TODO: localize
-        let scrollAction = UIAction(title: "Show item in list", image: UIImage(systemName: "list.dash")) { action in
+        let scrollActonTitle = NSLocalizedString("course-item-list.header.continue-learning.Show item in list",
+                                                 comment: "Action title to scroll to the suggested course item to continue learning")
+        let scrollAction = UIAction(title: scrollActonTitle, image: UIImage(systemName: "list.dash")) { action in
             self.scrollToContinueLearningItemAndHighlight()
         }
 

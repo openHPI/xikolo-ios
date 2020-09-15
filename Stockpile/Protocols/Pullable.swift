@@ -73,6 +73,7 @@ extension Pullable where Self: NSManagedObject {
             if let fetchedResource = try context.findExistingResource(withId: resourceId, ofType: A.self) {
                 self[keyPath: keyPath] = fetchedResource
             } else {
+                self[keyPath: keyPath] = nil
                 // TODO: logging
                 // SyncEngine.log?("relationship update saved (\(Self.type) --> \(A.type)?)", .info)
             }

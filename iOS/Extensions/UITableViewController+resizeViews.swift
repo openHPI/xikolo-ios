@@ -17,7 +17,12 @@ extension UITableView {
 
     private func resizeSupplementaryView(withKeyPath keyPath: ReferenceWritableKeyPath<UITableView, UIView?>) {
         guard let view = self[keyPath: keyPath] else { return }
-        let size = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+
+        var size = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+
+        if view.isHidden || view.subviews.allSatisfy(\.isHidden) {
+            size.height = 0
+        }
 
         guard view.frame.size.height != size.height else { return }
         view.frame.size.height = size.height

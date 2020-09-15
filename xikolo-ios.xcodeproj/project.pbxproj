@@ -202,6 +202,9 @@
 		507F7FDA2372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FD92372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift */; };
 		507F7FDC2372DA530031DC0B /* CourseProgressHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FDB2372DA530031DC0B /* CourseProgressHelper.swift */; };
 		5083329C2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083329B2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift */; };
+		508869F324F6613A000FA1C8 /* LastVisit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508869F224F6613A000FA1C8 /* LastVisit.swift */; };
+		508869F524F66479000FA1C8 /* LastVisitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508869F424F66479000FA1C8 /* LastVisitHelper.swift */; };
+		508869F724F66519000FA1C8 /* LastVisitHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508869F624F66519000FA1C8 /* LastVisitHelper+FetchRequests.swift */; };
 		508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */; };
 		508AB2C02109F0A10079EAE5 /* DocumentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */; };
 		508AB2C22109F0DE0079EAE5 /* DocumentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */; };
@@ -872,6 +875,10 @@
 		507F7FD92372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseProgressHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		507F7FDB2372DA530031DC0B /* CourseProgressHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgressHelper.swift; sourceTree = "<group>"; };
 		5083329B2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+CircularBackground.swift"; sourceTree = "<group>"; };
+		508869F124F6604F000FA1C8 /* xikolo 13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 13.xcdatamodel"; sourceTree = "<group>"; };
+		508869F224F6613A000FA1C8 /* LastVisit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastVisit.swift; sourceTree = "<group>"; };
+		508869F424F66479000FA1C8 /* LastVisitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastVisitHelper.swift; sourceTree = "<group>"; };
+		508869F624F66519000FA1C8 /* LastVisitHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LastVisitHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFWebViewController.storyboard; sourceTree = "<group>"; };
 		508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentHeader.xib; sourceTree = "<group>"; };
 		508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHeader.swift; sourceTree = "<group>"; };
@@ -1261,6 +1268,7 @@
 				243CE47E1D709999007C59B6 /* Enrollment.swift */,
 				AB4A01AD1E7EA151005CD595 /* EnrollmentCertificates.swift */,
 				8251A50A237182F200A443A9 /* HelpdeskTicket.swift */,
+				508869F224F6613A000FA1C8 /* LastVisit.swift */,
 				ABC8A1631D689ED80059CEF2 /* LTIExercise.swift */,
 				ABC8A1651D689ED80059CEF2 /* PeerAssessment.swift */,
 				AB17C57E1DFCC5B50013BBCD /* PlatformEvent.swift */,
@@ -1731,6 +1739,7 @@
 				5054B2E22108836300CE9067 /* DocumentHelper+FetchRequests.swift */,
 				5054B2E82108BF9B00CE9067 /* DocumentLocalizationHelper+FetchRequest.swift */,
 				700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */,
+				508869F624F66519000FA1C8 /* LastVisitHelper+FetchRequests.swift */,
 				50F57D941FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift */,
 				50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */,
 				50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */,
@@ -2190,6 +2199,7 @@
 				5054B2E0210880FA00CE9067 /* DocumentHelper.swift */,
 				ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */,
 				8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */,
+				508869F424F66479000FA1C8 /* LastVisitHelper.swift */,
 				ABDD84C81D8E063100C7D193 /* LTIExerciseHelper.swift */,
 				ABDD84C31D8E056000C7D193 /* PeerAssessmentHelper.swift */,
 				AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */,
@@ -3295,12 +3305,14 @@
 				50FA2E5E20E4B26400656776 /* URL+URLQueryItem.swift in Sources */,
 				50FA2E6420E51AD000656776 /* UIApplication+AppInfo.swift in Sources */,
 				02FE3EAE235502C300E3ECB4 /* CourseProgress.swift in Sources */,
+				508869F524F66479000FA1C8 /* LastVisitHelper.swift in Sources */,
 				50FA2E3620E4B25800656776 /* Content.swift in Sources */,
 				50092A86237D7EA000A1503F /* ChannelHelper.swift in Sources */,
 				50FA2E4620E4B25800656776 /* TrackingEvent.swift in Sources */,
 				5095168B24B75F0600B25F56 /* URL+NSURL.swift in Sources */,
 				504D83FC215B64EC006F2447 /* APIStatus.swift in Sources */,
 				0262E6C72372C797007C9057 /* VisitProgress.swift in Sources */,
+				508869F324F6613A000FA1C8 /* LastVisit.swift in Sources */,
 				50FA2E1720E4B24300656776 /* EnrollmentHelper.swift in Sources */,
 				5037FC1C242DF84E00B4E8CE /* AsyncImagesStyler.swift in Sources */,
 				50FA2E5D20E4B26400656776 /* UIColor+hex.swift in Sources */,
@@ -3386,6 +3398,7 @@
 				5095B1E420EBD41900572924 /* NSManagedObjectContext+typed.swift in Sources */,
 				50FA2E4A20E4B25800656776 /* User.swift in Sources */,
 				5095B1DC20EB570B00572924 /* Filemanager+temporaryFile.swift in Sources */,
+				508869F724F66519000FA1C8 /* LastVisitHelper+FetchRequests.swift in Sources */,
 				50FA2E1B20E4B24300656776 /* QuizHelper.swift in Sources */,
 				5037FC18242DF7BE00B4E8CE /* NSLayoutManager+setNeedLayout.swift in Sources */,
 				50FA2DFE20E4B1FB00656776 /* Error.swift in Sources */,
@@ -9967,6 +9980,7 @@
 		24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				508869F124F6604F000FA1C8 /* xikolo 13.xcdatamodel */,
 				500C361724B61BFB004DD157 /* xikolo 12.xcdatamodel */,
 				505B0D162446FFC600F88CAD /* xikolo 11.xcdatamodel */,
 				5013D3FA24378DA5009C6D92 /* xikolo 10.xcdatamodel */,
@@ -9980,7 +9994,7 @@
 				ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */,
 				24597D251CC6CA0D00FB5338 /* xikolo.xcdatamodel */,
 			);
-			currentVersion = 500C361724B61BFB004DD157 /* xikolo 12.xcdatamodel */;
+			currentVersion = 508869F124F6604F000FA1C8 /* xikolo 13.xcdatamodel */;
 			path = xikolo.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

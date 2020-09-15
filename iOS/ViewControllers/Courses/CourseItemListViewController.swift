@@ -19,6 +19,8 @@ class CourseItemListViewController: UITableViewController {
     @IBOutlet private weak var continueLearningSectionTitleLabel: UILabel!
     @IBOutlet private weak var continueLearningItemTitleLabel: UILabel!
     @IBOutlet private weak var continueLearningItemIconView: UIImageView!
+    @IBOutlet private weak var continueLearningItemIconViewWidthConstraint: NSLayoutConstraint!
+
     @IBOutlet private weak var nextSectionStartLabel: UILabel!
 
     private var course: Course!
@@ -127,6 +129,11 @@ class CourseItemListViewController: UITableViewController {
         } else {
             self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 40.0, bottom: 0, right: 0)
         }
+
+        if #available(iOS 11, *) {
+            let value = UIFontMetrics.default.scaledValue(for: 28)
+            self.continueLearningItemIconViewWidthConstraint.constant = value
+        }
     }
 
     func preloadCourseContent() {
@@ -173,18 +180,10 @@ class CourseItemListViewController: UITableViewController {
     }
 
     private func updateHeaderView() {
-        guard let item = self.lastVisit?.item else {
-            self.continueLearningHint.isHidden = true
-            UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
-                self.tableView.resizeTableHeaderView()
-            }
-            return
-        }
-
-        self.continueLearningSectionTitleLabel.text = item.section?.title
-        self.continueLearningItemTitleLabel.text = item.title
-        self.continueLearningItemIconView.image = item.image
-        self.continueLearningHint.isHidden = false
+        self.continueLearningSectionTitleLabel.text = self.lastVisit?.item?.section?.title
+        self.continueLearningItemTitleLabel.text = self.lastVisit?.item?.title
+        self.continueLearningItemIconView.image = self.lastVisit?.item?.image
+        self.continueLearningHint.isHidden = self.lastVisit?.item == nil
 
         UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
             self.tableView.resizeTableHeaderView()

@@ -12,9 +12,10 @@ import Common
 import CoreData
 import UIKit
 
-class CourseListViewController: UICollectionViewController {
+class CourseListViewController: CustomWidthCollectionViewController {
 
     private var dataSource: CoreDataCollectionViewDataSource<CourseListViewController>!
+    private var relationshipKeyPathsObserver: RelationshipKeyPathsObserver<Course>?
     private var channelObserver: ManagedObjectObserver?
 
     @available(iOS, obsoleted: 11.0)
@@ -73,6 +74,10 @@ class CourseListViewController: UICollectionViewController {
                                                            cellReuseIdentifier: reuseIdentifier,
                                                            headerReuseIdentifier: R.nib.courseHeaderView.name,
                                                            delegate: self)
+        self.relationshipKeyPathsObserver = RelationshipKeyPathsObserver(for: Course.self, managedObjectContext: CoreDataHelper.viewContext, keyPaths: [
+            #keyPath(Course.enrollment),
+            #keyPath(Course.channel),
+        ])
 
         self.refresh()
 
@@ -122,6 +127,7 @@ class CourseListViewController: UICollectionViewController {
 
     private func addFilterView() {
         let filterContainer = UIView()
+        filterContainer.preservesSuperviewLayoutMargins = true
         self.collectionView.addSubview(filterContainer)
 
         filterContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -140,6 +146,7 @@ class CourseListViewController: UICollectionViewController {
 
         filterContainer.addSubview(self.searchFilterViewController.view)
         self.searchFilterViewController.view.frame = filterContainer.frame
+        self.searchFilterViewController.view.preservesSuperviewLayoutMargins = true
         self.addChild(self.searchFilterViewController)
         self.searchFilterViewController.didMove(toParent: self)
     }
@@ -167,7 +174,7 @@ class CourseListViewController: UICollectionViewController {
     private func showCourseDates(course: Course) {
         let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
         courseDatesViewController.course = course
-        let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
+        let navigationController = CustomWidthNavigationController(rootViewController: courseDatesViewController)
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
@@ -191,9 +198,11 @@ class CourseListViewController: UICollectionViewController {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: nil) { _ in
+
+        // swiftlint:disable:next trailing_closure
+        coordinator.animate(alongsideTransition: { _  in
             self.collectionViewLayout.invalidateLayout()
-        }
+        })
     }
 
     @available(iOS 13.0, *)
@@ -210,8 +219,8 @@ class CourseListViewController: UICollectionViewController {
 
         let actionProvider: UIContextMenuActionProvider = { _ in
             let userActions = [
-                course.shareAction { self.shareCourse(at: indexPath) },
                 course.showCourseDatesAction { self.showCourseDates(course: course) },
+                course.shareAction { self.shareCourse(at: indexPath) },
             ].compactMap { $0 }
 
             return UIMenu(title: "", children: userActions.asActions())

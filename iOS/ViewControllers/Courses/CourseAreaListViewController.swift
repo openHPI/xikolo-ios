@@ -82,7 +82,7 @@ class CourseAreaListViewController: UICollectionViewController {
 
         coordinator.animate(alongsideTransition: { _ in
             self.collectionViewLayout.invalidateLayout()
-        }) { _ in
+        }) { _ in // swiftlint:disable:this multiple_closures_with_trailing_closure
             if let selectedIndexPath = self.selectedIndexPath {
                 self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: trueUnlessReduceMotionEnabled)
             }

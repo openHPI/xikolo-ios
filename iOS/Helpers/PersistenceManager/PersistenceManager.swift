@@ -3,7 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-// swiftlint:disable type_body_length
+// swiftlint:disable type_body_length file_length
 
 import Common
 import CoreData

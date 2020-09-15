@@ -58,14 +58,14 @@ platform :ios do
       build_components = options[:build_number].split(".")
       if build_components.length == 1
         commit_count = build_components[0].to_i
-        branch_name = "master"
+        branch_name = "main"
       elsif build_components.length == 2
-        commit_count_master = build_components[0].to_i
+        commit_count_main = build_components[0].to_i
         commit_count_dev_diff = build_components[1].to_i
-        commit_count = commit_count_master + commit_count_dev_diff
+        commit_count = commit_count_main + commit_count_dev_diff
         branch_name = "dev"
       elsif build_components.length == 3
-        UI.user_error! "Detected feature branch build. Only builds from `master` or `dev` are supported."
+        UI.user_error! "Detected feature branch build. Only builds from `main` or `dev` are supported."
       else
         UI.user_error! "Supplied malformed build number"
       end
@@ -205,14 +205,14 @@ platform :ios do
   desc "Build and upload only IPA and metadata to iTunesConnect"
   desc "No upload of screenshots"
   lane :release do
-    ensure_git_branch(branch: 'master')
+    ensure_git_branch(branch: 'main')
     flavors.each { |flavor| public_send :"release_#{flavor.downcase}" }
   end
 
   flavors.each do |flavor|
     lane :"release_#{flavor.downcase}" do
       ensure_git_status_clean
-      ensure_git_branch(branch: 'master')
+      ensure_git_branch(branch: 'main')
       upload_ipa(flavor: flavor, automatic_release: true)
     end
   end

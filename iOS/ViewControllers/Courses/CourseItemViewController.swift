@@ -28,13 +28,20 @@ class CourseItemViewController: UIPageViewController {
     }()
 
     private var userActions: [UIAlertAction] {
-        var alertActions = [
-            self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() },
-        ].compactMap { $0 }.asAlertActions()
+        guard let item = self.currentItem else {
+            return []
+        }
 
-        if let video = self.currentItem?.content as? Video {
+        var alertActions: [UIAlertAction] = []
+
+        if let video = item.content as? Video {
             alertActions += video.actions.asAlertActions()
         }
+
+        alertActions += [
+            item.shareAction { [weak self] in self?.shareCourseItem() },
+            item.openHelpdesk { [weak self] in self?.openHelpdesk() },
+        ].asAlertActions()
 
         return alertActions
     }
@@ -127,6 +134,8 @@ class CourseItemViewController: UIPageViewController {
         guard item.hasAvailableContent else { return }
 
         CourseItemHelper.markAsVisited(item)
+        LastVisitHelper.recordVisit(for: item)
+
         let context = [
             "content_type": item.contentType,
             "section_id": item.section?.id,
@@ -155,6 +164,13 @@ class CourseItemViewController: UIPageViewController {
         let activityViewController = UIActivityViewController(activityItems: [item], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    @IBAction private func openHelpdesk() {
+        let helpdeskViewController = R.storyboard.tabAccount.helpdeskViewController().require()
+        helpdeskViewController.course = self.currentItem?.section?.course
+        let navigationController = CustomWidthNavigationController(rootViewController: helpdeskViewController)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
 }

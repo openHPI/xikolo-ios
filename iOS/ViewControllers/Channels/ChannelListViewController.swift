@@ -8,7 +8,7 @@ import Common
 import CoreData
 import UIKit
 
-class ChannelListViewController: UICollectionViewController {
+class ChannelListViewController: CustomWidthCollectionViewController {
 
     private var dataSource: CoreDataCollectionViewDataSource<ChannelListViewController>!
 
@@ -33,11 +33,6 @@ class ChannelListViewController: UICollectionViewController {
 
         self.refresh()
         self.setupEmptyState()
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let channel = self.dataSource.object(at: indexPath)
-        self.performSegue(withIdentifier: R.segue.channelListViewController.showCourseList, sender: channel)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -65,6 +60,11 @@ class ChannelListViewController: UICollectionViewController {
             self.navigationController?.navigationBar.sizeToFit()
             self.collectionViewLayout.invalidateLayout()
         })
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let channel = self.dataSource.object(at: indexPath)
+        self.performSegue(withIdentifier: R.segue.channelListViewController.showCourseList, sender: channel)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

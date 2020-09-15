@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zUO-7L-4Ln">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zUO-7L-4Ln">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +21,7 @@
         <!--More-->
         <scene sceneID="e9U-Q7-VJ5">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zUO-7L-4Ln" customClass="XikoloNavigationController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zUO-7L-4Ln" customClass="CustomWidthNavigationController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="More" image="tab bar items/more" id="oQZ-TQ-vq3"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -42,17 +44,17 @@
             <objects>
                 <viewController id="64X-XR-gDC" customClass="MoreViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rZd-5L-o91">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFP-qL-BDX">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dhx-rD-XZ1">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="647.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="647.5"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sIX-zH-d1U" userLabel="more">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="300" id="og4-D5-bmX"/>
                                                 </constraints>
@@ -61,13 +63,13 @@
                                                 </connections>
                                             </containerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqX-7o-9u1">
-                                                <rect key="frame" x="20" y="316" width="560" height="33.5"/>
+                                                <rect key="frame" x="20" y="316" width="374" height="33.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <containerView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rst-q7-J1N">
-                                                <rect key="frame" x="0.0" y="349.5" width="600" height="298"/>
+                                                <rect key="frame" x="0.0" y="349.5" width="414" height="298"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="298" id="ejK-W0-V7n"/>
                                                 </constraints>

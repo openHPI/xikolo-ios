@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable file_length
+
 import BrightFutures
 import Common
 import CoreData
@@ -19,7 +21,7 @@ class CourseItemListViewController: UITableViewController {
     @IBOutlet private weak var continueLearningSectionTitleLabel: UILabel!
     @IBOutlet private weak var continueLearningItemTitleLabel: UILabel!
     @IBOutlet private weak var continueLearningItemIconView: UIImageView!
-    @IBOutlet private weak var continueLearningItemIconViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var continueLearningItemIconWidthConstraint: NSLayoutConstraint!
 
     @IBOutlet private weak var nextSectionStartLabel: UILabel!
 
@@ -31,7 +33,7 @@ class CourseItemListViewController: UITableViewController {
         didSet {
             self.updateHeaderView()
             if let lastVisit = self.lastVisit {
-                self.lastVisitObserver = ManagedObjectObserver(object: lastVisit) { [weak self] type in
+                self.lastVisitObserver = ManagedObjectObserver(object: lastVisit) { [weak self] _ in
                     DispatchQueue.main.async {
                         self?.updateHeaderView()
                     }
@@ -132,7 +134,7 @@ class CourseItemListViewController: UITableViewController {
 
         if #available(iOS 11, *) {
             let value = UIFontMetrics.default.scaledValue(for: 28)
-            self.continueLearningItemIconViewWidthConstraint.constant = value
+            self.continueLearningItemIconWidthConstraint.constant = value
         }
     }
 
@@ -232,7 +234,7 @@ class CourseItemListViewController: UITableViewController {
     }
 
     @objc private func openContinueLearningItem() {
-        self.scrollToContinueLearningItemAndHighlight() { [weak self] cell in
+        self.scrollToContinueLearningItemAndHighlight { [weak self] cell in
             self?.performSegue(withIdentifier: R.segue.courseItemListViewController.showCourseItem, sender: cell)
         }
     }
@@ -466,13 +468,13 @@ extension CourseItemListViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         let openActonTitle = NSLocalizedString("course-item-list.header.continue-learning.Open item",
                                                comment: "Action title to open the suggested course item to continue learning")
-        let openAction = UIAction(title: openActonTitle, image: UIImage(systemName: "arrow.right.circle.fill")) { action in
+        let openAction = UIAction(title: openActonTitle, image: UIImage(systemName: "arrow.right.circle.fill")) { _ in
             self.openContinueLearningItem()
         }
 
         let scrollActonTitle = NSLocalizedString("course-item-list.header.continue-learning.Show item in list",
                                                  comment: "Action title to scroll to the suggested course item to continue learning")
-        let scrollAction = UIAction(title: scrollActonTitle, image: UIImage(systemName: "list.dash")) { action in
+        let scrollAction = UIAction(title: scrollActonTitle, image: UIImage(systemName: "list.dash")) { _ in
             self.scrollToContinueLearningItemAndHighlight()
         }
 

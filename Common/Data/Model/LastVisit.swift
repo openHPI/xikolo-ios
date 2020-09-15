@@ -30,8 +30,6 @@ extension LastVisit: JSONAPIPullable {
         let newVisitDate = try attributes.value(for: "visit_date") as Date
 
         let isNewObject = self.objectID.isTemporaryID
-
-
         guard isNewObject || newVisitDate > self.visitDate else { return }
 
         self.visitDate = newVisitDate

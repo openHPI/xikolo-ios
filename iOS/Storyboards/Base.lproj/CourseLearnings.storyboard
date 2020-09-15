@@ -242,7 +242,7 @@
                     <connections>
                         <outlet property="continueLearningHint" destination="FCQ-Fh-KIx" id="zjo-fh-XMP"/>
                         <outlet property="continueLearningItemIconView" destination="kDg-1C-EQA" id="5am-xy-g73"/>
-                        <outlet property="continueLearningItemIconViewWidthConstraint" destination="G8h-P4-UDW" id="X4o-cP-KC7"/>
+                        <outlet property="continueLearningItemIconWidthConstraint" destination="G8h-P4-UDW" id="X4o-cP-KC7"/>
                         <outlet property="continueLearningItemTitleLabel" destination="qbL-tr-CkP" id="1xD-xz-t6o"/>
                         <outlet property="continueLearningSectionTitleLabel" destination="oNV-Jd-aVk" id="lEo-cz-bdx"/>
                         <outlet property="nextSectionStartLabel" destination="lh1-zS-1LH" id="RoH-An-ZRg"/>

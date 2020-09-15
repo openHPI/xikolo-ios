@@ -14,7 +14,11 @@ extension NSDirectionalEdgeInsets {
                                  minimumInsets: viewController.systemMinimumLayoutMargins)
     }
 
-    static func customInsets(for view: UIView, traitCollection: UITraitCollection, minimumInsets: NSDirectionalEdgeInsets = .zero) -> NSDirectionalEdgeInsets {
+    static func customInsets(
+        for view: UIView,
+        traitCollection: UITraitCollection,
+        minimumInsets: NSDirectionalEdgeInsets = .zero
+    ) -> NSDirectionalEdgeInsets {
         var minimumLeadingInset = minimumInsets.leading
         var minimumTrailingInset = minimumInsets.trailing
 
@@ -34,11 +38,20 @@ extension NSDirectionalEdgeInsets {
                                           minimumInsets: viewController.systemMinimumLayoutMargins)
     }
 
-    static func readableContentInsets(for view: UIView, traitCollection: UITraitCollection, minimumInsets: NSDirectionalEdgeInsets = .zero) -> NSDirectionalEdgeInsets {
+    static func readableContentInsets(
+        for view: UIView,
+        traitCollection: UITraitCollection,
+        minimumInsets: NSDirectionalEdgeInsets = .zero
+    ) -> NSDirectionalEdgeInsets {
         return self.insets(for: view.bounds.size, traitCollection: traitCollection, factor: 1, minimumInsets: minimumInsets)
     }
 
-    private static func insets(for size: CGSize, traitCollection: UITraitCollection, factor: CGFloat, minimumInsets: NSDirectionalEdgeInsets = .zero) -> NSDirectionalEdgeInsets {
+    private static func insets(
+        for size: CGSize,
+        traitCollection: UITraitCollection,
+        factor: CGFloat,
+        minimumInsets: NSDirectionalEdgeInsets = .zero
+    ) -> NSDirectionalEdgeInsets {
         let readableWidth = self.readableWidth(for: traitCollection) ?? size.width
         let remainingWidth = size.width - readableWidth
         let padding = remainingWidth / 2 * factor
@@ -51,23 +64,37 @@ extension NSDirectionalEdgeInsets {
         )
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     private static func readableWidth(for traitCollection: UITraitCollection) -> CGFloat? {
         guard traitCollection.horizontalSizeClass == .regular && UIDevice.current.userInterfaceIdiom == .pad else { return nil }
 
         switch traitCollection.preferredContentSizeCategory {
-        case .extraSmall: return 560
-        case .small: return 600
-        case .medium: return 632
-        case .large: return 672
-        case .extraLarge: return 744
-        case .extraExtraLarge: return 824
-        case .extraExtraExtraLarge: return 896
-        case .accessibilityMedium: return 1088
-        case .accessibilityLarge: return 1400
-        case .accessibilityExtraLarge: return 1500
-        case .accessibilityExtraExtraLarge: return 1600
-        case .accessibilityExtraExtraExtraLarge: return 1700
-        default: return nil
+        case .extraSmall:
+            return 560
+        case .small:
+            return 600
+        case .medium:
+            return 632
+        case .large:
+            return 672
+        case .extraLarge:
+            return 744
+        case .extraExtraLarge:
+            return 824
+        case .extraExtraExtraLarge:
+            return 896
+        case .accessibilityMedium:
+            return 1088
+        case .accessibilityLarge:
+            return 1400
+        case .accessibilityExtraLarge:
+            return 1500
+        case .accessibilityExtraExtraLarge:
+            return 1600
+        case .accessibilityExtraExtraExtraLarge:
+            return 1700
+        default:
+            return nil
         }
     }
 

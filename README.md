@@ -94,7 +94,7 @@ The `iOS` target is the main applciation.
 
 #### Today
 
-The `Today` target provides the today app extension (widget in the today view).
+The `Today` target provides the today app extension (widget in the today view, considered legacy in iOS 14 and later).
 
 ## Code of Conduct
 

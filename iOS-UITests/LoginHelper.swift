@@ -32,7 +32,7 @@ class LoginHelper { // swiftlint:disable:this convenience_type
     static func loginIfPossible() {
         let app = XCUIApplication()
         Navigator.goToTabBarItem(.account)
-        let loginButton = app.navigationBars.buttons.element(boundBy: 0)
+        let loginButton = app.tables.cells["loginCell"]
 
         guard loginButton.exists else { return }
 
@@ -44,9 +44,9 @@ class LoginHelper { // swiftlint:disable:this convenience_type
         emailTextField.tap()
         emailTextField.typeText(credentials.email)
 
-        let passwortSecureTextField = app.secureTextFields.element(boundBy: 0)
-        passwortSecureTextField.tap()
-        passwortSecureTextField.typeText(credentials.password)
+        let passwordSecureTextField = app.secureTextFields.element(boundBy: 0)
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText(credentials.password)
 
         app.buttons["loginButton"].tap()
     }

@@ -32,4 +32,25 @@ public enum XikoloError: Error {
     case missingResource(ofType: Any)
 
     case userCanceled
+
+    var wasCausedByRestrictedNetworkConditions: Bool {
+        guard case let .synchronization(syncError) = self else {
+            return false
+        }
+
+        guard case let .network(networkError) = syncError else {
+            return false
+        }
+
+        guard let urlError = networkError as? URLError else {
+            return false
+        }
+
+        if #available(iOS 13, *) {
+            return urlError.networkUnavailableReason != nil
+        } else {
+            return false
+        }
+    }
+
 }

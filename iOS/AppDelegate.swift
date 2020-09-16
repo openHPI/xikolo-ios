@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.pushEngineManager.register(Announcement.self)
             self.pushEngineManager.register(CourseItem.self)
             self.pushEngineManager.register(Enrollment.self)
-            self.pushEngineManager.register(TrackingEvent.self, with: XikoloNetworker.nonExpensiveSessionConfiguration)
+            self.pushEngineManager.register(TrackingEvent.self, with: .nonExpensive)
             self.pushEngineManager.startObserving()
 
             StreamPersistenceManager.shared.restoreDownloads()

@@ -31,17 +31,19 @@ public class SyncPushEngineManager {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: CoreDataHelper.viewContext)
     }
 
-    public func register<Resource>(_ newType: Resource.Type, with sessionConfiguration: URLSessionConfiguration? = nil) where Resource: NSManagedObject & Pushable {
-        let networker = XikoloNetworker(sessionConfiguration: sessionConfiguration)
-        let syncEngine = XikoloSyncEngine(networker: networker)
-        let pushEngine = SyncPushEnginePush(type: Resource.self, manager: self, syncEngine: syncEngine)
+    public func register<Resource>(
+        _ newType: Resource.Type,
+        with sessionConfiguration: URLSessionConfiguration = .waitingDefault
+    ) where Resource: NSManagedObject & Pushable {
+        let pushEngine = SyncPushEnginePush(type: Resource.self, manager: self, sessionConfiguration: sessionConfiguration)
         self.pushEngines.append(pushEngine)
     }
 
-    public func register<Resource>(_ newType: Resource.Type, with sessionConfiguration: URLSessionConfiguration? = nil) where Resource: NSManagedObject & Pushable & Pullable {
-        let networker = XikoloNetworker(sessionConfiguration: sessionConfiguration)
-        let syncEngine = XikoloSyncEngine(networker: networker)
-        let pushEngine = SyncPushEnginePushPull(type: Resource.self, manager: self, syncEngine: syncEngine)
+    public func register<Resource>(
+        _ newType: Resource.Type,
+        with sessionConfiguration: URLSessionConfiguration = .waitingDefault
+    ) where Resource: NSManagedObject & Pushable & Pullable {
+        let pushEngine = SyncPushEnginePushPull(type: Resource.self, manager: self, sessionConfiguration: sessionConfiguration)
         self.pushEngines.append(pushEngine)
     }
 
@@ -54,7 +56,6 @@ public class SyncPushEngineManager {
         if shouldCheckForChangesToPush {
             self.pushEngines.forEach { $0.check() }
         }
-
     }
 
     func addOperation(_ block: @escaping () -> Void) {
@@ -70,13 +71,13 @@ protocol SyncPushEngine {
 class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObject & Pushable {
 
     private let resourceType: Resource.Type
-    private let syncEngine: XikoloSyncEngine
-    weak var manager: SyncPushEngineManager?
+    private let sessionConfiguration: URLSessionConfiguration
+    private weak var manager: SyncPushEngineManager?
 
-    init(type: Resource.Type, manager: SyncPushEngineManager, syncEngine: XikoloSyncEngine) {
+    init(type: Resource.Type, manager: SyncPushEngineManager, sessionConfiguration: URLSessionConfiguration) {
         self.resourceType = type
         self.manager = manager
-        self.syncEngine = syncEngine
+        self.sessionConfiguration = sessionConfiguration
     }
 
     func check() {
@@ -112,17 +113,25 @@ class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObje
                     return
                 }
 
+                let networker = XikoloNetworker(sessionConfiguration: self.sessionConfiguration)
+                let syncEngine = XikoloSyncEngine(networker: networker)
+
                 var pushFuture: Future<Void, XikoloError>?
 
                 if resource.objectState == .new {
-                    pushFuture = self.syncEngine.createResource(resource)
+                    pushFuture = syncEngine.createResource(resource)
                 } else {
                     logger.warning("Unhandled resource modification")
                 }
 
                 if let error = pushFuture?.forced().error {
-                    logger.error("Failed to push resource modification", error: error)
-                    ErrorManager.shared.report(error)
+                    if error.wasCausedByRestrictedNetworkConditions {
+                        logger.info("Sync push failed due to restricted network conditions of type: \(type(of: resource).type)")
+                    } else {
+                        logger.error("Failed to push resource modification", error: error)
+                        ErrorManager.shared.report(error)
+                    }
+
                     return
                 }
 
@@ -149,13 +158,13 @@ class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObje
 class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManagedObject & Pushable & Pullable {
 
     private let resourceType: Resource.Type
-    private let syncEngine: XikoloSyncEngine
-    weak var manager: SyncPushEngineManager?
+    private let sessionConfiguration: URLSessionConfiguration
+    private weak var manager: SyncPushEngineManager?
 
-    init(type: Resource.Type, manager: SyncPushEngineManager, syncEngine: XikoloSyncEngine) {
+    init(type: Resource.Type, manager: SyncPushEngineManager, sessionConfiguration: URLSessionConfiguration) {
         self.resourceType = type
         self.manager = manager
-        self.syncEngine = syncEngine
+        self.sessionConfiguration = sessionConfiguration
     }
 
     func check() {
@@ -192,11 +201,14 @@ class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManaged
                     return
                 }
 
+                let networker = XikoloNetworker(sessionConfiguration: self.sessionConfiguration)
+                let syncEngine = XikoloSyncEngine(networker: networker)
+
                 var pushFuture: Future<Void, XikoloError>?
                 if resource.objectState == .modified {
-                    pushFuture = self.syncEngine.saveResource(resource)
+                    pushFuture = syncEngine.saveResource(resource)
                 } else if resource.objectState == .deleted {
-                    pushFuture = self.syncEngine.deleteResource(resource)
+                    pushFuture = syncEngine.deleteResource(resource)
                 } else {
                     logger.warning("Unhandled resource modification")
                 }

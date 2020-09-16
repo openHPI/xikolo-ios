@@ -7,35 +7,36 @@ import BrightFutures
 import CoreData
 import Stockpile
 
-public struct XikoloNetworker: SyncNetworker {
+extension URLSessionConfiguration {
 
-    // TODO: move session configuration to nested enum?
-
-    public static let defaultSessionConfiguration: URLSessionConfiguration = {
+    public static var waitingDefault: URLSessionConfiguration {
         let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForResource = 90
+
         if #available(iOS 11, *) {
             configuration.waitsForConnectivity = true
         }
-        return configuration
-    }()
 
-    public static let nonExpensiveSessionConfiguration: URLSessionConfiguration = {
-        let configuration = Self.defaultSessionConfiguration
+        return configuration
+    }
+
+    public static var nonExpensive: URLSessionConfiguration {
+        let configuration = URLSessionConfiguration.default
 
         if #available(iOS 13, *) {
             configuration.allowsExpensiveNetworkAccess = false
-        } else {
-            configuration.allowsCellularAccess = false
         }
 
         return configuration
-    }()
+    }
 
-    private let session: URLSession
+}
+
+public struct XikoloNetworker: SyncNetworker {
+
+    let session: URLSession
 
     public init(sessionConfiguration: URLSessionConfiguration? = nil) {
-        let sessionConfiguration = sessionConfiguration ?? Self.defaultSessionConfiguration
+        let sessionConfiguration = sessionConfiguration ?? .waitingDefault
         self.session = URLSession(configuration: sessionConfiguration, delegate: nil, delegateQueue: nil)
     }
 

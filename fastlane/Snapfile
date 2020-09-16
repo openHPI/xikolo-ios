@@ -3,7 +3,7 @@ devices([
   "iPhone 11 Pro",
   "iPhone 8 Plus",
   "iPhone 8",
-  "iPad Pro (12.9-inch) (3rd generation)",
+   "iPad Pro (12.9-inch) (3rd generation)",
   "iPad Pro (12.9-inch) (2nd generation)",
   "iPad Pro (11-inch) (2nd generation)",
   "iPad Air (3rd generation)",
@@ -15,6 +15,7 @@ languages([
   "en-US",
 ])
 
+override_status_bar true
 clear_previous_screenshots true
 skip_open_summary true
 localize_simulator true

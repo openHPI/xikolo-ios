@@ -122,7 +122,7 @@
                                         <constraint firstItem="uLW-Lg-Wl4" firstAttribute="leading" secondItem="NrQ-Dt-f9X" secondAttribute="leading" constant="20" symbolic="YES" id="zA7-5z-Yah"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <accessibility key="accessibilityConfiguration" identifier="logoutCell"/>
+                                <accessibility key="accessibilityConfiguration" identifier="loginCell"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserProfileCell" id="rc9-hb-o0L" customClass="UserProfileCell" customModule="iOS" customModuleProvider="target">
                                 <rect key="frame" x="20" y="136" width="374" height="130"/>
@@ -213,7 +213,7 @@
                                         <constraint firstAttribute="trailing" secondItem="KSx-OR-nQM" secondAttribute="trailing" constant="20" symbolic="YES" id="TzK-mF-Bnv"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <accessibility key="accessibilityConfiguration" identifier="logoutCell"/>
+                                <accessibility key="accessibilityConfiguration" identifier="userProfileCell"/>
                                 <connections>
                                     <outlet property="displayNameView" destination="Z0v-nW-LRc" id="Y9d-sJ-6cC"/>
                                     <outlet property="emailView" destination="0jX-st-tNX" id="phc-W2-1xM"/>

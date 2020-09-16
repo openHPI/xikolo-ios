@@ -48,15 +48,19 @@ Take a look at our [Contribution Guide](CONTRIBUTING.md) to learn about the key 
 
 ### Setup Testing
 
-1. Copy the credentials plist dummy file
+1. Create the initial credentials file (to avoid build errors on the first test run)
+   ```
+   cp iOS-UITests/Credentials.plist.dummy iOS-UITests/Credentials.plist
+   ```
+1. Create the default credentials file
    ```
    cp iOS-UITests/Credentials.plist.dummy iOS-UITests/Credentials-default.plist
    ```
-1. Enter your login credentials for testing
-1. To create a brand specific credentials plist
+1. Optional: Create a brand specific credentials file
    ```
    cp iOS-UITests/Credentials.plist.dummy iOS-UITests/Credentials-<BRAND_NAME>.plist
    ```
+1. Enter your login credentials for testing in the respective credentials files
 
 ## Overall Architecture
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zUZ-ve-BEg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zUZ-ve-BEg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -132,17 +132,10 @@
                             <outlet property="delegate" destination="zUZ-ve-BEg" id="tCW-ca-jov"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="News" id="rLA-qx-K4r">
-                        <barButtonItem key="rightBarButtonItem" image="dots" id="MeZ-sb-6WJ">
-                            <connections>
-                                <action selector="tappedActionButton:" destination="zUZ-ve-BEg" id="0gJ-yJ-14H"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="News" id="rLA-qx-K4r"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="actionButton" destination="MeZ-sb-6WJ" id="TDb-6k-HSA"/>
                         <segue destination="93E-B1-gK8" kind="show" identifier="ShowAnnouncement" id="AGz-EK-evX"/>
                     </connections>
                 </tableViewController>
@@ -167,7 +160,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6VL-fr-J5T">
                                                 <rect key="frame" x="20" y="20" width="374" height="132.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="AvL-qs-dkH">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="AvL-qs-dkH" customClass="DynamicSizeButton" customModule="iOS" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="74" height="28"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
@@ -181,7 +174,7 @@
                                                             </fragment>
                                                         </attributedString>
                                                         <connections>
-                                                            <action selector="tappedCourseTitle" destination="93E-B1-gK8" eventType="touchUpInside" id="2yN-xT-1Vv"/>
+                                                            <action selector="openCourse" destination="93E-B1-gK8" eventType="touchUpInside" id="2yN-xT-1Vv"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcement Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncg-gL-SNu">
@@ -273,7 +266,4 @@
             <point key="canvasLocation" x="1401" y="413"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="dots" width="28" height="28"/>
-    </resources>
 </document>

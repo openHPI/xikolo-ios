@@ -10,7 +10,8 @@ public protocol SyncEngineResult {
 }
 
 public struct SyncMultipleResult: SyncEngineResult {
-    public let objectIds: [NSManagedObjectID]
+    public let oldObjectIds: [NSManagedObjectID]
+    public let newObjectIds: [NSManagedObjectID]
     public let headers: [AnyHashable: Any]
 }
 
@@ -20,7 +21,8 @@ public struct SyncSingleResult: SyncEngineResult {
 }
 
 struct MergeMultipleResult<Resource> where Resource: NSManagedObject & Pullable {
-    let resources: [Resource]
+    let oldResources: [Resource]
+    let newResources: [Resource]
     let headers: [AnyHashable: Any]
 }
 

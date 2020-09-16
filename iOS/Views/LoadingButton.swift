@@ -5,7 +5,7 @@
 
 import UIKit
 
-class LoadingButton: UIButton {
+class LoadingButton: DynamicSizeButton {
 
     private static let animationTime = 0.2
 

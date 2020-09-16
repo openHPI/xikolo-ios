@@ -51,8 +51,10 @@ enum CourseSearchFilter: CaseIterable {
         case .language:
             let fetchRequest = CourseHelper.FetchRequest.distinctLanguages
             let dicts = try? CoreDataHelper.viewContext.fetch(fetchRequest)
-            let values = dicts?.flatMap(\.allValues).compactMap { $0 as? String }
-            return values ?? []
+            let allValues = dicts?.flatMap(\.allValues).compactMap { $0 as? String } ?? []
+            let preferredLocalizations = Bundle.preferredLocalizations(from: allValues)
+            let otherLocalizations = allValues.filter { !preferredLocalizations.contains($0) }
+            return preferredLocalizations + otherLocalizations
         case .category:
             let fetchRequest = CourseHelper.FetchRequest.categories
             let dicts = try? CoreDataHelper.viewContext.fetch(fetchRequest)
@@ -74,7 +76,7 @@ enum CourseSearchFilter: CaseIterable {
     func title(for option: String) -> String? {
         switch self {
         case .language:
-            return Course.localize(language: option)
+            return LanguageLocalizer.nativeDisplayName(for: option)
         default:
             return option
         }
@@ -83,9 +85,7 @@ enum CourseSearchFilter: CaseIterable {
     func subtitle(for option: String) -> String? {
         switch self {
         case .language:
-            let localeIdentifier = option == "cn" ? "zh" : option
-            let locale = NSLocale(localeIdentifier: Locale.current.identifier)
-            return locale.displayName(forKey: .languageCode, value: localeIdentifier)
+            return LanguageLocalizer.localizedDisplayName(for: option)
         default:
             return nil
         }

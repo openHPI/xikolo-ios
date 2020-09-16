@@ -13,6 +13,8 @@ import UIKit
 
 class VideoViewController: UIViewController {
 
+    static let didStartPlaybackNotification = Notification.Name("de.xikolo.ios.video.playback.started")
+
     @IBOutlet private weak var videoContainer: UIView!
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
@@ -30,7 +32,7 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var slidesProgressView: CircularProgressView!
     @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
-    @IBOutlet private var fullScreenContraints: [NSLayoutConstraint]!
+    @IBOutlet private var fullScreenConstraints: [NSLayoutConstraint]!
 
     private var adjustedVideoContainerRatioConstraint: NSLayoutConstraint? {
         didSet {
@@ -119,20 +121,7 @@ class VideoViewController: UIViewController {
         // Add pan gesture recognizer to video container to prevent an accidental course item switch or course dismissal
         self.videoContainer.addGestureRecognizer(UIPanGestureRecognizer())
 
-        // register notification observer
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self,
-                                       selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
-                                       name: DownloadState.didChangeNotification,
-                                       object: nil)
-        notificationCenter.addObserver(self,
-                                       selector: #selector(handleAssetDownloadProgressNotification(_:)),
-                                       name: DownloadProgress.didChangeNotification,
-                                       object: nil)
-        notificationCenter.addObserver(self,
-                                       selector: #selector(reachabilityChanged),
-                                       name: Notification.Name.reachabilityChanged,
-                                       object: nil)
+        self.registerObservers()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -153,11 +142,7 @@ class VideoViewController: UIViewController {
 
         self.isFirstAppearance = false
 
-        self.playerViewController?.automaticallyStopPicutureinPictureModeIfNecessary()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        self.playerViewController?.automaticallyStopPictureInPictureModeIfNecessary()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -173,7 +158,7 @@ class VideoViewController: UIViewController {
         }
 
         if self.didViewAppear {
-            self.playerViewController?.automaticallyStopPicutureinPictureModeIfNecessary(force: true)
+            self.playerViewController?.automaticallyStopPictureInPictureModeIfNecessary(force: true)
             self.trackVideoClose()
         }
 
@@ -219,6 +204,34 @@ class VideoViewController: UIViewController {
     override var childForHomeIndicatorAutoHidden: UIViewController? {
         guard self.playerViewController?.layoutState == .fullScreen else { return nil }
         return self.playerViewController
+    }
+
+    private func registerObservers() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleVideoPlaybackStartedNotification(_:)),
+                                       name: Self.didStartPlaybackNotification,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
+                                       name: DownloadState.didChangeNotification,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleAssetDownloadProgressNotification(_:)),
+                                       name: DownloadProgress.didChangeNotification,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(reachabilityChanged),
+                                       name: Notification.Name.reachabilityChanged,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(didEnterBackground),
+                                       name: UIApplication.didEnterBackgroundNotification,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(willEnterForeground),
+                                       name: UIApplication.willEnterForegroundNotification,
+                                       object: nil)
     }
 
     private func updateView(for courseItem: CourseItem) {
@@ -272,7 +285,7 @@ class VideoViewController: UIViewController {
 
     @IBAction private func openSlides() {
         self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
-        self.playerViewController?.automaticallyStartPicutureinPictureModeIfPossible()
+        self.playerViewController?.automaticallyStartPictureInPictureModeIfPossible()
     }
 
     @IBAction private func showVideoActionMenu(_ sender: UIButton) {
@@ -309,6 +322,11 @@ class VideoViewController: UIViewController {
         alert.addCancelAction()
 
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    @objc private func handleVideoPlaybackStartedNotification(_ notification: Notification) {
+        guard notification.object as? Self != self else { return }
+        self.playerViewController?.pausePlayback()
     }
 
     @objc private func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
@@ -362,6 +380,14 @@ class VideoViewController: UIViewController {
         self.playerViewController?.preferredPeakBitRate = self.video?.preferredPeakBitRate()
     }
 
+    @objc func didEnterBackground() {
+        self.playerViewController?.disconnectPlayer()
+    }
+
+    @objc func willEnterForeground() {
+        self.playerViewController?.reconnectPlayer()
+    }
+
     private func toggleControlBars(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(self.videoIsShownInFullScreen, animated: animated)
     }
@@ -377,9 +403,9 @@ class VideoViewController: UIViewController {
             self.toggleControlBars(animated)
 
             if self.videoIsShownInFullScreen {
-                NSLayoutConstraint.activate(self.fullScreenContraints)
+                NSLayoutConstraint.activate(self.fullScreenConstraints)
             } else {
-                NSLayoutConstraint.deactivate(self.fullScreenContraints)
+                NSLayoutConstraint.deactivate(self.fullScreenConstraints)
             }
 
             let animationDuration = animated ? 0.25 : 0
@@ -417,11 +443,30 @@ class VideoViewController: UIViewController {
 extension VideoViewController: BingePlayerDelegate { // Video tracking
 
     private var newTrackingContext: [String: String?] {
+        let currentOrientation: UIInterfaceOrientation? = {
+            if #available(iOS 13, *) {
+                return self.view.window?.windowScene?.interfaceOrientation
+            } else {
+                return UIApplication.shared.statusBarOrientation
+            }
+        }()
+
+        let currentOrientationValue: String? = {
+            switch currentOrientation?.isLandscape {
+            case true:
+                return "landscape"
+            case false:
+                return "portrait"
+            default:
+                return nil
+            }
+        }()
+
         return [
             "section_id": self.video?.item?.section?.id,
             "course_id": self.video?.item?.section?.course?.id,
             "current_speed": (self.playerViewController?.playbackRate).map { String($0) },
-            "current_orientation": UIApplication.shared.statusBarOrientation.isLandscape ? "landscape" : "portrait",
+            "current_orientation": currentOrientationValue,
             "current_quality": "hls",
             "current_source": self.currentSourceValue(for: self.playerViewController?.asset),
             "current_time": self.playerViewController?.currentTime.map { String($0) },
@@ -439,8 +484,11 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
     }
 
     func didStartPlayback() {
-        guard let video = self.video else { return }
-        TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+        NotificationCenter.default.post(name: Self.didStartPlaybackNotification, object: self, userInfo: nil)
+
+        if let video = self.video {
+            TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+        }
     }
 
     func didPausePlayback() {
@@ -483,9 +531,10 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         TrackingHelper.createEvent(.videoPlaybackClose, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
     }
 
-    func didChangeOrientation(to orientation: UIInterfaceOrientation) {
+    func didChangeOrientation(to orientation: UIInterfaceOrientation?) {
         guard let video = self.video else { return }
         guard self.isInForeground else { return }
+        guard let orientation = orientation else { return }
 
         let verb: TrackingHelper.AnalyticsVerb = orientation.isLandscape ? .videoPlaybackDeviceOrientationLandscape : .videoPlaybackDeviceOrientationPortrait
         var context = self.newTrackingContext

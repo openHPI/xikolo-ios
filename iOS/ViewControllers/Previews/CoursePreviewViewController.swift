@@ -36,13 +36,14 @@ class CoursePreviewViewController: UIViewController {
         self.courseImageView.backgroundColor = accentColor
         self.teacherLabel.textColor = accentColor
 
+        self.courseImageView.sd_imageTransition = .fade
         self.courseImageView.sd_setImage(with: self.course.imageURL)
 
         self.titleLabel.text = self.course.title
         self.teacherLabel.text = self.course.teachers
 
         self.dateLabel.text = CoursePeriodFormatter.string(from: self.course)
-        self.languageLabel.text = self.course.localizedLanguage
+        self.languageLabel.text = self.course.language.flatMap(LanguageLocalizer.nativeDisplayName(for:))
 
         self.descriptionView.textContainerInset = .zero
         self.descriptionView.textContainer.lineFragmentPadding = 0

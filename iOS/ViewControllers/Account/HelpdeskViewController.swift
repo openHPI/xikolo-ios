@@ -52,6 +52,8 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         return true
     }
 
+    var course: Course?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -69,7 +71,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
 
         self.onFailureLabel.isHidden = true
 
-        let hintTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnFAQHintLabel))
+        let hintTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showFAQs))
         self.hintWrapper.addGestureRecognizer(hintTapGestureRecognizer)
         self.hintWrapper.layer.roundCorners(for: .default)
 
@@ -80,10 +82,16 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         attributedText.addAttributes([.foregroundColor: Brand.default.colors.window], range: range)
         self.hintLabel.attributedText = attributedText
 
+        self.tableView.resizeTableHeaderView()
+
+        if let course = self.course {
+            self.topic = .courseSpecific(course)
+        }
+
         if UserProfileHelper.shared.isLoggedIn {
             CoreDataHelper.viewContext.perform {
                 guard let userId = UserProfileHelper.shared.userId else { return }
-                    let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
+                let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
                 guard let user = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value else { return }
                 self.mailAddressTextField.text = user.profile?.email
                 self.mailAddressTextField.isUserInteractionEnabled = false
@@ -91,7 +99,7 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
             }
         }
 
-        let backgroundTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedBackground))
+        let backgroundTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         backgroundTapGestureRecognizer.cancelsTouchesInView = false
         self.tableView.addGestureRecognizer(backgroundTapGestureRecognizer)
     }
@@ -178,13 +186,13 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         }
     }
 
-    @IBAction private func tappedBackground() {
+    @IBAction private func dismissKeyboard() {
         self.titleTextField.resignFirstResponder()
         self.mailAddressTextField.resignFirstResponder()
         self.reportTextView.resignFirstResponder()
     }
 
-    @objc private func tappedOnFAQHintLabel() {
+    @objc private func showFAQs() {
         let safariVC = SFSafariViewController(url: Routes.faq)
         safariVC.preferredControlTintColor = Brand.default.colors.window
         self.present(safariVC, animated: trueUnlessReduceMotionEnabled)

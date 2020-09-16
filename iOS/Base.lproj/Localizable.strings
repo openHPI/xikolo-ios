@@ -1,4 +1,7 @@
 
+/* Accessibility label for actions button in navigation bar of the course card view */
+"accessibility-label.announcements.navigation-bar.item.actions" = "Actions for announcements";
+
 /* Accessibility label for actions button in navigation bar of the course item view */
 "accessibility-label.course-item.navigation-bar.item.actions" = "Actions for item";
 
@@ -68,6 +71,12 @@
 /* Format string for the next section start in the footer of course item list */
 "course-item-list.footer.The next section will be available on %@ at %@" = "The next section will be available on %@ at %@.";
 
+/* Action title to open the suggested course item to continue learning */
+"course-item-list.header.continue-learning.Open item" = "Open item";
+
+/* Action title to scroll to the suggested course item to continue learning */
+"course-item-list.header.continue-learning.Show item in list" = "Show item in list";
+
 /* delete all downloads for video */
 "course-item.combined-download-action.delete-download.title" = "Delete all learning materials";
 
@@ -87,7 +96,7 @@
 "course-item.preview.slides.not-downloaded" = "Slides available";
 
 /* text for downloaded video in course item preview */
-"course-item.preview.video.downloaded" = "Offline available";
+"course-item.preview.video.downloaded" = "Video offline available";
 
 /* title to cancel alert */
 "course-item.slides-alert.open-action.title" = "Open slides";
@@ -129,10 +138,10 @@
 "course-list.title.Courses" = "Courses";
 
 /* title for list of completed courses */
-"course-list.title.My completed courses" = "My completed courses";
+"course-list.title.My completed courses" = "My Completed Courses";
 
 /* title for list of current courses */
-"course-list.title.My current courses" = "My current courses";
+"course-list.title.My current courses" = "My Current Courses";
 
 /* delete all downloads in section */
 "course-section.combined-download-action.delete-downloads.title" = "Delete all learning materials";
@@ -202,12 +211,6 @@
 
 /* message text for course overview with no current courses */
 "dashboard.course-overview.no-courses.current.message" = "You aren't enrolled in any courses yet";
-
-/* action text for showing all completed courses */
-"dashboard.course-overview.show-all-courses.completed.action" = "Show all completed courses";
-
-/* action text for showing all current courses */
-"dashboard.course-overview.show-all-courses.current.action" = "Show all my current courses";
 
 /* delete download of a document localization */
 "document-localization.download-action.delete-download.title" = "Delete document";
@@ -323,8 +326,20 @@
 /* label for app version */
 "settings.app.version.label" = "Version";
 
+/* Title for selecting dark apperance option */
+"settings.appearance.dark" = "Dark";
+
+/* Title for selecting device apperance option */
+"settings.appearance.device" = "System";
+
+/* Title for selecting light apperance option */
+"settings.appearance.light" = "Light";
+
 /* cell title for helpdesk */
 "settings.cell-title.app-helpdesk" = "Helpdesk";
+
+/* cell title for appearance settings */
+"settings.cell-title.appearance" = "Appearance";
 
 /* cell title for certificates */
 "settings.cell-title.certificates" = "Certificates";

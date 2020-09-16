@@ -44,6 +44,7 @@ class CourseDetailsViewController: UIViewController {
         self.teaserView.isHidden = true
         self.teaserView.layer.roundCorners(for: .default)
         self.teaserImageView.backgroundColor = Brand.default.colors.secondary
+        self.teaserImageView.sd_imageTransition = .fade
 
         self.teacherView.textColor = Brand.default.colors.secondary
         self.teacherView.isHidden = !Brand.default.features.showCourseTeachers
@@ -71,7 +72,7 @@ class CourseDetailsViewController: UIViewController {
     }
 
     private func updateView(animated: Bool = false) {
-        self.languageView.text = self.course.localizedLanguage
+        self.languageView.text = self.course.language.flatMap(LanguageLocalizer.nativeDisplayName(for:))
         self.teacherView.text = self.course.teachers
 
         self.dateView.text = CoursePeriodFormatter.string(from: self.course)

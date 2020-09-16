@@ -4,7 +4,6 @@
 //
 
 import Common
-import Down
 import SafariServices
 import UIKit
 
@@ -39,7 +38,6 @@ class AnnouncementViewController: UIViewController {
         super.viewDidLoad()
 
         self.courseButton.tintColor = Brand.default.colors.secondary
-        self.courseButton.titleLabel?.adjustsFontForContentSizeCategory = true
         self.courseButton.addDefaultPointerInteraction()
 
         self.textView.delegate = self
@@ -79,7 +77,7 @@ class AnnouncementViewController: UIViewController {
 
     }
 
-    @IBAction private func tappedCourseTitle() {
+    @IBAction private func openCourse() {
         guard let course = announcement.course else { return }
         self.appNavigator?.show(course: course)
     }

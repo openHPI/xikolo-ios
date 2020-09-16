@@ -1,4 +1,7 @@
 
+/* Accessibility label for actions button in navigation bar of the course card view */
+"accessibility-label.announcements.navigation-bar.item.actions" = "Aktionen für Neuigkeiten";
+
 /* Accessibility label for actions button in navigation bar of the course item view */
 "accessibility-label.course-item.navigation-bar.item.actions" = "Aktionen für Lerninhalt";
 
@@ -68,6 +71,12 @@
 /* Format string for the next section start in the footer of course item list */
 "course-item-list.footer.The next section will be available on %@ at %@" = "Die nächsten Inhalte werden am %@ um %@ verfügbar sein.";
 
+/* Action title to open the suggested course item to continue learning */
+"course-item-list.header.continue-learning.Open item" = "Lerninhalt öffnen";
+
+/* Action title to scroll to the suggested course item to continue learning */
+"course-item-list.header.continue-learning.Show item in list" = "Lerninhalt in Liste zeigen";
+
 /* delete all downloads for video */
 "course-item.combined-download-action.delete-download.title" = "Alle Lernmaterialien löschen";
 
@@ -87,7 +96,7 @@
 "course-item.preview.slides.not-downloaded" = "Folien verfügbar";
 
 /* text for downloaded video in course item preview */
-"course-item.preview.video.downloaded" = "Offline verfügbar";
+"course-item.preview.video.downloaded" = "Video heruntergeladen";
 
 /* title to cancel alert */
 "course-item.slides-alert.open-action.title" = "Folien anschauen";
@@ -129,10 +138,10 @@
 "course-list.title.Courses" = "Kurse";
 
 /* title for list of completed courses */
-"course-list.title.My completed courses" = "Meine abgeschlossenen Kurse";
+"course-list.title.My completed courses" = "Meine Abgeschlossenen Kurse";
 
 /* title for list of current courses */
-"course-list.title.My current courses" = "Meine aktuellen Kurse";
+"course-list.title.My current courses" = "Meine Aktuellen Kurse";
 
 /* delete all downloads in section */
 "course-section.combined-download-action.delete-downloads.title" = "Alle Lernmaterialien löschen";
@@ -202,12 +211,6 @@
 
 /* message text for course overview with no current courses */
 "dashboard.course-overview.no-courses.current.message" = "in noch keinen Kurs eingeschrieben";
-
-/* action text for showing all completed courses */
-"dashboard.course-overview.show-all-courses.completed.action" = "Alle meine abgeschlossenen Kurse anzeigen";
-
-/* action text for showing all current courses */
-"dashboard.course-overview.show-all-courses.current.action" = "Alle meine aktuellen Kurse anzeigen";
 
 /* delete download of a document localization */
 "document-localization.download-action.delete-download.title" = "Dokument löschen";
@@ -323,8 +326,20 @@
 /* label for app version */
 "settings.app.version.label" = "Version";
 
+/* Title for selecting dark apperance option */
+"settings.appearance.dark" = "Dunkel";
+
+/* Title for selecting device apperance option */
+"settings.appearance.device" = "System";
+
+/* Title for selecting light apperance option */
+"settings.appearance.light" = "Hell";
+
 /* cell title for helpdesk */
 "settings.cell-title.app-helpdesk" = "Helpdesk";
+
+/* cell title for appearance settings */
+"settings.cell-title.appearance" = "Erscheinungsbild";
 
 /* cell title for certificates */
 "settings.cell-title.certificates" = "Leistungsnachweise";

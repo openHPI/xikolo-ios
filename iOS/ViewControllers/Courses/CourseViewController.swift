@@ -23,6 +23,7 @@ class CourseViewController: UIViewController {
 
     private var headerOffset: CGFloat = 0 {
         didSet {
+            guard self.headerOffset != oldValue else { return }
             self.updateHeaderConstraints()
         }
     }
@@ -65,7 +66,7 @@ class CourseViewController: UIViewController {
     private lazy var actionMenuButton: UIBarButtonItem = {
         let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(),
                                                 target: self,
-                                                action: #selector(showActionMenu(_:)))
+                                                action: #selector(showActionMenu))
         item.accessibilityLabel = NSLocalizedString(
             "accessibility-label.course.navigation-bar.item.actions",
             comment: "Accessibility label for actions button in navigation bar of the course card view"
@@ -109,6 +110,7 @@ class CourseViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = self.closeButton
         self.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.headerImageView.backgroundColor = Brand.default.colors.secondary
+        self.headerImageView.sd_imageTransition = .fade
 
         self.cornerView.layer.cornerRadius = self.cornerView.frame.height / 2
 
@@ -159,6 +161,9 @@ class CourseViewController: UIViewController {
         let completionBlock: (UIViewControllerTransitionCoordinatorContext) -> Void = { [weak self] _ in
             let headerColor = self?.headerImageView.image.flatMap { self?.averageColorUnderStatusBar(withCourseVisual: $0) } ?? Brand.default.colors.secondary
             self?.courseNavigationController?.adjustToUnderlyingColor(headerColor)
+            if let headerOffset = self?.headerOffset, let headerHeight = self?.headerHeight {
+                self?.courseNavigationController?.updateNavigationBar(forProgress: headerOffset / headerHeight)
+            }
         }
 
         coordinator.animate(alongsideTransition: animationBlock, completion: completionBlock)
@@ -215,10 +220,16 @@ class CourseViewController: UIViewController {
         let imageScale = image.size.width / self.view.bounds.width
         let transform = CGAffineTransform(scaleX: imageScale, y: imageScale)
         let yOffset = (image.size.height - self.headerImageView.bounds.height * imageScale) / 2 / imageScale
-        let subImageRect = CGRect(x: 0,
-                                  y: max(0, yOffset),
-                                  width: self.view.bounds.width,
-                                  height: UIApplication.shared.statusBarFrame.height)
+
+        let statusBarHeight: CGFloat = {
+            if #available(iOS 13, *) {
+                return self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 12
+            } else {
+                return UIApplication.shared.statusBarFrame.height
+            }
+        }()
+
+        let subImageRect = CGRect(x: 0, y: max(0, yOffset), width: self.view.bounds.width, height: statusBarHeight)
         return image.cgImage?.cropping(to: subImageRect.applying(transform))
     }
 
@@ -304,13 +315,14 @@ class CourseViewController: UIViewController {
         courseNavigationController?.closeCourse()
     }
 
-    @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
+    @IBAction private func showActionMenu() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.barButtonItem = sender
+        alert.popoverPresentationController?.barButtonItem = self.actionMenuButton
 
         let userActions = [
-            self.course?.shareAction { [weak self] in self?.shareCourse() },
             self.course?.showCourseDatesAction { [weak self] in self?.showCourseDates() },
+            self.course?.shareAction { [weak self] in self?.shareCourse() },
+            self.course?.openHelpdesk { [weak self] in self?.openHelpdesk() },
         ].compactMap { $0 }
 
         userActions.asAlertActions().forEach { action in
@@ -325,7 +337,7 @@ class CourseViewController: UIViewController {
     private func showCourseDates() {
         let courseDatesViewController = R.storyboard.courseDates.instantiateInitialViewController().require()
         courseDatesViewController.course = course
-        let navigationController = XikoloNavigationController(rootViewController: courseDatesViewController)
+        let navigationController = CustomWidthNavigationController(rootViewController: courseDatesViewController)
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
@@ -333,6 +345,13 @@ class CourseViewController: UIViewController {
         let activityViewController = UIActivityViewController.make(for: course, on: self)
         activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    private func openHelpdesk() {
+        let helpdeskViewController = R.storyboard.tabAccount.helpdeskViewController().require()
+        helpdeskViewController.course = self.course
+        let navigationController = CustomWidthNavigationController(rootViewController: helpdeskViewController)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
     private func updateHeaderConstraints() {
@@ -464,6 +483,11 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         self.snapToExtendedOrCollapsedHeaderPosition(with: scrollView)
+    }
+
+    func scrollToTop() {
+        let headerOffset: CGFloat = self.headerHeight
+        snapToExtendedOrCollapsedHeaderPosition(with: headerOffset)
     }
 
     private func adjustHeaderPosition(for scrollOffset: CGFloat) {

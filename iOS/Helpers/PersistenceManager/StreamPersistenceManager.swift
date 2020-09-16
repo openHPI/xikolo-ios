@@ -29,6 +29,8 @@ final class StreamPersistenceManager: PersistenceManager<StreamPersistenceManage
 
     static let shared = StreamPersistenceManager()
 
+    var backgroundCompletionHandler: (() -> Void)?
+
     private var assetTitlesForRecourseIdentifiers: [String: String] = [:]
     private var mediaSelectionForDownloadTask: [AVAssetDownloadTask: AVMediaSelection] = [:]
 
@@ -214,6 +216,10 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
 
     func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didResolve resolvedMediaSelection: AVMediaSelection) {
         self.mediaSelectionForDownloadTask[assetDownloadTask] = resolvedMediaSelection
+    }
+
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        self.backgroundCompletionHandler?()
     }
 
 }

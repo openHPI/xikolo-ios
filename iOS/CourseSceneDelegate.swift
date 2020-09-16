@@ -21,6 +21,8 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
         return courseNavigationController
     }()
 
+    private var themeObservation: NSKeyValueObservation?
+
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -40,10 +42,14 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window?.tintColor = Brand.default.colors.window
             self.window?.makeKeyAndVisible()
         }
+
+        self.themeObservation = UserDefaults.standard.observe(\UserDefaults.theme, options: [.initial, .new]) { [weak self] _, _ in
+            self?.window?.overrideUserInterfaceStyle = UserDefaults.standard.theme.userInterfaceStyle
+        }
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        AppDelegate.instance().setHomescreenQuickActions()
+        QuickActionHelper.setHomescreenQuickActions()
     }
 
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {

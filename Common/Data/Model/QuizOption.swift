@@ -25,15 +25,15 @@ final class QuizOption: NSObject, NSSecureCoding, IncludedPullable {
     }
 
     required init?(coder decoder: NSCoder) {
-        guard let id = decoder.decodeObject(forKey: "id") as? String else {
+        guard let id = decoder.decodeObject(of: NSString.self, forKey: "id") as String? else {
             return nil
         }
 
         self.id = id
-        self.text = decoder.decodeObject(forKey: "text") as? String
+        self.text = decoder.decodeObject(of: NSString.self, forKey: "text") as String?
         self.position = decoder.decodeInt32(forKey: "position")
         self.correct = decoder.decodeBool(forKey: "correct")
-        self.explanation = decoder.decodeObject(forKey: "explanation") as? String
+        self.explanation = decoder.decodeObject(of: NSString.self, forKey: "explanation") as String?
     }
 
     func encode(with coder: NSCoder) {

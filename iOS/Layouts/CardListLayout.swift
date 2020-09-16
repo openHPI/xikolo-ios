@@ -107,7 +107,11 @@ class CardListLayout: UICollectionViewLayout {
 
         let xOffsetForColumn: (Int) -> CGFloat
         if UIView.userInterfaceLayoutDirection(for: collectionView.semanticContentAttribute) == .rightToLeft {
-            xOffsetForColumn = { collectionView.bounds.width - layoutInsets.right - CGFloat($0 + 1) * columnWidth - CGFloat($0) * self.cellPadding }
+            xOffsetForColumn = {
+                let widthOfLeadingColumns = CGFloat($0 + 1) * columnWidth
+                let widthOfLeadingPaddings = CGFloat($0) * self.cellPadding
+                return collectionView.bounds.width - layoutInsets.right - widthOfLeadingColumns - widthOfLeadingPaddings
+            }
         } else {
             xOffsetForColumn = { layoutInsets.left + CGFloat($0) * (columnWidth + self.cellPadding) }
         }

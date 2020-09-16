@@ -19,10 +19,11 @@ class ChannelHeaderView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.channelTeaserView.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tappedPlayTeaserButton))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(playChannelTeaser))
         self.channelTeaserView.addGestureRecognizer(tap)
         self.channelTeaserView.layer.roundCorners(for: .default)
         self.playTeaserLabel.text = NSLocalizedString("channel-header.play-teaser", comment: "button title for starting playback for channel teaser video")
+        self.imageView.sd_imageTransition = .fade
     }
 
     func configure(for channel: Channel) {
@@ -33,7 +34,7 @@ class ChannelHeaderView: UICollectionReusableView {
         self.channelTeaserView.isHidden = channel.stageStream?.hlsURL == nil
     }
 
-    @objc private func tappedPlayTeaserButton() {
+    @objc private func playChannelTeaser() {
         self.delegate?.playChannelTeaser()
     }
 }

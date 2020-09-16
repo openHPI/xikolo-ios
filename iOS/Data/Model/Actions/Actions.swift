@@ -10,6 +10,12 @@ struct Action {
     let image: UIImage?
     let handler: () -> Void
 
+    init(title: String, image: UIImage? = nil, handler: @escaping (() -> Void)) {
+        self.title = title
+        self.image = image
+        self.handler = handler
+    }
+
     enum Image {
         static var download: UIImage? {
             if #available(iOS 13, *) {

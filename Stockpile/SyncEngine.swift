@@ -48,7 +48,11 @@ public extension SyncEngine {
         }
     }
 
-    private func handle<T: SyncEngineResult>(result: Result<T, SyncEngineError>, forOperation operation: SyncEngineOperation, forResourceType resourceType: String) {
+    private func handle<T: SyncEngineResult>(
+        result: Result<T, SyncEngineError>,
+        forOperation operation: SyncEngineOperation,
+        forResourceType resourceType: String
+    ) {
         switch result {
         case let .success(syncEngineResult):
             self.didSucceedOperation(operation, forResourceType: resourceType, withResult: syncEngineResult)
@@ -59,7 +63,9 @@ public extension SyncEngine {
 
     // MARK: - build url request
 
-    private func buildGetRequest<Query>(forQuery query: Query) -> Result<URLRequest, SyncError> where Query: ResourceQuery, Query.Resource: Pullable {
+    private func buildGetRequest<Query>(
+        forQuery query: Query
+    ) -> Result<URLRequest, SyncError> where Query: ResourceQuery, Query.Resource: Pullable {
         guard let resourceUrl = query.resourceURL(relativeTo: self.baseURL) else {
             return .failure(.invalidResourceURL)
         }
@@ -84,13 +90,17 @@ public extension SyncEngine {
         return .success(request)
     }
 
-    private func buildCreateRequest<Resource>(forQuery query: MultipleResourcesQuery<Resource>,
-                                              forResource resource: Resource) -> Result<URLRequest, SyncError> where Resource: Pushable {
+    private func buildCreateRequest<Resource>(
+        forQuery query: MultipleResourcesQuery<Resource>,
+        forResource resource: Resource
+    ) -> Result<URLRequest, SyncError> where Resource: Pushable {
         return resource.resourceData().flatMap { self.buildCreateRequest(forQuery: query, withData: $0) }
     }
 
-    private func buildCreateRequest<Resource>(forQuery query: MultipleResourcesQuery<Resource>,
-                                              withData resourceData: Data) -> Result<URLRequest, SyncError> where Resource: Pushable {
+    private func buildCreateRequest<Resource>(
+        forQuery query: MultipleResourcesQuery<Resource>,
+        withData resourceData: Data
+    ) -> Result<URLRequest, SyncError> where Resource: Pushable {
         guard let resourceUrl = query.resourceURL(relativeTo: self.baseURL) else {
             return .failure(.invalidResourceURL)
         }
@@ -106,8 +116,10 @@ public extension SyncEngine {
         return .success(request)
     }
 
-    private func buildSaveRequest<Resource>(forQuery query: SingleResourceQuery<Resource>,
-                                            forResource resource: Resource) -> Result<URLRequest, SyncError> where Resource: Pullable & Pushable {
+    private func buildSaveRequest<Resource>(
+        forQuery query: SingleResourceQuery<Resource>,
+        forResource resource: Resource
+    ) -> Result<URLRequest, SyncError> where Resource: Pullable & Pushable {
         guard let resourceUrl = query.resourceURL(relativeTo: self.baseURL) else {
             return .failure(.invalidResourceURL)
         }
@@ -125,7 +137,9 @@ public extension SyncEngine {
         }
     }
 
-    private func buildDeleteRequest<Resource>(forQuery query: SingleResourceQuery<Resource>) -> Result<URLRequest, SyncError> where Resource: Pullable & Pushable {
+    private func buildDeleteRequest<Resource>(
+        forQuery query: SingleResourceQuery<Resource>
+    ) -> Result<URLRequest, SyncError> where Resource: Pullable & Pushable {
         guard let resourceUrl = query.resourceURL(relativeTo: self.baseURL) else {
             return .failure(.invalidResourceURL)
         }
@@ -143,8 +157,10 @@ public extension SyncEngine {
     // MARK: - core data operation
 
     // TODO: move to DATABASE
-    private func fetchCoreDataObjects<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
-                                                inContext context: NSManagedObjectContext) -> Future<[Resource], SyncError> where Resource: NSManagedObject & Pullable {
+    private func fetchCoreDataObjects<Resource>(
+        withFetchRequest fetchRequest: NSFetchRequest<Resource>,
+        inContext context: NSManagedObjectContext
+    ) -> Future<[Resource], SyncError> where Resource: NSManagedObject & Pullable {
         do {
             let objects = try context.fetch(fetchRequest)
             return Future(value: objects)
@@ -154,7 +170,10 @@ public extension SyncEngine {
     }
 
     // TODO: move to DATABASE
-    private func fetchCoreDataObject<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<Resource?, SyncError> where Resource: NSManagedObject & Pullable {
+    private func fetchCoreDataObject<Resource>(
+        withFetchRequest fetchRequest: NSFetchRequest<Resource>,
+        inContext context: NSManagedObjectContext
+    ) -> Future<Resource?, SyncError> where Resource: NSManagedObject & Pullable {
         do {
             let objects = try context.fetch(fetchRequest)
             return Future(value: objects.first)
@@ -163,7 +182,11 @@ public extension SyncEngine {
         }
     }
 
-    private func doNetworkRequest<Resource>(_ request: URLRequest, forResource: Resource.Type, expectsData: Bool = true) -> Future<NetworkResult, SyncError> where Resource: Validatable {
+    private func doNetworkRequest<Resource>(
+        _ request: URLRequest,
+        forResource: Resource.Type,
+        expectsData: Bool = true
+    ) -> Future<NetworkResult, SyncError> where Resource: Validatable {
         let promise = Promise<NetworkResult, SyncError>()
 
         self.networker.perform(request: request) { data, response, error in
@@ -218,10 +241,12 @@ public extension SyncEngine {
 
     // MARK: - merge
 
-    private func mergeResources<Resource>(object: ResourceData,
-                                          withExistingObjects objects: [Resource],
-                                          deleteNotExistingResources: Bool,
-                                          in coreDataContext: NSManagedObjectContext) -> Future<[Resource], SyncError> where Resource: NSManagedObject & Pullable {
+    private func mergeResources<Resource>(
+        object: ResourceData,
+        withExistingObjects objects: [Resource],
+        deleteNotExistingResources: Bool,
+        in coreDataContext: NSManagedObjectContext
+    ) -> Future<[Resource], SyncError> where Resource: NSManagedObject & Pullable {
         do {
             var existingObjects = objects
             var newObjects: [Resource] = []
@@ -268,9 +293,11 @@ public extension SyncEngine {
         }
     }
 
-    private func mergeResource<Resource>(object: ResourceData,
-                                         withExistingObject existingObject: Resource?,
-                                         in coreDataContext: NSManagedObjectContext) -> Future<Resource, SyncError> where Resource: NSManagedObject & Pullable {
+    private func mergeResource<Resource>(
+        object: ResourceData,
+        withExistingObject existingObject: Resource?,
+        in coreDataContext: NSManagedObjectContext
+    ) -> Future<Resource, SyncError> where Resource: NSManagedObject & Pullable {
         do {
             let newObject: Resource
 
@@ -308,9 +335,11 @@ public extension SyncEngine {
 
     // MARK: - sync
 
-    func synchronize<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
-                               withQuery query: MultipleResourcesQuery<Resource>,
-                               deleteNotExistingResources: Bool = true) -> Future<SyncMultipleResult, SyncEngineError> where Resource: NSManagedObject & Pullable {
+    func synchronize<Resource>(
+        withFetchRequest fetchRequest: NSFetchRequest<Resource>,
+        withQuery query: MultipleResourcesQuery<Resource>,
+        deleteNotExistingResources: Bool = true
+    ) -> Future<SyncMultipleResult, SyncEngineError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<SyncMultipleResult, SyncError>()
 
         let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
@@ -326,11 +355,13 @@ public extension SyncEngine {
                 let coreDataFetch = self.fetchCoreDataObjects(withFetchRequest: fetchRequest, inContext: context)
 
                 coreDataFetch.flatMap(ImmediateExecutionContext) { objects in
-                    return self.mergeResources(object: networkResult.resourceData,
-                                               withExistingObjects: objects,
-                                               deleteNotExistingResources: deleteNotExistingResources,
-                                               in: context).map { resources in
-                                                return MergeMultipleResult(resources: resources, headers: networkResult.headers)
+                    return self.mergeResources(
+                        object: networkResult.resourceData,
+                        withExistingObjects: objects,
+                        deleteNotExistingResources: deleteNotExistingResources,
+                        in: context
+                    ).map { resources in
+                        return MergeMultipleResult(oldResources: objects, newResources: resources, headers: networkResult.headers)
                     }
                 }.inject(ImmediateExecutionContext) {
                     return Result<Void, Error> {
@@ -339,7 +370,11 @@ public extension SyncEngine {
                         return .coreData(error)
                     }
                 }.map(ImmediateExecutionContext) { mergeResult in
-                    return SyncMultipleResult(objectIds: mergeResult.resources.map(\.objectID), headers: mergeResult.headers)
+                    return SyncMultipleResult(
+                        oldObjectIds: mergeResult.oldResources.map(\.objectID),
+                        newObjectIds: mergeResult.newResources.map(\.objectID),
+                        headers: mergeResult.headers
+                    )
                 }.onComplete(ImmediateExecutionContext) { result in
                     promise.complete(result)
                 }
@@ -353,8 +388,10 @@ public extension SyncEngine {
         }
     }
 
-    func synchronize<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
-                               withQuery query: SingleResourceQuery<Resource>) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable {
+    func synchronize<Resource>(
+        withFetchRequest fetchRequest: NSFetchRequest<Resource>,
+        withQuery query: SingleResourceQuery<Resource>
+    ) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<SyncSingleResult, SyncError>()
 
         let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
@@ -370,10 +407,12 @@ public extension SyncEngine {
                 let coreDataFetch = self.fetchCoreDataObject(withFetchRequest: fetchRequest, inContext: context)
 
                 coreDataFetch.flatMap(ImmediateExecutionContext) { object -> Future<MergeSingleResult<Resource>, SyncError> in
-                    return self.mergeResource(object: networkResult.resourceData,
-                                              withExistingObject: object,
-                                              in: context).map { resource in
-                                                return MergeSingleResult(resource: resource, headers: networkResult.headers)
+                    return self.mergeResource(
+                        object: networkResult.resourceData,
+                        withExistingObject: object,
+                        in: context
+                    ).map { resource in
+                        return MergeSingleResult(resource: resource, headers: networkResult.headers)
                     }
                 }.inject(ImmediateExecutionContext) {
                     return Result<Void, Error> {
@@ -399,15 +438,19 @@ public extension SyncEngine {
     // MARK: - creating
 
     @discardableResult
-    func createResource<Resource>(ofType resourceType: Resource.Type,
-                                  withData resourceData: Data) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable & Pushable {
+    func createResource<Resource>(
+        ofType resourceType: Resource.Type,
+        withData resourceData: Data
+    ) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable & Pushable {
         let resourceDataResult = Result<Data, SyncError>(value: resourceData)
         return self.createResource(ofType: resourceType, withData: resourceDataResult)
     }
 
     @discardableResult
-    func createResource<Resource>(ofType resourceType: Resource.Type,
-                                  withData resourceDataResult: Result<Data, SyncError>) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable & Pushable {
+    func createResource<Resource>(
+        ofType resourceType: Resource.Type,
+        withData resourceDataResult: Result<Data, SyncError>
+    ) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable & Pushable {
         let networkRequest = resourceDataResult.flatMap { resourceData -> Result<URLRequest, SyncError> in
             let query = MultipleResourcesQuery(type: Resource.self)
             return self.buildCreateRequest(forQuery: query, withData: resourceData)

@@ -1,5 +1,5 @@
 <h1 align="center">
-    xikolo-ios
+    Xikolo iOS App
 </h1>
 
 <img align="center" src="assets/banner.png?raw=true" alt="xikolo-ios banner" width="933" />
@@ -30,9 +30,10 @@ The following tools will be installed via CocoaPods:
 - start one of the defined targets
 
 ### Setup testing
-- copy the credentials plist dummy file `cp iOS-UITests/Credentials.plist.dummy iOS-UITests/Credentials-default.plist`
-- enter your login credentials for testing
-- to create a brand specific credentials plist `cp iOS-UITests/Credentials.plist.dummy iOS-UITests/Credentials-<BRAND_NAME>.plist`
+- Create the initial credentials file `cp iOS-UITests/Credentials.plist.dummy iOS-UITests/Credentials.plist` (to avoid build errors on the first test run)
+- Create the default credentials file `cp iOS-UITests/Credentials.plist.dummy iOS-UITests/Credentials-default.plist`
+    - To create a brand specific credentials plist `cp iOS-UITests/Credentials.plist.dummy iOS-UITests/Credentials-<BRAND_NAME>.plist`
+- Enter your login credentials for testing in `Credentials-default.plist`
 
 ## Contribute to _xikolo-ios_
 Check out [CONTRIBUTING.md](CONTRIBUTING.md) for more information.

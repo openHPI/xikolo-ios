@@ -2,9 +2,6 @@
 /* Class = "UITabBarItem"; title = "Account"; ObjectID = "KhH-tO-TnH"; */
 "KhH-tO-TnH.title" = "Konto";
 
-/* Class = "UIBarButtonItem"; title = "Login"; ObjectID = "tyU-B6-h3N"; */
-"tyU-B6-h3N.title" = "Einloggen";
-
 /* Class = "UINavigationItem"; title = "Account"; ObjectID = "wNE-fd-aKh"; */
 "wNE-fd-aKh.title" = "Konto";
 
@@ -20,8 +17,8 @@
 /* Class = "UINavigationItem"; title = "Certificates"; ObjectID = "huT-EM-z1s"; */
 "huT-EM-z1s.title" = "Leistungsnachweise";
 
-/* Class = "UILabel"; text = "Logout"; ObjectID = "UOY-X6-cgU"; */
-"UOY-X6-cgU.text" = "Ausloggen";
+/* Class = "UILabel"; text = "Log out"; ObjectID = "UOY-X6-cgU"; */
+"UOY-X6-cgU.text" = "Abmelden";
 
 /* Class = "UIView"; accessibilityLabel = "Please describe your technical problem using the textbox below. Information about your browser and your e-mail address will be automatically submitted along with your issue report."; ObjectID = "0X5-zw-iYv"; */
 "0X5-zw-iYv.accessibilityLabel" = "";
@@ -58,3 +55,12 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Category"; ObjectID = "His-qi-4tJ"; */
 "His-qi-4tJ.headerTitle" = "Kategorie";
+
+/* Class = "UINavigationItem"; title = "Appearance"; ObjectID = "V5t-n8-zZr"; */
+"V5t-n8-zZr.title" = "Erscheinungsbild";
+
+/* Class = "UILabel"; text = "Log in"; ObjectID = "5CZ-JB-smF"; */
+"5CZ-JB-smF.text" = "Anmelden";
+
+/* Class = "UILabel"; text = "to start learning"; ObjectID = "emV-vx-bJh"; */
+"emV-vx-bJh.text" = "um mit dem Lernen zu beginnen";

@@ -19,13 +19,24 @@ extension CourseDateHelper {
             ])
         }
 
+        private static var inFuturePredicate: NSPredicate {
+            return NSPredicate(format: "date >= %@", Date() as NSDate) // consider only future course dates
+        }
+
+        private static var defaultPredicate: NSPredicate {
+            return NSCompoundPredicate(andPredicateWithSubpredicates: [
+                self.inFuturePredicate,
+                self.enrolledCoursePredicate,
+            ])
+        }
+
         public static var allCourseDates: NSFetchRequest<CourseDate> {
             let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()
             let dateSort = NSSortDescriptor(keyPath: \CourseDate.date, ascending: true)
             let courseSort = NSSortDescriptor(keyPath: \CourseDate.course?.title, ascending: true)
             let titleSort = NSSortDescriptor(keyPath: \CourseDate.title, ascending: true)
             request.sortDescriptors = [dateSort, courseSort, titleSort]
-            request.predicate = self.enrolledCoursePredicate
+            request.predicate = self.defaultPredicate
             return request
         }
 
@@ -33,7 +44,10 @@ extension CourseDateHelper {
             let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()
             let dateSort = NSSortDescriptor(keyPath: \CourseDate.date, ascending: true)
             request.sortDescriptors = [dateSort]
-            request.predicate = NSPredicate(format: "course = %@", course)
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                self.defaultPredicate,
+                NSPredicate(format: "course = %@", course),
+            ])
             return request
         }
 
@@ -41,7 +55,7 @@ extension CourseDateHelper {
             let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()
             let dateSort = NSSortDescriptor(keyPath: \CourseDate.date, ascending: true)
             request.sortDescriptors = [dateSort]
-            request.predicate = self.enrolledCoursePredicate
+            request.predicate = self.defaultPredicate
             request.fetchLimit = 1
             return request
         }
@@ -53,12 +67,13 @@ extension CourseDateHelper {
             let today = Date()
             let fromDate = calendar.startOfDay(for: today)
             let toDate = calendar.date(byAdding: .day, value: numberOfDays, to: fromDate).require()
-
-            let fromPredicate = NSPredicate(format: "date >= %@", today as NSDate)
             let toPredicate = NSPredicate(format: "date < %@", toDate as NSDate)
 
             let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate, self.enrolledCoursePredicate])
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                self.defaultPredicate,
+                toPredicate,
+            ])
             return request
         }
 

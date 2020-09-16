@@ -17,7 +17,7 @@ class TrackingEventVerb: NSObject, NSSecureCoding {
     }
 
     required init?(coder decoder: NSCoder) {
-        guard let type = decoder.decodeObject(forKey: "type") as? String else {
+        guard let type = decoder.decodeObject(of: NSString.self, forKey: "type") as String? else {
             return nil
         }
 
@@ -25,7 +25,7 @@ class TrackingEventVerb: NSObject, NSSecureCoding {
     }
 
     func encode(with coder: NSCoder) {
-        coder.encode(self.type, forKey: "type")
+        coder.encode(NSString(string: self.type), forKey: "type")
     }
 
 }

@@ -8,25 +8,33 @@ import Common
 import CoreData
 import UIKit
 
-class AnnouncementListViewController: UITableViewController {
+class AnnouncementListViewController: CustomWidthTableViewController {
 
-    private var dataSource: CoreDataTableViewDataSource<AnnouncementListViewController>!
+    private var dataSource: CoreDataTableViewDataSourceWrapper<Announcement>!
+    private var relationshipKeyPathsObserver: RelationshipKeyPathsObserver<Announcement>?
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
     var course: Course?
 
-    @IBOutlet private var actionButton: UIBarButtonItem!
+    private lazy var actionButton: UIBarButtonItem = {
+        let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(),
+                                                target: self,
+                                                action: #selector(showActionMenu))
+        item.accessibilityLabel = NSLocalizedString(
+            "accessibility-label.announcements.navigation-bar.item.actions",
+            comment: "Accessibility label for actions button in navigation bar of the course card view"
+        )
+        return item
+    }()
 
     override func viewDidLoad() {
+        self.view.preservesSuperviewLayoutMargins = true
+
         super.viewDidLoad()
 
         self.addRefreshControl()
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(coreDataChange(notification:)),
-                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
-                                               object: CoreDataHelper.viewContext)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateUIAfterLoginStateChanged),
                                                name: UserProfileHelper.loginStateDidChangeNotification,
@@ -48,10 +56,13 @@ class AnnouncementListViewController: UITableViewController {
 
         let reuseIdentifier = R.reuseIdentifier.announcementCell.identifier
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-        self.dataSource = CoreDataTableViewDataSource(self.tableView,
-                                                      fetchedResultsController: resultsController,
-                                                      cellReuseIdentifier: reuseIdentifier,
-                                                      delegate: self)
+        self.dataSource = CoreDataTableViewDataSource.dataSource(for: self.tableView,
+                                                                 fetchedResultsController: resultsController,
+                                                                 cellReuseIdentifier: reuseIdentifier,
+                                                                 delegate: self)
+        self.relationshipKeyPathsObserver = RelationshipKeyPathsObserver(for: Announcement.self,
+                                                                         managedObjectContext: resultsController.managedObjectContext,
+                                                                         keyPaths: [#keyPath(Announcement.course.enrollment)])
 
         self.refresh()
         self.setupEmptyState()
@@ -94,11 +105,12 @@ class AnnouncementListViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = UserProfileHelper.shared.isLoggedIn ? self.actionButton : nil
     }
 
-    @IBAction private func tappedActionButton(_ sender: UIBarButtonItem) {
+    @IBAction private func showActionMenu() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.barButtonItem = sender
+        alert.popoverPresentationController?.barButtonItem = self.actionButton
 
-        let markAllAsReadActionTitle = NSLocalizedString("announcement.alert.mark all as read", comment: "alert action title to mark all announcements as read")
+        let markAllAsReadActionTitle = NSLocalizedString("announcement.alert.mark all as read",
+                                                         comment: "alert action title to mark all announcements as read")
         let markAllAsReadAction = UIAlertAction(title: markAllAsReadActionTitle, style: .default) { _ in
             AnnouncementHelper.markAllAsVisited()
         }
@@ -107,11 +119,6 @@ class AnnouncementListViewController: UITableViewController {
         alert.addCancelAction()
 
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
-    }
-
-    @objc private func coreDataChange(notification: Notification) {
-        guard notification.includesChanges(for: Enrollment.self, keys: [NSUpdatedObjectsKey, NSRefreshedObjectsKey]) else { return }
-        self.tableView.reloadData()
     }
 
 }

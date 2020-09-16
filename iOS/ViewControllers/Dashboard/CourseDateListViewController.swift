@@ -10,7 +10,7 @@ import UIKit
 
 class CourseDateListViewController: UITableViewController {
 
-    private var dataSource: CoreDataTableViewDataSource<CourseDateListViewController>!
+    private var dataSource: CoreDataTableViewDataSourceWrapper<CourseDate>!
 
     var course: Course?
 
@@ -38,10 +38,10 @@ class CourseDateListViewController: UITableViewController {
 
         let reuseIdentifier = R.reuseIdentifier.courseDateCell.identifier
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: sectionNameKeyPath)
-        self.dataSource = CoreDataTableViewDataSource(self.tableView,
-                                                      fetchedResultsController: resultsController,
-                                                      cellReuseIdentifier: reuseIdentifier,
-                                                      delegate: self)
+        self.dataSource = CoreDataTableViewDataSource.dataSource(for: self.tableView,
+                                                                 fetchedResultsController: resultsController,
+                                                                 cellReuseIdentifier: reuseIdentifier,
+                                                                 delegate: self)
 
         self.setupEmptyState()
         self.updateHeaderView()

@@ -24,14 +24,65 @@ These custom commands ease the development process.
 
 ### Code Formatting
 In order to have a consistent code formatting, we would like you to set some settings:
-- For fewer unneccessary whitespace changes, please set both checkboxes in `Xcode > Preferences > Text Editing` regarding whitespaces
-- Use Unix-style line endings (LF)
+- For fewer unneccessary whitespace changes, please select the following options in `Xcode > Preferences > Text Editing > Editing` (as of Xcode 12)
+  - Check box for `Automatically trim trailing whitespace`
+  - Check box for `Including whitespac-eonly lines`
+  - Choose `Unicode (UTF-8)` for `Defautl Text Encoding`
+  - Choose `macOS / Unix (LF)` for `Default Line Endings`
 
 ### R.swift
 We use [R.swift](https://github.com/mac-cain13/R.swift) to avoid static strings in the codebase.
 
 ### Using self
 One thing we can't enforce with R.swift is not to omit `self`. We prefer writing `self` explicitly because we believe this helps to distinguish between member attributes and local variabels.
+
+For example:
+
+```swift 
+class ChannelCell: UICollectionViewCell {
+
+    @IBOutlet private weak var shadowView: UIView!
+    @IBOutlet private weak var channelImage: UIImageView!
+
+    // ...
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        self.shadowView.layer.roundCorners(for: .default, masksToBounds: false)
+        self.channelImage.layer.roundCorners(for: .default)
+        self.channelImage.backgroundColor = Brand.default.colors.secondary
+
+        self.shadowView.addDefaultPointerInteraction()
+    }
+
+    // ...
+}
+```
+
+instead of 
+
+```swift 
+class ChannelCell: UICollectionViewCell {
+
+    @IBOutlet private weak var shadowView: UIView!
+    @IBOutlet private weak var channelImage: UIImageView!
+
+    // ...
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        shadowView.layer.roundCorners(for: .default, masksToBounds: false)
+        channelImage.layer.roundCorners(for: .default)
+        channelImage.backgroundColor = Brand.default.colors.secondary
+
+        shadowView.addDefaultPointerInteraction()
+    }
+
+    // ...
+}
+```
 
 ### Localization
 We use [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) to ensure a complete localization of the applications. Simple run `bundle exec fastlane localize` to add entries for missing localizations in storyboard files and `NSLocalizedString` usages. Here are some tips to promote a consistent usage:

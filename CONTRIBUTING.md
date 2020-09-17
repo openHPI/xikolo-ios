@@ -45,7 +45,7 @@ Add `#bc-ignore!` to 'Comment For Localizer' box in the utilities pane instead o
 
 #### Support of stringsdict Files
 Add `#bc-ignore!` to the user comment of `NSLocalizedString`
-```
+```swift
 let format = NSLocalizedString("%d hours", comment: "<number> of hours #bc-ignore!")
 ```
 

@@ -467,7 +467,7 @@ extension CourseItemListViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         let openActonTitle = NSLocalizedString("course-item-list.header.continue-learning.Open item",
                                                comment: "Action title to open the suggested course item to continue learning")
-        let openAction = UIAction(title: openActonTitle, image: UIImage(systemName: "arrow.right.circle.fill")) { _ in
+        let openAction = UIAction(title: openActonTitle, image: UIImage(systemName: "arrow.right.circle")) { _ in
             self.openContinueLearningItem()
         }
 

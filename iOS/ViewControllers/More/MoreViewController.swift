@@ -17,7 +17,7 @@ class MoreViewController: CustomWidthViewController {
     private lazy var actionButton: UIBarButtonItem = {
         let markAllAsReadActionTitle = NSLocalizedString("announcement.alert.mark all as read",
                                                          comment: "alert action title to mark all announcements as read")
-        let markAllAsReadAction = Action(title: markAllAsReadActionTitle) {
+        let markAllAsReadAction = Action(title: markAllAsReadActionTitle, image: Action.Image.markAsRead) {
             AnnouncementHelper.markAllAsVisited()
         }
 

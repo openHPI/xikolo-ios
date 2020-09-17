@@ -26,8 +26,8 @@ These custom commands ease the development process.
 In order to have a consistent code formatting, we would like you to set some settings:
 - For fewer unneccessary whitespace changes, please select the following options in `Xcode > Preferences > Text Editing > Editing` (as of Xcode 12)
   - Check box for `Automatically trim trailing whitespace`
-  - Check box for `Including whitespac-eonly lines`
-  - Choose `Unicode (UTF-8)` for `Defautl Text Encoding`
+  - Check box for `Including whitespace-only lines`
+  - Choose `Unicode (UTF-8)` for `Default Text Encoding`
   - Choose `macOS / Unix (LF)` for `Default Line Endings`
 
 ### R.swift

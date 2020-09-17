@@ -80,6 +80,14 @@ struct Action {
                 return nil
             }
         }
+
+        static var open: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "arrow.right.circle")
+            } else {
+                return nil
+            }
+        }
     }
 
 }

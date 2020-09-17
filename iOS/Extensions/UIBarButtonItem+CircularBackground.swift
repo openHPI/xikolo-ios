@@ -203,4 +203,11 @@ extension UIButton {
         }
     }
 
+    func removeAllTargetsAndGestures() {
+        if #available(iOS 14, *) {} else {
+            self.removeTarget(nil, action: nil, for: .allEvents)
+            self.gestureRecognizers?.forEach { self.removeGestureRecognizer($0) }
+        }
+    }
+
 }

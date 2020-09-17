@@ -146,14 +146,14 @@ class CourseItemViewController: UIPageViewController {
         }
     }
 
-    @IBAction private func shareCourseItem() {
+    private func shareCourseItem() {
         guard let item = self.currentItem else { return }
         let activityViewController = UIActivityViewController(activityItems: [item], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 
-    @IBAction private func openHelpdesk() {
+    private func openHelpdesk() {
         let helpdeskViewController = R.storyboard.tabAccount.helpdeskViewController().require()
         helpdeskViewController.course = self.currentItem?.section?.course
         let navigationController = CustomWidthNavigationController(rootViewController: helpdeskViewController)

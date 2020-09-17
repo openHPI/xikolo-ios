@@ -19,7 +19,7 @@ class CourseItemCell: UITableViewCell {
     @IBOutlet private weak var iconWidthConstraint: NSLayoutConstraint!
 
     var item: CourseItem?
-    weak var delegate: (CourseItemCellDelegate & UIViewController)? // Remove UserActionsDelegate
+    weak var delegate: (CourseItemCellDelegate & UIViewController)?
 
     var previewView: UIView? {
         return self

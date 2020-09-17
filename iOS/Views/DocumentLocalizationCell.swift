@@ -8,7 +8,7 @@ import UIKit
 
 class DocumentLocalizationCell: UITableViewCell {
 
-    typealias Delegate = DocumentListViewController // & UserActionsDelegate
+    typealias Delegate = DocumentListViewController
 
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var actionsButton: UIButton!

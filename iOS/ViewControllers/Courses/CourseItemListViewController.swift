@@ -396,45 +396,6 @@ extension CourseItemListViewController: CourseItemCellDelegate {
 
 }
 
-extension CourseItemListViewController: UserActionsDelegate {
-
-    func showAlert(with actions: [UIAlertAction], title: String?, message: String?, on anchor: UIView) {
-        guard !actions.isEmpty else { return }
-
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.sourceView = anchor
-        alert.popoverPresentationController?.sourceRect = anchor.bounds.insetBy(dx: -4, dy: -4)
-        alert.popoverPresentationController?.permittedArrowDirections = [.left, .right]
-
-        for action in actions {
-            alert.addAction(action)
-        }
-
-        alert.addCancelAction()
-
-        self.present(alert, animated: trueUnlessReduceMotionEnabled)
-    }
-
-    func showAlertSpinner(title: String?, task: () -> Future<Void, XikoloError>) -> Future<Void, XikoloError> {
-        let promise = Promise<Void, XikoloError>()
-
-        let alert = UIAlertController(spinnerTitled: title, preferredStyle: .alert)
-        alert.addCancelAction { _ in
-            promise.failure(.userCanceled)
-        }
-
-        self.present(alert, animated: trueUnlessReduceMotionEnabled)
-
-        task().onComplete { result in
-            promise.tryComplete(result)
-            alert.dismiss(animated: trueUnlessReduceMotionEnabled)
-        }
-
-        return promise.future
-    }
-
-}
-
 extension CourseItemListViewController: CourseAreaViewController {
 
     var area: CourseArea {

@@ -136,27 +136,6 @@ extension DocumentListViewController: RefreshableViewController {
 
 }
 
-//extension DocumentListViewController: UserActionsDelegate {
-//
-//    func showAlert(with actions: [UIAlertAction], title: String?, message: String?, on anchor: UIView) {
-//        guard !actions.isEmpty else { return }
-//
-//        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-//        alert.popoverPresentationController?.sourceView = anchor
-//        alert.popoverPresentationController?.sourceRect = anchor.bounds.insetBy(dx: -4, dy: -4)
-//        alert.popoverPresentationController?.permittedArrowDirections = [.left, .right]
-//
-//        for action in actions {
-//            alert.addAction(action)
-//        }
-//
-//        alert.addCancelAction()
-//
-//        self.present(alert, animated: trueUnlessReduceMotionEnabled)
-//    }
-//
-//}
-
 extension DocumentListViewController: EmptyStateDataSource, EmptyStateDelegate {
 
     var emptyStateTitleText: String {

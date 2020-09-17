@@ -64,7 +64,7 @@ Take a look at our [Contribution Guide](CONTRIBUTING.md) to learn about the key 
 
 ## Overall Architecture
 
-For the overall architecture, we follow a plain MVC approach. However we make use of some reactive programming by using futures and promises provided by BrightFutures.
+For the overall architecture, we follow a plain MVC approach. However we make use of some reactive programming by using futures and promises provided by [BrightFutures](https://github.com/Thomvis/BrightFutures).
 
 ### Naming Schema
 

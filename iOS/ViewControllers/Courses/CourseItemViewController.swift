@@ -17,30 +17,6 @@ class CourseItemViewController: UIPageViewController {
         return label
     }()
 
-    private lazy var actionMenuButton: UIBarButtonItem = {
-        var menuActions = [
-            self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() },
-            self.currentItem?.openHelpdesk { [weak self] in self?.openHelpdesk() },
-        ].compactMap { $0 }
-
-        if let video = self.currentItem?.content as? Video {
-            menuActions += video.actions
-        }
-
-        let button = UIBarButtonItem.circularItem(
-            with: R.image.navigationBarIcons.dots(),
-            target: self,
-            menuActions: menuActions
-        )
-
-        button.isEnabled = true
-        button.accessibilityLabel = NSLocalizedString(
-            "accessibility-label.course-item.navigation-bar.item.actions",
-            comment: "Accessibility label for actions button in navigation bar of the course item view"
-        )
-        return button
-    }()
-
     private var previousItem: CourseItem?
     private var nextItem: CourseItem?
 
@@ -52,19 +28,8 @@ class CourseItemViewController: UIPageViewController {
             self.previousItem = self.currentItem?.previousItem
             self.nextItem = self.currentItem?.nextItem
 
-            if let item = self.currentItem, let section = item.section {
-                let sortedCourseItems = section.items.sorted(by: \.position)
-
-                if let index = sortedCourseItems.firstIndex(of: item) {
-                    self.progressLabel.text = "\(index + 1) / \(section.items.count)"
-                    self.progressLabel.sizeToFit()
-                } else {
-                    self.progressLabel.text = "- / \(section.items.count)"
-                    self.progressLabel.sizeToFit()
-                }
-            } else {
-                self.progressLabel.text = nil
-            }
+            self.navigationItem.rightBarButtonItem = self.generateActionMenuButton()
+            self.updateProgressLabel()
         }
     }
 
@@ -74,7 +39,7 @@ class CourseItemViewController: UIPageViewController {
         self.dataSource = self
         self.delegate = self
 
-        self.navigationItem.rightBarButtonItem = self.actionMenuButton
+        self.navigationItem.rightBarButtonItem = self.generateActionMenuButton()
 
         self.view.backgroundColor = ColorCompatibility.systemBackground
         self.navigationItem.titleView = self.progressLabel
@@ -139,10 +104,52 @@ class CourseItemViewController: UIPageViewController {
         TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, on: self, context: context)
     }
 
+    private func generateActionMenuButton() -> UIBarButtonItem {
+        var menuActions: [Action] = []
+
+        if let video = self.currentItem?.content as? Video {
+            menuActions += video.actions
+        }
+
+        menuActions += [
+            self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() },
+            self.currentItem?.openHelpdesk { [weak self] in self?.openHelpdesk() },
+        ].compactMap { $0 }
+
+        let button = UIBarButtonItem.circularItem(
+            with: R.image.navigationBarIcons.dots(),
+            target: self,
+            menuActions: menuActions
+        )
+
+        button.isEnabled = true
+        button.accessibilityLabel = NSLocalizedString(
+            "accessibility-label.course-item.navigation-bar.item.actions",
+            comment: "Accessibility label for actions button in navigation bar of the course item view"
+        )
+        return button
+    }
+
+    private func updateProgressLabel() {
+        if let item = self.currentItem, let section = item.section {
+            let sortedCourseItems = section.items.sorted(by: \.position)
+
+            if let index = sortedCourseItems.firstIndex(of: item) {
+                self.progressLabel.text = "\(index + 1) / \(section.items.count)"
+                self.progressLabel.sizeToFit()
+            } else {
+                self.progressLabel.text = "- / \(section.items.count)"
+                self.progressLabel.sizeToFit()
+            }
+        } else {
+            self.progressLabel.text = nil
+        }
+    }
+
     @IBAction private func shareCourseItem() {
         guard let item = self.currentItem else { return }
         let activityViewController = UIActivityViewController(activityItems: [item], applicationActivities: nil)
-        activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
+        activityViewController.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 

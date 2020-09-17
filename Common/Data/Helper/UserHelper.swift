@@ -13,7 +13,10 @@ public enum UserHelper {
         let fetchRequest = Self.FetchRequest.user(withId: UserProfileHelper.shared.userId ?? "")
         var query = SingleResourceQuery(type: User.self, id: "me")
         query.include("profile")
-        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query).onSuccess { result in
+            guard let user = CoreDataHelper.viewContext.existingTypedObject(with: result.objectId) as? User else { return }
+            UserProfileHelper.shared.updateUserId(to: user.id)
+        }
     }
 
 }

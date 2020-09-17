@@ -95,6 +95,11 @@ public class UserProfileHelper {
         self.postLoginStateChange()
     }
 
+    public func updateUserId(to newUserID: String) {
+        if self.userId == newUserID { return }
+        self.userId = newUserID
+    }
+
     public func logout(runPostActions: Bool = true) {
         self.clearKeychain()
         CoreDataHelper.clearCoreDataStorage().onFailure { error in

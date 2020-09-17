@@ -12,7 +12,7 @@ class DocumentListViewController: UITableViewController {
 
     var course: Course!
 
-    private var dataSource: CoreDataTableViewDataSource<DocumentListViewController>!
+    private var dataSource: CoreDataTableViewDataSourceWrapper<DocumentLocalization>!
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
@@ -39,10 +39,10 @@ class DocumentListViewController: UITableViewController {
         let request = DocumentLocalizationHelper.FetchRequest.publicDocumentLocalizations(forCourse: course)
         let reuseIdentifier = R.reuseIdentifier.documentCell.identifier
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "document.title") // must be the first sort descriptor
-        self.dataSource = CoreDataTableViewDataSource(self.tableView,
-                                                      fetchedResultsController: resultsController,
-                                                      cellReuseIdentifier: reuseIdentifier,
-                                                      delegate: self)
+        self.dataSource = CoreDataTableViewDataSource.dataSource(for: self.tableView,
+                                                                 fetchedResultsController: resultsController,
+                                                                 cellReuseIdentifier: reuseIdentifier,
+                                                                 delegate: self)
 
         self.refresh()
 
@@ -94,7 +94,7 @@ extension DocumentListViewController { // TableViewDelegate
             return nil
         }
 
-        guard let firstItemInSection = self.dataSource.sectionInfos?[section].objects?.first as? DocumentLocalization else {
+        guard let firstItemInSection = self.dataSource?.sectionInfos?[section].objects?.first as? DocumentLocalization else {
             return nil
         }
 

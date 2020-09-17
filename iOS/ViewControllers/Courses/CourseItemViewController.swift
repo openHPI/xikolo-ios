@@ -20,6 +20,7 @@ class CourseItemViewController: UIPageViewController {
     private lazy var actionMenuButton: UIBarButtonItem = {
         var menuActions = [
             self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() },
+            self.currentItem?.openHelpdesk { [weak self] in self?.openHelpdesk() },
         ].compactMap { $0 }
 
         if let video = self.currentItem?.content as? Video {
@@ -39,19 +40,6 @@ class CourseItemViewController: UIPageViewController {
         )
         return button
     }()
-
-    // TODO: refactor to return [Action]
-    private var userActions: [UIAlertAction] {
-        var alertActions = [
-            self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() },
-        ].compactMap { $0 }.asAlertActions()
-
-        if let video = self.currentItem?.content as? Video {
-            alertActions += video.actions.asAlertActions()
-        }
-
-        return alertActions
-    }
 
     private var previousItem: CourseItem?
     private var nextItem: CourseItem?
@@ -141,6 +129,8 @@ class CourseItemViewController: UIPageViewController {
         guard item.hasAvailableContent else { return }
 
         CourseItemHelper.markAsVisited(item)
+        LastVisitHelper.recordVisit(for: item)
+
         let context = [
             "content_type": item.contentType,
             "section_id": item.section?.id,
@@ -149,26 +139,18 @@ class CourseItemViewController: UIPageViewController {
         TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, on: self, context: context)
     }
 
-    @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
-        let actions = self.userActions
-
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.barButtonItem = sender
-
-        for action in actions {
-            alert.addAction(action)
-        }
-
-        alert.addCancelAction()
-
-        self.present(alert, animated: trueUnlessReduceMotionEnabled)
-    }
-
     @IBAction private func shareCourseItem() {
         guard let item = self.currentItem else { return }
         let activityViewController = UIActivityViewController(activityItems: [item], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = self.actionMenuButton
         self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    @IBAction private func openHelpdesk() {
+        let helpdeskViewController = R.storyboard.tabAccount.helpdeskViewController().require()
+        helpdeskViewController.course = self.currentItem?.section?.course
+        let navigationController = CustomWidthNavigationController(rootViewController: helpdeskViewController)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
 }

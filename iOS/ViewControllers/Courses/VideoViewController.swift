@@ -13,6 +13,8 @@ import UIKit
 
 class VideoViewController: UIViewController {
 
+    static let didStartPlaybackNotification = Notification.Name("de.xikolo.ios.video.playback.started")
+
     @IBOutlet private weak var videoContainer: UIView!
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
@@ -119,20 +121,7 @@ class VideoViewController: UIViewController {
         // Add pan gesture recognizer to video container to prevent an accidental course item switch or course dismissal
         self.videoContainer.addGestureRecognizer(UIPanGestureRecognizer())
 
-        // register notification observer
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self,
-                                       selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
-                                       name: DownloadState.didChangeNotification,
-                                       object: nil)
-        notificationCenter.addObserver(self,
-                                       selector: #selector(handleAssetDownloadProgressNotification(_:)),
-                                       name: DownloadProgress.didChangeNotification,
-                                       object: nil)
-        notificationCenter.addObserver(self,
-                                       selector: #selector(reachabilityChanged),
-                                       name: Notification.Name.reachabilityChanged,
-                                       object: nil)
+        self.registerObservers()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -215,6 +204,34 @@ class VideoViewController: UIViewController {
     override var childForHomeIndicatorAutoHidden: UIViewController? {
         guard self.playerViewController?.layoutState == .fullScreen else { return nil }
         return self.playerViewController
+    }
+
+    private func registerObservers() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleVideoPlaybackStartedNotification(_:)),
+                                       name: Self.didStartPlaybackNotification,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
+                                       name: DownloadState.didChangeNotification,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleAssetDownloadProgressNotification(_:)),
+                                       name: DownloadProgress.didChangeNotification,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(reachabilityChanged),
+                                       name: Notification.Name.reachabilityChanged,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(didEnterBackground),
+                                       name: UIApplication.didEnterBackgroundNotification,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(willEnterForeground),
+                                       name: UIApplication.willEnterForegroundNotification,
+                                       object: nil)
     }
 
     private func updateView(for courseItem: CourseItem) {
@@ -307,6 +324,11 @@ class VideoViewController: UIViewController {
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
+    @objc private func handleVideoPlaybackStartedNotification(_ notification: Notification) {
+        guard notification.object as? Self != self else { return }
+        self.playerViewController?.pausePlayback()
+    }
+
     @objc private func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
         guard let downloadType = notification.userInfo?[DownloadNotificationKey.downloadType] as? String,
             let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
@@ -356,6 +378,14 @@ class VideoViewController: UIViewController {
     @objc private func reachabilityChanged() {
         self.updateView(for: self.courseItem)
         self.playerViewController?.preferredPeakBitRate = self.video?.preferredPeakBitRate()
+    }
+
+    @objc func didEnterBackground() {
+        self.playerViewController?.disconnectPlayer()
+    }
+
+    @objc func willEnterForeground() {
+        self.playerViewController?.reconnectPlayer()
     }
 
     private func toggleControlBars(_ animated: Bool) {
@@ -454,8 +484,11 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
     }
 
     func didStartPlayback() {
-        guard let video = self.video else { return }
-        TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+        NotificationCenter.default.post(name: Self.didStartPlaybackNotification, object: self, userInfo: nil)
+
+        if let video = self.video {
+            TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+        }
     }
 
     func didPausePlayback() {

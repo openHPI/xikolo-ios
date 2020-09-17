@@ -13,7 +13,6 @@ opt_in_rules:
 - empty_count
 - empty_string
 - empty_xctest_method
-- explicit_enum_raw_value
 - explicit_init
 - fallthrough
 - fatal_error_message

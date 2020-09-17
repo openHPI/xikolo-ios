@@ -13,8 +13,6 @@ class AccountViewController: UITableViewController {
     private lazy var dataSource = AccountViewControllerDataSource()
     private lazy var shouldSynchronizeUser = false
 
-    @IBOutlet private weak var headerImage: UIImageView!
-
     @IBOutlet private weak var copyrightLabel: UILabel!
     @IBOutlet private weak var poweredByLabel: UILabel!
     @IBOutlet private weak var versionLabel: UILabel!
@@ -66,7 +64,6 @@ class AccountViewController: UITableViewController {
 
         coordinator.animate(alongsideTransition: nil) { _ in
             self.navigationController?.navigationBar.sizeToFit()
-            self.tableView.resizeTableHeaderView()
             self.tableView.resizeTableFooterView()
         }
     }

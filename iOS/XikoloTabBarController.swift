@@ -135,7 +135,7 @@ class XikoloTabBarController: UITabBarController {
         self.messageView.autoresizingMask = [.flexibleWidth]
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(adjustViewForKeyboardShow(_:)),
+                                               selector: #selector(handleAPIStatusChange(_:)),
                                                name: APIStatus.didChangeNotification,
                                                object: nil)
     }
@@ -149,9 +149,9 @@ class XikoloTabBarController: UITabBarController {
         self.updateMessageViewAppearance()
     }
 
-    @objc private func adjustViewForKeyboardShow(_ notification: Notification) {
-        guard let status = notification.userInfo?[APIStatusNotificationKey.status] as? APIStatus else { return }
-        self.status = status
+    @objc private func handleAPIStatusChange(_ notification: Notification) {
+        let newStatus = notification.userInfo?[APIStatusNotificationKey.status] as? APIStatus
+        self.status = newStatus ?? .standard
     }
 
     private func updateMessageViewAppearance() {

@@ -44,6 +44,7 @@ class CourseDetailsViewController: UIViewController {
         self.teaserView.isHidden = true
         self.teaserView.layer.roundCorners(for: .default)
         self.teaserImageView.backgroundColor = Brand.default.colors.secondary
+        self.teaserImageView.sd_imageTransition = .fade
 
         self.teacherView.textColor = Brand.default.colors.secondary
         self.teacherView.isHidden = !Brand.default.features.showCourseTeachers

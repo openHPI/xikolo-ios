@@ -36,6 +36,7 @@ class CoursePreviewViewController: UIViewController {
         self.courseImageView.backgroundColor = accentColor
         self.teacherLabel.textColor = accentColor
 
+        self.courseImageView.sd_imageTransition = .fade
         self.courseImageView.sd_setImage(with: self.course.imageURL)
 
         self.titleLabel.text = self.course.title

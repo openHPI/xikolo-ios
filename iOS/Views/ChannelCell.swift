@@ -21,6 +21,7 @@ class ChannelCell: UICollectionViewCell {
 
         self.channelImage.layer.roundCorners(for: .default)
         self.channelImage.backgroundColor = Brand.default.colors.secondary
+        self.channelImage.sd_imageTransition = .fade
 
         self.shadowView.addDefaultPointerInteraction()
     }

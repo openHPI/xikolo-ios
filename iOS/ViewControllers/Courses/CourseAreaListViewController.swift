@@ -9,8 +9,6 @@ class CourseAreaListViewController: UICollectionViewController {
 
     weak var delegate: CourseAreaListViewControllerDelegate?
 
-    private var shouldScrollToSelectedItem: Bool = false
-
     private var selectedIndexPath: IndexPath? {
         didSet {
             if let oldIndexPath = oldValue {
@@ -81,26 +79,19 @@ class CourseAreaListViewController: UICollectionViewController {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        self.collectionViewLayout.invalidateLayout()
-        self.shouldScrollToSelectedItem = true
+
+        coordinator.animate(alongsideTransition: { _ in
+            self.collectionViewLayout.invalidateLayout()
+        }) { _ in // swiftlint:disable:this multiple_closures_with_trailing_closure
+            if let selectedIndexPath = self.selectedIndexPath {
+                self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: trueUnlessReduceMotionEnabled)
+            }
+        }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.calculatePreferredSize()
-
-        if let selectedIndexPath = self.selectedIndexPath, self.shouldScrollToSelectedItem {
-            self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: false)
-            self.shouldScrollToSelectedItem = false
-        }
-    }
-
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        self.collectionViewLayout.invalidateLayout()
-        if let selectedIndexPath = self.selectedIndexPath {
-            self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: false)
-        }
     }
 
     private func calculatePreferredSize() {
@@ -148,8 +139,8 @@ extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        let leftPadding = collectionView.layoutMargins.left - self.cellHeight / 4
-        let rightPadding = collectionView.layoutMargins.right - self.cellHeight / 4
+        let leftPadding = collectionView.layoutMargins.left
+        let rightPadding = collectionView.layoutMargins.right
 
         guard collectionView.traitCollection.horizontalSizeClass != .compact else {
             return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)

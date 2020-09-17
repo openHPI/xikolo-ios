@@ -10,7 +10,6 @@ class PseudoCourseCell: UICollectionViewCell {
 
     enum Style {
         case emptyCourseOverview
-        case showAllCoursesOfOverview
     }
 
     @IBOutlet private weak var cardView: UIView!
@@ -56,14 +55,6 @@ class PseudoCourseCell: UICollectionViewCell {
                                                        comment: "message text for course overview with no completed courses")
             self.actionLabel.text = NSLocalizedString("dashboard.course-overview.no-courses.action",
                                                       comment: "action text for course overview with no courses")
-        case (.showAllCoursesOfOverview, .currentCourses):
-            self.messageLabel.text = nil
-            self.actionLabel.text = NSLocalizedString("dashboard.course-overview.show-all-courses.current.action",
-                                                      comment: "action text for showing all current courses")
-        case (.showAllCoursesOfOverview, .completedCourses):
-            self.messageLabel.text = nil
-            self.actionLabel.text = NSLocalizedString("dashboard.course-overview.show-all-courses.completed.action",
-                                                      comment: "action text for showing all completed courses")
         default:
             self.messageLabel.text = nil
             self.actionLabel.text = nil

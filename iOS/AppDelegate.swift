@@ -17,8 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let userProfileHelperDelegateInstance = UserProfileHelperDelegateInstance()
 
     private lazy var pushEngineManager: SyncPushEngineManager = {
-        let engine = XikoloSyncEngine()
-        return SyncPushEngineManager(syncEngine: engine)
+        return SyncPushEngineManager()
     }()
 
     @available(iOS, obsoleted: 13.0)
@@ -79,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.pushEngineManager.register(Announcement.self)
             self.pushEngineManager.register(CourseItem.self)
             self.pushEngineManager.register(Enrollment.self)
-            self.pushEngineManager.register(TrackingEvent.self)
+            self.pushEngineManager.register(TrackingEvent.self, with: .nonExpensive)
             self.pushEngineManager.startObserving()
 
             StreamPersistenceManager.shared.restoreDownloads()
@@ -171,6 +170,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             completionHandler(backgroundFetchResult)
         }.onFailure { _ in
             completionHandler(.failed)
+        }
+    }
+
+    func application(_ application: UIApplication,
+                     handleEventsForBackgroundURLSession identifier: String,
+                     completionHandler: @escaping () -> Void) {
+        if StreamPersistenceManager.shared.session.configuration.identifier == identifier {
+            StreamPersistenceManager.shared.backgroundCompletionHandler = completionHandler
+        } else if SlidesPersistenceManager.shared.session.configuration.identifier == identifier {
+            SlidesPersistenceManager.shared.backgroundCompletionHandler = completionHandler
+        } else if DocumentsPersistenceManager.shared.session.configuration.identifier == identifier {
+            DocumentsPersistenceManager.shared.backgroundCompletionHandler = completionHandler
         }
     }
 

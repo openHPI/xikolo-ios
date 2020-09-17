@@ -64,7 +64,7 @@ extension CourseSection {
         if itemCounter.stream.numberOfDownloadableItems > 0, ReachabilityHelper.hasConnection {
             let downloadActionTitle = NSLocalizedString("course-section.stream-download-action.start-downloads.title",
                                                         comment: "start stream downloads for all videos in section")
-            actions.append(Action(title: downloadActionTitle, image: Action.Image.download) {
+            actions.append(Action(title: downloadActionTitle, image: Action.Image.aggregatedDownload) {
                 Self.actionDispatchQueue.async {
                     StreamPersistenceManager.shared.startDownloads(for: self)
                 }
@@ -96,7 +96,7 @@ extension CourseSection {
         if itemCounter.slides.numberOfDownloadableItems > 0, ReachabilityHelper.hasConnection {
             let downloadActionTitle = NSLocalizedString("course-section.slides-download-action.start-downloads.title",
                                                         comment: "start slides downloads for all videos in section")
-            actions.append(Action(title: downloadActionTitle, image: Action.Image.download) {
+            actions.append(Action(title: downloadActionTitle, image: Action.Image.aggregatedDownload) {
                 Self.actionDispatchQueue.async {
                     SlidesPersistenceManager.shared.startDownloads(for: self)
                 }

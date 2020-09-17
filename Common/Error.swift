@@ -32,4 +32,5 @@ public enum XikoloError: Error {
     case missingResource(ofType: Any)
 
     case userCanceled
+
 }

@@ -77,7 +77,7 @@ class CourseItemCell: UITableViewCell {
         self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.disabled
         self.actionsButton.alpha = 1
 
-        self.actionsButton.add(menuActions: video.actions, menuTitle: self.item?.title, on: self.delegate)
+        self.actionsButton.add(menuActions: [video.actions], menuTitle: self.item?.title, on: self.delegate)
     }
 
     private func configureDetailView(for courseItem: CourseItem) {

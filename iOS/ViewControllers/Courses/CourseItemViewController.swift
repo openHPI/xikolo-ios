@@ -105,16 +105,16 @@ class CourseItemViewController: UIPageViewController {
     }
 
     private func generateActionMenuButton() -> UIBarButtonItem {
-        var menuActions: [Action] = []
+        var menuActions: [[Action]] = []
 
         if let video = self.currentItem?.content as? Video {
-            menuActions += video.actions
+            menuActions += [video.actions]
         }
 
-        menuActions += [
+        menuActions.append([
             self.currentItem?.shareAction { [weak self] in self?.shareCourseItem() },
             self.currentItem?.openHelpdesk { [weak self] in self?.openHelpdesk() },
-        ].compactMap { $0 }
+        ].compactMap { $0 })
 
         let button = UIBarButtonItem.circularItem(
             with: R.image.navigationBarIcons.dots(),

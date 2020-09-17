@@ -77,7 +77,7 @@ class CourseViewController: UIViewController {
         let item = UIBarButtonItem.circularItem(
             with: R.image.navigationBarIcons.dots(),
             target: self,
-            menuActions: menuActions
+            menuActions: [menuActions]
         )
 
         item.accessibilityLabel = NSLocalizedString(

@@ -27,7 +27,7 @@ class AnnouncementListViewController: CustomWidthTableViewController {
         let item = UIBarButtonItem.circularItem(
             with: R.image.navigationBarIcons.dots(),
             target: self,
-            menuActions: [markAllAsReadAction]
+            menuActions: [[markAllAsReadAction]]
         )
 
         item.accessibilityLabel = NSLocalizedString(

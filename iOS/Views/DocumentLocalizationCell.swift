@@ -52,7 +52,7 @@ class DocumentLocalizationCell: UITableViewCell {
         self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         self.actionsButton.add(
-            menuActions: documentLocalization.actions,
+            menuActions: [documentLocalization.actions],
             menuTitle: documentLocalization.document.title,
             menuMessage: documentLocalization.languageCode,
             on: self.delegate

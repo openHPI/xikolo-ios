@@ -22,7 +22,7 @@ extension UIBarButtonItem {
         backgroundColor: UIColor? = ColorCompatibility.secondarySystemBackground.withAlphaComponent(0.9),
         target: UIViewController, // for iOS 13 and prior
         primaryAction: Action? = nil,
-        menuActions: [Action]? = nil
+        menuActions: [[Action]]? = nil
     ) -> UIBarButtonItem {
         let item = UIBarButtonItem()
 
@@ -66,7 +66,7 @@ extension UIButton {
 
     func add(
         primaryAction: Action? = nil,
-        menuActions: [Action]? = nil,
+        menuActions: [[Action]]? = nil,
         deferredMenuActions: DeferredMenuActionConfiguration? = nil,
         menuTitle: String? = nil,
         menuMessage: String? = nil,
@@ -88,7 +88,11 @@ extension UIButton {
 
         if let menuActions = menuActions {
             if #available(iOS 14, *) {
-                self.menu = UIMenu(title: "", children: menuActions.asActions())
+                let submenus = menuActions.filter({ !$0.isEmpty }).map { subMenuActions in
+                    return UIMenu(title: "", options: .displayInline, children: subMenuActions.asActions())
+                }
+
+                self.menu = UIMenu(title: "", children: submenus)
                 self.showsMenuAsPrimaryAction = primaryAction == nil
             } else {
                 let showAlertController = { [weak self, weak target, weak barButtonItem] in
@@ -101,7 +105,7 @@ extension UIButton {
                         alert.popoverPresentationController?.sourceRect = self?.bounds ?? .zero
                     }
 
-                    for action in menuActions.asAlertActions() {
+                    for action in menuActions.flatMap({ $0 }).asAlertActions() {
                         alert.addAction(action)
                     }
 

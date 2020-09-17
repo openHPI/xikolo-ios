@@ -4,7 +4,7 @@
 Before submitting a new GitHub issue, please make sure to check the [existing GitHub issues](https://github.com/openHPI/xikolo-ios/issues). If this doesn't help, please [submit an issue](https://github.com/openHPI/xikolo-ios/issues/new/choose) on GitHub and provide detailed information.
 
 ### I want to contribute
-Check out the [good first issues](https://github.com/openHPI/xikolo-ios/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) or any other unsassigned issue and submit a pull request when you are ready.
+Check out the [good first issues](https://github.com/openHPI/xikolo-ios/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) or any other unassigned issue and submit a pull request when you are ready.
 
 ## Programming Guidelines
 
@@ -20,7 +20,7 @@ These custom commands ease the development process.
 - `bundle exec fastlane check_core_data`: Check if the core data model was modified since the last tagged release
 - `bundle exec fastlane increment_version_(patch|minor|major)`: Increase the app version project-wide in all modules
 - `bundle exec fastlane changelog`: List all commits since the last tagged release
-- `bundle exec fastlane export_localizations`: Export localizations and strip unwanted strings, that excluded by BartyCrouch
+- `bundle exec fastlane export_localizations`: Export localizations and strip unwanted strings, that are excluded by BartyCrouch
 
 ### Code Formatting
 In order to have a consistent code formatting, we would like you to set some settings:
@@ -28,7 +28,7 @@ In order to have a consistent code formatting, we would like you to set some set
 - Use Unix-style line endings (LF)
 
 ### R.swift
-We use [R.swift](https://github.com/mac-cain13/R.swift) to avoid static string in the codebase.
+We use [R.swift](https://github.com/mac-cain13/R.swift) to avoid static strings in the codebase.
 
 ### Using self
 One thing we can't enforce with R.swift is not to omit `self`. We prefer writing `self` explicitly because we believe this helps to distinguish between member attributes and local variabels.

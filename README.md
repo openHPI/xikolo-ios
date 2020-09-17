@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-    iOS application for openHPI, openSAP, mooc.house, lernen.cloud and OpenWHO
+    iOS application for the HPI MOOC Platform
 </p>
 
 ## Development Toolchain
@@ -66,7 +66,7 @@ Take a look at our [Contribution Guide](CONTRIBUTING.md) to learn about the key 
 
 For the overall architecture, we follow a plain MVC approach. However we make use of some reactive programming by using futures and promises provided by BrightFutures.
 
-### Naming schema
+### Naming Schema
 
 The application fetches multiple resources from the backend. For a `Resource`, all related classes follow most of the time the following naming schema.
  - `Resource`: The respective CoreData model
@@ -82,19 +82,19 @@ Important modules are listed below. If applicalble and neccesary, those modules 
 
 #### Commom
 
-The Common module hold the core functionality of the app, which are required in all tragets. It includes the CoreData models, API abstraction layer, common functionalities and generic helpers.
+The `Common` module holds the core functionality of the app, which is required in all targets. It includes the CoreData models, API abstraction layer, common functionalities and generic helpers.
 
 #### Stockpile
 
-The `Stockpile` module is responsible for retrieving resources from the backend and synchronizing them with the local storage. It is capabile of sending network requests depending on the protocol of the backend. 
+The `Stockpile` module is responsible for retrieving resources from the backend and synchronizing them with the local storage. It is capable of sending network requests depending on the protocol of the backend. 
 
 #### Binge
 
-The `Binge` module provides a custom video player which in constrast to `AVPlayerViewController` allows entering the full screen mode programtically and provides controls for changing the playback rate.
+The `Binge` module provides a custom video player which in contrast to `AVPlayerViewController` allows entering the full-screen mode programmatically and provides controls for changing the playback rate.
 
 #### iOS
 
-The `iOS` target is the main applciation.
+The `iOS` target is the main application.
 
 #### Today
 

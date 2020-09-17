@@ -215,7 +215,7 @@ class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManaged
 
                 // it makes only sense to retry on network errors
                 pushFuture = pushFuture?.recoverWith { error -> Future<(), XikoloError> in
-                    if case .network = error {
+                    if case .synchronization(.network) = error {
                         return Future(error: error)
                     } else if case let .synchronization(.api(.response(statusCode: statusCode, headers: _))) = error, 500 ... 599 ~= statusCode {
                         return Future(error: error)
@@ -246,6 +246,30 @@ class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManaged
                     ErrorManager.shared.report(error)
                 }
             }
+        }
+    }
+
+}
+
+extension XikoloError {
+
+    var wasCausedByRestrictedNetworkConditions: Bool {
+        guard case let .synchronization(syncError) = self else {
+            return false
+        }
+
+        guard case let .network(networkError) = syncError else {
+            return false
+        }
+
+        guard let urlError = networkError as? URLError else {
+            return false
+        }
+
+        if #available(iOS 13, *) {
+            return urlError.networkUnavailableReason != nil
+        } else {
+            return false
         }
     }
 

@@ -15,6 +15,7 @@ languages([
   "en-US",
 ])
 
+override_status_bar true
 clear_previous_screenshots true
 skip_open_summary true
 localize_simulator true

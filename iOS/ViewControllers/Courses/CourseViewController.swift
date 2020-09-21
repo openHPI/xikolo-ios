@@ -485,6 +485,11 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
         self.snapToExtendedOrCollapsedHeaderPosition(with: scrollView)
     }
 
+    func scrollToTop() {
+        let headerOffset: CGFloat = self.headerHeight
+        snapToExtendedOrCollapsedHeaderPosition(with: headerOffset)
+    }
+
     private func adjustHeaderPosition(for scrollOffset: CGFloat) {
         let headerHeight = self.headerHeight
         var headerOffset = max(0, min(scrollOffset, headerHeight))

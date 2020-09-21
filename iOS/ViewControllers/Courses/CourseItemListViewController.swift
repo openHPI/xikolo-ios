@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable file_length
+
 import BrightFutures
 import Common
 import CoreData
@@ -15,10 +17,32 @@ class CourseItemListViewController: UITableViewController {
     private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
     private static let timeFormatter = DateFormatter.localizedFormatter(dateStyle: .none, timeStyle: .short)
 
+    @IBOutlet private weak var continueLearningHint: UIView!
+    @IBOutlet private weak var continueLearningSectionTitleLabel: UILabel!
+    @IBOutlet private weak var continueLearningItemTitleLabel: UILabel!
+    @IBOutlet private weak var continueLearningItemIconView: UIImageView!
+    @IBOutlet private weak var continueLearningItemIconWidthConstraint: NSLayoutConstraint!
+
     @IBOutlet private weak var nextSectionStartLabel: UILabel!
 
     private var course: Course!
     private var dataSource: CoreDataTableViewDataSourceWrapper<CourseItem>!
+
+    private var lastVisitObserver: ManagedObjectObserver?
+    private var lastVisit: LastVisit? {
+        didSet {
+            self.updateHeaderView()
+            if let lastVisit = self.lastVisit {
+                self.lastVisitObserver = ManagedObjectObserver(object: lastVisit) { [weak self] _ in
+                    DispatchQueue.main.async {
+                        self?.updateHeaderView()
+                    }
+                }
+            } else {
+                self.lastVisitObserver = nil
+            }
+        }
+    }
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
@@ -45,8 +69,18 @@ class CourseItemListViewController: UITableViewController {
 
             self.tableView.dragInteractionEnabled = true
             self.tableView.dragDelegate = self
-
         }
+
+        self.continueLearningHint.layer.roundCorners(for: .default)
+        self.continueLearningHint.addDefaultPointerInteraction()
+
+        if #available(iOS 13, *) {
+            let interaction = UIContextMenuInteraction(delegate: self)
+            self.continueLearningHint.addInteraction(interaction)
+        }
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openContinueLearningItem))
+        self.continueLearningHint.addGestureRecognizer(tapGesture)
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
@@ -57,7 +91,11 @@ class CourseItemListViewController: UITableViewController {
                                                name: UIContentSizeCategory.didChangeNotification,
                                                object: nil)
 
+        self.continueLearningHint.isHidden = true
+        self.tableView.resizeTableHeaderView()
+
         self.setupEmptyState()
+        self.updateLastVisit()
         self.updateFooterView()
         self.navigationItem.title = self.course.title
 
@@ -77,6 +115,7 @@ class CourseItemListViewController: UITableViewController {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: nil) { _ in
+            self.tableView.resizeTableHeaderView()
             self.tableView.resizeTableFooterView()
         }
     }
@@ -91,6 +130,11 @@ class CourseItemListViewController: UITableViewController {
             self.tableView.separatorInset = UIEdgeInsets(top: 0, left: width + 12, bottom: 0, right: 0)
         } else {
             self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 40.0, bottom: 0, right: 0)
+        }
+
+        if #available(iOS 11, *) {
+            let value = UIFontMetrics.default.scaledValue(for: 28)
+            self.continueLearningItemIconWidthConstraint.constant = value
         }
     }
 
@@ -111,17 +155,8 @@ class CourseItemListViewController: UITableViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-        guard let footerView = tableView.tableFooterView else {
-            return
-        }
-
-        let size = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        if footerView.frame.size.height != size.height {
-            footerView.frame.size.height = size.height
-            tableView.tableFooterView = footerView
-            tableView.layoutIfNeeded()
-        }
+        self.tableView.resizeTableHeaderView()
+        self.tableView.resizeTableFooterView()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -141,15 +176,41 @@ class CourseItemListViewController: UITableViewController {
         self.scrollDelegate?.scrollViewDidEndDecelerating(scrollView)
     }
 
+    private func updateLastVisit() {
+        let fetchRequest = LastVisitHelper.FetchRequest.lastVisit(forCourse: self.course)
+        self.lastVisit = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value
+    }
+
+    private func updateHeaderView() {
+        self.continueLearningSectionTitleLabel.text = self.lastVisit?.item?.section?.title
+        self.continueLearningItemTitleLabel.text = self.lastVisit?.item?.title
+        self.continueLearningItemIconView.image = self.lastVisit?.item?.image
+        self.continueLearningHint.isHidden = self.lastVisit?.item == nil
+
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+            self.tableView.resizeTableHeaderView()
+        }
+    }
+
     private func updateFooterView() {
         guard self.course.startsAt?.inPast ?? true else {
             self.nextSectionStartLabel.isHidden = true
+
+            UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+                self.tableView.resizeTableFooterView()
+            }
+
             return
         }
 
         let request = CourseSectionHelper.FetchRequest.nextUnpublishedSection(for: self.course)
         guard let sectionStartDate = CoreDataHelper.viewContext.fetchSingle(request).value?.startsAt else {
             self.nextSectionStartLabel.isHidden = true
+
+            UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+                self.tableView.resizeTableFooterView()
+            }
+
             return
         }
 
@@ -167,7 +228,41 @@ class CourseItemListViewController: UITableViewController {
         self.nextSectionStartLabel.text = String(format: format, dateText, timeText)
         self.nextSectionStartLabel.isHidden = false
 
-        self.tableView.resizeTableFooterView()
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+            self.tableView.resizeTableFooterView()
+        }
+    }
+
+    @objc private func openContinueLearningItem() {
+        self.scrollToContinueLearningItemAndHighlight { [weak self] cell in
+            self?.performSegue(withIdentifier: R.segue.courseItemListViewController.showCourseItem, sender: cell)
+        }
+    }
+
+    private func scrollToContinueLearningItemAndHighlight(completionHandler: ((UITableViewCell) -> Void)? = nil) {
+        guard let item = self.lastVisit?.item else { return }
+        guard let indexPath = self.dataSource.indexPath(for: item) else { return }
+
+        self.scrollDelegate?.scrollToTop()
+
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled, animations: {
+            self.tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+        }, completion: { _ in
+            let cell = self.tableView.cellForRow(at: indexPath)
+            let originalColor = cell?.backgroundColor
+
+            _ = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.25, options: [.curveEaseOut], animations: {
+                cell?.backgroundColor = ColorCompatibility.secondarySystemFill
+            }, completion: { _ in
+                _ = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.25, options: [.curveEaseIn], animations: {
+                    cell?.backgroundColor = originalColor
+                }, completion: nil)
+
+                if let cell = cell {
+                    completionHandler?(cell)
+                }
+            })
+        })
     }
 
 }
@@ -264,10 +359,13 @@ extension CourseItemListViewController: RefreshableViewController {
     func refreshingAction() -> Future<Void, XikoloError> {
         return CourseSectionHelper.syncCourseSections(forCourse: self.course).flatMap { _ in
             return CourseItemHelper.syncCourseItems(forCourse: self.course)
+        }.flatMap { _ in
+            return LastVisitHelper.syncLastVisit(forCourse: self.course)
         }.asVoid()
     }
 
     func didRefresh() {
+        self.updateLastVisit()
         self.updateFooterView()
 
         guard self.preloadingWanted else { return }
@@ -361,4 +459,28 @@ extension CourseItemListViewController: UITableViewDragDelegate {
         let itemCell = tableView.cellForRow(at: indexPath) as? CourseItemCell
         return [selectedItem.dragItem(with: itemCell?.previewView)]
     }
+
+}
+
+@available(iOS 13, *)
+extension CourseItemListViewController: UIContextMenuInteractionDelegate {
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        let openActonTitle = NSLocalizedString("course-item-list.header.continue-learning.Open item",
+                                               comment: "Action title to open the suggested course item to continue learning")
+        let openAction = UIAction(title: openActonTitle, image: UIImage(systemName: "arrow.right.circle.fill")) { _ in
+            self.openContinueLearningItem()
+        }
+
+        let scrollActonTitle = NSLocalizedString("course-item-list.header.continue-learning.Show item in list",
+                                                 comment: "Action title to scroll to the suggested course item to continue learning")
+        let scrollAction = UIAction(title: scrollActonTitle, image: UIImage(systemName: "list.dash")) { _ in
+            self.scrollToContinueLearningItemAndHighlight()
+        }
+
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            return UIMenu(title: "", children: [openAction, scrollAction])
+        }
+    }
+
 }

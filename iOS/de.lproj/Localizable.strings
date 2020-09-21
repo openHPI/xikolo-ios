@@ -71,6 +71,12 @@
 /* Format string for the next section start in the footer of course item list */
 "course-item-list.footer.The next section will be available on %@ at %@" = "Die nächsten Inhalte werden am %@ um %@ verfügbar sein.";
 
+/* Action title to open the suggested course item to continue learning */
+"course-item-list.header.continue-learning.Open item" = "Lerninhalt öffnen";
+
+/* Action title to scroll to the suggested course item to continue learning */
+"course-item-list.header.continue-learning.Show item in list" = "Lerninhalt in Liste zeigen";
+
 /* delete all downloads for video */
 "course-item.combined-download-action.delete-download.title" = "Alle Lernmaterialien löschen";
 

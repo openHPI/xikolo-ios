@@ -11,6 +11,7 @@ import UIKit
 class AnnouncementListViewController: CustomWidthTableViewController {
 
     private var dataSource: CoreDataTableViewDataSourceWrapper<Announcement>!
+    private var relationshipKeyPathsObserver: RelationshipKeyPathsObserver<Announcement>?
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
@@ -34,10 +35,6 @@ class AnnouncementListViewController: CustomWidthTableViewController {
 
         self.addRefreshControl()
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(coreDataChange(notification:)),
-                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
-                                               object: CoreDataHelper.viewContext)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateUIAfterLoginStateChanged),
                                                name: UserProfileHelper.loginStateDidChangeNotification,
@@ -63,6 +60,9 @@ class AnnouncementListViewController: CustomWidthTableViewController {
                                                                  fetchedResultsController: resultsController,
                                                                  cellReuseIdentifier: reuseIdentifier,
                                                                  delegate: self)
+        self.relationshipKeyPathsObserver = RelationshipKeyPathsObserver(for: Announcement.self,
+                                                                         managedObjectContext: resultsController.managedObjectContext,
+                                                                         keyPaths: [#keyPath(Announcement.course.enrollment)])
 
         self.refresh()
         self.setupEmptyState()
@@ -119,11 +119,6 @@ class AnnouncementListViewController: CustomWidthTableViewController {
         alert.addCancelAction()
 
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
-    }
-
-    @objc private func coreDataChange(notification: Notification) {
-        guard notification.includesChanges(for: Enrollment.self, keys: [NSUpdatedObjectsKey, NSRefreshedObjectsKey]) else { return }
-        self.tableView.reloadData()
     }
 
 }

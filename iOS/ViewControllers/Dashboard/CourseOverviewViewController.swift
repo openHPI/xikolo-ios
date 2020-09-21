@@ -142,8 +142,12 @@ class CourseOverviewViewController: UIViewController {
     }
 
     @objc private func coreDataChange(notification: Notification) {
-        guard notification.includesChanges(for: Course.self) else { return }
-        self.refresh()
+        let courseChanged = notification.includesChanges(for: Course.self)
+        let enrollmentRefreshed = notification.includesChanges(for: Enrollment.self, key: .refreshed)
+
+        if courseChanged || enrollmentRefreshed {
+            self.refresh()
+        }
     }
 
 }

@@ -5,7 +5,6 @@
 
 import BrightFutures
 import Common
-import CoreData
 import Foundation
 import UIKit
 
@@ -104,9 +103,8 @@ class DownloadedContentListViewController: UITableViewController {
     }
 
     @objc private func coreDataChange(notification: Notification) {
-        let keys = [NSDeletedObjectsKey, NSRefreshedObjectsKey, NSUpdatedObjectsKey]
-        let containsVideoDeletion = notification.includesChanges(for: Video.self, keys: keys)
-        let containsDocumentDeletion = notification.includesChanges(for: DocumentLocalization.self, keys: keys)
+        let containsVideoDeletion = notification.includesChanges(for: Video.self, keys: [.deleted, .refreshed])
+        let containsDocumentDeletion = notification.includesChanges(for: DocumentLocalization.self, keys: [.deleted, .refreshed])
         if containsVideoDeletion || containsDocumentDeletion {
             self.refresh()
         }

@@ -19,6 +19,7 @@ protocol CourseAreaScrollDelegate: AnyObject {
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
+    func scrollToTop()
 
 }
 

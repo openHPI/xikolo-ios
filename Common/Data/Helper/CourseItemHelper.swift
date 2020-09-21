@@ -4,6 +4,7 @@
 //
 
 import BrightFutures
+import CoreData
 import Foundation
 import Stockpile
 
@@ -54,6 +55,8 @@ public enum CourseItemHelper {
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
             guard let courseItem = context.existingTypedObject(with: item.objectID) as? CourseItem else {
                 promise.failure(.missingResource(ofType: CourseItem.self))
                 return

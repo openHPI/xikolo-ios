@@ -132,9 +132,10 @@ class CourseDateOverviewViewController: UIViewController {
 
     @objc private func coreDataChange(notification: Notification) {
         let courseDatesChanged = notification.includesChanges(for: CourseDate.self)
-        let courseRefreshed = notification.includesChanges(for: Course.self, keys: [NSRefreshedObjectsKey])
+        let courseRefreshed = notification.includesChanges(for: Course.self, key: .refreshed)
+        let enrollmentRefreshed = notification.includesChanges(for: Enrollment.self, key: .refreshed)
 
-        if courseDatesChanged || courseRefreshed {
+        if courseDatesChanged || courseRefreshed || enrollmentRefreshed {
             self.loadData()
         }
     }

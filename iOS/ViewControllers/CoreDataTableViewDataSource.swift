@@ -62,6 +62,10 @@ class CoreDataTableViewDataSourceWrapper<Object: NSFetchRequestResult>: NSObject
         return self.fetchedResultsController.object(at: indexPath)
     }
 
+    func indexPath(for object: Object) -> IndexPath? {
+        return self.fetchedResultsController.indexPath(forObject: object)
+    }
+
 }
 
 enum CoreDataTableViewDataSource {
@@ -189,6 +193,10 @@ class CoreDataTableLegacyViewDataSource<Delegate: CoreDataTableViewDataSourceDel
 
     func object(at indexPath: IndexPath) -> Object {
         return self.fetchedResultsController.object(at: indexPath)
+    }
+
+    func indexPath(forObject object: Object) -> IndexPath? {
+        return self.fetchedResultsController.indexPath(forObject: object)
     }
 
     // MARK: NSFetchedResultsControllerDelegate

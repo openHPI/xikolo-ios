@@ -258,7 +258,7 @@ class VideoViewController: UIViewController {
         self.videoActionsButton.isEnabled = isVideoActionsButtonEnabled
         self.videoActionsButton.tintColor = isVideoActionsButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
         self.videoActionsButton.removeAllTargetsAndGestures()
-        self.videoActionsButton.add(menuActions: [[video.streamDownloadAction].compactMap{ $0 }], on: self)
+        self.videoActionsButton.add(menuActions: [[video.streamDownloadAction].compactMap { $0 }], on: self)
 
         // show slides button
         self.slidesView.isHidden = (video.slidesURL == nil)
@@ -275,7 +275,7 @@ class VideoViewController: UIViewController {
         let openSlidesActionTitle = NSLocalizedString("course-item.slides-alert.open-action.title", comment: "title to cancel alert")
         let openSlidesAction = Action(title: openSlidesActionTitle, image: Action.Image.open) { self.openSlides() }
         self.slidesActionsButton.removeAllTargetsAndGestures()
-        self.slidesActionsButton.add(menuActions: [[openSlidesAction, video.slidesDownloadAction].compactMap{ $0 }], on: self)
+        self.slidesActionsButton.add(menuActions: [[openSlidesAction, video.slidesDownloadAction].compactMap { $0 }], on: self)
 
         // show description
         self.descriptionView.setMarkdownWithImages(from: video.summary)
@@ -315,7 +315,7 @@ class VideoViewController: UIViewController {
                 self.videoDownloadedIcon.isHidden = !(downloadState == .downloaded)
 
                 self.videoActionsButton.removeAllTargetsAndGestures()
-                self.videoActionsButton.add(menuActions: [[video.streamDownloadAction].compactMap{ $0 }], on: self)
+                self.videoActionsButton.add(menuActions: [[video.streamDownloadAction].compactMap { $0 }], on: self)
             }
         } else if downloadType == SlidesPersistenceManager.Configuration.downloadType {
             DispatchQueue.main.async {
@@ -329,7 +329,7 @@ class VideoViewController: UIViewController {
                 let openSlidesActionTitle = NSLocalizedString("course-item.slides-alert.open-action.title", comment: "title to cancel alert")
                 let openSlidesAction = Action(title: openSlidesActionTitle, image: Action.Image.open) { self.openSlides() }
                 self.slidesActionsButton.removeAllTargetsAndGestures()
-                self.slidesActionsButton.add(menuActions: [[openSlidesAction, self.video?.slidesDownloadAction].compactMap{ $0 }], on: self)
+                self.slidesActionsButton.add(menuActions: [[openSlidesAction, self.video?.slidesDownloadAction].compactMap { $0 }], on: self)
             }
         }
     }

@@ -54,8 +54,12 @@ class CourseItemHeader: UITableViewHeaderFooterView {
                 completion()
             }
         }
+
         let actions = { self.section?.actions ?? [] }
-        let deferredMenuActionsConfiguration = DeferredMenuActionConfiguration(loadingMessage: spinnerTitle, isLoadingRequired: isLoadingRequired, load: load, actions: actions)
+        let deferredMenuActionsConfiguration = DeferredMenuActionConfiguration(loadingMessage: spinnerTitle,
+                                                                               isLoadingRequired: isLoadingRequired,
+                                                                               load: load,
+                                                                               actions: actions)
 
         self.actionsButton.add(deferredMenuActions: deferredMenuActionsConfiguration, menuTitle: self.section?.title, on: self.delegate)
     }

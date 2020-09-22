@@ -53,11 +53,8 @@ class CourseViewController: UIViewController {
     }
 
     private lazy var closeButton: UIBarButtonItem = {
-        let item = UIBarButtonItem.circularItem(
-            with: R.image.navigationBarIcons.xmark(),
-            target: self,
-            primaryAction: Action(title: "", image: nil, handler: { [weak self] in self?.closeCourse() })
-        )
+        let action = Action(title: "", image: nil) { [weak self] in self?.closeCourse() }
+        let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.xmark(), target: self, primaryAction: action)
 
         item.accessibilityLabel = NSLocalizedString(
             "accessibility-label.course.navigation-bar.item.close",

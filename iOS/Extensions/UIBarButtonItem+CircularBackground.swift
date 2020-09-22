@@ -42,7 +42,7 @@ struct DeferredMenuActionConfiguration {
 
     let loadingMessage: String?
     let isLoadingRequired: () -> Bool
-    let load: (_ completion: @escaping () -> ()) -> Void
+    let load: (_ completion: @escaping () -> Void) -> Void
     let actions: () -> [Action]
 
 }
@@ -64,6 +64,7 @@ extension UIButton {
 
     }
 
+    // swiftlint:disable:next cyclomatic_complexity function_body_length
     func add(
         primaryAction: Action? = nil,
         menuActions: [[Action]]? = nil,
@@ -88,7 +89,7 @@ extension UIButton {
 
         if let menuActions = menuActions {
             if #available(iOS 14, *) {
-                let submenus = menuActions.filter({ !$0.isEmpty }).map { subMenuActions in
+                let submenus = menuActions.filter { !$0.isEmpty }.map { subMenuActions in
                     return UIMenu(title: "", options: .displayInline, children: subMenuActions.asActions())
                 }
 

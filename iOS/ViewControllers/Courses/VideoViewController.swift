@@ -254,9 +254,11 @@ class VideoViewController: UIViewController {
         self.videoProgressView.updateProgress(streamDownloadProgress, animated: false)
         self.videoDownloadedIcon.isHidden = streamDownloadState != .downloaded
 
-        let isVideoActionsButtonEnabled = ReachabilityHelper.hasConnection || video.streamAlertAction != nil
+        let isVideoActionsButtonEnabled = ReachabilityHelper.hasConnection || video.streamDownloadAction != nil
         self.videoActionsButton.isEnabled = isVideoActionsButtonEnabled
         self.videoActionsButton.tintColor = isVideoActionsButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
+        self.videoActionsButton.removeAllTargetsAndGestures()
+        self.videoActionsButton.add(menuActions: [[video.streamDownloadAction].compactMap { $0 }], on: self)
 
         // show slides button
         self.slidesView.isHidden = (video.slidesURL == nil)
@@ -266,9 +268,14 @@ class VideoViewController: UIViewController {
         self.slidesProgressView.updateProgress(slidesDownloadProgress, animated: false)
         self.slidesDownloadedIcon.isHidden = !(slidesDownloadState == .downloaded)
 
-        let isSlidesActionButtonEnabled = ReachabilityHelper.hasConnection || video.slidesAlertAction != nil
+        let isSlidesActionButtonEnabled = ReachabilityHelper.hasConnection || video.slidesDownloadAction != nil
         self.slidesActionsButton.isEnabled = isSlidesActionButtonEnabled
         self.slidesActionsButton.tintColor = isSlidesActionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
+
+        let openSlidesActionTitle = NSLocalizedString("course-item.slides-alert.open-action.title", comment: "title to cancel alert")
+        let openSlidesAction = Action(title: openSlidesActionTitle, image: Action.Image.open) { self.openSlides() }
+        self.slidesActionsButton.removeAllTargetsAndGestures()
+        self.slidesActionsButton.add(menuActions: [[openSlidesAction, video.slidesDownloadAction].compactMap { $0 }], on: self)
 
         // show description
         self.descriptionView.setMarkdownWithImages(from: video.summary)
@@ -286,42 +293,6 @@ class VideoViewController: UIViewController {
     @IBAction private func openSlides() {
         self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
         self.playerViewController?.automaticallyStartPictureInPictureModeIfPossible()
-    }
-
-    @IBAction private func showVideoActionMenu(_ sender: UIButton) {
-        guard let streamAlertAction = self.video?.streamAlertAction else { return }
-
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.sourceView = sender
-        alert.popoverPresentationController?.sourceRect = sender.bounds.insetBy(dx: -4, dy: -4)
-        alert.popoverPresentationController?.permittedArrowDirections = [.left, .right]
-
-        alert.addAction(streamAlertAction)
-        alert.addCancelAction()
-
-        self.present(alert, animated: trueUnlessReduceMotionEnabled)
-    }
-
-    @IBAction private func showSlidesActionMenu(_ sender: UIButton) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.sourceView = sender
-        alert.popoverPresentationController?.sourceRect = sender.bounds.insetBy(dx: -4, dy: -4)
-        alert.popoverPresentationController?.permittedArrowDirections = [.left, .right]
-
-        let openSlidesActionTitle = NSLocalizedString("course-item.slides-alert.open-action.title", comment: "title to cancel alert")
-        let openSlides = UIAlertAction(title: openSlidesActionTitle, style: .default) { _ in
-            self.openSlides()
-        }
-
-        alert.addAction(openSlides)
-
-        if let slidesAlertAction = self.video?.slidesAlertAction {
-            alert.addAction(slidesAlertAction)
-        }
-
-        alert.addCancelAction()
-
-        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
     @objc private func handleVideoPlaybackStartedNotification(_ notification: Notification) {
@@ -342,15 +313,23 @@ class VideoViewController: UIViewController {
                 self.videoProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
                 self.videoProgressView.updateProgress(StreamPersistenceManager.shared.downloadProgress(for: video))
                 self.videoDownloadedIcon.isHidden = !(downloadState == .downloaded)
+
+                self.videoActionsButton.removeAllTargetsAndGestures()
+                self.videoActionsButton.add(menuActions: [[video.streamDownloadAction].compactMap { $0 }], on: self)
             }
         } else if downloadType == SlidesPersistenceManager.Configuration.downloadType {
             DispatchQueue.main.async {
                 self.slidesProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
                 self.slidesProgressView.updateProgress(SlidesPersistenceManager.shared.downloadProgress(for: video))
                 self.slidesDownloadedIcon.isHidden = !(downloadState == .downloaded)
-                let actionButtonEnabled = ReachabilityHelper.hasConnection || self.video?.slidesAlertAction != nil
+                let actionButtonEnabled = ReachabilityHelper.hasConnection || self.video?.slidesDownloadAction != nil
                 self.slidesActionsButton.isEnabled = actionButtonEnabled
-                self.slidesActionsButton.tintColor = actionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.systemGray4
+                self.slidesActionsButton.tintColor = actionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
+
+                let openSlidesActionTitle = NSLocalizedString("course-item.slides-alert.open-action.title", comment: "title to cancel alert")
+                let openSlidesAction = Action(title: openSlidesActionTitle, image: Action.Image.open) { self.openSlides() }
+                self.slidesActionsButton.removeAllTargetsAndGestures()
+                self.slidesActionsButton.add(menuActions: [[openSlidesAction, self.video?.slidesDownloadAction].compactMap { $0 }], on: self)
             }
         }
     }

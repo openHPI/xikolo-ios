@@ -18,13 +18,23 @@ class AnnouncementListViewController: CustomWidthTableViewController {
     var course: Course?
 
     private lazy var actionButton: UIBarButtonItem = {
-        let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(),
-                                                target: self,
-                                                action: #selector(showActionMenu))
+        let markAllAsReadActionTitle = NSLocalizedString("announcement.alert.mark all as read",
+                                                         comment: "alert action title to mark all announcements as read")
+        let markAllAsReadAction = Action(title: markAllAsReadActionTitle, image: Action.Image.markAsRead) {
+            AnnouncementHelper.markAllAsVisited()
+        }
+
+        let item = UIBarButtonItem.circularItem(
+            with: R.image.navigationBarIcons.dots(),
+            target: self,
+            menuActions: [[markAllAsReadAction]]
+        )
+
         item.accessibilityLabel = NSLocalizedString(
             "accessibility-label.announcements.navigation-bar.item.actions",
             comment: "Accessibility label for actions button in navigation bar of the course card view"
         )
+
         return item
     }()
 
@@ -103,22 +113,6 @@ class AnnouncementListViewController: CustomWidthTableViewController {
 
     @objc private func updateUIAfterLoginStateChanged() {
         self.navigationItem.rightBarButtonItem = UserProfileHelper.shared.isLoggedIn ? self.actionButton : nil
-    }
-
-    @IBAction private func showActionMenu() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.barButtonItem = self.actionButton
-
-        let markAllAsReadActionTitle = NSLocalizedString("announcement.alert.mark all as read",
-                                                         comment: "alert action title to mark all announcements as read")
-        let markAllAsReadAction = UIAlertAction(title: markAllAsReadActionTitle, style: .default) { _ in
-            AnnouncementHelper.markAllAsVisited()
-        }
-
-        alert.addAction(markAllAsReadAction)
-        alert.addCancelAction()
-
-        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
 }

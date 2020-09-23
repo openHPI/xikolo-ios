@@ -71,9 +71,6 @@
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
-                                                    <connections>
-                                                        <action selector="tappedActionsButton" destination="D9x-Qe-TlQ" eventType="touchUpInside" id="RXU-J7-3mW"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>

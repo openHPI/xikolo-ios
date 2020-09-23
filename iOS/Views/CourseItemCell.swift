@@ -19,7 +19,7 @@ class CourseItemCell: UITableViewCell {
     @IBOutlet private weak var iconWidthConstraint: NSLayoutConstraint!
 
     var item: CourseItem?
-    weak var delegate: (CourseItemCellDelegate & UserActionsDelegate)?
+    weak var delegate: (CourseItemCellDelegate & UIViewController)?
 
     var previewView: UIView? {
         return self
@@ -75,8 +75,10 @@ class CourseItemCell: UITableViewCell {
         let isAvailable = !(self.delegate?.isInOfflineMode ?? true) || video.isAvailableOffline
         self.actionsButton.isEnabled = isAvailable
         self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.disabled
-
         self.actionsButton.alpha = 1
+
+        self.actionsButton.removeAllTargetsAndGestures()
+        self.actionsButton.add(menuActions: [video.actions], menuTitle: self.item?.title, on: self.delegate)
     }
 
     private func configureDetailView(for courseItem: CourseItem) {
@@ -97,11 +99,6 @@ class CourseItemCell: UITableViewCell {
         newStackViewContentViews.forEach { view in
             self.detailStackView.addArrangedSubview(view)
         }
-    }
-
-    @IBAction private func tappedActionsButton() {
-        guard let video = self.item?.content as? Video else { return }
-        self.delegate?.showAlert(with: video.actions.asAlertActions(), title: self.item?.title, on: self.actionsButton)
     }
 
     @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {

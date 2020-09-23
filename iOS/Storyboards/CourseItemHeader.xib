@@ -28,9 +28,6 @@
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="dHh-TF-eov"/>
                             </constraints>
                             <state key="normal" image="dots"/>
-                            <connections>
-                                <action selector="tappedActionsButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="feT-VR-8aw"/>
-                            </connections>
                         </button>
                     </subviews>
                     <constraints>

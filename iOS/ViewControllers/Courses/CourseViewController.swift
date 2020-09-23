@@ -53,24 +53,35 @@ class CourseViewController: UIViewController {
     }
 
     private lazy var closeButton: UIBarButtonItem = {
-        let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.xmark(),
-                                                target: self,
-                                                action: #selector(closeCourse))
+        let action = Action(title: "", image: nil) { [weak self] in self?.closeCourse() }
+        let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.xmark(), target: self, primaryAction: action)
+
         item.accessibilityLabel = NSLocalizedString(
             "accessibility-label.course.navigation-bar.item.close",
             comment: "Accessibility label for close button in navigation bar of the course card view"
         )
+
         return item
     }()
 
     private lazy var actionMenuButton: UIBarButtonItem = {
-        let item = UIBarButtonItem.circularItem(with: R.image.navigationBarIcons.dots(),
-                                                target: self,
-                                                action: #selector(showActionMenu))
+        let menuActions = [
+            self.course?.shareAction { [weak self] in self?.shareCourse() },
+            self.course?.showCourseDatesAction { [weak self] in self?.showCourseDates() },
+            self.course?.openHelpdesk { [weak self] in self?.openHelpdesk() },
+        ].compactMap { $0 }
+
+        let item = UIBarButtonItem.circularItem(
+            with: R.image.navigationBarIcons.dots(),
+            target: self,
+            menuActions: [menuActions]
+        )
+
         item.accessibilityLabel = NSLocalizedString(
             "accessibility-label.course.navigation-bar.item.actions",
             comment: "Accessibility label for actions button in navigation bar of the course card view"
         )
+
         return item
     }()
 
@@ -313,25 +324,6 @@ class CourseViewController: UIViewController {
     @objc private func closeCourse() {
         let courseNavigationController = self.navigationController as? CourseNavigationController
         courseNavigationController?.closeCourse()
-    }
-
-    @IBAction private func showActionMenu() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.barButtonItem = self.actionMenuButton
-
-        let userActions = [
-            self.course?.showCourseDatesAction { [weak self] in self?.showCourseDates() },
-            self.course?.shareAction { [weak self] in self?.shareCourse() },
-            self.course?.openHelpdesk { [weak self] in self?.openHelpdesk() },
-        ].compactMap { $0 }
-
-        userActions.asAlertActions().forEach { action in
-            alert.addAction(action)
-        }
-
-        alert.addCancelAction()
-
-        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
     private func showCourseDates() {

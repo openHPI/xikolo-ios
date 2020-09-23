@@ -11,38 +11,67 @@ class CourseItemHeader: UITableViewHeaderFooterView {
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var actionsButton: UIButton!
 
-    private var section: CourseSection?
-    weak var delegate: UserActionsDelegate?
+    private weak var section: CourseSection?
+    private weak var delegate: UIViewController?
+    private var inOfflineMode: (() -> Bool)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.titleView.textColor = ColorCompatibility.secondaryLabel
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
+                                               name: DownloadState.didChangeNotification,
+                                               object: nil)
+
         self.actionsButton.addDefaultPointerInteraction()
     }
 
-    func configure(for section: CourseSection, inOfflineMode: Bool) {
+    func configure(for section: CourseSection, delegate: UIViewController, inOfflineMode: @escaping () -> Bool) {
         self.section = section
-        self.titleView.text = section.title
-        self.actionsButton.isHidden = !section.hasActions
-        self.actionsButton.isEnabled = !inOfflineMode || !section.actions.isEmpty
-        self.actionsButton.tintColor = !inOfflineMode || !section.actions.isEmpty ? Brand.default.colors.primary : ColorCompatibility.secondaryLabel
+        self.delegate = delegate
+        self.inOfflineMode = inOfflineMode
+        self.updateContent()
     }
 
-    @IBAction private func tappedActionsButton(_ sender: UIButton) {
-        guard let section = self.section else { return }
+    private func updateContent() {
+        let isInOfflineMode = self.inOfflineMode?() ?? false
+        let hasContentToShow = !isInOfflineMode || !(self.section?.actions.isEmpty ?? false)
+        self.titleView.text = self.section?.title
+        self.actionsButton.isHidden = !(self.section?.hasActions ?? false)
+        self.actionsButton.isEnabled = hasContentToShow
+        self.actionsButton.tintColor = hasContentToShow ? Brand.default.colors.primary : ColorCompatibility.secondaryLabel
 
-        if section.allVideosPreloaded {
-            self.delegate?.showAlert(with: section.actions.asAlertActions(), title: section.title, on: self.actionsButton)
-        } else {
-            let spinnerTitle = NSLocalizedString("course-section.loading-spinner.title",
-                                                 comment: "title for spinner when loading section content")
-            self.delegate?.showAlertSpinner(title: spinnerTitle) {
-                return CourseItemHelper.syncCourseItems(forSection: section, withContentType: Video.contentType).asVoid()
-            }.onSuccess { _ in
-                self.delegate?.showAlert(with: section.actions.asAlertActions(), title: section.title, on: self.actionsButton)
+        let spinnerTitle = NSLocalizedString("course-section.loading-spinner.title",
+                                             comment: "title for spinner when loading section content")
+        let isLoadingRequired = { !(self.section?.allVideosPreloaded ?? false) }
+        let load: (@escaping () -> Void) -> Void = { completion in
+            if let section = self.section {
+                CourseItemHelper.syncCourseItems(forSection: section, withContentType: Video.contentType).onComplete { _ in
+                    completion()
+                }
+            } else {
+                completion()
             }
         }
 
+        let actions = { self.section?.actions ?? [] }
+        let deferredMenuActionsConfiguration = DeferredMenuActionConfiguration(loadingMessage: spinnerTitle,
+                                                                               isLoadingRequired: isLoadingRequired,
+                                                                               load: load,
+                                                                               actions: actions)
+
+        self.actionsButton.add(deferredMenuActions: deferredMenuActionsConfiguration, menuTitle: self.section?.title, on: self.delegate)
+    }
+
+    @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
+        guard let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+              let videoIDs = self.section?.items.compactMap({ $0.content as? Video }).map(\.id),
+              videoIDs.contains(videoId) else { return }
+
+        DispatchQueue.main.async {
+            self.updateContent()
+        }
     }
 
 }

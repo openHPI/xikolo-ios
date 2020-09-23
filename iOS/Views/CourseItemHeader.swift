@@ -66,7 +66,6 @@ class CourseItemHeader: UITableViewHeaderFooterView {
 
     @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
         guard let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
-              let section = self.section,
               let videoIDs = self.section?.items.compactMap({ $0.content as? Video }).map(\.id),
               videoIDs.contains(videoId) else { return }
 

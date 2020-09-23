@@ -62,8 +62,13 @@ class CustomWidthNavigationController: UINavigationController {
         if #available(iOS 11, *) {
             let customInsets = NSDirectionalEdgeInsets.customInsets(for: self)
             self.view.directionalLayoutMargins = customInsets
-            self.navigationBar.directionalLayoutMargins.leading = customInsets.leading
-            self.navigationBar.directionalLayoutMargins.trailing = customInsets.trailing
+            self.navigationBar.preservesSuperviewLayoutMargins = true
+
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                self.navigationBar.directionalLayoutMargins.leading = customInsets.leading
+                self.navigationBar.directionalLayoutMargins.trailing = customInsets.trailing
+            }
+
             self.navigationBar.layoutMarginsDidChange()
         }
     }

@@ -227,6 +227,17 @@ class AppNavigator {
             return
         }
 
+        if #available(iOS 13, *) {
+            let alert = UIAlertController(title: "How do you want to open the course?", message: nil, preferredStyle: .alert)
+            let openInCurrentWindowAction = UIAlertAction(title: "open in this window", style: .default, handler: nil)
+            let openInAnotherWindowAction = UIAlertAction(title: "open in another window", style: .default, handler: nil)
+            alert.addCancelAction()
+            alert.addAction(openInCurrentWindowAction)
+            alert.addAction(openInAnotherWindowAction)
+            alert.popoverPresentationController?.sourceView = self.tabBarController?.view
+            tabBarController?.present(alert, animated: trueUnlessReduceMotionEnabled)
+        }
+
         self.currentCourseNavigationController?.closeCourse()
         self.currentCourseNavigationController = nil
 

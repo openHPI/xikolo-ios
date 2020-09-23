@@ -66,11 +66,11 @@ class DocumentLocalizationCell: UITableViewCell {
 
     @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
         guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == DocumentsPersistenceManager.Configuration.downloadType,
-            let documentLocalizationId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let downloadStateRawValue = notification.userInfo?[DownloadNotificationKey.downloadState] as? String,
-            let downloadState = DownloadState(rawValue: downloadStateRawValue),
-            let documentLocalization = self.documentLocalization,
-            documentLocalization.id == documentLocalizationId else { return }
+              let documentLocalizationId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+              let downloadStateRawValue = notification.userInfo?[DownloadNotificationKey.downloadState] as? String,
+              let downloadState = DownloadState(rawValue: downloadStateRawValue),
+              let documentLocalization = self.documentLocalization,
+              documentLocalization.id == documentLocalizationId else { return }
 
         DispatchQueue.main.async {
             self.progressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
@@ -81,10 +81,10 @@ class DocumentLocalizationCell: UITableViewCell {
 
     @objc func handleAssetDownloadProgressNotification(_ notification: Notification) {
         guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == DocumentsPersistenceManager.Configuration.downloadType,
-            let documentLocalizationId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
-            let documentLocalization = self.documentLocalization,
-            documentLocalization.id == documentLocalizationId else { return }
+              let documentLocalizationId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+              let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
+              let documentLocalization = self.documentLocalization,
+              documentLocalization.id == documentLocalizationId else { return }
 
         DispatchQueue.main.async {
             self.progressView.isHidden = false

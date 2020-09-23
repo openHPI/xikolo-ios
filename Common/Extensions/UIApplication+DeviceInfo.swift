@@ -16,13 +16,13 @@ extension UIApplication {
 
     public static let device: String = {
         #if targetEnvironment(simulator)
-            return "Simulator"
+        return "Simulator"
         #else
-            var sysinfo = utsname()
-            uname(&sysinfo)
-            return withUnsafeMutablePointer(to: &sysinfo.machine) { ptr in
-                String(cString: UnsafeRawPointer(ptr).assumingMemoryBound(to: CChar.self))
-            }
+        var sysinfo = utsname()
+        uname(&sysinfo)
+        return withUnsafeMutablePointer(to: &sysinfo.machine) { ptr in
+            String(cString: UnsafeRawPointer(ptr).assumingMemoryBound(to: CChar.self))
+        }
         #endif
     }()
 

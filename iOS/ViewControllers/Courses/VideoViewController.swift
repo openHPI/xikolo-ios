@@ -302,11 +302,11 @@ class VideoViewController: UIViewController {
 
     @objc private func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
         guard let downloadType = notification.userInfo?[DownloadNotificationKey.downloadType] as? String,
-            let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let downloadStateRawValue = notification.userInfo?[DownloadNotificationKey.downloadState] as? String,
-            let downloadState = DownloadState(rawValue: downloadStateRawValue),
-            let video = self.video,
-            video.id == videoId else { return }
+              let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+              let downloadStateRawValue = notification.userInfo?[DownloadNotificationKey.downloadState] as? String,
+              let downloadState = DownloadState(rawValue: downloadStateRawValue),
+              let video = self.video,
+              video.id == videoId else { return }
 
         if downloadType == StreamPersistenceManager.Configuration.downloadType {
             DispatchQueue.main.async {
@@ -336,10 +336,10 @@ class VideoViewController: UIViewController {
 
     @objc private func handleAssetDownloadProgressNotification(_ notification: Notification) {
         guard let downloadType = notification.userInfo?[DownloadNotificationKey.downloadType] as? String,
-            let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
-            let video = self.video,
-            video.id == videoId else { return }
+              let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+              let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
+              let video = self.video,
+              video.id == videoId else { return }
 
         if downloadType == StreamPersistenceManager.Configuration.downloadType {
             DispatchQueue.main.async {

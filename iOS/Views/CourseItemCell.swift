@@ -103,9 +103,9 @@ class CourseItemCell: UITableViewCell {
 
     @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
         guard let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let item = self.item,
-            let video = item.content as? Video,
-            video.id == videoId else { return }
+              let item = self.item,
+              let video = item.content as? Video,
+              video.id == videoId else { return }
 
         DispatchQueue.main.async {
             self.configure(for: item)

@@ -273,7 +273,7 @@ class VideoViewController: UIViewController {
         self.slidesActionsButton.tintColor = isSlidesActionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
         let openSlidesActionTitle = NSLocalizedString("course-item.slides-alert.open-action.title", comment: "title to cancel alert")
-        let openSlidesAction = Action(title: openSlidesActionTitle, image: Action.Image.open) { self.openSlides() }
+        let openSlidesAction = Action(title: openSlidesActionTitle, image: Action.Image.open) { [weak self] in self?.openSlides() }
         self.slidesActionsButton.removeAllTargetsAndGestures()
         self.slidesActionsButton.add(menuActions: [[openSlidesAction, video.slidesDownloadAction].compactMap { $0 }], on: self)
 
@@ -327,7 +327,7 @@ class VideoViewController: UIViewController {
                 self.slidesActionsButton.tintColor = actionButtonEnabled ? Brand.default.colors.primary : ColorCompatibility.disabled
 
                 let openSlidesActionTitle = NSLocalizedString("course-item.slides-alert.open-action.title", comment: "title to cancel alert")
-                let openSlidesAction = Action(title: openSlidesActionTitle, image: Action.Image.open) { self.openSlides() }
+                let openSlidesAction = Action(title: openSlidesActionTitle, image: Action.Image.open) { [weak self] in self?.openSlides() }
                 self.slidesActionsButton.removeAllTargetsAndGestures()
                 self.slidesActionsButton.add(menuActions: [[openSlidesAction, self.video?.slidesDownloadAction].compactMap { $0 }], on: self)
             }

@@ -64,6 +64,30 @@ struct Action {
                 return nil
             }
         }
+
+        static var helpdesk: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "questionmark.circle")
+            } else {
+                return nil
+            }
+        }
+
+        static var markAsRead: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "checkmark.circle")
+            } else {
+                return nil
+            }
+        }
+
+        static var open: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "arrow.right.circle")
+            } else {
+                return nil
+            }
+        }
     }
 
 }

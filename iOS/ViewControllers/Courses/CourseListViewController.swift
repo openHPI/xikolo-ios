@@ -16,7 +16,6 @@ class CourseListViewController: CustomWidthCollectionViewController {
 
     private var dataSource: CoreDataCollectionViewDataSource<CourseListViewController>!
     private var relationshipKeyPathsObserver: RelationshipKeyPathsObserver<Course>?
-    private var channelObserver: ManagedObjectObserver?
 
     @available(iOS, obsoleted: 11.0)
     private var searchController: UISearchController?
@@ -38,20 +37,6 @@ class CourseListViewController: CustomWidthCollectionViewController {
         self.collectionView?.register(UINib(resource: R.nib.courseHeaderView),
                                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
-
-        if case let .coursesInChannel(channel) = self.configuration {
-                self.collectionView?.register(UINib(resource: R.nib.channelHeaderView),
-                                              forSupplementaryViewOfKind: R.nib.channelHeaderView.name,
-                                              withReuseIdentifier: R.nib.channelHeaderView.name)
-                self.channelObserver = ManagedObjectObserver(object: channel) { [weak self] type in
-                    guard type == .update else { return }
-                    DispatchQueue.main.async {
-                        if (self?.collectionView.numberOfSections ?? 0) > 0 {
-                            self?.collectionView?.reloadSections(IndexSet(0..<1))
-                        }
-                    }
-                }
-            }
 
         if let courseListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
             courseListLayout.delegate = self
@@ -183,6 +168,14 @@ class CourseListViewController: CustomWidthCollectionViewController {
         self.appNavigator?.show(course: course, userInitialized: false)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if #available(iOS 11, *) {
+            // Required for showing the search bar on the initial load
+            self.navigationController?.navigationBar.sizeToFit()
+        }
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -201,6 +194,7 @@ class CourseListViewController: CustomWidthCollectionViewController {
 
         // swiftlint:disable:next trailing_closure
         coordinator.animate(alongsideTransition: { _  in
+            self.navigationController?.navigationBar.sizeToFit()
             self.collectionViewLayout.invalidateLayout()
         })
     }

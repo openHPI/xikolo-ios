@@ -149,9 +149,9 @@ class DetailedDataItemView: UIStackView {
 
     @objc func handleAssetDownloadProgressNotification(_ notification: Notification) {
         guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == self.downloadType,
-            let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
-            self.videoId == videoId else { return }
+              let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+              let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
+              self.videoId == videoId else { return }
 
         DispatchQueue.main.async {
             self.progressView.updateProgress(progress)

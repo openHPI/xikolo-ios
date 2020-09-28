@@ -8,7 +8,7 @@ import UIKit
 
 class DocumentLocalizationCell: UITableViewCell {
 
-    typealias Delegate = DocumentListViewController & UserActionsDelegate
+    typealias Delegate = DocumentListViewController
 
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var actionsButton: UIButton!
@@ -51,27 +51,26 @@ class DocumentLocalizationCell: UITableViewCell {
         self.actionsButton.isEnabled = isAvailable
         self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : ColorCompatibility.disabled
 
+        self.actionsButton.add(
+            menuActions: [documentLocalization.actions],
+            menuTitle: documentLocalization.document.title,
+            menuMessage: documentLocalization.languageCode,
+            on: self.delegate
+        )
+
         let downloadState = DocumentsPersistenceManager.shared.downloadState(for: documentLocalization)
         self.progressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
         self.progressView.updateProgress(DocumentsPersistenceManager.shared.downloadProgress(for: documentLocalization))
         self.downloadedIcon.isHidden = downloadState != .downloaded
     }
 
-    @IBAction private func tappedActionsButton() {
-        guard let documentLocalization = self.documentLocalization else { return }
-        self.delegate?.showAlert(with: documentLocalization.actions.asAlertActions(),
-                                 title: documentLocalization.document.title,
-                                 message: documentLocalization.languageCode,
-                                 on: self.actionsButton)
-    }
-
     @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
         guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == DocumentsPersistenceManager.Configuration.downloadType,
-            let documentLocalizationId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let downloadStateRawValue = notification.userInfo?[DownloadNotificationKey.downloadState] as? String,
-            let downloadState = DownloadState(rawValue: downloadStateRawValue),
-            let documentLocalization = self.documentLocalization,
-            documentLocalization.id == documentLocalizationId else { return }
+              let documentLocalizationId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+              let downloadStateRawValue = notification.userInfo?[DownloadNotificationKey.downloadState] as? String,
+              let downloadState = DownloadState(rawValue: downloadStateRawValue),
+              let documentLocalization = self.documentLocalization,
+              documentLocalization.id == documentLocalizationId else { return }
 
         DispatchQueue.main.async {
             self.progressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
@@ -82,10 +81,10 @@ class DocumentLocalizationCell: UITableViewCell {
 
     @objc func handleAssetDownloadProgressNotification(_ notification: Notification) {
         guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == DocumentsPersistenceManager.Configuration.downloadType,
-            let documentLocalizationId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
-            let documentLocalization = self.documentLocalization,
-            documentLocalization.id == documentLocalizationId else { return }
+              let documentLocalizationId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+              let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
+              let documentLocalization = self.documentLocalization,
+              documentLocalization.id == documentLocalizationId else { return }
 
         DispatchQueue.main.async {
             self.progressView.isHidden = false

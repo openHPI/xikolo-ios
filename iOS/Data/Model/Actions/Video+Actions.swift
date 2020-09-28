@@ -17,18 +17,10 @@ extension Video {
     }
 
     var actions: [Action] {
-        return [self.streamUserAction, self.slidesUserAction].compactMap { $0 } + self.combinedActions
+        return [self.streamDownloadAction, self.slidesDownloadAction].compactMap { $0 } + self.combinedActions
     }
 
-    var streamAlertAction: UIAlertAction? {
-        self.streamUserAction.map(UIAlertAction.init(action:))
-    }
-
-    var slidesAlertAction: UIAlertAction? {
-        return self.slidesUserAction.map(UIAlertAction.init(action:))
-    }
-
-    private var streamUserAction: Action? {
+    var streamDownloadAction: Action? {
         let isOffline = !ReachabilityHelper.hasConnection
         let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: self)
 
@@ -65,7 +57,7 @@ extension Video {
         return nil
     }
 
-    private var slidesUserAction: Action? {
+    var slidesDownloadAction: Action? {
         let isOffline = !ReachabilityHelper.hasConnection
         let slidesDownloadState = SlidesPersistenceManager.shared.downloadState(for: self)
 

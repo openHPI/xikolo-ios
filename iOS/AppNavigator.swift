@@ -35,7 +35,7 @@ class AppNavigator {
             return false
         }
 
-        let wasHandleByApplication = self.handle(url: url)
+        let wasHandleByApplication = self.handle(url: url, userInitialized: false)
 
         if !wasHandleByApplication {
             UIApplication.shared.open(url)
@@ -44,13 +44,13 @@ class AppNavigator {
         return wasHandleByApplication
     }
 
-    func handle(url: URL, on sourceViewController: UIViewController) -> Bool {
+    func handle(url: URL, on sourceViewController: UIViewController, userInitialized: Bool) -> Bool {
         guard let url = self.sanitizedURL(for: url) else {
             logger.error("URL in Markdown or Markdownparser is broken")
             return false
         }
 
-        if self.handle(url: url) {
+        if self.handle(url: url, userInitialized: true) {
             return true
         }
 
@@ -66,11 +66,11 @@ class AppNavigator {
         return true
     }
 
-    @discardableResult func handle(url: URL) -> Bool {
+    @discardableResult func handle(url: URL, userInitialized: Bool) -> Bool {
         if url.scheme == Bundle.main.urlScheme {
             return self.handle(urlSchemeURL: url)
         } else if url.host == Brand.default.host {
-            return self.handle(hostURL: url)
+            return self.handle(hostURL: url, userInitialized: userInitialized)
         } else {
             logger.debug("Can't open \(url) inside of the app because host or url scheme is wrong")
             return false
@@ -86,12 +86,12 @@ class AppNavigator {
         }
     }
 
-    private func handle(hostURL url: URL) -> Bool {
+    private func handle(hostURL url: URL, userInitialized: Bool) -> Bool {
         switch url.pathComponents[safe: 1] {
         case nil:
             return true // url to base page, simply open the app
         case "courses":
-            return self.handleCourseURL(url)
+            return self.handleCourseURL(url, userInitialized: userInitialized)
         case "dashboard":
             return self.showDashboard()
         default:
@@ -113,7 +113,7 @@ class AppNavigator {
         return url
     }
 
-    private func handleCourseURL(_ url: URL) -> Bool {
+    private func handleCourseURL(_ url: URL, userInitialized: Bool) -> Bool {
         guard let slugOrId = url.pathComponents[safe: 2] else {
             self.showCourseList()
             return true
@@ -125,7 +125,7 @@ class AppNavigator {
         CoreDataHelper.viewContext.performAndWait {
             switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
             case let .success(course):
-                canOpenInApp = self.handle(url: url, for: course)
+                canOpenInApp = self.handle(url: url, for: course, userInitialized: userInitialized)
             case let .failure(error):
                 logger.info("Could not find course in local database: \(error)")
             }
@@ -134,30 +134,30 @@ class AppNavigator {
         return canOpenInApp
     }
 
-    private func handle(url: URL, for course: Course) -> Bool {
+    private func handle(url: URL, for course: Course, userInitialized: Bool) -> Bool {
         let courseArea = url.pathComponents[safe: 3]
         switch courseArea {
         case nil:
-            self.show(course: course, with: .courseDetails)
+            self.show(course: course, with: .courseDetails, userInitialized: userInitialized)
             return true
         case "items":
             return self.handleCourseItemURL(url, for: course)
         case "pinboard":
-            self.show(course: course, with: .discussions)
+            self.show(course: course, with: .discussions, userInitialized: userInitialized)
             return true
         case "progress":
-            self.show(course: course, with: .progress)
+            self.show(course: course, with: .progress, userInitialized: userInitialized)
             return true
         case "announcements":
-            self.show(course: course, with: .announcements)
+            self.show(course: course, with: .announcements, userInitialized: userInitialized)
             return true
         case "recap":
             guard Brand.default.features.enableRecap else { return false }
-            self.show(course: course, with: .recap)
+            self.show(course: course, with: .recap, userInitialized: userInitialized)
             return true
         case "documents":
             guard Brand.default.features.enableDocuments else { return false }
-            self.show(course: course, with: .documents)
+            self.show(course: course, with: .documents, userInitialized: userInitialized)
             return true
         default:
             logger.info("Unable to open course area (\(courseArea ?? "")) for course (\(course.slug ?? "-")) inside the app")
@@ -177,7 +177,7 @@ class AppNavigator {
                 return false
             }
         } else {
-            self.show(course: course, with: .learnings)
+            self.show(course: course, with: .learnings, userInitialized: true)
             return true
         }
     }
@@ -186,7 +186,7 @@ class AppNavigator {
         guard let courseId = shortcutItem.userInfo?["courseID"] as? String else { return }
         let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: courseId)
         guard let course = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value else { return }
-        self.show(course: course)
+        self.show(course: course, userInitialized: false)
     }
 
     func showDashboard() -> Bool {
@@ -227,17 +227,6 @@ class AppNavigator {
             return
         }
 
-        if #available(iOS 13, *) {
-            let alert = UIAlertController(title: "How do you want to open the course?", message: nil, preferredStyle: .alert)
-            let openInCurrentWindowAction = UIAlertAction(title: "open in this window", style: .default, handler: nil)
-            let openInAnotherWindowAction = UIAlertAction(title: "open in another window", style: .default, handler: nil)
-            alert.addCancelAction()
-            alert.addAction(openInCurrentWindowAction)
-            alert.addAction(openInAnotherWindowAction)
-            alert.popoverPresentationController?.sourceView = self.tabBarController?.view
-            tabBarController?.present(alert, animated: trueUnlessReduceMotionEnabled)
-        }
-
         self.currentCourseNavigationController?.closeCourse()
         self.currentCourseNavigationController = nil
 
@@ -260,7 +249,17 @@ class AppNavigator {
         }
     }
 
-    func show(course: Course, with courseArea: CourseArea = .learnings) {
+    func myfunction(course: Course, courseArea: CourseArea) {
+        self.currentCourseNavigationController?.closeCourse()
+        self.currentCourseNavigationController = nil
+
+        let courseNavigationController = R.storyboard.course.instantiateInitialViewController().require()
+        let topViewController = courseNavigationController.topViewController.require(hint: "Top view controller required")
+        let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
+        courseViewController.course = course
+    }
+
+    func show(course: Course, with courseArea: CourseArea = .learnings, userInitialized: Bool) {
         let courseOpenAction: CourseOpenAction = { courseViewController in
             courseViewController.transitionIfPossible(to: courseArea)
         }
@@ -269,7 +268,20 @@ class AppNavigator {
             courseViewController.transitionIfPossible(to: courseArea)
         }
 
-        self.navigate(to: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+        if #available(iOS 13, *), userInitialized {
+            let alert = UIAlertController(title: "How do you want to open the course?", message: nil, preferredStyle: .alert)
+            let openInCurrentWindowAction = UIAlertAction(title: "open in this window", style: .default, handler: { _ in self.navigate(to: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)})
+            let openInAnotherWindowAction = UIAlertAction(title: "open in another window", style: .default, handler: nil)
+            alert.addCancelAction()
+            alert.addAction(openInCurrentWindowAction)
+            alert.addAction(openInAnotherWindowAction)
+            alert.popoverPresentationController?.sourceView = self.tabBarController?.view
+            self.currentCourseNavigationController?.present(alert, animated: trueUnlessReduceMotionEnabled)
+        }
+
+        else {
+            self.navigate(to: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+        }
     }
 
     func show(item: CourseItem) {

@@ -269,7 +269,7 @@ class AppNavigator {
             courseViewController.transitionIfPossible(to: courseArea)
         }
 
-        if #available(iOS 13, *), userInitialized {
+        if #available(iOS 13, *), userInitialized, UIDevice.current.userInterfaceIdiom == .pad {
             let alert = UIAlertController(title: NSLocalizedString("course.open-alert",
                                                                    comment: "Question posed when a course is about to get opened via link"),
                                           message: nil,

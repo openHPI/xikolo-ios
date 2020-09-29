@@ -427,3 +427,12 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video-Qualität mit WLAN";
+
+/* Question posed when a course is about to get opened via link */
+"course.open-alert" = "How do you want to open the course?";
+
+/* open course in another window */
+"course.open-another.window" = "open course in another window";
+
+/* Open course in this window */
+"course.open-this.window" = "open course in this window";

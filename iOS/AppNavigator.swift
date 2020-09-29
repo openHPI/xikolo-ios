@@ -7,6 +7,7 @@ import Common
 import CoreSpotlight
 import UIKit
 
+// swiftlint:disable type_body_length
 class AppNavigator {
 
     private weak var currentCourseNavigationController: CourseNavigationController?
@@ -269,17 +270,28 @@ class AppNavigator {
         }
 
         if #available(iOS 13, *), userInitialized {
-            let alert = UIAlertController(title: "How do you want to open the course?", message: nil, preferredStyle: .alert)
-            let openInCurrentWindowAction = UIAlertAction(title: "open in this window", style: .default, handler: { _ in self.navigate(to: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)})
-            let openInAnotherWindowAction = UIAlertAction(title: "open in another window", style: .default, handler: nil)
+            let alert = UIAlertController(title: NSLocalizedString("course.open-alert",
+                                                                   comment: "Question posed when a course is about to get opened via link"),
+                                          message: nil,
+                                          preferredStyle: .alert)
+            // swiftlint:disable:next trailing_closure
+            let openInCurrentWindowAction = UIAlertAction(title: NSLocalizedString("course.open-this.window", comment: "Open course in this window"),
+                                                          style: .default,
+                                                          handler: { _ in self.navigate(to: course,
+                                                                                        courseArea: courseArea,
+                                                                                        courseOpenAction: courseOpenAction,
+                                                                                        courseClosedAction: courseClosedAction)
+            })
+
+            let openInAnotherWindowAction = UIAlertAction(title: NSLocalizedString("course.open-another.window", comment: "open course in another window"),
+                                                          style: .default,
+                                                          handler: nil)
             alert.addCancelAction()
             alert.addAction(openInCurrentWindowAction)
             alert.addAction(openInAnotherWindowAction)
             alert.popoverPresentationController?.sourceView = self.tabBarController?.view
             self.currentCourseNavigationController?.present(alert, animated: trueUnlessReduceMotionEnabled)
-        }
-
-        else {
+        } else {
             self.navigate(to: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
         }
     }

@@ -60,7 +60,7 @@
 "course-area.view.recap.title" = "Recap";
 
 /* status 'completed' of a course */
-"course-cell.status.completed" = "completed";
+"course-cell.status.completed" = "Completed";
 
 /* status 'enrolled' of a course */
 "course-cell.status.enrolled" = "Enrolled";

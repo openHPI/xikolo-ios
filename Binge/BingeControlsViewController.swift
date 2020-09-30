@@ -277,6 +277,11 @@ class BingeControlsViewController: UIViewController {
         let view = BingeClickThroughView()
         view.backgroundColor = UIColor(white: 0.1, alpha: 0.75)
 
+        // This can be moved the the lazy init of `airplayButton` as soon as support for iOS 10 was dropped
+        if #available(iOS 13, *) {
+            self.airPlayButton.prioritizesVideoDevices = true
+        }
+
         self.addSubviews(to: view)
         self.addConstraints(with: view)
 

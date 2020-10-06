@@ -52,7 +52,7 @@ target 'iOS' do
 end
 
 post_install do |installer|
-    Pod::UI.info "Fix deployment targets"
+    Pod::UI.info "Fixing deployment targets"
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
             config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'

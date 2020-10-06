@@ -9,8 +9,8 @@ extension DownStylerConfiguration {
 
     static func makeDynamicConfiguration() -> DownStylerConfiguration {
         return DownStylerConfiguration(
-            fonts: self.dynamicFontCollection,
-            colors: self.dynamicColors
+            fonts: Self.dynamicFontCollection,
+            colors: Self.dynamicColors
         )
     }
 
@@ -19,8 +19,11 @@ extension DownStylerConfiguration {
             heading1: Self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.30, weight: .bold)),
             heading2: Self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.25, weight: .bold)),
             heading3: Self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.20, weight: .bold)),
+            heading4: Self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.15, weight: .bold)),
+            heading5: Self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.10, weight: .bold)),
+            heading6: Self.makeDynamicFont(for: .systemFont(ofSize: UIFont.labelFontSize * 1.05, weight: .bold)),
             body: .preferredFont(forTextStyle: .body),
-            code: dynamicCodeFont,
+            code: Self.dynamicCodeFont,
             listItemPrefix: Self.makeDynamicFont(for: DownFont.monospacedDigitSystemFont(ofSize: UIFont.labelFontSize * 1.0, weight: .regular))
         )
     }

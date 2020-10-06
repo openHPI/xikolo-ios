@@ -29,9 +29,9 @@ public class ErrorManager: ErrorReporter {
     }
 
     func reportAPIError(_ error: XikoloError) {
-        guard case .synchronization(.api(_)) = error else { return }
+        guard case .synchronization(.api) = error else { return }
         if case let .synchronization(.api(.response(statusCode: statusCode, headers: _))) = error,
-            !(200 ... 299 ~= statusCode || statusCode == 406 || statusCode == 503) { return }
+           !(200 ... 299 ~= statusCode || statusCode == 406 || statusCode == 503) { return }
         self.report(error)
     }
 

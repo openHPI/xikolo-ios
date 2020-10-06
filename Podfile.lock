@@ -83,7 +83,7 @@ PODS:
   - SDWebImage (5.9.2):
     - SDWebImage/Core (= 5.9.2)
   - SDWebImage/Core (5.9.2)
-  - SwiftLint (0.39.2)
+  - SwiftLint (0.40.3)
 
 DEPENDENCIES:
   - BartyCrouch (from `https://github.com/Flinesoft/BartyCrouch.git`, tag `3.13.0`)
@@ -152,7 +152,7 @@ SPEC CHECKSUMS:
   R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SDWebImage: 0b42b8719ab0c5257177d5894306e8a336b21cbb
-  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
+  SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
 
 PODFILE CHECKSUM: 4c5cbe75af6f52bfa95415796dfda3242a2f9573
 

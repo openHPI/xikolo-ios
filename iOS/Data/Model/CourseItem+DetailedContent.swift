@@ -17,7 +17,7 @@ extension CourseItem {
         if let detailedContent = self.content as? DetailedCourseItemContent {
             data += detailedContent.detailedData.filter {
                 // Don't include time effort twice
-                if case .timeEffort(_) = $0 {
+                if case .timeEffort = $0 {
                     return !(self.timeEffort > 0)
                 } else {
                     return true

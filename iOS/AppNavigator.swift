@@ -215,7 +215,28 @@ class AppNavigator {
     typealias CourseOpenAction = (CourseViewController) -> Void
     typealias CourseClosedAction = (CourseViewController, Bool) -> Void
 
-    func openAlert(course: Course, courseArea: CourseArea, courseOpenAction: @escaping CourseOpenAction, courseClosedAction: @escaping CourseClosedAction, userInitialized: Bool) {
+    func navigate(course: Course, courseArea: CourseArea, courseOpenAction: @escaping CourseOpenAction, courseClosedAction: @escaping CourseClosedAction, userInitialized: Bool) {
+
+        let currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
+        let someCourseViewController = self.currentCourseNavigationController?.courseViewController
+
+        if let courseViewController = someCourseViewController, courseViewController.course.id == course.id, currentlyPresentsCourse {
+            if course.accessible || courseArea.accessibleWithoutEnrollment {
+                self.currentCourseNavigationController?.popToRootViewController(animated: trueUnlessReduceMotionEnabled)
+                courseOpenAction(courseViewController)
+            }
+
+            return
+        }
+
+        if #available(iOS 13, *), userInitialized, UIDevice.current.userInterfaceIdiom == .pad {
+            self.openAlert(course: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+        } else {
+            self.present(course: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+        }
+    }
+
+    func openAlert(course: Course, courseArea: CourseArea, courseOpenAction: @escaping CourseOpenAction, courseClosedAction: @escaping CourseClosedAction) {
         let alert = UIAlertController(title: NSLocalizedString("course.open-alert",
                                                                comment: "Question posed when a course is about to get opened via link"),
                                       message: nil,
@@ -223,7 +244,7 @@ class AppNavigator {
         // swiftlint:disable:next trailing_closure
         let openInCurrentWindowAction = UIAlertAction(title: NSLocalizedString("course.open-this.window", comment: "Open course in this window"),
                                                       style: .default,
-                                                      handler: { _ in self.navigate(to: course,
+                                                      handler: { _ in self.present(course: course,
                                                                                     courseArea: courseArea,
                                                                                     courseOpenAction: courseOpenAction,
                                                                                     courseClosedAction: courseClosedAction)
@@ -239,18 +260,7 @@ class AppNavigator {
         self.currentCourseNavigationController?.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
-    func navigate(to course: Course, courseArea: CourseArea, courseOpenAction: CourseOpenAction, courseClosedAction: CourseClosedAction) {
-        let currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
-        let someCourseViewController = self.currentCourseNavigationController?.courseViewController
-
-        if let courseViewController = someCourseViewController, courseViewController.course.id == course.id, currentlyPresentsCourse {
-            if course.accessible || courseArea.accessibleWithoutEnrollment {
-                self.currentCourseNavigationController?.popToRootViewController(animated: trueUnlessReduceMotionEnabled)
-                courseOpenAction(courseViewController)
-            }
-
-            return
-        }
+    func present(course: Course, courseArea: CourseArea, courseOpenAction: CourseOpenAction, courseClosedAction: CourseClosedAction) {
 
         self.currentCourseNavigationController?.closeCourse()
         self.currentCourseNavigationController = nil
@@ -283,11 +293,7 @@ class AppNavigator {
             courseViewController.transitionIfPossible(to: courseArea)
         }
 
-        if #available(iOS 13, *), userInitialized, UIDevice.current.userInterfaceIdiom == .pad {
-            self.openAlert(course: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction, userInitialized: userInitialized)
-        } else {
-            self.navigate(to: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
-        }
+        self.navigate(course: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction, userInitialized: userInitialized)
     }
 
     func show(item: CourseItem, userInitialized: Bool) {
@@ -302,11 +308,7 @@ class AppNavigator {
             courseViewController.show(item: item, animated: false)
         }
 
-        if #available(iOS 13, *), userInitialized, UIDevice.current.userInterfaceIdiom == .pad {
-            self.openAlert(course: course, courseArea: .learnings, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction, userInitialized: userInitialized)
-        } else {
-            self.navigate(to: course, courseArea: .learnings, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
-        }
+        self.navigate(course: course, courseArea: .learnings, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction, userInitialized: userInitialized)
     }
 
     func show(documentLocalization: DocumentLocalization, userInitialized: Bool) {
@@ -321,11 +323,7 @@ class AppNavigator {
             courseViewController.show(documentLocalization: documentLocalization, animated: false)
         }
 
-        if #available(iOS 13, *), userInitialized, UIDevice.current.userInterfaceIdiom == .pad {
-            self.openAlert(course: course, courseArea: .documents, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction, userInitialized: userInitialized)
-        } else {
-            self.navigate(to: course, courseArea: .documents, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
-        }
+        self.navigate(course: course, courseArea: .documents, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction, userInitialized: userInitialized)
     }
 
     func presentDashboardLoginViewController() {

@@ -69,7 +69,7 @@ class DownloadSettingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var newRow: Int?
+        var oldRow: Int?
 
         switch indexPath.section {
         case 0:
@@ -77,20 +77,20 @@ class DownloadSettingsViewController: UITableViewController {
             let newVideoQuality = VideoQuality.orderedValues[indexPath.row]
             if oldVideoQuality != newVideoQuality {
                 UserDefaults.standard.videoQualityForDownload = newVideoQuality
-                newRow = VideoQuality.orderedValues.firstIndex(of: oldVideoQuality)
+                oldRow = VideoQuality.orderedValues.firstIndex(of: oldVideoQuality)
             }
         case 1:
             let oldPreloadOption = UserDefaults.standard.contentPreloadSetting
             let newPreloadOption = CourseItemContentPreloadSetting.orderedValues[indexPath.row]
             if oldPreloadOption != newPreloadOption {
                 UserDefaults.standard.contentPreloadSetting = newPreloadOption
-                newRow = CourseItemContentPreloadSetting.orderedValues.firstIndex(of: oldPreloadOption)
+                oldRow = CourseItemContentPreloadSetting.orderedValues.firstIndex(of: oldPreloadOption)
             }
         default:
             break
         }
 
-        self.switchSelectedSettingsCell(at: indexPath, to: newRow)
+        self.switchSelectedSettingsCell(at: indexPath, to: oldRow)
     }
 
     private func switchSelectedSettingsCell(at indexPath: IndexPath, to row: Int?) {

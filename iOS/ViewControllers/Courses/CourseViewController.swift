@@ -65,16 +65,22 @@ class CourseViewController: UIViewController {
     }()
 
     private lazy var actionMenuButton: UIBarButtonItem = {
-        let menuActions = [
+        var menuActions = [
             self.course?.shareAction { [weak self] in self?.shareCourse() },
             self.course?.showCourseDatesAction { [weak self] in self?.showCourseDates() },
-            self.course?.openHelpdesk { [weak self] in self?.openHelpdesk() },
-        ].compactMap { $0 }
+            self.course?.openHelpdeskAction { [weak self] in self?.openHelpdesk() },
+        ]
+
+        if #available(iOS 13, *) {
+            menuActions += [
+                self.course?.automatedDownloadAction { [weak self] in self?.openAutomatedDownloadSettings() },
+            ]
+        }
 
         let item = UIBarButtonItem.circularItem(
             with: R.image.navigationBarIcons.dots(),
             target: self,
-            menuActions: [menuActions]
+            menuActions: [menuActions.compactMap { $0 }]
         )
 
         item.accessibilityLabel = NSLocalizedString(
@@ -343,6 +349,13 @@ class CourseViewController: UIViewController {
         let helpdeskViewController = R.storyboard.tabAccount.helpdeskViewController().require()
         helpdeskViewController.course = self.course
         let navigationController = CustomWidthNavigationController(rootViewController: helpdeskViewController)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    private func openAutomatedDownloadSettings() {
+        guard #available(iOS 13, *), let course = self.course else { return }
+        let downloadSettingsViewController = AutomatedDownloadsSettingsViewController(course: course)
+        let navigationController = CustomWidthNavigationController(rootViewController: downloadSettingsViewController)
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 

@@ -229,6 +229,9 @@
 		5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1DE20EBA9D700572924 /* UserDefaults+playbackRate.swift */; };
 		5095B1E220EBB45800572924 /* UserProfileHelperDelegateInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */; };
 		5095B1E420EBD41900572924 /* NSManagedObjectContext+typed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E320EBD41900572924 /* NSManagedObjectContext+typed.swift */; };
+		509DA848252F09CC00030465 /* AutomatedDownloadsSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509DA847252F09CC00030465 /* AutomatedDownloadsSettingsViewController.swift */; };
+		509DA852252FA35700030465 /* AutomatedDownloadsCourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509DA851252FA35700030465 /* AutomatedDownloadsCourseListViewController.swift */; };
+		509DA85D2530C49800030465 /* AutomatedDownloadSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509DA85C2530C49800030465 /* AutomatedDownloadSettings.swift */; };
 		50A2042522FAC389004371C0 /* ColorCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2042422FAC389004371C0 /* ColorCompatibility.swift */; };
 		50A2042722FAD324004371C0 /* UITraitCollection+performAsCurrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2042622FAD324004371C0 /* UITraitCollection+performAsCurrent.swift */; };
 		50A7258F2339188000DE8338 /* CourseDates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A725912339188000DE8338 /* CourseDates.storyboard */; };
@@ -902,6 +905,10 @@
 		5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHelperDelegateInstance.swift; sourceTree = "<group>"; };
 		5095B1E320EBD41900572924 /* NSManagedObjectContext+typed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+typed.swift"; sourceTree = "<group>"; };
 		509B10D0200790560042AA7D /* XikoloTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloTabBarController.swift; sourceTree = "<group>"; };
+		509DA847252F09CC00030465 /* AutomatedDownloadsSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomatedDownloadsSettingsViewController.swift; sourceTree = "<group>"; };
+		509DA851252FA35700030465 /* AutomatedDownloadsCourseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomatedDownloadsCourseListViewController.swift; sourceTree = "<group>"; };
+		509DA85B2530C40C00030465 /* xikolo 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 14.xcdatamodel"; sourceTree = "<group>"; };
+		509DA85C2530C49800030465 /* AutomatedDownloadSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomatedDownloadSettings.swift; sourceTree = "<group>"; };
 		50A2042422FAC389004371C0 /* ColorCompatibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCompatibility.swift; sourceTree = "<group>"; };
 		50A2042622FAD324004371C0 /* UITraitCollection+performAsCurrent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+performAsCurrent.swift"; sourceTree = "<group>"; };
 		50A725902339188000DE8338 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseDates.storyboard; sourceTree = "<group>"; };
@@ -1254,6 +1261,7 @@
 			isa = PBXGroup;
 			children = (
 				AB2802C81D2A8ABB008C8BAE /* Announcement.swift */,
+				509DA85C2530C49800030465 /* AutomatedDownloadSettings.swift */,
 				50092A81237D671900A1503F /* Channel.swift */,
 				24A16D7B1CFDE60200CAD9FE /* Content.swift */,
 				24D48E171CCA4FC100E8051E /* Course.swift */,
@@ -1966,6 +1974,8 @@
 				700398C121A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift */,
 				82D13D0B235726E70006A0D9 /* HelpdeskViewController.swift */,
 				507D02F324360A090009F12B /* HelpdeskTicketTopicListViewController.swift */,
+				509DA847252F09CC00030465 /* AutomatedDownloadsSettingsViewController.swift */,
+				509DA851252FA35700030465 /* AutomatedDownloadsCourseListViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -3110,6 +3120,7 @@
 			files = (
 				50CF1F4620DCDBFC0011BFE9 /* PDFWebViewController.swift in Sources */,
 				5035D91124E526E600431A6B /* CustomWidthTableViewController.swift in Sources */,
+				509DA848252F09CC00030465 /* AutomatedDownloadsSettingsViewController.swift in Sources */,
 				50CF1F4E20DCDBFC0011BFE9 /* RichTextViewController.swift in Sources */,
 				50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */,
 				5095B1E220EBB45800572924 /* UserProfileHelperDelegateInstance.swift in Sources */,
@@ -3237,6 +3248,7 @@
 				50CF1FC820DCDBFC0011BFE9 /* CourseInteractionController.swift in Sources */,
 				5039887521679A0600F9043B /* CourseItemCellDelegate.swift in Sources */,
 				50FA2E6220E51A0500656776 /* SpotlightHelper.swift in Sources */,
+				509DA852252FA35700030465 /* AutomatedDownloadsCourseListViewController.swift in Sources */,
 				50CF1FCC20DCDBFC0011BFE9 /* AnnouncementListViewController.swift in Sources */,
 				5019CE902171E9390001805E /* CourseItemViewController.swift in Sources */,
 				5044C8E321A8105C006490CE /* UIAlertViewController+downloadedContent.swift in Sources */,
@@ -3317,6 +3329,7 @@
 				508869F324F6613A000FA1C8 /* LastVisit.swift in Sources */,
 				50FA2E1720E4B24300656776 /* EnrollmentHelper.swift in Sources */,
 				5037FC1C242DF84E00B4E8CE /* AsyncImagesStyler.swift in Sources */,
+				509DA85D2530C49800030465 /* AutomatedDownloadSettings.swift in Sources */,
 				50FA2E5D20E4B26400656776 /* UIColor+hex.swift in Sources */,
 				50FA2E1F20E4B24300656776 /* UserProfileHelper.swift in Sources */,
 				50FA2E0E20E4B24300656776 /* CoreDataHelper.swift in Sources */,
@@ -9984,6 +9997,7 @@
 		24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				509DA85B2530C40C00030465 /* xikolo 14.xcdatamodel */,
 				508869F124F6604F000FA1C8 /* xikolo 13.xcdatamodel */,
 				500C361724B61BFB004DD157 /* xikolo 12.xcdatamodel */,
 				505B0D162446FFC600F88CAD /* xikolo 11.xcdatamodel */,
@@ -9998,7 +10012,7 @@
 				ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */,
 				24597D251CC6CA0D00FB5338 /* xikolo.xcdatamodel */,
 			);
-			currentVersion = 508869F124F6604F000FA1C8 /* xikolo 13.xcdatamodel */;
+			currentVersion = 509DA85B2530C40C00030465 /* xikolo 14.xcdatamodel */;
 			path = xikolo.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -164,6 +164,36 @@ extension CourseHelper {
             return request
         }
 
+        public static var coursesForAutomatedDownloads: NSFetchRequest<Course> {
+            let request = self.visibleCoursesRequest
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                visiblePredicate,
+                enrolledPredicate,
+                NSPredicate(format: "endsAt >= %@", Date() as NSDate),
+                NSPredicate(format: "automatedDownloadSettings == nil"),
+            ])
+            request.sortDescriptors = [
+                NSSortDescriptor(keyPath: \Course.lastVisited, ascending: false),
+                self.customOrderSortDescriptor,
+            ]
+            return request
+        }
+
+        public static var coursesWithAutomatedDownloads: NSFetchRequest<Course> {
+            let request = self.visibleCoursesRequest
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                visiblePredicate,
+                enrolledPredicate,
+                NSPredicate(format: "endsAt >= %@", Date() as NSDate),
+                NSPredicate(format: "automatedDownloadSettings != nil"),
+            ])
+            request.sortDescriptors = [
+                NSSortDescriptor(keyPath: \Course.lastVisited, ascending: false),
+                self.customOrderSortDescriptor,
+            ]
+            return request
+        }
+
         public static func currentCourses(for channel: Channel) -> NSFetchRequest<Course> {
             let request = self.visibleCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [

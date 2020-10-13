@@ -50,8 +50,22 @@ class DownloadedContentListViewController: UITableViewController {
         }
     }
 
+    private let subMenuCellReuseIdentifier = "submenu"
+    private let infoCellReuseIdentifier = "infocell"
+
+    lazy var hasAdditionalSection: Bool = {
+        if #available(iOS 13, *) {
+            return true
+        } else {
+            return false
+        }
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.tableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: self.subMenuCellReuseIdentifier)
+        self.tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: self.infoCellReuseIdentifier)
 
         self.setupEmptyState()
         self.refresh()
@@ -115,17 +129,40 @@ class DownloadedContentListViewController: UITableViewController {
 extension DownloadedContentListViewController { // Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.courseDownloads.count
+        var sectionCount = max(self.courseDownloads.count, 1)
+        sectionCount += self.hasAdditionalSection ? 1 : 0
+        return sectionCount
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.hasAdditionalSection, section == 0 { return 1 }
+        if self.courseDownloads.isEmpty { return 1 }
+        let section = self.hasAdditionalSection ? section - 1 : section
         return self.courseDownloads[section].byteCounts.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if self.hasAdditionalSection, indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.subMenuCellReuseIdentifier, for: indexPath)
+            cell.textLabel?.text = "Manage Automated Downloads" // TODO: localize
+            cell.accessoryType = .disclosureIndicator
+            cell.selectedBackgroundView = self.isEditing ? UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground) : nil
+            return cell
+        }
+
+        if self.courseDownloads.isEmpty {
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.infoCellReuseIdentifier, for: indexPath)
+            cell.textLabel?.text = NSLocalizedString("empty-view.account.download.no-downloads.title", comment: "title for empty download list")
+            cell.detailTextLabel?.text = NSLocalizedString("empty-view.account.download.no-downloads.description", comment: "description for empty download list")
+            return cell
+        }
+
+        let section = self.hasAdditionalSection ? indexPath.section - 1 : indexPath.section
+        let adjustedIndexPath = IndexPath(row: indexPath.row, section: section)
+
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.downloadTypeCell, for: indexPath).require()
-        let downloadType = self.downloadType(for: indexPath)
-        let byteCount = self.courseDownloads[indexPath.section].byteCounts[downloadType]
+        let downloadType = self.downloadType(for: adjustedIndexPath)
+        let byteCount = self.courseDownloads[adjustedIndexPath.section].byteCounts[downloadType]
         cell.textLabel?.text = downloadType.title
         cell.detailTextLabel?.text = byteCount.flatMap { ByteCountFormatter.string(fromByteCount: Int64($0), countStyle: .file) }
         cell.selectedBackgroundView = self.isEditing ? UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground) : nil
@@ -138,10 +175,18 @@ extension DownloadedContentListViewController { // Table view data source
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if self.hasAdditionalSection, section == 0 { return nil }
+        if self.courseDownloads.isEmpty { return nil }
+        let section = self.hasAdditionalSection ? section - 1 : section
         return self.courseDownloads[section].title
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if self.hasAdditionalSection, section == 0 { return nil }
+        if self.courseDownloads.isEmpty { return nil }
+
+        let section = self.hasAdditionalSection ? section - 1 : section
+
         let timeEffort = self.courseDownloads[section].timeEffort
 
         guard timeEffort > 0 else {
@@ -154,13 +199,25 @@ extension DownloadedContentListViewController { // Table view data source
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard !self.isEditing else {
+        if self.hasAdditionalSection, indexPath.section == 0 {
+            if #available(iOS 13, *) {
+                let viewController = AutomatedDownloadsCourseListViewController()
+                self.show(viewController, sender: self)
+            }
+
+            return
+        }
+
+        if self.courseDownloads.isEmpty { return }
+
+        if self.isEditing {
             self.updateToolBarButtons()
             tableView.cellForRow(at: indexPath)?.selectedBackgroundView = UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground)
             return
         }
 
-        let courseId = self.courseDownloads[indexPath.section].id
+        let section = self.hasAdditionalSection ? indexPath.section - 1 : indexPath.section
+        let courseId = self.courseDownloads[section].id
 
         switch self.downloadType(for: indexPath) {
         case .video:
@@ -177,6 +234,8 @@ extension DownloadedContentListViewController { // Table view data source
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if self.hasAdditionalSection, indexPath.section == 0 { return }
+        if self.courseDownloads.isEmpty { return }
         guard self.isEditing else { return }
         self.updateToolBarButtons()
         tableView.cellForRow(at: indexPath)?.selectedBackgroundView = nil
@@ -208,8 +267,10 @@ extension DownloadedContentListViewController { // editing
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
 
+        let section = self.hasAdditionalSection ? indexPath.section - 1 : indexPath.section
+
         let alert = UIAlertController { _ in
-            let downloadItem = self.courseDownloads[indexPath.section]
+            let downloadItem = self.courseDownloads[section]
             let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
             self.downloadType(for: indexPath).persistenceManager.deleteDownloads(for: course)
         }
@@ -218,7 +279,7 @@ extension DownloadedContentListViewController { // editing
     }
 
     override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
-        return true
+        return !(self.hasAdditionalSection && indexPath.section == 0)
     }
 
     override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
@@ -245,7 +306,8 @@ extension DownloadedContentListViewController { // editing
     }
 
     private var allIndexPaths: [IndexPath] {
-        return (0..<self.tableView.numberOfSections).flatMap { section in
+        let startSection = self.hasAdditionalSection ? 1 : 0
+        return (startSection..<self.tableView.numberOfSections).flatMap { section in
             return (0..<self.tableView.numberOfRows(inSection: section)).map { row in
                 return IndexPath(row: row, section: section)
             }
@@ -280,7 +342,8 @@ extension DownloadedContentListViewController { // editing
             guard let self = self else { return }
 
             for indexPath in indexPaths {
-                let downloadItem = self.courseDownloads[indexPath.section]
+                let section = self.hasAdditionalSection ? indexPath.section - 1 : indexPath.section
+                let downloadItem = self.courseDownloads[section]
                 let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
                 self.downloadType(for: indexPath).persistenceManager.deleteDownloads(for: course)
             }

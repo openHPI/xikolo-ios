@@ -11,8 +11,11 @@ class SubtitleTableViewCell: UITableViewCell {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         self.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         self.textLabel?.adjustsFontForContentSizeCategory = true
+        self.textLabel?.numberOfLines = 0
+        self.detailTextLabel?.textColor = ColorCompatibility.secondaryLabel
         self.detailTextLabel?.font = UIFont.preferredFont(forTextStyle: .footnote)
         self.detailTextLabel?.adjustsFontForContentSizeCategory = true
+        self.detailTextLabel?.numberOfLines = 0
 
         self.addDefaultPointerInteraction()
     }

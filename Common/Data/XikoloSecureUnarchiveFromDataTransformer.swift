@@ -23,6 +23,7 @@ class XikoloSecureUnarchiveFromDataTransformer: NSSecureUnarchiveFromDataTransfo
             TrackingEventResource.self,
             VideoStream.self,
             VisitProgress.self,
+            AutomatedDownloadSettings.self,
         ]
     }
 

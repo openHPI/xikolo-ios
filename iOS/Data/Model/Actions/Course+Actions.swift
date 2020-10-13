@@ -18,9 +18,14 @@ extension Course {
         return Action(title: title, image: Action.Image.calendar, handler: handler)
     }
 
-    func openHelpdesk(handler: @escaping () -> Void) -> Action {
+    func openHelpdeskAction(handler: @escaping () -> Void) -> Action {
         let title = NSLocalizedString("settings.cell-title.app-helpdesk", comment: "cell title for helpdesk")
         return Action(title: title, image: Action.Image.helpdesk, handler: handler)
+    }
+
+    func automatedDownloadAction(handler: @escaping () -> Void) -> Action {
+        let title = NSLocalizedString("manage automated downloads", comment: "cell title for automated downloads")
+        return Action(title: title, image: Action.Image.aggregatedDownload, handler: handler)
     }
 
 }

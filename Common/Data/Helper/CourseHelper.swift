@@ -4,6 +4,7 @@
 //
 
 import BrightFutures
+import CoreData
 import Foundation
 import Stockpile
 
@@ -28,6 +29,24 @@ public enum CourseHelper {
         query.include("channel")
         query.include("user_enrollment")
         return XikoloSyncEngine().synchronize(withFetchRequest: Self.FetchRequest.course(withSlugOrId: slugOrId), withQuery: query)
+    }
+
+    @discardableResult public static func setAutomatedDownloadSetting(forCourse course: Course, to settings: AutomatedDownloadSettings?) -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
+            guard let course = context.existingTypedObject(with: course.objectID) as? Course else {
+                promise.failure(.missingResource(ofType: Course.self))
+                return
+            }
+
+            course.automatedDownloadSettings = settings
+            promise.complete(context.saveWithResult())
+        }
+
+        return promise.future
     }
 
     public static func visit(_ course: Course) {

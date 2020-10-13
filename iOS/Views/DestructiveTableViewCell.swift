@@ -5,10 +5,12 @@
 
 import UIKit
 
-class DefaultTableViewCell: UITableViewCell {
+class DestructiveTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        self.textLabel?.textAlignment = .center
+        self.textLabel?.textColor = ColorCompatibility.systemRed
         self.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         self.textLabel?.adjustsFontForContentSizeCategory = true
         self.textLabel?.numberOfLines = 0

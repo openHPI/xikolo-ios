@@ -7,15 +7,6 @@ import Common
 import CoreData
 import UIKit
 
-@available(iOS 13.0, *)
-class HeaderUITableViewDiffableDataSource: UITableViewDiffableDataSource<String, NSObject> {
-
-    override func tableView(_ tableView: UITableView,  titleForHeaderInSection section: Int) -> String? {
-        return self.snapshot().sectionIdentifiers[section]
-    }
-
-}
-
 @available(iOS 13, *)
 class AutomatedDownloadsCourseListViewController: UITableViewController {
 
@@ -34,7 +25,7 @@ class AutomatedDownloadsCourseListViewController: UITableViewController {
     }()
 
     lazy var dataSource: UITableViewDiffableDataSource = {
-        return HeaderUITableViewDiffableDataSource(tableView: self.tableView) { tableView, indexPath, _ -> UITableViewCell? in
+        return HeaderTableViewDiffableDataSource(tableView: self.tableView) { tableView, indexPath, _ -> UITableViewCell? in
             let resultsController = self.resultController(for: indexPath)
 
             if resultsController.fetchedObjects?.isEmpty ?? true {

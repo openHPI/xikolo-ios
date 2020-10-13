@@ -64,32 +64,7 @@ class CourseViewController: UIViewController {
         return item
     }()
 
-    private lazy var actionMenuButton: UIBarButtonItem = {
-        var menuActions = [
-            self.course?.shareAction { [weak self] in self?.shareCourse() },
-            self.course?.showCourseDatesAction { [weak self] in self?.showCourseDates() },
-            self.course?.openHelpdeskAction { [weak self] in self?.openHelpdesk() },
-        ]
-
-        if #available(iOS 13, *) {
-            menuActions += [
-                self.course?.automatedDownloadAction { [weak self] in self?.openAutomatedDownloadSettings() },
-            ]
-        }
-
-        let item = UIBarButtonItem.circularItem(
-            with: R.image.navigationBarIcons.dots(),
-            target: self,
-            menuActions: [menuActions.compactMap { $0 }]
-        )
-
-        item.accessibilityLabel = NSLocalizedString(
-            "accessibility-label.course.navigation-bar.item.actions",
-            comment: "Accessibility label for actions button in navigation bar of the course card view"
-        )
-
-        return item
-    }()
+    private lazy var actionMenuButton: UIBarButtonItem = self.makeActionsButton()
 
     private var downUpwardsInitialHeaderOffset: CGFloat = 0
     private lazy var downUpwardsGestureRecognizer: UIPanGestureRecognizer = {
@@ -223,6 +198,28 @@ class CourseViewController: UIViewController {
             let headerColor = self?.averageColorUnderStatusBar(withCourseVisual: image) ?? Brand.default.colors.secondary
             self?.courseNavigationController?.adjustToUnderlyingColor(headerColor)
         }
+    }
+
+    private func makeActionsButton() -> UIBarButtonItem {
+        let menuActions = [
+            self.course?.shareAction { [weak self] in self?.shareCourse() },
+            self.course?.showCourseDatesAction { [weak self] in self?.showCourseDates() },
+            self.course?.openHelpdeskAction { [weak self] in self?.openHelpdesk() },
+            self.course?.automatedDownloadAction { [weak self] in self?.openAutomatedDownloadSettings() },
+        ].compactMap { $0 }
+
+        let item = UIBarButtonItem.circularItem(
+            with: R.image.navigationBarIcons.dots(),
+            target: self,
+            menuActions: [menuActions]
+        )
+
+        item.accessibilityLabel = NSLocalizedString(
+            "accessibility-label.course.navigation-bar.item.actions",
+            comment: "Accessibility label for actions button in navigation bar of the course card view"
+        )
+
+        return item
     }
 
     private func averageColorUnderStatusBar(withCourseVisual image: UIImage?) -> UIColor? {
@@ -460,6 +457,9 @@ extension CourseViewController: UIPageViewControllerDelegate {
 extension CourseViewController: CourseAreaViewControllerDelegate {
 
     func enrollmentStateDidChange(whenNewlyCreated newlyCreated: Bool) {
+        self.actionMenuButton = self.makeActionsButton()
+        self.navigationItem.rightBarButtonItem = self.actionMenuButton
+
         if newlyCreated {
             self.transitionIfPossible(to: .learnings)
         } else {

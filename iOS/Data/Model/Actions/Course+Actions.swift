@@ -23,8 +23,11 @@ extension Course {
         return Action(title: title, image: Action.Image.helpdesk, handler: handler)
     }
 
-    func automatedDownloadAction(handler: @escaping () -> Void) -> Action {
-        let title = NSLocalizedString("manage automated downloads", comment: "cell title for automated downloads")
+    func automatedDownloadAction(handler: @escaping () -> Void) -> Action? {
+        guard #available(iOS 13, *) else { return nil }
+        guard self.hasEnrollment else { return nil }
+        guard self.endsAt?.inFuture ?? false else { return nil }
+        let title = NSLocalizedString("Manage Automated Downloads", comment: "cell title for automated downloads") // TODO: localize
         return Action(title: title, image: Action.Image.aggregatedDownload, handler: handler)
     }
 

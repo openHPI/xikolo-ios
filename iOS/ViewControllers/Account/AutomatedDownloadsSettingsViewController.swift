@@ -41,6 +41,12 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = self.saveBarButtonItem
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let navigationTitle = self.navigationController?.presentingViewController == nil ? course.title : "Automated Downloads"
+        self.navigationItem.title = navigationTitle
+    }
+
     @objc private func close() {
         if self.navigationController?.presentingViewController == nil {
             self.navigationController?.popViewController(animated: trueUnlessReduceMotionEnabled)
@@ -67,7 +73,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
 
     // data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        var numberOfSection = 2
+        var numberOfSection = 3
         numberOfSection += self.course.automatedDownloadSettings != nil ? 1 : 0
         return numberOfSection
     }
@@ -77,8 +83,10 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         case 0:
             return AutomatedDownloadSettings.DownloadOption.allCases.count
         case 1:
-            return AutomatedDownloadSettings.DeletionOption.allCases.count
+            return AutomatedDownloadSettings.MaterialTypes.allTypesWithTitle.count
         case 2:
+            return AutomatedDownloadSettings.DeletionOption.allCases.count
+        case 3:
             return 1
         default:
             return 0
@@ -88,7 +96,9 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 1:
-            return "Deletion Policy"
+            return "Material Types" // TODO: localize
+        case 2:
+            return "Deletion Policy" // TODO: localize
         default:
             return nil
         }
@@ -99,7 +109,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         switch section {
         case 0:
             return self.downloadSettings.downloadOption.explanation
-        case 1:
+        case 2:
             return self.downloadSettings.deletionOption.explanation
         default:
             return nil
@@ -108,7 +118,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
 
     // delegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 2 {
+        if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: self.destructiveCellReuseIdentifier, for: indexPath)
             cell.textLabel?.text = "Disable Automated Downloads"
             return cell
@@ -122,6 +132,10 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
             cell.textLabel?.text = downloadOption.title
             cell.accessoryType = downloadOption == downloadSettings.downloadOption ? .checkmark : .none
         case 1:
+            let (materialType, title) = AutomatedDownloadSettings.MaterialTypes.allTypesWithTitle[indexPath.row]
+            cell.textLabel?.text = title
+            cell.accessoryType = downloadSettings.materialTypes.contains(materialType) ? .checkmark : .none
+        case 2:
             let deletionOption = AutomatedDownloadSettings.DeletionOption.allCases[indexPath.row]
             cell.textLabel?.text = deletionOption.title
             cell.accessoryType = deletionOption == downloadSettings.deletionOption ? .checkmark : .none
@@ -133,12 +147,19 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
+        if indexPath.section == 3 {
             CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: nil).onSuccess { [weak self] _ in
                 self?.close()
             }.onComplete { [weak self] _ in
                 self?.navigationItem.rightBarButtonItem = self?.saveBarButtonItem
             }
+            return
+        }
+
+        if indexPath.section == 1 {
+            let materialType = AutomatedDownloadSettings.MaterialTypes.allTypesWithTitle[indexPath.row].type
+            self.downloadSettings.materialTypes.formSymmetricDifference(materialType)
+            self.tableView.reloadRows(at: [indexPath], with: .none)
             return
         }
 
@@ -152,7 +173,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
                 self.downloadSettings.downloadOption = newOption
                 oldRow = AutomatedDownloadSettings.DownloadOption.allCases.firstIndex(of: oldOption)
             }
-        case 1:
+        case 2:
             let oldOption = self.downloadSettings.deletionOption
             let newOption = AutomatedDownloadSettings.DeletionOption.allCases[indexPath.row]
             if oldOption != newOption {
@@ -176,10 +197,10 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
     private func switchSelectedSettingsCell(at indexPath: IndexPath, to row: Int?) {
         if let row = row {
             let oldRow = IndexPath(row: row, section: indexPath.section)
-            tableView.reloadRows(at: [oldRow, indexPath], with: .none)
+            self.tableView.reloadRows(at: [oldRow, indexPath], with: .none)
         } else {
             let indexSet = IndexSet(integer: indexPath.section)
-            tableView.reloadSections(indexSet, with: .none)
+            self.tableView.reloadSections(indexSet, with: .none)
         }
     }
 

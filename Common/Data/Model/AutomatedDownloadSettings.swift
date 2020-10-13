@@ -15,7 +15,7 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
         public var title: String {
             switch self {
             case .backgroundDownload:
-                return "Automated Background Download"
+                return "Background Download"
             case .notification:
                 return "Notification"
             }
@@ -32,6 +32,28 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
 
         static var `default`: DownloadOption {
             return .backgroundDownload
+        }
+    }
+
+    public struct MaterialTypes: OptionSet {
+        public static let videos = MaterialTypes(rawValue: 1)
+        public static let slides = MaterialTypes(rawValue: 1 << 1)
+
+        public let rawValue: Int
+
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+
+        public static var allTypesWithTitle: [(type: MaterialTypes, title: String)] {
+            return [
+                (.videos, NSLocalizedString("settings.downloads.item.video", comment: "download type video")),
+                (.slides, NSLocalizedString("settings.downloads.item.slides", comment: "download type slides")),
+            ]
+        }
+
+        static var `default`: MaterialTypes {
+            return MaterialTypes.videos
         }
     }
 
@@ -70,22 +92,27 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
     public static var supportsSecureCoding: Bool { return true }
 
     public var downloadOption: DownloadOption
+    public var materialTypes: MaterialTypes
     public var deletionOption: DeletionOption
 
     public override init() {
         self.downloadOption = .default
+        self.materialTypes = .default
         self.deletionOption = .default
     }
 
     public required init(coder decoder: NSCoder) {
         let downloadOptionRawValue = decoder.decodeInteger(forKey: "download_option")
         self.downloadOption = DownloadOption(rawValue: downloadOptionRawValue) ?? .default
+        let materialTypesRawValue = decoder.decodeInteger(forKey: "material_types")
+        self.materialTypes = MaterialTypes(rawValue: materialTypesRawValue)
         let deletionOptionRawValue = decoder.decodeInteger(forKey: "deletion_option")
         self.deletionOption = DeletionOption(rawValue: deletionOptionRawValue) ?? .default
     }
 
     public func encode(with coder: NSCoder) {
         coder.encode(self.downloadOption.rawValue, forKey: "download_option")
+        coder.encode(self.materialTypes.rawValue, forKey: "material_types")
         coder.encode(self.deletionOption.rawValue, forKey: "deletion_option")
     }
 

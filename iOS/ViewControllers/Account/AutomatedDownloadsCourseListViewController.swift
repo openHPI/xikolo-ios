@@ -65,6 +65,7 @@ class AutomatedDownloadsCourseListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Automated Downloads"
         self.tableView.dataSource = self.dataSource
 
         try? self.activeCoursesFetchedResultsController.performFetch()

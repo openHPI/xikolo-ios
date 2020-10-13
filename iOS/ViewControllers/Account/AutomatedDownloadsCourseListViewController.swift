@@ -28,34 +28,25 @@ class AutomatedDownloadsCourseListViewController: UITableViewController {
         return HeaderTableViewDiffableDataSource(tableView: self.tableView) { tableView, indexPath, _ -> UITableViewCell? in
             let resultsController = self.resultController(for: indexPath)
 
-            if resultsController.fetchedObjects?.isEmpty ?? true {
-                let cell = tableView.dequeueReusableCell(withIdentifier: self.emptyListCellReuseIdentifier, for: indexPath)
-                cell.textLabel?.text = "No Courses available"
-                cell.detailTextLabel?.text = "Automated downloads are only available during the course period for courses you enrolled to."
-                return cell
-            } else {
-                let reuseIdentifier = self.cellReuseIdentifier(for: indexPath)
-                let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-                let adjustedIndexPath = IndexPath(row: indexPath.row, section: 0)
-                let course = resultsController.object(at: adjustedIndexPath)
-                cell.textLabel?.text = course.title
-                cell.detailTextLabel?.text = course.automatedDownloadSettings?.downloadOption.title // TODO: all values
-                cell.accessoryType = .disclosureIndicator
-                return cell
-            }
+            let reuseIdentifier = self.cellReuseIdentifier(for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+            let adjustedIndexPath = IndexPath(row: indexPath.row, section: 0)
+            let course = resultsController.object(at: adjustedIndexPath)
+            cell.textLabel?.text = course.title
+            cell.detailTextLabel?.text = course.automatedDownloadSettings?.downloadOption.title // TODO: all values
+            cell.accessoryType = .disclosureIndicator
+            return cell
         }
     }()
 
     private let defaultCellReuseIdentifier = "DefaultCell"
     private let subtitleCellReuseIdentifier = "SubtitleCell"
-    private let emptyListCellReuseIdentifier = "EmptyListCell"
 
     init() {
         super.init(style: .insetGrouped)
         self.tableView.cellLayoutMarginsFollowReadableWidth = true
         self.tableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: self.defaultCellReuseIdentifier)
         self.tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: self.subtitleCellReuseIdentifier)
-        self.tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: self.emptyListCellReuseIdentifier)
     }
 
     @available(*, unavailable)
@@ -67,6 +58,8 @@ class AutomatedDownloadsCourseListViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Automated Downloads"
         self.tableView.dataSource = self.dataSource
+
+        self.setupEmptyState()
 
         try? self.activeCoursesFetchedResultsController.performFetch()
         try? self.inactiveCoursesFetchedResultsController.performFetch()
@@ -112,39 +105,49 @@ extension AutomatedDownloadsCourseListViewController: NSFetchedResultsController
         var snapshot = NSDiffableDataSourceSnapshot<String, NSObject>()
 
         if controller == self.activeCoursesFetchedResultsController {
-            if changes.itemIdentifiers.isEmpty {
-                snapshot.appendSections([section2])
-            } else {
-                snapshot.appendSections([section1, section2])
+            if !changes.itemIdentifiers.isEmpty {
+                snapshot.appendSections([section1])
                 snapshot.appendItems(changes.itemIdentifiers, toSection: section1)
             }
 
             if currentSnapshot.sectionIdentifiers.contains(section2) {
+                snapshot.appendSections([section2])
                 var itemsInOtherSection = currentSnapshot.itemIdentifiers(inSection: section2)
                 itemsInOtherSection.removeAll { changes.itemIdentifiers.contains($0) }
                 snapshot.appendItems(itemsInOtherSection, toSection: section2)
             }
         } else {
             if currentSnapshot.sectionIdentifiers.contains(section1) {
-                snapshot.appendSections([section1, section2])
-            } else {
-                snapshot.appendSections([section2])
-            }
-
-            if changes.itemIdentifiers.isEmpty {
-                snapshot.appendItems(["\(section2)-empty" as NSString], toSection: section2)
-            } else {
-                snapshot.appendItems(changes.itemIdentifiers, toSection: section2)
-            }
-
-            if currentSnapshot.sectionIdentifiers.contains(section1) {
+                snapshot.appendSections([section1])
                 var itemsInOtherSection = currentSnapshot.itemIdentifiers(inSection: section1)
                 itemsInOtherSection.removeAll { changes.itemIdentifiers.contains($0) }
                 snapshot.appendItems(itemsInOtherSection, toSection: section1)
             }
+
+            if !changes.itemIdentifiers.isEmpty {
+                snapshot.appendSections([section2])
+                snapshot.appendItems(changes.itemIdentifiers, toSection: section2)
+            }
         }
 
         self.dataSource.apply(snapshot, animatingDifferences: false)
+    }
+
+}
+
+@available(iOS 13, *)
+extension AutomatedDownloadsCourseListViewController: EmptyStateDataSource {
+
+    var emptyStateTitleText: String {
+        return "No Courses available"
+    }
+
+    var emptyStateDetailText: String? {
+        return "Automated downloads are only available during the course period for courses you enrolled to."
+    }
+
+    func setupEmptyState() {
+        self.tableView.emptyStateDataSource = self
     }
 
 }

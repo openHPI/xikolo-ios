@@ -47,11 +47,11 @@ class DownloadedContentListViewController: UITableViewController {
 
             self.navigationItem.rightBarButtonItem = self.courseDownloads.isEmpty ? nil : self.editButtonItem
             self.tableView.reloadData()
+            self.tableView.reloadEmptyState()
         }
     }
 
     private let subMenuCellReuseIdentifier = "submenu"
-    private let infoCellReuseIdentifier = "infocell"
 
     lazy var hasAdditionalSection: Bool = {
         if #available(iOS 13, *) {
@@ -65,7 +65,6 @@ class DownloadedContentListViewController: UITableViewController {
         super.viewDidLoad()
 
         self.tableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: self.subMenuCellReuseIdentifier)
-        self.tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: self.infoCellReuseIdentifier)
 
         self.setupEmptyState()
         self.refresh()
@@ -80,7 +79,7 @@ class DownloadedContentListViewController: UITableViewController {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: nil) { _ in
-            self.tableView.resizeTableHeaderView()
+            self.tableView.resizeTableFooterView()
         }
     }
 
@@ -108,8 +107,8 @@ class DownloadedContentListViewController: UITableViewController {
         let format = NSLocalizedString("settings.downloads.total size: %@", comment: "total size label")
         let formattedFileSize = ByteCountFormatter.string(fromByteCount: Int64(fileSize), countStyle: .file)
         self.totalFileSizeLabel.text = String.localizedStringWithFormat(format, formattedFileSize)
-        self.tableView.tableHeaderView?.isHidden = self.courseDownloads.isEmpty
-        self.tableView.resizeTableHeaderView()
+        self.tableView.tableFooterView?.isHidden = self.courseDownloads.isEmpty
+        self.tableView.resizeTableFooterView()
     }
 
     private func aggregatedFileSize(for courseDownload: CourseDownload) -> UInt64 {
@@ -129,14 +128,13 @@ class DownloadedContentListViewController: UITableViewController {
 extension DownloadedContentListViewController { // Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        var sectionCount = max(self.courseDownloads.count, 1)
+        var sectionCount = self.courseDownloads.count
         sectionCount += self.hasAdditionalSection ? 1 : 0
         return sectionCount
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.hasAdditionalSection, section == 0 { return 1 }
-        if self.courseDownloads.isEmpty { return 1 }
         let section = self.hasAdditionalSection ? section - 1 : section
         return self.courseDownloads[section].byteCounts.count
     }
@@ -147,13 +145,7 @@ extension DownloadedContentListViewController { // Table view data source
             cell.textLabel?.text = "Manage Automated Downloads" // TODO: localize
             cell.accessoryType = .disclosureIndicator
             cell.selectedBackgroundView = self.isEditing ? UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground) : nil
-            return cell
-        }
-
-        if self.courseDownloads.isEmpty {
-            let cell = tableView.dequeueReusableCell(withIdentifier: self.infoCellReuseIdentifier, for: indexPath)
-            cell.textLabel?.text = NSLocalizedString("empty-view.account.download.no-downloads.title", comment: "title for empty download list")
-            cell.detailTextLabel?.text = NSLocalizedString("empty-view.account.download.no-downloads.description", comment: "description for empty download list")
+            cell.selectionStyle = .none
             return cell
         }
 
@@ -176,14 +168,12 @@ extension DownloadedContentListViewController { // Table view data source
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if self.hasAdditionalSection, section == 0 { return nil }
-        if self.courseDownloads.isEmpty { return nil }
         let section = self.hasAdditionalSection ? section - 1 : section
         return self.courseDownloads[section].title
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if self.hasAdditionalSection, section == 0 { return nil }
-        if self.courseDownloads.isEmpty { return nil }
 
         let section = self.hasAdditionalSection ? section - 1 : section
 
@@ -208,8 +198,6 @@ extension DownloadedContentListViewController { // Table view data source
             return
         }
 
-        if self.courseDownloads.isEmpty { return }
-
         if self.isEditing {
             self.updateToolBarButtons()
             tableView.cellForRow(at: indexPath)?.selectedBackgroundView = UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground)
@@ -217,9 +205,10 @@ extension DownloadedContentListViewController { // Table view data source
         }
 
         let section = self.hasAdditionalSection ? indexPath.section - 1 : indexPath.section
+        let adjustedIndexPath = IndexPath(row: indexPath.row, section: section)
         let courseId = self.courseDownloads[section].id
 
-        switch self.downloadType(for: indexPath) {
+        switch self.downloadType(for: adjustedIndexPath) {
         case .video:
             let viewController = DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedStreamsListConfiguration.self)
             self.navigationController?.pushViewController(viewController, animated: trueUnlessReduceMotionEnabled)
@@ -235,7 +224,6 @@ extension DownloadedContentListViewController { // Table view data source
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if self.hasAdditionalSection, indexPath.section == 0 { return }
-        if self.courseDownloads.isEmpty { return }
         guard self.isEditing else { return }
         self.updateToolBarButtons()
         tableView.cellForRow(at: indexPath)?.selectedBackgroundView = nil
@@ -268,14 +256,23 @@ extension DownloadedContentListViewController { // editing
         guard editingStyle == .delete else { return }
 
         let section = self.hasAdditionalSection ? indexPath.section - 1 : indexPath.section
+        let adjustedIndexPath = IndexPath(row: indexPath.row, section: section)
 
         let alert = UIAlertController { _ in
             let downloadItem = self.courseDownloads[section]
             let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
-            self.downloadType(for: indexPath).persistenceManager.deleteDownloads(for: course)
+            self.downloadType(for: adjustedIndexPath).persistenceManager.deleteDownloads(for: course)
         }
 
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if (self.hasAdditionalSection && indexPath.section == 0) {
+            return .none
+        }
+
+        return super.tableView(tableView, editingStyleForRowAt: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
@@ -343,9 +340,10 @@ extension DownloadedContentListViewController { // editing
 
             for indexPath in indexPaths {
                 let section = self.hasAdditionalSection ? indexPath.section - 1 : indexPath.section
+                let adjustedIndexPath = IndexPath(row: indexPath.row, section: section)
                 let downloadItem = self.courseDownloads[section]
                 let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
-                self.downloadType(for: indexPath).persistenceManager.deleteDownloads(for: course)
+                self.downloadType(for: adjustedIndexPath).persistenceManager.deleteDownloads(for: course)
             }
 
             self.setEditing(false, animated: trueUnlessReduceMotionEnabled)
@@ -366,9 +364,12 @@ extension DownloadedContentListViewController: EmptyStateDataSource {
         return NSLocalizedString("empty-view.account.download.no-downloads.description", comment: "description for empty download list")
     }
 
+    var ignoreFirstSection: Bool {
+        return true
+    }
+
     func setupEmptyState() {
         self.tableView.emptyStateDataSource = self
-        self.tableView.tableFooterView = UIView()
     }
 
 }

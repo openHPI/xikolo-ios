@@ -15,6 +15,7 @@ public protocol EmptyStateDataSource: AnyObject {
 
     var emptyStateTitleText: String { get }
     var emptyStateDetailText: String? { get }
+    var ignoreFirstSection: Bool { get }
 
 }
 
@@ -22,6 +23,8 @@ public protocol EmptyStateDataSource: AnyObject {
 public extension EmptyStateDataSource {
 
     var emptyStateDetailText: String? { nil }
+
+    var ignoreFirstSection: Bool { false }
 
 }
 

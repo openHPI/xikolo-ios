@@ -28,7 +28,9 @@ extension UICollectionView: EmptyStateProtocol {
     }
 
     var hasItemsToDisplay: Bool {
-        for section in 0..<self.numberOfSections {
+        let startSection = self.emptyStateDataSource?.ignoreFirstSection ?? false ? 1 : 0
+
+        for section in startSection..<self.numberOfSections {
             if self.numberOfItems(inSection: section) != 0 {
                 return true
             }

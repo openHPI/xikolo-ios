@@ -38,7 +38,7 @@ class AutomatedDownloadsCourseListViewController: UITableViewController {
             let resultsController = self.resultController(for: indexPath)
 
             if resultsController.fetchedObjects?.isEmpty ?? true {
-                let cell = tableView.dequeueReusableCell(withIdentifier: self.emptyCellReuseIdentifier, for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: self.emptyListCellReuseIdentifier, for: indexPath)
                 cell.textLabel?.text = "No Courses available"
                 cell.detailTextLabel?.text = "Automated downloads are only available during the course period for courses you enrolled to."
                 return cell
@@ -55,16 +55,16 @@ class AutomatedDownloadsCourseListViewController: UITableViewController {
         }
     }()
 
-    private let defaultCellReuseIdentifier = "SettingsOptionBasicCell"
-    private let subtitleCellReuseIdentifier = "SubtitleSettingsOptionBasicCell"
-    private let emptyCellReuseIdentifier = "EmptySettingsOptionBasicCell"
+    private let defaultCellReuseIdentifier = "DefaultCell"
+    private let subtitleCellReuseIdentifier = "SubtitleCell"
+    private let emptyListCellReuseIdentifier = "EmptyListCell"
 
     init() {
         super.init(style: .insetGrouped)
         self.tableView.cellLayoutMarginsFollowReadableWidth = true
         self.tableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: self.defaultCellReuseIdentifier)
         self.tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: self.subtitleCellReuseIdentifier)
-        self.tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: self.emptyCellReuseIdentifier)
+        self.tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: self.emptyListCellReuseIdentifier)
     }
 
     @available(*, unavailable)

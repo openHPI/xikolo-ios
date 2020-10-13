@@ -13,7 +13,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
     let course: Course
     let downloadSettings: AutomatedDownloadSettings
 
-    private let cellReuseIdentifier = "SettingsOptionBasicCell"
+    private let cellReuseIdentifier = "SettingsOptionCell"
     private let destructiveCellReuseIdentifier = "DisableCell"
 
     private lazy var saveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))

@@ -236,6 +236,7 @@ class AppNavigator {
         }
     }
 
+    @available(iOS 13.0, *)
     func openAlert(course: Course, courseArea: CourseArea, courseOpenAction: @escaping CourseOpenAction, courseClosedAction: @escaping CourseClosedAction) {
         let alert = UIAlertController(title: NSLocalizedString("course.open-alert",
                                                                comment: "Question posed when a course is about to get opened via link"),
@@ -252,7 +253,8 @@ class AppNavigator {
 
         let openInAnotherWindowAction = UIAlertAction(title: NSLocalizedString("course.open-another.window", comment: "open course in another window"),
                                                       style: .default,
-                                                      handler: nil)
+                                                      handler: { _ in self.presentInAnotherWindow(course: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+                                                      })
         alert.addCancelAction()
         alert.addAction(openInCurrentWindowAction)
         alert.addAction(openInAnotherWindowAction)
@@ -282,6 +284,25 @@ class AppNavigator {
         self.tabBarController?.present(courseNavigationController, animated: trueUnlessReduceMotionEnabled) {
             CourseHelper.visit(course)
         }
+    }
+
+    @available(iOS 13.0, *)
+    func presentInAnotherWindow(course: Course, courseArea: CourseArea, courseOpenAction: CourseOpenAction, courseClosedAction: CourseClosedAction) {
+
+        let window = UIWindow()
+        let userActivity = NSUserActivity(activityType: "open course")
+        UIApplication.shared.requestSceneSessionActivation(nil, userActivity: userActivity, options: nil, errorHandler: nil)
+        window.windowScene = .none
+
+        let courseNavigationController = R.storyboard.course.instantiateInitialViewController().require()
+        let topViewController = courseNavigationController.topViewController.require(hint: "Top view controller required")
+        let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
+        courseViewController.course = course
+        window.rootViewController = courseViewController
+
+//        guard let scene = UIApplication.shared.connectedScenes.first?.session else { return  }
+//        guard let windowScene = scene as? UIWindowScene else { return }
+//        let scenes = UIApplication.shared.connectedScenes
     }
 
     func show(course: Course, with courseArea: CourseArea = .learnings, userInitialized: Bool) {

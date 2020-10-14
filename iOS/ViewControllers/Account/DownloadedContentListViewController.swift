@@ -8,6 +8,44 @@ import Common
 import Foundation
 import UIKit
 
+@available(iOS 13, *)
+class DownloadedContentSubMenuListViewController: UITableViewController {
+
+    private let cellReuseIdentifier = "submenucell"
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.preservesSuperviewLayoutMargins = true
+        self.tableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: self.cellReuseIdentifier)
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath)
+        cell.textLabel?.text = "Manage Automated Downloads 2" // TODO: localize
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController = AutomatedDownloadsCourseListViewController()
+        self.show(viewController, sender: self)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.calculatePreferredSize()
+    }
+
+    private func calculatePreferredSize() {
+        self.preferredContentSize = self.tableView.contentSize
+    }
+
+}
+
 class DownloadedContentListViewController: UITableViewController {
 
     private static let timeEffortFormatter: DateComponentsFormatter = {
@@ -66,6 +104,13 @@ class DownloadedContentListViewController: UITableViewController {
 
         self.tableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: self.subMenuCellReuseIdentifier)
 
+        if #available(iOS 13, *) {
+            let submenuViewController = DownloadedContentSubMenuListViewController(style: .insetGrouped)
+            self.addChild(submenuViewController)
+            self.tableView.tableHeaderView = submenuViewController.view
+            submenuViewController.didMove(toParent: self)
+        }
+
         self.setupEmptyState()
         self.refresh()
 
@@ -75,10 +120,16 @@ class DownloadedContentListViewController: UITableViewController {
                                                object: CoreDataHelper.viewContext)
     }
 
+    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+        super.preferredContentSizeDidChange(forChildContentContainer: container)
+        self.tableView.resizeTableHeaderView()
+    }
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: nil) { _ in
+            self.tableView.resizeTableHeaderView()
             self.tableView.resizeTableFooterView()
         }
     }
@@ -145,7 +196,6 @@ extension DownloadedContentListViewController { // Table view data source
             cell.textLabel?.text = "Manage Automated Downloads" // TODO: localize
             cell.accessoryType = .disclosureIndicator
             cell.selectedBackgroundView = self.isEditing ? UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground) : nil
-            cell.selectionStyle = .none
             return cell
         }
 
@@ -238,6 +288,12 @@ extension DownloadedContentListViewController { // editing
         self.updateToolBarButtons()
         self.navigationController?.setToolbarHidden(!editing, animated: animated)
         self.navigationItem.setHidesBackButton(editing, animated: animated)
+
+        let animationDuration: TimeInterval = animated ? 0.25 : 0
+        UIView.animate(withDuration: animationDuration) {
+            self.tableView.tableHeaderView?.isHidden = editing
+            self.tableView.resizeTableHeaderView()
+        }
 
         if !editing {
             for cell in self.tableView.visibleCells {

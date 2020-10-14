@@ -20,6 +20,10 @@ extension UITableView {
 
         var size = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
 
+        if let tableView = view as? UITableView {
+            size = tableView.contentSize
+        }
+
         if view.isHidden || view.subviews.allSatisfy(\.isHidden) {
             size.height = 0
         }

@@ -41,6 +41,11 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = self.saveBarButtonItem
     }
 
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let navigationTitle = self.navigationController?.presentingViewController == nil ? course.title : "Automated Downloads"
@@ -64,11 +69,6 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         }.onComplete { [weak self] _ in
             self?.navigationItem.rightBarButtonItem = self?.saveBarButtonItem
         }
-    }
-
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     // data source

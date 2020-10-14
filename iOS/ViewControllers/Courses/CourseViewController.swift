@@ -345,14 +345,14 @@ class CourseViewController: UIViewController {
     private func openHelpdesk() {
         let helpdeskViewController = R.storyboard.tabAccount.helpdeskViewController().require()
         helpdeskViewController.course = self.course
-        let navigationController = CustomWidthNavigationController(rootViewController: helpdeskViewController)
+        let navigationController = ReadableWidthNavigationController(rootViewController: helpdeskViewController)
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
     private func openAutomatedDownloadSettings() {
         guard #available(iOS 13, *), let course = self.course else { return }
         let downloadSettingsViewController = AutomatedDownloadsSettingsViewController(course: course)
-        let navigationController = CustomWidthNavigationController(rootViewController: downloadSettingsViewController)
+        let navigationController = ReadableWidthNavigationController(rootViewController: downloadSettingsViewController)
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 

@@ -10,6 +10,8 @@ extension CourseItem {
 
     var image: UIImage? {
         switch self.icon {
+        case "assistant":
+            return R.image.courseItemIcons.assistant()
         case "bonus_lti_exercise":
             return R.image.courseItemIcons.bonusLtiExercise()
         case "bonus_quiz":

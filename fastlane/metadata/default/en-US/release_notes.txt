@@ -1,21 +1,12 @@
-• Fix problem with loading the course progress
+New features:
+• Show a quick access to the last visited item on top of the course item list
+• Add a user setting for overriding appearance of the app
+• Play videos in the background (iOS will first stop the video, but the playback can be resume via the lock screen or the control center)
 
-Also in version 2.10:
-• New course date widget on the home screen (long-press on the app icon to reveal the course date overview)
-• Quick access to last visited courses (also long-press on the app icon)
-• Previews for courses and course items (long-press on courses or course items)
-• Open the list of course dates for a single course (tap on '⋯' in the upper right corner when viewing a course > 'Show course dates')
-• Add links to microlearning and podcasts pages in the new 'More' tab
-• Adjustments for iOS 13.4 (incl. trackpad and mouse support) 
-• UX improvements to helpdesk integration
-• Show course languages in the respective language
-• The subtitle selection shows the available options in the localized language and the system language
-• New design for the course date overview on the dashboard
-• Display next course date on the dashboard in relative date-time format (requires iOS 13 or later)
-• Group courses date list by relative dates (requires iOS 13 or later)
-• Display time effort in various views
-• Show additional view before starting a peer assessment
-• Various smaller cosmetic changes
-• Include external courses in the course list
-• Show message for invite-only courses
-• Display the estimated time effort for downloaded content
+Enhancements:
+• Improve the design of main tabs
+• iOS 14 compatibility
+• Courses can be opened in a separate window via drag & drop
+• Support drag & drop of courses and course items to other apps
+• Open the helpdesk in the course context
+• Show the next course date in the expanded mode of the Today widget

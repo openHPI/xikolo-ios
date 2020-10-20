@@ -197,6 +197,15 @@
 /* course item ungraded type */
 "course.item.exercise-type.disclaimer.ungraded" = "This is an ungraded exercise.";
 
+/* Question posed when a course is about to get opened via link */
+"course.open-alert" = "Wie möchten Sie den Kurs öffnen?";
+
+/* open course in another window */
+"course.open-another.window" = "In einem anderem Fenster öffnen";
+
+/* Open course in this window */
+"course.open-this.window" = "In diesem Fenster öffnen";
+
 /* label exercise progress with absolute values. n out of m */
 "course.progress.points %@ of %@ points" = "%@ of %@ points";
 
@@ -427,12 +436,3 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video Quality using WiFi";
-
-/* Question posed when a course is about to get opened via link */
-"course.open-alert" = "Wie möchten Sie den Kurs öffnen?";
-
-/* open course in another window */
-"course.open-another.window" = "Kurs in einem anderem Fenster öffnen";
-
-/* Open course in this window */
-"course.open-this.window" = "Kurs in diesem Fenster öffnen";

@@ -215,7 +215,11 @@ class AppNavigator {
     typealias CourseOpenAction = (CourseViewController) -> Void
     typealias CourseClosedAction = (CourseViewController, Bool) -> Void
 
-    func navigate(course: Course, courseArea: CourseArea, courseOpenAction: @escaping CourseOpenAction, courseClosedAction: @escaping CourseClosedAction, userInitialized: Bool) {
+    func navigate(course: Course,
+                  courseArea: CourseArea,
+                  courseOpenAction: @escaping CourseOpenAction,
+                  courseClosedAction: @escaping CourseClosedAction,
+                  userInitialized: Bool) {
 
         let currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
         let someCourseViewController = self.currentCourseNavigationController?.courseViewController
@@ -246,15 +250,20 @@ class AppNavigator {
         let openInCurrentWindowAction = UIAlertAction(title: NSLocalizedString("course.open-this.window", comment: "Open course in this window"),
                                                       style: .default,
                                                       handler: { _ in self.present(course: course,
-                                                                                    courseArea: courseArea,
-                                                                                    courseOpenAction: courseOpenAction,
-                                                                                    courseClosedAction: courseClosedAction)
+                                                                                   courseArea: courseArea,
+                                                                                   courseOpenAction: courseOpenAction,
+                                                                                   courseClosedAction: courseClosedAction)
         })
 
+        // swiftlint:disable:next trailing_closure
         let openInAnotherWindowAction = UIAlertAction(title: NSLocalizedString("course.open-another.window", comment: "open course in another window"),
                                                       style: .default,
-                                                      handler: { _ in self.presentInAnotherWindow(course: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+                                                      handler: { _ in self.presentInAnotherWindow(course: course,
+                                                                                                  courseArea: courseArea,
+                                                                                                  courseOpenAction: courseOpenAction,
+                                                                                                  courseClosedAction: courseClosedAction)
                                                       })
+
         alert.addCancelAction()
         alert.addAction(openInCurrentWindowAction)
         alert.addAction(openInAnotherWindowAction)
@@ -301,7 +310,11 @@ class AppNavigator {
             courseViewController.transitionIfPossible(to: courseArea)
         }
 
-        self.navigate(course: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction, userInitialized: userInitialized)
+        self.navigate(course: course,
+                      courseArea: courseArea,
+                      courseOpenAction: courseOpenAction,
+                      courseClosedAction: courseClosedAction,
+                      userInitialized: userInitialized)
     }
 
     func show(item: CourseItem, userInitialized: Bool) {
@@ -316,7 +329,11 @@ class AppNavigator {
             courseViewController.show(item: item, animated: false)
         }
 
-        self.navigate(course: course, courseArea: .learnings, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction, userInitialized: userInitialized)
+        self.navigate(course: course,
+                      courseArea: .learnings,
+                      courseOpenAction: courseOpenAction,
+                      courseClosedAction: courseClosedAction,
+                      userInitialized: userInitialized)
     }
 
     func show(documentLocalization: DocumentLocalization, userInitialized: Bool) {
@@ -331,7 +348,11 @@ class AppNavigator {
             courseViewController.show(documentLocalization: documentLocalization, animated: false)
         }
 
-        self.navigate(course: course, courseArea: .documents, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction, userInitialized: userInitialized)
+        self.navigate(course: course,
+                      courseArea: .documents,
+                      courseOpenAction: courseOpenAction,
+                      courseClosedAction: courseClosedAction,
+                      userInitialized: userInitialized)
     }
 
     func presentDashboardLoginViewController() {

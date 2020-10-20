@@ -288,21 +288,8 @@ class AppNavigator {
 
     @available(iOS 13.0, *)
     func presentInAnotherWindow(course: Course, courseArea: CourseArea, courseOpenAction: CourseOpenAction, courseClosedAction: CourseClosedAction) {
-
-        let courseNavigationController = R.storyboard.course.instantiateInitialViewController().require()
-        let topViewController = courseNavigationController.topViewController.require(hint: "Top view controller required")
-        let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
-        courseViewController.course = course
-
-        let window = UIWindow()
-        window.rootViewController = courseViewController
-        let userActivity = NSUserActivity(activityType: "open course")
+        let userActivity = course.openCourseUserActivity
         UIApplication.shared.requestSceneSessionActivation(nil, userActivity: userActivity, options: nil, errorHandler: nil)
-        window.windowScene = .none
-        
-//        guard let scene = UIApplication.shared.connectedScenes.first?.session else { return  }
-//        guard let windowScene = scene as? UIWindowScene else { return }
-//        let scenes = UIApplication.shared.connectedScenes
     }
 
     func show(course: Course, with courseArea: CourseArea = .learnings, userInitialized: Bool) {

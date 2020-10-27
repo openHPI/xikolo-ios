@@ -200,10 +200,10 @@
 /* Question posed when a course is about to get opened via link */
 "course.open-alert" = "Wie möchten Sie den Kurs öffnen?";
 
-/* open course in another window */
+/* label open new course in another window when switching courses */
 "course.open-another.window" = "In einem anderem Fenster öffnen";
 
-/* Open course in this window */
+/* label close current course and open new course in current window when switching courses */
 "course.open-this.window" = "In diesem Fenster öffnen";
 
 /* label exercise progress with absolute values. n out of m */

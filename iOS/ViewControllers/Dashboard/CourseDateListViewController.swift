@@ -98,7 +98,7 @@ extension CourseDateListViewController {
             return
         }
 
-        self.appNavigator?.show(course: course, userInitialized: false)
+        self.appNavigator?.show(course: course, userInitiated: false)
     }
 
 }

@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication,
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        return self.appNavigator.handle(url: url, userInitialized: false)
+        return self.appNavigator.handle(url: url, userInitiated: false)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -71,7 +71,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else { return }
-        self.appNavigator.handle(url: url, userInitiated: false)
+        self.appNavigator.handle(url: url, switchingCourses: false)
     }
 
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {

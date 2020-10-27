@@ -36,7 +36,7 @@ class AppNavigator {
             return false
         }
 
-        let wasHandleByApplication = self.handle(url: url, userInitiated: false)
+        let wasHandleByApplication = self.handle(url: url, switchingCourses: false)
 
         if !wasHandleByApplication {
             UIApplication.shared.open(url)
@@ -45,13 +45,13 @@ class AppNavigator {
         return wasHandleByApplication
     }
 
-    func handle(url: URL, on sourceViewController: UIViewController, userInitiated: Bool) -> Bool {
+    func handle(url: URL, on sourceViewController: UIViewController, switchingCourses: Bool) -> Bool {
         guard let url = self.sanitizedURL(for: url) else {
             logger.error("URL in Markdown or Markdownparser is broken")
             return false
         }
 
-        if self.handle(url: url, userInitiated: true) {
+        if self.handle(url: url, switchingCourses: true) {
             return true
         }
 
@@ -67,11 +67,11 @@ class AppNavigator {
         return true
     }
 
-    @discardableResult func handle(url: URL, userInitiated: Bool) -> Bool {
+    @discardableResult func handle(url: URL, switchingCourses: Bool) -> Bool {
         if url.scheme == Bundle.main.urlScheme {
             return self.handle(urlSchemeURL: url)
         } else if url.host == Brand.default.host {
-            return self.handle(hostURL: url, userInitiated: userInitiated)
+            return self.handle(hostURL: url, switchingCourses: switchingCourses)
         } else {
             logger.debug("Can't open \(url) inside of the app because host or url scheme is wrong")
             return false
@@ -87,12 +87,12 @@ class AppNavigator {
         }
     }
 
-    private func handle(hostURL url: URL, userInitiated: Bool) -> Bool {
+    private func handle(hostURL url: URL, switchingCourses: Bool) -> Bool {
         switch url.pathComponents[safe: 1] {
         case nil:
             return true // url to base page, simply open the app
         case "courses":
-            return self.handleCourseURL(url, userInitiated: userInitiated)
+            return self.handleCourseURL(url, switchingCourses: switchingCourses)
         case "dashboard":
             return self.showDashboard()
         default:
@@ -114,7 +114,7 @@ class AppNavigator {
         return url
     }
 
-    private func handleCourseURL(_ url: URL, userInitiated: Bool) -> Bool {
+    private func handleCourseURL(_ url: URL, switchingCourses: Bool) -> Bool {
         guard let slugOrId = url.pathComponents[safe: 2] else {
             self.showCourseList()
             return true
@@ -126,7 +126,7 @@ class AppNavigator {
         CoreDataHelper.viewContext.performAndWait {
             switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
             case let .success(course):
-                canOpenInApp = self.handle(url: url, for: course, userInitiated: userInitiated)
+                canOpenInApp = self.handle(url: url, for: course, switchingCourses: switchingCourses)
             case let .failure(error):
                 logger.info("Could not find course in local database: \(error)")
             }
@@ -135,30 +135,30 @@ class AppNavigator {
         return canOpenInApp
     }
 
-    private func handle(url: URL, for course: Course, userInitiated: Bool) -> Bool {
+    private func handle(url: URL, for course: Course, switchingCourses: Bool) -> Bool {
         let courseArea = url.pathComponents[safe: 3]
         switch courseArea {
         case nil:
-            self.show(course: course, with: .courseDetails, userInitiated: userInitiated)
+            self.show(course: course, with: .courseDetails, switchingCourses: switchingCourses)
             return true
         case "items":
-            return self.handleCourseItemURL(url, for: course, userInitiated: userInitiated)
+            return self.handleCourseItemURL(url, for: course, switchingCourses: switchingCourses)
         case "pinboard":
-            self.show(course: course, with: .discussions, userInitiated: userInitiated)
+            self.show(course: course, with: .discussions, switchingCourses: switchingCourses)
             return true
         case "progress":
-            self.show(course: course, with: .progress, userInitiated: userInitiated)
+            self.show(course: course, with: .progress, switchingCourses: switchingCourses)
             return true
         case "announcements":
-            self.show(course: course, with: .announcements, userInitiated: userInitiated)
+            self.show(course: course, with: .announcements, switchingCourses: switchingCourses)
             return true
         case "recap":
             guard Brand.default.features.enableRecap else { return false }
-            self.show(course: course, with: .recap, userInitiated: userInitiated)
+            self.show(course: course, with: .recap, switchingCourses: switchingCourses)
             return true
         case "documents":
             guard Brand.default.features.enableDocuments else { return false }
-            self.show(course: course, with: .documents, userInitiated: userInitiated)
+            self.show(course: course, with: .documents, switchingCourses: switchingCourses)
             return true
         default:
             logger.info("Unable to open course area (\(courseArea ?? "")) for course (\(course.slug ?? "-")) inside the app")
@@ -166,19 +166,19 @@ class AppNavigator {
         }
     }
 
-    private func handleCourseItemURL(_ url: URL, for course: Course, userInitiated: Bool) -> Bool {
+    private func handleCourseItemURL(_ url: URL, for course: Course, switchingCourses: Bool) -> Bool {
         if let courseItemId = url.pathComponents[safe: 4] {
             let itemId = CourseItem.uuid(forBase62UUID: courseItemId) ?? courseItemId
             let itemFetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: itemId)
             if let courseItem = CoreDataHelper.viewContext.fetchSingle(itemFetchRequest).value {
-                self.show(item: courseItem, userInitiated: userInitiated)
+                self.show(item: courseItem, switchingCourses: switchingCourses)
                 return true
             } else {
                 logger.info("Unable to open course item (\(itemId)) for course (\(course.slug ?? "-")) inside the app")
                 return false
             }
         } else {
-            self.show(course: course, with: .learnings, userInitiated: true)
+            self.show(course: course, with: .learnings, switchingCourses: true)
             return true
         }
     }
@@ -187,7 +187,7 @@ class AppNavigator {
         guard let courseId = shortcutItem.userInfo?["courseID"] as? String else { return }
         let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: courseId)
         guard let course = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value else { return }
-        self.show(course: course, userInitiated: false)
+        self.show(course: course, switchingCourses: false)
     }
 
     func showDashboard() -> Bool {
@@ -219,7 +219,7 @@ class AppNavigator {
                   courseArea: CourseArea,
                   courseOpenAction: @escaping CourseOpenAction,
                   courseClosedAction: @escaping CourseClosedAction,
-                  userInitiated: Bool) {
+                  switchingCourses: Bool) {
 
         let currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
         let someCourseViewController = self.currentCourseNavigationController?.courseViewController
@@ -233,7 +233,7 @@ class AppNavigator {
             return
         }
 
-        if #available(iOS 13, *), userInitiated, UIDevice.current.userInterfaceIdiom == .pad {
+        if #available(iOS 13, *), switchingCourses, UIDevice.current.userInterfaceIdiom == .pad {
             self.openAlert(course: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
         } else {
             self.present(course: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
@@ -301,7 +301,7 @@ class AppNavigator {
         UIApplication.shared.requestSceneSessionActivation(nil, userActivity: userActivity, options: nil, errorHandler: nil)
     }
 
-    func show(course: Course, with courseArea: CourseArea = .learnings, userInitiated: Bool) {
+    func show(course: Course, with courseArea: CourseArea = .learnings, switchingCourses: Bool) {
         let courseOpenAction: CourseOpenAction = { courseViewController in
             courseViewController.transitionIfPossible(to: courseArea)
         }
@@ -314,10 +314,10 @@ class AppNavigator {
                       courseArea: courseArea,
                       courseOpenAction: courseOpenAction,
                       courseClosedAction: courseClosedAction,
-                      userInitiated: userInitiated)
+                      switchingCourses: switchingCourses)
     }
 
-    func show(item: CourseItem, userInitiated: Bool) {
+    func show(item: CourseItem, switchingCourses: Bool) {
         guard let course = item.section?.course else { return }
 
         let courseOpenAction: CourseOpenAction = { courseViewController in
@@ -333,10 +333,10 @@ class AppNavigator {
                       courseArea: .learnings,
                       courseOpenAction: courseOpenAction,
                       courseClosedAction: courseClosedAction,
-                      userInitiated: userInitiated)
+                      switchingCourses: switchingCourses)
     }
 
-    func show(documentLocalization: DocumentLocalization, userInitiated: Bool) {
+    func show(documentLocalization: DocumentLocalization, switchingCourses: Bool) {
         guard let course = documentLocalization.document.courses.first else { return }
 
         let courseOpenAction: CourseOpenAction = { courseViewController in
@@ -352,7 +352,7 @@ class AppNavigator {
                       courseArea: .documents,
                       courseOpenAction: courseOpenAction,
                       courseClosedAction: courseClosedAction,
-                      userInitiated: userInitiated)
+                      switchingCourses: switchingCourses)
     }
 
     func presentDashboardLoginViewController() {

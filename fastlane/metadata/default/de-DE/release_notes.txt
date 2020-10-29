@@ -1,9 +1,9 @@
-Neue Funktionen:
+• Fehler behoben, der das Öffnen einiger Folien verhinderte
+
+Auch in Version 2.11:
 • Ein Schnellzugriff für den zuletzt besuchten Lerninhalt wird in der Kursinhaltsliste angezeigt
 • Das Erscheinungsbild der App kann per Nutzerpräferenz überschrieben werden
 • Videos können im Hintergrund abspielt werden (iOS hält das Video zunächst an, die Wiedergabe kann aber über den Sperrbildschirm oder das Kontrollzentrum fortgesetzt werden.)
-
-Verbesserungen:
 • Neue Gestaltung der Haupt-Tabs
 • iOS 14-Kompatibilität
 • Kurse können per Drag & Drop in einem separaten Fenster geöffnet werden

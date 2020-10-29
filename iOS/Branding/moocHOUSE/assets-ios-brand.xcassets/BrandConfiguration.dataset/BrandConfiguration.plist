@@ -33,6 +33,8 @@
 		<true/>
 		<key>enableDocuments</key>
 		<false/>
+		<key>enableCollabSpaces</key>
+		<false/>
 		<key>enableRecap</key>
 		<false/>
 		<key>showCourseDates</key>

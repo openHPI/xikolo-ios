@@ -41,7 +41,7 @@ class WebViewController: UIViewController {
     }
 
     private var shouldShowToolbar: Bool {
-        return self.courseArea == .discussions
+        return self.courseArea == .discussions || self.courseArea == .collabSpace
     }
 
     private var webViewCanGoBack: Bool {
@@ -286,6 +286,8 @@ extension WebViewController: CourseAreaViewController {
             urlComponents?.queryItems = [URLQueryItem(name: "course_id", value: course.id)]
             self.url = urlComponents?.url
             TrackingHelper.createEvent(.visitedRecap, inCourse: course, on: self)
+        } else if let slug = course.slug, area == .collabSpace {
+            self.url = Routes.courses.appendingPathComponents([slug, "learning_rooms"])
         }
     }
 

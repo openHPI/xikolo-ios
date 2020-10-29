@@ -9,6 +9,7 @@ public struct BrandFeatures: Decodable {
 
     public let enableChannels: Bool
     public let enableDocuments: Bool
+    public let enableCollabSpaces: Bool
     public let enableRecap: Bool
     public let showCourseDates: Bool
     public let showCourseTeachers: Bool

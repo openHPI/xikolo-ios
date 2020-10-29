@@ -6,30 +6,20 @@
 import Common
 import UIKit
 
-enum CourseArea {
+enum CourseArea: CaseIterable {
 
     case learnings
     case discussions
+    case progress
+    case collabSpace
     case courseDetails
     case documents
     case announcements
     case recap
     case certificates
-    case progress
 
     static var availableAreas: [CourseArea] = {
-        let values: [CourseArea] = [
-            .learnings,
-            .discussions,
-            .progress,
-            .courseDetails,
-            .documents,
-            .announcements,
-            .recap,
-            .certificates,
-        ]
-
-        return values.filter(\.isAvailable)
+        return Self.allCases.filter(\.isAvailable)
     }()
 
     var accessibleWithoutEnrollment: Bool {
@@ -38,6 +28,8 @@ enum CourseArea {
 
     var isAvailable: Bool {
         switch self {
+        case .collabSpace:
+            return Brand.default.features.enableCollabSpaces
         case .documents:
             return Brand.default.features.enableDocuments
         case .recap:
@@ -65,6 +57,8 @@ enum CourseArea {
             return NSLocalizedString("course-area.view.certificates.title", comment: "title of certificates view of course view")
         case .progress:
             return NSLocalizedString("course-area.view.progress.title", comment: "title of progress view of course view")
+        case .collabSpace:
+            return NSLocalizedString("course-area.view.collab-space.title", comment: "title of collab spaces view of course view")
         }
     }
 
@@ -86,6 +80,8 @@ enum CourseArea {
             return R.storyboard.courseCertificates.instantiateInitialViewController()
         case .progress:
             return R.storyboard.courseProgress.instantiateInitialViewController()
+        case .collabSpace:
+            return R.storyboard.webViewController.instantiateInitialViewController()
         }
     }
 

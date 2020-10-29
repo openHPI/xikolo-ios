@@ -29,7 +29,7 @@ enum CourseArea: CaseIterable {
     var isAvailable: Bool {
         switch self {
         case .collabSpace:
-            return Brand.default.features.enableCollabSpaces
+            return Brand.default.features.enableCollabSpace
         case .documents:
             return Brand.default.features.enableDocuments
         case .recap:

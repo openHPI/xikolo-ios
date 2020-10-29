@@ -40,7 +40,7 @@
 		<true/>
 		<key>enableDocuments</key>
 		<false/>
-		<key>enableCollabSpaces</key>
+		<key>enableCollabSpace</key>
 		<true/>
 		<key>enableRecap</key>
 		<true/>

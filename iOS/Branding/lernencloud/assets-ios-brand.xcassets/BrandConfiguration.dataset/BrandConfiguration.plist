@@ -31,7 +31,7 @@
 		<false/>
 		<key>enableDocuments</key>
 		<false/>
-		<key>enableCollabSpaces</key>
+		<key>enableCollabSpace</key>
 		<false/>
 		<key>enableRecap</key>
 		<false/>

@@ -258,10 +258,7 @@ class AppNavigator {
         // swiftlint:disable:next trailing_closure
         let openInAnotherWindowAction = UIAlertAction(title: NSLocalizedString("course.open-another.window", comment: "label open new course in another window when switching courses"),
                                                       style: .default,
-                                                      handler: { _ in self.presentInAnotherWindow(course: course,
-                                                                                                  courseArea: courseArea,
-                                                                                                  courseOpenAction: courseOpenAction,
-                                                                                                  courseClosedAction: courseClosedAction)
+                                                      handler: { _ in self.presentInAnotherWindow(course: course)
                                                       })
 
         alert.addCancelAction()
@@ -296,7 +293,7 @@ class AppNavigator {
     }
 
     @available(iOS 13.0, *)
-    func presentInAnotherWindow(course: Course, courseArea: CourseArea, courseOpenAction: CourseOpenAction, courseClosedAction: CourseClosedAction) {
+    func presentInAnotherWindow(course: Course) {
         let userActivity = course.openCourseUserActivity
         UIApplication.shared.requestSceneSessionActivation(nil, userActivity: userActivity, options: nil, errorHandler: nil)
     }

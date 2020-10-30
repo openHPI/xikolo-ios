@@ -36,6 +36,16 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
         let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
         courseViewController.course = course
 
+        let courseClosedAction: (CourseViewController, Bool) -> Void = { courseViewController, accessible in
+            courseViewController.transitionIfPossible(to: .learnings)
+        }
+        let courseOpenAction: (CourseViewController) -> Void = { courseViewController in
+            courseViewController.transitionIfPossible(to: .learnings)
+        }
+
+        let accessible = course.accessible
+        courseClosedAction(courseViewController, accessible)
+
         if let windowScene = scene as? UIWindowScene {
             self.window = UIWindow(windowScene: windowScene)
             self.window?.rootViewController = self.courseNavigationController

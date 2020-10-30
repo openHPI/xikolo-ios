@@ -1,9 +1,9 @@
-New features:
+• Fixed a bug that prevented some slides from opening
+
+Also in version 2.11:
 • Show a quick access to the last visited item on top of the course item list
 • Add a user setting for overriding appearance of the app
 • Play videos in the background (iOS will first stop the video, but the playback can be resume via the lock screen or the control center)
-
-Enhancements:
 • Improve the design of main tabs
 • iOS 14 compatibility
 • Courses can be opened in a separate window via drag & drop

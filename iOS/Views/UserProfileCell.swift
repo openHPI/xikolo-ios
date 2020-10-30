@@ -84,7 +84,7 @@ class UserProfileCell: UITableViewCell {
         self.profileImage.layer.borderWidth = self.user == nil ? 0 :  4.0
 
         self.nameView.text = self.user?.profile?.fullName
-        self.displayNameView.text = self.user?.name.map { "(\($0))" }
+        self.displayNameView.text = self.user?.name
         self.displayNameView.isHidden = self.user?.profile?.fullName == self.user?.name || self.user?.name == nil || self.user?.profile == nil
         self.emailView.text = self.user?.profile?.email
 

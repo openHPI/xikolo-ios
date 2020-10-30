@@ -203,7 +203,7 @@
 /* label open new course in another window when switching courses */
 "course.open-another.window" = "In einem anderem Fenster öffnen";
 
-/* label close current course and open new course in current window when switching courses */
+/* label close current course and open new course in the same window */
 "course.open-this.window" = "In diesem Fenster öffnen";
 
 /* label exercise progress with absolute values. n out of m */

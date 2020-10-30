@@ -247,7 +247,8 @@ class AppNavigator {
                                       message: nil,
                                       preferredStyle: .alert)
         // swiftlint:disable:next trailing_closure
-        let openInCurrentWindowAction = UIAlertAction(title: NSLocalizedString("course.open-this.window", comment: "label close current course and open new course in current window when switching courses"),
+        let openInCurrentWindowAction = UIAlertAction(title: NSLocalizedString("course.open-this.window",
+                                                                               comment: "label close current course and open new course in the same window"),
                                                       style: .default,
                                                       handler: { _ in self.present(course: course,
                                                                                    courseArea: courseArea,
@@ -256,7 +257,8 @@ class AppNavigator {
         })
 
         // swiftlint:disable:next trailing_closure
-        let openInAnotherWindowAction = UIAlertAction(title: NSLocalizedString("course.open-another.window", comment: "label open new course in another window when switching courses"),
+        let openInAnotherWindowAction = UIAlertAction(title: NSLocalizedString("course.open-another.window",
+                                                                               comment: "label open new course in another window when switching courses"),
                                                       style: .default,
                                                       handler: { _ in self.presentInAnotherWindow(course: course)
                                                       })

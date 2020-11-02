@@ -154,7 +154,7 @@ extension DownloadedContentListViewController { // Table view data source
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard !self.isEditing else {
+        if self.isEditing {
             self.updateToolBarButtons()
             tableView.cellForRow(at: indexPath)?.selectedBackgroundView = UIView(backgroundColor: ColorCompatibility.secondarySystemGroupedBackground)
             return
@@ -162,18 +162,18 @@ extension DownloadedContentListViewController { // Table view data source
 
         let courseId = self.courseDownloads[indexPath.section].id
 
-        switch self.downloadType(for: indexPath) {
-        case .video:
-            let viewController = DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedStreamsListConfiguration.self)
-            self.navigationController?.pushViewController(viewController, animated: trueUnlessReduceMotionEnabled)
-        case .slides:
-            let viewController = DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedSlidesListConfiguration.self)
-            self.navigationController?.pushViewController(viewController, animated: trueUnlessReduceMotionEnabled)
-        case .document:
-            let viewController = DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedDocumentsListConfiguration.self)
-            self.navigationController?.pushViewController(viewController, animated: trueUnlessReduceMotionEnabled)
-        }
+        let viewController: UIViewController = {
+            switch self.downloadType(for: indexPath) {
+            case .video:
+                return DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedStreamsListConfiguration.self)
+            case .slides:
+                return DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedSlidesListConfiguration.self)
+            case .document:
+                return DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedDocumentsListConfiguration.self)
+            }
+        }()
 
+        self.show(viewController, sender: self)
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

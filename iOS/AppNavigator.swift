@@ -61,7 +61,7 @@ class AppNavigator {
 
         let webViewController = R.storyboard.webViewController.instantiateInitialViewController().require()
         webViewController.url = url
-        sourceViewController.navigationController?.pushViewController(webViewController, animated: trueUnlessReduceMotionEnabled)
+        sourceViewController.show(webViewController, sender: self)
 
         return true
     }

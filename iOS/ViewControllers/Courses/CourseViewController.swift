@@ -193,8 +193,7 @@ class CourseViewController: UIViewController {
         guard let viewController = R.storyboard.courseLearnings.courseItemViewController() else { return }
         viewController.currentItem = item
 
-        self.navigationController?.pushViewController(viewController, animated: animated)
-        self.navigationController?.navigationBar.tintColor = Brand.default.colors.window // otherwise the back button could not be visible
+        self.show(viewController, sender: self)
     }
 
     func show(documentLocalization: DocumentLocalization, animated: Bool) {
@@ -205,8 +204,7 @@ class CourseViewController: UIViewController {
         let viewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
         viewController.configure(for: url, filename: documentLocalization.filename)
 
-        self.navigationController?.pushViewController(viewController, animated: animated)
-        self.navigationController?.navigationBar.tintColor = Brand.default.colors.window // otherwise the back button could not be visible
+        self.show(viewController, sender: self)
     }
 
     private func updateView() {

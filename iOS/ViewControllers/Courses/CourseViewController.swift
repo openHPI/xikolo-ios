@@ -193,6 +193,7 @@ class CourseViewController: UIViewController {
         guard let viewController = R.storyboard.courseLearnings.courseItemViewController() else { return }
         viewController.currentItem = item
 
+        self.courseNavigationController?.updateNavigationBar(forProgress: 1)
         self.show(viewController, sender: self)
     }
 
@@ -204,6 +205,7 @@ class CourseViewController: UIViewController {
         let viewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
         viewController.configure(for: url, filename: documentLocalization.filename)
 
+        self.courseNavigationController?.updateNavigationBar(forProgress: 1)
         self.show(viewController, sender: self)
     }
 

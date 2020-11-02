@@ -51,6 +51,10 @@ class CourseNavigationController: UINavigationController {
         self.navigationBar.isTranslucent = true
         self.navigationBar.tintColor = .white
 
+        if let lastProgress = self.lastNavigationBarProgress {
+            self.updateNavigationBar(forProgress: lastProgress)
+        }
+
         if let gestureRecognizer = self.dismissalGestureRecognizer {
             self.view.addGestureRecognizer(gestureRecognizer)
         }
@@ -121,6 +125,8 @@ class CourseNavigationController: UINavigationController {
 
     func updateNavigationBar(forProgress progress: CGFloat) {
         self.lastNavigationBarProgress = progress
+
+        guard self.viewIfLoaded != nil else { return }
 
         let headerHidden = self.traitCollection.verticalSizeClass == .compact
         var mappedProgress = headerHidden ? 1.0 : progress

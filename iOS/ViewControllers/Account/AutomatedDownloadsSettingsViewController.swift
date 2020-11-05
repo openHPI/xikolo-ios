@@ -66,6 +66,10 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
 
         CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: self.downloadSettings).onSuccess { [weak self] _ in
             self?.close()
+        }.onSuccess {
+            AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
+        }.onFailure { error in
+            // TODO show error view
         }.onComplete { [weak self] _ in
             self?.navigationItem.rightBarButtonItem = self?.saveBarButtonItem
         }
@@ -148,7 +152,9 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 3 {
+            // Disable Automated Downloads
             CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: nil).onSuccess { [weak self] _ in
+                AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
                 self?.close()
             }.onComplete { [weak self] _ in
                 self?.navigationItem.rightBarButtonItem = self?.saveBarButtonItem

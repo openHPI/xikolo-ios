@@ -35,10 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var shortcutItemToProcess: UIApplicationShortcutItem?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
         if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
             self.shortcutItemToProcess = shortcutItem
-           }
+        }
 
         CoreDataHelper.migrateModelToCommon()
         UserProfileHelper.shared.logoutFromTestAccount()
@@ -91,6 +90,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } catch {
                 ErrorManager.shared.report(error)
                 logger.error("Failed to start reachability notification")
+            }
+
+            if #available(iOS 13.0, *) {
+                AutomatedDownloadsManager.registerBackgroundTask()
             }
         }
 

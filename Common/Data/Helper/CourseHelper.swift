@@ -42,8 +42,24 @@ public enum CourseHelper {
                 return
             }
 
-            course.automatedDownloadSettings = settings
-            promise.complete(context.saveWithResult())
+            let successHandler = {
+                course.automatedDownloadSettings = settings
+                promise.complete(context.saveWithResult())
+            }
+
+            if settings?.downloadOption == .notification {
+                let center = UNUserNotificationCenter.current()
+                let options: UNAuthorizationOptions = [.alert];
+                center.requestAuthorization(options: options) { (granted, error) in
+                    if granted {
+                        successHandler()
+                    } else {
+                        promise.failure(.permissionError(error))
+                    }
+                }
+            } else {
+                successHandler()
+            }
         }
 
         return promise.future

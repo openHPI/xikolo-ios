@@ -66,6 +66,7 @@
 		5027250A235473F600815914 /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50272509235473F600815914 /* Swizzler.swift */; };
 		5027250C2354756800815914 /* UITableView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027250B2354756800815914 /* UITableView+EmptyState.swift */; };
 		5027250E2354780C00815914 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027250D2354780C00815914 /* EmptyStateView.swift */; };
+		5027E6B42552B40A00994CF7 /* AutomatedDownloadsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027E6B32552B40A00994CF7 /* AutomatedDownloadsManager.swift */; };
 		502902E021BABA79004B1B43 /* AccountViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502902DF21BABA79004B1B43 /* AccountViewControllerDataSource.swift */; };
 		502CBDCD2433716C00BF6001 /* Stockpile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 502CBDC42433716B00BF6001 /* Stockpile.framework */; };
 		502CBDD62433716C00BF6001 /* Stockpile.h in Headers */ = {isa = PBXBuildFile; fileRef = 502CBDC62433716C00BF6001 /* Stockpile.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -689,6 +690,7 @@
 		50272509235473F600815914 /* Swizzler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
 		5027250B2354756800815914 /* UITableView+EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyState.swift"; sourceTree = "<group>"; };
 		5027250D2354780C00815914 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		5027E6B32552B40A00994CF7 /* AutomatedDownloadsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomatedDownloadsManager.swift; sourceTree = "<group>"; };
 		5028ED0D23882C7B006F1F76 /* xikolo 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 9.xcdatamodel"; sourceTree = "<group>"; };
 		502902DF21BABA79004B1B43 /* AccountViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewControllerDataSource.swift; sourceTree = "<group>"; };
 		502CBDC42433716B00BF6001 /* Stockpile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Stockpile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1439,6 +1441,7 @@
 				5044C8DC21A8089C006490CE /* ContentPersistenceManager.swift */,
 				500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */,
 				50082B5E20BFDAC900B4511C /* DownloadState.swift */,
+				5027E6B32552B40A00994CF7 /* AutomatedDownloadsManager.swift */,
 			);
 			path = PersistenceManager;
 			sourceTree = "<group>";
@@ -3200,6 +3203,7 @@
 				50CF1F9120DCDBFC0011BFE9 /* VideoStreamingSettingsViewController.swift in Sources */,
 				50E4D7F824AD22B40032B1DC /* UserProfileCell.swift in Sources */,
 				5019CE922171F21D0001805E /* CourseItemContentViewController.swift in Sources */,
+				5027E6B42552B40A00994CF7 /* AutomatedDownloadsManager.swift in Sources */,
 				5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */,
 				50F3DD49245859710008CE27 /* Video+Persistence.swift in Sources */,
 				50CF1F9620DCDBFC0011BFE9 /* CourseTransitioningDelegate.swift in Sources */,

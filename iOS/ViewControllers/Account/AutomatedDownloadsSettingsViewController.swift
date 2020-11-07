@@ -37,8 +37,58 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         self.tableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: self.cellReuseIdentifier)
         self.tableView.register(DestructiveTableViewCell.self, forCellReuseIdentifier: self.destructiveCellReuseIdentifier)
 
+        self.setupTableHeaderView()
+        self.tableView.tableHeaderView?.isHidden = true
+        self.tableView.resizeTableHeaderView()
+
         self.navigationItem.leftBarButtonItem = self.cancelBarButtonItem
         self.navigationItem.rightBarButtonItem = self.saveBarButtonItem
+    }
+
+    private func setupTableHeaderView() {
+        let label = UILabel()
+        label.text = "Missing Permissions" // TODO: localization
+        label.textColor = ColorCompatibility.systemRed
+        label.font = UIFont.preferredFont(forTextStyle: .callout)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+
+        let buttonFont = UIFont.preferredFont(forTextStyle: .footnote)
+        let attributedButtonText = NSMutableAttributedString(string: "Open Settings", attributes: [.font: buttonFont]) // TODO: localization
+
+        let symbolConfiguration = UIImage.SymbolConfiguration(font: buttonFont, scale: .small)
+        let symbolImage = UIImage(systemName: "chevron.right", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysTemplate)
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = symbolImage
+        attributedButtonText.append(NSAttributedString(attachment: imageAttachment))
+
+        let button = UIButton()
+        button.setAttributedTitle(attributedButtonText, for: .normal)
+        button.setTitleColor(ColorCompatibility.secondaryLabel, for: .normal)
+        button.addTarget(self, action: #selector(openSettings), for: .touchUpInside)
+
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.spacing = UIStackView.spacingUseDefault
+
+        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(button)
+
+        let headerView = UIView()
+        headerView.preservesSuperviewLayoutMargins = true
+        headerView.addSubview(stackView)
+
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalToSystemSpacingBelow: headerView.topAnchor, multiplier: 2),
+            headerView.bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 2),
+            stackView.leadingAnchor.constraint(equalTo: headerView.layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: headerView.layoutMarginsGuide.trailingAnchor),
+        ])
+
+        self.tableView.tableHeaderView = headerView
     }
 
     @available(*, unavailable)
@@ -50,6 +100,14 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         super.viewWillAppear(animated)
         let navigationTitle = self.navigationController?.presentingViewController == nil ? course.title : "Automated Downloads"
         self.navigationItem.title = navigationTitle
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.tableView.resizeTableHeaderView()
+        }
     }
 
     @objc private func close() {
@@ -68,11 +126,18 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
             self?.close()
         }.onSuccess {
             AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
-        }.onFailure { error in
-            // TODO show error view
+        }.onFailure { [weak self] error in
+            self?.tableView.tableHeaderView?.isHidden = false
+            UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+                self?.tableView.resizeTableHeaderView()
+            }
         }.onComplete { [weak self] _ in
             self?.navigationItem.rightBarButtonItem = self?.saveBarButtonItem
         }
+    }
+
+    @objc private func openSettings() {
+        Settings.open()
     }
 
     // data source

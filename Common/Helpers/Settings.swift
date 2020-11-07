@@ -5,9 +5,9 @@
 
 import UIKit
 
-enum Settings {
+public enum Settings {
 
-    static func open() {
+    public static func open() {
         guard let appSettings = URL(string: UIApplication.openSettingsURLString) else { return }
         guard UIApplication.shared.canOpenURL(appSettings) else { return }
         UIApplication.shared.open(appSettings)

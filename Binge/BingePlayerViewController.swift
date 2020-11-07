@@ -423,6 +423,10 @@ public class BingePlayerViewController: UIViewController {
         return self.controlsContainer.isHidden
     }
 
+    deinit {
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
+    }
+
     private func adaptToLayoutState() {
         self.controlsViewController.adaptToLayoutState(self.layoutState,
                                                        allowFullScreenMode: self.allowFullScreenMode,

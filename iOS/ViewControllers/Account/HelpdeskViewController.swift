@@ -175,14 +175,14 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
         self.navigationItem.rightBarButtonItem = self.waitBarButtonItem
         self.waitIndicator.startAnimating()
 
-        HelpdeskTicketHelper.createIssue(ticket).onSuccess { _ in
-            self.dismiss(animated: trueUnlessReduceMotionEnabled)
-        }.onFailure { _ in
-            self.onFailureLabel.isHidden = false
-            self.tableView.resizeTableHeaderView()
-            self.tableView.setContentOffset(.zero, animated: true)
-        }.onComplete { _ in
-            self.navigationItem.rightBarButtonItem = self.sendBarButtonItem
+        HelpdeskTicketHelper.createIssue(ticket).onSuccess { [weak self] _ in
+            self?.dismiss(animated: trueUnlessReduceMotionEnabled)
+        }.onFailure { [weak self] _ in
+            self?.onFailureLabel.isHidden = false
+            self?.tableView.resizeTableHeaderView()
+            self?.tableView.setContentOffset(.zero, animated: trueUnlessReduceMotionEnabled)
+        }.onComplete { [weak self] _ in
+            self?.navigationItem.rightBarButtonItem = self?.sendBarButtonItem
         }
     }
 

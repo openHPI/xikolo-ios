@@ -17,6 +17,8 @@ class CourseItemListViewController: UITableViewController {
     private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
     private static let timeFormatter = DateFormatter.localizedFormatter(dateStyle: .none, timeStyle: .short)
 
+    @IBOutlet private weak var automatedDownloadsHint: UIView!
+
     @IBOutlet private weak var continueLearningHint: UIView!
     @IBOutlet private weak var continueLearningSectionTitleLabel: UILabel!
     @IBOutlet private weak var continueLearningItemTitleLabel: UILabel!
@@ -82,6 +84,27 @@ class CourseItemListViewController: UITableViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openContinueLearningItem))
         self.continueLearningHint.addGestureRecognizer(tapGesture)
 
+        self.continueLearningHint.isHidden = true
+
+
+
+        if #available(iOS 13, *) {
+            self.automatedDownloadsHint.layer.roundCorners(for: .default)
+            self.automatedDownloadsHint.addDefaultPointerInteraction()
+//            let interaction = UIContextMenuInteraction(delegate: self)
+//            self.continueLearningHint.addInteraction(interaction)
+
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openContinueLearningItem))
+            self.automatedDownloadsHint.addGestureRecognizer(tapGesture)
+        }
+
+        self.automatedDownloadsHint.isHidden =  !self.course.isEligibleForAutomatedDownloads
+
+        self.tableView.resizeTableHeaderView()
+
+
+
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
                                                name: Notification.Name.reachabilityChanged,
@@ -91,8 +114,7 @@ class CourseItemListViewController: UITableViewController {
                                                name: UIContentSizeCategory.didChangeNotification,
                                                object: nil)
 
-        self.continueLearningHint.isHidden = true
-        self.tableView.resizeTableHeaderView()
+
 
         self.setupEmptyState()
         self.updateLastVisit()

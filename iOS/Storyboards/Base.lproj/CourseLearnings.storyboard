@@ -153,9 +153,9 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="yLb-fw-Gqc" firstAttribute="leading" secondItem="Ghh-oA-DBA" secondAttribute="leading" constant="20" symbolic="YES" id="94N-3C-osS"/>
+                                <constraint firstItem="yLb-fw-Gqc" firstAttribute="leading" secondItem="Ghh-oA-DBA" secondAttribute="leadingMargin" id="94N-3C-osS"/>
                                 <constraint firstAttribute="bottom" secondItem="yLb-fw-Gqc" secondAttribute="bottom" id="Hue-bv-dMl"/>
-                                <constraint firstAttribute="trailing" secondItem="yLb-fw-Gqc" secondAttribute="trailing" constant="20" symbolic="YES" id="chS-2N-rpD"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="yLb-fw-Gqc" secondAttribute="trailing" id="chS-2N-rpD"/>
                                 <constraint firstItem="yLb-fw-Gqc" firstAttribute="top" secondItem="Ghh-oA-DBA" secondAttribute="top" constant="20" symbolic="YES" id="fTH-O6-A84"/>
                             </constraints>
                         </view>

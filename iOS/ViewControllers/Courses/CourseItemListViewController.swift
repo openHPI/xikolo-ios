@@ -27,17 +27,27 @@ class CourseItemListViewController: UITableViewController {
 
     @IBOutlet private weak var nextSectionStartLabel: UILabel!
 
-    private var course: Course!
     private var dataSource: CoreDataTableViewDataSourceWrapper<CourseItem>!
+
+    private var courseObserver: ManagedObjectObserver?
+    private var course: Course! {
+        didSet {
+            self.courseObserver = ManagedObjectObserver(object: self.course) { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.updateAutomatedDownloadsHint(animated: true)
+                }
+            }
+        }
+    }
 
     private var lastVisitObserver: ManagedObjectObserver?
     private var lastVisit: LastVisit? {
         didSet {
-            self.updateHeaderView()
+            self.updateLastVisitHint()
             if let lastVisit = self.lastVisit {
                 self.lastVisitObserver = ManagedObjectObserver(object: lastVisit) { [weak self] _ in
                     DispatchQueue.main.async {
-                        self?.updateHeaderView()
+                        self?.updateLastVisitHint()
                     }
                 }
             } else {
@@ -91,16 +101,12 @@ class CourseItemListViewController: UITableViewController {
         if #available(iOS 13, *) {
             self.automatedDownloadsHint.layer.roundCorners(for: .default)
             self.automatedDownloadsHint.addDefaultPointerInteraction()
-//            let interaction = UIContextMenuInteraction(delegate: self)
-//            self.continueLearningHint.addInteraction(interaction)
 
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openContinueLearningItem))
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showAutomatedDownloadSettings))
             self.automatedDownloadsHint.addGestureRecognizer(tapGesture)
         }
 
-        self.automatedDownloadsHint.isHidden =  !self.course.isEligibleForAutomatedDownloads
-
-        self.tableView.resizeTableHeaderView()
+        self.updateAutomatedDownloadsHint(animated: false)
 
 
 
@@ -203,13 +209,23 @@ class CourseItemListViewController: UITableViewController {
         self.lastVisit = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value
     }
 
-    private func updateHeaderView() {
+    private func updateLastVisitHint() {
         self.continueLearningSectionTitleLabel.text = self.lastVisit?.item?.section?.title
         self.continueLearningItemTitleLabel.text = self.lastVisit?.item?.title
         self.continueLearningItemIconView.image = self.lastVisit?.item?.image
         self.continueLearningHint.isHidden = self.lastVisit?.item == nil
 
         UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+            self.tableView.resizeTableHeaderView()
+        }
+    }
+
+    private func updateAutomatedDownloadsHint(animated: Bool) {
+        // TODO show only if has upcoming section for course start
+        self.automatedDownloadsHint.isHidden =  !self.course.isEligibleForAutomatedDownloads || self.course.automatedDownloadSettings != nil
+
+        let duration = animated ? defaultAnimationDurationUnlessReduceMotionEnabled : 0.0
+        UIView.animate(withDuration: duration) {
             self.tableView.resizeTableHeaderView()
         }
     }
@@ -258,6 +274,21 @@ class CourseItemListViewController: UITableViewController {
     @objc private func openContinueLearningItem() {
         self.scrollToContinueLearningItemAndHighlight { [weak self] cell in
             self?.performSegue(withIdentifier: R.segue.courseItemListViewController.showCourseItem, sender: cell)
+        }
+    }
+
+    @available(iOS 13, *)
+    @objc private func showAutomatedDownloadSettings() {
+        let downloadSettingsViewController = AutomatedDownloadsSettingsViewController(course: self.course)
+        let navigationController = ReadableWidthNavigationController(rootViewController: downloadSettingsViewController)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    @IBAction private func hideAutomatedDownloadsHint() {
+        self.automatedDownloadsHint.isHidden = true
+
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+            self.tableView.resizeTableHeaderView()
         }
     }
 

@@ -32,7 +32,7 @@ class CourseItemListViewController: UITableViewController {
     private var courseObserver: ManagedObjectObserver?
     private var course: Course! {
         didSet {
-            self.courseObserver = ManagedObjectObserver(object: self.course) { [weak self] _ in
+            self.courseObserver = ManagedObjectObserver(object: self.course) { [weak self] change in
                 DispatchQueue.main.async {
                     self?.updateAutomatedDownloadsHint(animated: true)
                 }
@@ -53,6 +53,14 @@ class CourseItemListViewController: UITableViewController {
             } else {
                 self.lastVisitObserver = nil
             }
+        }
+    }
+
+    private var nextSectionStartDate: Date? {
+        didSet {
+            guard self.nextSectionStartDate != oldValue else { return }
+            self.updateAutomatedDownloadsHint(animated: true)
+            self.updateNextSectionStartHint()
         }
     }
 
@@ -96,8 +104,6 @@ class CourseItemListViewController: UITableViewController {
 
         self.continueLearningHint.isHidden = true
 
-
-
         if #available(iOS 13, *) {
             self.automatedDownloadsHint.layer.roundCorners(for: .default)
             self.automatedDownloadsHint.addDefaultPointerInteraction()
@@ -105,11 +111,6 @@ class CourseItemListViewController: UITableViewController {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showAutomatedDownloadSettings))
             self.automatedDownloadsHint.addGestureRecognizer(tapGesture)
         }
-
-        self.updateAutomatedDownloadsHint(animated: false)
-
-
-
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
@@ -123,8 +124,9 @@ class CourseItemListViewController: UITableViewController {
 
 
         self.setupEmptyState()
+        self.updateAutomatedDownloadsHint(animated: false)
         self.updateLastVisit()
-        self.updateFooterView()
+        self.updateNextSectionStartDate()
         self.navigationItem.title = self.course.title
 
         // setup table view data
@@ -221,8 +223,9 @@ class CourseItemListViewController: UITableViewController {
     }
 
     private func updateAutomatedDownloadsHint(animated: Bool) {
-        // TODO show only if has upcoming section for course start
-        self.automatedDownloadsHint.isHidden =  !self.course.isEligibleForAutomatedDownloads || self.course.automatedDownloadSettings != nil
+        self.automatedDownloadsHint.isHidden = !self.course.isEligibleForAutomatedDownloads
+            || self.course.automatedDownloadSettings != nil
+            || self.nextSectionStartDate == nil
 
         let duration = animated ? defaultAnimationDurationUnlessReduceMotionEnabled : 0.0
         UIView.animate(withDuration: duration) {
@@ -230,25 +233,30 @@ class CourseItemListViewController: UITableViewController {
         }
     }
 
-    private func updateFooterView() {
+    private func updateNextSectionStartDate() {
         guard self.course.startsAt?.inPast ?? true else {
-            self.nextSectionStartLabel.isHidden = true
-
-            UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
-                self.tableView.resizeTableFooterView()
-            }
-
+            self.nextSectionStartDate = nil
             return
         }
 
         let request = CourseSectionHelper.FetchRequest.nextUnpublishedSection(for: self.course)
-        guard let sectionStartDate = CoreDataHelper.viewContext.fetchSingle(request).value?.startsAt else {
-            self.nextSectionStartLabel.isHidden = true
+        guard let date = CoreDataHelper.viewContext.fetchSingle(request).value?.startsAt else {
+            self.nextSectionStartDate = nil
+            return
+        }
 
+        self.nextSectionStartDate = date
+    }
+
+    private func updateNextSectionStartHint() {
+        defer {
             UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
                 self.tableView.resizeTableFooterView()
             }
+        }
 
+        guard let sectionStartDate = self.nextSectionStartDate else {
+            self.nextSectionStartLabel.isHidden = true
             return
         }
 
@@ -265,10 +273,6 @@ class CourseItemListViewController: UITableViewController {
                                        comment: "Format string for the next section start in the footer of course item list")
         self.nextSectionStartLabel.text = String(format: format, dateText, timeText)
         self.nextSectionStartLabel.isHidden = false
-
-        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
-            self.tableView.resizeTableFooterView()
-        }
     }
 
     @objc private func openContinueLearningItem() {
@@ -418,7 +422,7 @@ extension CourseItemListViewController: RefreshableViewController {
 
     func didRefresh() {
         self.updateLastVisit()
-        self.updateFooterView()
+        self.updateNextSectionStartDate()
 
         guard self.preloadingWanted else { return }
         self.preloadCourseContent()

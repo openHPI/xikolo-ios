@@ -22,23 +22,31 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <inset key="separatorInset" minX="28" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="Ghh-oA-DBA">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="244"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="252"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yLb-fw-Gqc">
-                                    <rect key="frame" x="20" y="20" width="374" height="224"/>
+                                    <rect key="frame" x="20" y="20" width="374" height="232"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Og6-OU-e7q">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="104"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="112"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c93-nQ-zE2">
-                                                    <rect key="frame" x="20" y="20" width="334" height="64"/>
+                                                    <rect key="frame" x="20" y="20" width="334" height="72"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="TVN-qH-yMl">
-                                                            <rect key="frame" x="0.0" y="0.0" width="334" height="20"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="La3-gU-Jp3">
+                                                            <rect key="frame" x="0.0" y="0.0" width="334" height="16"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="New Feature" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FI-8v-RIf">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="167" height="20"/>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="75d-cv-oxQ">
+                                                                    <rect key="frame" x="0.0" y="0.5" width="15.5" height="15"/>
+                                                                    <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                                    <imageReference key="image" image="exclamationmark.triangle.fill" catalog="system" renderingMode="template"/>
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                    </preferredSymbolConfiguration>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Missing Permission" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FI-8v-RIf">
+                                                                    <rect key="frame" x="19.5" y="0.0" width="314.5" height="16"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -46,28 +54,38 @@
                                                                         <fragment content="#bc-ignore!"/>
                                                                     </attributedString>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aEx-x1-w0h">
-                                                                    <rect key="frame" x="322" y="0.0" width="12" height="20"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Y0n-Nn-SU3">
+                                                            <rect key="frame" x="0.0" y="11" width="334" height="15.5"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QZD-Oe-4Sr">
+                                                                    <rect key="frame" x="0.0" y="-0.5" width="14" height="16.5"/>
                                                                     <color key="tintColor" systemColor="secondaryLabelColor"/>
-                                                                    <state key="normal">
-                                                                        <imageReference key="image" image="xmark" catalog="system" renderingMode="template"/>
-                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14" scale="small"/>
-                                                                    </state>
-                                                                    <connections>
-                                                                        <action selector="hideAutomatedDownloadsHint" destination="CUD-8G-le9" eventType="touchUpInside" id="H9a-Vu-DnY"/>
-                                                                    </connections>
-                                                                </button>
+                                                                    <imageReference key="image" image="sparkles" catalog="system" renderingMode="template"/>
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                    </preferredSymbolConfiguration>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="New Feature" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5z-Bd-WSj">
+                                                                    <rect key="frame" x="18" y="0.0" width="316" height="15.5"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <attributedString key="userComments">
+                                                                        <fragment content="#bc-ignore!"/>
+                                                                    </attributedString>
+                                                                </label>
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Activate Automaded Downloads" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppj-KB-dWk">
-                                                            <rect key="frame" x="0.0" y="23.5" width="334" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="31.5" width="334" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="or get notified when new content is released" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQ3-ov-xQ2">
-                                                            <rect key="frame" x="0.0" y="44.5" width="334" height="19.5"/>
+                                                            <rect key="frame" x="0.0" y="52.5" width="334" height="19.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                             <nil key="highlightedColor"/>
                                                             <attributedString key="userComments">
@@ -76,6 +94,21 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aEx-x1-w0h">
+                                                    <rect key="frame" x="346" y="8" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="aEx-x1-w0h" secondAttribute="height" multiplier="1:1" id="mWy-0z-Nl6"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                    <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                                    <state key="normal">
+                                                        <imageReference key="image" image="xmark" catalog="system" renderingMode="template"/>
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14" scale="small"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="hideAutomatedDownloadsHint" destination="CUD-8G-le9" eventType="touchUpInside" id="H9a-Vu-DnY"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                             <constraints>
@@ -83,10 +116,12 @@
                                                 <constraint firstItem="c93-nQ-zE2" firstAttribute="leading" secondItem="Og6-OU-e7q" secondAttribute="leading" constant="20" symbolic="YES" id="8Ib-cz-he3"/>
                                                 <constraint firstAttribute="bottom" secondItem="c93-nQ-zE2" secondAttribute="bottom" constant="20" symbolic="YES" id="BvZ-ik-f44"/>
                                                 <constraint firstItem="c93-nQ-zE2" firstAttribute="top" secondItem="Og6-OU-e7q" secondAttribute="top" constant="20" symbolic="YES" id="VdR-DD-XBY"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="aEx-x1-w0h" secondAttribute="trailing" id="Xix-nV-2Wh"/>
+                                                <constraint firstItem="aEx-x1-w0h" firstAttribute="top" secondItem="Og6-OU-e7q" secondAttribute="topMargin" id="zSW-h6-8Zb"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FCQ-Fh-KIx">
-                                            <rect key="frame" x="0.0" y="112" width="374" height="112"/>
+                                            <rect key="frame" x="0.0" y="120" width="374" height="112"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Nkd-gS-cep">
                                                     <rect key="frame" x="20" y="20" width="334" height="72"/>
@@ -160,7 +195,7 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="P6G-f9-mf8">
-                            <rect key="frame" x="0.0" y="420" width="414" height="73"/>
+                            <rect key="frame" x="0.0" y="428" width="414" height="73"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="next section start" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lh1-zS-1LH">
@@ -183,7 +218,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseItemCell" id="G9e-ER-HXC" customClass="CourseItemCell" customModule="iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="299.5" width="414" height="103"/>
+                                <rect key="frame" x="0.0" y="307.5" width="414" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" tableViewCell="G9e-ER-HXC" id="dUS-v4-gua">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
@@ -301,7 +336,10 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="wbr-Ja-Sax"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="automatedDownloadsCloseButton" destination="aEx-x1-w0h" id="sDr-CD-F3c"/>
                         <outlet property="automatedDownloadsHint" destination="Og6-OU-e7q" id="dH2-Q5-6Z2"/>
+                        <outlet property="automatedDownloadsMissingPermissionHint" destination="La3-gU-Jp3" id="vFA-NX-e2h"/>
+                        <outlet property="automatedDownloadsNewFeatureHint" destination="Y0n-Nn-SU3" id="62Z-Fu-lXM"/>
                         <outlet property="continueLearningHint" destination="FCQ-Fh-KIx" id="zjo-fh-XMP"/>
                         <outlet property="continueLearningItemIconView" destination="kDg-1C-EQA" id="5am-xy-g73"/>
                         <outlet property="continueLearningItemIconWidthConstraint" destination="G8h-P4-UDW" id="X4o-cP-KC7"/>
@@ -326,6 +364,8 @@
     <resources>
         <image name="chevron.right" width="9" height="14"/>
         <image name="dots" width="28" height="28"/>
+        <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="112"/>
+        <image name="sparkles" catalog="system" width="112" height="128"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

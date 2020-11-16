@@ -18,6 +18,9 @@ class CourseItemListViewController: UITableViewController {
     private static let timeFormatter = DateFormatter.localizedFormatter(dateStyle: .none, timeStyle: .short)
 
     @IBOutlet private weak var automatedDownloadsHint: UIView!
+    @IBOutlet private weak var automatedDownloadsMissingPermissionHint: UIView!
+    @IBOutlet private weak var automatedDownloadsNewFeatureHint: UIView!
+    @IBOutlet private weak var automatedDownloadsCloseButton: UIButton!
 
     @IBOutlet private weak var continueLearningHint: UIView!
     @IBOutlet private weak var continueLearningSectionTitleLabel: UILabel!
@@ -223,13 +226,33 @@ class CourseItemListViewController: UITableViewController {
     }
 
     private func updateAutomatedDownloadsHint(animated: Bool) {
-        self.automatedDownloadsHint.isHidden = !self.course.isEligibleForAutomatedDownloads
-            || self.course.automatedDownloadSettings != nil
-            || self.nextSectionStartDate == nil
+        let update: (Bool) -> Void = { permissionMissing in
+            let downloadSettingsExist = self.course.automatedDownloadSettings != nil
+            let hasNoNextSectionStart = self.nextSectionStartDate == nil
+            let shouldHideHint = (downloadSettingsExist || hasNoNextSectionStart) && !permissionMissing
 
-        let duration = animated ? defaultAnimationDurationUnlessReduceMotionEnabled : 0.0
-        UIView.animate(withDuration: duration) {
-            self.tableView.resizeTableHeaderView()
+            self.automatedDownloadsNewFeatureHint.isHidden = permissionMissing
+            self.automatedDownloadsMissingPermissionHint.isHidden = !permissionMissing
+            self.automatedDownloadsCloseButton.isHidden = permissionMissing
+            self.automatedDownloadsHint.isHidden = !self.course.isEligibleForAutomatedDownloads || shouldHideHint
+
+            let duration = animated ? defaultAnimationDurationUnlessReduceMotionEnabled : 0.0
+            UIView.animate(withDuration: duration) {
+                self.tableView.resizeTableHeaderView()
+            }
+        }
+
+        update(false)
+
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            let notificationsDenied = settings.authorizationStatus == .denied
+            let notificationsForNewContent = self.course.automatedDownloadSettings?.downloadOption == .notification
+            let permissionMissing = notificationsForNewContent && notificationsDenied
+            guard permissionMissing else { return }
+
+            DispatchQueue.main.async {
+                update(permissionMissing)
+            }
         }
     }
 

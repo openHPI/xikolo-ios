@@ -49,7 +49,7 @@ public enum CourseHelper {
 
             if settings?.downloadOption == .notification {
                 let center = UNUserNotificationCenter.current()
-                let options: UNAuthorizationOptions = [.alert];
+                let options: UNAuthorizationOptions = [.alert]
                 center.requestAuthorization(options: options) { (granted, error) in
                     if granted {
                         successHandler()

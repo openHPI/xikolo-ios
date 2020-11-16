@@ -106,5 +106,7 @@
 	<true/>
 	<key>URL_SCHEME</key>
 	<string>$(URL_SCHEME)</string>
+	<key>AVInitialRouteSharingPolicy</key>
+	<string>LongFormVideo</string>
 </dict>
 </plist>

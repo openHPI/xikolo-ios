@@ -192,11 +192,10 @@ class CourseListViewController: CustomWidthCollectionViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
-        // swiftlint:disable:next trailing_closure
-        coordinator.animate(alongsideTransition: { _  in
+        coordinator.animate { _  in
             self.navigationController?.navigationBar.sizeToFit()
             self.collectionViewLayout.invalidateLayout()
-        })
+        }
     }
 
     @available(iOS 13.0, *)
@@ -370,20 +369,18 @@ extension CourseListViewController: UISearchControllerDelegate {
         self.searchFilterViewController.collectionView.reloadData()
         self.collectionViewLayout.invalidateLayout()
 
-        // swiftlint:disable:next trailing_closure
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut) { [weak self] in
             self?.collectionView.layoutIfNeeded()
-        })
+        }
     }
 
     func willDismissSearchController(_ searchController: UISearchController) {
         self.updateSearchFilterContainerHeight(isSearching: false)
         self.collectionViewLayout.invalidateLayout()
 
-        // swiftlint:disable:next trailing_closure
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut) { [weak self] in
             self?.collectionView.layoutIfNeeded()
-        })
+        }
     }
 
     func didDismissSearchController(_ searchController: UISearchController) {

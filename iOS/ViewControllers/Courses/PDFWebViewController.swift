@@ -70,9 +70,9 @@ class PDFWebViewController: UIViewController {
             self.loadPDF(for: url)
         }
 
-        UIView.animate(withDuration: 0.25, delay: 0.5, options: .curveLinear, animations: {
+        UIView.animate(withDuration: 0.25, delay: 0.5, options: .curveLinear) {
             self.progress.alpha = CGFloat(1.0)
-        }, completion: nil)
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {

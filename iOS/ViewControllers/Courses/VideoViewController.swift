@@ -389,11 +389,10 @@ class VideoViewController: UIViewController {
 
             let animationDuration = animated ? 0.25 : 0
 
-            // swiftlint:disable:next trailing_closure
-            UIView.animate(withDuration: animationDuration, delay: 0, options: .layoutSubviews, animations: {
+            UIView.animate(withDuration: animationDuration, delay: 0, options: .layoutSubviews) {
                 self.updateCornersOfVideoContainer(for: self.traitCollection)
                 self.view.layoutIfNeeded()
-            })
+            }
         }
     }
 

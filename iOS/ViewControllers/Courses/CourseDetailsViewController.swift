@@ -79,10 +79,9 @@ class CourseDetailsViewController: UIViewController {
         self.teaserImageView.sd_setImage(with: self.course.imageURL)
 
         let animationDuration = animated ? 0.25 : 0
-        // swiftlint:disable:next trailing_closure
-        UIView.transition(with: self.teaserView, duration: animationDuration, options: .curveEaseInOut, animations: {
+        UIView.transition(with: self.teaserView, duration: animationDuration, options: .curveEaseInOut) {
             self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
-        })
+        }
 
         let markdown = self.course.courseDescription ?? self.course.abstract
         self.descriptionView.setMarkdownWithImages(from: markdown)

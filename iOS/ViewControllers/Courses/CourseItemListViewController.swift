@@ -245,9 +245,9 @@ class CourseItemListViewController: UITableViewController {
 
         self.scrollDelegate?.scrollToTop()
 
-        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled, animations: {
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
             self.tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
-        }, completion: { _ in
+        } completion: { _ in
             let cell = self.tableView.cellForRow(at: indexPath)
             let originalColor = cell?.backgroundColor
 
@@ -262,7 +262,7 @@ class CourseItemListViewController: UITableViewController {
                     completionHandler?(cell)
                 }
             })
-        })
+        }
     }
 
 }

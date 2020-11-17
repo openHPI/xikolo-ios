@@ -55,11 +55,10 @@ class ChannelListViewController: CustomWidthCollectionViewController {
 
         self.adjustScrollDirection(for: size)
 
-        // swiftlint:disable:next trailing_closure
-        coordinator.animate(alongsideTransition: { _  in
+        coordinator.animate { _  in
             self.navigationController?.navigationBar.sizeToFit()
             self.collectionViewLayout.invalidateLayout()
-        })
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

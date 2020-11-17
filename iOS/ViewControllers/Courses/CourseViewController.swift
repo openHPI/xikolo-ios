@@ -289,10 +289,9 @@ class CourseViewController: UIViewController {
     private func updateContainerView() {
         let animationTime: TimeInterval = 0.15
 
-        // swiftlint:disable multiple_closures_with_trailing_closure
-        UIView.animate(withDuration: animationTime, delay: animationTime, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: animationTime, delay: animationTime, options: .curveEaseIn) {
             self.courseAreaViewController?.view.alpha = 0
-        }) { _ in
+        } completion: { _ in
             self.courseAreaViewController = nil
 
             guard let newViewController = self.area.viewController else {
@@ -306,10 +305,9 @@ class CourseViewController: UIViewController {
             self.courseAreaViewController = newViewController
             self.courseAreaPageViewController?.setViewControllers([newViewController], direction: .forward, animated: false)
 
-            // swiftlint:disable:next trailing_closure
-            UIView.animate(withDuration: animationTime, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: animationTime, delay: 0, options: .curveEaseOut) {
                 newViewController.view.alpha = 1
-            })
+            }
         }
     }
 
@@ -515,10 +513,9 @@ extension CourseViewController: UINavigationControllerDelegate {
 
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         guard viewController == self else {
-            // swiftlint:disable:next trailing_closure
-            navigationController.transitionCoordinator?.animate(alongsideTransition: { _ in
+            navigationController.transitionCoordinator?.animate { _ in
                 self.courseNavigationController?.updateNavigationBarTintColor(forMappedProgress: 1)
-            })
+            }
 
             return
         }
@@ -531,10 +528,10 @@ extension CourseViewController: UINavigationControllerDelegate {
             return
         }
 
-        transitionCoordinator.animate(alongsideTransition: { context in
+        transitionCoordinator.animate { context in
             self.courseNavigationController?.updateNavigationBar(forProgress: progress)
             self.navigationController?.navigationBar.layoutIfNeeded()
-        }, completion: { context in
+        } completion: { context in
             guard viewController == self else { return }
 
             if navigationController.viewControllers.count > 1, context.isCancelled {
@@ -542,7 +539,7 @@ extension CourseViewController: UINavigationControllerDelegate {
             } else if navigationController.viewControllers.count == 1 {
                 self.courseNavigationController?.updateNavigationBar(forProgress: progress)
             }
-        })
+        }
     }
 
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {

@@ -52,10 +52,9 @@ class CustomWidthNavigationController: UINavigationController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
-        // swiftlint:disable:next trailing_closure
-        coordinator.animate(alongsideTransition: { _  in
+        coordinator.animate { _  in
             self.updateCustomLayoutMargins()
-        })
+        }
     }
 
     private func updateCustomLayoutMargins() {

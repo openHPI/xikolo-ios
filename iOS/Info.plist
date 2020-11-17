@@ -6,6 +6,8 @@
 	<string>$(ACTIVITY_TYPE_OPEN_COURSE)</string>
 	<key>APP_GROUP_IDENTIFIER</key>
 	<string>$(APP_GROUP_IDENTIFIER)</string>
+	<key>AVInitialRouteSharingPolicy</key>
+	<string>LongFormVideo</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -106,7 +108,5 @@
 	<true/>
 	<key>URL_SCHEME</key>
 	<string>$(URL_SCHEME)</string>
-	<key>AVInitialRouteSharingPolicy</key>
-	<string>LongFormVideo</string>
 </dict>
 </plist>

@@ -11,7 +11,7 @@ import UIKit
 
 let logger = Logger(subsystem: "de.xikolo.iOS", category: "iOS")
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private let userProfileHelperDelegateInstance = UserProfileHelperDelegateInstance()

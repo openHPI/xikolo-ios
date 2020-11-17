@@ -229,7 +229,8 @@ class CourseItemListViewController: UITableViewController {
         let update: (Bool) -> Void = { permissionMissing in
             let downloadSettingsExist = self.course.automatedDownloadSettings != nil
             let hasNoNextSectionStart = self.nextSectionStartDate == nil
-            let shouldHideHint = (downloadSettingsExist || hasNoNextSectionStart) && !permissionMissing
+            let noticedBefore = self.course.automatedDownloadsHaveBeenNoticed
+            let shouldHideHint = (downloadSettingsExist || hasNoNextSectionStart || noticedBefore) && !permissionMissing
 
             self.automatedDownloadsNewFeatureHint.isHidden = permissionMissing
             self.automatedDownloadsMissingPermissionHint.isHidden = !permissionMissing
@@ -306,12 +307,13 @@ class CourseItemListViewController: UITableViewController {
 
     @available(iOS 13, *)
     @objc private func showAutomatedDownloadSettings() {
-        let downloadSettingsViewController = AutomatedDownloadsSettingsViewController(course: self.course)
+        let downloadSettingsViewController = AutomatedDownloadsSettingsViewController(course: self.course, showManageHint: true)
         let navigationController = ReadableWidthNavigationController(rootViewController: downloadSettingsViewController)
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
     @IBAction private func hideAutomatedDownloadsHint() {
+        CourseHelper.setAutomatedDownloadsToNoticed(for: self.course)
         self.automatedDownloadsHint.isHidden = true
 
         UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {

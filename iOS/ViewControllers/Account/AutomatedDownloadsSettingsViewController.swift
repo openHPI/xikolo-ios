@@ -11,6 +11,7 @@ import UIKit
 class AutomatedDownloadsSettingsViewController: UITableViewController {
 
     let course: Course
+    let showManageHint: Bool
     let downloadSettings: AutomatedDownloadSettings
 
     private let cellReuseIdentifier = "SettingsOptionCell"
@@ -26,8 +27,9 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         return indicator
     }()
 
-    init(course: Course) {
+    init(course: Course, showManageHint: Bool = false) {
         self.course = course
+        self.showManageHint = showManageHint
         self.downloadSettings = self.course.automatedDownloadSettings ?? AutomatedDownloadSettings()
 
         super.init(style: .insetGrouped)
@@ -50,6 +52,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         label.text = "Missing Permissions" // TODO: localization
         label.textColor = ColorCompatibility.systemRed
         label.font = UIFont.preferredFont(forTextStyle: .callout)
+        label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = 0
         label.textAlignment = .center
 
@@ -142,9 +145,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
 
     // data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        var numberOfSection = 3
-        numberOfSection += self.course.automatedDownloadSettings != nil ? 1 : 0
-        return numberOfSection
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -156,7 +157,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         case 2:
             return AutomatedDownloadSettings.DeletionOption.allCases.count
         case 3:
-            return 1
+            return self.course.automatedDownloadSettings != nil ? 1 : 0
         default:
             return 0
         }
@@ -180,6 +181,8 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
             return self.downloadSettings.downloadOption.explanation
         case 2:
             return self.downloadSettings.deletionOption.explanation
+        case 3:
+            return self.showManageHint ? "You will be able to change these settings at any time via the course menu ('⋯') or under 'Downloaded Content' in the account tab." : nil // TODO: localize
         default:
             return nil
         }

@@ -44,6 +44,7 @@ public enum CourseHelper {
 
             let successHandler = {
                 course.automatedDownloadSettings = settings
+                course.automatedDownloadsHaveBeenNoticed = true
                 promise.complete(context.saveWithResult())
             }
 
@@ -60,6 +61,28 @@ public enum CourseHelper {
             } else {
                 successHandler()
             }
+        }
+
+        return promise.future
+    }
+
+    @discardableResult public static func setAutomatedDownloadsToNoticed(for course: Course) -> Future<Void, XikoloError> {
+        if course.automatedDownloadsHaveBeenNoticed {
+            return Future(value: ())
+        }
+
+        let promise = Promise<Void, XikoloError>()
+
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
+            guard let course = context.existingTypedObject(with: course.objectID) as? Course else {
+                promise.failure(.missingResource(ofType: Course.self))
+                return
+            }
+
+            course.automatedDownloadsHaveBeenNoticed = true
+            promise.complete(context.saveWithResult())
         }
 
         return promise.future

@@ -106,7 +106,7 @@ class XikoloTabBarController: UITabBarController {
 
             logger.info("Update app state from %@ to %@", String(describing: self.status), String(describing: newValue))
             let animated = self.status != .standard
-            UIView.animate(withDuration: animationDuration(animated)) {
+            UIView.animate(withDuration: defaultAnimationDuration(animated)) {
                 self._status = newValue
                 self.updateMessageViewAppearance()
             }

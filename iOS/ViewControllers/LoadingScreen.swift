@@ -15,7 +15,7 @@ public class LoadingScreen: UIViewController {
         super.viewDidLoad()
         self.view.alpha = 0.0
 
-        UIView.animate(withDuration: 0.25, delay: 1.25, options: .curveEaseIn) {
+        UIView.animate(withDuration: defaultAnimationDuration, delay: 1.25, options: .curveEaseIn) {
             self.view.alpha = 1.0
         }
 

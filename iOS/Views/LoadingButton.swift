@@ -7,8 +7,6 @@ import UIKit
 
 class LoadingButton: DynamicSizeButton {
 
-    private static let animationTime = 0.2
-
     private lazy var spinner: CircularProgressView = {
         let progress = CircularProgressView()
         progress.translatesAutoresizingMaskIntoConstraints = false
@@ -39,11 +37,11 @@ class LoadingButton: DynamicSizeButton {
     }
 
     func startAnimation() {
-        UIView.animate(withDuration: Self.animationTime, delay: 0, options: .curveEaseIn) { [weak self] in
+        UIView.animate(withDuration: defaultAnimationDuration, delay: 0, options: .curveEaseIn) { [weak self] in
             self?.titleLabel?.layer.opacity = 0.0
         } completion: { [weak self] _ in
             self?.titleLabel?.isHidden = true
-            UIView.animate(withDuration: Self.animationTime, delay: 0, options: .curveEaseOut) { [weak self] in
+            UIView.animate(withDuration: defaultAnimationDuration, delay: 0, options: .curveEaseOut) { [weak self] in
                 self?.spinner.alpha = 1.0
             }
         }
@@ -52,10 +50,10 @@ class LoadingButton: DynamicSizeButton {
     func stopAnimation() {
         self.titleLabel?.layer.opacity = 0.0
         self.titleLabel?.isHidden = false
-        UIView.animate(withDuration: Self.animationTime, delay: 0, options: .curveEaseIn) { [weak self] in
+        UIView.animate(withDuration: defaultAnimationDuration, delay: 0, options: .curveEaseIn) { [weak self] in
             self?.spinner.alpha = 0.0
         } completion: { _ in
-            UIView.animate(withDuration: Self.animationTime, delay: 0, options: .curveEaseOut) { [weak self] in
+            UIView.animate(withDuration: defaultAnimationDuration, delay: 0, options: .curveEaseOut) { [weak self] in
                 self?.titleLabel?.layer.opacity = 1.0
             }
         }

@@ -501,7 +501,7 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
 
         self.headerOffset = snapUpwards ? self.headerHeight : 0
 
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
             self.courseNavigationController?.updateNavigationBar(forProgress: snapUpwards ? 1 : 0)
             self.view.layoutIfNeeded()
         }

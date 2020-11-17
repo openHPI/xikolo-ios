@@ -369,7 +369,7 @@ extension CourseListViewController: UISearchControllerDelegate {
         self.searchFilterViewController.collectionView.reloadData()
         self.collectionViewLayout.invalidateLayout()
 
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut) { [weak self] in
+        UIView.animate(withDuration: defaultAnimationDuration, delay: 0, options: .curveEaseInOut) { [weak self] in
             self?.collectionView.layoutIfNeeded()
         }
     }
@@ -378,7 +378,7 @@ extension CourseListViewController: UISearchControllerDelegate {
         self.updateSearchFilterContainerHeight(isSearching: false)
         self.collectionViewLayout.invalidateLayout()
 
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut) { [weak self] in
+        UIView.animate(withDuration: defaultAnimationDuration, delay: 0, options: .curveEaseInOut) { [weak self] in
             self?.collectionView.layoutIfNeeded()
         }
     }

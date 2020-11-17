@@ -125,15 +125,16 @@ class LoginViewController: UIViewController, WKUIDelegate {
         let overlappingOffset = 0.5 * viewHeight - keyboardHeight - self.emailField.frame.size.height - 8.0
         self.centerInputFieldsConstraints.constant = min(overlappingOffset, 0)  // we only want to move the container upwards
 
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: defaultAnimationDuration) {
             self.view.layoutIfNeeded()
+            defaultAnimationDurationUnlessReduceMotionEnabled
         }
     }
 
     @objc func adjustViewForKeyboardHide(_ notification: Notification) {
         self.centerInputFieldsConstraints.constant = 0
 
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: defaultAnimationDuration) {
             self.view.layoutIfNeeded()
         }
     }

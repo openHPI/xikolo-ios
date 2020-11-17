@@ -78,8 +78,7 @@ class CourseDetailsViewController: UIViewController {
         self.dateView.text = CoursePeriodFormatter.string(from: self.course)
         self.teaserImageView.sd_setImage(with: self.course.imageURL)
 
-        let animationDuration = animated ? 0.25 : 0
-        UIView.transition(with: self.teaserView, duration: animationDuration, options: .curveEaseInOut) {
+        UIView.transition(with: self.teaserView, duration: animationDuration(animated), options: .curveEaseInOut) {
             self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
         }
 

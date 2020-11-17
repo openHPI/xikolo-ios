@@ -44,7 +44,7 @@ class VideoViewController: UIViewController {
                 self.videoContainer.addConstraint(newConstraint)
             }
 
-            UIView.animate(withDuration: 0.25) {
+            UIView.animate(withDuration: defaultAnimationDuration) {
                 self.view.layoutIfNeeded()
             }
         }
@@ -387,9 +387,7 @@ class VideoViewController: UIViewController {
                 NSLayoutConstraint.deactivate(self.fullScreenConstraints)
             }
 
-            let animationDuration = animated ? 0.25 : 0
-
-            UIView.animate(withDuration: animationDuration, delay: 0, options: .layoutSubviews) {
+            UIView.animate(withDuration: defaultAnimationDuration(animated), delay: 0, options: .layoutSubviews) {
                 self.updateCornersOfVideoContainer(for: self.traitCollection)
                 self.view.layoutIfNeeded()
             }

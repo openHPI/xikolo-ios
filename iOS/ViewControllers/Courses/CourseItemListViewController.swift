@@ -105,7 +105,9 @@ class CourseItemListViewController: UITableViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openContinueLearningItem))
         self.continueLearningHint.addGestureRecognizer(tapGesture)
 
+        self.automatedDownloadsHint.isHidden = true
         self.continueLearningHint.isHidden = true
+        self.nextSectionStartLabel.isHidden = true
 
         if #available(iOS 13, *) {
             self.automatedDownloadsHint.layer.roundCorners(for: .default)

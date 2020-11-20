@@ -79,7 +79,7 @@ class AnnouncementViewController: UIViewController {
 
     @IBAction private func openCourse() {
         guard let course = announcement.course else { return }
-        self.appNavigator?.show(course: course, switchingCourses: false)
+        self.appNavigator?.show(course: course)
     }
 
 }
@@ -88,7 +88,7 @@ extension AnnouncementViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         guard let appNavigator = self.appNavigator else { return false }
-        return !appNavigator.handle(url: URL, on: self, switchingCourses: true)
+        return !appNavigator.handle(url: URL, on: self)
     }
 
 }

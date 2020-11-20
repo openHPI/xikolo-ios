@@ -545,7 +545,7 @@ extension VideoViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         guard let appNavigator = self.appNavigator else { return false }
-        return !appNavigator.handle(url: URL, on: self, switchingCourses: true)
+        return !appNavigator.handle(url: URL, on: self)
     }
 
 }

@@ -194,7 +194,7 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
             self.appNavigator?.showCourseList()
         } else {
             let course = self.courses[indexPath.item]
-            self.appNavigator?.show(course: course, switchingCourses: false)
+            self.appNavigator?.show(course: course)
         }
     }
 
@@ -233,7 +233,7 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
         animator.addCompletion {
             guard let indexPath = configuration.identifier as? IndexPath else { return }
             let course = self.courses[indexPath.item]
-            self.appNavigator?.show(course: course, switchingCourses: false)
+            self.appNavigator?.show(course: course)
         }
     }
 

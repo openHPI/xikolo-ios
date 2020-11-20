@@ -36,15 +36,49 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
         let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
         courseViewController.course = course
 
-        let courseClosedAction: (CourseViewController, Bool) -> Void = { courseViewController, accessible in
-            courseViewController.transitionIfPossible(to: .learnings)
-        }
-        let courseOpenAction: (CourseViewController) -> Void = { courseViewController in
-            courseViewController.transitionIfPossible(to: .learnings)
+        let courseAction: (CourseViewController, Bool) -> Void = { courseViewController, accessible in
+            if let url = userActivity?.userInfo?["url"] as? URL {
+                let courseArea = url.pathComponents[safe: 3]
+                switch courseArea {
+                case nil:
+                    courseViewController.transitionIfPossible(to: .learnings)
+                case "items":
+                    if let courseItemId = url.pathComponents[safe: 4] {
+                        let itemId = CourseItem.uuid(forBase62UUID: courseItemId) ?? courseItemId
+                        let itemFetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: itemId)
+                        if let courseItem = CoreDataHelper.viewContext.fetchSingle(itemFetchRequest).value {
+                            courseViewController.show(item: courseItem, animated: trueUnlessReduceMotionEnabled)
+                        } else {
+                            logger.info("Unable to open course item (\(itemId)) for course (\(course.slug ?? "-")) inside the app")
+//                            return false
+                            courseViewController.transitionIfPossible(to: .learnings)
+                        }
+                    } else {
+                        courseViewController.transitionIfPossible(to: .learnings)
+                    }
+                case "pinboard":
+                    courseViewController.transitionIfPossible(to: .discussions)
+                case "progress":
+                    courseViewController.transitionIfPossible(to: .progress)
+                case "announcements":
+                    courseViewController.transitionIfPossible(to: .announcements)
+                case "recap":
+                    guard Brand.default.features.enableRecap else { return }
+                    courseViewController.transitionIfPossible(to: .recap)
+                case "documents":
+                    guard Brand.default.features.enableDocuments else { return }
+                    courseViewController.transitionIfPossible(to: .documents)
+                default:
+                    logger.info("Unable to open course area (\(courseArea ?? "")) for course (\(course.slug ?? "-")) inside the app")
+                    courseViewController.transitionIfPossible(to: .learnings)
+                }
+            } else {
+                courseViewController.transitionIfPossible(to: .learnings)
+            }
         }
 
         let accessible = course.accessible
-        courseClosedAction(courseViewController, accessible)
+        courseAction(courseViewController, accessible)
 
         if let windowScene = scene as? UIWindowScene {
             self.window = UIWindow(windowScene: windowScene)

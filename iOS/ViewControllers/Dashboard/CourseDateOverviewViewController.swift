@@ -127,7 +127,7 @@ class CourseDateOverviewViewController: UIViewController {
 
     @objc private func showCourseForNextCourseDate() {
         guard let course = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value?.course else { return }
-        self.appNavigator?.show(course: course, switchingCourses: false)
+        self.appNavigator?.show(course: course)
     }
 
     @objc private func coreDataChange(notification: Notification) {

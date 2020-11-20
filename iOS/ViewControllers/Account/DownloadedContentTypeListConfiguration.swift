@@ -38,7 +38,7 @@ enum DownloadedStreamsListConfiguration: DownloadedContentTypeListConfiguration 
 
     static func show(_ object: Video, with appNavigator: AppNavigator?) {
         guard let item = object.item else { return }
-        appNavigator?.show(item: item, switchingCourses: false)
+        appNavigator?.show(item: item)
     }
 
 }
@@ -60,7 +60,7 @@ enum DownloadedSlidesListConfiguration: DownloadedContentTypeListConfiguration {
 
     static func show(_ object: Video, with appNavigator: AppNavigator?) {
         guard let item = object.item else { return }
-        appNavigator?.show(item: item, switchingCourses: false)
+        appNavigator?.show(item: item)
     }
 
 }
@@ -81,7 +81,7 @@ enum DownloadedDocumentsListConfiguration: DownloadedContentTypeListConfiguratio
     }
 
     static func show(_ object: DocumentLocalization, with appNavigator: AppNavigator?) {
-        appNavigator?.show(documentLocalization: object, switchingCourses: false)
+        appNavigator?.show(documentLocalization: object)
     }
 
 }

@@ -165,7 +165,7 @@ class CourseListViewController: CustomWidthCollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = self.dataSource.object(at: indexPath)
-        self.appNavigator?.show(course: course, switchingCourses: false)
+        self.appNavigator?.show(course: course)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -230,7 +230,7 @@ class CourseListViewController: CustomWidthCollectionViewController {
         animator.addCompletion {
             guard let indexPath = configuration.identifier as? IndexPath else { return }
             let course = self.dataSource.object(at: indexPath)
-            self.appNavigator?.show(course: course, switchingCourses: false)
+            self.appNavigator?.show(course: course)
         }
     }
 

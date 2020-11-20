@@ -7,6 +7,12 @@ import Common
 import UIKit
 
 @available(iOS 13.0, *)
+enum UserActivityAction {
+    case courseArea(CourseArea)
+    case action((CourseViewController) -> ())
+}
+
+@available(iOS 13.0, *)
 class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private lazy var courseNavigationController: CourseNavigationController = {
@@ -36,49 +42,14 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
         let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
         courseViewController.course = course
 
-        let courseAction: (CourseViewController, Bool) -> Void = { courseViewController, accessible in
-            if let url = userActivity?.userInfo?["url"] as? URL {
-                let courseArea = url.pathComponents[safe: 3]
-                switch courseArea {
-                case nil:
-                    courseViewController.transitionIfPossible(to: .learnings)
-                case "items":
-                    if let courseItemId = url.pathComponents[safe: 4] {
-                        let itemId = CourseItem.uuid(forBase62UUID: courseItemId) ?? courseItemId
-                        let itemFetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: itemId)
-                        if let courseItem = CoreDataHelper.viewContext.fetchSingle(itemFetchRequest).value {
-                            courseViewController.show(item: courseItem, animated: trueUnlessReduceMotionEnabled)
-                        } else {
-                            logger.info("Unable to open course item (\(itemId)) for course (\(course.slug ?? "-")) inside the app")
-//                            return false
-                            courseViewController.transitionIfPossible(to: .learnings)
-                        }
-                    } else {
-                        courseViewController.transitionIfPossible(to: .learnings)
-                    }
-                case "pinboard":
-                    courseViewController.transitionIfPossible(to: .discussions)
-                case "progress":
-                    courseViewController.transitionIfPossible(to: .progress)
-                case "announcements":
-                    courseViewController.transitionIfPossible(to: .announcements)
-                case "recap":
-                    guard Brand.default.features.enableRecap else { return }
-                    courseViewController.transitionIfPossible(to: .recap)
-                case "documents":
-                    guard Brand.default.features.enableDocuments else { return }
-                    courseViewController.transitionIfPossible(to: .documents)
-                default:
-                    logger.info("Unable to open course area (\(courseArea ?? "")) for course (\(course.slug ?? "-")) inside the app")
-                    courseViewController.transitionIfPossible(to: .learnings)
-                }
-            } else {
-                courseViewController.transitionIfPossible(to: .learnings)
-            }
+        switch action(for: userActivity) {
+        case let .courseArea(area):
+            courseViewController.transitionIfPossible(to: area)
+        case let .action(action):
+            action(courseViewController)
+        case .none:
+            courseViewController.transitionIfPossible(to: .courseDetails)
         }
-
-        let accessible = course.accessible
-        courseAction(courseViewController, accessible)
 
         if let windowScene = scene as? UIWindowScene {
             self.window = UIWindow(windowScene: windowScene)
@@ -98,6 +69,45 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
         return scene.userActivity
+    }
+
+    private func action(for userActivity: NSUserActivity?) -> UserActivityAction? {
+        guard let url = userActivity?.userInfo?["url"] as? URL else {
+            return nil
+        }
+
+        switch url.pathComponents[safe: 3] {
+        case nil:
+            return .courseArea(.learnings)
+        case "items":
+            if let courseItemId = url.pathComponents[safe: 4] {
+                let itemId = CourseItem.uuid(forBase62UUID: courseItemId) ?? courseItemId
+                let itemFetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: itemId)
+                if let courseItem = CoreDataHelper.viewContext.fetchSingle(itemFetchRequest).value {
+                    return .action({ courseViewController in
+                        courseViewController.show(item: courseItem, animated: trueUnlessReduceMotionEnabled)
+                    })
+                } else {
+                    return .courseArea(.learnings)
+                }
+            } else {
+                return .courseArea(.learnings)
+            }
+        case "pinboard":
+            return .courseArea(.discussions)
+        case "progress":
+            return .courseArea(.progress)
+        case "announcements":
+            return .courseArea(.announcements)
+        case "recap":
+            guard Brand.default.features.enableRecap else { return nil }
+            return .courseArea(.recap)
+        case "documents":
+            guard Brand.default.features.enableDocuments else { return nil }
+            return .courseArea(.documents)
+        default:
+            return nil
+        }
     }
 
 }

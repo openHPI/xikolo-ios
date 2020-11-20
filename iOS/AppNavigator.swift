@@ -251,16 +251,16 @@ class AppNavigator {
 
     @available(iOS 13.0, *)
     func openAlert(replaceAction: @escaping () -> Void, newWindowAction: @escaping () -> Void) {
-        let alertTitle = NSLocalizedString("course.open-alert", comment: "Question posed when a course is about to get opened via link")
+        let alertTitle = NSLocalizedString("alert.switch-course.title", comment: "title for alert when switching courses")
         let alert = UIAlertController(title: alertTitle, message: nil, preferredStyle: .alert)
         alert.popoverPresentationController?.sourceView = self.tabBarController?.view
         alert.addCancelAction()
 
-        let replaceActionTitle = NSLocalizedString("course.open-this.window", comment: "label close current course and open new course in the same window")
+        let replaceActionTitle = NSLocalizedString("alert.switch-course.current-window", comment: "label close current course and open new course in the same window")
         let openInCurrentWindowAction = UIAlertAction(title: replaceActionTitle, style: .default) { _ in replaceAction() }
         alert.addAction(openInCurrentWindowAction)
 
-        let newWindowActionTitle = NSLocalizedString("course.open-another.window", comment: "label open new course in another window when switching courses")
+        let newWindowActionTitle = NSLocalizedString("alert.switch-course.new-window", comment: "label open new course in another window when switching courses")
         let openInAnotherWindowAction = UIAlertAction(title: newWindowActionTitle, style: .default) { _ in newWindowAction() }
         alert.addAction(openInAnotherWindowAction)
 

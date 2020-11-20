@@ -20,6 +20,15 @@
 /* title of alert for stream download errors */
 "alert.download-error.stream.title" = "Error while downloading video";
 
+/* label close current course and open new course in the same window */
+"alert.switch-course.current-window" = "Open in This Window";
+
+/* label open new course in another window when switching courses */
+"alert.switch-course.new-window" = "Open in New Window";
+
+/* title for alert when switching courses */
+"alert.switch-course.title" = "How should the course be opened?";
+
 /* alert action title to mark all announcements as read */
 "announcement.alert.mark all as read" = "Mark all as read";
 
@@ -196,15 +205,6 @@
 
 /* course item ungraded type */
 "course.item.exercise-type.disclaimer.ungraded" = "This is an ungraded exercise.";
-
-/* Question posed when a course is about to get opened via link */
-"course.open-alert" = "Wie möchten Sie den Kurs öffnen?";
-
-/* label open new course in another window when switching courses */
-"course.open-another.window" = "In einem anderem Fenster öffnen";
-
-/* label close current course and open new course in the same window */
-"course.open-this.window" = "In diesem Fenster öffnen";
 
 /* label exercise progress with absolute values. n out of m */
 "course.progress.points %@ of %@ points" = "%@ of %@ points";

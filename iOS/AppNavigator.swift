@@ -257,11 +257,11 @@ class AppNavigator {
         alert.addCancelAction()
 
         let replaceActionTitle = NSLocalizedString("course.open-this.window", comment: "label close current course and open new course in the same window")
-        let openInCurrentWindowAction = UIAlertAction(title: replaceActionTitle, style: .default, handler: { _ in replaceAction() })
+        let openInCurrentWindowAction = UIAlertAction(title: replaceActionTitle, style: .default) { _ in replaceAction() }
         alert.addAction(openInCurrentWindowAction)
 
         let newWindowActionTitle = NSLocalizedString("course.open-another.window", comment: "label open new course in another window when switching courses")
-        let openInAnotherWindowAction = UIAlertAction(title: newWindowActionTitle, style: .default, handler: { _ in newWindowAction() })
+        let openInAnotherWindowAction = UIAlertAction(title: newWindowActionTitle, style: .default) { _ in newWindowAction() }
         alert.addAction(openInAnotherWindowAction)
 
         self.currentCourseNavigationController?.present(alert, animated: trueUnlessReduceMotionEnabled)

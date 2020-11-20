@@ -9,7 +9,7 @@ import UIKit
 @available(iOS 13.0, *)
 enum UserActivityAction {
     case courseArea(CourseArea)
-    case action((CourseViewController) -> ())
+    case action((CourseViewController) -> Void)
 }
 
 @available(iOS 13.0, *)
@@ -71,6 +71,7 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
         return scene.userActivity
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     private func action(for userActivity: NSUserActivity?) -> UserActivityAction? {
         guard let url = userActivity?.userInfo?["url"] as? URL else {
             return nil

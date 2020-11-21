@@ -256,11 +256,13 @@ class AppNavigator {
         alert.popoverPresentationController?.sourceView = self.tabBarController?.view
         alert.addCancelAction()
 
-        let replaceActionTitle = NSLocalizedString("alert.switch-course.current-window", comment: "label close current course and open new course in the same window")
+        let replaceActionTitle = NSLocalizedString("alert.switch-course.current-window",
+                                                   comment: "label close current course and open new course in the same window")
         let openInCurrentWindowAction = UIAlertAction(title: replaceActionTitle, style: .default) { _ in replaceAction() }
         alert.addAction(openInCurrentWindowAction)
 
-        let newWindowActionTitle = NSLocalizedString("alert.switch-course.new-window", comment: "label open new course in another window when switching courses")
+        let newWindowActionTitle = NSLocalizedString("alert.switch-course.new-window",
+                                                     comment: "label open new course in another window when switching courses")
         let openInAnotherWindowAction = UIAlertAction(title: newWindowActionTitle, style: .default) { _ in newWindowAction() }
         alert.addAction(openInAnotherWindowAction)
 

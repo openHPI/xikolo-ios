@@ -11,6 +11,9 @@ import UIKit
 
 let logger = Logger(subsystem: "de.xikolo.iOS", category: "iOS")
 
+@available(iOS 13, *)
+private let notificationDelegate = XikoloNotificationDelegate()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -93,6 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
 
             if #available(iOS 13.0, *) {
+                UNUserNotificationCenter.current().delegate = notificationDelegate
                 AutomatedDownloadsManager.registerBackgroundTask()
             }
         }

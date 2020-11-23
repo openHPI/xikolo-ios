@@ -49,15 +49,24 @@ enum AutomatedDownloadsManager {
             }
         }
     }
-    // - background progression
-    //   - download content (find courses -> find sections -> start downloads)
-    //   - delete older content (find courses -> find old sections -> delete content)
+
     static func performNextBackgroundProcessingTasks(task: BGTask) {
+        self.postLocalPushNotificationIfApplicable()
+        self.downloadNewContent()
+
+        // TODO: delete old content
+
+        self.scheduleNextBackgroundProcessingTask()
+        task.setTaskCompleted(success: true)
+    }
+
+    // Download content (find courses -> find sections -> start downloads)
+    private static func postLocalPushNotificationIfApplicable() {
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
             let courses = try? context.fetch(fetchRequest)
             let numberOfCoursesWithNotification = courses?.filter { $0.automatedDownloadSettings?.downloadOption == .notification }.count ?? 0
-            // TODO: not the correct set of courses
+            // TODO: not the correct set of courses, check for new content (course end not applicable)
 
             if numberOfCoursesWithNotification > 0 {
                 let center = UNUserNotificationCenter.current()
@@ -66,7 +75,6 @@ enum AutomatedDownloadsManager {
                 let category = UNNotificationCategory(identifier: "UYLDownloadCategory", actions: [downloadAction], intentIdentifiers: [])
                 center.setNotificationCategories([category])
 
-                // TODO one notifications for each course?
                 center.getNotificationSettings { settings in
                     guard settings.authorizationStatus == .authorized else { return }
                     let content = UNMutableNotificationContent()
@@ -85,8 +93,10 @@ enum AutomatedDownloadsManager {
                 }
             }
         }
+    }
 
-
+    // Delete older content (find courses -> find old sections -> delete content)
+    static func downloadNewContent() {
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
             let courses = try? context.fetch(fetchRequest)
@@ -116,13 +126,8 @@ enum AutomatedDownloadsManager {
                         }
                     }
                 }
-
-                // TODO: delete old content
             }
-
         }
-
-        Self.scheduleNextBackgroundProcessingTask()
     }
 
 }

@@ -50,6 +50,9 @@
 /* title of certificates view of course view */
 "course-area.view.certificates.title" = "Leistungsnachweise";
 
+/* title of collab spaces view of course view */
+"course-area.view.collab-space.title" = "Lernräume";
+
 /* title of course details view of course view */
 "course-area.view.course-details.title" = "Kursdetails";
 

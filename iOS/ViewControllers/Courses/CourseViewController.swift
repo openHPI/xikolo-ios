@@ -188,7 +188,7 @@ class CourseViewController: UIViewController {
     }
 
     func show(item: CourseItem, animated: Bool) {
-        self.area = .learnings
+        self.transitionIfPossible(to: .learnings)
 
         guard let viewController = R.storyboard.courseLearnings.courseItemViewController() else { return }
         viewController.currentItem = item
@@ -198,7 +198,7 @@ class CourseViewController: UIViewController {
     }
 
     func show(documentLocalization: DocumentLocalization, animated: Bool) {
-        self.area = .documents
+        self.transitionIfPossible(to: .documents)
 
         guard let url = DocumentsPersistenceManager.shared.localFileLocation(for: documentLocalization) ?? documentLocalization.fileURL else { return }
 

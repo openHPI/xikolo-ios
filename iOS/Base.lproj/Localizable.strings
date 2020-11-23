@@ -20,6 +20,15 @@
 /* title of alert for stream download errors */
 "alert.download-error.stream.title" = "Error while downloading video";
 
+/* label close current course and open new course in the same window */
+"alert.switch-course.current-window" = "Open in This Window";
+
+/* label open new course in another window when switching courses */
+"alert.switch-course.new-window" = "Open in New Window";
+
+/* title for alert when switching courses */
+"alert.switch-course.title" = "How should the course be opened?";
+
 /* alert action title to mark all announcements as read */
 "announcement.alert.mark all as read" = "Mark all as read";
 

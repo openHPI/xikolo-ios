@@ -97,6 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             if #available(iOS 13.0, *) {
                 UNUserNotificationCenter.current().delegate = notificationDelegate
+                XikoloNotification.setNotificationCategories()
                 AutomatedDownloadsManager.registerBackgroundTask()
             }
         }

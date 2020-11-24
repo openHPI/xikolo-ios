@@ -3,17 +3,12 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
+import UIKit
 import UserNotifications
 
 @available(iOS 13, *)
 class XikoloNotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
-
-//    func userNotificationCenter(_ center: UNUserNotificationCenter,
-//                                willPresent notification: UNNotification,
-//                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-//        // Show alert to the user
-//        completionHandler([.alert])
-//    }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
@@ -21,16 +16,23 @@ class XikoloNotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         // Determine the user action
         switch response.actionIdentifier {
         case UNNotificationDefaultActionIdentifier:
-            print("Default")
-            // open course
-        case "UYLDownload":
-            AutomatedDownloadsManager.downloadNewContent()
-            // start download
+            DispatchQueue.main.async {
+                let courses = AutomatedDownloadsManager.coursesWithNotificationsAndNewContent(for: CoreDataHelper.viewContext)
+                if let course = courses.last {
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                    let navigator = sceneDelegate?.appNavigator
+                    navigator?.show(course: course)
+                }
+                completionHandler()
+            }
+        case XikoloNotification.ActionIdentifier.download:
+            AutomatedDownloadsManager.downloadNewContent().onComplete { _ in
+                completionHandler()
+            }
         default:
-            print("Unknown action")
-            //nothing
+            completionHandler()
+            break
         }
-        completionHandler()
     }
 
 }

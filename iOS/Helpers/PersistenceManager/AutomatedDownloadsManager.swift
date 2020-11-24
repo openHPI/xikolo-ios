@@ -6,11 +6,13 @@
 import BackgroundTasks
 import BrightFutures
 import Common
+import CoreData
 import UserNotifications
 
 @available(iOS 13, *)
 enum AutomatedDownloadsManager {
 
+    private static let lastDownloadKey = "de.xikolo.ios.background.download.last-date"
     static let taskIdentifier = "de.xikolo.ios.background.download"
 
     static func registerBackgroundTask() {
@@ -64,41 +66,20 @@ enum AutomatedDownloadsManager {
         }
     }
 
-    // Download content (find courses -> find sections -> start downloads)
     private static func postLocalPushNotificationIfApplicable() {
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
-            let courses = try? context.fetch(fetchRequest)
-            let numberOfCoursesWithNotification = courses?.filter { $0.automatedDownloadSettings?.downloadOption == .notification }.count ?? 0
-            // TODO: not the correct set of courses, check for new content (course end not applicable)
+            let coursesWithNotificationsAndNewContent = self.coursesWithNotificationsAndNewContent(for: context)
+            guard !coursesWithNotificationsAndNewContent.isEmpty else { return }
 
-            if numberOfCoursesWithNotification > 0 {
-                let center = UNUserNotificationCenter.current()
-
-                let downloadAction = UNNotificationAction(identifier: "UYLDownload", title: "Download now", options: [])
-                let category = UNNotificationCategory(identifier: "UYLDownloadCategory", actions: [downloadAction], intentIdentifiers: [])
-                center.setNotificationCategories([category])
-
-                center.getNotificationSettings { settings in
-                    guard settings.authorizationStatus == .authorized else { return }
-                    let content = UNMutableNotificationContent()
-                    content.title = "Download new course material"
-                    content.body = "New content was released in \(numberOfCoursesWithNotification) courses"
-                    content.categoryIdentifier = "UYLDownloadCategory"
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
-
-                    let identifier = "UYLLocalNotification"
-                    let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-                    center.add(request, withCompletionHandler: { (error) in
-                        if let error = error {
-                            // Something went wrong
-                        }
-                    })
-                }
+            let center = UNUserNotificationCenter.current()
+            center.getNotificationSettings { settings in
+                guard settings.authorizationStatus == .authorized else { return }
+                center.add(XikoloNotification.automatedDownloadsNotificationRequest)
             }
         }
     }
 
+    // Download content (find courses -> find sections -> start downloads)
     // Delete older content (find courses -> find old sections -> delete content)
     @discardableResult
     static func downloadNewContent() -> Future<Void, XikoloError> {
@@ -145,6 +126,31 @@ enum AutomatedDownloadsManager {
         }
 
         return promise.future
+    }
+
+    static func coursesWithNotificationsAndNewContent(for context: NSManagedObjectContext) -> [Course] {
+        let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
+        let courses = try? context.fetch(fetchRequest)
+        let coursesWithNotification = courses?.filter { course in
+            return course.automatedDownloadSettings?.downloadOption == .notification
+        }
+
+        let coursesWithNotificationAndNewContent = coursesWithNotification?.filter { course in
+            let sectionStartDates = course.sections.compactMap(\.startsAt)
+            let newSectionStartDates = sectionStartDates.map{ $0 > self.lastAutomatedDownloadDate  }
+            return !newSectionStartDates.isEmpty
+        }
+
+        return coursesWithNotificationAndNewContent ?? []
+    }
+
+    static var lastAutomatedDownloadDate: Date {
+        get {
+            return UserDefaults.standard.object(forKey: self.lastDownloadKey) as? Date ?? Date.distantPast
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: self.lastDownloadKey)
+        }
     }
 
 }

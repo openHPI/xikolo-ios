@@ -54,16 +54,37 @@ enum AutomatedDownloadsManager {
     }
 
     static func performNextBackgroundProcessingTasks(task: BGTask) {
-        self.postLocalPushNotificationIfApplicable()
-        let downloadFuture = self.downloadNewContent()
+        let refreshFuture = self.refreshCourseItemsForCoursesWithAutomatedDownloads().onComplete { _ in
+            self.scheduleNextBackgroundProcessingTask()
+        }
 
-        // TODO: delete old content
-
-        self.scheduleNextBackgroundProcessingTask()
+        let downloadFuture = refreshFuture.flatMap { _ -> Future<Void, XikoloError> in
+            self.postLocalPushNotificationIfApplicable()
+            let downloadFuture = self.downloadNewContent()
+            // TODO: delete old content
+            return downloadFuture
+        }
 
         downloadFuture.onComplete { result in
             task.setTaskCompleted(success: result.value != nil)
         }
+    }
+
+    private static func refreshCourseItemsForCoursesWithAutomatedDownloads() -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
+            let courses = try? context.fetch(fetchRequest)
+
+            let courseSyncFuture = courses?.map { course in
+                return CourseItemHelper.syncCourseItemsWithContent(for: course)
+            }.sequence().asVoid()
+
+            promise.completeWith(courseSyncFuture ?? Future(value: ()))
+        }
+
+        return promise.future
     }
 
     private static func postLocalPushNotificationIfApplicable() {

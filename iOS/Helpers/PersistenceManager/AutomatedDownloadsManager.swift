@@ -4,6 +4,7 @@
 //
 
 import BackgroundTasks
+import BrightFutures
 import Common
 import UserNotifications
 
@@ -52,12 +53,15 @@ enum AutomatedDownloadsManager {
 
     static func performNextBackgroundProcessingTasks(task: BGTask) {
         self.postLocalPushNotificationIfApplicable()
-        self.downloadNewContent()
+        let downloadFuture = self.downloadNewContent()
 
         // TODO: delete old content
 
         self.scheduleNextBackgroundProcessingTask()
-        task.setTaskCompleted(success: true)
+
+        downloadFuture.onComplete { result in
+            task.setTaskCompleted(success: result.value != nil)
+        }
     }
 
     // Download content (find courses -> find sections -> start downloads)
@@ -96,10 +100,16 @@ enum AutomatedDownloadsManager {
     }
 
     // Delete older content (find courses -> find old sections -> delete content)
-    static func downloadNewContent() {
+    @discardableResult
+    static func downloadNewContent() -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
             let courses = try? context.fetch(fetchRequest)
+
+            var downloadFutures: [Future<Void, XikoloError>] = []
+
             courses?.forEach { course in
                 if course.automatedDownloadSettings?.downloadOption == .backgroundDownload {
                     if let materialsToDownload = course.automatedDownloadSettings?.materialTypes {
@@ -117,17 +127,24 @@ enum AutomatedDownloadsManager {
                         sectionsToDownload.forEach { backgroundSection in
                             let section: CourseSection = CoreDataHelper.viewContext.typedObject(with: backgroundSection.objectID)
                             if materialsToDownload.contains(.videos) {
-                                StreamPersistenceManager.shared.startDownloads(for: section)
+                                let downloadStreamFuture = StreamPersistenceManager.shared.startDownloads(for: section)
+                                downloadFutures.append(downloadStreamFuture)
                             }
 
                             if materialsToDownload.contains(.slides) {
-                                SlidesPersistenceManager.shared.startDownloads(for: section)
+                                let downloadSlidesFuture = SlidesPersistenceManager.shared.startDownloads(for: section)
+                                downloadFutures.append(downloadSlidesFuture)
                             }
                         }
                     }
                 }
             }
+
+            let combinedDownloadFuture = downloadFutures.sequence().asVoid()
+            promise.completeWith(combinedDownloadFuture)
         }
+
+        return promise.future
     }
 
 }

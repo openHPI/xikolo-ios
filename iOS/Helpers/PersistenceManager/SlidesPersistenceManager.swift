@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import Common
 import CoreData
 
@@ -30,11 +31,6 @@ final class SlidesPersistenceManager: FilePersistenceManager<SlidesPersistenceMa
 
     override func newDownloadSession() -> URLSession {
         return self.createURLSession(withIdentifier: "slides-download")
-    }
-
-    func startDownload(for video: Video) {
-        guard let url = video.slidesURL else { return }
-        self.startDownload(with: url, for: video)
     }
 
     private func trackingContext(for video: Video) -> [String: String?] {
@@ -74,26 +70,46 @@ final class SlidesPersistenceManager: FilePersistenceManager<SlidesPersistenceMa
 
 extension SlidesPersistenceManager {
 
-    func startDownloads(for section: CourseSection) {
-        self.persistentContainerQueue.addOperation {
-            section.items.compactMap { item in
-                return item.content as? Video
-            }.filter { video in
-                return SlidesPersistenceManager.shared.downloadState(for: video) == .notDownloaded
-            }.forEach { video in
-                self.startDownload(for: video)
-            }
-        }
+    @discardableResult
+    func startDownload(for video: Video) -> Future<Void, XikoloError> {
+        guard let url = video.slidesURL else { return Future(error: .totallyUnknownError) }
+        return self.startDownload(with: url, for: video)
     }
 
-    func deleteDownloads(for section: CourseSection) {
+    @discardableResult
+    func startDownloads(for section: CourseSection) -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
         self.persistentContainerQueue.addOperation {
-            section.items.compactMap { item in
+            let sectionDownloadFuture = section.items.compactMap { item in
                 return item.content as? Video
-            }.forEach { video in
-                self.deleteDownload(for: video)
-            }
+            }.filter { video in
+                return self.downloadState(for: video) == .notDownloaded
+            }.map { video in
+                self.startDownload(for: video)
+            }.sequence().asVoid()
+
+            promise.completeWith(sectionDownloadFuture)
         }
+
+        return promise.future
+    }
+
+    @discardableResult
+    func deleteDownloads(for section: CourseSection) -> Future<Void, XikoloError>  {
+        let promise = Promise<Void, XikoloError>()
+
+        self.persistentContainerQueue.addOperation {
+            let sectionDeleteFuture = section.items.compactMap { item in
+                return item.content as? Video
+            }.map { video in
+                self.deleteDownload(for: video)
+            }.sequence().asVoid()
+
+            return promise.completeWith(sectionDeleteFuture)
+        }
+
+        return promise.future
     }
 
     func cancelDownloads(for section: CourseSection) {

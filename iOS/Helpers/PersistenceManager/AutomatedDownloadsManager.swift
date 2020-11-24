@@ -61,8 +61,8 @@ enum AutomatedDownloadsManager {
         let downloadFuture = refreshFuture.flatMap { _ -> Future<Void, XikoloError> in
             self.postLocalPushNotificationIfApplicable()
             let downloadFuture = self.downloadNewContent()
-            // TODO: delete old content
-            return downloadFuture
+            let deleteFuture = self.deleteOldContent()
+            return downloadFuture.zip(deleteFuture).asVoid()
         }
 
         downloadFuture.onComplete { result in
@@ -116,14 +116,12 @@ enum AutomatedDownloadsManager {
                 if course.automatedDownloadSettings?.downloadOption == .backgroundDownload {
                     if let materialsToDownload = course.automatedDownloadSettings?.materialTypes {
                         // Find all course sections with the latest start date (which can be nil)
-                        let orderedSections = course.sections.filter {
-                            ($0.startsAt ?? Date.distantPast) < Date()
-                        }.sorted {
-                            ($0.startsAt ?? Date.distantPast) < ($1.startsAt ?? Date.distantPast)
-                        }
+                        let orderedStartDates = course.sections.compactMap(\.startsAt).filter {
+                            $0 < Date()
+                        }.sorted()
 
-                        let lastSectionStart = orderedSections.last?.startsAt
-                        let sectionsToDownload = orderedSections.filter { $0.startsAt == lastSectionStart }
+                        let lastSectionStart = orderedStartDates.last
+                        let sectionsToDownload = course.sections.filter { $0.startsAt == lastSectionStart }
 
                         // TODO: section have no items
                         sectionsToDownload.forEach { backgroundSection in
@@ -144,6 +142,58 @@ enum AutomatedDownloadsManager {
 
             let combinedDownloadFuture = downloadFutures.sequence().asVoid()
             promise.completeWith(combinedDownloadFuture)
+        }
+
+        return promise.future
+    }
+
+    static func deleteOldContent() -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
+            let courses = try? context.fetch(fetchRequest)
+
+            var deleteFutures: [Future<Void, XikoloError>] = []
+
+            courses?.forEach { course in
+                guard let materialsToDownload = course.automatedDownloadSettings?.materialTypes else { return }
+                if course.automatedDownloadSettings?.deletionOption == .manual { return }
+
+                let orderedStartDates = course.sections.compactMap(\.startsAt).filter {
+                    $0 < Date()
+                }.sorted()
+
+                let possibleSectionStartForDeletion: Date? = {
+                    switch course.automatedDownloadSettings?.deletionOption {
+                    case .nextSection:
+                        return orderedStartDates.suffix(2).first
+                    case .secondNextSection:
+                        return orderedStartDates.suffix(3).first
+                    default:
+                        return nil
+                    }
+                }()
+
+                guard let sectionStartForDeletion = possibleSectionStartForDeletion else { return }
+                let sectionsToDelete = course.sections.filter { $0.startsAt == sectionStartForDeletion }
+
+                sectionsToDelete.forEach { backgroundSection in
+                    let section: CourseSection = CoreDataHelper.viewContext.typedObject(with: backgroundSection.objectID)
+                    if materialsToDownload.contains(.videos) {
+                        let downloadStreamFuture = StreamPersistenceManager.shared.startDownloads(for: section)
+                        deleteFutures.append(downloadStreamFuture)
+                    }
+
+                    if materialsToDownload.contains(.slides) {
+                        let downloadSlidesFuture = SlidesPersistenceManager.shared.startDownloads(for: section)
+                        deleteFutures.append(downloadSlidesFuture)
+                    }
+                }
+            }
+
+            let combinedDeleteFuture = deleteFutures.sequence().asVoid()
+            promise.completeWith(combinedDeleteFuture)
         }
 
         return promise.future

@@ -12,6 +12,10 @@ def firebase_pods
     pod 'Firebase/Analytics'
 end
 
+def ios_pods
+    pod 'SDWebImage', '~> 5.0'
+end
+
 def common_pods
     pod 'BrightFutures', '~> 8.0'
     pod 'Down', '~> 0.9.0'
@@ -48,7 +52,14 @@ end
 target 'iOS' do
     platform :ios, '10.0'
     firebase_pods
-    pod 'SDWebImage', '~> 5.0'
+    ios_pods
+end
+
+target 'iOS-Tests' do
+    platform :ios, '10.0'
+    firebase_pods
+    ios_pods
+    common_pods
 end
 
 post_install do |installer|

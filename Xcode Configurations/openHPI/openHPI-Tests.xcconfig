@@ -1,0 +1,8 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+#include "../../Pods/Target Support Files/Pods-iOS-Tests/Pods-iOS-Tests.openhpi-ios-debug.xcconfig"
+#include "openHPI-Common.xcconfig"
+#include "../Tests.xcconfig"

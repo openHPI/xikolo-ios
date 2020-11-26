@@ -3,8 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+APP_IDENTIFIER = openhpi
+
 BRAND_NAME = openHPI
-PRODUCT_NAME = openhpi
+PRODUCT_NAME = $(APP_IDENTIFIER)
 DISPLAY_NAME = openHPI
 URL_SCHEME = openhpi
 

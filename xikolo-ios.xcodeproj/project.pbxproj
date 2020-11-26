@@ -240,7 +240,11 @@
 		50A2042722FAD324004371C0 /* UITraitCollection+performAsCurrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2042622FAD324004371C0 /* UITraitCollection+performAsCurrent.swift */; };
 		50A7258F2339188000DE8338 /* CourseDates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A725912339188000DE8338 /* CourseDates.storyboard */; };
 		50A725942339188E00DE8338 /* CourseDateOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A725962339188E00DE8338 /* CourseDateOverview.storyboard */; };
+		50A9192F256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A9192E256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift */; };
+		50A91939256E5306002874CC /* CoreDataTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A91938256E5306002874CC /* CoreDataTestHelper.swift */; };
 		50A9715C2498F14300D78FCA /* CourseItem+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A9715B2498F14300D78FCA /* CourseItem+URL.swift */; };
+		50AD858A256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD8589256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift */; };
+		50AD85A4256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD85A3256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift */; };
 		50B1CC46256BE55900D651C6 /* XikoloNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC45256BE55900D651C6 /* XikoloNotificationDelegate.swift */; };
 		50B1CC51256CF48800D651C6 /* PersistenceManager+BrightFutures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC50256CF48800D651C6 /* PersistenceManager+BrightFutures.swift */; };
 		50B1CC7D256D54D400D651C6 /* XikoloNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC7C256D54D300D651C6 /* XikoloNotification.swift */; };
@@ -929,6 +933,8 @@
 		50A725932339188400DE8338 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDates.strings; sourceTree = "<group>"; };
 		50A725952339188E00DE8338 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseDateOverview.storyboard; sourceTree = "<group>"; };
 		50A725982339189600DE8338 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateOverview.strings; sourceTree = "<group>"; };
+		50A9192E256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateForNextAutomatedDownloadBackgroundProcessingTests.swift; sourceTree = "<group>"; };
+		50A91938256E5306002874CC /* CoreDataTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestHelper.swift; sourceTree = "<group>"; };
 		50A91A03256E5DE5002874CC /* openHPI-Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openHPI-Tests.xcconfig"; path = "Xcode Configurations/openhpi/openHPI-Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		50A91A04256E5E75002874CC /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		50A91A05256E5EB4002874CC /* openSAP-Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openSAP-Tests.xcconfig"; path = "Xcode Configurations/opensap/openSAP-Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -937,6 +943,8 @@
 		50A91A31256E6481002874CC /* lernencloud-Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "lernencloud-Tests.xcconfig"; sourceTree = "<group>"; };
 		50A9715B2498F14300D78FCA /* CourseItem+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseItem+URL.swift"; sourceTree = "<group>"; };
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		50AD8589256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesWithAutomatedDownloads.swift; sourceTree = "<group>"; };
+		50AD85A3256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesForAutomatedDownloads.swift; sourceTree = "<group>"; };
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
 		50B1CC45256BE55900D651C6 /* XikoloNotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNotificationDelegate.swift; sourceTree = "<group>"; };
@@ -1743,6 +1751,8 @@
 			isa = PBXGroup;
 			children = (
 				50761B4320FCAC5A00CEDAF9 /* Info.plist */,
+				50AD8578256EA29B003BDB80 /* AutomatedDownloads */,
+				50A91938256E5306002874CC /* CoreDataTestHelper.swift */,
 			);
 			path = "iOS-Tests";
 			sourceTree = "<group>";
@@ -1769,6 +1779,16 @@
 				5046BD09212B4DC700B9F2CD /* DocumentLocalization+Actions.swift */,
 			);
 			path = Actions;
+			sourceTree = "<group>";
+		};
+		50AD8578256EA29B003BDB80 /* AutomatedDownloads */ = {
+			isa = PBXGroup;
+			children = (
+				50AD8589256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift */,
+				50AD85A3256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift */,
+				50A9192E256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift */,
+			);
+			path = AutomatedDownloads;
 			sourceTree = "<group>";
 		};
 		50C92B5D1FBC4878001AFC08 /* FetchRequests */ = {
@@ -3197,6 +3217,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A91939256E5306002874CC /* CoreDataTestHelper.swift in Sources */,
+				50A9192F256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift in Sources */,
+				50AD858A256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift in Sources */,
+				50AD85A4256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

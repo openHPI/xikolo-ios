@@ -17,7 +17,7 @@ class XikoloNotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         switch response.actionIdentifier {
         case UNNotificationDefaultActionIdentifier:
             DispatchQueue.main.async {
-                let courses = AutomatedDownloadsManager.coursesWithNotificationsAndNewContent(for: CoreDataHelper.viewContext)
+                let courses = AutomatedDownloadsManager.coursesWithNotificationsAndNewContent(in: CoreDataHelper.viewContext)
                 if let course = courses.last {
                     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                     let navigator = sceneDelegate?.appNavigator

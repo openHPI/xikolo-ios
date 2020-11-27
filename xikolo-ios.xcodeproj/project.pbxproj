@@ -245,6 +245,10 @@
 		50A9715C2498F14300D78FCA /* CourseItem+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A9715B2498F14300D78FCA /* CourseItem+URL.swift */; };
 		50AD858A256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD8589256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift */; };
 		50AD85A4256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD85A3256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift */; };
+		50AD85AE25700F50003BDB80 /* SectionsToDownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD85AD25700F50003BDB80 /* SectionsToDownloadTests.swift */; };
+		50AD85B8257017BA003BDB80 /* SectionsToDeleteManualTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD85B7257017BA003BDB80 /* SectionsToDeleteManualTests.swift */; };
+		50AD85CA2570E838003BDB80 /* SectionsToDeleteNextSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD85C92570E838003BDB80 /* SectionsToDeleteNextSectionTests.swift */; };
+		50AD85D42570E881003BDB80 /* SectionsToDeleteSecondNextSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD85D32570E881003BDB80 /* SectionsToDeleteSecondNextSectionTests.swift */; };
 		50B1CC46256BE55900D651C6 /* XikoloNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC45256BE55900D651C6 /* XikoloNotificationDelegate.swift */; };
 		50B1CC51256CF48800D651C6 /* PersistenceManager+BrightFutures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC50256CF48800D651C6 /* PersistenceManager+BrightFutures.swift */; };
 		50B1CC7D256D54D400D651C6 /* XikoloNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC7C256D54D300D651C6 /* XikoloNotification.swift */; };
@@ -945,6 +949,10 @@
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		50AD8589256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesWithAutomatedDownloads.swift; sourceTree = "<group>"; };
 		50AD85A3256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesForAutomatedDownloads.swift; sourceTree = "<group>"; };
+		50AD85AD25700F50003BDB80 /* SectionsToDownloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsToDownloadTests.swift; sourceTree = "<group>"; };
+		50AD85B7257017BA003BDB80 /* SectionsToDeleteManualTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsToDeleteManualTests.swift; sourceTree = "<group>"; };
+		50AD85C92570E838003BDB80 /* SectionsToDeleteNextSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsToDeleteNextSectionTests.swift; sourceTree = "<group>"; };
+		50AD85D32570E881003BDB80 /* SectionsToDeleteSecondNextSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsToDeleteSecondNextSectionTests.swift; sourceTree = "<group>"; };
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
 		50B1CC45256BE55900D651C6 /* XikoloNotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNotificationDelegate.swift; sourceTree = "<group>"; };
@@ -1787,6 +1795,10 @@
 				50AD8589256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift */,
 				50AD85A3256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift */,
 				50A9192E256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift */,
+				50AD85AD25700F50003BDB80 /* SectionsToDownloadTests.swift */,
+				50AD85C92570E838003BDB80 /* SectionsToDeleteNextSectionTests.swift */,
+				50AD85D32570E881003BDB80 /* SectionsToDeleteSecondNextSectionTests.swift */,
+				50AD85B7257017BA003BDB80 /* SectionsToDeleteManualTests.swift */,
 			);
 			path = AutomatedDownloads;
 			sourceTree = "<group>";
@@ -3217,10 +3229,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50AD85D42570E881003BDB80 /* SectionsToDeleteSecondNextSectionTests.swift in Sources */,
+				50AD85AE25700F50003BDB80 /* SectionsToDownloadTests.swift in Sources */,
+				50AD85B8257017BA003BDB80 /* SectionsToDeleteManualTests.swift in Sources */,
 				50A91939256E5306002874CC /* CoreDataTestHelper.swift in Sources */,
 				50A9192F256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift in Sources */,
 				50AD858A256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift in Sources */,
 				50AD85A4256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift in Sources */,
+				50AD85CA2570E838003BDB80 /* SectionsToDeleteNextSectionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

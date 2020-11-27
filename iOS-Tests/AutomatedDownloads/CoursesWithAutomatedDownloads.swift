@@ -29,7 +29,6 @@ class CoursesWithAutomatedDownloads: XCTestCase {
         course.automatedDownloadSettings = AutomatedDownloadSettings()
     }
 
-
     func testWithSettings() throws {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let coursesWithAutomatedDownloads = try context.fetch(fetchRequest)

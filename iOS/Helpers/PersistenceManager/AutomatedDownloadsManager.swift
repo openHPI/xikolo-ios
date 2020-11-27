@@ -138,12 +138,10 @@ enum AutomatedDownloadsManager {
     // TODO: test this
     // TODO: section may have no items
     static func sectionsToDownload(for course: Course) -> Set<CourseSection> {
-        let orderedStartDates = course.sections.compactMap(\.startsAt).filter {
-            $0 < Date()
-        }.sorted()
+        let orderedStartDates = course.sections.compactMap(\.startsAt).filter(\.inPast).sorted()
 
         let lastSectionStart = orderedStartDates.last
-        let sectionsToDownload = course.sections.filter { $0.startsAt == lastSectionStart }
+        let sectionsToDownload = course.sections.filter { $0.startsAt == lastSectionStart && ($0.endsAt?.inFuture ?? false) }
 
         return sectionsToDownload
     }
@@ -183,11 +181,8 @@ enum AutomatedDownloadsManager {
         return deleteFutures.sequence().asVoid()
     }
 
-    // TODO: test this
     static func sectionsToDelete(for course: Course) -> Set<CourseSection> {
-        let orderedStartDates = course.sections.compactMap(\.startsAt).filter {
-            $0 < Date()
-        }.sorted()
+        let orderedStartDates = course.sections.compactMap(\.startsAt).filter(\.inPast).sorted()
 
         let possibleSectionStartForDeletion: Date? = {
             switch course.automatedDownloadSettings?.deletionOption {
@@ -201,7 +196,9 @@ enum AutomatedDownloadsManager {
         }()
 
         guard let sectionStartForDeletion = possibleSectionStartForDeletion else { return [] }
-        let sectionsToDelete = course.sections.filter { $0.startsAt == sectionStartForDeletion }
+        let sectionsToDelete = course.sections.filter {
+            ($0.startsAt == sectionStartForDeletion && $0.endsAt?.inPast ?? false) || course.endsAt?.inPast ?? false
+        }
 
         return sectionsToDelete
     }

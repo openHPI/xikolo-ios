@@ -236,23 +236,26 @@ class AppNavigator {
             self.present(course: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
         }
 
-        if #available(iOS 13, *), UIDevice.current.userInterfaceIdiom == .pad, let url = url {
+        if #available(iOS 13, *), UIDevice.current.userInterfaceIdiom == .pad, currentlyPresentsCourse, let url = url {
             let newWindowAction: () -> Void = {
                 let userActivity = course.openCourseUserActivity
                 userActivity.userInfo?["url"] = url
                 UIApplication.shared.requestSceneSessionActivation(nil, userActivity: userActivity, options: nil, errorHandler: nil)
             }
 
-            self.openAlert(replaceAction: replaceAction, newWindowAction: newWindowAction)
+            self.showCourseSwitchAlert(course: course, replaceAction: replaceAction, newWindowAction: newWindowAction)
         } else {
             replaceAction()
         }
     }
 
     @available(iOS 13.0, *)
-    func openAlert(replaceAction: @escaping () -> Void, newWindowAction: @escaping () -> Void) {
+    func showCourseSwitchAlert(course: Course, replaceAction: @escaping () -> Void, newWindowAction: @escaping () -> Void) {
         let alertTitle = NSLocalizedString("alert.switch-course.title", comment: "title for alert when switching courses")
-        let alert = UIAlertController(title: alertTitle, message: nil, preferredStyle: .alert)
+        let alertMessageFormat = NSLocalizedString("alert.switch-course.message",
+                                       comment: "Format string for the next section start in the footer of course item list")
+        let alertMessage = String(format: alertMessageFormat, course.title ?? "unknown")
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         alert.popoverPresentationController?.sourceView = self.tabBarController?.view
         alert.addCancelAction()
 

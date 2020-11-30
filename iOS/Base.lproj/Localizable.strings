@@ -23,11 +23,14 @@
 /* label close current course and open new course in the same window */
 "alert.switch-course.current-window" = "Open in This Window";
 
+/* Format string for the next section start in the footer of course item list */
+"alert.switch-course.message" = "How should the course '%@' be opened?";
+
 /* label open new course in another window when switching courses */
 "alert.switch-course.new-window" = "Open in New Window";
 
 /* title for alert when switching courses */
-"alert.switch-course.title" = "How should the course be opened?";
+"alert.switch-course.title" = "Course Switch";
 
 /* alert action title to mark all announcements as read */
 "announcement.alert.mark all as read" = "Mark all as read";

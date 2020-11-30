@@ -51,6 +51,11 @@ target 'iOS' do
     pod 'SDWebImage', '~> 5.0'
 end
 
+target 'WidgetExtension' do
+    platform :ios, '14.0'
+    common_pods
+end
+
 post_install do |installer|
     Pod::UI.info "Fixing deployment targets"
     installer.pods_project.targets.each do |target|

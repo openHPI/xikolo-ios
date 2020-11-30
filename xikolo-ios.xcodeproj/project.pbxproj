@@ -26,6 +26,7 @@
 		02F6D821249793C700BB2B80 /* CourseItem+DragItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F6D820249793C700BB2B80 /* CourseItem+DragItem.swift */; };
 		02FE3EAE235502C300E3ECB4 /* CourseProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */; };
 		10DF870DD59FA369A3E513B3 /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D642EAB767C449225D952C21 /* Pods_Common.framework */; };
+		2B08ED84F3EB360782D8AABC /* Pods_WidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A95BE4D7D7CAB08316DEAF7 /* Pods_WidgetExtension.framework */; };
 		4A3AD2E1F775A9AFF5F1D401 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7425AC35D1422FBFEBAB2B64 /* Pods_iOS.framework */; };
 		4B1A18A85A0779EE15AD3893 /* Pods_Stockpile_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FF4E7BC182070B58E455CD /* Pods_Stockpile_Tests.framework */; };
 		4E5BD4C354D150C6FEB5C677 /* Pods_Common_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69898D249002AF4DD310CD76 /* Pods_Common_Tests.framework */; };
@@ -240,6 +241,7 @@
 		50AD861C2570F3D5003BDB80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AD861B2570F3D5003BDB80 /* Assets.xcassets */; };
 		50AD864E2570F4B0003BDB80 /* XikoloWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD864D2570F4B0003BDB80 /* XikoloWidgetBundle.swift */; };
 		50AD86862570F5F3003BDB80 /* WidgetExtension.appex in Embed App Extension */ = {isa = PBXBuildFile; fileRef = 50AD86132570F3D4003BDB80 /* WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		50AD880725715C5E003BDB80 /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
 		50B31DFB22C49D11007DDDA4 /* DateLabelHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */; };
 		50B31DFD22C4B660007DDDA4 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFC22C4B660007DDDA4 /* Locale.swift */; };
 		50B31DFF22C4C570007DDDA4 /* BrightFuturesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */; };
@@ -502,6 +504,13 @@
 			remoteGlobalIDString = 50AD86122570F3D4003BDB80;
 			remoteInfo = WidgetExtension;
 		};
+		50AD873C25714DF0003BDB80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50FA2DEA20E4B1A800656776;
+			remoteInfo = Common;
+		};
 		50D60D2C20E0D812007A4199 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
@@ -577,11 +586,14 @@
 		02FE3EAD235502C300E3ECB4 /* CourseProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgress.swift; sourceTree = "<group>"; };
 		03E1911F3C87B02F9B30465F /* Pods-Stockpile-Tests.opensap-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile-Tests.opensap-ios-release.xcconfig"; path = "Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests.opensap-ios-release.xcconfig"; sourceTree = "<group>"; };
 		0675EF0736772D5AB19C88BB /* Pods-Common.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.openhpi-ios-release.xcconfig"; path = "Target Support Files/Pods-Common/Pods-Common.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
+		0BE8A15222566F93CF478EEF /* Pods-WidgetExtension.openwho-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetExtension.openwho-ios-release.xcconfig"; path = "Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.openwho-ios-release.xcconfig"; sourceTree = "<group>"; };
 		0D38D377F3AC2755415083E7 /* Pods-Common.lernencloud-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.lernencloud-ios-release.xcconfig"; path = "Target Support Files/Pods-Common/Pods-Common.lernencloud-ios-release.xcconfig"; sourceTree = "<group>"; };
 		0E8F9DE0B60909E27339E54B /* Pods-Stockpile-Tests.moochouse-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile-Tests.moochouse-ios-debug.xcconfig"; path = "Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests.moochouse-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		10A990B6AE3C6D3D5E392F6C /* Pods-Common.openhpi-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.openhpi-ios-debug.xcconfig"; path = "Target Support Files/Pods-Common/Pods-Common.openhpi-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		10D2707BEB10EE58AD3C36CA /* Pods-iOS.openwho-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.openwho-ios-debug.xcconfig"; path = "Target Support Files/Pods-iOS/Pods-iOS.openwho-ios-debug.xcconfig"; sourceTree = "<group>"; };
+		1A95BE4D7D7CAB08316DEAF7 /* Pods_WidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E36214307D30140AD93753F /* Pods-Stockpile-Tests.openhpi-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile-Tests.openhpi-ios-debug.xcconfig"; path = "Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests.openhpi-ios-debug.xcconfig"; sourceTree = "<group>"; };
+		204E4A3B8B5B068EA90D3F62 /* Pods-WidgetExtension.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetExtension.openhpi-ios-release.xcconfig"; path = "Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
 		222AE934B107B19E527FBD6F /* Pods-Common-Tests.openwho-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.openwho-ios-debug.xcconfig"; path = "Target Support Files/Pods-Common-Tests/Pods-Common-Tests.openwho-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		240E03441CE38D590078A364 /* CourseSectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionHelper.swift; sourceTree = "<group>"; };
 		2433A5A01CE634A00060DD98 /* CourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
@@ -617,6 +629,7 @@
 		24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		24E3DD171D5DFD5000297118 /* QuizOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizOption.swift; sourceTree = "<group>"; };
 		2C3A78F600FE15618A724E68 /* Pods_Stockpile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stockpile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		30EF7B1ED1DC8CF02F4E705B /* Pods-WidgetExtension.lernencloud-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetExtension.lernencloud-ios-debug.xcconfig"; path = "Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.lernencloud-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		31060D2321F588E9D3B3FA6E /* Pods-Stockpile-Tests.openwho-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile-Tests.openwho-ios-debug.xcconfig"; path = "Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests.openwho-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		32CF18B3F1E3C4F428D95328 /* Pods-Common.lernencloud-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.lernencloud-ios-debug.xcconfig"; path = "Target Support Files/Pods-Common/Pods-Common.lernencloud-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		37DA3ED0E32FC1A94DF7B1F2 /* Pods-Stockpile.lernencloud-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile.lernencloud-ios-release.xcconfig"; path = "Target Support Files/Pods-Stockpile/Pods-Stockpile.lernencloud-ios-release.xcconfig"; sourceTree = "<group>"; };
@@ -931,6 +944,8 @@
 		50AD861B2570F3D5003BDB80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50AD861D2570F3D5003BDB80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50AD864D2570F4B0003BDB80 /* XikoloWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloWidgetBundle.swift; sourceTree = "<group>"; };
+		50AD878725715439003BDB80 /* openHPI-Widget-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openHPI-Widget-Debug.xcconfig"; path = "Xcode Configurations/openhpi/openHPI-Widget-Debug.xcconfig"; sourceTree = SOURCE_ROOT; };
+		50AD878825715480003BDB80 /* openHPI-Widget-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openHPI-Widget-Release.xcconfig"; path = "Xcode Configurations/openhpi/openHPI-Widget-Release.xcconfig"; sourceTree = SOURCE_ROOT; };
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
 		50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabelHelperTests.swift; sourceTree = "<group>"; };
@@ -1031,8 +1046,10 @@
 		57998C792C57DBA72BFEBB0A /* Pods-Common.moochouse-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.moochouse-ios-release.xcconfig"; path = "Target Support Files/Pods-Common/Pods-Common.moochouse-ios-release.xcconfig"; sourceTree = "<group>"; };
 		5FD0BF70540B5C1AD9594D4B /* Pods-Stockpile.lernencloud-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile.lernencloud-ios-debug.xcconfig"; path = "Target Support Files/Pods-Stockpile/Pods-Stockpile.lernencloud-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		632A3B1AF62A0C25E3717DCD /* Pods-Common-Tests.moochouse-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.moochouse-ios-release.xcconfig"; path = "Target Support Files/Pods-Common-Tests/Pods-Common-Tests.moochouse-ios-release.xcconfig"; sourceTree = "<group>"; };
+		65BD7B24092F359830178DC5 /* Pods-WidgetExtension.openwho-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetExtension.openwho-ios-debug.xcconfig"; path = "Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.openwho-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		695E8A2AE00D94390F4B4EDE /* Pods-iOS.opensap-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.opensap-ios-debug.xcconfig"; path = "Target Support Files/Pods-iOS/Pods-iOS.opensap-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		69898D249002AF4DD310CD76 /* Pods_Common_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A8F85213677B327768F3018 /* Pods-WidgetExtension.moochouse-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetExtension.moochouse-ios-release.xcconfig"; path = "Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.moochouse-ios-release.xcconfig"; sourceTree = "<group>"; };
 		700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+fileSize.swift"; sourceTree = "<group>"; };
 		700398C121A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableCertificatesListViewController.swift; sourceTree = "<group>"; };
 		700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnrollmentHelper+FetchRequests.swift"; sourceTree = "<group>"; };
@@ -1076,10 +1093,13 @@
 		82D13D0B235726E70006A0D9 /* HelpdeskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpdeskViewController.swift; sourceTree = "<group>"; };
 		82D55A1D23CF31D000EB2768 /* Sequence+sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+sort.swift"; sourceTree = "<group>"; };
 		8BF6ABC3186368821DF90072 /* Pods-Common-Tests.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.openhpi-ios-release.xcconfig"; path = "Target Support Files/Pods-Common-Tests/Pods-Common-Tests.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
+		8D855E97D99D3A7FA471458A /* Pods-WidgetExtension.moochouse-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetExtension.moochouse-ios-debug.xcconfig"; path = "Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.moochouse-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		929724B767BEFE487AA184D4 /* Pods-Stockpile-Tests.lernencloud-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile-Tests.lernencloud-ios-debug.xcconfig"; path = "Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests.lernencloud-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		9F601CB31F07E4583D00C5AB /* Pods-iOS.openhpi-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.openhpi-ios-release.xcconfig"; path = "Target Support Files/Pods-iOS/Pods-iOS.openhpi-ios-release.xcconfig"; sourceTree = "<group>"; };
+		9F6AC796A7E039EB76DB6728 /* Pods-WidgetExtension.openhpi-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetExtension.openhpi-ios-debug.xcconfig"; path = "Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.openhpi-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		A0C568541276F0D234B37DF7 /* Pods-Common-Tests.opensap-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.opensap-ios-release.xcconfig"; path = "Target Support Files/Pods-Common-Tests/Pods-Common-Tests.opensap-ios-release.xcconfig"; sourceTree = "<group>"; };
 		A2F5618D68F2BB336C5CA734 /* Pods-Common.openwho-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.openwho-ios-debug.xcconfig"; path = "Target Support Files/Pods-Common/Pods-Common.openwho-ios-debug.xcconfig"; sourceTree = "<group>"; };
+		A4FD95337FBBE7CF36791879 /* Pods-WidgetExtension.opensap-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetExtension.opensap-ios-release.xcconfig"; path = "Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.opensap-ios-release.xcconfig"; sourceTree = "<group>"; };
 		A8C80B2A51464E58FB55EFBC /* Pods-Common-Tests.moochouse-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.moochouse-ios-debug.xcconfig"; path = "Target Support Files/Pods-Common-Tests/Pods-Common-Tests.moochouse-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		A90587C51B3BFC130095DB89 /* assets-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios.xcassets"; sourceTree = "<group>"; };
 		AB17C57E1DFCC5B50013BBCD /* PlatformEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEvent.swift; sourceTree = "<group>"; };
@@ -1143,6 +1163,8 @@
 		E3C88F530B84EC9819B97456 /* Pods-Stockpile.moochouse-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile.moochouse-ios-debug.xcconfig"; path = "Target Support Files/Pods-Stockpile/Pods-Stockpile.moochouse-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		E52F0B88C7C8AE6D12C2A0E9 /* Pods-Stockpile.opensap-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile.opensap-ios-debug.xcconfig"; path = "Target Support Files/Pods-Stockpile/Pods-Stockpile.opensap-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		E8218A5F8109CCE6A9385AD6 /* Pods-Common.moochouse-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.moochouse-ios-debug.xcconfig"; path = "Target Support Files/Pods-Common/Pods-Common.moochouse-ios-debug.xcconfig"; sourceTree = "<group>"; };
+		E9BAF19532585737BEB8496E /* Pods-WidgetExtension.lernencloud-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetExtension.lernencloud-ios-release.xcconfig"; path = "Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.lernencloud-ios-release.xcconfig"; sourceTree = "<group>"; };
+		EDE34CA122FE48DFB4A004DB /* Pods-WidgetExtension.opensap-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WidgetExtension.opensap-ios-debug.xcconfig"; path = "Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.opensap-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		F31BDDCE00FC3EAD36A69A0F /* Pods-Stockpile-Tests.openwho-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stockpile-Tests.openwho-ios-release.xcconfig"; path = "Target Support Files/Pods-Stockpile-Tests/Pods-Stockpile-Tests.openwho-ios-release.xcconfig"; sourceTree = "<group>"; };
 		F801793D1BBBE3880091ECD1 /* CourseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHelper.swift; sourceTree = "<group>"; };
 		F80D67921B98683400E27520 /* AnnouncementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementViewController.swift; sourceTree = "<group>"; };
@@ -1211,6 +1233,7 @@
 			files = (
 				50AD86172570F3D5003BDB80 /* SwiftUI.framework in Frameworks */,
 				50AD86152570F3D4003BDB80 /* WidgetKit.framework in Frameworks */,
+				2B08ED84F3EB360782D8AABC /* Pods_WidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1817,6 +1840,8 @@
 				50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */,
 				50B431CF23E4542B006C7BC4 /* openHPI-Today-Debug.xcconfig */,
 				50B431D023E4543C006C7BC4 /* openHPI-Today-Release.xcconfig */,
+				50AD878725715439003BDB80 /* openHPI-Widget-Debug.xcconfig */,
+				50AD878825715480003BDB80 /* openHPI-Widget-Release.xcconfig */,
 				505B0D172448413500F88CAD /* openHPI-UITests.xcconfig */,
 			);
 			path = openHPI;
@@ -2198,6 +2223,16 @@
 				C10A8E3F5595F7B08E412709 /* Pods-Stockpile-Tests.lernencloud-ios-release.xcconfig */,
 				41AE53600B7903B05EF6D76E /* Pods-iOS.lernencloud-ios-debug.xcconfig */,
 				BC9EB1E52B8D1B23C5BF02BB /* Pods-iOS.lernencloud-ios-release.xcconfig */,
+				9F6AC796A7E039EB76DB6728 /* Pods-WidgetExtension.openhpi-ios-debug.xcconfig */,
+				30EF7B1ED1DC8CF02F4E705B /* Pods-WidgetExtension.lernencloud-ios-debug.xcconfig */,
+				EDE34CA122FE48DFB4A004DB /* Pods-WidgetExtension.opensap-ios-debug.xcconfig */,
+				65BD7B24092F359830178DC5 /* Pods-WidgetExtension.openwho-ios-debug.xcconfig */,
+				8D855E97D99D3A7FA471458A /* Pods-WidgetExtension.moochouse-ios-debug.xcconfig */,
+				204E4A3B8B5B068EA90D3F62 /* Pods-WidgetExtension.openhpi-ios-release.xcconfig */,
+				E9BAF19532585737BEB8496E /* Pods-WidgetExtension.lernencloud-ios-release.xcconfig */,
+				A4FD95337FBBE7CF36791879 /* Pods-WidgetExtension.opensap-ios-release.xcconfig */,
+				0BE8A15222566F93CF478EEF /* Pods-WidgetExtension.openwho-ios-release.xcconfig */,
+				6A8F85213677B327768F3018 /* Pods-WidgetExtension.moochouse-ios-release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -2324,6 +2359,7 @@
 				C4FF4E7BC182070B58E455CD /* Pods_Stockpile_Tests.framework */,
 				50AD86142570F3D4003BDB80 /* WidgetKit.framework */,
 				50AD86162570F3D4003BDB80 /* SwiftUI.framework */,
+				1A95BE4D7D7CAB08316DEAF7 /* Pods_WidgetExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2476,6 +2512,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50AD86282570F3D5003BDB80 /* Build configuration list for PBXNativeTarget "WidgetExtension" */;
 			buildPhases = (
+				D90309EA5151212C131EBF84 /* [CP] Check Pods Manifest.lock */,
 				50AD860F2570F3D4003BDB80 /* Sources */,
 				50AD86102570F3D4003BDB80 /* Frameworks */,
 				50AD86112570F3D4003BDB80 /* Resources */,
@@ -2483,6 +2520,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				50AD873D25714DF0003BDB80 /* PBXTargetDependency */,
 			);
 			name = WidgetExtension;
 			productName = widgetExtension;
@@ -2705,6 +2743,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50AD880725715C5E003BDB80 /* assets-ios-brand.generated.xcassets in Resources */,
 				50AD861C2570F3D5003BDB80 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3044,6 +3083,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D90309EA5151212C131EBF84 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E2823DEADBC75FC85C818BA4 /* [CP] Check Pods Manifest.lock */ = {
@@ -3557,6 +3618,11 @@
 			isa = PBXTargetDependency;
 			target = 50AD86122570F3D4003BDB80 /* WidgetExtension */;
 			targetProxy = 50AD86872570F5F3003BDB80 /* PBXContainerItemProxy */;
+		};
+		50AD873D25714DF0003BDB80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50FA2DEA20E4B1A800656776 /* Common */;
+			targetProxy = 50AD873C25714DF0003BDB80 /* PBXContainerItemProxy */;
 		};
 		50D60D2D20E0D812007A4199 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -7939,6 +8005,7 @@
 		};
 		50AD861E2570F3D5003BDB80 /* openHPI-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50AD878725715439003BDB80 /* openHPI-Widget-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8015,6 +8082,7 @@
 		};
 		50AD861F2570F3D5003BDB80 /* lernencloud-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30EF7B1ED1DC8CF02F4E705B /* Pods-WidgetExtension.lernencloud-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8085,6 +8153,7 @@
 		};
 		50AD86202570F3D5003BDB80 /* openSAP-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDE34CA122FE48DFB4A004DB /* Pods-WidgetExtension.opensap-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8155,6 +8224,7 @@
 		};
 		50AD86212570F3D5003BDB80 /* openWHO-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65BD7B24092F359830178DC5 /* Pods-WidgetExtension.openwho-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8225,6 +8295,7 @@
 		};
 		50AD86222570F3D5003BDB80 /* moocHOUSE-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D855E97D99D3A7FA471458A /* Pods-WidgetExtension.moochouse-ios-debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8295,6 +8366,7 @@
 		};
 		50AD86232570F3D5003BDB80 /* openHPI-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50AD878825715480003BDB80 /* openHPI-Widget-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8365,6 +8437,7 @@
 		};
 		50AD86242570F3D5003BDB80 /* lernencloud-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9BAF19532585737BEB8496E /* Pods-WidgetExtension.lernencloud-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8435,6 +8508,7 @@
 		};
 		50AD86252570F3D5003BDB80 /* openSAP-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4FD95337FBBE7CF36791879 /* Pods-WidgetExtension.opensap-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8505,6 +8579,7 @@
 		};
 		50AD86262570F3D5003BDB80 /* openWHO-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0BE8A15222566F93CF478EEF /* Pods-WidgetExtension.openwho-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8575,6 +8650,7 @@
 		};
 		50AD86272570F3D5003BDB80 /* moocHOUSE-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A8F85213677B327768F3018 /* Pods-WidgetExtension.moochouse-ios-release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

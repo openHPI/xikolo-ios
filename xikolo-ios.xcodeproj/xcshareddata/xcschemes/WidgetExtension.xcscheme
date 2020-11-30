@@ -43,6 +43,17 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.springboard">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "50AD86122570F3D4003BDB80"
+            BuildableName = "WidgetExtension.appex"
+            BlueprintName = "WidgetExtension"
+            ReferencedContainer = "container:xikolo-ios.xcodeproj">
+         </BuildableReference>
+      </RemoteRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "_XCWidgetKind"

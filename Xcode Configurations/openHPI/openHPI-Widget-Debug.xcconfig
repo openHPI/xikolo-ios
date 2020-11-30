@@ -1,0 +1,13 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+#include "../../Pods/Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.openhpi-ios-debug.xcconfig"
+#include "openHPI-Common.xcconfig"
+#include "../Debug.xcconfig"
+
+PRODUCT_NAME = Widget
+PRODUCT_MODULE_NAME = Widget
+EXTENSION_PATH = .widget
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon

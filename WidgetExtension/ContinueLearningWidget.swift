@@ -3,38 +3,40 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import WidgetKit
+import Common
+import CoreData
 import SwiftUI
+import WidgetKit
 
 struct ContinueLearningWidgetProvider: TimelineProvider {
 
     func placeholder(in context: Context) -> ContinueLearningWidgetEntry {
-        ContinueLearningWidgetEntry(date: Date())
+        ContinueLearningWidgetEntry(course: nil) // TODO use example course
     }
 
     func getSnapshot(in context: Context, completion: @escaping (ContinueLearningWidgetEntry) -> ()) {
-        let entry = ContinueLearningWidgetEntry(date: Date())
-        completion(entry)
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let currentCourses = context.fetchMultiple(CourseHelper.FetchRequest.enrolledCurrentCoursesRequest)
+            let entry = ContinueLearningWidgetEntry(course: currentCourses.value?.count)
+            completion(entry)
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [ContinueLearningWidgetEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = ContinueLearningWidgetEntry(date: entryDate)
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            var entries: [ContinueLearningWidgetEntry] = []
+            let currentCourses = context.fetchMultiple(CourseHelper.FetchRequest.enrolledCurrentCoursesRequest)
+            let entry = ContinueLearningWidgetEntry(course: currentCourses.value?.count)
             entries.append(entry)
+            let timeline = Timeline(entries: entries, policy: .never)
+            completion(timeline)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
 }
 
 struct ContinueLearningWidgetEntry: TimelineEntry {
-    let date: Date
+    let date: Date = Date()
+    var course: Int?
 }
 
 struct ContinueLearningWidgetEntryView : View {
@@ -42,13 +44,14 @@ struct ContinueLearningWidgetEntryView : View {
 
     @Environment(\.widgetFamily) var family
 
+    @ViewBuilder
     var body: some View {
         switch family {
         case .systemSmall:
             ZStack {
                 VStack(alignment: .leading) {
                     Spacer()
-                    Text("Very long longacourse")
+                    Text("\(entry.course ?? -1)")
                         .lineLimit(2)
                     Text("Item title")
                         .font(.system(.footnote))
@@ -97,16 +100,17 @@ struct ContinueLearningWidget: Widget {
         }
         .configurationDisplayName("Continue Learning")
         .description("This is an example widget.")
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
 struct ContinueLearningWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContinueLearningWidgetEntryView(entry: ContinueLearningWidgetEntry(date: Date()))
+            ContinueLearningWidgetEntryView(entry: ContinueLearningWidgetEntry(course: nil))
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
 
-            ContinueLearningWidgetEntryView(entry: ContinueLearningWidgetEntry(date: Date()))
+            ContinueLearningWidgetEntryView(entry: ContinueLearningWidgetEntry(course: nil))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
         }
     }

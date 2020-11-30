@@ -26,6 +26,14 @@ extension BingePlayerViewController {
         } else {
             self.asset = nil
         }
+
+        if let posterImageURL = video.item?.section?.course?.imageURL {
+            DispatchQueue.main.async {
+                if let imageData = try? Data(contentsOf: posterImageURL), let image = UIImage(data: imageData) {
+                    self.posterImage = image
+                }
+            }
+        }
     }
 
     private func offlinePlayableAsset(for video: Video) -> AVURLAsset? {

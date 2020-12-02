@@ -128,7 +128,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: self.downloadSettings).onSuccess { [weak self] _ in
             self?.close()
         }.onSuccess {
-            AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
+            AutomatedDownloadsManager.scheduleNextRefreshTask()
         }.onFailure { [weak self] error in
             self?.tableView.tableHeaderView?.isHidden = false
             UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
@@ -222,7 +222,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         if indexPath.section == 3 {
             // Disable Automated Downloads
             CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: nil).onSuccess { [weak self] _ in
-                AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
+                AutomatedDownloadsManager.scheduleNextRefreshTask()
                 self?.close()
             }.onComplete { [weak self] _ in
                 self?.navigationItem.rightBarButtonItem = self?.saveBarButtonItem

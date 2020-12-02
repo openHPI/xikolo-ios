@@ -13,34 +13,54 @@ import UserNotifications
 enum AutomatedDownloadsManager {
 
     private static let lastDownloadKey = "de.xikolo.ios.background.download.last-date"
-    static let taskIdentifier = "de.xikolo.ios.background.download"
+    static let refreshTaskIdentifier = "de.xikolo.ios.background.refresh"
+    static let backgroundDownloadTaskIdentifier = "de.xikolo.ios.background.download"
 
     static func registerBackgroundTask() {
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: Self.taskIdentifier, using: nil) { task in
+        var result = BGTaskScheduler.shared.register(forTaskWithIdentifier: Self.refreshTaskIdentifier, using: nil) { task in
+            self.performRefresh(task: task)
+        }
+
+        result = BGTaskScheduler.shared.register(forTaskWithIdentifier: Self.backgroundDownloadTaskIdentifier, using: nil) { task in
             self.performNextBackgroundProcessingTasks(task: task)
         }
+        
     }
 
+
     // - schedule next background task (find next sections/course -> start change date for existing bgtask or cancel | setup new bgtask)
-    static func scheduleNextBackgroundProcessingTask() {
+    static func scheduleNextRefreshTask() {
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            // Find next date for background processing
-            guard let dateForNextBackgroundProcessing = self.dateForNextBackgroundProcessing(in: context) else {
+            // Find next date for app refresh
+            guard let dateForNextRefresh = self.dateForNextRefresh(in: context) else {
                 return
             }
 
-            // Cancel current task request
-            BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: Self.taskIdentifier)
+            // Cancel current task requests
+            BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: Self.refreshTaskIdentifier)
 
             // Setup new task request
-            let automatedDownloadTaskRequest = BGProcessingTaskRequest(identifier: Self.taskIdentifier)
-            automatedDownloadTaskRequest.earliestBeginDate = dateForNextBackgroundProcessing
-            automatedDownloadTaskRequest.requiresNetworkConnectivity = true
-            try? BGTaskScheduler.shared.submit(automatedDownloadTaskRequest)
+            let refreshTaskRequest = BGAppRefreshTaskRequest(identifier: Self.refreshTaskIdentifier)
+            refreshTaskRequest.earliestBeginDate = dateForNextRefresh
+            do {
+                try BGTaskScheduler.shared.submit(refreshTaskRequest)
+            } catch {
+                print(error)
+            }
         }
     }
 
-    static func dateForNextBackgroundProcessing(in context: NSManagedObjectContext) -> Date? {
+    private static func scheduleBackgroundDownload() {
+        // Cancel current task requests
+        BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: Self.backgroundDownloadTaskIdentifier)
+
+        // Setup new task request
+        let downloadTaskRequest = BGProcessingTaskRequest(identifier: Self.backgroundDownloadTaskIdentifier)
+        downloadTaskRequest.requiresNetworkConnectivity = true
+        try? BGTaskScheduler.shared.submit(downloadTaskRequest)
+    }
+
+    static func dateForNextRefresh(in context: NSManagedObjectContext) -> Date? {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let courses = try? context.fetch(fetchRequest)
         let nextDates: [Date]? = courses?.compactMap { course -> Date? in
@@ -53,19 +73,34 @@ enum AutomatedDownloadsManager {
         return nextDates?.min()
     }
 
-    static func performNextBackgroundProcessingTasks(task: BGTask) {
-        self.scheduleNextBackgroundProcessingTask()
-
-        let refreshFuture = self.refreshCourseItemsForCoursesWithAutomatedDownloads().onComplete { _ in
-            self.scheduleNextBackgroundProcessingTask()
+    static func performRefresh(task: BGTask) {
+        task.expirationHandler = {
+            task.setTaskCompleted(success: false)
         }
 
-        let processingFuture = refreshFuture.flatMap { _ -> Future<Void, XikoloError> in
+        self.scheduleNextRefreshTask()
+
+        let refreshFuture = self.refreshCourseItemsForCoursesWithAutomatedDownloads().onSuccess { _ in
+            self.scheduleNextRefreshTask()
             self.postLocalPushNotificationIfApplicable()
-            let downloadFuture = self.downloadNewContent()
-            let deleteFuture = self.deleteOldContent()
-            return downloadFuture.zip(deleteFuture).asVoid()
+            self.scheduleBackgroundDownloadIfApplicable()
         }
+
+        refreshFuture.onComplete { result in
+            task.setTaskCompleted(success: result.value != nil)
+        }
+    }
+
+
+    // todo old
+    static func performNextBackgroundProcessingTasks(task: BGTask) {
+        task.expirationHandler = {
+            task.setTaskCompleted(success: false)
+        }
+
+        let downloadFuture = self.downloadNewContent()
+        let deleteFuture = self.deleteOldContent()
+        let processingFuture = downloadFuture.zip(deleteFuture).asVoid()
 
         processingFuture.onComplete { result in
             task.setTaskCompleted(success: result.value != nil)
@@ -98,6 +133,22 @@ enum AutomatedDownloadsManager {
             center.getNotificationSettings { settings in
                 guard settings.authorizationStatus == .authorized else { return }
                 center.add(XikoloNotification.automatedDownloadsNotificationRequest)
+            }
+        }
+    }
+
+    private static func scheduleBackgroundDownloadIfApplicable() {
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
+            let courses = (try? context.fetch(fetchRequest)) ?? []
+
+            let courseWithAvailableBackgroundDownload = courses.filter { course in
+                guard course.automatedDownloadSettings?.downloadOption == .backgroundDownload else { return false }
+                return !self.sectionsToDownload(for: course).isEmpty || !self.sectionsToDelete(for: course).isEmpty
+            }
+
+            if !courseWithAvailableBackgroundDownload.isEmpty {
+                self.scheduleBackgroundDownload()
             }
         }
     }
@@ -137,7 +188,6 @@ enum AutomatedDownloadsManager {
         return downloadFutures.sequence().asVoid()
     }
 
-    // TODO: section may have no items
     static func sectionsToDownload(for course: Course) -> Set<CourseSection> {
         let orderedStartDates = course.sections.compactMap(\.startsAt).filter(\.inPast).sorted()
 

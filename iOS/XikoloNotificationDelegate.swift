@@ -26,7 +26,7 @@ class XikoloNotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
                 completionHandler()
             }
         case XikoloNotification.ActionIdentifier.download:
-            AutomatedDownloadsManager.downloadNewContent().onComplete { _ in
+            AutomatedDownloadsManager.downloadNewContent(ignoreDownloadOption: true).onComplete { _ in
                 completionHandler()
             }
         default:

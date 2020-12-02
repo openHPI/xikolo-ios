@@ -43,28 +43,31 @@ enum AutomatedDownloadsManager {
     static func dateForNextBackgroundProcessing(in context: NSManagedObjectContext) -> Date? {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let courses = try? context.fetch(fetchRequest)
-        let nextDates = courses?.compactMap { course -> Date? in
-            let dates = course.sections.compactMap(\.startsAt) + [course.startsAt, course.endsAt].compactMap { $0 }
-            let filteredDates = dates.filter { $0 > Date() }
-            return filteredDates.min()
+        let nextDates: [Date]? = courses?.compactMap { course -> Date? in
+            let courseDates = [course.startsAt, course.endsAt].compactMap { $0 }
+            let sectionDates = course.sections.compactMap(\.startsAt)
+            let dates = sectionDates + courseDates
+            return dates.filter(\.inFuture).min()
         }
 
         return nextDates?.min()
     }
 
     static func performNextBackgroundProcessingTasks(task: BGTask) {
+        self.scheduleNextBackgroundProcessingTask()
+
         let refreshFuture = self.refreshCourseItemsForCoursesWithAutomatedDownloads().onComplete { _ in
             self.scheduleNextBackgroundProcessingTask()
         }
 
-        let downloadFuture = refreshFuture.flatMap { _ -> Future<Void, XikoloError> in
+        let processingFuture = refreshFuture.flatMap { _ -> Future<Void, XikoloError> in
             self.postLocalPushNotificationIfApplicable()
             let downloadFuture = self.downloadNewContent()
             let deleteFuture = self.deleteOldContent()
             return downloadFuture.zip(deleteFuture).asVoid()
         }
 
-        downloadFuture.onComplete { result in
+        processingFuture.onComplete { result in
             task.setTaskCompleted(success: result.value != nil)
         }
     }
@@ -100,22 +103,21 @@ enum AutomatedDownloadsManager {
     }
 
     @discardableResult
-    static func downloadNewContent() -> Future<Void, XikoloError> {
+    static func downloadNewContent(ignoreDownloadOption: Bool = false) -> Future<Void, XikoloError> {
         return CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            return self.downloadNewContentFuture(in: context)
+            return self.downloadNewContentFuture(in: context, ignoreDownloadOption: ignoreDownloadOption)
         }
     }
 
-    // TODO: test this
     // Download content (find courses -> find sections -> start downloads)
-    static func downloadNewContentFuture(in context: NSManagedObjectContext) -> Future<Void, XikoloError> {
+    static func downloadNewContentFuture(in context: NSManagedObjectContext, ignoreDownloadOption: Bool) -> Future<Void, XikoloError> {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let courses = try? context.fetch(fetchRequest)
 
         var downloadFutures: [Future<Void, XikoloError>] = []
 
         courses?.forEach { course in
-            guard course.automatedDownloadSettings?.downloadOption == .backgroundDownload else { return }
+            guard course.automatedDownloadSettings?.downloadOption == .backgroundDownload || ignoreDownloadOption else { return }
             guard let materialsToDownload = course.automatedDownloadSettings?.materialTypes else { return }
 
             self.sectionsToDownload(for: course).forEach { backgroundSection in
@@ -135,13 +137,16 @@ enum AutomatedDownloadsManager {
         return downloadFutures.sequence().asVoid()
     }
 
-    // TODO: test this
     // TODO: section may have no items
     static func sectionsToDownload(for course: Course) -> Set<CourseSection> {
         let orderedStartDates = course.sections.compactMap(\.startsAt).filter(\.inPast).sorted()
 
         let lastSectionStart = orderedStartDates.last
-        let sectionsToDownload = course.sections.filter { $0.startsAt == lastSectionStart && ($0.endsAt?.inFuture ?? false) }
+        let sectionsToDownload = course.sections.filter { section in
+            let endDate = section.endsAt ?? course.endsAt
+            let endDateInFuture = endDate?.inFuture ?? true
+            return section.startsAt == lastSectionStart && endDateInFuture
+        }
 
         return sectionsToDownload
     }
@@ -152,7 +157,6 @@ enum AutomatedDownloadsManager {
         }
     }
 
-    // TODO: test this
     // Delete older content (find courses -> find old sections -> delete content)
     static func deleteOldContent(in context: NSManagedObjectContext) -> Future<Void, XikoloError> {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads

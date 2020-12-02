@@ -44,7 +44,11 @@ public class CoreDataHelper { // swiftlint:disable:this convenience_type
                 let coordinator = container.persistentStoreCoordinator
                 if let oldStore = coordinator.persistentStore(for: url) {
                     do {
-                        try coordinator.migratePersistentStore(oldStore, to: sharedStoreURL, options: nil, withType: NSSQLiteStoreType)
+                        let options = [
+                            NSMigratePersistentStoresAutomaticallyOption: true,
+                            NSInferMappingModelAutomaticallyOption: true,
+                        ]
+                        try coordinator.migratePersistentStore(oldStore, to: sharedStoreURL, options: options, withType: NSSQLiteStoreType)
                     } catch {
                         print(error.localizedDescription)
                     }

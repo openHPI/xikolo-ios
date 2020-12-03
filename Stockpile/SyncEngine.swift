@@ -9,10 +9,9 @@ import Marshal
 
 public protocol SyncEngine {
 
-    associatedtype Networker: SyncNetworker
     associatedtype SyncEngineError: Error
 
-    var networker: Networker { get }
+    var networker: SyncNetworker { get }
 
     // Requests
     var baseURL: URL { get }

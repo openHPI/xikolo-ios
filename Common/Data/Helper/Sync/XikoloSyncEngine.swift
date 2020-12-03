@@ -58,6 +58,40 @@ public struct XikoloNetworker: SyncNetworker {
 
 }
 
+public class XikoloBackgroundNetworker: NSObject, SyncNetworker, URLSessionDownloadDelegate {
+
+    public typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
+
+    let sessionConfiguration: URLSessionConfiguration
+    var completionHandlers: [URLSessionTask: CompletionHandler] = [:]
+
+    var session: URLSession!
+
+    public init(withIdentifier identifier: String) {
+        self.sessionConfiguration = URLSessionConfiguration.background(withIdentifier: identifier)
+        super.init()
+        self.session = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+    }
+
+    public func perform(request: URLRequest, completionHandler: @escaping CompletionHandler) {
+        let task = self.session.downloadTask(with: request)
+        self.completionHandlers[task] = completionHandler
+        task.resume()
+    }
+
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        let completionHandler = self.completionHandlers.removeValue(forKey: task)
+        completionHandler?(nil, task.response, error)
+    }
+
+    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        let completionHandler = self.completionHandlers.removeValue(forKey: downloadTask)
+        let data = try? Data(contentsOf: location)
+        completionHandler?(data, downloadTask.response, downloadTask.error)
+    }
+
+}
+
 public struct XikoloSyncEngine: SyncEngine {
 
     public static let persistentContainerQueue: OperationQueue = {
@@ -66,7 +100,7 @@ public struct XikoloSyncEngine: SyncEngine {
         return persistentContainerQueue
     }()
 
-    public let networker: XikoloNetworker
+    public let networker: SyncNetworker
 
     public let baseURL: URL = Routes.api
 
@@ -84,7 +118,7 @@ public struct XikoloSyncEngine: SyncEngine {
         return Self.persistentContainerQueue
     }()
 
-    public init(networker: XikoloNetworker = XikoloNetworker()) {
+    public init(networker: SyncNetworker = XikoloNetworker()) {
         self.networker = networker
     }
 

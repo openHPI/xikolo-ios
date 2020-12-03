@@ -16,6 +16,8 @@ enum AutomatedDownloadsManager {
     static let refreshTaskIdentifier = "de.xikolo.ios.background.refresh"
     static let backgroundDownloadTaskIdentifier = "de.xikolo.ios.background.download"
 
+    static let networker = XikoloBackgroundNetworker(withIdentifier: "de.xikolo.ios.background.download.sync")
+
     static func registerBackgroundTask() {
         var result = BGTaskScheduler.shared.register(forTaskWithIdentifier: Self.refreshTaskIdentifier, using: nil) { task in
             self.performRefresh(task: task)
@@ -80,10 +82,12 @@ enum AutomatedDownloadsManager {
 
         self.scheduleNextRefreshTask()
 
-        let refreshFuture = self.refreshCourseItemsForCoursesWithAutomatedDownloads().onSuccess { _ in
+        let refreshFuture = self.refreshCourseItemsForCoursesWithAutomatedDownloads().andThen { _ in
             self.scheduleNextRefreshTask()
-            self.postLocalPushNotificationIfApplicable()
-            self.scheduleBackgroundDownloadIfApplicable()
+        }.flatMap { _ -> Future<Void, XikoloError> in
+            let notificationFuture = self.postLocalPushNotificationIfApplicable()
+            let downloadFuture = self.scheduleBackgroundDownloadIfApplicable()
+            return notificationFuture.zip(downloadFuture).asVoid().promoteError()
         }
 
         refreshFuture.onComplete { result in
@@ -115,7 +119,7 @@ enum AutomatedDownloadsManager {
             let courses = try? context.fetch(fetchRequest)
 
             let courseSyncFuture = courses?.map { course in
-                return CourseItemHelper.syncCourseItemsWithContent(for: course)
+                return CourseItemHelper.backgroundSyncCourseItemsWithContent(for: course, networker: self.networker)
             }.sequence().asVoid()
 
             promise.completeWith(courseSyncFuture ?? Future(value: ()))
@@ -124,20 +128,28 @@ enum AutomatedDownloadsManager {
         return promise.future
     }
 
-    private static func postLocalPushNotificationIfApplicable() {
+    private static func postLocalPushNotificationIfApplicable() -> Future<Void, Never> {
+        let promise = Promise<Void, Never>()
+
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let coursesWithNotificationsAndNewContent = self.coursesWithNotificationsAndNewContent(in: context)
-            guard !coursesWithNotificationsAndNewContent.isEmpty else { return }
-
-            let center = UNUserNotificationCenter.current()
-            center.getNotificationSettings { settings in
-                guard settings.authorizationStatus == .authorized else { return }
-                center.add(XikoloNotification.automatedDownloadsNotificationRequest)
+            if !coursesWithNotificationsAndNewContent.isEmpty {
+                let center = UNUserNotificationCenter.current()
+                center.getNotificationSettings { settings in
+                    if settings.authorizationStatus == .authorized {
+                        center.add(XikoloNotification.automatedDownloadsNotificationRequest)
+                    }
+                }
             }
+            promise.success(())
         }
+
+        return promise.future
     }
 
-    private static func scheduleBackgroundDownloadIfApplicable() {
+    private static func scheduleBackgroundDownloadIfApplicable() -> Future<Void, Never> {
+        let promise = Promise<Void, Never>()
+
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
             let courses = (try? context.fetch(fetchRequest)) ?? []
@@ -150,7 +162,11 @@ enum AutomatedDownloadsManager {
             if !courseWithAvailableBackgroundDownload.isEmpty {
                 self.scheduleBackgroundDownload()
             }
+
+            promise.success(())
         }
+
+        return promise.future
     }
 
     @discardableResult

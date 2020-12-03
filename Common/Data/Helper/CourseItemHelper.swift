@@ -44,14 +44,6 @@ public enum CourseItemHelper {
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
-    @discardableResult public static func syncCourseItemsWithContent(for course: Course) -> Future<SyncMultipleResult, XikoloError> {
-        let fetchRequest = Self.FetchRequest.courseItems(forCourse: course)
-        var query = MultipleResourcesQuery(type: CourseItem.self)
-        query.addFilter(forKey: "course", withValue: course.id)
-        query.include("content")
-        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
-    }
-
     @discardableResult public static func syncCourseItemWithContent(_ courseItem: CourseItem) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = Self.FetchRequest.courseItem(withId: courseItem.id)
         var query = SingleResourceQuery(resource: courseItem)
@@ -76,6 +68,14 @@ public enum CourseItemHelper {
         }
 
         return promise.future
+    }
+
+    @discardableResult public static func backgroundSyncCourseItemsWithContent(for course: Course, networker: SyncNetworker) -> Future<SyncMultipleResult, XikoloError> {
+        let fetchRequest = Self.FetchRequest.courseItems(forCourse: course)
+        var query = MultipleResourcesQuery(type: CourseItem.self)
+        query.addFilter(forKey: "course", withValue: course.id)
+        query.include("content")
+        return XikoloSyncEngine(networker: networker).synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

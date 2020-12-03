@@ -191,6 +191,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else if DocumentsPersistenceManager.shared.session.configuration.identifier == identifier {
             DocumentsPersistenceManager.shared.backgroundCompletionHandler = completionHandler
         }
+        // TODO handle background tasks
     }
 
     @available(iOS 13.0, *)

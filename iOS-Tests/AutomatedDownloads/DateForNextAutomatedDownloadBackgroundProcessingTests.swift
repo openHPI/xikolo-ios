@@ -53,7 +53,7 @@ class DateForNextAutomatedDownloadBackgroundProcessingTests: XCTestCase {
         section2.startsAt = Calendar.current.date(byAdding: .day, value: 14, to: Date())
         section2.endsAt = Calendar.current.date(byAdding: .day, value: 21, to: Date())
 
-        let dateForNextBackgroundProcessing = AutomatedDownloadsManager.dateForNextRefresh(in: context)
+        let dateForNextBackgroundProcessing = AutomatedDownloadsManager.dateForNextBackgroundProcessing(in: context)
 
         XCTAssertEqual(dateForNextBackgroundProcessing, course.startsAt)
     }
@@ -66,7 +66,7 @@ class DateForNextAutomatedDownloadBackgroundProcessingTests: XCTestCase {
         section2.startsAt = Calendar.current.date(byAdding: .day, value: 14, to: Date())
         section2.endsAt = Calendar.current.date(byAdding: .day, value: 21, to: Date())
 
-        let dateForNextBackgroundProcessing = AutomatedDownloadsManager.dateForNextRefresh(in: context)
+        let dateForNextBackgroundProcessing = AutomatedDownloadsManager.dateForNextBackgroundProcessing(in: context)
 
         XCTAssertEqual(dateForNextBackgroundProcessing, section2.startsAt)
     }
@@ -79,7 +79,7 @@ class DateForNextAutomatedDownloadBackgroundProcessingTests: XCTestCase {
         section2.startsAt = Calendar.current.date(byAdding: .day, value: -2, to: Date())
         section2.endsAt = Calendar.current.date(byAdding: .day, value: 7, to: Date())
 
-        let dateForNextBackgroundProcessing = AutomatedDownloadsManager.dateForNextRefresh(in: context)
+        let dateForNextBackgroundProcessing = AutomatedDownloadsManager.dateForNextBackgroundProcessing(in: context)
 
         XCTAssertEqual(dateForNextBackgroundProcessing, course.endsAt)
     }
@@ -92,7 +92,7 @@ class DateForNextAutomatedDownloadBackgroundProcessingTests: XCTestCase {
         section2.startsAt = Calendar.current.date(byAdding: .day, value: -9, to: Date())
         section2.endsAt = Calendar.current.date(byAdding: .day, value: -3, to: Date())
 
-        let dateForNextBackgroundProcessing = AutomatedDownloadsManager.dateForNextRefresh(in: context)
+        let dateForNextBackgroundProcessing = AutomatedDownloadsManager.dateForNextBackgroundProcessing(in: context)
 
         XCTAssertNil(dateForNextBackgroundProcessing)
     }
@@ -100,7 +100,7 @@ class DateForNextAutomatedDownloadBackgroundProcessingTests: XCTestCase {
     func testNoEnrollments() throws {
         course.enrollment = nil
 
-        let dateForNextBackgroundProcessing = AutomatedDownloadsManager.dateForNextRefresh(in: context)
+        let dateForNextBackgroundProcessing = AutomatedDownloadsManager.dateForNextBackgroundProcessing(in: context)
 
         XCTAssertNil(dateForNextBackgroundProcessing)
     }
@@ -108,7 +108,7 @@ class DateForNextAutomatedDownloadBackgroundProcessingTests: XCTestCase {
     func testNoCoursesWithAutomatedDownloads() throws {
         course.automatedDownloadSettings = nil
 
-        let dateForNextBackgroundProcessing = AutomatedDownloadsManager.dateForNextRefresh(in: context)
+        let dateForNextBackgroundProcessing = AutomatedDownloadsManager.dateForNextBackgroundProcessing(in: context)
 
         XCTAssertNil(dateForNextBackgroundProcessing)
     }

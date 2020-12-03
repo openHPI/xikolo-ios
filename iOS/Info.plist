@@ -9,7 +9,6 @@
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>de.xikolo.ios.background.download</string>
-		<string>de.xikolo.ios.background.refresh</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

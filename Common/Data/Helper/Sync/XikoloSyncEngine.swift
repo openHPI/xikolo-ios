@@ -63,12 +63,14 @@ public class XikoloBackgroundNetworker: NSObject, SyncNetworker, URLSessionDownl
     public typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
 
     let sessionConfiguration: URLSessionConfiguration
+    var backgroundCompletionHandler: (() -> Void)
     var completionHandlers: [URLSessionTask: CompletionHandler] = [:]
 
     var session: URLSession!
 
-    public init(withIdentifier identifier: String) {
+    public init(withIdentifier identifier: String, backgroundCompletionHandler: @escaping (() -> Void)) {
         self.sessionConfiguration = URLSessionConfiguration.background(withIdentifier: identifier)
+        self.backgroundCompletionHandler = backgroundCompletionHandler
         super.init()
         self.session = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
     }
@@ -88,6 +90,10 @@ public class XikoloBackgroundNetworker: NSObject, SyncNetworker, URLSessionDownl
         let completionHandler = self.completionHandlers.removeValue(forKey: downloadTask)
         let data = try? Data(contentsOf: location)
         completionHandler?(data, downloadTask.response, downloadTask.error)
+    }
+
+    public func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        self.backgroundCompletionHandler()
     }
 
 }

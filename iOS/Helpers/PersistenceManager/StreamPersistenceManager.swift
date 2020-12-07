@@ -153,16 +153,22 @@ extension StreamPersistenceManager {
     func startDownloads(for section: CourseSection) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 
-        self.persistentContainerQueue.addOperation {
-            let sectionDownloadFuture = section.items.compactMap { item in
-                return item.content as? Video
-            }.filter { video in
-                return self.downloadState(for: video) == .notDownloaded
-            }.map { video in
-                self.startDownload(for: video)
-            }.sequence().asVoid()
+        let sectionObjectID = section.objectID
 
-            promise.completeWith(sectionDownloadFuture)
+        self.persistentContainerQueue.addOperation {
+            let context = CoreDataHelper.persistentContainer.newBackgroundContext()
+            context.performAndWait {
+                guard let section: CourseSection = context.existingTypedObject(with: sectionObjectID) else { return }
+                let sectionDownloadFuture = section.items.compactMap { item in
+                    return item.content as? Video
+                }.filter { video in
+                    return self.downloadState(for: video) == .notDownloaded
+                }.map { video in
+                    self.startDownload(for: video)
+                }.sequence().asVoid()
+
+                promise.completeWith(sectionDownloadFuture)
+            }
         }
 
         return promise.future
@@ -172,14 +178,20 @@ extension StreamPersistenceManager {
     func deleteDownloads(for section: CourseSection) -> Future<Void, XikoloError>  {
         let promise = Promise<Void, XikoloError>()
 
-        self.persistentContainerQueue.addOperation {
-            let sectionDeleteFuture = section.items.compactMap { item in
-                return item.content as? Video
-            }.map { video in
-                self.deleteDownload(for: video)
-            }.sequence().asVoid()
+        let sectionObjectID = section.objectID
 
-            return promise.completeWith(sectionDeleteFuture)
+        self.persistentContainerQueue.addOperation {
+            let context = CoreDataHelper.persistentContainer.newBackgroundContext()
+            context.performAndWait {
+                guard let section: CourseSection = context.existingTypedObject(with: sectionObjectID) else { return }
+                let sectionDeleteFuture = section.items.compactMap { item in
+                    return item.content as? Video
+                }.map { video in
+                    self.deleteDownload(for: video)
+                }.sequence().asVoid()
+
+                return promise.completeWith(sectionDeleteFuture)
+            }
         }
 
         return promise.future

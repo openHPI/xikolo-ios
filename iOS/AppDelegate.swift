@@ -190,8 +190,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             SlidesPersistenceManager.shared.backgroundCompletionHandler = completionHandler
         } else if DocumentsPersistenceManager.shared.session.configuration.identifier == identifier {
             DocumentsPersistenceManager.shared.backgroundCompletionHandler = completionHandler
+        } else if #available(iOS 13, *), AutomatedDownloadsManager.urlSessionIdentifier == identifier {
+            AutomatedDownloadsManager.backgroundCompletionHandler = completionHandler
         }
-        // TODO handle background tasks
     }
 
     @available(iOS 13.0, *)

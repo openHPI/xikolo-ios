@@ -16,7 +16,10 @@ enum AutomatedDownloadsManager {
     static let taskIdentifier = "de.xikolo.ios.background.download"
     static let urlSessionIdentifier = "de.xikolo.ios.background.download.sync"
 
-    static let networker = XikoloBackgroundNetworker(withIdentifier: Self.urlSessionIdentifier)
+    static let networker = XikoloBackgroundNetworker(withIdentifier: Self.urlSessionIdentifier, backgroundCompletionHandler: {
+        Self.backgroundCompletionHandler?()
+    })
+    static var backgroundCompletionHandler: (() -> Void)?
 
     static func registerBackgroundTask() {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: Self.taskIdentifier, using: nil) { task in
@@ -28,9 +31,11 @@ enum AutomatedDownloadsManager {
     static func scheduleNextBackgroundProcessingTask() {
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             // Find next date for background processing
-            guard let dateForNextBackgroundProcessing = self.dateForNextBackgroundProcessing(in: context) else {
-                return
-            }
+//            guard let dateForNextBackgroundProcessing = self.dateForNextBackgroundProcessing(in: context) else {
+//                return
+//            }
+            let dateForNextBackgroundProcessing = Date()
+            // todo
 
             // Cancel current task request
             BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: Self.taskIdentifier)
@@ -57,6 +62,14 @@ enum AutomatedDownloadsManager {
     }
 
     static func performNextBackgroundProcessingTasks(task: BGTask) {
+        task.expirationHandler = {
+            task.setTaskCompleted(success: false)
+            StreamPersistenceManager.shared.persistentContainerQueue.cancelAllOperations()
+            StreamPersistenceManager.shared.session.invalidateAndCancel()
+            SlidesPersistenceManager.shared.persistentContainerQueue.cancelAllOperations()
+            SlidesPersistenceManager.shared.session.invalidateAndCancel()
+        }
+
         self.scheduleNextBackgroundProcessingTask()
 
         let refreshFuture = self.refreshCourseItemsForCoursesWithAutomatedDownloads().onComplete { _ in
@@ -65,7 +78,7 @@ enum AutomatedDownloadsManager {
 
         let processingFuture = refreshFuture.flatMap { _ -> Future<Void, XikoloError> in
             let notificationFuture = self.postLocalPushNotificationIfApplicable()
-            let downloadFuture = self.downloadNewContent()
+            let downloadFuture = self.downloadNewContentFuture(in: CoreDataHelper.persistentContainer.newBackgroundContext(), ignoreDownloadOption: false)
             let deleteFuture = self.deleteOldContent()
             return downloadFuture.zip(deleteFuture).zip(notificationFuture.promoteError()).asVoid()
         }
@@ -112,14 +125,16 @@ enum AutomatedDownloadsManager {
         return promise.future
     }
 
+    // Download content (find courses -> find sections -> start downloads)
     @discardableResult
     static func downloadNewContent(ignoreDownloadOption: Bool = false) -> Future<Void, XikoloError> {
-        return CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            return self.downloadNewContentFuture(in: context, ignoreDownloadOption: ignoreDownloadOption)
-        }
+//        return CoreDataHelper.persistentContainer.performBackgroundTask { context in
+//            return self.downloadNewContentFuture(in: context, ignoreDownloadOption: ignoreDownloadOption)
+//        }
+        return downloadNewContentFuture(in: CoreDataHelper.viewContext, ignoreDownloadOption: ignoreDownloadOption)
     }
 
-    // Download content (find courses -> find sections -> start downloads)
+
     static func downloadNewContentFuture(in context: NSManagedObjectContext, ignoreDownloadOption: Bool) -> Future<Void, XikoloError> {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let courses = try? context.fetch(fetchRequest)
@@ -130,8 +145,15 @@ enum AutomatedDownloadsManager {
             guard course.automatedDownloadSettings?.downloadOption == .backgroundDownload || ignoreDownloadOption else { return }
             guard let materialsToDownload = course.automatedDownloadSettings?.materialTypes else { return }
 
-            self.sectionsToDownload(for: course).forEach { backgroundSection in
-                let section: CourseSection = CoreDataHelper.viewContext.typedObject(with: backgroundSection.objectID)
+            self.sectionsToDownload(for: course).forEach { section in
+//                let section: CourseSection = context.typedObject(with: backgroundSection.objectID)
+//                context.refresh(section, mergeChanges: true)
+//                section.items.forEach { context.refresh($0, mergeChanges: true) }
+//                section.willAccessValue(forKey: nil)
+//                section.items.forEach {
+//                    $0.willAccessValue(forKey: nil)
+//                    $0.content?.willAccessValue(forKey: nil)
+//                }
                 if materialsToDownload.contains(.videos) {
                     let downloadStreamFuture = StreamPersistenceManager.shared.startDownloads(for: section)
                     downloadFutures.append(downloadStreamFuture)
@@ -161,9 +183,11 @@ enum AutomatedDownloadsManager {
     }
 
     static func deleteOldContent() -> Future<Void, XikoloError> {
-        return CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            return self.deleteOldContent(in: context)
-        }
+//        return CoreDataHelper.persistentContainer.performBackgroundTask { context in
+//            return self.deleteOldContent(in: context)
+//        }
+
+        return self.deleteOldContent(in: CoreDataHelper.viewContext)
     }
 
     // Delete older content (find courses -> find old sections -> delete content)
@@ -177,16 +201,24 @@ enum AutomatedDownloadsManager {
             guard let materialsToDownload = course.automatedDownloadSettings?.materialTypes else { return }
             if course.automatedDownloadSettings?.deletionOption == .manual { return }
 
-            self.sectionsToDelete(for: course).forEach { backgroundSection in
-                let section: CourseSection = CoreDataHelper.viewContext.typedObject(with: backgroundSection.objectID)
+            self.sectionsToDelete(for: course).forEach { section in
+//                let section: CourseSection = context.typedObject(with: backgroundSection.objectID)
+
+//                context.refresh(section, mergeChanges: true)
+//                let section: CourseSection = CoreDataHelper.viewContext.typedObject(with: backgroundSection.objectID)
+//                section.willAccessValue(forKey: nil)
+//                section.items.forEach {
+//                    $0.willAccessValue(forKey: nil)
+//                    $0.content?.willAccessValue(forKey: nil)
+//                }
                 if materialsToDownload.contains(.videos) {
-                    let downloadStreamFuture = StreamPersistenceManager.shared.startDownloads(for: section)
-                    deleteFutures.append(downloadStreamFuture)
+                    let deleteStreamFuture = StreamPersistenceManager.shared.deleteDownloads(for: section)
+                    deleteFutures.append(deleteStreamFuture)
                 }
 
                 if materialsToDownload.contains(.slides) {
-                    let downloadSlidesFuture = SlidesPersistenceManager.shared.startDownloads(for: section)
-                    deleteFutures.append(downloadSlidesFuture)
+                    let deleteSlidesFuture = SlidesPersistenceManager.shared.deleteDownloads(for: section)
+                    deleteFutures.append(deleteSlidesFuture)
                 }
             }
         }

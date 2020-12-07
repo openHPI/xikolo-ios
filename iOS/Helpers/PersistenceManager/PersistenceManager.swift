@@ -111,10 +111,13 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
 
         self.didStartDownload(for: resource)
 
+        let resourceObjectID = resource.objectID
+
         self.persistentContainerQueue.addOperation {
             let context = CoreDataHelper.persistentContainer.newBackgroundContext()
             context.performAndWait {
-                self.resourceModificationAfterStartingDownload(for: resource)
+                guard let backgroundResource: Resource = context.existingTypedObject(with: resourceObjectID) else { return }
+                self.resourceModificationAfterStartingDownload(for: backgroundResource)
                 try? context.save()
             }
 

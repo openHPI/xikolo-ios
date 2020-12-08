@@ -41,6 +41,11 @@ final class StreamPersistenceManager: PersistenceManager<StreamPersistenceManage
         return AVAssetDownloadURLSession(configuration: backgroundConfiguration, assetDownloadDelegate: self, delegateQueue: OperationQueue.main)
     }
 
+    func startDownload(for video: Video) {
+        guard let url = video.streamURLForDownload else { return }
+        return self.startDownload(with: url, for: video)
+    }
+
     override func downloadTask(with url: URL, for resource: Video, on session: AVAssetDownloadURLSession) -> URLSessionTask? {
         let assetTitleCourse = resource.item?.section?.course?.slug ?? "Unknown course"
         let assetTitleItem = resource.item?.title ?? "Untitled video"
@@ -143,58 +148,26 @@ final class StreamPersistenceManager: PersistenceManager<StreamPersistenceManage
 
 extension StreamPersistenceManager {
 
-    @discardableResult
-    func startDownload(for video: Video) -> Future<Void, XikoloError> {
-        guard let url = video.streamURLForDownload else { return Future(error: .totallyUnknownError) }
-        return self.startDownload(with: url, for: video)
-    }
-
-    @discardableResult
-    func startDownloads(for section: CourseSection) -> Future<Void, XikoloError> {
-        let promise = Promise<Void, XikoloError>()
-
-        let sectionObjectID = section.objectID
-
+    func startDownloads(for section: CourseSection) {
         self.persistentContainerQueue.addOperation {
-            let context = CoreDataHelper.persistentContainer.newBackgroundContext()
-            context.performAndWait {
-                guard let section: CourseSection = context.existingTypedObject(with: sectionObjectID) else { return }
-                let sectionDownloadFuture = section.items.compactMap { item in
-                    return item.content as? Video
-                }.filter { video in
-                    return self.downloadState(for: video) == .notDownloaded
-                }.map { video in
-                    self.startDownload(for: video)
-                }.sequence().asVoid()
-
-                promise.completeWith(sectionDownloadFuture)
+            section.items.compactMap { item in
+                return item.content as? Video
+            }.filter { video in
+                return self.downloadState(for: video) == .notDownloaded
+            }.forEach { video in
+                self.startDownload(for: video)
             }
         }
-
-        return promise.future
     }
 
-    @discardableResult
-    func deleteDownloads(for section: CourseSection) -> Future<Void, XikoloError>  {
-        let promise = Promise<Void, XikoloError>()
-
-        let sectionObjectID = section.objectID
-
+    func deleteDownloads(for section: CourseSection) {
         self.persistentContainerQueue.addOperation {
-            let context = CoreDataHelper.persistentContainer.newBackgroundContext()
-            context.performAndWait {
-                guard let section: CourseSection = context.existingTypedObject(with: sectionObjectID) else { return }
-                let sectionDeleteFuture = section.items.compactMap { item in
-                    return item.content as? Video
-                }.map { video in
-                    self.deleteDownload(for: video)
-                }.sequence().asVoid()
-
-                return promise.completeWith(sectionDeleteFuture)
+            section.items.compactMap { item in
+                return item.content as? Video
+            }.forEach { video in
+                self.deleteDownload(for: video)
             }
         }
-
-        return promise.future
     }
 
     func cancelDownloads(for section: CourseSection) {

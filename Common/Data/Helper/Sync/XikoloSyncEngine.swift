@@ -66,7 +66,7 @@ public class XikoloBackgroundNetworker: NSObject, SyncNetworker, URLSessionDownl
     var backgroundCompletionHandler: (() -> Void)
     var completionHandlers: [URLSessionTask: CompletionHandler] = [:]
 
-    var session: URLSession!
+    public var session: URLSession!
 
     public init(withIdentifier identifier: String, backgroundCompletionHandler: @escaping (() -> Void)) {
         self.sessionConfiguration = URLSessionConfiguration.background(withIdentifier: identifier)

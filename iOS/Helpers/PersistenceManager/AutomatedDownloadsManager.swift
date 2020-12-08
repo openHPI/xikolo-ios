@@ -64,10 +64,6 @@ enum AutomatedDownloadsManager {
     static func performNextBackgroundProcessingTasks(task: BGTask) {
         task.expirationHandler = {
             task.setTaskCompleted(success: false)
-            StreamPersistenceManager.shared.persistentContainerQueue.cancelAllOperations()
-            StreamPersistenceManager.shared.session.invalidateAndCancel()
-            SlidesPersistenceManager.shared.persistentContainerQueue.cancelAllOperations()
-            SlidesPersistenceManager.shared.session.invalidateAndCancel()
         }
 
         self.scheduleNextBackgroundProcessingTask()
@@ -76,11 +72,13 @@ enum AutomatedDownloadsManager {
             self.scheduleNextBackgroundProcessingTask()
         }
 
-        let processingFuture = refreshFuture.flatMap { _ -> Future<Void, XikoloError> in
-            let notificationFuture = self.postLocalPushNotificationIfApplicable()
-            let downloadFuture = self.downloadNewContentFuture(in: CoreDataHelper.persistentContainer.newBackgroundContext(), ignoreDownloadOption: false)
-            let deleteFuture = self.deleteOldContent()
-            return downloadFuture.zip(deleteFuture).zip(notificationFuture.promoteError()).asVoid()
+        let processingFuture = refreshFuture.andThen { _ in
+            let context = CoreDataHelper.persistentContainer.newBackgroundContext()
+            context.performAndWait {
+                self.postLocalPushNotificationIfApplicable(in: context)
+                self.downloadNewContent(in: context)
+                self.deleteOldContent(in: context)
+            }
         }
 
         processingFuture.onComplete { result in
@@ -105,68 +103,49 @@ enum AutomatedDownloadsManager {
         return promise.future
     }
 
-    private static func postLocalPushNotificationIfApplicable() -> Future<Void, Never> {
-        let promise = Promise<Void, Never>()
-
-        CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let coursesWithNotificationsAndNewContent = self.coursesWithNotificationsAndNewContent(in: context)
-            if !coursesWithNotificationsAndNewContent.isEmpty {
-                let center = UNUserNotificationCenter.current()
-                center.getNotificationSettings { settings in
-                    if settings.authorizationStatus == .authorized {
-                        center.add(XikoloNotification.automatedDownloadsNotificationRequest)
-                    }
+    private static func postLocalPushNotificationIfApplicable(in context: NSManagedObjectContext) {
+        let coursesWithNotificationsAndNewContent = self.coursesWithNotificationsAndNewContent(in: context)
+        if !coursesWithNotificationsAndNewContent.isEmpty {
+            let center = UNUserNotificationCenter.current()
+            center.getNotificationSettings { settings in
+                if settings.authorizationStatus == .authorized {
+                    center.add(XikoloNotification.automatedDownloadsNotificationRequest)
                 }
             }
-
-            promise.success(())
         }
-
-        return promise.future
     }
 
     // Download content (find courses -> find sections -> start downloads)
-    @discardableResult
-    static func downloadNewContent(ignoreDownloadOption: Bool = false) -> Future<Void, XikoloError> {
-//        return CoreDataHelper.persistentContainer.performBackgroundTask { context in
-//            return self.downloadNewContentFuture(in: context, ignoreDownloadOption: ignoreDownloadOption)
-//        }
-        return downloadNewContentFuture(in: CoreDataHelper.viewContext, ignoreDownloadOption: ignoreDownloadOption)
-    }
-
-
-    static func downloadNewContentFuture(in context: NSManagedObjectContext, ignoreDownloadOption: Bool) -> Future<Void, XikoloError> {
+    static func downloadNewContent(in context: NSManagedObjectContext, ignoreDownloadOption: Bool = false) {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let courses = try? context.fetch(fetchRequest)
-
-        var downloadFutures: [Future<Void, XikoloError>] = []
 
         courses?.forEach { course in
             guard course.automatedDownloadSettings?.downloadOption == .backgroundDownload || ignoreDownloadOption else { return }
             guard let materialsToDownload = course.automatedDownloadSettings?.materialTypes else { return }
 
             self.sectionsToDownload(for: course).forEach { section in
-//                let section: CourseSection = context.typedObject(with: backgroundSection.objectID)
-//                context.refresh(section, mergeChanges: true)
-//                section.items.forEach { context.refresh($0, mergeChanges: true) }
-//                section.willAccessValue(forKey: nil)
-//                section.items.forEach {
-//                    $0.willAccessValue(forKey: nil)
-//                    $0.content?.willAccessValue(forKey: nil)
-//                }
                 if materialsToDownload.contains(.videos) {
-                    let downloadStreamFuture = StreamPersistenceManager.shared.startDownloads(for: section)
-                    downloadFutures.append(downloadStreamFuture)
+                    section.items.compactMap { item in
+                        return item.content as? Video
+                    }.filter { video in
+                        return StreamPersistenceManager.shared.downloadState(for: video) == .notDownloaded
+                    }.forEach { video in
+                        StreamPersistenceManager.shared.startDownload(for: video)
+                    }
                 }
 
                 if materialsToDownload.contains(.slides) {
-                    let downloadSlidesFuture = SlidesPersistenceManager.shared.startDownloads(for: section)
-                    downloadFutures.append(downloadSlidesFuture)
+                    section.items.compactMap { item in
+                        return item.content as? Video
+                    }.filter { video in
+                        return SlidesPersistenceManager.shared.downloadState(for: video) == .notDownloaded
+                    }.forEach { video in
+                        SlidesPersistenceManager.shared.startDownload(for: video)
+                    }
                 }
             }
         }
-
-        return downloadFutures.sequence().asVoid()
     }
 
     static func sectionsToDownload(for course: Course) -> Set<CourseSection> {
@@ -182,48 +161,33 @@ enum AutomatedDownloadsManager {
         return sectionsToDownload
     }
 
-    static func deleteOldContent() -> Future<Void, XikoloError> {
-//        return CoreDataHelper.persistentContainer.performBackgroundTask { context in
-//            return self.deleteOldContent(in: context)
-//        }
-
-        return self.deleteOldContent(in: CoreDataHelper.viewContext)
-    }
-
     // Delete older content (find courses -> find old sections -> delete content)
-    static func deleteOldContent(in context: NSManagedObjectContext) -> Future<Void, XikoloError> {
+    static func deleteOldContent(in context: NSManagedObjectContext) {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let courses = try? context.fetch(fetchRequest)
-
-        var deleteFutures: [Future<Void, XikoloError>] = []
 
         courses?.forEach { course in
             guard let materialsToDownload = course.automatedDownloadSettings?.materialTypes else { return }
             if course.automatedDownloadSettings?.deletionOption == .manual { return }
 
             self.sectionsToDelete(for: course).forEach { section in
-//                let section: CourseSection = context.typedObject(with: backgroundSection.objectID)
-
-//                context.refresh(section, mergeChanges: true)
-//                let section: CourseSection = CoreDataHelper.viewContext.typedObject(with: backgroundSection.objectID)
-//                section.willAccessValue(forKey: nil)
-//                section.items.forEach {
-//                    $0.willAccessValue(forKey: nil)
-//                    $0.content?.willAccessValue(forKey: nil)
-//                }
                 if materialsToDownload.contains(.videos) {
-                    let deleteStreamFuture = StreamPersistenceManager.shared.deleteDownloads(for: section)
-                    deleteFutures.append(deleteStreamFuture)
+                    section.items.compactMap { item in
+                        return item.content as? Video
+                    }.forEach { video in
+                        StreamPersistenceManager.shared.deleteDownload(for: video)
+                    }
                 }
 
                 if materialsToDownload.contains(.slides) {
-                    let deleteSlidesFuture = SlidesPersistenceManager.shared.deleteDownloads(for: section)
-                    deleteFutures.append(deleteSlidesFuture)
+                    section.items.compactMap { item in
+                        return item.content as? Video
+                    }.forEach { video in
+                        SlidesPersistenceManager.shared.deleteDownload(for: video)
+                    }
                 }
             }
         }
-
-        return deleteFutures.sequence().asVoid()
     }
 
     static func sectionsToDelete(for course: Course) -> Set<CourseSection> {
@@ -271,22 +235,6 @@ enum AutomatedDownloadsManager {
         set {
             UserDefaults.standard.set(newValue, forKey: self.lastDownloadKey)
         }
-    }
-
-}
-
-
-extension NSPersistentContainer {
-
-    func performBackgroundTask<U, E>(_ block: @escaping (NSManagedObjectContext) -> Future<U, E>) -> Future<U, E> {
-        let promise = Promise<U, E>()
-
-        self.performBackgroundTask { context in
-            let future = block(context)
-            promise.completeWith(future)
-        }
-
-        return promise.future
     }
 
 }

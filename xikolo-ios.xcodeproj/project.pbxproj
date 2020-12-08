@@ -250,7 +250,6 @@
 		50AD85CA2570E838003BDB80 /* SectionsToDeleteNextSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD85C92570E838003BDB80 /* SectionsToDeleteNextSectionTests.swift */; };
 		50AD85D42570E881003BDB80 /* SectionsToDeleteSecondNextSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD85D32570E881003BDB80 /* SectionsToDeleteSecondNextSectionTests.swift */; };
 		50B1CC46256BE55900D651C6 /* XikoloNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC45256BE55900D651C6 /* XikoloNotificationDelegate.swift */; };
-		50B1CC51256CF48800D651C6 /* PersistenceManager+BrightFutures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC50256CF48800D651C6 /* PersistenceManager+BrightFutures.swift */; };
 		50B1CC7D256D54D400D651C6 /* XikoloNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC7C256D54D300D651C6 /* XikoloNotification.swift */; };
 		50B31DFB22C49D11007DDDA4 /* DateLabelHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */; };
 		50B31DFD22C4B660007DDDA4 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFC22C4B660007DDDA4 /* Locale.swift */; };
@@ -956,7 +955,6 @@
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
 		50B1CC45256BE55900D651C6 /* XikoloNotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNotificationDelegate.swift; sourceTree = "<group>"; };
-		50B1CC50256CF48800D651C6 /* PersistenceManager+BrightFutures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceManager+BrightFutures.swift"; sourceTree = "<group>"; };
 		50B1CC7C256D54D300D651C6 /* XikoloNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNotification.swift; sourceTree = "<group>"; };
 		50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabelHelperTests.swift; sourceTree = "<group>"; };
 		50B31DFC22C4B660007DDDA4 /* Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
@@ -1475,7 +1473,6 @@
 			isa = PBXGroup;
 			children = (
 				50082B4F20BFDA7800B4511C /* PersistenceManager.swift */,
-				50B1CC50256CF48800D651C6 /* PersistenceManager+BrightFutures.swift */,
 				50082B5420BFDA8800B4511C /* FilePersistenceManager.swift */,
 				50F720271F28D72D00779995 /* StreamPersistenceManager.swift */,
 				50082B5920BFDA9C00B4511C /* SlidesPersistenceManager.swift */,
@@ -3361,7 +3358,6 @@
 				50CF1FA820DCDBFC0011BFE9 /* CourseAreaListViewController.swift in Sources */,
 				50CF1FAD20DCDBFC0011BFE9 /* R.generated.swift in Sources */,
 				507CC05B21788487008819FE /* PillView.swift in Sources */,
-				50B1CC51256CF48800D651C6 /* PersistenceManager+BrightFutures.swift in Sources */,
 				50092A94237DC20C00A1503F /* Channel+Color.swift in Sources */,
 				70893B5621C3D1F600AF22E3 /* LTIExerciseHintViewController.swift in Sources */,
 				50CF1FB120DCDBFC0011BFE9 /* UITableViewCell+enable.swift in Sources */,

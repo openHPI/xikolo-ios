@@ -182,6 +182,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         case 2:
             return self.downloadSettings.deletionOption.explanation
         case 3:
+            return AutomatedDownloadsManager.debugBackgroundDownload
             return self.showManageHint ? "You will be able to change these settings at any time via the course menu ('⋯') or under 'Downloaded Content' in the account tab." : nil // TODO: localize
         default:
             return nil

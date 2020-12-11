@@ -44,7 +44,12 @@ enum AutomatedDownloadsManager {
             let automatedDownloadTaskRequest = BGProcessingTaskRequest(identifier: Self.taskIdentifier)
             automatedDownloadTaskRequest.earliestBeginDate = dateForNextBackgroundProcessing
             automatedDownloadTaskRequest.requiresNetworkConnectivity = true
-            try? BGTaskScheduler.shared.submit(automatedDownloadTaskRequest)
+            do {
+                try BGTaskScheduler.shared.submit(automatedDownloadTaskRequest)
+                self.debugBackgroundDownload = " | schedule for \(ISO8601DateFormatter().string(from: dateForNextBackgroundProcessing)) \n" + self.debugBackgroundDownload
+            } catch {
+                self.debugBackgroundDownload = " | error while scheduling (\(ISO8601DateFormatter().string(from: Date())) \n" + self.debugBackgroundDownload
+            }
         }
     }
 
@@ -63,8 +68,11 @@ enum AutomatedDownloadsManager {
 
     static func performNextBackgroundProcessingTasks(task: BGTask) {
         task.expirationHandler = {
+            self.debugBackgroundDownload = " | expired at \(ISO8601DateFormatter().string(from: Date())) \n" + self.debugBackgroundDownload
             task.setTaskCompleted(success: false)
         }
+
+        self.debugBackgroundDownload = " | started at \(ISO8601DateFormatter().string(from: Date())) \n" + self.debugBackgroundDownload
 
         self.scheduleNextBackgroundProcessingTask()
 
@@ -82,6 +90,7 @@ enum AutomatedDownloadsManager {
         }
 
         processingFuture.onComplete { result in
+            self.debugBackgroundDownload = " | completed at \(ISO8601DateFormatter().string(from: Date())) (result: \(result.value != nil) \n" + self.debugBackgroundDownload
             task.setTaskCompleted(success: result.value != nil)
         }
     }
@@ -234,6 +243,15 @@ enum AutomatedDownloadsManager {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: self.lastDownloadKey)
+        }
+    }
+
+    static var debugBackgroundDownload: String {
+        get {
+            return UserDefaults.standard.string(forKey: "debug.background.download") ?? ""
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "debug.background.download")
         }
     }
 

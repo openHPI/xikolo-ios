@@ -52,7 +52,7 @@ target 'iOS' do
 end
 
 target 'WidgetExtension' do
-    platform :ios, '14.0'
+    platform :ios, '10.0'
     common_pods
 end
 

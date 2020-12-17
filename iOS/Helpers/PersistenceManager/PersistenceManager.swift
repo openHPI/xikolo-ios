@@ -32,7 +32,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
     typealias Resource = Configuration.Resource
     typealias Session = Configuration.Session
 
-    lazy var session: Session = self.newDownloadSession()
+    var session: Session!
 
     lazy var persistentContainerQueue: OperationQueue = {
         let queue = OperationQueue()
@@ -46,6 +46,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
 
     override init() {
         super.init()
+        self.session = self.newDownloadSession()
         self.startListeningToDownloadProgressChanges()
     }
 

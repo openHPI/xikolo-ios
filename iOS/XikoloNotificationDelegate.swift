@@ -26,8 +26,7 @@ class XikoloNotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
                 completionHandler()
             }
         case XikoloNotification.ActionIdentifier.download:
-            CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                AutomatedDownloadsManager.downloadNewContent(in: context, ignoreDownloadOption: true)
+            AutomatedDownloadsManager.downloadNewContent(ignoreDownloadOption: true).onComplete { _ in
                 completionHandler()
             }
         default:

@@ -42,6 +42,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
 
     var activeDownloads: [URLSessionTask: String] = [:]
     var progresses: [String: Double] = [:]
+    var completionHandlers: [URLSessionTask: ((Result<Void, XikoloError>) -> Void)] = [:]
     var didRestorePersistenceManager: Bool = false
 
     override init() {
@@ -96,7 +97,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
         }
     }
 
-    func startDownload(with url: URL, for resource: Resource) {
+    func startDownload(with url: URL, for resource: Resource, completionHandler: ((Result<Void, XikoloError>) -> Void)? = nil) {
         guard let task = self.downloadTask(with: url, for: resource, on: self.session) else {
             return
         }
@@ -104,6 +105,8 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
         let resourceIdentifier = resource[keyPath: Resource.identifierKeyPath]
         task.taskDescription = resourceIdentifier
         self.activeDownloads[task] = resourceIdentifier
+
+        self.completionHandlers[task] = completionHandler
 
         task.resume()
 
@@ -146,18 +149,22 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
         return self.progresses[resourceIdentifier]
     }
 
-    func deleteDownload(for resource: Resource) {
+    func deleteDownload(for resource: Resource, completionHandler: ((Result<Void, XikoloError>) -> Void)? = nil) {
         let objectId = resource.objectID
         self.persistentContainerQueue.addOperation {
             let context = CoreDataHelper.persistentContainer.newBackgroundContext()
             context.performAndWait {
-                guard let refreshedResource = context.existingTypedObject(with: objectId) as? Resource else { return }
-                self.deleteDownload(for: refreshedResource, in: context)
+                guard let refreshedResource = context.existingTypedObject(with: objectId) as? Resource else {
+                    completionHandler?(.failure(.totallyUnknownError))
+                    return
+                }
+
+                self.deleteDownload(for: refreshedResource, in: context, completionHandler: completionHandler)
             }
         }
     }
 
-    private func deleteDownload(for resource: Resource, in context: NSManagedObjectContext) {
+    private func deleteDownload(for resource: Resource, in context: NSManagedObjectContext, completionHandler: ((Result<Void, XikoloError>) -> Void)? = nil) {
         guard let localFileLocation = self.localFileLocation(for: resource) else { return }
 
         let resourceIdentifier = resource[keyPath: Resource.identifierKeyPath]
@@ -167,10 +174,12 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
             resource[keyPath: Configuration.keyPath] = nil
             self.resourceModificationAfterDeletingDownload(for: resource)
             try context.save()
+            completionHandler?(.success(()))
         } catch {
             ErrorManager.shared.remember((Configuration.downloadType, resourceIdentifier), forKey: "resource")
             ErrorManager.shared.report(error)
             logger.error("An error occurred deleting the file: \(error)")
+            completionHandler?(.failure(.unknownError(error)))
         }
 
         var userInfo: [String: Any] = [:]
@@ -296,6 +305,8 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
     func didFinishDownloadTask(_ task: URLSessionTask, to location: URL) {
         guard let resourceId = self.activeDownloads[task] else { return }
 
+        let completionHandler = self.completionHandlers.removeValue(forKey: task)
+
         let context = CoreDataHelper.persistentContainer.newBackgroundContext()
         context.performAndWait {
             let fetchRequest = Configuration.newFetchRequest()
@@ -309,14 +320,17 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
                     resource[keyPath: Configuration.keyPath] = NSData(data: bookmark)
                     try context.save()
                     logger.debug("Successfully downloaded file for '\(Configuration.downloadType)' resource '\(resourceId)'")
+                    completionHandler?(.success(()))
                 } catch {
                     logger.debug("Failed to downloaded file for '\(Configuration.downloadType)' resource '\(resourceId)'")
                     self.deleteDownload(for: resource, in: context)
+                    completionHandler?(.failure(.totallyUnknownError))
                 }
             case let .failure(error):
                 ErrorManager.shared.remember((Configuration.downloadType, resourceId), forKey: "resource")
                 ErrorManager.shared.report(error)
                 logger.error("Failed to finish download for '\(Configuration.downloadType)' resource '\(resourceId)': \(error)")
+                completionHandler?(.failure(error))
             }
         }
     }

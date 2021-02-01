@@ -157,6 +157,7 @@
 		5058578421344C75006A5D15 /* PseudoCourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5058578321344C75006A5D15 /* PseudoCourseCell.xib */; };
 		5058578621351CBD006A5D15 /* PseudoCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058578521351CBD006A5D15 /* PseudoCourseCell.swift */; };
 		5060EC6923831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060EC6823831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift */; };
+		5063F8E225C82C39006C3048 /* NotLoggedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063F8E125C82C39006C3048 /* NotLoggedInView.swift */; };
 		5066DF7A243463B30041BD9B /* CoursePreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5066DF79243463B30041BD9B /* CoursePreview.storyboard */; };
 		5066DF7C243465BB0041BD9B /* CoursePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5066DF7B243465BB0041BD9B /* CoursePreviewViewController.swift */; };
 		5067AD362367042E00ADEAB9 /* Binge.h in Headers */ = {isa = PBXBuildFile; fileRef = 5067AD342367042E00ADEAB9 /* Binge.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -341,6 +342,14 @@
 		50DA823B23E58EC7003BEDE1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50DA823D23E58EC7003BEDE1 /* InfoPlist.strings */; };
 		50E0351F213673F8001F963D /* CourseListConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0351E213673F8001F963D /* CourseListConfiguration.swift */; };
 		50E4D7F824AD22B40032B1DC /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E4D7F724AD22B40032B1DC /* UserProfileCell.swift */; };
+		50F3162A25C42E46009BD594 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3162925C42E45009BD594 /* CourseViewModel.swift */; };
+		50F3163525C42E81009BD594 /* EmptyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3163425C42E81009BD594 /* EmptyContentView.swift */; };
+		50F3164025C42F82009BD594 /* ContinueLearningWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3163F25C42F82009BD594 /* ContinueLearningWidgetProvider.swift */; };
+		50F3164B25C42FC4009BD594 /* CourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3164A25C42FC4009BD594 /* CourseView.swift */; };
+		50F3166025C43D22009BD594 /* NextCourseDateWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3165F25C43D22009BD594 /* NextCourseDateWidgetProvider.swift */; };
+		50F3166B25C43ECD009BD594 /* CourseDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3166A25C43ECD009BD594 /* CourseDateViewModel.swift */; };
+		50F3167625C44760009BD594 /* CourseDateOverviewWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3167525C44760009BD594 /* CourseDateOverviewWidgetProvider.swift */; };
+		50F3168125C447AE009BD594 /* CourseDateOverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3168025C447AE009BD594 /* CourseDateOverviewViewModel.swift */; };
 		50F3DD49245859710008CE27 /* Video+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3DD48245859710008CE27 /* Video+Persistence.swift */; };
 		50F3DD4B245859E00008CE27 /* DocumentLocalization+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3DD4A245859E00008CE27 /* DocumentLocalization+Persistence.swift */; };
 		50F6DAD72497440900A85A8B /* Course+NSItemProviderWriting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6DAD62497440900A85A8B /* Course+NSItemProviderWriting.swift */; };
@@ -831,6 +840,7 @@
 		5060A5211F177304007896FF /* DetailedCourseItemContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedCourseItemContent.swift; sourceTree = "<group>"; };
 		5060EC6823831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		5061C15520A1E0C800D6F314 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5063F8E125C82C39006C3048 /* NotLoggedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotLoggedInView.swift; sourceTree = "<group>"; };
 		5066DF79243463B30041BD9B /* CoursePreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CoursePreview.storyboard; sourceTree = "<group>"; };
 		5066DF7B243465BB0041BD9B /* CoursePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePreviewViewController.swift; sourceTree = "<group>"; };
 		5066DF7E2434B7B70041BD9B /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
@@ -1013,6 +1023,14 @@
 		50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DeviceInfo.swift"; sourceTree = "<group>"; };
 		50EFACB01FFE3C0100169C35 /* Optional+require.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+require.swift"; sourceTree = "<group>"; };
 		50EFACBD1FFFB25400169C35 /* SafeCastable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCastable.swift; sourceTree = "<group>"; };
+		50F3162925C42E45009BD594 /* CourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
+		50F3163425C42E81009BD594 /* EmptyContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyContentView.swift; sourceTree = "<group>"; };
+		50F3163F25C42F82009BD594 /* ContinueLearningWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueLearningWidgetProvider.swift; sourceTree = "<group>"; };
+		50F3164A25C42FC4009BD594 /* CourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseView.swift; sourceTree = "<group>"; };
+		50F3165F25C43D22009BD594 /* NextCourseDateWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextCourseDateWidgetProvider.swift; sourceTree = "<group>"; };
+		50F3166A25C43ECD009BD594 /* CourseDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateViewModel.swift; sourceTree = "<group>"; };
+		50F3167525C44760009BD594 /* CourseDateOverviewWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateOverviewWidgetProvider.swift; sourceTree = "<group>"; };
+		50F3168025C447AE009BD594 /* CourseDateOverviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateOverviewViewModel.swift; sourceTree = "<group>"; };
 		50F3DD48245859710008CE27 /* Video+Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Video+Persistence.swift"; sourceTree = "<group>"; };
 		50F3DD4A245859E00008CE27 /* DocumentLocalization+Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentLocalization+Persistence.swift"; sourceTree = "<group>"; };
 		50F45AE0200D06BD009304A3 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -1784,6 +1802,9 @@
 		50AD86182570F3D5003BDB80 /* WidgetExtension */ = {
 			isa = PBXGroup;
 			children = (
+				50F3162725C42E10009BD594 /* Providers */,
+				50F3162825C42E1B009BD594 /* Models */,
+				50F3165525C430B5009BD594 /* Views */,
 				50AD86192570F3D5003BDB80 /* ContinueLearningWidget.swift */,
 				50AD864D2570F4B0003BDB80 /* XikoloWidgetBundle.swift */,
 				50AD861B2570F3D5003BDB80 /* Assets.xcassets */,
@@ -1904,6 +1925,36 @@
 				5060EC6823831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift */,
 			);
 			path = Layouts;
+			sourceTree = "<group>";
+		};
+		50F3162725C42E10009BD594 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				50F3163F25C42F82009BD594 /* ContinueLearningWidgetProvider.swift */,
+				50F3165F25C43D22009BD594 /* NextCourseDateWidgetProvider.swift */,
+				50F3167525C44760009BD594 /* CourseDateOverviewWidgetProvider.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		50F3162825C42E1B009BD594 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				50F3162925C42E45009BD594 /* CourseViewModel.swift */,
+				50F3166A25C43ECD009BD594 /* CourseDateViewModel.swift */,
+				50F3168025C447AE009BD594 /* CourseDateOverviewViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		50F3165525C430B5009BD594 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				50F3163425C42E81009BD594 /* EmptyContentView.swift */,
+				5063F8E125C82C39006C3048 /* NotLoggedInView.swift */,
+				50F3164A25C42FC4009BD594 /* CourseView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		50F3DD47245859520008CE27 /* Persistence */ = {
@@ -3244,8 +3295,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50F3162A25C42E46009BD594 /* CourseViewModel.swift in Sources */,
 				50AD861A2570F3D5003BDB80 /* ContinueLearningWidget.swift in Sources */,
+				50F3168125C447AE009BD594 /* CourseDateOverviewViewModel.swift in Sources */,
+				50F3163525C42E81009BD594 /* EmptyContentView.swift in Sources */,
+				50F3167625C44760009BD594 /* CourseDateOverviewWidgetProvider.swift in Sources */,
 				50AD864E2570F4B0003BDB80 /* XikoloWidgetBundle.swift in Sources */,
+				50F3164025C42F82009BD594 /* ContinueLearningWidgetProvider.swift in Sources */,
+				50F3164B25C42FC4009BD594 /* CourseView.swift in Sources */,
+				5063F8E225C82C39006C3048 /* NotLoggedInView.swift in Sources */,
+				50F3166025C43D22009BD594 /* NextCourseDateWidgetProvider.swift in Sources */,
+				50F3166B25C43ECD009BD594 /* CourseDateViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

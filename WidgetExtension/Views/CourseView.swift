@@ -5,6 +5,7 @@
 
 import Common
 import SwiftUI
+import WidgetKit
 
 struct CourseView: View {
 
@@ -78,6 +79,25 @@ struct CourseView: View {
                     .foregroundColor(Color.secondary)
                     .lineLimit(1)
             }
+        }
+    }
+
+}
+
+
+struct CourseView_Previews: PreviewProvider {
+
+    static var exampleCourse: CourseViewModel {
+        CourseViewModel(title: "This is an interesting course", itemTitle: "Continue learning")
+    }
+
+    static var previews: some View {
+        Group {
+            CourseView(course: exampleCourse)
+                .padding()
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+
         }
     }
 

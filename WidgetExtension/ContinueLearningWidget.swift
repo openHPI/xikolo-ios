@@ -37,21 +37,3 @@ struct ContinueLearningWidget: Widget {
     }
 
 }
-
-struct ContinueLearningWidget_Previews: PreviewProvider {
-
-    static var exampleCourse: CourseViewModel {
-        CourseViewModel(title: "This is an interesting course", itemTitle: "Continue learning")
-    }
-
-    static var previews: some View {
-        Group {
-            ContinueLearningWidgetEntryView(entry: ContinueLearningWidgetEntry(course: exampleCourse, userIsLoggedIn: true))
-                .previewContext(WidgetPreviewContext(family: .systemSmall))
-                .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
-            ContinueLearningWidgetEntryView(entry: ContinueLearningWidgetEntry(course: nil, userIsLoggedIn: false))
-                .previewContext(WidgetPreviewContext(family: .systemSmall))
-        }
-    }
-
-}

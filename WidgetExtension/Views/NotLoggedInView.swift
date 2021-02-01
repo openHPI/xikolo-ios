@@ -4,6 +4,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct NotLoggedInView: View {
 
@@ -16,6 +17,24 @@ struct NotLoggedInView: View {
                 .multilineTextAlignment(.center)
                 .font(.system(.footnote))
                 .foregroundColor(Color.secondary)
+        }
+    }
+
+}
+
+struct NotLoggedInView_Previews: PreviewProvider {
+
+    static var previews: some View {
+        Group {
+            NotLoggedInView()
+                .padding()
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+
+            NotLoggedInView()
+                .padding()
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+                .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
         }
     }
 

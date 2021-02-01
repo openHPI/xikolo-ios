@@ -3,8 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-//import Common
-//import CoreData
 import SwiftUI
 import WidgetKit
 

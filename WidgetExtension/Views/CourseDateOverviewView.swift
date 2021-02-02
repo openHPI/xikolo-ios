@@ -8,52 +8,53 @@ import WidgetKit
 
 struct CourseDateOverviewView: View {
 
-    // todo get brand color from app bundle
-
     var courseDateOverview: CourseDateOverviewViewModel
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text("Course Date Overview")
-                .fontWeight(.heavy)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(.system(size: 12))
+                .fontWeight(.medium)
             Divider()
-            HStack {
-                Text("Today")
-                Spacer()
-                Text("\(courseDateOverview.todayCount)")
-                    .font(.callout)
-                    .padding(.horizontal, 4)
-                    .padding(.vertical, 2)
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .clipShape(Capsule())
-            }
-            Spacer()
-            HStack {
-                Text("Next 7 Days")
-                Spacer()
-                Text("\(courseDateOverview.nextCount)")
-                    .font(.callout)
-                    .padding(.horizontal, 4)
-                    .padding(.vertical, 2)
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .clipShape(Capsule())
-            }
-            Spacer()
-            HStack {
-                Text("All")
-                Spacer()
-                Text("\(courseDateOverview.allCount)")
-                    .font(.callout)
-                    .padding(.horizontal, 4)
-                    .padding(.vertical, 2)
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .clipShape(Capsule())
+            VStack(spacing: 4) {
+                HStack {
+                    Text("Today")
+                        .font(.system(size: 14))
+                    Spacer()
+                    Text("\(courseDateOverview.todayCount)")
+                        .pillStyle()
+                }
+                HStack {
+                    Text("Next 7 Days")
+                        .font(.system(size: 14))
+                    Spacer()
+                    Text("\(courseDateOverview.nextCount)")
+                        .pillStyle()
+                }
+                HStack {
+                    Text("All")
+                        .font(.system(size: 14))
+                    Spacer()
+                    Text("\(courseDateOverview.allCount)")
+                        .pillStyle()
+                }
             }
         }
+    }
+
+}
+
+private extension Text {
+
+    func pillStyle() -> some View {
+        self
+            .font(.system(size: 12))
+            .fontWeight(.medium)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 2)
+            .foregroundColor(Color(UIColor.systemBackground))
+            .background(Color.appPrimary)
+            .clipShape(Capsule())
     }
 
 }

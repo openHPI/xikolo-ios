@@ -163,6 +163,8 @@
 		5063F96725C93EAF006C3048 /* Bundle+appBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063F96625C93EAF006C3048 /* Bundle+appBundle.swift */; };
 		5063F98425C93F51006C3048 /* Color+appColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063F98325C93F51006C3048 /* Color+appColors.swift */; };
 		5063F98F25C9400C006C3048 /* UIImage+appIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063F98E25C9400C006C3048 /* UIImage+appIcon.swift */; };
+		5063F99A25C97044006C3048 /* CourseDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063F99925C97044006C3048 /* CourseDateView.swift */; };
+		5063F9A525C9BBFE006C3048 /* NextCourseDateWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063F9A425C9BBFE006C3048 /* NextCourseDateWidget.swift */; };
 		5066DF7A243463B30041BD9B /* CoursePreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5066DF79243463B30041BD9B /* CoursePreview.storyboard */; };
 		5066DF7C243465BB0041BD9B /* CoursePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5066DF7B243465BB0041BD9B /* CoursePreviewViewController.swift */; };
 		5067AD362367042E00ADEAB9 /* Binge.h in Headers */ = {isa = PBXBuildFile; fileRef = 5067AD342367042E00ADEAB9 /* Binge.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -851,6 +853,8 @@
 		5063F96625C93EAF006C3048 /* Bundle+appBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+appBundle.swift"; sourceTree = "<group>"; };
 		5063F98325C93F51006C3048 /* Color+appColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+appColors.swift"; sourceTree = "<group>"; };
 		5063F98E25C9400C006C3048 /* UIImage+appIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+appIcon.swift"; sourceTree = "<group>"; };
+		5063F99925C97044006C3048 /* CourseDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateView.swift; sourceTree = "<group>"; };
+		5063F9A425C9BBFE006C3048 /* NextCourseDateWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextCourseDateWidget.swift; sourceTree = "<group>"; };
 		5066DF79243463B30041BD9B /* CoursePreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CoursePreview.storyboard; sourceTree = "<group>"; };
 		5066DF7B243465BB0041BD9B /* CoursePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePreviewViewController.swift; sourceTree = "<group>"; };
 		5066DF7E2434B7B70041BD9B /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
@@ -1828,6 +1832,7 @@
 				5063F96525C93E98006C3048 /* Extensions */,
 				50AD86192570F3D5003BDB80 /* ContinueLearningWidget.swift */,
 				5063F8EC25C88466006C3048 /* CourseDateOverviewWidget.swift */,
+				5063F9A425C9BBFE006C3048 /* NextCourseDateWidget.swift */,
 				50AD864D2570F4B0003BDB80 /* XikoloWidgetBundle.swift */,
 				50AD861B2570F3D5003BDB80 /* Assets.xcassets */,
 				50AD861D2570F3D5003BDB80 /* Info.plist */,
@@ -1976,6 +1981,7 @@
 				5063F8E125C82C39006C3048 /* NotLoggedInView.swift */,
 				50F3164A25C42FC4009BD594 /* CourseView.swift */,
 				5063F95825C89757006C3048 /* CourseDateOverviewView.swift */,
+				5063F99925C97044006C3048 /* CourseDateView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3327,11 +3333,13 @@
 				5063F98F25C9400C006C3048 /* UIImage+appIcon.swift in Sources */,
 				50AD864E2570F4B0003BDB80 /* XikoloWidgetBundle.swift in Sources */,
 				50F3164025C42F82009BD594 /* ContinueLearningWidgetProvider.swift in Sources */,
+				5063F9A525C9BBFE006C3048 /* NextCourseDateWidget.swift in Sources */,
 				50F3164B25C42FC4009BD594 /* CourseView.swift in Sources */,
 				5063F8E225C82C39006C3048 /* NotLoggedInView.swift in Sources */,
 				5063F98425C93F51006C3048 /* Color+appColors.swift in Sources */,
 				50F3166025C43D22009BD594 /* NextCourseDateWidgetProvider.swift in Sources */,
 				5063F95925C89757006C3048 /* CourseDateOverviewView.swift in Sources */,
+				5063F99A25C97044006C3048 /* CourseDateView.swift in Sources */,
 				50F3166B25C43ECD009BD594 /* CourseDateViewModel.swift in Sources */,
 				5063F8ED25C88466006C3048 /* CourseDateOverviewWidget.swift in Sources */,
 			);

@@ -15,6 +15,7 @@ struct CourseDateOverviewView: View {
             Text("Course Date Overview")
                 .font(.system(size: 12))
                 .fontWeight(.medium)
+                .foregroundColor(.secondary)
             Divider()
             VStack(spacing: 4) {
                 HStack {

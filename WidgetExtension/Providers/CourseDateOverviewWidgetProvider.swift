@@ -9,7 +9,7 @@ import WidgetKit
 struct CourseDateOverviewWidgetProvider: TimelineProvider {
 
     func placeholder(in context: Context) -> CourseDateOverviewWidgetEntry {
-        let courseDateOverview = CourseDateOverviewViewModel(todayCount: 1, nextCount: 2, allCount: 4)
+        let courseDateOverview = CourseDateOverviewViewModel(todayCount: 1, nextCount: 2, allCount: 4, dateOfNextCourseDate: nil)
         return CourseDateOverviewWidgetEntry(courseDateOverview: courseDateOverview, userIsLoggedIn: UserProfileHelper.shared.isLoggedIn)
     }
 
@@ -19,7 +19,11 @@ struct CourseDateOverviewWidgetProvider: TimelineProvider {
                 let todayCount = try managedObjectContext.count(for: CourseDateHelper.FetchRequest.courseDatesForNextDays(numberOfDays: 1))
                 let nextCount = try managedObjectContext.count(for: CourseDateHelper.FetchRequest.courseDatesForNextDays(numberOfDays: 7))
                 let allCount = try managedObjectContext.count(for: CourseDateHelper.FetchRequest.allCourseDates)
-                let courseDateOverview = CourseDateOverviewViewModel(todayCount: todayCount, nextCount: nextCount, allCount: allCount)
+                let nextCourseDate = managedObjectContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value
+                let courseDateOverview = CourseDateOverviewViewModel(todayCount: todayCount,
+                                                                     nextCount: nextCount,
+                                                                     allCount: allCount,
+                                                                     dateOfNextCourseDate: nextCourseDate?.date)
                 let entry = CourseDateOverviewWidgetEntry(courseDateOverview: courseDateOverview, userIsLoggedIn: UserProfileHelper.shared.isLoggedIn)
                 completion(entry)
             } catch {
@@ -31,8 +35,16 @@ struct CourseDateOverviewWidgetProvider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<CourseDateOverviewWidgetEntry>) -> ()) {
         getSnapshot(in: context) { entry in
-            let timeline = Timeline(entries: [entry], policy: .atEnd)
+            let timeline = Timeline(entries: [entry], policy: .never)
             completion(timeline)
+        }
+    }
+
+    func reloadPolicy(for entry: CourseDateOverviewWidgetEntry) -> TimelineReloadPolicy {
+        if let date = entry.courseDateOverview?.dateOfNextCourseDate {
+            return .after(date)
+        } else {
+            return .never
         }
     }
 

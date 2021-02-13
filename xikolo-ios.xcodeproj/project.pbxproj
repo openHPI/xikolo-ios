@@ -103,6 +103,7 @@
 		502E7172201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
 		502E7179201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
 		502E718920207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
+		502E8E9525D6B39800CFE234 /* WidgetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E8E9425D6B39800CFE234 /* WidgetHelper.swift */; };
 		5035232E21806FA600F2E7A4 /* SingleSignOnConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5035232D21806FA600F2E7A4 /* SingleSignOnConfiguration.swift */; };
 		503578942195BF1500982093 /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503578932195BF1500982093 /* Accessibility.swift */; };
 		5035D90F24E526CD00431A6B /* CustomWidthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5035D90E24E526CD00431A6B /* CustomWidthCollectionViewController.swift */; };
@@ -767,6 +768,7 @@
 		502E7171201A20C9007FC8C0 /* Credentials.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
 		502E7178201B1C78007FC8C0 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		502E718820207C92007FC8C0 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		502E8E9425D6B39800CFE234 /* WidgetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetHelper.swift; sourceTree = "<group>"; };
 		502F3DD7209BB193006B3DAC /* CourseAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAreaViewController.swift; sourceTree = "<group>"; };
 		502F3DDC209C35ED006B3DAC /* CourseContent+image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseContent+image.swift"; sourceTree = "<group>"; };
 		5035232D21806FA600F2E7A4 /* SingleSignOnConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSignOnConfiguration.swift; sourceTree = "<group>"; };
@@ -1433,6 +1435,7 @@
 				50082B4E20BFDA4400B4511C /* PersistenceManager */,
 				503578932195BF1500982093 /* Accessibility.swift */,
 				3D6F12EC1F2914BD00D5DFE8 /* SpotlightHelper.swift */,
+				502E8E9425D6B39800CFE234 /* WidgetHelper.swift */,
 				50D28A5224BE054E0009A24C /* QuickActionHelper.swift */,
 				50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */,
 				5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */,
@@ -3486,6 +3489,7 @@
 				026122F42459AB8F005440EA /* Course+DragItem.swift in Sources */,
 				50CF1FCD20DCDBFC0011BFE9 /* UIAlertViewController+cancel.swift in Sources */,
 				50272508235466FA00815914 /* EmptyState.swift in Sources */,
+				502E8E9525D6B39800CFE234 /* WidgetHelper.swift in Sources */,
 				504D6ED324E4251F00426BDC /* ReadableWidthNavigationController.swift in Sources */,
 				50CF1FD020DCDBFC0011BFE9 /* CourseItemWebViewController.swift in Sources */,
 				50CF1FD320DCDBFC0011BFE9 /* Video+Preloading.swift in Sources */,

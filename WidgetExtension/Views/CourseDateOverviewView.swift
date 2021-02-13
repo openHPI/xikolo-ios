@@ -63,7 +63,7 @@ private extension Text {
 struct CourseDateOverviewView_Previews: PreviewProvider {
 
     static var exampleCourseDateOverview: CourseDateOverviewViewModel {
-        CourseDateOverviewViewModel(todayCount: 1, nextCount: 2, allCount: 4)
+        CourseDateOverviewViewModel(todayCount: 1, nextCount: 2, allCount: 4, dateOfNextCourseDate: nil)
     }
 
     static var previews: some View {

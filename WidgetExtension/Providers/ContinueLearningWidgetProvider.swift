@@ -24,7 +24,7 @@ struct ContinueLearningWidgetProvider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<ContinueLearningWidgetEntry>) -> ()) {
         getSnapshot(in: context) { entry in
-            let timeline = Timeline(entries: [entry], policy: .atEnd)
+            let timeline = Timeline(entries: [entry], policy: .never)
             completion(timeline)
         }
     }

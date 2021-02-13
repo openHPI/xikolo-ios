@@ -86,6 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             SlidesPersistenceManager.shared.restoreDownloads()
 
             SpotlightHelper.shared.startObserving()
+            WidgetHelper.shared.startObserving()
 
             do {
                 try ReachabilityHelper.startObserving()
@@ -159,6 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ReachabilityHelper.stopObserving()
         self.pushEngineManager.stopObserving()
         SpotlightHelper.shared.stopObserving()
+        WidgetHelper.shared.stopObserving()
     }
 
     func application(_ application: UIApplication,

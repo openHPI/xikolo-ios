@@ -9,6 +9,7 @@ struct CourseDateOverviewViewModel {
     let todayCount: Int
     let nextCount: Int
     let allCount: Int
+    let dateOfNextCourseDate: Date?
 }
 
 

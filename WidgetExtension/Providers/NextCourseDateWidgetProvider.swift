@@ -24,8 +24,17 @@ struct NextCourseDateWidgetProvider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<NextCourseDateWidgetEntry>) -> ()) {
         getSnapshot(in: context) { entry in
-            let timeline = Timeline(entries: [entry], policy: .atEnd)
+            let reloadPolicy = self.reloadPolicy(for: entry)
+            let timeline = Timeline(entries: [entry], policy: reloadPolicy)
             completion(timeline)
+        }
+    }
+
+    func reloadPolicy(for entry: NextCourseDateWidgetEntry) -> TimelineReloadPolicy {
+        if let date = entry.courseDate?.date {
+            return .after(date)
+        } else {
+            return .never
         }
     }
 

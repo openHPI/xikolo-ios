@@ -25,6 +25,7 @@ struct CourseDateView: View {
                     .foregroundColor(.secondary)
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
+            .layoutPriority(3)
 
             Divider()
 
@@ -33,11 +34,12 @@ struct CourseDateView: View {
                     Text(courseTitle)
                         .font(.system(size: 10))
                         .foregroundColor(.appPrimary)
-                        .lineLimit(1)
+                        .layoutPriority(1)
                 }
 
                 Text(courseDate.itemTitle)
                     .font(.system(size: 12))
+                    .layoutPriority(2)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }

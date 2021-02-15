@@ -12,7 +12,6 @@ struct CourseDateOverviewWidgetEntryView : View {
     var body: some View {
         if !entry.userIsLoggedIn {
             NotLoggedInView()
-                .padding()
         } else if let courseDate = entry.nextCourseDate {
             HStack {
                 CourseDateStatisticsView(courseDateStatistics: entry.courseDateStatistics)
@@ -23,7 +22,6 @@ struct CourseDateOverviewWidgetEntryView : View {
             .padding()
         } else {
             EmptyCourseDatesView()
-                .padding()
         }
     }
 }

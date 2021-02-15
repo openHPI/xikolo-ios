@@ -18,6 +18,7 @@ struct NotLoggedInView: View {
                 .font(.system(.footnote))
                 .foregroundColor(Color.secondary)
         }
+        .padding()
     }
 
 }
@@ -27,12 +28,10 @@ struct NotLoggedInView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NotLoggedInView()
-                .padding()
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
 
             NotLoggedInView()
-                .padding()
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
                 .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
         }

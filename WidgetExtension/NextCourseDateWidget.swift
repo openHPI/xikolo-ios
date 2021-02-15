@@ -12,13 +12,11 @@ struct NextCourseDateWidgetEntryView : View {
     var body: some View {
         if !entry.userIsLoggedIn {
             NotLoggedInView()
-                .padding()
         } else if let courseDate = entry.nextCourseDate {
             CourseDateView(courseDate: courseDate)
                 .padding()
         } else {
             EmptyCourseDatesView()
-                .padding()
         }
     }
 }

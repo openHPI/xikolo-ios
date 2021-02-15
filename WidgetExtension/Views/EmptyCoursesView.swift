@@ -18,6 +18,7 @@ struct EmptyCoursesView: View {
                 .font(.system(.footnote))
                 .foregroundColor(Color.secondary)
         }
+        .padding()
     }
 
 }
@@ -27,12 +28,10 @@ struct EmptyCoursesView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             EmptyCoursesView()
-                .padding()
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
 
             EmptyCoursesView()
-                .padding()
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
                 .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
         }

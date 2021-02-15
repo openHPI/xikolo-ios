@@ -43,6 +43,7 @@ struct CourseDateView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
+        .widgetURL(courseDate.url)
     }
 
 }

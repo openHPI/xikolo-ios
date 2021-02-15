@@ -18,7 +18,7 @@ struct CourseDateViewModel {
     var courseTitle: String?
     var itemTitle: String
     var date: Date
-//    var url: URL?
+    var url: URL?
 
     var formattedFullDate: String {
         return Self.dateFormatter.string(from: date)
@@ -32,6 +32,7 @@ extension CourseDateViewModel {
         self.courseTitle = courseDate.course?.title
         self.itemTitle = courseDate.contextAwareTitle
         self.date = courseDate.date ?? Date()
+        self.url = courseDate.course?.url
     }
 
 }

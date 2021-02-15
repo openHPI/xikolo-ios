@@ -16,12 +16,15 @@ struct CourseView: View {
     @Environment(\.widgetFamily) var family
 
     var body: some View {
-        switch family {
-        case .systemSmall:
-            smallBody
-        default:
-            mediumBody
+        Group {
+            switch family {
+            case .systemSmall:
+                smallBody
+            default:
+                mediumBody
+            }
         }
+        .widgetURL(course.url)
     }
 
     var smallBody: some View {

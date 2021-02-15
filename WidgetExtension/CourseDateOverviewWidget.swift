@@ -22,7 +22,7 @@ struct CourseDateOverviewWidgetEntryView : View {
             }
             .padding()
         } else {
-            EmptyContentView()
+            EmptyCourseDatesView()
                 .padding()
         }
     }

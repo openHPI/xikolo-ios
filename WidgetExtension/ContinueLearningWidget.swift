@@ -17,7 +17,7 @@ struct ContinueLearningWidgetEntryView : View {
             CourseView(course: course)
                 .padding()
         } else {
-            EmptyContentView()
+            EmptyCoursesView()
                 .padding()
         }
     }

@@ -17,7 +17,7 @@ struct NextCourseDateWidgetEntryView : View {
             CourseDateView(courseDate: courseDate)
                 .padding()
         } else {
-            EmptyContentView()
+            EmptyCourseDatesView()
                 .padding()
         }
     }

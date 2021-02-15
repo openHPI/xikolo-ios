@@ -17,7 +17,7 @@ struct CourseDateStatisticsWidgetEntryView : View {
             CourseDateStatisticsView(courseDateStatistics: entry.courseDateStatistics)
                 .padding()
         } else {
-            EmptyContentView()
+            EmptyCourseDatesView()
                 .padding()
         }
     }

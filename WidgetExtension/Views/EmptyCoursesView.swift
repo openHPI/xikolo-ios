@@ -6,11 +6,11 @@
 import SwiftUI
 import WidgetKit
 
-struct EmptyContentView: View {
+struct EmptyCoursesView: View {
 
     var body: some View {
-        VStack {
-            Text("Enroll into more courses")
+        VStack(spacing: 6) {
+            Text("Enroll to more courses")
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.primary)
             Text("to see your course information here")
@@ -22,16 +22,16 @@ struct EmptyContentView: View {
 
 }
 
-struct EmptyContentView_Previews: PreviewProvider {
+struct EmptyCoursesView_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            EmptyContentView()
+            EmptyCoursesView()
                 .padding()
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
 
-            EmptyContentView()
+            EmptyCoursesView()
                 .padding()
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
                 .previewDevice(PreviewDevice(rawValue: "iPhone SE"))

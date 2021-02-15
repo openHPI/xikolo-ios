@@ -25,7 +25,7 @@ struct NextCourseDateWidgetEntryView : View {
 
 struct NextCourseDateWidget: Widget {
 
-    let kind = "next-course-date"
+    let kind = "course-date-next"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: CourseDateOverviewWidgetProvider()) { entry in

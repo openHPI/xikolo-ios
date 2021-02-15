@@ -32,10 +32,16 @@ class WidgetHelper {
     @objc private func coreDataChange(notification: Notification) {
         let courseDatesChanged = notification.includesChanges(for: CourseDate.self)
         let coursesChanged = notification.includesChanges(for: Course.self)
-        let enrollmentsChanged = notification.includesChanges(for: Enrollment.self)
+        let enrollmentsRefreshed = notification.includesChanges(for: Enrollment.self, key: .refreshed)
+        let lastVisitChanged = notification.includesChanges(for: LastVisit.self)
 
-        if courseDatesChanged || coursesChanged || enrollmentsChanged {
-            WidgetCenter.shared.reloadAllTimelines()
+        if courseDatesChanged || coursesChanged || enrollmentsRefreshed {
+            let widgetKinds = ["course-date-overview", "course-date-next", "course-date-statistics"]
+            widgetKinds.forEach { WidgetCenter.shared.reloadTimelines(ofKind: $0) }
+        }
+
+        if coursesChanged || enrollmentsRefreshed || lastVisitChanged {
+            WidgetCenter.shared.reloadTimelines(ofKind: "continue-learning")
         }
     }
 

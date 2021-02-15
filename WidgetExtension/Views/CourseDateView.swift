@@ -64,7 +64,10 @@ struct CourseDateView_Previews: PreviewProvider {
                 .padding()
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
-
+            CourseDateView(courseDate: exampleCourseDate)
+                .padding()
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+                .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
         }
     }
 

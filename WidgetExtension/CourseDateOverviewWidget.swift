@@ -13,9 +13,14 @@ struct CourseDateOverviewWidgetEntryView : View {
         if !entry.userIsLoggedIn {
             NotLoggedInView()
                 .padding()
-        } else if let courseDateOverview = entry.courseDateOverview {
-            CourseDateOverviewView(courseDateOverview: courseDateOverview)
-                .padding()
+        } else if let courseDate = entry.nextCourseDate {
+            HStack {
+                CourseDateStatisticsView(courseDateStatistics: entry.courseDateStatistics)
+                Divider()
+                    .padding(.horizontal, 4) /// todo change to vertical
+                CourseDateView(courseDate: courseDate)
+            }
+            .padding()
         } else {
             EmptyContentView()
                 .padding()
@@ -33,7 +38,7 @@ struct CourseDateOverviewWidget: Widget {
         }
         .configurationDisplayName("Course Date Overview")
         .description("This is an example widget.")
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemMedium])
     }
 
 }

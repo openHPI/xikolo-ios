@@ -6,9 +6,9 @@
 import SwiftUI
 import WidgetKit
 
-struct CourseDateOverviewView: View {
+struct CourseDateStatisticsView: View {
 
-    var courseDateOverview: CourseDateOverviewViewModel
+    var courseDateStatistics: CourseDateStatisticsViewModel
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -22,21 +22,21 @@ struct CourseDateOverviewView: View {
                     Text("Today")
                         .font(.system(size: 14))
                     Spacer()
-                    Text("\(courseDateOverview.todayCount)")
+                    Text("\(courseDateStatistics.todayCount)")
                         .pillStyle()
                 }
                 HStack {
                     Text("Next 7 Days")
                         .font(.system(size: 14))
                     Spacer()
-                    Text("\(courseDateOverview.nextCount)")
+                    Text("\(courseDateStatistics.nextCount)")
                         .pillStyle()
                 }
                 HStack {
                     Text("All")
                         .font(.system(size: 14))
                     Spacer()
-                    Text("\(courseDateOverview.allCount)")
+                    Text("\(courseDateStatistics.allCount)")
                         .pillStyle()
                 }
             }
@@ -62,13 +62,13 @@ private extension Text {
 
 struct CourseDateOverviewView_Previews: PreviewProvider {
 
-    static var exampleCourseDateOverview: CourseDateOverviewViewModel {
-        CourseDateOverviewViewModel(todayCount: 1, nextCount: 2, allCount: 4, dateOfNextCourseDate: nil)
+    static var exampleCourseDateOverview: CourseDateStatisticsViewModel {
+        CourseDateStatisticsViewModel(todayCount: 1, nextCount: 2, allCount: 4)
     }
 
     static var previews: some View {
         Group {
-            CourseDateOverviewView(courseDateOverview: exampleCourseDateOverview)
+            CourseDateStatisticsView(courseDateStatistics: exampleCourseDateOverview)
                 .padding()
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .previewDevice(PreviewDevice(rawValue: "iPhone SE"))

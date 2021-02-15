@@ -9,8 +9,11 @@ import WidgetKit
 struct CourseDateOverviewWidgetProvider: TimelineProvider {
 
     func placeholder(in context: Context) -> CourseDateOverviewWidgetEntry {
-        let courseDateOverview = CourseDateOverviewViewModel(todayCount: 1, nextCount: 2, allCount: 4, dateOfNextCourseDate: nil)
-        return CourseDateOverviewWidgetEntry(courseDateOverview: courseDateOverview, userIsLoggedIn: UserProfileHelper.shared.isLoggedIn)
+        let courseDateOverview = CourseDateStatisticsViewModel(todayCount: 1, nextCount: 2, allCount: 4)
+        let nextCourseDate = CourseDateViewModel(courseTitle: "An interesting course", itemTitle: "Course Date title", date: Date())
+        return CourseDateOverviewWidgetEntry(courseDateStatistics: courseDateOverview,
+                                             nextCourseDate: nextCourseDate,
+                                             userIsLoggedIn: UserProfileHelper.shared.isLoggedIn)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (CourseDateOverviewWidgetEntry) -> ()) {
@@ -19,15 +22,19 @@ struct CourseDateOverviewWidgetProvider: TimelineProvider {
                 let todayCount = try managedObjectContext.count(for: CourseDateHelper.FetchRequest.courseDatesForNextDays(numberOfDays: 1))
                 let nextCount = try managedObjectContext.count(for: CourseDateHelper.FetchRequest.courseDatesForNextDays(numberOfDays: 7))
                 let allCount = try managedObjectContext.count(for: CourseDateHelper.FetchRequest.allCourseDates)
-                let nextCourseDate = managedObjectContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value
-                let courseDateOverview = CourseDateOverviewViewModel(todayCount: todayCount,
-                                                                     nextCount: nextCount,
-                                                                     allCount: allCount,
-                                                                     dateOfNextCourseDate: nextCourseDate?.date)
-                let entry = CourseDateOverviewWidgetEntry(courseDateOverview: courseDateOverview, userIsLoggedIn: UserProfileHelper.shared.isLoggedIn)
+                let courseDate = managedObjectContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value
+
+                let courseDateStatistics = CourseDateStatisticsViewModel(todayCount: todayCount, nextCount: nextCount, allCount: allCount)
+                let nextCourseDate = courseDate.map(CourseDateViewModel.init(courseDate:))
+                let entry = CourseDateOverviewWidgetEntry(courseDateStatistics: courseDateStatistics,
+                                                          nextCourseDate: nextCourseDate,
+                                                          userIsLoggedIn: UserProfileHelper.shared.isLoggedIn)
                 completion(entry)
             } catch {
-                let entry = CourseDateOverviewWidgetEntry(courseDateOverview: nil, userIsLoggedIn: UserProfileHelper.shared.isLoggedIn)
+                let courseDateStatistics = CourseDateStatisticsViewModel(todayCount: 0, nextCount: 0, allCount: 0)
+                let entry = CourseDateOverviewWidgetEntry(courseDateStatistics: courseDateStatistics,
+                                                          nextCourseDate: nil,
+                                                          userIsLoggedIn: UserProfileHelper.shared.isLoggedIn)
                 completion(entry)
             }
         }
@@ -41,7 +48,7 @@ struct CourseDateOverviewWidgetProvider: TimelineProvider {
     }
 
     func reloadPolicy(for entry: CourseDateOverviewWidgetEntry) -> TimelineReloadPolicy {
-        if let date = entry.courseDateOverview?.dateOfNextCourseDate {
+        if let date = entry.nextCourseDate?.date {
             return .after(date)
         } else {
             return .never
@@ -52,6 +59,7 @@ struct CourseDateOverviewWidgetProvider: TimelineProvider {
 
 struct CourseDateOverviewWidgetEntry: TimelineEntry {
     let date: Date = Date()
-    let courseDateOverview: CourseDateOverviewViewModel?
+    let courseDateStatistics: CourseDateStatisticsViewModel
+    let nextCourseDate: CourseDateViewModel?
     let userIsLoggedIn: Bool
 }

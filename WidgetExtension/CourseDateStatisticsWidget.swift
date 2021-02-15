@@ -6,15 +6,15 @@
 import SwiftUI
 import WidgetKit
 
-struct NextCourseDateWidgetEntryView : View {
+struct CourseDateStatisticsWidgetEntryView : View {
     var entry: CourseDateOverviewWidgetProvider.Entry
 
     var body: some View {
         if !entry.userIsLoggedIn {
             NotLoggedInView()
                 .padding()
-        } else if let courseDate = entry.nextCourseDate {
-            CourseDateView(courseDate: courseDate)
+        } else if entry.nextCourseDate != nil {
+            CourseDateStatisticsView(courseDateStatistics: entry.courseDateStatistics)
                 .padding()
         } else {
             EmptyContentView()
@@ -23,15 +23,15 @@ struct NextCourseDateWidgetEntryView : View {
     }
 }
 
-struct NextCourseDateWidget: Widget {
+struct CourseDateStatisticsWidget: Widget {
 
-    let kind = "next-course-date"
+    let kind = "course-date-statistics"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: CourseDateOverviewWidgetProvider()) { entry in
-            NextCourseDateWidgetEntryView(entry: entry)
+            CourseDateStatisticsWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Next Course Date")
+        .configurationDisplayName("Course Date Overview")
         .description("This is an example widget.")
         .supportedFamilies([.systemSmall])
     }

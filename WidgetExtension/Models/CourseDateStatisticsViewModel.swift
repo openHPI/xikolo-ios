@@ -5,11 +5,10 @@
 
 import Foundation
 
-struct CourseDateOverviewViewModel {
+struct CourseDateStatisticsViewModel {
     let todayCount: Int
     let nextCount: Int
     let allCount: Int
-    let dateOfNextCourseDate: Date?
 }
 
 

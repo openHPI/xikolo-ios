@@ -11,7 +11,8 @@ struct XikoloWidgetBundle: WidgetBundle {
     @WidgetBundleBuilder
     var body: some Widget {
         ContinueLearningWidget()
-        CourseDateOverviewWidget()
+        CourseDateStatisticsWidget()
         NextCourseDateWidget()
+        CourseDateOverviewWidget()
     }
 }

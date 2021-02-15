@@ -15,9 +15,10 @@ struct CourseViewModel {
 
 extension CourseViewModel {
 
-    init(course: Course) {
+    init(course: Course, lastVisit: LastVisit?) {
         self.title = course.title ?? "empty"
-        self.itemTitle = "Continue learning"
+        self.itemTitle = lastVisit?.item?.title
+//        self.url = lastVisit?.item?.url ?? course.url
 
         self.image = try? course.imageURL.map {
             try Data(contentsOf: $0)

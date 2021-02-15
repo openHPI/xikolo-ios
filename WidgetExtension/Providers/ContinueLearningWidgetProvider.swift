@@ -16,7 +16,10 @@ struct ContinueLearningWidgetProvider: TimelineProvider {
     func getSnapshot(in context: Context, completion: @escaping (ContinueLearningWidgetEntry) -> ()) {
         CoreDataHelper.persistentContainer.performBackgroundTask { managedObjectContext in
             let currentCourses = managedObjectContext.fetchMultiple(CourseHelper.FetchRequest.enrolledCurrentCoursesRequest).value ?? []
-            let lastAccessedCourse = currentCourses.first.map(CourseViewModel.init(course:))
+            let lastAccessedCourse = currentCourses.first.map { course -> CourseViewModel in
+                let lastVisit = managedObjectContext.fetchSingle(LastVisitHelper.FetchRequest.lastVisit(forCourse: course)).value
+                return CourseViewModel(course: course, lastVisit: lastVisit)
+            }
             let entry = ContinueLearningWidgetEntry(course: lastAccessedCourse, userIsLoggedIn: UserProfileHelper.shared.isLoggedIn)
             completion(entry)
         }

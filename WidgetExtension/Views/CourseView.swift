@@ -9,16 +9,26 @@ import WidgetKit
 
 struct CourseView: View {
 
-    var course: CourseViewModel
-
     let appIconWidth: Int = 20
 
+    var course: CourseViewModel
+
+    @Environment(\.widgetFamily) var family
+
     var body: some View {
+        switch family {
+        case .systemSmall:
+            smallBody
+        default:
+            mediumBody
+        }
+    }
+
+    var smallBody: some View {
         VStack(alignment: .leading) {
             ZStack(alignment: .bottomLeading) {
                 Image(uiImage: course.image ?? UIImage())
-                    .resizable()
-                    .aspectRatio(1.6, contentMode: .fit)
+                    .centerCropped()
                     .background(Color.appPrimary)
                     .mask(
                         RoundedRectangle(cornerRadius: 6)
@@ -37,18 +47,69 @@ struct CourseView: View {
                 }
             }
 
-            Text(course.title)
-                .font(.system(size: 14))
-                .fontWeight(.medium)
-                .lineLimit(2)
-                .foregroundColor(Color.primary)
-
-            if let itemTitle = course.itemTitle {
-                Text(itemTitle)
-                .font(.system(size: 12))
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Continue Learning")
+                    .font(.system(size: 10))
+                    .fontWeight(.medium)
                     .foregroundColor(Color.secondary)
                     .lineLimit(1)
+
+                Text(course.title)
+                    .font(.system(size: 14))
+                    .fontWeight(.medium)
+                    .lineLimit(2)
+                    .foregroundColor(Color.primary)
             }
+        }
+
+    }
+
+    var mediumBody: some View {
+        HStack(alignment: .top, spacing: 12) {
+            ZStack(alignment: .bottomLeading) {
+                Image(uiImage: course.image ?? UIImage())
+                    .centerCropped()
+                    .background(Color.appPrimary)
+                    .mask(
+                        RoundedRectangle(cornerRadius: 6)
+                    )
+                    .shadow(color: Color.secondary.opacity(0.2), radius: 4)
+
+                if let appIcon = UIImage.appIcon(withPreferredWidth: appIconWidth) {
+                    Image(uiImage: appIcon)
+                        .resizable()
+                        .frame(width: CGFloat(appIconWidth), height: CGFloat(appIconWidth))
+                        .background(Color.clear)
+                        .mask(
+                            RoundedRectangle(cornerRadius: 4)
+                        )
+                        .padding(4)
+                }
+            }
+            .frame(minWidth: 0, maxWidth: .infinity)
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Continue Learning")
+                    .font(.system(size: 10))
+                    .fontWeight(.medium)
+                    .foregroundColor(Color.secondary)
+                    .lineLimit(1)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                Text(course.title)
+                    .font(.system(size: 14))
+                    .fontWeight(.medium)
+                    .foregroundColor(Color.primary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                if let itemTitle = course.itemTitle {
+                    Text(itemTitle)
+                        .font(.system(size: 12))
+                        .foregroundColor(Color.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+            .frame(minWidth: 0, maxWidth: .infinity)
         }
     }
 
@@ -58,7 +119,7 @@ struct CourseView: View {
 struct CourseView_Previews: PreviewProvider {
 
     static var exampleCourse: CourseViewModel {
-        CourseViewModel(title: "This is an interesting course", itemTitle: "Continue learning")
+        CourseViewModel(title: "This is an interesting course", itemTitle: "the title of an item")
     }
 
     static var previews: some View {
@@ -67,8 +128,12 @@ struct CourseView_Previews: PreviewProvider {
                 .padding()
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
-
+            CourseView(course: exampleCourse)
+                .padding()
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+                .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
         }
     }
 
 }
+

@@ -104,6 +104,7 @@
 		502E7179201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
 		502E718920207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
 		502E8E9525D6B39800CFE234 /* WidgetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E8E9425D6B39800CFE234 /* WidgetHelper.swift */; };
+		502E8EA325DAA6C400CFE234 /* Image+centerCropped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E8EA225DAA6C400CFE234 /* Image+centerCropped.swift */; };
 		5035232E21806FA600F2E7A4 /* SingleSignOnConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5035232D21806FA600F2E7A4 /* SingleSignOnConfiguration.swift */; };
 		503578942195BF1500982093 /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503578932195BF1500982093 /* Accessibility.swift */; };
 		5035D90F24E526CD00431A6B /* CustomWidthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5035D90E24E526CD00431A6B /* CustomWidthCollectionViewController.swift */; };
@@ -769,6 +770,7 @@
 		502E7178201B1C78007FC8C0 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		502E718820207C92007FC8C0 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		502E8E9425D6B39800CFE234 /* WidgetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetHelper.swift; sourceTree = "<group>"; };
+		502E8EA225DAA6C400CFE234 /* Image+centerCropped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+centerCropped.swift"; sourceTree = "<group>"; };
 		502F3DD7209BB193006B3DAC /* CourseAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAreaViewController.swift; sourceTree = "<group>"; };
 		502F3DDC209C35ED006B3DAC /* CourseContent+image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseContent+image.swift"; sourceTree = "<group>"; };
 		5035232D21806FA600F2E7A4 /* SingleSignOnConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSignOnConfiguration.swift; sourceTree = "<group>"; };
@@ -1729,6 +1731,7 @@
 				5063F96625C93EAF006C3048 /* Bundle+appBundle.swift */,
 				5063F98325C93F51006C3048 /* Color+appColors.swift */,
 				5063F98E25C9400C006C3048 /* UIImage+appIcon.swift */,
+				502E8EA225DAA6C400CFE234 /* Image+centerCropped.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3336,6 +3339,7 @@
 				5063F98F25C9400C006C3048 /* UIImage+appIcon.swift in Sources */,
 				50AD864E2570F4B0003BDB80 /* XikoloWidgetBundle.swift in Sources */,
 				50F3164025C42F82009BD594 /* ContinueLearningWidgetProvider.swift in Sources */,
+				502E8EA325DAA6C400CFE234 /* Image+centerCropped.swift in Sources */,
 				5063F9A525C9BBFE006C3048 /* NextCourseDateWidget.swift in Sources */,
 				50F3164B25C42FC4009BD594 /* CourseView.swift in Sources */,
 				5063F8E225C82C39006C3048 /* NotLoggedInView.swift in Sources */,

@@ -33,7 +33,7 @@ struct ContinueLearningWidget: Widget {
         }
         .configurationDisplayName("Continue Learning")
         .description("This is an example widget.")
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 
 }

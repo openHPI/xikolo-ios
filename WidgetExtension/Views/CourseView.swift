@@ -98,18 +98,21 @@ struct CourseView: View {
                     .foregroundColor(Color.secondary)
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .layoutPriority(2)
 
                 Text(course.title)
                     .font(.system(size: 14))
                     .fontWeight(.medium)
                     .foregroundColor(Color.primary)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .layoutPriority(2)
 
                 if let itemTitle = course.itemTitle {
                     Text(itemTitle)
                         .font(.system(size: 12))
                         .foregroundColor(Color.secondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .layoutPriority(1)
                 }
             }
             .frame(minWidth: 0, maxWidth: .infinity)

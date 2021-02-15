@@ -16,8 +16,9 @@ struct CourseDateOverviewWidgetEntryView : View {
             HStack {
                 CourseDateStatisticsView(courseDateStatistics: entry.courseDateStatistics)
                 Divider()
-                    .padding(.horizontal, 4) /// todo change to vertical
+                    .padding(.horizontal, 4) // todo change to vertical
                 CourseDateView(courseDate: courseDate)
+                    .widgetURL(courseDate.url)
             }
             .padding()
         } else {

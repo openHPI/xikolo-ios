@@ -10,10 +10,10 @@ struct EmptyCoursesView: View {
 
     var body: some View {
         VStack(spacing: 6) {
-            Text("Enroll to more courses")
+            Text("empty-courses.headline")
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.primary)
-            Text("to see your course information here")
+            Text("empty-courses.subline")
                 .multilineTextAlignment(.center)
                 .font(.system(.footnote))
                 .foregroundColor(Color.secondary)

@@ -29,8 +29,8 @@ struct NextCourseDateWidget: Widget {
         StaticConfiguration(kind: kind, provider: CourseDateOverviewWidgetProvider()) { entry in
             NextCourseDateWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Next Course Date")
-        .description("This is an example widget.")
+        .configurationDisplayName("widget-metadata.course-date-next.title")
+        .description("widget-metadata.course-date-next.description")
         .supportedFamilies([.systemSmall])
     }
 

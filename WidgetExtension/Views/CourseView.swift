@@ -51,7 +51,7 @@ struct CourseView: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Continue Learning")
+                Text("continue-learning.call-to-action")
                     .font(.system(size: 10))
                     .fontWeight(.medium)
                     .foregroundColor(Color.secondary)
@@ -92,7 +92,7 @@ struct CourseView: View {
             .frame(minWidth: 0, maxWidth: .infinity)
 
             VStack(alignment: .leading, spacing: 4) {
-                Text("Continue Learning")
+                Text("continue-learning.call-to-action")
                     .font(.system(size: 10))
                     .fontWeight(.medium)
                     .foregroundColor(Color.secondary)

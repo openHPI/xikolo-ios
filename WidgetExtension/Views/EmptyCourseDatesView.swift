@@ -10,10 +10,10 @@ struct EmptyCourseDatesView: View {
 
     var body: some View {
         VStack(spacing: 6) {
-            Text("No upcoming course dates")
+            Text("empty-course-dates.headline")
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.primary)
-            Text("Enroll to new courses to see the course dates here")
+            Text("empty-course-dates.subline")
                 .multilineTextAlignment(.center)
                 .font(.system(.footnote))
                 .foregroundColor(Color.secondary)

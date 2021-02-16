@@ -35,8 +35,8 @@ struct CourseDateOverviewWidget: Widget {
         StaticConfiguration(kind: kind, provider: CourseDateOverviewWidgetProvider()) { entry in
             CourseDateOverviewWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Course Date Overview")
-        .description("This is an example widget.")
+        .configurationDisplayName("widget-metadata.course-date-overview.title")
+        .description("widget-metadata.course-date-overview.description")
         .supportedFamilies([.systemMedium])
     }
 

@@ -107,6 +107,7 @@
 		502E8EA325DAA6C400CFE234 /* Image+centerCropped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E8EA225DAA6C400CFE234 /* Image+centerCropped.swift */; };
 		502E8EED25DAB80300CFE234 /* CourseDateOverviewWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E8EEC25DAB80300CFE234 /* CourseDateOverviewWidget.swift */; };
 		502E8F1325DAC1AF00CFE234 /* EmptyCourseDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E8F1225DAC1AF00CFE234 /* EmptyCourseDatesView.swift */; };
+		502E8F2825DAEEA100CFE234 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 502E8F2A25DAEEA100CFE234 /* Localizable.strings */; };
 		5035232E21806FA600F2E7A4 /* SingleSignOnConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5035232D21806FA600F2E7A4 /* SingleSignOnConfiguration.swift */; };
 		503578942195BF1500982093 /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503578932195BF1500982093 /* Accessibility.swift */; };
 		5035D90F24E526CD00431A6B /* CustomWidthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5035D90E24E526CD00431A6B /* CustomWidthCollectionViewController.swift */; };
@@ -774,6 +775,8 @@
 		502E8EA225DAA6C400CFE234 /* Image+centerCropped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+centerCropped.swift"; sourceTree = "<group>"; };
 		502E8EEC25DAB80300CFE234 /* CourseDateOverviewWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateOverviewWidget.swift; sourceTree = "<group>"; };
 		502E8F1225DAC1AF00CFE234 /* EmptyCourseDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCourseDatesView.swift; sourceTree = "<group>"; };
+		502E8F2925DAEEA100CFE234 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		502E8F3425DAEEA800CFE234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		502E8F3E25DB12E500CFE234 /* openWHO-Widget-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openWHO-Widget-Debug.xcconfig"; path = "Xcode Configurations/openwho/openWHO-Widget-Debug.xcconfig"; sourceTree = SOURCE_ROOT; };
 		502E8F3F25DB130F00CFE234 /* openWHO-Widget-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openWHO-Widget-Release.xcconfig"; path = "Xcode Configurations/openwho/openWHO-Widget-Release.xcconfig"; sourceTree = SOURCE_ROOT; };
 		502F3DD7209BB193006B3DAC /* CourseAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAreaViewController.swift; sourceTree = "<group>"; };
@@ -1853,6 +1856,7 @@
 				5063F9A425C9BBFE006C3048 /* NextCourseDateWidget.swift */,
 				502E8EEC25DAB80300CFE234 /* CourseDateOverviewWidget.swift */,
 				50AD864D2570F4B0003BDB80 /* XikoloWidgetBundle.swift */,
+				502E8F2A25DAEEA100CFE234 /* Localizable.strings */,
 				50AD861B2570F3D5003BDB80 /* Assets.xcassets */,
 				50AD861D2570F3D5003BDB80 /* Info.plist */,
 			);
@@ -2849,6 +2853,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50AD880725715C5E003BDB80 /* assets-ios-brand.generated.xcassets in Resources */,
+				502E8F2825DAEEA100CFE234 /* Localizable.strings in Resources */,
 				50AD861C2570F3D5003BDB80 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3863,6 +3868,15 @@
 				5014E2FD1FCEDFFF007255B5 /* de */,
 			);
 			name = Login.storyboard;
+			sourceTree = "<group>";
+		};
+		502E8F2A25DAEEA100CFE234 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				502E8F2925DAEEA100CFE234 /* en */,
+				502E8F3425DAEEA800CFE234 /* de */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		5040A61320795CB200E98351 /* Course.storyboard */ = {

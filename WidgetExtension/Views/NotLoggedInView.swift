@@ -10,10 +10,10 @@ struct NotLoggedInView: View {
 
     var body: some View {
         VStack {
-            Text("Log into your account")
+            Text("not-logged-in.headline")
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.primary)
-            Text("to see your data")
+            Text("not-logged-in.subline")
                 .multilineTextAlignment(.center)
                 .font(.system(.footnote))
                 .foregroundColor(Color.secondary)

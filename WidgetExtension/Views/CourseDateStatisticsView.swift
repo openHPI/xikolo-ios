@@ -12,28 +12,28 @@ struct CourseDateStatisticsView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Course Date Overview")
+            Text("course-date-statistics.headline")
                 .font(.system(size: 12))
                 .fontWeight(.medium)
                 .foregroundColor(.secondary)
             Divider()
             VStack(spacing: 4) {
                 HStack {
-                    Text("Today")
+                    Text("course-date-statistics.count.today")
                         .font(.system(size: 14))
                     Spacer()
                     Text("\(courseDateStatistics.todayCount)")
                         .pillStyle()
                 }
                 HStack {
-                    Text("Next 7 Days")
+                    Text("course-date-statistics.count.next-seven-days")
                         .font(.system(size: 14))
                     Spacer()
                     Text("\(courseDateStatistics.nextCount)")
                         .pillStyle()
                 }
                 HStack {
-                    Text("All")
+                    Text("course-date-statistics.count.all")
                         .font(.system(size: 14))
                     Spacer()
                     Text("\(courseDateStatistics.allCount)")

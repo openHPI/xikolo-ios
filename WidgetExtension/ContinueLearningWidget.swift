@@ -29,8 +29,8 @@ struct ContinueLearningWidget: Widget {
         StaticConfiguration(kind: kind, provider: ContinueLearningWidgetProvider()) { entry in
             ContinueLearningWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Continue Learning")
-        .description("This is an example widget.")
+        .configurationDisplayName("widget-metadata.continue-learning.title")
+        .description("widget-metadata.continue-learning.description")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 

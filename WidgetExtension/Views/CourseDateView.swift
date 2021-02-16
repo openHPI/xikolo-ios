@@ -13,7 +13,7 @@ struct CourseDateView: View {
     var body: some View {
         VStack {
             VStack(alignment: .trailing, spacing: 4) {
-                Text("Next Course Date")
+                Text("course-date-next.headline")
                     .font(.system(size: 10))
                     .fontWeight(.medium)
                     .foregroundColor(.secondary)

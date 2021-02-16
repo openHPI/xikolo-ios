@@ -1,4 +1,5 @@
-• Fehler behoben, der das Öffnen einiger Folien verhinderte
+• Fehler behoben, der das Öffnen von Kursebereichen verhinderte
+• Kurse können in einem neuen Fenster geöffnet werden, wenn schon ein Kurs angezeigt wird (nur für iPads)
 
 Auch in Version 2.11:
 • Ein Schnellzugriff für den zuletzt besuchten Lerninhalt wird in der Kursinhaltsliste angezeigt

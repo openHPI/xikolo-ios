@@ -157,6 +157,12 @@ public class BingePlayerViewController: UIViewController {
 
     public var assetSubtitle: String?
 
+    public var posterImage: UIImage? {
+        didSet {
+            self.updateMediaPlayerInfoCenter()
+        }
+    }
+
     public var tintColor: UIColor = .red {
         didSet {
             self.controlsViewController.setTintColor(self.tintColor)
@@ -659,6 +665,16 @@ public class BingePlayerViewController: UIViewController {
         nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = self.assetSubtitle
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.player.timeControlStatus == .playing ? self.player.rate : 0
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = CMTimeGetSeconds(self.player.currentTime())
+        nowPlayingInfo[MPMediaItemPropertyArtwork] = self.posterImage.map { image in
+            MPMediaItemArtwork(boundsSize: image.size) { targetSize in
+                return image.cropped(to: targetSize)
+           }
+        }
+
+        if #available(iOS 10.3, *), let urlAsset = self.asset as? AVURLAsset {
+            nowPlayingInfo[MPNowPlayingInfoPropertyAssetURL] = urlAsset.url
+        }
+
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
 

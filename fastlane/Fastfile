@@ -259,6 +259,9 @@ platform :ios do
         skip_metadata: skip_metadata,
         precheck_include_in_app_purchases: false,
         automatic_release: automatic_release,
+        submission_information: {
+          add_id_info_uses_idfa: false,
+        }
       )
     else
       UI.user_error! "No flavor supplied for IPA upload"

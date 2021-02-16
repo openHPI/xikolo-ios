@@ -38,6 +38,12 @@ class CourseListViewController: CustomWidthCollectionViewController {
                                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
 
+        if case .coursesInChannel = self.configuration {
+            self.collectionView?.register(UINib(resource: R.nib.channelHeaderView),
+                                          forSupplementaryViewOfKind: R.nib.channelHeaderView.name,
+                                          withReuseIdentifier: R.nib.channelHeaderView.name)
+        }
+
         if let courseListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
             courseListLayout.delegate = self
         }

@@ -51,6 +51,7 @@ private extension Text {
         self
             .font(.system(size: 12))
             .fontWeight(.medium)
+            .frame(minWidth: 10)
             .padding(.horizontal, 8)
             .padding(.vertical, 2)
             .foregroundColor(Color(UIColor.systemBackground))

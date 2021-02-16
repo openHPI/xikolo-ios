@@ -774,6 +774,8 @@
 		502E8EA225DAA6C400CFE234 /* Image+centerCropped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+centerCropped.swift"; sourceTree = "<group>"; };
 		502E8EEC25DAB80300CFE234 /* CourseDateOverviewWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateOverviewWidget.swift; sourceTree = "<group>"; };
 		502E8F1225DAC1AF00CFE234 /* EmptyCourseDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCourseDatesView.swift; sourceTree = "<group>"; };
+		502E8F3E25DB12E500CFE234 /* openWHO-Widget-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openWHO-Widget-Debug.xcconfig"; path = "Xcode Configurations/openwho/openWHO-Widget-Debug.xcconfig"; sourceTree = SOURCE_ROOT; };
+		502E8F3F25DB130F00CFE234 /* openWHO-Widget-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openWHO-Widget-Release.xcconfig"; path = "Xcode Configurations/openwho/openWHO-Widget-Release.xcconfig"; sourceTree = SOURCE_ROOT; };
 		502F3DD7209BB193006B3DAC /* CourseAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAreaViewController.swift; sourceTree = "<group>"; };
 		502F3DDC209C35ED006B3DAC /* CourseContent+image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseContent+image.swift"; sourceTree = "<group>"; };
 		5035232D21806FA600F2E7A4 /* SingleSignOnConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSignOnConfiguration.swift; sourceTree = "<group>"; };
@@ -938,6 +940,12 @@
 		508869F224F6613A000FA1C8 /* LastVisit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastVisit.swift; sourceTree = "<group>"; };
 		508869F424F66479000FA1C8 /* LastVisitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastVisitHelper.swift; sourceTree = "<group>"; };
 		508869F624F66519000FA1C8 /* LastVisitHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LastVisitHelper+FetchRequests.swift"; sourceTree = "<group>"; };
+		5089101F25DBBABA00760E49 /* openSAP-Widget-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openSAP-Widget-Debug.xcconfig"; path = "Xcode Configurations/opensap/openSAP-Widget-Debug.xcconfig"; sourceTree = SOURCE_ROOT; };
+		5089102025DBBAC900760E49 /* openSAP-Widget-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openSAP-Widget-Release.xcconfig"; path = "Xcode Configurations/opensap/openSAP-Widget-Release.xcconfig"; sourceTree = SOURCE_ROOT; };
+		5089102125DBBADE00760E49 /* moocHOUSE-Widget-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "moocHOUSE-Widget-Debug.xcconfig"; path = "Xcode Configurations/moochouse/moocHOUSE-Widget-Debug.xcconfig"; sourceTree = SOURCE_ROOT; };
+		5089102225DBBAF000760E49 /* moocHOUSE-Widget-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "moocHOUSE-Widget-Release.xcconfig"; path = "Xcode Configurations/moochouse/moocHOUSE-Widget-Release.xcconfig"; sourceTree = SOURCE_ROOT; };
+		5089102325DBBB0800760E49 /* lernencloud-Widget-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "lernencloud-Widget-Debug.xcconfig"; sourceTree = "<group>"; };
+		5089102425DBBB1700760E49 /* lernencloud-Widget-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "lernencloud-Widget-Release.xcconfig"; sourceTree = "<group>"; };
 		508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFWebViewController.storyboard; sourceTree = "<group>"; };
 		508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentHeader.xib; sourceTree = "<group>"; };
 		508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHeader.swift; sourceTree = "<group>"; };
@@ -1758,6 +1766,8 @@
 				5066DF952434BDBC0041BD9B /* lernencloud-iOS-Release.xcconfig */,
 				5066DF972434BDBC0041BD9B /* lernencloud-Today-Debug.xcconfig */,
 				5066DF942434BDBC0041BD9B /* lernencloud-Today-Release.xcconfig */,
+				5089102325DBBB0800760E49 /* lernencloud-Widget-Debug.xcconfig */,
+				5089102425DBBB1700760E49 /* lernencloud-Widget-Release.xcconfig */,
 				50E3F30524484ADC00317822 /* lernencloud-UITests.xcconfig */,
 			);
 			path = lernencloud;
@@ -1912,6 +1922,8 @@
 				50D65A1C20E023B100DFD183 /* openWHO-iOS-Release.xcconfig */,
 				50DA821A23E4758D003BEDE1 /* openWHO-Today-Debug.xcconfig */,
 				50DA821B23E475A0003BEDE1 /* openWHO-Today-Release.xcconfig */,
+				502E8F3E25DB12E500CFE234 /* openWHO-Widget-Debug.xcconfig */,
+				502E8F3F25DB130F00CFE234 /* openWHO-Widget-Release.xcconfig */,
 				505B0D192448469000F88CAD /* opneWHO-UITests.xcconfig */,
 			);
 			path = openWHO;
@@ -1925,6 +1937,8 @@
 				50D65A2020E023C100DFD183 /* moocHOUSE-iOS-Release.xcconfig */,
 				50DA821C23E475C9003BEDE1 /* moocHOUSE-Today-Debug.xcconfig */,
 				50DA821D23E475DA003BEDE1 /* moocHOUSE-Today-Release.xcconfig */,
+				5089102125DBBADE00760E49 /* moocHOUSE-Widget-Debug.xcconfig */,
+				5089102225DBBAF000760E49 /* moocHOUSE-Widget-Release.xcconfig */,
 				505B0D1A244846A700F88CAD /* moocHOUSE-UITests.xcconfig */,
 			);
 			path = moocHOUSE;
@@ -1938,6 +1952,8 @@
 				50D65A1920E0238000DFD183 /* openSAP-iOS-Release.xcconfig */,
 				50DA821823E4755E003BEDE1 /* openSAP-Today-Debug.xcconfig */,
 				50DA821923E4756F003BEDE1 /* openSAP-Today-Release.xcconfig */,
+				5089101F25DBBABA00760E49 /* openSAP-Widget-Debug.xcconfig */,
+				5089102025DBBAC900760E49 /* openSAP-Widget-Release.xcconfig */,
 				505B0D182448466800F88CAD /* openSAP-UITests.xcconfig */,
 			);
 			path = openSAP;
@@ -8177,8 +8193,6 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.widget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -8190,7 +8204,7 @@
 		};
 		50AD861F2570F3D5003BDB80 /* lernencloud-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30EF7B1ED1DC8CF02F4E705B /* Pods-WidgetExtension.lernencloud-ios-debug.xcconfig */;
+			baseConfigurationReference = 5089102325DBBB0800760E49 /* lernencloud-Widget-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8247,8 +8261,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.widget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -8261,7 +8273,7 @@
 		};
 		50AD86202570F3D5003BDB80 /* openSAP-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EDE34CA122FE48DFB4A004DB /* Pods-WidgetExtension.opensap-ios-debug.xcconfig */;
+			baseConfigurationReference = 5089101F25DBBABA00760E49 /* openSAP-Widget-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8318,8 +8330,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.widget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -8332,7 +8342,7 @@
 		};
 		50AD86212570F3D5003BDB80 /* openWHO-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65BD7B24092F359830178DC5 /* Pods-WidgetExtension.openwho-ios-debug.xcconfig */;
+			baseConfigurationReference = 502E8F3E25DB12E500CFE234 /* openWHO-Widget-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8389,8 +8399,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.widget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -8403,7 +8411,7 @@
 		};
 		50AD86222570F3D5003BDB80 /* moocHOUSE-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D855E97D99D3A7FA471458A /* Pods-WidgetExtension.moochouse-ios-debug.xcconfig */;
+			baseConfigurationReference = 5089102125DBBADE00760E49 /* moocHOUSE-Widget-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8460,8 +8468,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.widget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -8531,8 +8537,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.widget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -8545,7 +8549,7 @@
 		};
 		50AD86242570F3D5003BDB80 /* lernencloud-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9BAF19532585737BEB8496E /* Pods-WidgetExtension.lernencloud-ios-release.xcconfig */;
+			baseConfigurationReference = 5089102425DBBB1700760E49 /* lernencloud-Widget-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8602,8 +8606,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.widget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -8616,7 +8618,7 @@
 		};
 		50AD86252570F3D5003BDB80 /* openSAP-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4FD95337FBBE7CF36791879 /* Pods-WidgetExtension.opensap-ios-release.xcconfig */;
+			baseConfigurationReference = 5089102025DBBAC900760E49 /* openSAP-Widget-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8673,8 +8675,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.widget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -8687,7 +8687,7 @@
 		};
 		50AD86262570F3D5003BDB80 /* openWHO-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0BE8A15222566F93CF478EEF /* Pods-WidgetExtension.openwho-ios-release.xcconfig */;
+			baseConfigurationReference = 502E8F3F25DB130F00CFE234 /* openWHO-Widget-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8744,8 +8744,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.widget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -8758,7 +8756,7 @@
 		};
 		50AD86272570F3D5003BDB80 /* moocHOUSE-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A8F85213677B327768F3018 /* Pods-WidgetExtension.moochouse-ios-release.xcconfig */;
+			baseConfigurationReference = 5089102225DBBAF000760E49 /* moocHOUSE-Widget-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8815,8 +8813,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug.widget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;

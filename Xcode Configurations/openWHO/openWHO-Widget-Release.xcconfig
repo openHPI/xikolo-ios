@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-#include "../../Pods/Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.openhpi-ios-release.xcconfig"
-#include "openHPI-Common.xcconfig"
+#include "../../Pods/Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.openwho-ios-release.xcconfig"
+#include "openWHO-Common.xcconfig"
 #include "../Release.xcconfig"
 
 PRODUCT_NAME = WidgetExtension

@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "50AD86122570F3D4003BDB80"
-               BuildableName = "Widget.appex"
+               BuildableName = "WidgetExtension.appex"
                BlueprintName = "WidgetExtension"
                ReferencedContainer = "container:xikolo-ios.xcodeproj">
             </BuildableReference>
@@ -49,7 +49,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50AD86122570F3D4003BDB80"
-            BuildableName = "Widget.appex"
+            BuildableName = "WidgetExtension.appex"
             BlueprintName = "WidgetExtension"
             ReferencedContainer = "container:xikolo-ios.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50AD86122570F3D4003BDB80"
-            BuildableName = "Widget.appex"
+            BuildableName = "WidgetExtension.appex"
             BlueprintName = "WidgetExtension"
             ReferencedContainer = "container:xikolo-ios.xcodeproj">
          </BuildableReference>

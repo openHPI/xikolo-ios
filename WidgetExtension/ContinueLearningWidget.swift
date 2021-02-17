@@ -11,12 +11,12 @@ struct ContinueLearningWidgetEntryView: View {
 
     var body: some View {
         if !entry.userIsLoggedIn {
-            NotLoggedInView()
+            EmptyStateView.notLoggedIn
         } else if let course = entry.course {
             CourseView(course: course)
                 .padding()
         } else {
-            EmptyCoursesView()
+            EmptyStateView.noCourses
         }
     }
 }

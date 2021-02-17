@@ -6,7 +6,7 @@
 import SwiftUI
 import WidgetKit
 
-struct CourseDateOverviewWidgetEntryView : View {
+struct CourseDateOverviewWidgetEntryView: View {
     var entry: CourseDateOverviewWidgetProvider.Entry
 
     var body: some View {

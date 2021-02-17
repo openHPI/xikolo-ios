@@ -6,7 +6,7 @@
 import SwiftUI
 import WidgetKit
 
-struct ContinueLearningWidgetEntryView : View {
+struct ContinueLearningWidgetEntryView: View {
     var entry: ContinueLearningWidgetProvider.Entry
 
     var body: some View {

@@ -38,4 +38,3 @@ struct EmptyCourseDatesView_Previews: PreviewProvider {
     }
 
 }
-

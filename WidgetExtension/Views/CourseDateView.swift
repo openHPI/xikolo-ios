@@ -48,14 +48,13 @@ struct CourseDateView: View {
 
 }
 
-
 struct CourseDateView_Previews: PreviewProvider {
 
     static var exampleCourseDate: CourseDateViewModel {
         return CourseDateViewModel(
             courseTitle: "an interesting course",
             itemTitle: "item title",
-            date: Date().advanced(by: 56*60*60)
+            date: Date().advanced(by: 56 * 60 * 60)
         )
     }
 

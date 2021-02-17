@@ -121,7 +121,6 @@ struct CourseView: View {
 
 }
 
-
 struct CourseView_Previews: PreviewProvider {
 
     static var exampleCourse: CourseViewModel {
@@ -142,4 +141,3 @@ struct CourseView_Previews: PreviewProvider {
     }
 
 }
-

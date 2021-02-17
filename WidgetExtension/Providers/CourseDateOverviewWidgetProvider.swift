@@ -16,7 +16,7 @@ struct CourseDateOverviewWidgetProvider: TimelineProvider {
                                              userIsLoggedIn: UserProfileHelper.shared.isLoggedIn)
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (CourseDateOverviewWidgetEntry) -> ()) {
+    func getSnapshot(in context: Context, completion: @escaping (CourseDateOverviewWidgetEntry) -> Void) {
         CoreDataHelper.persistentContainer.performBackgroundTask { managedObjectContext in
             do {
                 let todayCount = try managedObjectContext.count(for: CourseDateHelper.FetchRequest.courseDatesForNextDays(numberOfDays: 1))
@@ -40,7 +40,7 @@ struct CourseDateOverviewWidgetProvider: TimelineProvider {
         }
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<CourseDateOverviewWidgetEntry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<CourseDateOverviewWidgetEntry>) -> Void) {
         getSnapshot(in: context) { entry in
             let timeline = Timeline(entries: [entry], policy: .never)
             completion(timeline)
@@ -58,7 +58,7 @@ struct CourseDateOverviewWidgetProvider: TimelineProvider {
 }
 
 struct CourseDateOverviewWidgetEntry: TimelineEntry {
-    let date: Date = Date()
+    let date = Date()
     let courseDateStatistics: CourseDateStatisticsViewModel
     let nextCourseDate: CourseDateViewModel?
     let userIsLoggedIn: Bool

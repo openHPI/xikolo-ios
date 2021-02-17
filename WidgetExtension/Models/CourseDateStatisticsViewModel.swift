@@ -10,5 +10,3 @@ struct CourseDateStatisticsViewModel {
     let nextCount: Int
     let allCount: Int
 }
-
-

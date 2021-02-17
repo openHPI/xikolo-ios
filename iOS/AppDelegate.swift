@@ -103,7 +103,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             WidgetCenter.shared.reloadAllTimelines()
         }
 
-
         return true
     }
 

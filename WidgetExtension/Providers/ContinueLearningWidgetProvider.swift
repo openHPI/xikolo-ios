@@ -13,7 +13,7 @@ struct ContinueLearningWidgetProvider: TimelineProvider {
         return ContinueLearningWidgetEntry(course: course, userIsLoggedIn: UserProfileHelper.shared.isLoggedIn)
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (ContinueLearningWidgetEntry) -> ()) {
+    func getSnapshot(in context: Context, completion: @escaping (ContinueLearningWidgetEntry) -> Void) {
         CoreDataHelper.persistentContainer.performBackgroundTask { managedObjectContext in
             let currentCourses = managedObjectContext.fetchMultiple(CourseHelper.FetchRequest.enrolledCurrentCoursesRequest).value ?? []
             let lastAccessedCourse = currentCourses.first.map { course -> CourseViewModel in
@@ -25,7 +25,7 @@ struct ContinueLearningWidgetProvider: TimelineProvider {
         }
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<ContinueLearningWidgetEntry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<ContinueLearningWidgetEntry>) -> Void) {
         getSnapshot(in: context) { entry in
             let timeline = Timeline(entries: [entry], policy: .never)
             completion(timeline)
@@ -35,7 +35,7 @@ struct ContinueLearningWidgetProvider: TimelineProvider {
 }
 
 struct ContinueLearningWidgetEntry: TimelineEntry {
-    let date: Date = Date()
+    let date = Date()
     let course: CourseViewModel?
     let userIsLoggedIn: Bool
 }

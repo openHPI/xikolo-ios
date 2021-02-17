@@ -6,23 +6,6 @@
 import SwiftUI
 import WidgetKit
 
-//struct EmptyCoursesView: View {
-//
-//    var body: some View {
-//        VStack(spacing: 6) {
-//            Text("empty-courses.headline")
-//                .multilineTextAlignment(.center)
-//                .foregroundColor(Color.primary)
-//            Text("empty-courses.subline")
-//                .multilineTextAlignment(.center)
-//                .font(.system(.footnote))
-//                .foregroundColor(Color.secondary)
-//        }
-//        .padding()
-//    }
-//
-//}
-
 enum EmptyStateView: View {
     case noCourses
     case noCourseDates

@@ -668,7 +668,7 @@ public class BingePlayerViewController: UIViewController {
         nowPlayingInfo[MPMediaItemPropertyArtwork] = self.posterImage.map { image in
             MPMediaItemArtwork(boundsSize: image.size) { targetSize in
                 return image.cropped(to: targetSize)
-           }
+            }
         }
 
         if #available(iOS 10.3, *), let urlAsset = self.asset as? AVURLAsset {

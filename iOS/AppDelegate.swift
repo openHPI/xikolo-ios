@@ -8,7 +8,6 @@ import Firebase
 import FirebaseCrashlytics
 import NotificationCenter
 import UIKit
-import WidgetKit
 
 let logger = Logger(subsystem: "de.xikolo.iOS", category: "iOS")
 
@@ -98,10 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UICollectionView.enableEmptyStates()
         UITableView.enableEmptyStates()
-
-        if #available(iOS 14, *) {
-            WidgetCenter.shared.reloadAllTimelines()
-        }
 
         return true
     }

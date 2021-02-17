@@ -20,6 +20,7 @@ struct ContinueLearningWidgetProvider: TimelineProvider {
                 let lastVisit = managedObjectContext.fetchSingle(LastVisitHelper.FetchRequest.lastVisit(forCourse: course)).value
                 return CourseViewModel(course: course, lastVisit: lastVisit)
             }
+
             let entry = ContinueLearningWidgetEntry(course: lastAccessedCourse, userIsLoggedIn: UserProfileHelper.shared.isLoggedIn)
             completion(entry)
         }

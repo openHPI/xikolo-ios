@@ -25,6 +25,7 @@ struct CourseDateStatisticsView: View {
                     Text("\(courseDateStatistics.todayCount)")
                         .pillStyle()
                 }
+
                 HStack {
                     Text("course-date-statistics.count.next-seven-days")
                         .font(.system(size: 14))
@@ -32,6 +33,7 @@ struct CourseDateStatisticsView: View {
                     Text("\(courseDateStatistics.nextCount)")
                         .pillStyle()
                 }
+
                 HStack {
                     Text("course-date-statistics.count.all")
                         .font(.system(size: 14))

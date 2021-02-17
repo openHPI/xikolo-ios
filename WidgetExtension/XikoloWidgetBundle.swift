@@ -12,7 +12,7 @@ import WidgetKit
 struct XikoloWidgetBundle: WidgetBundle {
 
     @WidgetBundleBuilder
-    var body: some Widget {
+    var body: some Widget { // swiftlint:disable:this let_var_whitespace
         ContinueLearningWidget()
         CourseDateStatisticsWidget()
         NextCourseDateWidget()
@@ -27,7 +27,7 @@ struct XikoloWidgetBundle: WidgetBundle {
 struct XikoloWidgetBundle: WidgetBundle {
 
     @WidgetBundleBuilder
-    var body: some Widget {
+    var body: some Widget { // swiftlint:disable:this let_var_whitespace
         ContinueLearningWidget()
     }
 

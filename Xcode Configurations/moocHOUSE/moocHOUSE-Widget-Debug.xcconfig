@@ -1,0 +1,12 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+#include "../../Pods/Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.moochouse-ios-debug.xcconfig"
+#include "moocHOUSE-Common.xcconfig"
+#include "../Debug.xcconfig"
+
+PRODUCT_NAME = WidgetExtension
+PRODUCT_MODULE_NAME = Widget
+EXTENSION_PATH = .widget

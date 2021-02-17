@@ -107,7 +107,7 @@ file_header:
 custom_rules:
   closing_brace_whitespace:
     included: ".*.swift"
-    regex: '(?:\n| {2,})\}\)? *\n *(?!set |set\(|case |default)[^ \n\})\]\#\/]'
+    regex: '(?:\n| {2,})\}\)? *\n *(?!set |set\(|case |default|\.)[^ \n\})\]\#\/]'
     name: "Closing Brace Whitespace"
     message: "Empty line required after closing curly braces if code with same indentation follows."
     severity: warning

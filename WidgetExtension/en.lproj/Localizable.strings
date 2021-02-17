@@ -1,0 +1,34 @@
+/* Empty views */
+"empty-courses.headline" = "Enroll to more courses";
+"empty-courses.subline" = "to see your course information here";
+
+"empty-course-dates.headline" = "No upcoming course dates";
+"empty-course-dates.subline" = "Enroll to new courses to see the course dates here";
+
+"not-logged-in.headline" = "Log into your account";
+"not-logged-in.subline" = "to see your data";
+
+/* Course view */
+"continue-learning.call-to-action" = "Continue Learning";
+
+/* Course date statistics view */
+"course-date-statistics.headline" = "Course Date Overview";
+"course-date-statistics.count.today" = "Today";
+"course-date-statistics.count.next-seven-days" = "Next 7 Days";
+"course-date-statistics.count.all" = "All";
+
+/* Next course date */
+"course-date-next.headline" = "Next Course Date";
+
+/* Widget Metadata */
+"widget-metadata.continue-learning.title" = "Continue Learning";
+"widget-metadata.continue-learning.description" = "Continue learning where you left off";
+
+"widget-metadata.course-date-statistics.title" = "Course Date Overview";
+"widget-metadata.course-date-statistics.description" = "Get an overview of the upcoming courses dates";
+
+"widget-metadata.course-date-next.title" = "Next Course Date";
+"widget-metadata.course-date-next.description" = "View the next course date";
+
+"widget-metadata.course-date-overview.title" = "Course Date Overview";
+"widget-metadata.course-date-overview.description" = "Get an overview of the upcoming courses dates and view the next course date";

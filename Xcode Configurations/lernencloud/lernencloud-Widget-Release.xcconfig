@@ -1,0 +1,12 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+#include "../../Pods/Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.lernencloud-ios-release.xcconfig"
+#include "lernencloud-Common.xcconfig"
+#include "../Release.xcconfig"
+
+PRODUCT_NAME = WidgetExtension
+PRODUCT_MODULE_NAME = Widget
+EXTENSION_PATH = .widget

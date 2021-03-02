@@ -6,31 +6,18 @@
 import SwiftUI
 import WidgetKit
 
-#if COURSE_DATES_ENABLED
-
 @main
 struct XikoloWidgetBundle: WidgetBundle {
 
     @WidgetBundleBuilder
     var body: some Widget { // swiftlint:disable:this let_var_whitespace
         ContinueLearningWidget()
+
+        #if COURSE_DATES_ENABLED
         CourseDateStatisticsWidget()
         NextCourseDateWidget()
         CourseDateOverviewWidget()
+        #endif
     }
 
 }
-
-#else
-
-@main
-struct XikoloWidgetBundle: WidgetBundle {
-
-    @WidgetBundleBuilder
-    var body: some Widget { // swiftlint:disable:this let_var_whitespace
-        ContinueLearningWidget()
-    }
-
-}
-
-#endif

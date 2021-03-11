@@ -253,7 +253,7 @@ class AppNavigator {
     func showCourseSwitchAlert(course: Course, replaceAction: @escaping () -> Void, newWindowAction: @escaping () -> Void) {
         let alertTitle = NSLocalizedString("alert.switch-course.title", comment: "title for alert when switching courses")
         let alertMessageFormat = NSLocalizedString("alert.switch-course.message",
-                                       comment: "Format string for the next section start in the footer of course item list")
+                                                   comment: "Format string for the next section start in the footer of course item list")
         let alertMessage = String(format: alertMessageFormat, course.title ?? "unknown")
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         alert.popoverPresentationController?.sourceView = self.tabBarController?.view
@@ -300,7 +300,7 @@ class AppNavigator {
             courseViewController.transitionIfPossible(to: courseArea)
         }
 
-        let courseClosedAction: CourseClosedAction = { courseViewController, accessible in
+        let courseClosedAction: CourseClosedAction = { courseViewController, _ in
             courseViewController.transitionIfPossible(to: courseArea)
         }
 

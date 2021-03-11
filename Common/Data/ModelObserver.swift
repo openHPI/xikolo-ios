@@ -30,7 +30,7 @@ public final class ManagedObjectObserver {
 
     // MARK: Private
     private var token: Any!
-    private var objectHasBeenDeleted: Bool = false
+    private var objectHasBeenDeleted = false
 
     private func changeType(of object: NSManagedObject, in note: ObjectsDidChangeNotification) -> ChangeType? {
         let deleted = note.deletedObjects.union(note.invalidatedObjects)

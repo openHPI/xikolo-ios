@@ -528,7 +528,7 @@ extension CourseViewController: UINavigationControllerDelegate {
             return
         }
 
-        transitionCoordinator.animate { context in
+        transitionCoordinator.animate { _ in
             self.courseNavigationController?.updateNavigationBar(forProgress: progress)
             self.navigationController?.navigationBar.layoutIfNeeded()
         } completion: { context in

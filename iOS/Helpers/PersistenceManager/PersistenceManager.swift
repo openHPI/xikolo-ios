@@ -42,7 +42,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
 
     var activeDownloads: [URLSessionTask: String] = [:]
     var progresses: [String: Double] = [:]
-    var didRestorePersistenceManager: Bool = false
+    var didRestorePersistenceManager = false
 
     override init() {
         super.init()

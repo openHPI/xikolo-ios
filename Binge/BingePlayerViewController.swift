@@ -203,7 +203,7 @@ public class BingePlayerViewController: UIViewController {
         return self.player.currentItem?.currentTime().seconds
     }
 
-    public var allowFullScreenMode: Bool = true {
+    public var allowFullScreenMode = true {
         didSet {
             self.layoutState = self._layoutState
             self.controlsViewController.adaptToLayoutState(self.layoutState,

@@ -59,7 +59,6 @@ opt_in_rules:
 - toggle_bool
 - trailing_closure
 - unavailable_function
-- unneeded_notification_center_removal
 - unneeded_parentheses_in_closure_argument
 - unowned_variable_capture
 - untyped_error_in_catch

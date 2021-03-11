@@ -147,7 +147,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             self.nextCourseDateDateLabel.text = nextCourseDate?.date.map(self.relativeCourseDateFormatter.string(from:))
         }
 
-        let newValues  = [
+        let newValues = [
             self.todayCountLabel.text,
             self.nextCountLabel.text,
             self.allCountLabel.text,

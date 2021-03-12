@@ -37,9 +37,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         return formatter
     }()
 
-    private var widgetIsDisabled: Bool {
-        // TODO: This should be handle bei including the (currently not existing) brand framework
-        return Bundle.main.bundleIdentifier?.contains("who") ?? false
+    private var widgetIsEnabled: Bool {
+        #if COURSE_DATES_ENABLED
+        return true
+        #else
+        return false
+        #endif
     }
 
     override func viewDidLoad() {
@@ -115,9 +118,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     @discardableResult private func updateView(nextCourseDateAvailable: Bool) -> Bool {
         let loginStateChange = UserProfileHelper.shared.isLoggedIn != self.loginRequestedLabel.isHidden
-        self.datesAvailableView.isHidden = !UserProfileHelper.shared.isLoggedIn || self.widgetIsDisabled
-        self.loginRequestedLabel.isHidden = UserProfileHelper.shared.isLoggedIn || self.widgetIsDisabled
-        self.widgetDisabledLabel.isHidden = !self.widgetIsDisabled
+        self.datesAvailableView.isHidden = !UserProfileHelper.shared.isLoggedIn || !self.widgetIsEnabled
+        self.loginRequestedLabel.isHidden = UserProfileHelper.shared.isLoggedIn || !self.widgetIsEnabled
+        self.widgetDisabledLabel.isHidden = self.widgetIsEnabled
         self.extensionContext?.widgetLargestAvailableDisplayMode = nextCourseDateAvailable ? .expanded : .compact
         return loginStateChange
     }

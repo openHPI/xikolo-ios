@@ -127,7 +127,6 @@ class LoginViewController: UIViewController, WKUIDelegate {
 
         UIView.animate(withDuration: defaultAnimationDuration) {
             self.view.layoutIfNeeded()
-            defaultAnimationDurationUnlessReduceMotionEnabled
         }
     }
 

@@ -16,6 +16,7 @@ public enum LastVisitHelper {
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
+    @discardableResult
     public static func recordVisit( for item: CourseItem) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 

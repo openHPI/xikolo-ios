@@ -73,20 +73,26 @@ class DownloadedContentListViewController: UITableViewController {
     @discardableResult
     private func refresh() -> Future<[DownloadedContentHelper.DownloadContent], XikoloError> {
         return DownloadedContentHelper.downloadedContentForAllCourses().onSuccess { downloadItems in
-            var downloadedCourseList: [String: CourseDownload] = [:]
-
-            for downloadItem in downloadItems {
-                let courseId = downloadItem.courseID
-                var courseDownload = downloadedCourseList[courseId, default: CourseDownload(id: courseId, title: downloadItem.courseTitle ?? "")]
-                courseDownload.byteCounts[downloadItem.contentType, default: 0] += downloadItem.fileSize ?? 0
-                courseDownload.timeEffort += ceil(TimeInterval(downloadItem.timeEffort ?? 0) / 60) * 60 // round up to full minutes
-                downloadedCourseList[downloadItem.courseID] = courseDownload
-            }
-
-            self.courseDownloads = downloadedCourseList.values.sorted { $0.title < $1.title }
+            let aggregatedCourseDownloads = self.aggregatedCourseDownloads(for: downloadItems)
+            self.courseDownloads = aggregatedCourseDownloads.values.sorted { $0.title < $1.title }
         }.onFailure { error in
             logger.error(error.localizedDescription)
         }
+    }
+
+    private func aggregatedCourseDownloads(for downloadItems: [DownloadedContentHelper.DownloadContent]) -> [String: CourseDownload] {
+        var downloadedCourseList: [String: CourseDownload] = [:]
+
+        for downloadItem in downloadItems {
+            let courseId = downloadItem.courseID
+            var courseDownload = downloadedCourseList[courseId, default: CourseDownload(id: courseId, title: downloadItem.courseTitle ?? "")]
+            courseDownload.byteCounts[downloadItem.contentType, default: 0] += downloadItem.fileSize ?? 0
+            let timeEffort = ceil(TimeInterval(downloadItem.timeEffort ?? 0) / 60) * 60 // round up to full minutes
+            courseDownload.timeEffort += timeEffort
+            downloadedCourseList[downloadItem.courseID] = courseDownload
+        }
+
+        return downloadedCourseList
     }
 
     private func updateTotalFileSizeLabel() {

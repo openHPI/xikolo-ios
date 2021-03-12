@@ -2618,10 +2618,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50AD86282570F3D5003BDB80 /* Build configuration list for PBXNativeTarget "WidgetExtension" */;
 			buildPhases = (
+				50DE8CF725FB9F3E00340EB4 /* Set Build Number */,
 				D90309EA5151212C131EBF84 /* [CP] Check Pods Manifest.lock */,
 				50AD860F2570F3D4003BDB80 /* Sources */,
 				50AD86102570F3D4003BDB80 /* Frameworks */,
 				50AD86112570F3D4003BDB80 /* Resources */,
+				50DE8CF825FB9F5300340EB4 /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -3069,6 +3071,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$SRCROOT/Build\\ Phases/copy-brand-assets.sh";
+		};
+		50DE8CF725FB9F3E00340EB4 /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/Build\\ Phases/set-build-number.sh\n";
+		};
+		50DE8CF825FB9F5300340EB4 /* Clear Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Clear Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/Build\\ Phases/clear-build-number.sh\n";
 		};
 		543A3CC5E498AD0F531A3AA2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

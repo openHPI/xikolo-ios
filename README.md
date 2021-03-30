@@ -80,7 +80,7 @@ The application fetches multiple resources from the backend. For a `Resource`, a
 To allow better code reusability, we restructured the codebase in multiple modules. For one, this reduces the application size as resources are not additionally bundled when used in an app extension. It also prevents you from going crazy by ticking hundreds of checkboxes for the target membership.  
 Important modules are listed below. If applicalble and neccesary, those modules can be further split up.
 
-#### Commom
+#### Common
 
 The `Common` module holds the core functionality of the app, which is required in all targets. It includes the CoreData models, API abstraction layer, common functionalities and generic helpers.
 

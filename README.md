@@ -96,9 +96,13 @@ The `Binge` module provides a custom video player which in contrast to `AVPlayer
 
 The `iOS` target is the main application.
 
-#### Today
+#### TodayExtension
 
-The `Today` target provides the today app extension (widget in the today view, considered legacy in iOS 14 and later).
+The `TodayExtension` target provides the today app extension (widget in the today view, considered legacy in iOS 14 and later).
+
+#### WidgetExtension
+
+The `WidgetExtension` target provides the widget extension for iOS 14 and later (widgets on homescreen)
 
 ## Code of Conduct
 

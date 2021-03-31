@@ -328,6 +328,50 @@ extension CourseListViewController: CardListLayoutDelegate {
 
 }
 
+extension CourseListViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 6
+//    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
+
+        let boundingWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
+        let minimalCardWidth = CourseCell.minimalWidth(for: self.traitCollection)
+        let numberOfColumns = floor(boundingWidth / minimalCardWidth)
+        let columnWidth = boundingWidth / numberOfColumns
+
+        let course = self.dataSource.object(at: indexPath)
+        let height = CourseCell.heightForCourseList(forWidth: columnWidth, for: course)
+
+        return CGSize(width: columnWidth, height: height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        var leftPadding = collectionView.layoutMargins.left - CourseCell.cardInset
+        var rightPadding = collectionView.layoutMargins.right - CourseCell.cardInset
+
+        if #available(iOS 11.0, *) {
+            leftPadding -= collectionView.safeAreaInsets.left
+            rightPadding -= collectionView.safeAreaInsets.right
+        }
+
+        return UIEdgeInsets(top: 0, left: leftPadding, bottom: collectionView.layoutMargins.bottom, right: rightPadding)
+    }
+
+}
+
 extension CourseListViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {

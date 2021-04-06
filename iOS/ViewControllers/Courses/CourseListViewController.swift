@@ -311,21 +311,6 @@ extension CourseListViewController: CardListLayoutDelegate {
         return ChannelHeaderView.height(forWidth: collectionView.bounds.width, layoutMargins: self.view.layoutMargins, channel: channel)
     }
 
-    func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
-        return CourseCell.minimalWidth(for: traitCollection)
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        heightForCellAtIndexPath indexPath: IndexPath,
-                        withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
-        if self.dataSource.isSearching && !self.dataSource.hasSearchResults {
-            return 0
-        }
-
-        let course = self.dataSource.object(at: indexPath)
-        return ceil(CourseCell.heightForCourseList(forWidth: boundingWidth, for: course))
-    }
-
 }
 
 extension CourseListViewController: UICollectionViewDelegateFlowLayout {
@@ -349,6 +334,10 @@ extension CourseListViewController: UICollectionViewDelegateFlowLayout {
         let minimalCardWidth = CourseCell.minimalWidth(for: self.traitCollection)
         let numberOfColumns = floor(boundingWidth / minimalCardWidth)
         let columnWidth = boundingWidth / numberOfColumns
+
+        if self.dataSource.isSearching && !self.dataSource.hasSearchResults {
+            return CGSize(width: columnWidth, height: 0)
+        }
 
         let course = self.dataSource.object(at: indexPath)
         let height = CourseCell.heightForCourseList(forWidth: columnWidth, for: course)

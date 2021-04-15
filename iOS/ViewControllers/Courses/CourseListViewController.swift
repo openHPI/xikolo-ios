@@ -285,10 +285,6 @@ extension CourseListViewController: CardListLayoutDelegate {
         }
     }
 
-    var cardInset: CGFloat {
-        return CourseCell.cardInset
-    }
-
     var heightForHeader: CGFloat {
         guard self.configuration.shouldShowHeader || self.dataSource.isSearching else {
             return 0 // Don't show header for these configurations

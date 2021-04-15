@@ -8,7 +8,6 @@ import UIKit
 protocol CardListLayoutDelegate: AnyObject {
 
     var topInset: CGFloat { get }
-    var cardInset: CGFloat { get }
     var heightForHeader: CGFloat { get }
     var kindForGlobalHeader: String? { get }
     var heightForGlobalHeader: CGFloat { get }
@@ -18,10 +17,6 @@ protocol CardListLayoutDelegate: AnyObject {
 extension CardListLayoutDelegate {
 
     var topInset: CGFloat {
-        return 0
-    }
-
-    var cardInset: CGFloat {
         return 0
     }
 
@@ -43,21 +38,21 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
 
     weak var delegate: CardListLayoutDelegate?
 
+    private var topInset: CGFloat { self.delegate?.topInset ?? 0 }
+    private var heightForHeader: CGFloat { self.delegate?.heightForHeader ?? 0 }
+    private var kindForGlobalHeader: String? { self.delegate?.kindForGlobalHeader }
+    private var heightForGlobalHeader: CGFloat { self.delegate?.heightForGlobalHeader ?? 0 }
+
     override var collectionViewContentSize: CGSize {
-        let globalHeaderHeight = self.delegate?.heightForGlobalHeader ?? 0
-        let headerHeight = self.delegate?.heightForHeader ?? 0
         let numberOfSections = self.collectionView?.numberOfSections ?? 0
-        let topInset = self.delegate?.topInset ?? 0
+        let heightForHeaders = CGFloat(numberOfSections) * self.heightForHeader
         var contentSize = super.collectionViewContentSize
-        contentSize.height += globalHeaderHeight + CGFloat(numberOfSections) * headerHeight + topInset
+        contentSize.height += self.topInset + self.heightForGlobalHeader + heightForHeaders
         return contentSize
     }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        let headerHeight = self.delegate?.heightForHeader ?? 0
-        let topInset = self.delegate?.topInset ?? 0
-        let globalHeaderHeight = self.delegate?.heightForGlobalHeader ?? 0
-        let newRect = rect.offsetBy(dx: 0, dy: (topInset + globalHeaderHeight) * -1)
+        let newRect = rect.offsetBy(dx: 0, dy: (self.topInset + self.heightForGlobalHeader) * -1)
 
         let originalLayoutAttributes = super.layoutAttributesForElements(in: newRect)
         var layoutAttributes: [UICollectionViewLayoutAttributes] = []
@@ -70,7 +65,7 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
                 let layoutAttribute = originalLayoutAttribute.copy() as! UICollectionViewLayoutAttributes
                 layoutAttribute.frame = layoutAttribute.frame.offsetBy(
                     dx: 0,
-                    dy: CGFloat(layoutAttribute.indexPath.section + 1) * (headerHeight) + topInset + globalHeaderHeight
+                    dy: CGFloat(layoutAttribute.indexPath.section + 1) * (self.heightForHeader) + self.topInset + self.heightForGlobalHeader
                 )
                 layoutAttributes.append(layoutAttribute)
             }
@@ -86,7 +81,7 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
             }
         }
 
-        if let globalHeaderKind = self.delegate?.kindForGlobalHeader, let globalHeaderHeight = self.delegate?.heightForGlobalHeader, globalHeaderHeight > 0 {
+        if let globalHeaderKind = self.kindForGlobalHeader, self.heightForGlobalHeader > 0 {
             if let headerLayoutAttributes = self.layoutAttributesForSupplementaryView(ofKind: globalHeaderKind, at: IndexPath(item: 0, section: 0)) {
                 layoutAttributes.append(headerLayoutAttributes)
             }
@@ -99,14 +94,10 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
         guard let originalLayoutAttributes = super.layoutAttributesForItem(at: indexPath) else { return nil }
 
         if originalLayoutAttributes.representedElementCategory == .cell {
-            let headerHeight = self.delegate?.heightForHeader ?? 0
-            let topInset = self.delegate?.topInset ?? 0
-            let globalHeaderHeight = self.delegate?.heightForGlobalHeader ?? 0
-
             let layoutAttributes = originalLayoutAttributes.copy() as! UICollectionViewLayoutAttributes
             layoutAttributes.frame = layoutAttributes.frame.offsetBy(
                 dx: 0,
-                dy: CGFloat(indexPath.section + 1) * headerHeight + topInset + globalHeaderHeight
+                dy: CGFloat(indexPath.section + 1) * self.heightForHeader + self.topInset + self.heightForGlobalHeader
             )
             return layoutAttributes
         } else {
@@ -118,8 +109,7 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String,
                                                        at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         if elementKind == UICollectionView.elementKindSectionHeader {
-            guard let headerHeight = self.delegate?.heightForHeader, headerHeight > 0 else { return nil }
-
+            guard self.heightForHeader > 0 else { return nil }
             guard let boundaries = self.boundaries(forSection: indexPath.section) else { return nil }
             guard let collectionView = collectionView else { return nil }
 
@@ -134,13 +124,13 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
             var offsetY: CGFloat
             if contentOffsetY < boundaries.minimum {
                 offsetY = boundaries.minimum
-            } else if contentOffsetY > boundaries.maximum - headerHeight {
-                offsetY = boundaries.maximum - headerHeight
+            } else if contentOffsetY > boundaries.maximum - self.heightForHeader {
+                offsetY = boundaries.maximum - self.heightForHeader
             } else {
                 offsetY = contentOffsetY
             }
 
-            let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: headerHeight)
+            let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: self.heightForHeader)
             let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
             layoutAttributes.frame = frame
             layoutAttributes.isHidden = false

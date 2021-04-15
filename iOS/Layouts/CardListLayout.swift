@@ -8,7 +8,7 @@ import UIKit
 protocol CardListLayoutDelegate: AnyObject {
 
     var topInset: CGFloat { get }
-    var heightForHeader: CGFloat { get }
+    var heightForSectionHeader: CGFloat { get }
     var kindForGlobalHeader: String? { get }
     var heightForGlobalHeader: CGFloat { get }
 
@@ -20,7 +20,7 @@ extension CardListLayoutDelegate {
         return 0
     }
 
-    var heightForHeader: CGFloat {
+    var heightForSectionHeader: CGFloat {
         return 0
     }
 
@@ -39,13 +39,13 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
     weak var delegate: CardListLayoutDelegate?
 
     private var topInset: CGFloat { self.delegate?.topInset ?? 0 }
-    private var heightForHeader: CGFloat { self.delegate?.heightForHeader ?? 0 }
+    private var heightForSectionHeader: CGFloat { self.delegate?.heightForSectionHeader ?? 0 }
     private var kindForGlobalHeader: String? { self.delegate?.kindForGlobalHeader }
     private var heightForGlobalHeader: CGFloat { self.delegate?.heightForGlobalHeader ?? 0 }
 
     override var collectionViewContentSize: CGSize {
         let numberOfSections = self.collectionView?.numberOfSections ?? 0
-        let heightForHeaders = CGFloat(numberOfSections) * self.heightForHeader
+        let heightForHeaders = CGFloat(numberOfSections) * self.heightForSectionHeader
         var contentSize = super.collectionViewContentSize
         contentSize.height += self.topInset + self.heightForGlobalHeader + heightForHeaders
         return contentSize
@@ -65,13 +65,13 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
                 let layoutAttribute = originalLayoutAttribute.copy() as! UICollectionViewLayoutAttributes
                 layoutAttribute.frame = layoutAttribute.frame.offsetBy(
                     dx: 0,
-                    dy: CGFloat(layoutAttribute.indexPath.section + 1) * (self.heightForHeader) + self.topInset + self.heightForGlobalHeader
+                    dy: CGFloat(layoutAttribute.indexPath.section + 1) * (self.heightForSectionHeader) + self.topInset + self.heightForGlobalHeader
                 )
                 layoutAttributes.append(layoutAttribute)
             }
         }
 
-        if let headerHeight = self.delegate?.heightForHeader, headerHeight > 0 {
+        if let headerHeight = self.delegate?.heightForSectionHeader, headerHeight > 0 {
             for section in sectionsToAdd {
                 let indexPath = IndexPath(item: 0, section: section)
                 let attributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath)
@@ -97,7 +97,7 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
             let layoutAttributes = originalLayoutAttributes.copy() as! UICollectionViewLayoutAttributes
             layoutAttributes.frame = layoutAttributes.frame.offsetBy(
                 dx: 0,
-                dy: CGFloat(indexPath.section + 1) * self.heightForHeader + self.topInset + self.heightForGlobalHeader
+                dy: CGFloat(indexPath.section + 1) * self.heightForSectionHeader + self.topInset + self.heightForGlobalHeader
             )
             return layoutAttributes
         } else {
@@ -109,7 +109,7 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String,
                                                        at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         if elementKind == UICollectionView.elementKindSectionHeader {
-            guard self.heightForHeader > 0 else { return nil }
+            guard self.heightForSectionHeader > 0 else { return nil }
             guard let boundaries = self.boundaries(forSection: indexPath.section) else { return nil }
             guard let collectionView = collectionView else { return nil }
 
@@ -124,13 +124,13 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
             var offsetY: CGFloat
             if contentOffsetY < boundaries.minimum {
                 offsetY = boundaries.minimum
-            } else if contentOffsetY > boundaries.maximum - self.heightForHeader {
-                offsetY = boundaries.maximum - self.heightForHeader
+            } else if contentOffsetY > boundaries.maximum - self.heightForSectionHeader {
+                offsetY = boundaries.maximum - self.heightForSectionHeader
             } else {
                 offsetY = contentOffsetY
             }
 
-            let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: self.heightForHeader)
+            let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: self.heightForSectionHeader)
             let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
             layoutAttributes.frame = frame
             layoutAttributes.isHidden = false
@@ -158,13 +158,12 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
         result.minimum = layoutAttributes.map(\.frame.minY).min() ?? 0
         result.maximum = layoutAttributes.map(\.frame.maxY).max() ?? 0
 
-        result.minimum -= self.delegate?.heightForHeader ?? 0
+        result.minimum -= self.delegate?.heightForSectionHeader ?? 0
 
         return result
     }
 
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-//        return true
         let shouldInvalidate = super.shouldInvalidateLayout(forBoundsChange: newBounds)
         return shouldInvalidate || self.collectionView?.bounds.width != newBounds.width
     }

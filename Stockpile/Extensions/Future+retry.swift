@@ -5,7 +5,7 @@
 
 import BrightFutures
 
-func retry<T, E>(_ context: @escaping ExecutionContext = DefaultThreadingModel(),
+func retry<T, E>(_ context: @escaping ExecutionContext = defaultContext(),
                  times: Int,
                  coolDown: DispatchTimeInterval,
                  coolDownRate: @escaping (DispatchTimeInterval) -> DispatchTimeInterval = { rate in return rate },

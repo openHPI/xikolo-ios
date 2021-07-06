@@ -123,10 +123,13 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
 
             var offsetY: CGFloat
             if contentOffsetY < boundaries.minimum {
+                // normal position
                 offsetY = boundaries.minimum
             } else if contentOffsetY > boundaries.maximum - self.heightForSectionHeader {
+                // position when moving out of the screen
                 offsetY = boundaries.maximum - self.heightForSectionHeader
             } else {
+                // sticky position
                 offsetY = contentOffsetY
             }
 
@@ -165,6 +168,8 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
 
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         let shouldInvalidate = super.shouldInvalidateLayout(forBoundsChange: newBounds)
+        let invalidationContext = self.invalidationContext(forBoundsChange: newBounds)
+        self.invalidateLayout(with: invalidationContext)
         return shouldInvalidate || self.collectionView?.bounds.width != newBounds.width
     }
 

@@ -8,19 +8,22 @@ import UIKit
 class TopAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        let attributes = super.layoutAttributesForElements(in: rect)
+        let originalAttributes = super.layoutAttributesForElements(in: rect)
+        var attributes: [UICollectionViewLayoutAttributes] = []
 
-        attributes?.reduce(into: [CGFloat: (CGFloat, [UICollectionViewLayoutAttributes])]()) {
+        originalAttributes?.reduce(into: [CGFloat: (CGFloat, [UICollectionViewLayoutAttributes])]()) {
             guard $1.representedElementCategory == .cell else { return }
             $0.merge([ceil($1.center.y): ($1.frame.origin.y, [$1])]) {
                 (min($0.0, $1.0), $0.1 + $1.1)
             }
         }.values.forEach { minY, attributesInLine in
-            attributesInLine.forEach {
-                $0.frame = $0.frame.offsetBy(
+            attributesInLine.forEach { originalAttribute in
+                let attribute = originalAttribute.copy() as! UICollectionViewLayoutAttributes
+                attribute.frame = attribute.frame.offsetBy(
                     dx: 0,
-                    dy: minY - $0.frame.origin.y
+                    dy: minY - attribute.frame.origin.y
                 )
+                attributes.append(attribute)
             }
         }
 

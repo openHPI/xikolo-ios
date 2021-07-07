@@ -45,9 +45,9 @@ class CourseHeaderView: UICollectionReusableView {
 extension CourseHeaderView {
 
     static var height: CGFloat {
-        let margin: CGFloat = 8
+        let topMargin: CGFloat = 8
         let padding: CGFloat = 8
-        return ceil(2 * margin + 2 * padding + UIFont.preferredFont(forTextStyle: .headline).lineHeight)
+        return ceil(topMargin + 2 * padding + UIFont.preferredFont(forTextStyle: .headline).lineHeight)
     }
 
 }

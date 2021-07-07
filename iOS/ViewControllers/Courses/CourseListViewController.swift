@@ -285,11 +285,7 @@ extension CourseListViewController: CardListLayoutDelegate {
         }
     }
 
-    var cardInset: CGFloat {
-        return CourseCell.cardInset
-    }
-
-    var heightForHeader: CGFloat {
+    var heightForSectionHeader: CGFloat {
         guard self.configuration.shouldShowHeader || self.dataSource.isSearching else {
             return 0 // Don't show header for these configurations
         }
@@ -311,19 +307,52 @@ extension CourseListViewController: CardListLayoutDelegate {
         return ChannelHeaderView.height(forWidth: collectionView.bounds.width, layoutMargins: self.view.layoutMargins, channel: channel)
     }
 
-    func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
-        return CourseCell.minimalWidth(for: traitCollection)
-    }
+}
+
+extension CourseListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
-                        heightForCellAtIndexPath indexPath: IndexPath,
-                        withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 6
+//    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
+
+        let boundingWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
+        let minimalCardWidth = CourseCell.minimalWidth(for: self.traitCollection)
+        let numberOfColumns = floor(boundingWidth / minimalCardWidth)
+        let columnWidth = boundingWidth / numberOfColumns
+
         if self.dataSource.isSearching && !self.dataSource.hasSearchResults {
-            return 0
+            return CGSize(width: columnWidth, height: 0)
         }
 
         let course = self.dataSource.object(at: indexPath)
-        return ceil(CourseCell.heightForCourseList(forWidth: boundingWidth, for: course))
+        let height = CourseCell.heightForCourseList(forWidth: columnWidth, for: course)
+
+        return CGSize(width: columnWidth, height: height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        var leftPadding = collectionView.layoutMargins.left - CourseCell.cardInset
+        var rightPadding = collectionView.layoutMargins.right - CourseCell.cardInset
+
+        if #available(iOS 11.0, *) {
+            leftPadding -= collectionView.safeAreaInsets.left
+            rightPadding -= collectionView.safeAreaInsets.right
+        }
+
+        return UIEdgeInsets(top: 0, left: leftPadding, bottom: collectionView.layoutMargins.bottom, right: rightPadding)
     }
 
 }

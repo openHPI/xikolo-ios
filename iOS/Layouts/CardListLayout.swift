@@ -167,10 +167,30 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
     }
 
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        let shouldInvalidate = super.shouldInvalidateLayout(forBoundsChange: newBounds)
-        let invalidationContext = self.invalidationContext(forBoundsChange: newBounds)
-        self.invalidateLayout(with: invalidationContext)
-        return shouldInvalidate || self.collectionView?.bounds.width != newBounds.width
+        return true
     }
 
+    override class var invalidationContextClass: AnyClass {
+        return StickyHeaderInvalidationContext.self
+    }
+
+    override func invalidationContext(forBoundsChange newBounds: CGRect) -> UICollectionViewLayoutInvalidationContext {
+        let context = super.invalidationContext(forBoundsChange: newBounds) as! StickyHeaderInvalidationContext
+
+        guard self.collectionView?.bounds.width == newBounds.width else { return context }
+
+        // Invalidate only section headers
+        context.onlyHeaders = true
+        let numberOfSections = self.collectionView?.numberOfSections ?? 0
+        let sectionIndices = (0..<numberOfSections).map { IndexPath(item: 0, section: $0) }
+        context.invalidateSupplementaryElements(ofKind: UICollectionView.elementKindSectionHeader, at: sectionIndices)
+        return context
+    }
+
+}
+
+class StickyHeaderInvalidationContext: UICollectionViewFlowLayoutInvalidationContext {
+    var onlyHeaders: Bool = false
+    override var invalidateEverything: Bool { return !onlyHeaders }
+    override var invalidateDataSourceCounts: Bool { return false }
 }

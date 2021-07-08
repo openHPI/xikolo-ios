@@ -259,7 +259,7 @@
 		50B71B88212AC61C008CE681 /* DocumentsPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */; };
 		50BC011B217755B500F38B30 /* UnavailableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */; };
 		50C21DE823549D4A00D7A1A6 /* UICollectionView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C21DE723549D4A00D7A1A6 /* UICollectionView+EmptyState.swift */; };
-		50CF1F4620DCDBFC0011BFE9 /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
+		50CF1F4620DCDBFC0011BFE9 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFViewController.swift */; };
 		50CF1F4E20DCDBFC0011BFE9 /* RichTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichTextViewController.swift */; };
 		50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
 		50CF1F5020DCDBFC0011BFE9 /* CourseDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A62B207978BA00E98351 /* CourseDismissAnimationController.swift */; };
@@ -1111,7 +1111,7 @@
 		709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		709C93591EF09C2C00F8F045 /* ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ios.entitlements; sourceTree = "<group>"; };
 		70A830B11EC7C2560029235D /* xikolo 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 3.xcdatamodel"; sourceTree = "<group>"; };
-		70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFWebViewController.swift; sourceTree = "<group>"; };
+		70E37FCC207D47FF00F9872F /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		70F379CE205B643400149C3B /* CertificatesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificatesListViewController.swift; sourceTree = "<group>"; };
 		70F8C27D1F24C6010091F202 /* xikolo 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 4.xcdatamodel"; sourceTree = "<group>"; };
 		7425AC35D1422FBFEBAB2B64 /* Pods_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2147,7 +2147,7 @@
 		AB6AE0C51CF7D6A700708654 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
-				70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */,
+				70E37FCC207D47FF00F9872F /* PDFViewController.swift */,
 				7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */,
 				50146FC82221829500177E96 /* CourseSearchFiltersViewController.swift */,
 				50911AF4223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift */,
@@ -3460,7 +3460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50CF1F4620DCDBFC0011BFE9 /* PDFWebViewController.swift in Sources */,
+				50CF1F4620DCDBFC0011BFE9 /* PDFViewController.swift in Sources */,
 				5035D91124E526E600431A6B /* CustomWidthTableViewController.swift in Sources */,
 				50CF1F4E20DCDBFC0011BFE9 /* RichTextViewController.swift in Sources */,
 				50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */,

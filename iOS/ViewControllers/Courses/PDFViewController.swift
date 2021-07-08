@@ -15,15 +15,18 @@ class PDFViewController: UIViewController {
     @available(iOS, obsoleted: 11.0)
     private var webView: WKWebView!
 
-    private var pdfViewWrapper: AnyObject!
+    // It's not possible to annotate stored properties with @available.
+    // So we have to use a combination of type erased object and computed property
+    // as long as we support iOS 10.
+    private var pdfViewObject: AnyObject!
 
     @available(iOS 11, *)
     private var pdfView: PDFView {
         get {
-            return self.pdfViewWrapper as! PDFView
+            return self.pdfViewObject as! PDFView
         }
         set {
-            self.pdfViewWrapper = newValue
+            self.pdfViewObject = newValue
         }
     }
 

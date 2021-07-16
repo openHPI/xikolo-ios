@@ -62,6 +62,9 @@ class AsyncImageTextAttachment: NSTextAttachment {
                 let newImageSize = image.size
                 displaySizeChanged = newImageSize != self.imageSize
                 self.imageSize = newImageSize
+            } else {
+                displaySizeChanged = self.imageSize != .zero
+                self.imageSize = .zero
             }
 
             DispatchQueue.main.async {

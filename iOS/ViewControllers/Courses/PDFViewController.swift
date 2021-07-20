@@ -23,6 +23,7 @@ class PDFViewController: UIViewController {
     @available(iOS 11, *)
     private var pdfView: PDFView {
         get {
+            // swiftlint:disable:next force_cast
             return self.pdfViewObject as! PDFView
         }
         set {

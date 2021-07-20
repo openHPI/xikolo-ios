@@ -18,6 +18,7 @@ class TopAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
             }
         }.values.forEach { minY, attributesInLine in
             attributesInLine.forEach { originalAttribute in
+                // swiftlint:disable:next force_cast
                 let attribute = originalAttribute.copy() as! UICollectionViewLayoutAttributes
                 attribute.frame = attribute.frame.offsetBy(
                     dx: 0,

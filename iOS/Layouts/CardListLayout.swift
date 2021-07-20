@@ -62,6 +62,7 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
             sectionsToAdd.add(originalLayoutAttribute.indexPath.section)
 
             if originalLayoutAttribute.representedElementCategory == .cell {
+                // swiftlint:disable:next force_cast
                 let layoutAttribute = originalLayoutAttribute.copy() as! UICollectionViewLayoutAttributes
                 layoutAttribute.frame = layoutAttribute.frame.offsetBy(
                     dx: 0,
@@ -94,6 +95,7 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
         guard let originalLayoutAttributes = super.layoutAttributesForItem(at: indexPath) else { return nil }
 
         if originalLayoutAttributes.representedElementCategory == .cell {
+            // swiftlint:disable:next force_cast
             let layoutAttributes = originalLayoutAttributes.copy() as! UICollectionViewLayoutAttributes
             layoutAttributes.frame = layoutAttributes.frame.offsetBy(
                 dx: 0,
@@ -175,6 +177,7 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
     }
 
     override func invalidationContext(forBoundsChange newBounds: CGRect) -> UICollectionViewLayoutInvalidationContext {
+        // swiftlint:disable:next force_cast
         let context = super.invalidationContext(forBoundsChange: newBounds) as! StickyHeaderInvalidationContext
 
         guard self.collectionView?.bounds.width == newBounds.width else { return context }
@@ -190,7 +193,7 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
 }
 
 class StickyHeaderInvalidationContext: UICollectionViewFlowLayoutInvalidationContext {
-    var onlyHeaders: Bool = false
+    var onlyHeaders = false
     override var invalidateEverything: Bool { return !onlyHeaders }
     override var invalidateDataSourceCounts: Bool { return false }
 }

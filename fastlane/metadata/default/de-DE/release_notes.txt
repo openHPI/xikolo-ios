@@ -1,13 +1,3 @@
-• Fehler behoben, der das Öffnen von Kursebereichen verhinderte
-• Kurse können in einem neuen Fenster geöffnet werden, wenn schon ein Kurs angezeigt wird (nur für iPads)
-
-Auch in Version 2.11:
-• Ein Schnellzugriff für den zuletzt besuchten Lerninhalt wird in der Kursinhaltsliste angezeigt
-• Das Erscheinungsbild der App kann per Nutzerpräferenz überschrieben werden
-• Videos können im Hintergrund abspielt werden (iOS hält das Video zunächst an, die Wiedergabe kann aber über den Sperrbildschirm oder das Kontrollzentrum fortgesetzt werden.)
-• Neue Gestaltung der Haupt-Tabs
-• iOS 14-Kompatibilität
-• Kurse können per Drag & Drop in einem separaten Fenster geöffnet werden
-• Kurse und Kursinhalte können per Drag & Drop in andere Anwendungen gezogen werden
-• Der Helpdesk im Kurskontext geöffnet werden
-• Das nächste Kursdatum wird im erweiterten Modus des Today-Widgets angezeigt
+• Widgets für den Homescreens unter iOS 14 und später
+• Bessere Einbindung von PDFs
+• Leistungsverbesserungen und kleinere Fehlerbehebungen 

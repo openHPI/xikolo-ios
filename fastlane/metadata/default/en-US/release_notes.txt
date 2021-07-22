@@ -1,13 +1,3 @@
-• Fixed a crash when opening channels
-• Allow courses to be opened in a new window if a course is currently shown (iPad only)
-
-Also in version 2.11:
-• Show a quick access to the last visited item on top of the course item list
-• Add a user setting for overriding appearance of the app
-• Play videos in the background (iOS will first stop the video, but the playback can be resume via the lock screen or the control center)
-• Improve the design of main tabs
-• iOS 14 compatibility
-• Courses can be opened in a separate window via drag & drop
-• Support drag & drop of courses and course items to other apps
-• Open the helpdesk in the course context
-• Show the next course date in the expanded mode of the Today widget
+• Widgets for the homescreen on iOS 14 and later
+• Better handling of PDFs
+• Performance improvements and smaller bug fixes

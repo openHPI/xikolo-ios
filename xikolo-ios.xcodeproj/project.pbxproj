@@ -2751,7 +2751,6 @@
 						CreatedOnToolsVersion = 12.2;
 					};
 					50CF1F4120DCDBFC0011BFE9 = {
-						DevelopmentTeam = WP53SSE8S6;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {

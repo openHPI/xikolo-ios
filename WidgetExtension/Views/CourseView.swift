@@ -56,12 +56,14 @@ struct CourseView: View {
                     .fontWeight(.medium)
                     .foregroundColor(Color.secondary)
                     .lineLimit(1)
+                    .minimumScaleFactor(0.9)
 
                 Text(course.title)
                     .font(.system(size: 14))
                     .fontWeight(.medium)
                     .lineLimit(2)
                     .foregroundColor(Color.primary)
+                    .minimumScaleFactor(0.9)
             }
         }
 
@@ -99,6 +101,7 @@ struct CourseView: View {
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .layoutPriority(2)
+                    .minimumScaleFactor(0.9)
 
                 Text(course.title)
                     .font(.system(size: 14))
@@ -106,6 +109,7 @@ struct CourseView: View {
                     .foregroundColor(Color.primary)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .layoutPriority(2)
+                    .minimumScaleFactor(0.9)
 
                 if let itemTitle = course.itemTitle {
                     Text(itemTitle)
@@ -113,6 +117,7 @@ struct CourseView: View {
                         .foregroundColor(Color.secondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .layoutPriority(1)
+                        .minimumScaleFactor(0.9)
                 }
             }
             .frame(minWidth: 0, maxWidth: .infinity)

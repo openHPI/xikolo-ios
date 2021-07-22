@@ -16,10 +16,12 @@ enum EmptyStateView: View {
             headline
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.primary)
+                .minimumScaleFactor(0.8)
             subline
                 .multilineTextAlignment(.center)
                 .font(.system(.footnote))
                 .foregroundColor(Color.secondary)
+                .minimumScaleFactor(0.8)
         }
         .padding()
     }

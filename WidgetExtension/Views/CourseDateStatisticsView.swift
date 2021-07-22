@@ -16,6 +16,7 @@ struct CourseDateStatisticsView: View {
                 .font(.system(size: 12))
                 .fontWeight(.medium)
                 .foregroundColor(.secondary)
+                .minimumScaleFactor(0.8)
             Divider()
             VStack(spacing: 4) {
                 HStack {

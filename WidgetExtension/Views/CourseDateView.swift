@@ -17,12 +17,15 @@ struct CourseDateView: View {
                     .font(.system(size: 10))
                     .fontWeight(.medium)
                     .foregroundColor(.secondary)
+                    .minimumScaleFactor(0.9)
                 (Text("in ") + Text(courseDate.date, style: .relative))
                     .font(.system(size: 12))
                     .multilineTextAlignment(.trailing)
+                    .minimumScaleFactor(0.9)
                 Text(courseDate.formattedFullDate)
                     .font(.system(size: 8))
                     .foregroundColor(.secondary)
+                    .minimumScaleFactor(0.9)
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
             .layoutPriority(3)
@@ -35,11 +38,13 @@ struct CourseDateView: View {
                         .font(.system(size: 10))
                         .foregroundColor(.appPrimary)
                         .layoutPriority(1)
+                        .minimumScaleFactor(0.8)
                 }
 
                 Text(courseDate.itemTitle)
                     .font(.system(size: 12))
                     .layoutPriority(2)
+                    .minimumScaleFactor(0.8)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }

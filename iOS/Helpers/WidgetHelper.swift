@@ -35,6 +35,9 @@ class WidgetHelper {
         let enrollmentsRefreshed = notification.includesChanges(for: Enrollment.self, key: .refreshed)
         let lastVisitChanged = notification.includesChanges(for: LastVisit.self)
 
+        // WidgetCenter cannot be used on armv7
+        // (can be removed when support for iOS 10 was dropped)
+        #if arch(arm64) || arch(i386) || arch(x86_64)
         if courseDatesChanged || coursesChanged || enrollmentsRefreshed {
             let widgetKinds = ["course-date-overview", "course-date-next", "course-date-statistics"]
             widgetKinds.forEach { WidgetCenter.shared.reloadTimelines(ofKind: $0) }
@@ -43,6 +46,7 @@ class WidgetHelper {
         if coursesChanged || enrollmentsRefreshed || lastVisitChanged {
             WidgetCenter.shared.reloadTimelines(ofKind: "continue-learning")
         }
+        #endif
     }
 
 }

@@ -246,6 +246,7 @@ platform :ios do
           provisioningProfiles: {
             "de.xikolo.#{flavor.downcase}" => "#{flavor}-iOS-dist",
             "de.xikolo.#{flavor.downcase}.today" => "#{flavor}-today-dist",
+            "de.xikolo.#{flavor.downcase}.widget" => "#{flavor}-widget-dist",
           }
         },
       )

@@ -136,6 +136,8 @@ class PDFViewController: UIViewController {
             self.pdfView.topAnchor.constraint(equalTo: view.topAnchor),
         ])
 
+        self.pdfView.autoScales = true
+
         if #available(iOS 12.0, *) {
             self.pdfView.pageShadowsEnabled = false
         }

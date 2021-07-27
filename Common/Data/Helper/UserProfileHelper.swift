@@ -100,12 +100,11 @@ public class UserProfileHelper {
         self.userId = newUserID
     }
 
-    public func logout(runPostActions: Bool = true) {
+    public func logout() {
         self.clearKeychain()
         CoreDataHelper.clearCoreDataStorage().onFailure { error in
             ErrorManager.shared.report(error)
         }.onComplete { _ in
-            guard runPostActions else { return }
             self.postLoginStateChange()
         }
     }

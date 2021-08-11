@@ -135,7 +135,6 @@
 		50467FEF238548D20084D7F6 /* ChannelHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50467FEE238548D20084D7F6 /* ChannelHeaderView.swift */; };
 		50467FF0238596710084D7F6 /* TabChannels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50467FF2238596710084D7F6 /* TabChannels.storyboard */; };
 		5046BD0A212B4DC700B9F2CD /* DocumentLocalization+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046BD09212B4DC700B9F2CD /* DocumentLocalization+Actions.swift */; };
-		504AC11F239C46F1007F097B /* UserDefaults+logoutTestAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504AC11E239C46F1007F097B /* UserDefaults+logoutTestAccount.swift */; };
 		504AC121239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504AC120239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift */; };
 		504BA9AD245C02AF004C836C /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
 		504BA9AE245C02C8004C836C /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
@@ -820,7 +819,6 @@
 		50467FF1238596710084D7F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabChannels.storyboard; sourceTree = "<group>"; };
 		50467FF42385967A0084D7F6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabChannels.strings; sourceTree = "<group>"; };
 		5046BD09212B4DC700B9F2CD /* DocumentLocalization+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentLocalization+Actions.swift"; sourceTree = "<group>"; };
-		504AC11E239C46F1007F097B /* UserDefaults+logoutTestAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+logoutTestAccount.swift"; sourceTree = "<group>"; };
 		504AC120239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileHelper+logoutTestAccount.swift"; sourceTree = "<group>"; };
 		504D6ED024E424D900426BDC /* NSDirectionalEdgeInsets+custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDirectionalEdgeInsets+custom.swift"; sourceTree = "<group>"; };
 		504D6ED224E4251F00426BDC /* ReadableWidthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadableWidthNavigationController.swift; sourceTree = "<group>"; };
@@ -1730,7 +1728,6 @@
 				5057ED7F1FE3D9680096095B /* UserDefaults+contentPreload.swift */,
 				5095B1DE20EBA9D700572924 /* UserDefaults+playbackRate.swift */,
 				50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */,
-				504AC11E239C46F1007F097B /* UserDefaults+logoutTestAccount.swift */,
 				828707EA24ADF74F00CE60CB /* UserDefaults+Theme.swift */,
 			);
 			path = UserDefaults;
@@ -3556,7 +3553,6 @@
 				50CF1FA620DCDBFC0011BFE9 /* CourseCell.swift in Sources */,
 				5035D91324E5282000431A6B /* CustomWidthViewController.swift in Sources */,
 				82D13D0C235726E70006A0D9 /* HelpdeskViewController.swift in Sources */,
-				504AC11F239C46F1007F097B /* UserDefaults+logoutTestAccount.swift in Sources */,
 				5083329C2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift in Sources */,
 				506BDB94242380A80002DBDE /* AdditionalLearningMaterialListViewController.swift in Sources */,
 				50CF1FA820DCDBFC0011BFE9 /* CourseAreaListViewController.swift in Sources */,

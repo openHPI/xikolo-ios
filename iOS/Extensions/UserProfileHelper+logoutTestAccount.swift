@@ -8,14 +8,14 @@ import Common
 extension UserProfileHelper {
 
     public func logoutFromTestAccount() {
-        // Always logout test user
-        // guard !UserDefaults.standard.didLogoutTestAccount else { return }
-
-        if self.userId == Brand.default.testAccountUserId {
-            self.logout()
-        }
-
-        UserDefaults.standard.didLogoutTestAccount = true
+        #if DEBUG
+            // Nothing to do here in DEBUG mode
+        #else
+            // Always logout test user
+            if self.userId == Brand.default.testAccountUserId {
+                self.logout()
+            }
+        #endif
     }
 
 }

@@ -10,12 +10,24 @@ struct CourseDateStatisticsView: View {
 
     var courseDateStatistics: CourseDateStatisticsViewModel
 
+    let appName: String? = {
+        let bundleDisplayNameKey = "CFBundleDisplayName"
+        return Bundle.appBundle.infoDictionary?[bundleDisplayNameKey] as? String
+    }()
+
     var body: some View {
         VStack(alignment: .leading) {
+            if let appName = appName {
+                Text(appName.uppercased())
+                    .font(.system(size: 10))
+                    .fontWeight(.bold)
+                    .foregroundColor(.secondary)
+                    .minimumScaleFactor(0.8)
+            }
+
             Text("course-date-statistics.headline")
                 .font(.system(size: 12))
                 .fontWeight(.medium)
-                .foregroundColor(.secondary)
                 .minimumScaleFactor(0.8)
             Divider()
             VStack(spacing: 4) {

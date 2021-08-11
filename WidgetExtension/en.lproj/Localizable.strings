@@ -12,7 +12,7 @@
 "continue-learning.call-to-action" = "Continue Learning";
 
 /* Course date statistics view */
-"course-date-statistics.headline" = "Course Date Overview";
+"course-date-statistics.headline" = "Course Dates";
 "course-date-statistics.count.today" = "Today";
 "course-date-statistics.count.next-seven-days" = "Next 7 Days";
 "course-date-statistics.count.all" = "All";

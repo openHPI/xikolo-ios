@@ -183,12 +183,21 @@ class CourseNavigationController: UINavigationController {
         UIRectFill(CGRect(x: 0, y: 0, width: 1, height: 1))
         transparentBackground = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        self.navigationBar.setBackgroundImage(transparentBackground, for: .default)
-        self.navigationBar.setBackgroundImage(transparentBackground, for: .compact)
 
-        self.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(pow(mappedProgress, 10)),
-        ]
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithTransparentBackground()
+            appearance.backgroundImage = transparentBackground
+            appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(pow(mappedProgress, 10))]
+            self.navigationBar.standardAppearance = appearance
+            self.navigationBar.scrollEdgeAppearance = appearance
+        } else {
+            self.navigationBar.setBackgroundImage(transparentBackground, for: .default)
+            self.navigationBar.setBackgroundImage(transparentBackground, for: .compact)
+            self.navigationBar.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(pow(mappedProgress, 10)),
+            ]
+        }
     }
 
     @objc func closeCourse() {

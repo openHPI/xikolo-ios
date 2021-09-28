@@ -118,6 +118,13 @@ class XikoloTabBarController: UITabBarController {
 
         self.tabBar.isTranslucent = false
 
+        if #available(iOS 15, *) {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            self.tabBar.standardAppearance = appearance
+            self.tabBar.scrollEdgeAppearance = appearance
+        }
+
         self.messageLabel.textAlignment = .center
         self.messageLabel.font = UIFont.systemFont(ofSize: XikoloTabBarController.messageLabelFontSize)
         self.messageView.addSubview(self.messageLabel)

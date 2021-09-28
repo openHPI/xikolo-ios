@@ -167,23 +167,11 @@ class XikoloTabBarController: UITabBarController {
         self.messageLabel.textColor = config.textColor
         self.messageLabel.text = config.message
 
-        let tabBarHeight = self.tabBar.frame.height
-        let tabBarItemHeight = self.heightOfTabBarItems() ?? tabBarHeight
-        let tabBarOffset = self.status == .standard ? 0 : XikoloTabBarController.messageViewHeight
-
-        var newTabBarFrame = self.tabBar.frame
-        newTabBarFrame.origin.y = self.view.frame.height - tabBarHeight - tabBarOffset
-
         var newMessageViewFrame = self.messageView.frame
-        newMessageViewFrame.origin.y = self.status == .standard ? tabBarHeight : tabBarItemHeight
-        newMessageViewFrame.size.height = self.status == .standard ? 0 : tabBarHeight - tabBarItemHeight + tabBarOffset
+        newMessageViewFrame.origin.y = self.status == .standard ? 0 : -1 * XikoloTabBarController.messageViewHeight
+        newMessageViewFrame.size.height = self.status == .standard ? 0 : XikoloTabBarController.messageViewHeight
 
         self.messageView.frame = newMessageViewFrame
-        self.tabBar.frame = newTabBarFrame
-
-        if #available(iOS 11.0, *) {
-            self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: tabBarOffset, right: 0)
-        }
     }
 
     private func configuration(for status: APIStatus) -> Configuration {

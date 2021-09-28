@@ -120,6 +120,12 @@ extension BingeMediaSelectionViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.textColor = UIColor(white: 0.9, alpha: 1)
+        }
+    }
+
     private func mediaCharacteristic(forSection section: Int) -> AVMediaCharacteristic? {
         if section == 0 { return nil }
         return self.mediaCharacteristics.filter { self.multipleOptionAvailable(forMediaCharacteristic: $0) }[section - 1]

@@ -11,10 +11,10 @@ on:
 jobs:
   build-test-lint:
     name: Build + Test + Lint + Check localization
-    runs-on: macOS-latest
+    runs-on: macOS-11
     strategy:
       matrix:
-        xcode: ['/Applications/Xcode_12.4.app/Contents/Developer']
+        xcode: ['/Applications/Xcode_13.0.app/Contents/Developer']
     steps:
       - name: Checkout
         uses: actions/checkout@v1

@@ -1,3 +1,7 @@
+• Unterstützung von iOS 15
+• Verbesserte Anzeige von Übungen mit fehlendem LTI-Anbieter
+
+Auch in Version 2.12:
 • Widgets für den Homescreens unter iOS 14 und später
 • Bessere Einbindung von PDFs
 • Leistungsverbesserungen und kleinere Fehlerbehebungen 

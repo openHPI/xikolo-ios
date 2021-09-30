@@ -1,3 +1,7 @@
+• Support of iOS 15
+• Handle missing LTI providers for exercises
+
+Also in version 2.12:
 • Widgets for the homescreen on iOS 14 and later
 • Better handling of PDFs
 • Performance improvements and smaller bug fixes

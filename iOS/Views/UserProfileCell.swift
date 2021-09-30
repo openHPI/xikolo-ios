@@ -81,7 +81,6 @@ class UserProfileCell: UITableViewCell {
     private func updateProfileInfo() {
         self.profileImage.sd_setImage(with: self.user?.avatarURL, placeholderImage: R.image.personCropCircle())
         self.profileImage.layer.cornerRadius = self.user == nil ? 0 : self.profileImage.bounds.width / 2
-        self.profileImage.layer.borderWidth = self.user == nil ? 0 :  4.0
 
         self.nameView.text = self.user?.profile?.fullName
         self.displayNameView.text = self.user?.name

@@ -44,6 +44,8 @@ class LTIExerciseHintViewController: UIViewController {
     @IBOutlet private weak var loadingScreenHeight: NSLayoutConstraint!
     @IBOutlet private weak var launchButton: UIButton!
 
+    @IBOutlet private weak var notAvailableView: UIView!
+
     private var courseItemObserver: ManagedObjectObserver?
 
     private var courseItem: CourseItem! {
@@ -63,6 +65,7 @@ class LTIExerciseHintViewController: UIViewController {
         self.itemTitleLabel.text = self.courseItem?.title
         self.launchExerciseView.isHidden = true
         self.loadingScreen.isHidden = false
+        self.notAvailableView.isHidden = true
 
         self.launchButton.layer.roundCorners(for: .default)
         self.launchButton.backgroundColor = Brand.default.colors.primary
@@ -71,12 +74,13 @@ class LTIExerciseHintViewController: UIViewController {
         self.instructionsView.textContainerInset = UIEdgeInsets.zero
         self.instructionsView.textContainer.lineFragmentPadding = 0
 
+        self.notAvailableView.layer.roundCorners(for: .default)
+
         self.updateView()
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
     }
 
     func updateView() {
-
         // Set points label
         let format = NSLocalizedString("course-item.max-points", comment: "maximum points for course item")
         let number = NSNumber(value: self.courseItem.maxPoints)
@@ -103,11 +107,18 @@ class LTIExerciseHintViewController: UIViewController {
             self.exerciseTypeLabel.text = nil
         }
 
-        guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }
+        guard let ltiExercise = self.courseItem?.content as? LTIExercise,
+              ltiExercise.launchURL != nil else {
+            self.loadingScreen.isHidden = true
+            self.launchExerciseView.isHidden = true
+            self.notAvailableView.isHidden = false
+            return
+        }
 
+        self.instructionsView.setMarkdownWithImages(from: ltiExercise.instructions)
         self.loadingScreen.isHidden = true
         self.launchExerciseView.isHidden = false
-        self.instructionsView.setMarkdownWithImages(from: ltiExercise.instructions)
+        self.notAvailableView.isHidden = true
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

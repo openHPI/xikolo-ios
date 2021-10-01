@@ -97,7 +97,17 @@ class WebViewController: UIViewController {
              self.webView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
              self.webView.topAnchor.constraint(equalTo: self.view.topAnchor),
          ])
-     }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if #available(iOS 15, *) {
+            let appearance = UIToolbarAppearance()
+            appearance.configureWithOpaqueBackground()
+            self.navigationController?.toolbar.standardAppearance = appearance
+            self.navigationController?.toolbar.scrollEdgeAppearance = appearance
+        }
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

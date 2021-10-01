@@ -136,6 +136,7 @@ class CourseNavigationController: UINavigationController {
 
         self.updateNavigationBarTintColor(forMappedProgress: mappedProgress)
         self.updateNavigationBarBackground(forMappedProgress: mappedProgress)
+        self.setNeedsStatusBarAppearanceUpdate()
     }
 
     func updateNavigationBarTintColor(forMappedProgress mappedProgress: CGFloat) {

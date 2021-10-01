@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 // Taken from https://gist.github.com/NikolaiRuhe/408cefb953c4bea15506a3f80a3e5b96

@@ -110,4 +110,4 @@ Help us keep this project open and inclusive. Please read and follow our [Code o
 
 ## License
 
-This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file.
+This project is licensed under the terms of the GPL-3.0 license. See the [LICENSE](LICENSE) file.

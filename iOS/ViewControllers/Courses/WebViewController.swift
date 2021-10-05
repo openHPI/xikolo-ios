@@ -45,7 +45,8 @@ class WebViewController: UIViewController {
     }
 
     private var webViewCanGoBack: Bool {
-        // WKWebView.canGoBack returns false values. So we check for the initial URL instead.
+        // WKWebView.canGoBack returns incorrect values as we have to set the headers for the request again.
+        // So we check for the initial URL instead.
         return self.webView.url != self.url
     }
 
@@ -172,6 +173,7 @@ class WebViewController: UIViewController {
 
     @objc private func goBack() {
         guard self.webViewCanGoBack else { return }
+        self.webView.stopLoading()
         self.webView.goBack()
         self.updateToolbarButtons()
     }
@@ -240,6 +242,10 @@ extension WebViewController: WKNavigationDelegate {
         }
 
         if navigationAction.request.httpMethod == "POST" {
+            return decisionHandler(.allow)
+        }
+
+        if navigationAction.navigationType == .backForward {
             return decisionHandler(.allow)
         }
 

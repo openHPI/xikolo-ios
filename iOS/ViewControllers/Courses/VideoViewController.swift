@@ -64,10 +64,14 @@ class VideoViewController: UIViewController {
         }
     }
 
-    private var videoIsShownInFullScreen = false {
+    private(set) var videoIsShownInFullScreen = false {
         didSet {
             guard self.videoIsShownInFullScreen != oldValue else { return }
             self.updateUIForFullScreenMode(trueUnlessReduceMotionEnabled)
+
+            if let courseItemViewController = self.parent as? CourseItemViewController {
+                courseItemViewController.updatePreviousAndNextItemButtons()
+            }
         }
     }
 

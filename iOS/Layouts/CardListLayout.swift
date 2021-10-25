@@ -164,6 +164,7 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
         result.maximum = layoutAttributes.map(\.frame.maxY).max() ?? 0
 
         result.minimum -= self.delegate?.heightForSectionHeader ?? 0
+        result.minimum = max(result.minimum, 0)
 
         return result
     }

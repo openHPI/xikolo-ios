@@ -1,5 +1,7 @@
-• Unterstützung von iOS 15
-• Verbesserte Anzeige von Übungen mit fehlendem LTI-Anbieter
+• Buttons zum Wechseln zum vorherigen und nächsten Kurselement hinzugefügt (nur für iPads — nach links und rechts wischen funktioniert auf iPhones und iPads)
+• Behebung eines gelegentlichen Absturzes der App beim Löschen von heruntergeladenem Lernmaterial
+• Behebung des App-Absturzes in der Kursliste bei Verwendung der extra großen Schrift-Einstellung für Barrierefreiheit
+• Größe der Bilder in Textelementen korrigiert
 
 Auch in Version 2.12:
 • Widgets für den Homescreens unter iOS 14 und später

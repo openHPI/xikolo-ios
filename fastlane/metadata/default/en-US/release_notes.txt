@@ -1,5 +1,7 @@
-• Support of iOS 15
-• Handle missing LTI providers for exercises
+• Add buttons to switch to previous and next course item (iPad only — swiping left and right still works on iPhone and iPad)
+• Fix occasional app crash when deleting downloaded learning material
+• Fix app crash on course list when using extra large accessibility font settings
+• Fix size of images in text items
 
 Also in version 2.12:
 • Widgets for the homescreen on iOS 14 and later

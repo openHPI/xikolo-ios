@@ -74,7 +74,7 @@ extension CertificatesListViewController: UICollectionViewDelegateFlowLayout {
 
         let boundingWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
         let minimalCardWidth = CertificateCell.minimalWidth(for: self.traitCollection)
-        let numberOfColumns = floor(boundingWidth / minimalCardWidth)
+        let numberOfColumns = max(1, floor(boundingWidth / minimalCardWidth))
         let columnWidth = boundingWidth / numberOfColumns
 
         let certificate = self.certificates[indexPath.item]

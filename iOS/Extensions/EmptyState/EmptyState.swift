@@ -66,7 +66,7 @@ extension EmptyStateProtocol {
         }
         set {
             if let newValue = newValue {
-                objc_setAssociatedObject(self, &AssociatedKeys.emptyStateDelegate, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                objc_setAssociatedObject(self, &AssociatedKeys.emptyStateDelegate, newValue, .OBJC_ASSOCIATION_ASSIGN)
             }
         }
     }
@@ -78,7 +78,7 @@ extension EmptyStateProtocol {
         }
         set {
             if let newValue = newValue {
-                objc_setAssociatedObject(self, &AssociatedKeys.emptyStateDataSource, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                objc_setAssociatedObject(self, &AssociatedKeys.emptyStateDataSource, newValue, .OBJC_ASSOCIATION_ASSIGN)
                 self.reloadEmptyState()
             }
         }

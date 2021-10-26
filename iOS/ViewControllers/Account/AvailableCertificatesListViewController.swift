@@ -26,14 +26,14 @@ class AvailableCertificatesListViewController: UITableViewController {
         self.setupEmptyState()
         self.refresh()
 
-        EnrollmentHelper.syncEnrollments().onSuccess { _ in
-            self.refresh()
+        EnrollmentHelper.syncEnrollments().onSuccess { [weak self] _ in
+            self?.refresh()
         }
     }
 
     private func refresh() {
-        self.reloadData().onSuccess { certificates in
-            self.certificates = certificates
+        self.reloadData().onSuccess { [weak self] certificates in
+            self?.certificates = certificates
         }
     }
 

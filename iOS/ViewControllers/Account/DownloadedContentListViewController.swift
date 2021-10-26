@@ -72,7 +72,8 @@ class DownloadedContentListViewController: UITableViewController {
 
     @discardableResult
     private func refresh() -> Future<[DownloadedContentHelper.DownloadContent], XikoloError> {
-        return DownloadedContentHelper.downloadedContentForAllCourses().onSuccess { downloadItems in
+        return DownloadedContentHelper.downloadedContentForAllCourses().onSuccess { [weak self] downloadItems in
+            guard let self = self else { return }
             let aggregatedCourseDownloads = self.aggregatedCourseDownloads(for: downloadItems)
             self.courseDownloads = aggregatedCourseDownloads.values.sorted { $0.title < $1.title }
         }.onFailure { error in
@@ -214,7 +215,8 @@ extension DownloadedContentListViewController { // editing
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
 
-        let alert = UIAlertController { _ in
+        let alert = UIAlertController { [weak self] _ in
+            guard let self = self else { return }
             let downloadItem = self.courseDownloads[indexPath.section]
             let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
             self.downloadType(for: indexPath).persistenceManager.deleteDownloads(for: course)

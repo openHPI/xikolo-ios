@@ -144,13 +144,13 @@ extension DownloadedContentListViewController { // Table view data source
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        // Upon reloading all data, this method is called without/before `numberOfSections(in: UITableView)`,
-        // resulting in 'Index out of range' errors. Therefore, we use a safe access to the individual course download data.
-        return self.courseDownloads[safe: section]?.title
+        return self.courseDownloads[section].title
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        guard let timeEffort = self.courseDownloads[safe: section]?.timeEffort, timeEffort > 0 else {
+        let timeEffort = self.courseDownloads[section].timeEffort
+
+        guard timeEffort > 0 else {
             return nil
         }
 
@@ -214,8 +214,7 @@ extension DownloadedContentListViewController { // editing
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
 
-        let alert = UIAlertController { [weak self] _ in
-            guard let self = self else { return }
+        let alert = UIAlertController { _ in
             let downloadItem = self.courseDownloads[indexPath.section]
             let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
             self.downloadType(for: indexPath).persistenceManager.deleteDownloads(for: course)

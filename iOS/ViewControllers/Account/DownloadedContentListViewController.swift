@@ -145,7 +145,8 @@ extension DownloadedContentListViewController { // Table view data source
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.courseDownloads[section].title
+        // When deleting the last item from a course, this method is called. So we play it safe and don't risk an 'Index out of range' error.
+        return self.courseDownloads[safe: section]?.title
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {

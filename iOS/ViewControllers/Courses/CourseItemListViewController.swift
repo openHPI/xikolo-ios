@@ -251,10 +251,10 @@ class CourseItemListViewController: UITableViewController {
             let cell = self.tableView.cellForRow(at: indexPath)
             let originalColor = cell?.backgroundColor
 
-            _ = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.25, options: [.curveEaseOut], animations: {
+            _ = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.25, delay: 0.25, options: [.curveEaseOut], animations: {
                 cell?.backgroundColor = ColorCompatibility.secondarySystemFill
             }, completion: { _ in
-                _ = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.25, options: [.curveEaseIn], animations: {
+                _ = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.25, delay: 0.25, options: [.curveEaseIn], animations: {
                     cell?.backgroundColor = originalColor
                 }, completion: nil)
 

@@ -172,8 +172,9 @@ class CourseViewController: UIViewController {
         let completionBlock: (UIViewControllerTransitionCoordinatorContext) -> Void = { [weak self] _ in
             let headerColor = self?.headerImageView.image.flatMap { self?.averageColorUnderStatusBar(withCourseVisual: $0) } ?? Brand.default.colors.secondary
             self?.courseNavigationController?.adjustToUnderlyingColor(headerColor)
-            if let headerOffset = self?.headerOffset, let headerHeight = self?.headerHeight {
-                self?.courseNavigationController?.updateNavigationBar(forProgress: headerOffset / headerHeight)
+
+            if let headerOffset = self?.headerOffset {
+                self?.snapToExtendedOrCollapsedHeaderPosition(with: headerOffset)
             }
         }
 

@@ -132,7 +132,6 @@ class CourseNavigationController: UINavigationController {
         var mappedProgress = headerHidden ? 1.0 : progress
         mappedProgress = max(0, min(mappedProgress, 1)) // clamping
         mappedProgress = pow(mappedProgress, 3) // ease in
-        mappedProgress = min(mappedProgress, 0.995) // otherwise the bar switches to translucent
 
         self.updateNavigationBarTintColor(forMappedProgress: mappedProgress)
         self.updateNavigationBarBackground(forMappedProgress: mappedProgress)
@@ -163,40 +162,42 @@ class CourseNavigationController: UINavigationController {
     }
 
     private func updateNavigationBarBackground(forMappedProgress mappedProgress: CGFloat) {
-        let navigationBarAlpha = mappedProgress
-
-        var transparentBackground: UIImage
-
-        var backgroundRed: CGFloat = 0
-        var backgroundGreen: CGFloat = 0
-        var backgroundBlue: CGFloat = 0
-        var backgroundAlpha: CGFloat = 1
-
-        ColorCompatibility.systemBackground.getRed(&backgroundRed, green: &backgroundGreen, blue: &backgroundBlue, alpha: &backgroundAlpha)
-
-        // The background of a navigation bar switches from being translucent to transparent when a background image is applied.
-        // Below, a background image is dynamically generated with the desired opacity.
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 1, height: 1),
-                                               false,
-                                               self.navigationBar.layer.contentsScale)
-        let context = UIGraphicsGetCurrentContext()!
-        context.setFillColor(red: backgroundRed, green: backgroundGreen, blue: backgroundBlue, alpha: backgroundAlpha * navigationBarAlpha)
-        UIRectFill(CGRect(x: 0, y: 0, width: 1, height: 1))
-        transparentBackground = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-
         if #available(iOS 15, *) {
+            let navigationBarAlpha = mappedProgress
+
             let appearance = UINavigationBarAppearance()
             appearance.configureWithTransparentBackground()
-            appearance.backgroundImage = transparentBackground
-            appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(pow(mappedProgress, 10))]
+            appearance.backgroundColor = ColorCompatibility.systemBackground.withAlphaComponent(navigationBarAlpha)
+            appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(pow(navigationBarAlpha, 10))]
             self.navigationBar.standardAppearance = appearance
             self.navigationBar.scrollEdgeAppearance = appearance
         } else {
+            let navigationBarAlpha = min(mappedProgress, 0.995) // otherwise the bar switches to translucent
+
+            var transparentBackground: UIImage
+
+            var backgroundRed: CGFloat = 0
+            var backgroundGreen: CGFloat = 0
+            var backgroundBlue: CGFloat = 0
+            var backgroundAlpha: CGFloat = 1
+
+            ColorCompatibility.systemBackground.getRed(&backgroundRed, green: &backgroundGreen, blue: &backgroundBlue, alpha: &backgroundAlpha)
+
+            // The background of a navigation bar switches from being translucent to transparent when a background image is applied.
+            // Below, a background image is dynamically generated with the desired opacity.
+            UIGraphicsBeginImageContextWithOptions(CGSize(width: 1, height: 1),
+                                                   false,
+                                                   self.navigationBar.layer.contentsScale)
+            let context = UIGraphicsGetCurrentContext()!
+            context.setFillColor(red: backgroundRed, green: backgroundGreen, blue: backgroundBlue, alpha: backgroundAlpha * navigationBarAlpha)
+            UIRectFill(CGRect(x: 0, y: 0, width: 1, height: 1))
+            transparentBackground = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+
             self.navigationBar.setBackgroundImage(transparentBackground, for: .default)
             self.navigationBar.setBackgroundImage(transparentBackground, for: .compact)
             self.navigationBar.titleTextAttributes = [
-                NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(pow(mappedProgress, 10)),
+                NSAttributedString.Key.foregroundColor: ColorCompatibility.label.withAlphaComponent(pow(navigationBarAlpha, 10)),
             ]
         }
     }

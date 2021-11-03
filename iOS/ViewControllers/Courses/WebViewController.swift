@@ -9,7 +9,18 @@ import WebKit
 
 class WebViewController: UIViewController {
 
-    private var webView: WKWebView!
+    private lazy var webView: WKWebView = {
+        let webView = WKWebView(frame: self.view.frame, configuration: self.webViewConfiguration)
+        webView.navigationDelegate = self
+        webView.scrollView.delegate = self
+        return webView
+    }()
+
+    private lazy var webViewConfiguration: WKWebViewConfiguration = {
+        let webViewConfiguration = WKWebViewConfiguration()
+        webViewConfiguration.userContentController = WKUserContentController()
+        return webViewConfiguration
+    }()
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
@@ -40,6 +51,15 @@ class WebViewController: UIViewController {
         }
     }
 
+    var userScripts: [WKUserScript] = [] {
+        didSet {
+            self.webViewConfiguration.userContentController.removeAllUserScripts()
+            for userScript in self.userScripts {
+                self.webViewConfiguration.userContentController.addUserScript(userScript)
+            }
+        }
+    }
+
     private var shouldShowToolbar: Bool {
         return self.courseArea == .discussions || self.courseArea == .collabSpace
     }
@@ -64,11 +84,9 @@ class WebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initializeWebView()
 
+        self.addWebView()
         self.webView.isHidden = true
-        self.webView.navigationDelegate = self
-        self.webView.scrollView.delegate = self
 
         self.progress.alpha = 0.0
 
@@ -87,17 +105,15 @@ class WebViewController: UIViewController {
         }
     }
 
-    func initializeWebView() {
-         // The manual initialization is necessary due to a bug in MSCoding in iOS 10
-         self.webView = WKWebView(frame: self.view.frame)
-         self.view.addSubview(webView)
-         self.webView.translatesAutoresizingMaskIntoConstraints = false
-         NSLayoutConstraint.activate([
-             self.webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-             self.webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-             self.webView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-             self.webView.topAnchor.constraint(equalTo: self.view.topAnchor),
-         ])
+    func addWebView() {
+        self.view.addSubview(self.webView)
+        self.webView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.webView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.webView.topAnchor.constraint(equalTo: self.view.topAnchor),
+        ])
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -27,6 +27,7 @@ class CourseItemViewController: UIPageViewController {
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.isHidden = true
         return button
     }()
 
@@ -39,6 +40,7 @@ class CourseItemViewController: UIPageViewController {
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.isHidden = true
         return button
     }()
 
@@ -54,6 +56,8 @@ class CourseItemViewController: UIPageViewController {
             self.nextItem = self.currentItem?.nextItem
 
             self.navigationItem.rightBarButtonItem = self.generateActionMenuButton()
+
+            guard self.view.window != nil else { return }
             self.updateProgressLabel()
             self.updatePreviousAndNextItemButtons()
         }
@@ -98,6 +102,11 @@ class CourseItemViewController: UIPageViewController {
             self.nextItemButton.widthAnchor.constraint(equalToConstant: 44),
             self.nextItemButton.heightAnchor.constraint(equalToConstant: 44),
         ])
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.updatePreviousAndNextItemButtons()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

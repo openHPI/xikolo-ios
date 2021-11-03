@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nqh-d5-nYg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nqh-d5-nYg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,11 +14,11 @@
             <objects>
                 <viewController id="nqh-d5-nYg" customClass="CourseOverviewViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="dqL-Ck-wyy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="317"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="i6y-8o-FhA">
-                                <rect key="frame" x="0.0" y="35" width="414" height="250"/>
+                                <rect key="frame" x="0.0" y="51" width="414" height="250"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="5AS-Kt-uDc"/>
@@ -36,10 +36,10 @@
                                 </connections>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="lastBaseline" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EwB-7V-aR9">
-                                <rect key="frame" x="20" y="0.0" width="374" height="39"/>
+                                <rect key="frame" x="20" y="6" width="374" height="49"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Overview Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45R-pL-NFp">
-                                        <rect key="frame" x="0.0" y="0.5" width="318" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="0.5" width="325" height="23"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                         <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                                         </attributedString>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0A1-Ox-mcI" customClass="DynamicSizeButton" customModule="iOS" customModuleProvider="target">
-                                        <rect key="frame" x="326" y="0.0" width="48" height="32"/>
+                                        <rect key="frame" x="333" y="0.0" width="41" height="28"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                         <state key="normal" title="See all"/>
                                         <connections>
@@ -71,10 +71,12 @@
                             <constraint firstAttribute="bottom" secondItem="i6y-8o-FhA" secondAttribute="bottom" constant="16" id="qOv-Io-ODb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EwB-7V-aR9" secondAttribute="trailing" id="rgt-i3-bjA"/>
                             <constraint firstItem="i6y-8o-FhA" firstAttribute="top" secondItem="EwB-7V-aR9" secondAttribute="bottom" constant="-4" id="wGC-x4-hRD"/>
-                            <constraint firstItem="EwB-7V-aR9" firstAttribute="top" secondItem="dqL-Ck-wyy" secondAttribute="top" id="wWN-b2-kHa"/>
+                            <constraint firstItem="EwB-7V-aR9" firstAttribute="top" secondItem="dqL-Ck-wyy" secondAttribute="top" constant="6" id="wWN-b2-kHa">
+                                <variation key="widthClass=regular" constant="16"/>
+                            </constraint>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="414" height="301"/>
+                    <size key="freeformSize" width="414" height="317"/>
                     <connections>
                         <outlet property="buttonToCompleteList" destination="0A1-Ox-mcI" id="nhX-wr-Hna"/>
                         <outlet property="collectionView" destination="i6y-8o-FhA" id="TI5-j8-aGd"/>

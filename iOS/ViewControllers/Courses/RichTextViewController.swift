@@ -22,10 +22,10 @@ class RichTextViewController: UIViewController {
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var timeEffortView: UIView!
     @IBOutlet private weak var timeEffortLabel: UILabel!
-    @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var scrollViewTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var loadingScreen: UIView!
     @IBOutlet private weak var loadingScreenHeight: NSLayoutConstraint!
+    @IBOutlet private weak var spacerView: UIView!
     @IBOutlet private weak var descriptionView: UITextView!
     @IBOutlet private weak var displayIssuesButton: UIButton!
 
@@ -48,11 +48,12 @@ class RichTextViewController: UIViewController {
         self.titleView.text = self.courseItem.title
         self.descriptionView.isHidden = true
         self.displayIssuesButton.isHidden = true
+        self.spacerView.isHidden = true
         self.loadingScreen.isHidden = false
 
-        self.textView.delegate = self
-        self.textView.textContainerInset = UIEdgeInsets.zero
-        self.textView.textContainer.lineFragmentPadding = 0
+        self.descriptionView.delegate = self
+        self.descriptionView.textContainerInset = UIEdgeInsets.zero
+        self.descriptionView.textContainer.lineFragmentPadding = 0
 
         if #available(iOS 11, *) {
             // nothing to do here
@@ -60,7 +61,6 @@ class RichTextViewController: UIViewController {
             if let navigationBarHeight = self.navigationController?.navigationBar.frame.height {
                 self.scrollViewTopConstraint.constant = navigationBarHeight
             }
-
         }
 
         self.updateView()
@@ -78,8 +78,9 @@ class RichTextViewController: UIViewController {
         guard let richtext = self.courseItem.content as? RichText else { return }
 
         self.loadingScreen.isHidden = true
-        self.textView.setMarkdownWithImages(from: richtext.text)
+        self.descriptionView.setMarkdownWithImages(from: richtext.text)
         self.displayIssuesButton.isHidden = false
+        self.spacerView.isHidden = false
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

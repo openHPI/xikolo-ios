@@ -9,7 +9,7 @@ import UIKit
 
 class CourseHeaderView: UICollectionReusableView {
 
-    @IBOutlet private weak var backgroundView: UIVisualEffectView!
+    @IBOutlet private weak var backgroundView: UIView!
     @IBOutlet private weak var titleView: UILabel!
 
     override func awakeFromNib() {
@@ -17,12 +17,6 @@ class CourseHeaderView: UICollectionReusableView {
         self.backgroundView.layer.masksToBounds = true
         self.backgroundView.layer.cornerRadius = self.backgroundView.frame.height / 2
         self.backgroundView.backgroundColor = ColorCompatibility.systemBackground
-
-        if #available(iOS 13, *) {
-            self.backgroundView.effect = UIBlurEffect(style: .regular)
-        } else {
-            self.backgroundView.effect = UIBlurEffect(style: .light)
-        }
     }
 
     override func layoutSubviews() {

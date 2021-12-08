@@ -46,11 +46,11 @@
 	<array>
 		<dict>
 			<key>title</key>
-			<string>HPI Schul-Cloud</string>
+			<string>dBildungscloud</string>
 			<key>url</key>
-			<string>https://schul-cloud.org/</string>
+			<string>https://dbildungscloud.de</string>
 			<key>imageName</key>
-			<string>More/schulcloud</string>
+			<string>More/dBildungscloud</string>
 		</dict>
 	</array>
 	<key>courseClassifierSearchFilters</key>

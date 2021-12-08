@@ -1,9 +1,9 @@
-Wer als Lehrkraft die kommenden Generationen auf die Herausforderungen der Digitalisierung vorbereitet, muss sich selber permanent fortbilden. Dafür stellt das Hasso-Plattner-Institut (HPI) diese innovative, offene Lernplattform bereit.
+Wer als Lehrkraft die kommenden Generationen auf die Herausforderungen der Digitalisierung vorbereitet, muss sich selber permanent fortbilden. Dafür stellt das Hasso-Plattner-Institut (HPI) gemeinsam mit Dataport diese innovative, offene Lernplattform bereit und wird fortan gemeinsam zur Unterstützung der Schulbeteiligten auf dem Weg zum Einsatz digitaler Möglichkeiten im Unterricht weiterentwickelt.
 
-Das HPI ist seit 2012 Europas Pionier für kostenlose Massive Open Online Courses (MOOC). Sie kennen uns sicher bereits durch das Pilotprojekt HPI Schul-Cloud oder die Plattformen openHPI und mooc.house. Wir helfen gerne allen Schulen und ihrem pädagogischen Personal, sich in ganz Deutschland in unser Pilotprojekt HPI Schul-Cloud zu integrieren. Hier erhalten sie alle nützlichen Informationen, bekommen Einführungskurse und andere Aufzeichnungen angeboten und erfahren, welche Nutzungsszenarien, Best Practices und Erfahrungen von Kolleginnen und Kollegen nutzbar sind.
+Das HPI ist seit 2012 Europas Pionier für kostenlose Massive Open Online Courses (MOOC). Wir helfen gerne allen Schulen und ihrem pädagogischen Personal, sich in ganz Deutschland fortzubilden. Unsere Plattform bietet zu vielen Themen nützliche Informationen, Einführungskurse und OER-Material. Sind auch Sie interessiert, bei uns Kurse zu erstellen und anzubieten, nehmen Sie gerne Kontakt zu uns auf!
 
 Erweitern Sie Ihre Kompetenzen – kostenlos!
-Die kostenlosen Inhalte auf Lernen.cloud sollen es allen Lehrenden im deutschsprachigen Raum ermöglichen, ihre Kompetenzen vor allem auf diesen Feldern zu erweitern:
+Die kostenlosen Inhalte auf LERNEN.cloud sollen es allen Lehrenden im deutschsprachigen Raum ermöglichen, ihre Kompetenzen vor allem auf diesen Feldern zu erweitern:
 
 • Digitale Medien und Technologien
 • Didaktik (allgemeine und fachliche)
@@ -12,9 +12,9 @@ Die kostenlosen Inhalte auf Lernen.cloud sollen es allen Lehrenden im deutschspr
 • Recht
 
 Moderne Lehrkräfte-Fortbildung – an einer Stelle gebündelt!
-Lernen.cloud will bündeln, was Kultusministerien, Bildungsbehörden, gemeinnützige Institutionen und Organisationen aber auch sonstige Anbieter an Fortbildungs-Inhalten für Lehrkräfte bereitstellen. Derzeit sind wir noch dabei, klare Richtlinien für die Inhalte externer Anbieter zu formulieren. Wir achten auf jeden Fall sorgfältig auf Qualität, Praxisbezug, Neutralität und Freiheit von kommerziellen Botschaften.
+LERNEN.cloud will bündeln, was Kultusministerien, Bildungsbehörden, gemeinnützige Institutionen und Organisationen aber auch sonstige Anbieter an Fortbildungs-Inhalten für Lehrkräfte bereitstellen. Derzeit sind wir noch dabei, klare Richtlinien für die Inhalte externer Anbieter zu formulieren. Wir achten auf jeden Fall sorgfältig auf Qualität, Praxisbezug, Neutralität und Freiheit von kommerziellen Botschaften.
 
-Orts- und zeitunabhängige digitale Fortbildung mit Komfort Sie erwarten interaktive Fortbildungsangebote hoher Qualität, deren Nutzung Sie sich zeitlich flexibel einteilen können und für die Sie nicht zu festgelegten Terminen Präsenzveranstaltungen an weit entfernten Orten aufsuchen müssen? Dann sind Sie auf Lernen.cloud richtig aufgehoben und genießen diese Vorteile:
+Orts- und zeitunabhängige digitale Fortbildung mit Komfort Sie erwarten interaktive Fortbildungsangebote hoher Qualität, deren Nutzung Sie sich zeitlich flexibel einteilen können und für die Sie nicht zu festgelegten Terminen Präsenzveranstaltungen an weit entfernten Orten aufsuchen müssen? Dann sind Sie auf LERNEN.cloud richtig aufgehoben und genießen diese Vorteile:
 
 • Jederzeit und überall verfügbare kostenlose Online-Kurse
 • Von jedem Endgerät aus nutzbar
@@ -22,7 +22,7 @@ Orts- und zeitunabhängige digitale Fortbildung mit Komfort Sie erwarten interak
 • Kurze Lernvideos, Textinhalte, Downloads, Übungswerkzeuge, Selbsttests im Quiz-Format, Prüfungsaufgaben, gegenseitiges Bewerten
 • Reger Austausch mit anderen Lernenden in Diskussionsforen
 • In virtuellen Lerngruppen können Aufgaben im Team bearbeitet werden
-• Teilnehmende erhalten (je nach Kursdesign) eine Bescheinigung oder ein Zeugnis des Hasso-Plattner-Instituts
+• Teilnehmende können (je nach Kursdesign) eine Bescheinigung oder ein Zeugnis der Kursleitung erhalten
 
 Lehrende lernen bei uns mit Sicherheit!
 Beim HPI ist E-Learning seit vielen Jahren Gegenstand in Forschung und Lehre. Entsprechend umfangreiche Erfahrung bringen wir ein. Unsere digitale Lerninfrastruktur erfüllt höchste Sicherheitsstandards (BDSG und DSGVO-konform, Zertifizierung nach ISO 27001). Technik und Inhalte werden ständig weiterentwickelt. Das Lernverhalten der Teilnehmer weist uns Wissenschaftlern dabei den Weg. Die Daten werden vor der Analyse anonymisiert, sicher aufbewahrt und nicht weitergegeben.

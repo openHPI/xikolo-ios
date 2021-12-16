@@ -3,7 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-#include "../../Pods/Target Support Files/Pods-WidgetExtension/Pods-WidgetExtension.openwho-ios-release.xcconfig"
 #include "openWHO-Common.xcconfig"
 #include "../Release.xcconfig"
 

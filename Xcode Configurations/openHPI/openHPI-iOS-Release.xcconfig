@@ -3,7 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-#include "../../Pods/Target Support Files/Pods-iOS/Pods-iOS.openhpi-ios-release.xcconfig"
 #include "openHPI-Common.xcconfig"
 #include "../Release.xcconfig"
 

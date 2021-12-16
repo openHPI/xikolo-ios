@@ -3,7 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-#include "../../Pods/Target Support Files/Pods-iOS/Pods-iOS.opensap-ios-debug.xcconfig"
 #include "openSAP-Common.xcconfig"
 #include "../Debug.xcconfig"
 

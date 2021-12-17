@@ -228,7 +228,6 @@
 		508C30B0276B697B003AE388 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 508C30AF276B697B003AE388 /* Down */; };
 		508C3148276B6B32003AE388 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
 		508C3149276B6B32003AE388 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		508C314D276B8095003AE388 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 508C314C276B8095003AE388 /* Down */; };
 		508C314F276B80D6003AE388 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 508C314E276B80D6003AE388 /* Down */; };
 		508C3151276B8159003AE388 /* BrightFutures in Frameworks */ = {isa = PBXBuildFile; productRef = 508C3150276B8159003AE388 /* BrightFutures */; };
 		508C3154276B8C0E003AE388 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 508C3153276B8C0E003AE388 /* Rswift */; };
@@ -248,13 +247,13 @@
 		5095B1DC20EB570B00572924 /* Filemanager+temporaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */; };
 		5095B1DD20EB81E900572924 /* Crashlytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */; };
 		5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1DE20EBA9D700572924 /* UserDefaults+playbackRate.swift */; };
-		5095B1E220EBB45800572924 /* UserProfileHelperDelegateInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */; };
 		5095B1E420EBD41900572924 /* NSManagedObjectContext+typed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E320EBD41900572924 /* NSManagedObjectContext+typed.swift */; };
 		50A2042522FAC389004371C0 /* ColorCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2042422FAC389004371C0 /* ColorCompatibility.swift */; };
 		50A2042722FAD324004371C0 /* UITraitCollection+performAsCurrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2042622FAD324004371C0 /* UITraitCollection+performAsCurrent.swift */; };
 		50A7258F2339188000DE8338 /* CourseDates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A725912339188000DE8338 /* CourseDates.storyboard */; };
 		50A725942339188E00DE8338 /* CourseDateOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A725962339188E00DE8338 /* CourseDateOverview.storyboard */; };
 		50A9715C2498F14300D78FCA /* CourseItem+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A9715B2498F14300D78FCA /* CourseItem+URL.swift */; };
+		50AD2526276BCC000050831C /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 50AD2525276BCC000050831C /* Down */; };
 		50AD86152570F3D4003BDB80 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AD86142570F3D4003BDB80 /* WidgetKit.framework */; };
 		50AD86172570F3D5003BDB80 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AD86162570F3D4003BDB80 /* SwiftUI.framework */; };
 		50AD861A2570F3D5003BDB80 /* ContinueLearningWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD86192570F3D5003BDB80 /* ContinueLearningWidget.swift */; };
@@ -485,13 +484,6 @@
 			remoteGlobalIDString = 502CBDC32433716B00BF6001;
 			remoteInfo = Stockpile;
 		};
-		502CBE22243371FB00BF6001 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 502CBDC32433716B00BF6001;
-			remoteInfo = Stockpile;
-		};
 		5067AD372367042E00ADEAB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
@@ -526,6 +518,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 50FA2DEA20E4B1A800656776;
 			remoteInfo = "Common-old";
+		};
+		50AD2522276BCBC30050831C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 502CBDC32433716B00BF6001;
+			remoteInfo = Stockpile;
 		};
 		50AD86872570F5F3003BDB80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1242,7 +1241,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				508C314D276B8095003AE388 /* Down in Frameworks */,
+				50AD2526276BCC000050831C /* Down in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2552,7 +2551,7 @@
 			);
 			name = TodayExtension;
 			packageProductDependencies = (
-				508C314C276B8095003AE388 /* Down */,
+				50AD2525276BCC000050831C /* Down */,
 			);
 			productName = TodayExtension;
 			productReference = 50DA822423E587FC003BEDE1 /* today.appex */;
@@ -2570,7 +2569,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				502CBE23243371FB00BF6001 /* PBXTargetDependency */,
+				50AD2523276BCBC30050831C /* PBXTargetDependency */,
 			);
 			name = Common;
 			packageProductDependencies = (
@@ -2591,7 +2590,7 @@
 			attributes = {
 				DefaultBuildSystemTypeForWorkspace = Latest;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = HPI;
 				TargetAttributes = {
 					502CBDC32433716B00BF6001 = {
@@ -3468,12 +3467,6 @@
 			target = 502CBDC32433716B00BF6001 /* Stockpile */;
 			targetProxy = 502CBDCE2433716C00BF6001 /* PBXContainerItemProxy */;
 		};
-		502CBE23243371FB00BF6001 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = 502CBDC32433716B00BF6001 /* Stockpile */;
-			targetProxy = 502CBE22243371FB00BF6001 /* PBXContainerItemProxy */;
-		};
 		5067AD382367042E00ADEAB9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5067AD312367042E00ADEAB9 /* Binge */;
@@ -3498,6 +3491,12 @@
 			isa = PBXTargetDependency;
 			target = 50FA2DEA20E4B1A800656776 /* Common */;
 			targetProxy = 508C314A276B6B32003AE388 /* PBXContainerItemProxy */;
+		};
+		50AD2523276BCBC30050831C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 502CBDC32433716B00BF6001 /* Stockpile */;
+			targetProxy = 50AD2522276BCBC30050831C /* PBXContainerItemProxy */;
 		};
 		50AD86882570F5F3003BDB80 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8004,7 +8003,6 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -8071,7 +8069,6 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -8138,7 +8135,6 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -8205,7 +8201,6 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -10814,11 +10809,6 @@
 			package = 508C30AE276B697B003AE388 /* XCRemoteSwiftPackageReference "Down" */;
 			productName = Down;
 		};
-		508C314C276B8095003AE388 /* Down */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 508C30AE276B697B003AE388 /* XCRemoteSwiftPackageReference "Down" */;
-			productName = Down;
-		};
 		508C314E276B80D6003AE388 /* Down */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 508C30AE276B697B003AE388 /* XCRemoteSwiftPackageReference "Down" */;
@@ -10833,6 +10823,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 508C3152276B8C0D003AE388 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = Rswift;
+		};
+		50AD2525276BCC000050831C /* Down */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 508C30AE276B697B003AE388 /* XCRemoteSwiftPackageReference "Down" */;
+			productName = Down;
 		};
 /* End XCSwiftPackageProductDependency section */
 

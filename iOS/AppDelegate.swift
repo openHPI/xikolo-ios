@@ -14,8 +14,6 @@ let logger = Logger(subsystem: "de.xikolo.iOS", category: "iOS")
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private let userProfileHelperDelegateInstance = UserProfileHelperDelegateInstance()
-
     private lazy var pushEngineManager: SyncPushEngineManager = {
         return SyncPushEngineManager()
     }()
@@ -69,8 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.main.async {
             // Configure Firebase
             FirebaseApp.configure()
-
-            UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
             ErrorManager.shared.register(reporter: Crashlytics.crashlytics())
 

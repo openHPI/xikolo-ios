@@ -160,7 +160,6 @@ class WebViewController: UIViewController {
         self.webView.navigationDelegate = nil
         if self.webView.isLoading {
             self.webView.stopLoading()
-            NetworkIndicator.end()
         }
     }
 
@@ -199,8 +198,6 @@ class WebViewController: UIViewController {
 extension WebViewController: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        NetworkIndicator.start()
-
         if self.shouldShowToolbar {
             self.updateToolbarButtons()
         }
@@ -219,12 +216,6 @@ extension WebViewController: WKNavigationDelegate {
                 self.navigationController?.setToolbarHidden(false, animated: true)
             }
         }
-
-        NetworkIndicator.end()
-    }
-
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        NetworkIndicator.end()
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {

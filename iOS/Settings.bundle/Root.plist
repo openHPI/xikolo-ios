@@ -8,7 +8,7 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>File</key>
-			<string>PodLicenses</string>
+			<string>Licenses</string>
 			<key>Title</key>
 			<string>Acknowledgements</string>
 		</dict>

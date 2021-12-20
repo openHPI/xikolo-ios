@@ -2521,6 +2521,7 @@
 				50CF201220DCDBFC0011BFE9 /* Clear Build Number */,
 				02299DD82417E867006B2E52 /* Embed App Extension */,
 				50D60D2B20E0D2C7007A4199 /* Remove Localizations */,
+				50AD2527276C91D90050831C /* Compile Acknowledgements */,
 			);
 			buildRules = (
 			);
@@ -2878,6 +2879,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$SRCROOT/Build\\ Phases/clear-build-number.sh\n";
+		};
+		50AD2527276C91D90050831C /* Compile Acknowledgements */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Acknowledgements";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/Build\\ Phases/compile-acknowledgements.sh\n";
 		};
 		50CF1F4320DCDBFC0011BFE9 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -5,7 +5,7 @@
 
 BRAND_NAME = lernencloud
 PRODUCT_NAME = lernencloud
-DISPLAY_NAME = Lernen.cloud
+DISPLAY_NAME = LERNEN.cloud
 URL_SCHEME = lernencloud
 
 BASE_BUNDLE_IDENTIFIER = de.xikolo.lernencloud

@@ -118,11 +118,21 @@ class WebViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        if #available(iOS 11.0, *) {
+            self.navigationItem.largeTitleDisplayMode = .never
+        }
+
         if #available(iOS 15, *) {
             let appearance = UIToolbarAppearance()
             appearance.configureWithOpaqueBackground()
             self.navigationController?.toolbar.standardAppearance = appearance
             self.navigationController?.toolbar.scrollEdgeAppearance = appearance
+
+            let navigationBarAppearance = UINavigationBarAppearance()
+            navigationBarAppearance.configureWithOpaqueBackground()
+            self.navigationItem.standardAppearance = navigationBarAppearance
+            self.navigationItem.scrollEdgeAppearance = navigationBarAppearance
         }
     }
 

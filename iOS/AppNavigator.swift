@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -7,6 +7,7 @@ import Common
 import CoreSpotlight
 import UIKit
 
+// swiftlint:disable type_body_length
 class AppNavigator {
 
     private weak var currentCourseNavigationController: CourseNavigationController?
@@ -61,7 +62,7 @@ class AppNavigator {
 
         let webViewController = R.storyboard.webViewController.instantiateInitialViewController().require()
         webViewController.url = url
-        sourceViewController.navigationController?.pushViewController(webViewController, animated: trueUnlessReduceMotionEnabled)
+        sourceViewController.show(webViewController, sender: self)
 
         return true
     }
@@ -138,26 +139,26 @@ class AppNavigator {
         let courseArea = url.pathComponents[safe: 3]
         switch courseArea {
         case nil:
-            self.show(course: course, with: .courseDetails)
+            self.show(course: course, url: url)
             return true
         case "items":
             return self.handleCourseItemURL(url, for: course)
         case "pinboard":
-            self.show(course: course, with: .discussions)
+            self.show(course: course, with: .discussions, url: url)
             return true
         case "progress":
-            self.show(course: course, with: .progress)
+            self.show(course: course, with: .progress, url: url)
             return true
         case "announcements":
-            self.show(course: course, with: .announcements)
+            self.show(course: course, with: .announcements, url: url)
             return true
         case "recap":
             guard Brand.default.features.enableRecap else { return false }
-            self.show(course: course, with: .recap)
+            self.show(course: course, with: .recap, url: url)
             return true
         case "documents":
             guard Brand.default.features.enableDocuments else { return false }
-            self.show(course: course, with: .documents)
+            self.show(course: course, with: .documents, url: url)
             return true
         default:
             logger.info("Unable to open course area (\(courseArea ?? "")) for course (\(course.slug ?? "-")) inside the app")
@@ -170,14 +171,14 @@ class AppNavigator {
             let itemId = CourseItem.uuid(forBase62UUID: courseItemId) ?? courseItemId
             let itemFetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: itemId)
             if let courseItem = CoreDataHelper.viewContext.fetchSingle(itemFetchRequest).value {
-                self.show(item: courseItem)
+                self.show(item: courseItem, url: url)
                 return true
             } else {
                 logger.info("Unable to open course item (\(itemId)) for course (\(course.slug ?? "-")) inside the app")
                 return false
             }
         } else {
-            self.show(course: course, with: .learnings)
+            self.show(course: course, with: .learnings, url: url)
             return true
         }
     }
@@ -214,7 +215,11 @@ class AppNavigator {
     typealias CourseOpenAction = (CourseViewController) -> Void
     typealias CourseClosedAction = (CourseViewController, Bool) -> Void
 
-    func navigate(to course: Course, courseArea: CourseArea, courseOpenAction: CourseOpenAction, courseClosedAction: CourseClosedAction) {
+    func navigate(course: Course,
+                  courseArea: CourseArea,
+                  courseOpenAction: @escaping CourseOpenAction,
+                  courseClosedAction: @escaping CourseClosedAction,
+                  url: URL? = nil) {
         let currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
         let someCourseViewController = self.currentCourseNavigationController?.courseViewController
 
@@ -227,6 +232,47 @@ class AppNavigator {
             return
         }
 
+        let replaceAction: () -> Void = {
+            self.present(course: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+        }
+
+        if #available(iOS 13, *), UIDevice.current.userInterfaceIdiom == .pad, currentlyPresentsCourse, let url = url {
+            let newWindowAction: () -> Void = {
+                let userActivity = course.openCourseUserActivity
+                userActivity.userInfo?["url"] = url
+                UIApplication.shared.requestSceneSessionActivation(nil, userActivity: userActivity, options: nil, errorHandler: nil)
+            }
+
+            self.showCourseSwitchAlert(course: course, replaceAction: replaceAction, newWindowAction: newWindowAction)
+        } else {
+            replaceAction()
+        }
+    }
+
+    @available(iOS 13.0, *)
+    func showCourseSwitchAlert(course: Course, replaceAction: @escaping () -> Void, newWindowAction: @escaping () -> Void) {
+        let alertTitle = NSLocalizedString("alert.switch-course.title", comment: "title for alert when switching courses")
+        let alertMessageFormat = NSLocalizedString("alert.switch-course.message",
+                                                   comment: "Format string for the next section start in the footer of course item list")
+        let alertMessage = String(format: alertMessageFormat, course.title ?? "unknown")
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        alert.popoverPresentationController?.sourceView = self.tabBarController?.view
+        alert.addCancelAction()
+
+        let replaceActionTitle = NSLocalizedString("alert.switch-course.current-window",
+                                                   comment: "label close current course and open new course in the same window")
+        let openInCurrentWindowAction = UIAlertAction(title: replaceActionTitle, style: .default) { _ in replaceAction() }
+        alert.addAction(openInCurrentWindowAction)
+
+        let newWindowActionTitle = NSLocalizedString("alert.switch-course.new-window",
+                                                     comment: "label open new course in another window when switching courses")
+        let openInAnotherWindowAction = UIAlertAction(title: newWindowActionTitle, style: .default) { _ in newWindowAction() }
+        alert.addAction(openInAnotherWindowAction)
+
+        self.currentCourseNavigationController?.present(alert, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    func present(course: Course, courseArea: CourseArea, courseOpenAction: CourseOpenAction, courseClosedAction: CourseClosedAction) {
         self.currentCourseNavigationController?.closeCourse()
         self.currentCourseNavigationController = nil
 
@@ -249,19 +295,23 @@ class AppNavigator {
         }
     }
 
-    func show(course: Course, with courseArea: CourseArea = .learnings) {
+    func show(course: Course, with courseArea: CourseArea = .learnings, url: URL? = nil) {
         let courseOpenAction: CourseOpenAction = { courseViewController in
             courseViewController.transitionIfPossible(to: courseArea)
         }
 
-        let courseClosedAction: CourseClosedAction = { courseViewController, accessible in
+        let courseClosedAction: CourseClosedAction = { courseViewController, _ in
             courseViewController.transitionIfPossible(to: courseArea)
         }
 
-        self.navigate(to: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+        self.navigate(course: course,
+                      courseArea: courseArea,
+                      courseOpenAction: courseOpenAction,
+                      courseClosedAction: courseClosedAction,
+                      url: url)
     }
 
-    func show(item: CourseItem) {
+    func show(item: CourseItem, url: URL? = nil) {
         guard let course = item.section?.course else { return }
 
         let courseOpenAction: CourseOpenAction = { courseViewController in
@@ -273,10 +323,14 @@ class AppNavigator {
             courseViewController.show(item: item, animated: false)
         }
 
-        self.navigate(to: course, courseArea: .learnings, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+        self.navigate(course: course,
+                      courseArea: .learnings,
+                      courseOpenAction: courseOpenAction,
+                      courseClosedAction: courseClosedAction,
+                      url: url)
     }
 
-    func show(documentLocalization: DocumentLocalization) {
+    func show(documentLocalization: DocumentLocalization, url: URL? = nil) {
         guard let course = documentLocalization.document.courses.first else { return }
 
         let courseOpenAction: CourseOpenAction = { courseViewController in
@@ -288,7 +342,11 @@ class AppNavigator {
             courseViewController.show(documentLocalization: documentLocalization, animated: false)
         }
 
-        self.navigate(to: course, courseArea: .documents, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+        self.navigate(course: course,
+                      courseArea: .documents,
+                      courseOpenAction: courseOpenAction,
+                      courseClosedAction: courseClosedAction,
+                      url: url)
     }
 
     func presentDashboardLoginViewController() {

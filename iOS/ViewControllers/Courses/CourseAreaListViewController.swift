@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -80,9 +80,9 @@ class CourseAreaListViewController: UICollectionViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
-        coordinator.animate(alongsideTransition: { _ in
+        coordinator.animate { _ in
             self.collectionViewLayout.invalidateLayout()
-        }) { _ in // swiftlint:disable:this multiple_closures_with_trailing_closure
+        } completion: { _ in
             if let selectedIndexPath = self.selectedIndexPath {
                 self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: trueUnlessReduceMotionEnabled)
             }

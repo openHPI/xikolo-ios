@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -117,6 +117,12 @@ extension BingeMediaSelectionViewController {
                                         comment: "section title for subtitles and closed captions in the media option selection")
         default:
             return nil
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.textColor = UIColor(white: 0.9, alpha: 1)
         }
     }
 

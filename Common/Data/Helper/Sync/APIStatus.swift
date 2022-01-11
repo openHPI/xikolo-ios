@@ -1,32 +1,15 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 
 public enum APIStatus: Equatable {
-
     case standard
     case maintenance
     case deprecated(expiresOn: Date)
     case expired
-
-    public static func == (lhs: APIStatus, rhs: APIStatus) -> Bool {
-        switch (lhs, rhs) {
-        case (.standard, .standard):
-            return true
-        case (.maintenance, .maintenance):
-            return true
-        case let (.deprecated(lhsDate), .deprecated(rhsDate)):
-            return lhsDate == rhsDate
-        case (.expired, .expired):
-            return true
-        default:
-            return false
-        }
-    }
-
 }
 
 extension APIStatus {

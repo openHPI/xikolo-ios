@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -16,6 +16,7 @@ public enum LastVisitHelper {
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
+    @discardableResult
     public static func recordVisit( for item: CourseItem) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 

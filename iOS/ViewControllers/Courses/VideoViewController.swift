@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -44,7 +44,7 @@ class VideoViewController: UIViewController {
                 self.videoContainer.addConstraint(newConstraint)
             }
 
-            UIView.animate(withDuration: 0.25) {
+            UIView.animate(withDuration: defaultAnimationDuration) {
                 self.view.layoutIfNeeded()
             }
         }
@@ -64,10 +64,14 @@ class VideoViewController: UIViewController {
         }
     }
 
-    private var videoIsShownInFullScreen = false {
+    private(set) var videoIsShownInFullScreen = false {
         didSet {
             guard self.videoIsShownInFullScreen != oldValue else { return }
             self.updateUIForFullScreenMode(trueUnlessReduceMotionEnabled)
+
+            if let courseItemViewController = self.parent as? CourseItemViewController {
+                courseItemViewController.updatePreviousAndNextItemButtons()
+            }
         }
     }
 
@@ -387,13 +391,10 @@ class VideoViewController: UIViewController {
                 NSLayoutConstraint.deactivate(self.fullScreenConstraints)
             }
 
-            let animationDuration = animated ? 0.25 : 0
-
-            // swiftlint:disable:next trailing_closure
-            UIView.animate(withDuration: animationDuration, delay: 0, options: .layoutSubviews, animations: {
+            UIView.animate(withDuration: defaultAnimationDuration(animated), delay: 0, options: .layoutSubviews) {
                 self.updateCornersOfVideoContainer(for: self.traitCollection)
                 self.view.layoutIfNeeded()
-            })
+            }
         }
     }
 

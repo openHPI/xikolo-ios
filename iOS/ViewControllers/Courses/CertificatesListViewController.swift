@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -74,7 +74,7 @@ extension CertificatesListViewController: UICollectionViewDelegateFlowLayout {
 
         let boundingWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
         let minimalCardWidth = CertificateCell.minimalWidth(for: self.traitCollection)
-        let numberOfColumns = floor(boundingWidth / minimalCardWidth)
+        let numberOfColumns = max(1, floor(boundingWidth / minimalCardWidth))
         let columnWidth = boundingWidth / numberOfColumns
 
         let certificate = self.certificates[indexPath.item]
@@ -125,7 +125,7 @@ extension CertificatesListViewController { // CollectionViewDelegate
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
         let filename = [self.course.title, certificate.name].compactMap { $0 }.joined(separator: " - ")
         pdfViewController.configure(for: url, filename: filename)
-        self.navigationController?.pushViewController(pdfViewController, animated: trueUnlessReduceMotionEnabled)
+        self.show(pdfViewController, sender: self)
     }
 
 }

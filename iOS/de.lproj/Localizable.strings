@@ -20,6 +20,18 @@
 /* title of alert for stream download errors */
 "alert.download-error.stream.title" = "Fehler beim Video-Download";
 
+/* label close current course and open new course in the same window */
+"alert.switch-course.current-window" = "In diesem Fenster öffnen";
+
+/* Format string for the next section start in the footer of course item list */
+"alert.switch-course.message" = "Wie soll der Kurs '%@' geöffnet werden?";
+
+/* label open new course in another window when switching courses */
+"alert.switch-course.new-window" = "Im neuen Fenster öffnen";
+
+/* title for alert when switching courses */
+"alert.switch-course.title" = "Kurs-Wechsel";
+
 /* alert action title to mark all announcements as read */
 "announcement.alert.mark all as read" = "Alle als gelesen markieren";
 
@@ -40,6 +52,9 @@
 
 /* title of certificates view of course view */
 "course-area.view.certificates.title" = "Leistungsnachweise";
+
+/* title of collab spaces view of course view */
+"course-area.view.collab-space.title" = "Lernräume";
 
 /* title of course details view of course view */
 "course-area.view.course-details.title" = "Kursdetails";

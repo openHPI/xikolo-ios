@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -62,7 +62,7 @@ public struct TemporaryFile {
     public init(creatingTempDirectoryForFilename filename: String) throws {
         let (directory, deleteDirectory) = try FileManager.default.urlForUniqueTemporaryDirectory()
         self.directoryURL = directory
-        self.fileURL = directory.appendingPathComponent(filename)
+        self.fileURL = directory.appendingPathComponent(filename.replacingOccurrences(of: "/", with: "-"))
         self.deleteDirectory = deleteDirectory
     }
 }

@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -46,10 +46,9 @@ class DashboardViewController: CustomWidthViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
-        // swiftlint:disable:next trailing_closure
-        coordinator.animate(alongsideTransition: { _  in
+        coordinator.animate { _  in
             self.navigationController?.navigationBar.sizeToFit()
-        })
+        }
     }
 
 }

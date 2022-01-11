@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -15,10 +15,9 @@ public class LoadingScreen: UIViewController {
         super.viewDidLoad()
         self.view.alpha = 0.0
 
-        // swiftlint:disable trailing_closure
-        UIView.animate(withDuration: 0.25, delay: 1.25, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: defaultAnimationDuration, delay: 1.25, options: .curveEaseIn) {
             self.view.alpha = 1.0
-        })
+        }
 
         let progressValue: CGFloat? = nil
         progressView.updateProgress(progressValue)

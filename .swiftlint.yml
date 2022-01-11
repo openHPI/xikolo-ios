@@ -59,7 +59,6 @@ opt_in_rules:
 - toggle_bool
 - trailing_closure
 - unavailable_function
-- unneeded_notification_center_removal
 - unneeded_parentheses_in_closure_argument
 - unowned_variable_capture
 - untyped_error_in_catch
@@ -100,14 +99,14 @@ multiline_arguments:
 file_header:
   required_pattern: |
                     \/\/
-                    \/\/  Created for xikolo-ios under MIT license\.
+                    \/\/  Created for xikolo-ios under GPL-3.0 license\.
                     \/\/  Copyright © HPI\. All rights reserved\.
                     \/\/
 
 custom_rules:
   closing_brace_whitespace:
     included: ".*.swift"
-    regex: '(?:\n| {2,})\}\)? *\n *(?!set |set\(|case |default)[^ \n\})\]\#\/]'
+    regex: '(?:\n| {2,})\}\)? *\n *(?!set |set\(|case |default|\.)[^ \n\})\]\#\/]'
     name: "Closing Brace Whitespace"
     message: "Empty line required after closing curly braces if code with same indentation follows."
     severity: warning

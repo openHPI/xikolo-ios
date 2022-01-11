@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -109,7 +109,7 @@ enum DownloadedContentHelper {
             do {
                 let downloadedResources = try privateManagedObjectContext.fetch(fetchRequest)
                 for resource in downloadedResources {
-                    if let course = resource[keyPath: courseKeyPath] {
+                    if let course = resource[keyPath: courseKeyPath], persistenceManager.downloadState(for: resource) == .downloaded {
                         let fileSize = persistenceManager.fileSize(for: resource)
                         let courseItem = courseItemKeyPath.flatMap { resource[keyPath: $0] }
                         let originalTimeEffort = courseItem?.timeEffort

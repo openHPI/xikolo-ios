@@ -12,7 +12,7 @@
 
 ## Development Toolchain
 
-- Xcode 12
+- Xcode 13
 - bundler: `gem install bundler`
 
 The following tools will be installed via bundler:
@@ -80,7 +80,7 @@ The application fetches multiple resources from the backend. For a `Resource`, a
 To allow better code reusability, we restructured the codebase in multiple modules. For one, this reduces the application size as resources are not additionally bundled when used in an app extension. It also prevents you from going crazy by ticking hundreds of checkboxes for the target membership.  
 Important modules are listed below. If applicalble and neccesary, those modules can be further split up.
 
-#### Commom
+#### Common
 
 The `Common` module holds the core functionality of the app, which is required in all targets. It includes the CoreData models, API abstraction layer, common functionalities and generic helpers.
 
@@ -96,9 +96,13 @@ The `Binge` module provides a custom video player which in contrast to `AVPlayer
 
 The `iOS` target is the main application.
 
-#### Today
+#### TodayExtension
 
-The `Today` target provides the today app extension (widget in the today view, considered legacy in iOS 14 and later).
+The `TodayExtension` target provides the today app extension (widget in the today view, considered legacy in iOS 14 and later).
+
+#### WidgetExtension
+
+The `WidgetExtension` target provides the widget extension for iOS 14 and later (widgets on homescreen)
 
 ## Code of Conduct
 
@@ -106,4 +110,4 @@ Help us keep this project open and inclusive. Please read and follow our [Code o
 
 ## License
 
-This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file.
+This project is licensed under the terms of the GPL-3.0 license. See the [LICENSE](LICENSE) file.

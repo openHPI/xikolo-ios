@@ -3,6 +3,5 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-#include "../../Pods/Target Support Files/Pods-iOS-Tests/Pods-iOS-Tests.lernencloud-ios-debug.xcconfig"
 #include "lernencloud-Common.xcconfig"
 #include "../Tests.xcconfig"

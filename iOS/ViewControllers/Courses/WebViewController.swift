@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -9,7 +9,18 @@ import WebKit
 
 class WebViewController: UIViewController {
 
-    private var webView: WKWebView!
+    private lazy var webView: WKWebView = {
+        let webView = WKWebView(frame: self.view.frame, configuration: self.webViewConfiguration)
+        webView.navigationDelegate = self
+        webView.scrollView.delegate = self
+        return webView
+    }()
+
+    private lazy var webViewConfiguration: WKWebViewConfiguration = {
+        let webViewConfiguration = WKWebViewConfiguration()
+        webViewConfiguration.userContentController = WKUserContentController()
+        return webViewConfiguration
+    }()
 
     weak var scrollDelegate: CourseAreaScrollDelegate?
 
@@ -40,12 +51,22 @@ class WebViewController: UIViewController {
         }
     }
 
+    var userScripts: [WKUserScript] = [] {
+        didSet {
+            self.webViewConfiguration.userContentController.removeAllUserScripts()
+            for userScript in self.userScripts {
+                self.webViewConfiguration.userContentController.addUserScript(userScript)
+            }
+        }
+    }
+
     private var shouldShowToolbar: Bool {
-        return self.courseArea == .discussions
+        return self.courseArea == .discussions || self.courseArea == .collabSpace
     }
 
     private var webViewCanGoBack: Bool {
-        // WKWebView.canGoBack returns false values. So we check for the initial URL instead.
+        // WKWebView.canGoBack returns incorrect values as we have to set the headers for the request again.
+        // So we check for the initial URL instead.
         return self.webView.url != self.url
     }
 
@@ -63,11 +84,9 @@ class WebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initializeWebView()
 
+        self.addWebView()
         self.webView.isHidden = true
-        self.webView.navigationDelegate = self
-        self.webView.scrollView.delegate = self
 
         self.progress.alpha = 0.0
 
@@ -81,23 +100,41 @@ class WebViewController: UIViewController {
 
         self.toolbarItems = [self.backBarButton]
 
-        UIView.animate(withDuration: 0.25, delay: 0.5, options: .curveLinear, animations: {
+        UIView.animate(withDuration: defaultAnimationDuration, delay: 0.5, options: .curveLinear) {
             self.progress.alpha = CGFloat(1.0)
-        }, completion: nil)
+        }
     }
 
-    func initializeWebView() {
-         // The manual initialization is necessary due to a bug in MSCoding in iOS 10
-         self.webView = WKWebView(frame: self.view.frame)
-         self.view.addSubview(webView)
-         self.webView.translatesAutoresizingMaskIntoConstraints = false
-         NSLayoutConstraint.activate([
-             self.webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-             self.webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-             self.webView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-             self.webView.topAnchor.constraint(equalTo: self.view.topAnchor),
-         ])
-     }
+    func addWebView() {
+        self.view.addSubview(self.webView)
+        self.webView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.webView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.webView.topAnchor.constraint(equalTo: self.view.topAnchor),
+        ])
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if #available(iOS 11.0, *) {
+            self.navigationItem.largeTitleDisplayMode = .never
+        }
+
+        if #available(iOS 15, *) {
+            let appearance = UIToolbarAppearance()
+            appearance.configureWithOpaqueBackground()
+            self.navigationController?.toolbar.standardAppearance = appearance
+            self.navigationController?.toolbar.scrollEdgeAppearance = appearance
+
+            let navigationBarAppearance = UINavigationBarAppearance()
+            navigationBarAppearance.configureWithOpaqueBackground()
+            self.navigationItem.standardAppearance = navigationBarAppearance
+            self.navigationItem.scrollEdgeAppearance = navigationBarAppearance
+        }
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -133,7 +170,6 @@ class WebViewController: UIViewController {
         self.webView.navigationDelegate = nil
         if self.webView.isLoading {
             self.webView.stopLoading()
-            NetworkIndicator.end()
         }
     }
 
@@ -162,6 +198,7 @@ class WebViewController: UIViewController {
 
     @objc private func goBack() {
         guard self.webViewCanGoBack else { return }
+        self.webView.stopLoading()
         self.webView.goBack()
         self.updateToolbarButtons()
     }
@@ -171,8 +208,6 @@ class WebViewController: UIViewController {
 extension WebViewController: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        NetworkIndicator.start()
-
         if self.shouldShowToolbar {
             self.updateToolbarButtons()
         }
@@ -191,12 +226,6 @@ extension WebViewController: WKNavigationDelegate {
                 self.navigationController?.setToolbarHidden(false, animated: true)
             }
         }
-
-        NetworkIndicator.end()
-    }
-
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        NetworkIndicator.end()
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -230,6 +259,10 @@ extension WebViewController: WKNavigationDelegate {
         }
 
         if navigationAction.request.httpMethod == "POST" {
+            return decisionHandler(.allow)
+        }
+
+        if navigationAction.navigationType == .backForward {
             return decisionHandler(.allow)
         }
 
@@ -286,6 +319,8 @@ extension WebViewController: CourseAreaViewController {
             urlComponents?.queryItems = [URLQueryItem(name: "course_id", value: course.id)]
             self.url = urlComponents?.url
             TrackingHelper.createEvent(.visitedRecap, inCourse: course, on: self)
+        } else if let slug = course.slug, area == .collabSpace {
+            self.url = Routes.courses.appendingPathComponents([slug, "learning_rooms"])
         }
     }
 

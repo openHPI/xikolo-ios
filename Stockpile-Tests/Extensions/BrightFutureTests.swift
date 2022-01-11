@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -35,8 +35,8 @@ class BrightFutureTests: XCTestCase {
 
         // Then
         XCTAssertTrue(resultFuture.isSuccess)
-        let value = XCTUnwrap(resultFuture.value)
-        XCTAssertTrue(value)
+        let result = XCTUnwrap(resultFuture.value)
+        XCTAssertTrue(result)
     }
 
     func testInjectOuterFailure() {

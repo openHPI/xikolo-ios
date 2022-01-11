@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -17,6 +17,33 @@ class CourseItemViewController: UIPageViewController {
         return label
     }()
 
+    private lazy var previousItemButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(R.image.chevronRight(), for: .normal)
+        button.addTarget(self, action: #selector(showPreviousItem), for: .touchUpInside)
+        button.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isHidden = true
+        return button
+    }()
+
+    private lazy var nextItemButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(R.image.chevronRight(), for: .normal)
+        button.addTarget(self, action: #selector(showNextItem), for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isHidden = true
+        return button
+    }()
+
     private var previousItem: CourseItem?
     private var nextItem: CourseItem?
 
@@ -29,7 +56,10 @@ class CourseItemViewController: UIPageViewController {
             self.nextItem = self.currentItem?.nextItem
 
             self.navigationItem.rightBarButtonItem = self.generateActionMenuButton()
+
+            guard self.view.window != nil else { return }
             self.updateProgressLabel()
+            self.updatePreviousAndNextItemButtons()
         }
     }
 
@@ -47,6 +77,43 @@ class CourseItemViewController: UIPageViewController {
         guard let item = self.currentItem else { return }
         guard let newViewController = self.viewController(for: item) else { return }
         self.setViewControllers([newViewController], direction: .forward, animated: false)
+
+        self.view.addSubview(self.previousItemButton)
+        self.view.addSubview(self.nextItemButton)
+        NSLayoutConstraint.activate([
+            self.previousItemButton.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
+            NSLayoutConstraint(item: self.previousItemButton,
+                               attribute: .centerY,
+                               relatedBy: .equal,
+                               toItem: self.view.layoutMarginsGuide,
+                               attribute: .centerY,
+                               multiplier: 1.0,
+                               constant: -32),
+            self.previousItemButton.widthAnchor.constraint(equalToConstant: 44),
+            self.previousItemButton.heightAnchor.constraint(equalToConstant: 44),
+            self.nextItemButton.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor),
+            NSLayoutConstraint(item: self.nextItemButton,
+                               attribute: .centerY,
+                               relatedBy: .equal,
+                               toItem: self.view.layoutMarginsGuide,
+                               attribute: .centerY,
+                               multiplier: 1.0,
+                               constant: -32),
+            self.nextItemButton.widthAnchor.constraint(equalToConstant: 44),
+            self.nextItemButton.heightAnchor.constraint(equalToConstant: 44),
+        ])
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.updatePreviousAndNextItemButtons()
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate { _ in
+            self.updatePreviousAndNextItemButtons()
+        }
     }
 
     func reload(animated: Bool) {
@@ -86,6 +153,24 @@ class CourseItemViewController: UIPageViewController {
 
         viewController?.configure(for: item)
         return viewController
+    }
+
+    @objc private func showPreviousItem() {
+        guard let item = self.previousItem else { return }
+        guard let newViewController = self.viewController(for: item) else { return }
+        self.setViewControllers([newViewController], direction: .reverse, animated: true) { completed in
+            guard completed else { return }
+            self.currentItem = item
+        }
+    }
+
+    @objc private func showNextItem() {
+        guard let item = self.nextItem else { return }
+        guard let newViewController = self.viewController(for: item) else { return }
+        self.setViewControllers([newViewController], direction: .forward, animated: true) { completed in
+            guard completed else { return }
+            self.currentItem = item
+        }
     }
 
     private func trackItemVisit() {
@@ -144,6 +229,25 @@ class CourseItemViewController: UIPageViewController {
         } else {
             self.progressLabel.text = nil
         }
+    }
+
+    func updatePreviousAndNextItemButtons() {
+        let enoughSpaceForButtons: Bool = {
+            if #available(iOS 11, *) {
+                let insets = NSDirectionalEdgeInsets.readableContentInsets(for: self)
+                return insets.leading >= 84
+            } else {
+                return false
+            }
+        }()
+
+        let childViewControllerIsFullScreen: Bool = {
+            guard let videoViewController = self.viewControllers?.first as? VideoViewController else { return false }
+            return videoViewController.videoIsShownInFullScreen
+        }()
+
+        self.previousItemButton.isHidden = !enoughSpaceForButtons || childViewControllerIsFullScreen || self.previousItem == nil
+        self.nextItemButton.isHidden = !enoughSpaceForButtons || childViewControllerIsFullScreen || self.nextItem == nil
     }
 
     private func shareCourseItem() {

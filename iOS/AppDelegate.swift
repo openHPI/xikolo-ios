@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -14,10 +14,8 @@ let logger = Logger(subsystem: "de.xikolo.iOS", category: "iOS")
 @available(iOS 13, *)
 private let notificationDelegate = XikoloNotificationDelegate()
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    private let userProfileHelperDelegateInstance = UserProfileHelperDelegateInstance()
 
     private lazy var pushEngineManager: SyncPushEngineManager = {
         return SyncPushEngineManager()
@@ -72,8 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Configure Firebase
             FirebaseApp.configure()
 
-            UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
-
             ErrorManager.shared.register(reporter: Crashlytics.crashlytics())
 
             // register resource to be pushed automatically
@@ -87,6 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             SlidesPersistenceManager.shared.restoreDownloads()
 
             SpotlightHelper.shared.startObserving()
+            WidgetHelper.shared.startObserving()
 
             do {
                 try ReachabilityHelper.startObserving()
@@ -161,6 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ReachabilityHelper.stopObserving()
         self.pushEngineManager.stopObserving()
         SpotlightHelper.shared.stopObserving()
+        WidgetHelper.shared.stopObserving()
     }
 
     func application(_ application: UIApplication,

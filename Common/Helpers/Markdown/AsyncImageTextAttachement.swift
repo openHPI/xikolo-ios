@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -62,6 +62,9 @@ class AsyncImageTextAttachment: NSTextAttachment {
                 let newImageSize = image.size
                 displaySizeChanged = newImageSize != self.imageSize
                 self.imageSize = newImageSize
+            } else {
+                displaySizeChanged = self.imageSize != .zero
+                self.imageSize = .zero
             }
 
             DispatchQueue.main.async {
@@ -94,9 +97,13 @@ class AsyncImageTextAttachment: NSTextAttachment {
 
         guard let imageSize = self.imageSize, imageSize.width > 0 else { return .zero }
 
-        let factor = lineFrag.size.width / imageSize.width
-        let size = CGSize(width: imageSize.width * factor, height: imageSize.height * factor)
-        return CGRect(origin: .zero, size: size)
+        if lineFrag.size.width < imageSize.width {
+            let factor = lineFrag.size.width / imageSize.width
+            let size = CGSize(width: imageSize.width * factor, height: imageSize.height * factor)
+            return CGRect(origin: .zero, size: size)
+        } else {
+            return CGRect(origin: .zero, size: imageSize)
+        }
     }
 
 }

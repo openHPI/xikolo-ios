@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -132,12 +132,20 @@ class CoreDataTableViewDiffableDataSource<Delegate: CoreDataTableViewDataSourceD
         let currentSnapshot = self.snapshot()
 
         let reloadIdentifiers: [NSManagedObjectID] = snapshot.itemIdentifiers.compactMap { itemIdentifier in
-            guard let currentIndex = currentSnapshot.indexOfItem(itemIdentifier), let index = snapshot.indexOfItem(itemIdentifier), index == currentIndex else {
+            guard let currentIndex = currentSnapshot.indexOfItem(itemIdentifier),
+                  let index = snapshot.indexOfItem(itemIdentifier),
+                  index == currentIndex else {
                 return nil
             }
-            guard let existingObject = try? controller.managedObjectContext.existingObject(with: itemIdentifier), existingObject.isUpdated else { return nil }
+
+            guard let existingObject = try? controller.managedObjectContext.existingObject(with: itemIdentifier),
+                  existingObject.isUpdated else {
+                return nil
+            }
+
             return itemIdentifier
         }
+
         snapshot.reloadItems(reloadIdentifiers)
 
         // Workaround: Calling with `animatingDifferences` set to `false`.

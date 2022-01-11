@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -116,7 +116,7 @@ class CourseDateOverviewViewController: UIViewController {
     }
 
     private func updateWidthConstraints() {
-        let cellWidth = CourseCell.minimalWidth(for: self.traitCollection)
+        let cellWidth = CourseCell.minimalWidthInOverviewList(for: self.traitCollection)
         self.summaryWidthConstraint.constant = cellWidth - 2 * CourseCell.cardInset
         self.nextUpWidthConstraint.constant = cellWidth - 2 * CourseCell.cardInset
     }

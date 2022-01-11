@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -10,6 +10,8 @@ extension CourseItem {
 
     var image: UIImage? {
         switch self.icon {
+        case "assistant":
+            return R.image.courseItemIcons.assistant()
         case "bonus_lti_exercise":
             return R.image.courseItemIcons.bonusLtiExercise()
         case "bonus_quiz":

@@ -40,6 +40,8 @@
 		<true/>
 		<key>enableDocuments</key>
 		<false/>
+		<key>enableCollabSpace</key>
+		<true/>
 		<key>enableRecap</key>
 		<true/>
 		<key>showCourseDates</key>
@@ -51,8 +53,8 @@
 	</dict>
 	<key>courseClassifierSearchFilters</key>
 	<dict>
-		<key>category</key>
-		<string>track</string>
+		<key>topic</key>
+		<string>topic</string>
 	</dict>
 	<key>additionalLearningMaterial</key>
 	<array>

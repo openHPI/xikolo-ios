@@ -1,10 +1,16 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
 import Common
 import UIKit
+
+@available(iOS 13.0, *)
+enum UserActivityAction {
+    case courseArea(CourseArea)
+    case action((CourseViewController) -> Void)
+}
 
 @available(iOS 13.0, *)
 class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -36,6 +42,15 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
         let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
         courseViewController.course = course
 
+        switch action(for: userActivity) {
+        case let .courseArea(area):
+            courseViewController.transitionIfPossible(to: area)
+        case let .action(action):
+            action(courseViewController)
+        case .none:
+            courseViewController.transitionIfPossible(to: .courseDetails)
+        }
+
         if let windowScene = scene as? UIWindowScene {
             self.window = UIWindow(windowScene: windowScene)
             self.window?.rootViewController = self.courseNavigationController
@@ -54,6 +69,46 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
         return scene.userActivity
+    }
+
+    // swiftlint:disable:next cyclomatic_complexity
+    private func action(for userActivity: NSUserActivity?) -> UserActivityAction? {
+        guard let url = userActivity?.userInfo?["url"] as? URL else {
+            return nil
+        }
+
+        switch url.pathComponents[safe: 3] {
+        case nil:
+            return .courseArea(.learnings)
+        case "items":
+            if let courseItemId = url.pathComponents[safe: 4] {
+                let itemId = CourseItem.uuid(forBase62UUID: courseItemId) ?? courseItemId
+                let itemFetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: itemId)
+                if let courseItem = CoreDataHelper.viewContext.fetchSingle(itemFetchRequest).value {
+                    return .action({ courseViewController in
+                        courseViewController.show(item: courseItem, animated: trueUnlessReduceMotionEnabled)
+                    })
+                } else {
+                    return .courseArea(.learnings)
+                }
+            } else {
+                return .courseArea(.learnings)
+            }
+        case "pinboard":
+            return .courseArea(.discussions)
+        case "progress":
+            return .courseArea(.progress)
+        case "announcements":
+            return .courseArea(.announcements)
+        case "recap":
+            guard Brand.default.features.enableRecap else { return nil }
+            return .courseArea(.recap)
+        case "documents":
+            guard Brand.default.features.enableDocuments else { return nil }
+            return .courseArea(.documents)
+        default:
+            return nil
+        }
     }
 
 }

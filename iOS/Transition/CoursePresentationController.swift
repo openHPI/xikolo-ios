@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -53,10 +53,9 @@ final class CoursePresentationController: UIPresentationController {
             return
         }
 
-        // swiftlint:disable:next trailing_closure
-        coordinator.animate(alongsideTransition: { _ in
+        coordinator.animate { _ in
             self.dimmingView.alpha = 1.0
-        })
+        }
     }
 
     override func dismissalTransitionWillBegin() {
@@ -65,10 +64,9 @@ final class CoursePresentationController: UIPresentationController {
             return
         }
 
-        // swiftlint:disable:next trailing_closure
-        coordinator.animate(alongsideTransition: { _ in
+        coordinator.animate { _ in
             self.dimmingView.alpha = 0.1
-        })
+        }
     }
 
     override var shouldRemovePresentersView: Bool {

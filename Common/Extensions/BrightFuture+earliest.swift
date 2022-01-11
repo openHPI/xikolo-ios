@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -14,7 +14,7 @@ extension AsyncType {
 
     public func earliest(_ queue: DispatchQueue, at time: DispatchTime) -> Self {
         return Self { complete in
-            onComplete(ImmediateExecutionContext) { result in
+            onComplete(immediateExecutionContext) { result in
                 queue.asyncAfter(deadline: time) {
                     complete(result)
                 }

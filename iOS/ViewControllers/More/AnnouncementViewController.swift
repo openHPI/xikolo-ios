@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -18,7 +18,7 @@ class AnnouncementViewController: UIViewController {
 
     private var announcementObserver: ManagedObjectObserver?
 
-    private var showCourseTitle: Bool = false
+    private var showCourseTitle = false
     private var announcement: Announcement! {
         didSet {
             self.announcementObserver = ManagedObjectObserver(object: self.announcement) { [weak self] type in

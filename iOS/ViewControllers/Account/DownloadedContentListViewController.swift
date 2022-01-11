@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -127,21 +127,28 @@ class DownloadedContentListViewController: UITableViewController {
 
     @discardableResult
     private func refresh() -> Future<[DownloadedContentHelper.DownloadContent], XikoloError> {
-        return DownloadedContentHelper.downloadedContentForAllCourses().onSuccess { downloadItems in
-            var downloadedCourseList: [String: CourseDownload] = [:]
-
-            for downloadItem in downloadItems {
-                let courseId = downloadItem.courseID
-                var courseDownload = downloadedCourseList[courseId, default: CourseDownload(id: courseId, title: downloadItem.courseTitle ?? "")]
-                courseDownload.byteCounts[downloadItem.contentType, default: 0] += downloadItem.fileSize ?? 0
-                courseDownload.timeEffort += ceil(TimeInterval(downloadItem.timeEffort ?? 0) / 60) * 60 // round up to full minutes
-                downloadedCourseList[downloadItem.courseID] = courseDownload
-            }
-
-            self.courseDownloads = downloadedCourseList.values.sorted { $0.title < $1.title }
+        return DownloadedContentHelper.downloadedContentForAllCourses().onSuccess { [weak self] downloadItems in
+            guard let self = self else { return }
+            let aggregatedCourseDownloads = self.aggregatedCourseDownloads(for: downloadItems)
+            self.courseDownloads = aggregatedCourseDownloads.values.sorted { $0.title < $1.title }
         }.onFailure { error in
             logger.error(error.localizedDescription)
         }
+    }
+
+    private func aggregatedCourseDownloads(for downloadItems: [DownloadedContentHelper.DownloadContent]) -> [String: CourseDownload] {
+        var downloadedCourseList: [String: CourseDownload] = [:]
+
+        for downloadItem in downloadItems {
+            let courseId = downloadItem.courseID
+            var courseDownload = downloadedCourseList[courseId, default: CourseDownload(id: courseId, title: downloadItem.courseTitle ?? "")]
+            courseDownload.byteCounts[downloadItem.contentType, default: 0] += downloadItem.fileSize ?? 0
+            let timeEffort = ceil(TimeInterval(downloadItem.timeEffort ?? 0) / 60) * 60 // round up to full minutes
+            courseDownload.timeEffort += timeEffort
+            downloadedCourseList[downloadItem.courseID] = courseDownload
+        }
+
+        return downloadedCourseList
     }
 
     private func updateTotalFileSizeLabel() {
@@ -193,7 +200,8 @@ extension DownloadedContentListViewController { // Table view data source
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.courseDownloads[section].title
+        // When deleting the last item from a course, this method is called. So we play it safe and don't risk an 'Index out of range' error.
+        return self.courseDownloads[safe: section]?.title
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
@@ -217,18 +225,18 @@ extension DownloadedContentListViewController { // Table view data source
 
         let courseId = self.courseDownloads[indexPath.section].id
 
-        switch self.downloadType(for: indexPath) {
-        case .video:
-            let viewController = DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedStreamsListConfiguration.self)
-            self.navigationController?.pushViewController(viewController, animated: trueUnlessReduceMotionEnabled)
-        case .slides:
-            let viewController = DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedSlidesListConfiguration.self)
-            self.navigationController?.pushViewController(viewController, animated: trueUnlessReduceMotionEnabled)
-        case .document:
-            let viewController = DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedDocumentsListConfiguration.self)
-            self.navigationController?.pushViewController(viewController, animated: trueUnlessReduceMotionEnabled)
-        }
+        let viewController: UIViewController = {
+            switch self.downloadType(for: indexPath) {
+            case .video:
+                return DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedStreamsListConfiguration.self)
+            case .slides:
+                return DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedSlidesListConfiguration.self)
+            case .document:
+                return DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedDocumentsListConfiguration.self)
+            }
+        }()
 
+        self.show(viewController, sender: self)
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -263,7 +271,8 @@ extension DownloadedContentListViewController { // editing
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
 
-        let alert = UIAlertController { _ in
+        let alert = UIAlertController { [weak self] _ in
+            guard let self = self else { return }
             let downloadItem = self.courseDownloads[indexPath.section]
             let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
             self.downloadType(for: indexPath).persistenceManager.deleteDownloads(for: course)

@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -57,7 +57,7 @@ class AccountViewController: UITableViewController {
         if inApp {
             let webViewController = R.storyboard.webViewController.instantiateInitialViewController().require()
             webViewController.url = url
-            self.navigationController?.pushViewController(webViewController, animated: trueUnlessReduceMotionEnabled)
+            self.show(webViewController, sender: self)
             self.shouldSynchronizeUser = true
         } else {
             let safariVC = SFSafariViewController(url: url)

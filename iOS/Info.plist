@@ -6,6 +6,8 @@
 	<string>$(ACTIVITY_TYPE_OPEN_COURSE)</string>
 	<key>APP_GROUP_IDENTIFIER</key>
 	<string>$(APP_GROUP_IDENTIFIER)</string>
+	<key>AVInitialRouteSharingPolicy</key>
+	<string>LongFormVideo</string>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>de.xikolo.ios.background.download</string>
@@ -25,7 +27,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.11.0</string>
+	<string>2.12.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>

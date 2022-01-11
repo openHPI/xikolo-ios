@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -125,7 +125,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
         let overlappingOffset = 0.5 * viewHeight - keyboardHeight - self.emailField.frame.size.height - 8.0
         self.centerInputFieldsConstraints.constant = min(overlappingOffset, 0)  // we only want to move the container upwards
 
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: defaultAnimationDuration) {
             self.view.layoutIfNeeded()
         }
     }
@@ -133,7 +133,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
     @objc func adjustViewForKeyboardHide(_ notification: Notification) {
         self.centerInputFieldsConstraints.constant = 0
 
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: defaultAnimationDuration) {
             self.view.layoutIfNeeded()
         }
     }

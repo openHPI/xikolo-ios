@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -15,3 +15,5 @@ PRODUCT_BUNDLE_IDENTIFIER = $(BASE_BUNDLE_IDENTIFIER)$(IDENTIFIER_SUFFIX)$(EXTEN
 ACTIVITY_TYPE_OPEN_COURSE = $(BASE_BUNDLE_IDENTIFIER)$(IDENTIFIER_SUFFIX).course.open
 
 CODE_SIGN_ENTITLEMENTS = iOS/Branding/${BRAND_NAME}/ios.entitlements
+
+FEATURE_FLIPPER_COURSE_DATES = COURSE_DATES_DISABLED

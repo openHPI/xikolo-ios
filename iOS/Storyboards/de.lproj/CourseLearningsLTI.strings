@@ -7,3 +7,6 @@
 
 /* Class = "UITextView"; text = "Loading instructions …"; ObjectID = "GdB-9t-4lq"; */
 "GdB-9t-4lq.text" = "Anweisungen werden geladen …";
+
+/* Class = "UILabel"; text = "This exercise is not available anymore."; ObjectID = "VLd-nL-EOY"; */
+"VLd-nL-EOY.text" = "Diese Aufgabe ist nicht mehr verfügbar.";

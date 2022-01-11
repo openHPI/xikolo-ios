@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -86,7 +86,7 @@ extension DocumentListViewController { // TableViewDelegate
 
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
         pdfViewController.configure(for: url, filename: documentLocalization.filename)
-        self.navigationController?.pushViewController(pdfViewController, animated: trueUnlessReduceMotionEnabled)
+        self.show(pdfViewController, sender: self)
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

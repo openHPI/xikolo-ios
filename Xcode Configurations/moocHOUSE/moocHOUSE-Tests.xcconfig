@@ -3,6 +3,5 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-#include "../../Pods/Target Support Files/Pods-iOS-Tests/Pods-iOS-Tests.moochouse-ios-debug.xcconfig"
 #include "moocHOUSE-Common.xcconfig"
 #include "../Tests.xcconfig"

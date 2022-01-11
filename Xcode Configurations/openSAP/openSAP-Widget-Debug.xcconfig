@@ -1,0 +1,11 @@
+//
+//  Created for xikolo-ios under GPL-3.0 license.
+//  Copyright © HPI. All rights reserved.
+//
+
+#include "openSAP-Common.xcconfig"
+#include "../Debug.xcconfig"
+
+PRODUCT_NAME = WidgetExtension
+PRODUCT_MODULE_NAME = Widget
+EXTENSION_PATH = .widget

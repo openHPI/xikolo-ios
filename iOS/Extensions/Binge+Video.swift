@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -25,6 +25,14 @@ extension BingePlayerViewController {
             self.asset = AVURLAsset(url: fallbackURL)
         } else {
             self.asset = nil
+        }
+
+        if let posterImageURL = video.item?.section?.course?.imageURL {
+            DispatchQueue.main.async {
+                if let imageData = try? Data(contentsOf: posterImageURL), let image = UIImage(data: imageData) {
+                    self.posterImage = image
+                }
+            }
         }
     }
 

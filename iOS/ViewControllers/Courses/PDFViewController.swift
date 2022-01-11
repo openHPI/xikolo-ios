@@ -1,17 +1,35 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
 import Common
+import PDFKit
 import UIKit
 import WebKit
 
-class PDFWebViewController: UIViewController {
+class PDFViewController: UIViewController {
 
     @IBOutlet private var shareButton: UIBarButtonItem!
 
+    @available(iOS, obsoleted: 11.0)
     private var webView: WKWebView!
+
+    // It's not possible to annotate stored properties with @available.
+    // So we have to use a combination of type erased object and computed property
+    // as long as we support iOS 10.
+    private var pdfViewObject: AnyObject!
+
+    @available(iOS 11, *)
+    private var pdfView: PDFView {
+        get {
+            // swiftlint:disable:next force_cast
+            return self.pdfViewObject as! PDFView
+        }
+        set {
+            self.pdfViewObject = newValue
+        }
+    }
 
     private lazy var progress: CircularProgressView = {
         let progress = CircularProgressView()
@@ -62,17 +80,23 @@ class PDFWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = nil
-        self.initializeWebView()
-        self.webView.isHidden = true
+        if #available(iOS 11, *) {
+            self.initializePDFView()
+            self.pdfView.isHidden = true
+        } else {
+            self.initializeWebView()
+            self.webView.isHidden = true
+        }
+
         self.progress.alpha = 0.0
 
         if let url = self.url {
             self.loadPDF(for: url)
         }
 
-        UIView.animate(withDuration: 0.25, delay: 0.5, options: .curveLinear, animations: {
+        UIView.animate(withDuration: defaultAnimationDuration, delay: 0.5, options: .curveLinear) {
             self.progress.alpha = CGFloat(1.0)
-        }, completion: nil)
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -86,18 +110,38 @@ class PDFWebViewController: UIViewController {
         self.filename = filename
     }
 
+    @available(iOS, obsoleted: 11.0)
     func initializeWebView() {
         // The manual initialization is necessary due to a bug in NSCoding in iOS 10
         self.webView = WKWebView(frame: self.view.frame)
         self.view.addSubview(webView)
         self.webView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            self.webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            self.webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             self.webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             self.webView.topAnchor.constraint(equalTo: view.topAnchor),
         ])
      }
+
+    @available(iOS 11, *)
+    func initializePDFView() {
+        self.pdfView = PDFView()
+        self.view.addSubview(self.pdfView)
+        self.pdfView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.pdfView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            self.pdfView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            self.pdfView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            self.pdfView.topAnchor.constraint(equalTo: view.topAnchor),
+        ])
+
+        self.pdfView.autoScales = true
+
+        if #available(iOS 12.0, *) {
+            self.pdfView.pageShadowsEnabled = false
+        }
+    }
 
     private func loadPDF(for url: URL) {
         var request = URLRequest(url: url)
@@ -120,7 +164,7 @@ class PDFWebViewController: UIViewController {
 
 }
 
-extension PDFWebViewController: URLSessionDownloadDelegate {
+extension PDFViewController: URLSessionDownloadDelegate {
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         DispatchQueue.main.async {
@@ -148,11 +192,18 @@ extension PDFWebViewController: URLSessionDownloadDelegate {
             try Data(contentsOf: location).write(to: tmpFile.fileURL)
 
             self.tempPDFFile = tmpFile
-            let request = URLRequest(url: tmpFile.fileURL)
+
             DispatchQueue.main.async {
-                self.webView.load(request)
-                self.progress.isHidden = true
-                self.webView.isHidden = false
+                if #available(iOS 11.0, *) {
+                    self.pdfView.document = PDFDocument(url: tmpFile.fileURL)
+                    self.progress.isHidden = true
+                    self.pdfView.isHidden = false
+                } else {
+                    let request = URLRequest(url: tmpFile.fileURL)
+                    self.webView.load(request)
+                    self.progress.isHidden = true
+                    self.webView.isHidden = false
+                }
             }
 
             self.currentDownload = nil

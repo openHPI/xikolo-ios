@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -37,6 +37,12 @@ class CourseListViewController: CustomWidthCollectionViewController {
         self.collectionView?.register(UINib(resource: R.nib.courseHeaderView),
                                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
+
+        if case .coursesInChannel = self.configuration {
+            self.collectionView?.register(UINib(resource: R.nib.channelHeaderView),
+                                          forSupplementaryViewOfKind: R.nib.channelHeaderView.name,
+                                          withReuseIdentifier: R.nib.channelHeaderView.name)
+        }
 
         if let courseListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
             courseListLayout.delegate = self
@@ -192,11 +198,10 @@ class CourseListViewController: CustomWidthCollectionViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
-        // swiftlint:disable:next trailing_closure
-        coordinator.animate(alongsideTransition: { _  in
+        coordinator.animate { _  in
             self.navigationController?.navigationBar.sizeToFit()
             self.collectionViewLayout.invalidateLayout()
-        })
+        }
     }
 
     @available(iOS 13.0, *)
@@ -280,11 +285,7 @@ extension CourseListViewController: CardListLayoutDelegate {
         }
     }
 
-    var cardInset: CGFloat {
-        return CourseCell.cardInset
-    }
-
-    var heightForHeader: CGFloat {
+    var heightForSectionHeader: CGFloat {
         guard self.configuration.shouldShowHeader || self.dataSource.isSearching else {
             return 0 // Don't show header for these configurations
         }
@@ -306,19 +307,46 @@ extension CourseListViewController: CardListLayoutDelegate {
         return ChannelHeaderView.height(forWidth: collectionView.bounds.width, layoutMargins: self.view.layoutMargins, channel: channel)
     }
 
-    func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
-        return CourseCell.minimalWidth(for: traitCollection)
-    }
+}
+
+extension CourseListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
-                        heightForCellAtIndexPath indexPath: IndexPath,
-                        withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
+
+        let boundingWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
+        let minimalCardWidth = CourseCell.minimalWidth(for: self.traitCollection)
+        let numberOfColumns = max(1, floor(boundingWidth / minimalCardWidth))
+        let columnWidth = boundingWidth / numberOfColumns
+
         if self.dataSource.isSearching && !self.dataSource.hasSearchResults {
-            return 0
+            return CGSize(width: columnWidth, height: 0)
         }
 
         let course = self.dataSource.object(at: indexPath)
-        return ceil(CourseCell.heightForCourseList(forWidth: boundingWidth, for: course))
+        let height = CourseCell.heightForCourseList(forWidth: columnWidth, for: course)
+
+        return CGSize(width: columnWidth, height: height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        var leftPadding = collectionView.layoutMargins.left - CourseCell.cardInset
+        var rightPadding = collectionView.layoutMargins.right - CourseCell.cardInset
+
+        if #available(iOS 11.0, *) {
+            leftPadding -= collectionView.safeAreaInsets.left
+            rightPadding -= collectionView.safeAreaInsets.right
+        }
+
+        return UIEdgeInsets(top: 0, left: leftPadding, bottom: collectionView.layoutMargins.bottom, right: rightPadding)
     }
 
 }
@@ -370,20 +398,18 @@ extension CourseListViewController: UISearchControllerDelegate {
         self.searchFilterViewController.collectionView.reloadData()
         self.collectionViewLayout.invalidateLayout()
 
-        // swiftlint:disable:next trailing_closure
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+        UIView.animate(withDuration: defaultAnimationDuration, delay: 0, options: .curveEaseInOut) { [weak self] in
             self?.collectionView.layoutIfNeeded()
-        })
+        }
     }
 
     func willDismissSearchController(_ searchController: UISearchController) {
         self.updateSearchFilterContainerHeight(isSearching: false)
         self.collectionViewLayout.invalidateLayout()
 
-        // swiftlint:disable:next trailing_closure
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+        UIView.animate(withDuration: defaultAnimationDuration, delay: 0, options: .curveEaseInOut) { [weak self] in
             self?.collectionView.layoutIfNeeded()
-        })
+        }
     }
 
     func didDismissSearchController(_ searchController: UISearchController) {

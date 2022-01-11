@@ -11,23 +11,23 @@ on:
 jobs:
   build-test-lint:
     name: Build + Test + Lint + Check localization
-    runs-on: macOS-latest
+    runs-on: macOS-11
     strategy:
       matrix:
-        xcode: ['/Applications/Xcode_12.app/Contents/Developer']
+        xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Cache RubyGems
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: ${{ runner.os }}-gems-
 
       - name: Cache CocoaPods
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}

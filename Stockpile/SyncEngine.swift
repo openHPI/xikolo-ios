@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -342,7 +342,7 @@ public extension SyncEngine {
         let promise = Promise<SyncMultipleResult, SyncError>()
 
         let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
-            return retry(ImmediateExecutionContext, times: 5, coolDown: DispatchTimeInterval.seconds(2)) {
+            return retry(immediateExecutionContext, times: 5, coolDown: DispatchTimeInterval.seconds(2)) {
                 return self.doNetworkRequest(request, forResource: Resource.self)
             }
         }
@@ -353,7 +353,7 @@ public extension SyncEngine {
 
                 let coreDataFetch = self.fetchCoreDataObjects(withFetchRequest: fetchRequest, inContext: context)
 
-                coreDataFetch.flatMap(ImmediateExecutionContext) { objects in
+                coreDataFetch.flatMap(immediateExecutionContext) { objects in
                     return self.mergeResources(
                         object: networkResult.resourceData,
                         withExistingObjects: objects,
@@ -362,19 +362,19 @@ public extension SyncEngine {
                     ).map { resources in
                         return MergeMultipleResult(oldResources: objects, newResources: resources, headers: networkResult.headers)
                     }
-                }.inject(ImmediateExecutionContext) {
+                }.inject(immediateExecutionContext) {
                     return Result<Void, Error> {
                         return try context.save()
                     }.mapError { error in
                         return .coreData(error)
                     }
-                }.map(ImmediateExecutionContext) { mergeResult in
+                }.map(immediateExecutionContext) { mergeResult in
                     return SyncMultipleResult(
                         oldObjectIds: mergeResult.oldResources.map(\.objectID),
                         newObjectIds: mergeResult.newResources.map(\.objectID),
                         headers: mergeResult.headers
                     )
-                }.onComplete(ImmediateExecutionContext) { result in
+                }.onComplete(immediateExecutionContext) { result in
                     promise.complete(result)
                 }
             }
@@ -394,7 +394,7 @@ public extension SyncEngine {
         let promise = Promise<SyncSingleResult, SyncError>()
 
         let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
-            return retry(ImmediateExecutionContext, times: 5, coolDown: DispatchTimeInterval.seconds(2)) {
+            return retry(immediateExecutionContext, times: 5, coolDown: DispatchTimeInterval.seconds(2)) {
                 return self.doNetworkRequest(request, forResource: Resource.self)
             }
         }
@@ -405,7 +405,7 @@ public extension SyncEngine {
 
                 let coreDataFetch = self.fetchCoreDataObject(withFetchRequest: fetchRequest, inContext: context)
 
-                coreDataFetch.flatMap(ImmediateExecutionContext) { object -> Future<MergeSingleResult<Resource>, SyncError> in
+                coreDataFetch.flatMap(immediateExecutionContext) { object -> Future<MergeSingleResult<Resource>, SyncError> in
                     return self.mergeResource(
                         object: networkResult.resourceData,
                         withExistingObject: object,
@@ -413,15 +413,15 @@ public extension SyncEngine {
                     ).map { resource in
                         return MergeSingleResult(resource: resource, headers: networkResult.headers)
                     }
-                }.inject(ImmediateExecutionContext) {
+                }.inject(immediateExecutionContext) {
                     return Result<Void, Error> {
                         return try context.save()
                     }.mapError { error in
                         return .coreData(error)
                     }
-                }.map(ImmediateExecutionContext) { mergeResult in
+                }.map(immediateExecutionContext) { mergeResult in
                     return SyncSingleResult(objectId: mergeResult.resource.objectID, headers: mergeResult.headers)
-                }.onComplete(ImmediateExecutionContext) { result in
+                }.onComplete(immediateExecutionContext) { result in
                     promise.complete(result)
                 }
             }
@@ -464,7 +464,7 @@ public extension SyncEngine {
 
             let context = SynchronizationContext(coreDataContext: coreDataContext, includedResourceData: [])
 
-            networkRequest.flatMap(ImmediateExecutionContext) { networkResult -> Future<SyncSingleResult, SyncError> in
+            networkRequest.flatMap(immediateExecutionContext) { networkResult -> Future<SyncSingleResult, SyncError> in
                 do {
                     let data = try networkResult.resourceData.value(for: "data") as ResourceData
                     let resource = try Resource.value(from: data, with: context)
@@ -476,13 +476,13 @@ public extension SyncEngine {
                 } catch {
                     return Future(error: .unknown(error))
                 }
-            }.inject(ImmediateExecutionContext) {
+            }.inject(immediateExecutionContext) {
                 return Result<Void, Error> {
                     return try coreDataContext.save()
                 }.mapError { error in
                     return .coreData(error)
                 }
-            }.onComplete(ImmediateExecutionContext) { result in
+            }.onComplete(immediateExecutionContext) { result in
                 promise.complete(result)
             }
 

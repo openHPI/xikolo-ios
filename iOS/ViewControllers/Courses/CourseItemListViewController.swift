@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -329,16 +329,16 @@ class CourseItemListViewController: UITableViewController {
 
         self.scrollDelegate?.scrollToTop()
 
-        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled, animations: {
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
             self.tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
-        }, completion: { _ in
+        } completion: { _ in
             let cell = self.tableView.cellForRow(at: indexPath)
             let originalColor = cell?.backgroundColor
 
-            _ = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.25, options: [.curveEaseOut], animations: {
+            _ = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.25, delay: 0.25, options: [.curveEaseOut], animations: {
                 cell?.backgroundColor = ColorCompatibility.secondarySystemFill
             }, completion: { _ in
-                _ = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.25, options: [.curveEaseIn], animations: {
+                _ = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.25, delay: 0.25, options: [.curveEaseIn], animations: {
                     cell?.backgroundColor = originalColor
                 }, completion: nil)
 
@@ -346,7 +346,7 @@ class CourseItemListViewController: UITableViewController {
                     completionHandler?(cell)
                 }
             })
-        })
+        }
     }
 
 }

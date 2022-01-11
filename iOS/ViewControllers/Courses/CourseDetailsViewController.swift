@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -78,11 +78,9 @@ class CourseDetailsViewController: UIViewController {
         self.dateView.text = CoursePeriodFormatter.string(from: self.course)
         self.teaserImageView.sd_setImage(with: self.course.imageURL)
 
-        let animationDuration = animated ? 0.25 : 0
-        // swiftlint:disable:next trailing_closure
-        UIView.transition(with: self.teaserView, duration: animationDuration, options: .curveEaseInOut, animations: {
+        UIView.transition(with: self.teaserView, duration: defaultAnimationDuration(animated), options: .curveEaseInOut) {
             self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
-        })
+        }
 
         let markdown = self.course.courseDescription ?? self.course.abstract
         self.descriptionView.setMarkdownWithImages(from: markdown)

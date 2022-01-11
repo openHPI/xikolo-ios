@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -153,8 +153,9 @@ class CourseViewController: UIViewController {
         let completionBlock: (UIViewControllerTransitionCoordinatorContext) -> Void = { [weak self] _ in
             let headerColor = self?.headerImageView.image.flatMap { self?.averageColorUnderStatusBar(withCourseVisual: $0) } ?? Brand.default.colors.secondary
             self?.courseNavigationController?.adjustToUnderlyingColor(headerColor)
-            if let headerOffset = self?.headerOffset, let headerHeight = self?.headerHeight {
-                self?.courseNavigationController?.updateNavigationBar(forProgress: headerOffset / headerHeight)
+
+            if let headerOffset = self?.headerOffset {
+                self?.snapToExtendedOrCollapsedHeaderPosition(with: headerOffset)
             }
         }
 
@@ -169,25 +170,25 @@ class CourseViewController: UIViewController {
     }
 
     func show(item: CourseItem, animated: Bool) {
-        self.area = .learnings
+        self.transitionIfPossible(to: .learnings)
 
         guard let viewController = R.storyboard.courseLearnings.courseItemViewController() else { return }
         viewController.currentItem = item
 
-        self.navigationController?.pushViewController(viewController, animated: animated)
-        self.navigationController?.navigationBar.tintColor = Brand.default.colors.window // otherwise the back button could not be visible
+        self.courseNavigationController?.updateNavigationBar(forProgress: 1)
+        self.show(viewController, sender: self)
     }
 
     func show(documentLocalization: DocumentLocalization, animated: Bool) {
-        self.area = .documents
+        self.transitionIfPossible(to: .documents)
 
         guard let url = DocumentsPersistenceManager.shared.localFileLocation(for: documentLocalization) ?? documentLocalization.fileURL else { return }
 
         let viewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
         viewController.configure(for: url, filename: documentLocalization.filename)
 
-        self.navigationController?.pushViewController(viewController, animated: animated)
-        self.navigationController?.navigationBar.tintColor = Brand.default.colors.window // otherwise the back button could not be visible
+        self.courseNavigationController?.updateNavigationBar(forProgress: 1)
+        self.show(viewController, sender: self)
     }
 
     private func updateView() {
@@ -292,10 +293,9 @@ class CourseViewController: UIViewController {
     private func updateContainerView() {
         let animationTime: TimeInterval = 0.15
 
-        // swiftlint:disable multiple_closures_with_trailing_closure
-        UIView.animate(withDuration: animationTime, delay: animationTime, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: animationTime, delay: animationTime, options: .curveEaseIn) {
             self.courseAreaViewController?.view.alpha = 0
-        }) { _ in
+        } completion: { _ in
             self.courseAreaViewController = nil
 
             guard let newViewController = self.area.viewController else {
@@ -309,10 +309,9 @@ class CourseViewController: UIViewController {
             self.courseAreaViewController = newViewController
             self.courseAreaPageViewController?.setViewControllers([newViewController], direction: .forward, animated: false)
 
-            // swiftlint:disable:next trailing_closure
-            UIView.animate(withDuration: animationTime, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: animationTime, delay: 0, options: .curveEaseOut) {
                 newViewController.view.alpha = 1
-            })
+            }
         }
     }
 
@@ -516,7 +515,7 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
 
         self.headerOffset = snapUpwards ? self.headerHeight : 0
 
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
             self.courseNavigationController?.updateNavigationBar(forProgress: snapUpwards ? 1 : 0)
             self.view.layoutIfNeeded()
         }
@@ -528,10 +527,9 @@ extension CourseViewController: UINavigationControllerDelegate {
 
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         guard viewController == self else {
-            // swiftlint:disable:next trailing_closure
-            navigationController.transitionCoordinator?.animate(alongsideTransition: { _ in
+            navigationController.transitionCoordinator?.animate { _ in
                 self.courseNavigationController?.updateNavigationBarTintColor(forMappedProgress: 1)
-            })
+            }
 
             return
         }
@@ -544,10 +542,10 @@ extension CourseViewController: UINavigationControllerDelegate {
             return
         }
 
-        transitionCoordinator.animate(alongsideTransition: { context in
+        transitionCoordinator.animate { _ in
             self.courseNavigationController?.updateNavigationBar(forProgress: progress)
             self.navigationController?.navigationBar.layoutIfNeeded()
-        }, completion: { context in
+        } completion: { context in
             guard viewController == self else { return }
 
             if navigationController.viewControllers.count > 1, context.isCancelled {
@@ -555,7 +553,7 @@ extension CourseViewController: UINavigationControllerDelegate {
             } else if navigationController.viewControllers.count == 1 {
                 self.courseNavigationController?.updateNavigationBar(forProgress: progress)
             }
-        })
+        }
     }
 
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {

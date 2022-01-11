@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -9,7 +9,7 @@ import Stockpile
 public final class LastVisit: NSManagedObject {
 
     @NSManaged public var id: String
-    @NSManaged public var visitDate: Date
+    @NSManaged public var visitDate: Date?
 
     @NSManaged public var item: CourseItem?
 
@@ -27,10 +27,12 @@ extension LastVisit: JSONAPIPullable {
 
     public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
-        let newVisitDate = try attributes.value(for: "visit_date") as Date
+
+        guard let newVisitDate = try? attributes.value(for: "visit_date") as Date else { return }
 
         let isNewObject = self.objectID.isTemporaryID
-        guard isNewObject || newVisitDate > self.visitDate else { return }
+        let isNewVisitNewer = newVisitDate > (self.visitDate ?? Date.distantPast)
+        guard isNewObject || isNewVisitNewer else { return }
 
         self.visitDate = newVisitDate
 

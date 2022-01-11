@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -33,7 +33,7 @@ class RefreshControl: UIRefreshControl {
         let deadline = Self.minimumSpinningTime.fromNow
         self.action().onSuccess { _ in
             self.postAction()
-        }.earliest(at: deadline).onComplete(ImmediateOnMainExecutionContext) { _ in
+        }.earliest(at: deadline).onComplete(immediateOnMainExecutionContext) { _ in
             self.endRefreshing()
         }
     }

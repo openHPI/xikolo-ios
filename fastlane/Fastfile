@@ -246,6 +246,7 @@ platform :ios do
           provisioningProfiles: {
             "de.xikolo.#{flavor.downcase}" => "#{flavor}-iOS-dist",
             "de.xikolo.#{flavor.downcase}.today" => "#{flavor}-today-dist",
+            "de.xikolo.#{flavor.downcase}.widget" => "#{flavor}-widget-dist",
           }
         },
       )
@@ -259,6 +260,9 @@ platform :ios do
         skip_metadata: skip_metadata,
         precheck_include_in_app_purchases: false,
         automatic_release: automatic_release,
+        submission_information: {
+          add_id_info_uses_idfa: false,
+        }
       )
     else
       UI.user_error! "No flavor supplied for IPA upload"

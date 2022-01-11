@@ -1,9 +1,8 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
-#include "../../Pods/Target Support Files/Pods-iOS/Pods-iOS.moochouse-ios-release.xcconfig"
 #include "moocHOUSE-Common.xcconfig"
 #include "../Release.xcconfig"
 

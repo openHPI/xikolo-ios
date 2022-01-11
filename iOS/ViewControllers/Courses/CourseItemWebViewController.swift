@@ -1,23 +1,35 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
 import Common
 import Foundation
+import WebKit
 
 class CourseItemWebViewController: WebViewController {
 
     var courseItem: CourseItem! {
         didSet {
+            self.userScripts = [self.userScriptForCourseItemInset]
             self.url = self.courseItem.url
         }
     }
 
-    private func setURL() {
-        guard let courseId = self.courseItem.section?.course?.id else { return }
-        guard let courseItemId = self.courseItem.base62id else { return }
-        self.url = Routes.courses.appendingPathComponents([courseId, "items", courseItemId])
+    var userScriptForCourseItemInset: WKUserScript {
+        let script = """
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @media (min-width: 576px) {
+                #maincontent {
+                    padding-left: 84px;
+                    padding-right: 84px;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        """
+        return WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
     }
 
 }

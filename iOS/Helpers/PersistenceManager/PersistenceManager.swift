@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -43,7 +43,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
     var activeDownloads: [URLSessionTask: String] = [:]
     var progresses: [String: Double] = [:]
     var completionHandlers: [URLSessionTask: ((Result<Void, XikoloError>) -> Void)] = [:]
-    var didRestorePersistenceManager: Bool = false
+    var didRestorePersistenceManager = false
 
     override init() {
         super.init()

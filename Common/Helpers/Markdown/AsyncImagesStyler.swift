@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -41,6 +41,25 @@ class AsyncImagesStyler: DownStyler {
 
         let range = NSRange(location: 0, length: str.length)
         str.replaceCharacters(in: range, with: attachmentString)
+    }
+
+    override func style(htmlBlock str: NSMutableAttributedString) {
+        let range = NSRange(location: 0, length: str.length)
+        str.addAttributes([
+            .font: fonts.code.withSize(UIFont.labelFontSize * 0.8),
+            .foregroundColor: colors.code,
+            .backgroundColor: colors.codeBlockBackground,
+            .paragraphStyle: paragraphStyles.code,
+        ], range: range)
+    }
+
+    override open func style(htmlInline str: NSMutableAttributedString) {
+        let range = NSRange(location: 0, length: str.length)
+        str.addAttributes([
+            .font: fonts.code.withSize(UIFont.labelFontSize * 0.8),
+            .foregroundColor: colors.code,
+            .backgroundColor: colors.codeBlockBackground,
+        ], range: range)
     }
 
 }

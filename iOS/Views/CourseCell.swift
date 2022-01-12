@@ -106,7 +106,6 @@ class CourseCell: UICollectionViewCell {
         self.teacherLabel.textColor = accentColor
 
         self.courseImage.image = nil // Avoid old images on cell reuse when new image can not be loaded
-        self.courseImage.alpha = course.hidden ? 0.5 : 1.0
         self.gradientView.isHidden = true
         self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil) { image, _, _, _ in
             self.gradientView.isHidden = (image == nil)

@@ -379,9 +379,9 @@ extension CourseViewController: CourseAreaListViewControllerDelegate {
         if self.course.external {
             return [.courseDetails]
         } else if self.course.hasEnrollment && self.course.accessible {
-            return CourseArea.availableAreas
+            return CourseArea.availableAreas(in: self.course)
         } else {
-            return CourseArea.availableAreas.filter(\.accessibleWithoutEnrollment)
+            return CourseArea.availableAreas(in: self.course).filter(\.accessibleWithoutEnrollment)
         }
     }
 

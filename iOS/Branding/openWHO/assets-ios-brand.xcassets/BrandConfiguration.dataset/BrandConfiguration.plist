@@ -48,13 +48,7 @@
 		<true/>
 		<key>enableCollabSpace</key>
 		<false/>
-		<key>enableRecap</key>
-		<false/>
-		<key>showCourseDates</key>
-		<false/>
 		<key>showCourseTeachers</key>
-		<false/>
-		<key>enableHelpdeskReactivationTopic</key>
 		<false/>
 	</dict>
 	<key>courseClassifierSearchFilters</key>

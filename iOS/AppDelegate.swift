@@ -89,6 +89,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 ErrorManager.shared.report(error)
                 logger.error("Failed to start reachability notification")
             }
+
+            if UserProfileHelper.shared.isLoggedIn {
+                FeatureHelper.syncFeatures()
+            }
         }
 
         UICollectionView.enableEmptyStates()

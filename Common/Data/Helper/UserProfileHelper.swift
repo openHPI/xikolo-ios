@@ -122,6 +122,8 @@ public class UserProfileHelper {
             coursesFuture.onSuccess { _ in
                 CourseDateHelper.syncAllCourseDates()
             }
+
+            FeatureHelper.syncFeatures()
         }
 
         if Brand.default.features.enableChannels {

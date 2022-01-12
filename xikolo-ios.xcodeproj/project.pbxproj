@@ -133,6 +133,8 @@
 		5046EE44278DAC3000027499 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046EE43278DAC3000027499 /* Feature.swift */; };
 		5046EE46278DAC9D00027499 /* FeatureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046EE45278DAC9D00027499 /* FeatureHelper.swift */; };
 		5046EE48278DADAF00027499 /* FeatureHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046EE47278DADAF00027499 /* FeatureHelper+FetchRequests.swift */; };
+		5046EE4A278EDB8200027499 /* ExperimentAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046EE49278EDB8200027499 /* ExperimentAssignment.swift */; };
+		5046EE4C278EE37600027499 /* ExperimentAssignmentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046EE4B278EE37600027499 /* ExperimentAssignmentHelper.swift */; };
 		504AC121239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504AC120239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift */; };
 		504BA9AD245C02AF004C836C /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
 		504BA9AE245C02C8004C836C /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
@@ -806,6 +808,8 @@
 		5046EE43278DAC3000027499 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 		5046EE45278DAC9D00027499 /* FeatureHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureHelper.swift; sourceTree = "<group>"; };
 		5046EE47278DADAF00027499 /* FeatureHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeatureHelper+FetchRequests.swift"; sourceTree = "<group>"; };
+		5046EE49278EDB8200027499 /* ExperimentAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentAssignment.swift; sourceTree = "<group>"; };
+		5046EE4B278EE37600027499 /* ExperimentAssignmentHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentAssignmentHelper.swift; sourceTree = "<group>"; };
 		504AC120239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileHelper+logoutTestAccount.swift"; sourceTree = "<group>"; };
 		504D6ED024E424D900426BDC /* NSDirectionalEdgeInsets+custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDirectionalEdgeInsets+custom.swift"; sourceTree = "<group>"; };
 		504D6ED224E4251F00426BDC /* ReadableWidthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadableWidthNavigationController.swift; sourceTree = "<group>"; };
@@ -1308,6 +1312,7 @@
 				5054B2DE21087DB100CE9067 /* DocumentLocalization.swift */,
 				243CE47E1D709999007C59B6 /* Enrollment.swift */,
 				AB4A01AD1E7EA151005CD595 /* EnrollmentCertificates.swift */,
+				5046EE49278EDB8200027499 /* ExperimentAssignment.swift */,
 				5046EE43278DAC3000027499 /* Feature.swift */,
 				8251A50A237182F200A443A9 /* HelpdeskTicket.swift */,
 				508869F224F6613A000FA1C8 /* LastVisit.swift */,
@@ -2263,6 +2268,7 @@
 				507F7FDB2372DA530031DC0B /* CourseProgressHelper.swift */,
 				5054B2E0210880FA00CE9067 /* DocumentHelper.swift */,
 				ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */,
+				5046EE4B278EE37600027499 /* ExperimentAssignmentHelper.swift */,
 				5046EE45278DAC9D00027499 /* FeatureHelper.swift */,
 				8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */,
 				508869F424F66479000FA1C8 /* LastVisitHelper.swift */,
@@ -3424,10 +3430,12 @@
 				5046EE46278DAC9D00027499 /* FeatureHelper.swift in Sources */,
 				506BDB82242341750002DBDE /* AdditionalLearningMaterial.swift in Sources */,
 				50FA2E0C20E4B23C00656776 /* xikolo.xcdatamodeld in Sources */,
+				5046EE4A278EDB8200027499 /* ExperimentAssignment.swift in Sources */,
 				50FA2E3520E4B25800656776 /* Announcement.swift in Sources */,
 				5035232E21806FA600F2E7A4 /* SingleSignOnConfiguration.swift in Sources */,
 				50046F71216BBAD200D59073 /* BrightFuture+earliest.swift in Sources */,
 				50FA2E4820E4B25800656776 /* TrackingEventVerb.swift in Sources */,
+				5046EE4C278EE37600027499 /* ExperimentAssignmentHelper.swift in Sources */,
 				5052D27721591E9400927D52 /* SyncPushEngine.swift in Sources */,
 				50FA2E1320E4B24300656776 /* CourseHelper.swift in Sources */,
 				50FA2E4120E4B25800656776 /* PlatformEvent.swift in Sources */,

@@ -17,6 +17,7 @@ class CourseItemWebViewController: WebViewController {
     }
 
     var userScriptForCourseItemInset: WKUserScript {
+        // swiftlint:disable closing_brace_whitespace
         let script = """
         const style = document.createElement('style');
         style.innerHTML = `
@@ -29,6 +30,7 @@ class CourseItemWebViewController: WebViewController {
         `;
         document.head.appendChild(style);
         """
+        // swiftlint:enable closing_brace_whitespace
         return WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
     }
 

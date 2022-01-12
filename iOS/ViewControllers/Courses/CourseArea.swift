@@ -18,22 +18,22 @@ enum CourseArea: CaseIterable {
     case recap
     case certificates
 
-    static var availableAreas: [CourseArea] = {
-        return Self.allCases.filter(\.isAvailable)
-    }()
+    static func availableAreas(in course: Course) -> [CourseArea] {
+        return Self.allCases.filter { $0.isAvailable(in: course) }
+    }
 
     var accessibleWithoutEnrollment: Bool {
         return self == .courseDetails || self == .certificates
     }
 
-    var isAvailable: Bool {
+    func isAvailable(in course: Course) -> Bool {
         switch self {
         case .collabSpace:
             return Brand.default.features.enableCollabSpace
         case .documents:
             return Brand.default.features.enableDocuments
         case .recap:
-            return Brand.default.features.enableRecap
+            return FeatureHelper.hasFeature(.quizRecap, for: course)
         default:
             return true
         }

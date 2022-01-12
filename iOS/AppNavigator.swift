@@ -153,7 +153,7 @@ class AppNavigator {
             self.show(course: course, with: .announcements, url: url)
             return true
         case "recap":
-            guard Brand.default.features.enableRecap else { return false }
+            guard FeatureHelper.hasFeature(.quizRecap, for: course) else { return false }
             self.show(course: course, with: .recap, url: url)
             return true
         case "documents":

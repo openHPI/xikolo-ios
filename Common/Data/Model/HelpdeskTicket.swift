@@ -32,7 +32,7 @@ public class HelpdeskTicket {
         public var isAvailable: Bool {
              switch self {
              case .reactivation:
-                 return Brand.default.features.enableHelpdeskReactivationTopic
+                 return FeatureHelper.hasFeature(.courseReactivation)
              default:
                  return true
              }

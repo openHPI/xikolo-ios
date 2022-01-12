@@ -54,7 +54,7 @@ extension TrackingEvent: JSONAPIPushable {
     public func resourceAttributes() -> [String: Any] {
         let dateFormatOptions: ISO8601DateFormatter.Options
         if #available(iOS 11.2, *) {
-            // Yes, .withFractionalSeconds is avaiable since iOS 11.0 but this will crash on iOS 11.1
+            // Yes, .withFractionalSeconds is available since iOS 11.0 but this will crash on iOS 11.1
             dateFormatOptions = [.withInternetDateTime, .withFractionalSeconds]
         } else {
             dateFormatOptions = [.withInternetDateTime]

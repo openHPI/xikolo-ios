@@ -22,15 +22,6 @@ class CourseCell: UICollectionViewCell {
             }
         }
 
-        var hideTeacherLabel: Bool {
-            switch self {
-            case .courseList:
-                return false
-            case .courseOverview:
-                return true
-            }
-        }
-
         func colorWithFallback(to fallbackColor: UIColor) -> UIColor {
             if case let .courseList(configuration) = self {
                 return configuration.colorWithFallback(to: fallbackColor)
@@ -115,12 +106,7 @@ class CourseCell: UICollectionViewCell {
         self.teacherLabel.numberOfLines = configuration.showMultilineLabels ? 0 : 1
 
         self.titleLabel.text = course.title
-        self.teacherLabel.text = {
-            guard configuration.hideTeacherLabel else { return course.teachers }
-            guard Brand.default.features.showCourseTeachers else { return course.teachers }
-            guard course.teachers?.isEmpty ?? true else { return course.teachers }
-            return " " // forces text into teachers label to avoid misplacement for course image
-        }()
+        self.teacherLabel.text = Brand.default.features.showCourseTeachers ? course.teachers : nil
         self.teacherLabel.isHidden = !Brand.default.features.showCourseTeachers
         self.languageLabel.text = course.language.flatMap(LanguageLocalizer.nativeDisplayName(for:))
         self.dateLabel.text = CoursePeriodFormatter.string(from: course)

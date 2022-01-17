@@ -18,7 +18,7 @@
 "course-date-formatting.self-paced" = "Selbststudium";
 
 /* Self-paced course (since end date) */
-"course-date-formatting.self-paced since %@" = "Seit %@ im Selbststudium";
+"course-date-formatting.self-paced since %@" = "Seit %@ im\U00A0Selbststudium";
 
 /* course start at specific date in the past */
 "course-date-formatting.started.since %@" = "Seit %@";

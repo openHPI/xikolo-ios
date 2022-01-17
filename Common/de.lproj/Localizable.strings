@@ -17,7 +17,10 @@
 /* Self-paced course */
 "course-date-formatting.self-paced" = "Selbststudium";
 
-/* course start at specfic date in the past */
+/* Self-paced course (since end date) */
+"course-date-formatting.self-paced since %@" = "Seit %@ im Selbststudium";
+
+/* course start at specific date in the past */
 "course-date-formatting.started.since %@" = "Seit %@";
 
 /* Title for proficiency level filter (who) */

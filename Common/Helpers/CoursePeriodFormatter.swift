@@ -15,14 +15,15 @@ public enum CoursePeriodFormatter {
     }
 
     static func string(fromStartDate startDate: Date?, endDate: Date?, withStyle style: CourseDateLabelStyle = Brand.default.courseDateLabelStyle) -> String {
-        if endDate?.inPast ?? false {
-            return CommonLocalizedString("course-date-formatting.self-paced", comment: "Self-paced course")
+        if let endDate = endDate, endDate.inPast {
+            let format = CommonLocalizedString("course-date-formatting.self-paced since %@", comment: "Self-paced course (since end date)")
+            return String.localizedStringWithFormat(format, self.dateFormatter.string(from: endDate))
         }
 
         if let startDate = startDate, startDate.inPast, endDate == nil {
             switch style {
             case .normal:
-                let format = CommonLocalizedString("course-date-formatting.started.since %@", comment: "course start at specfic date in the past")
+                let format = CommonLocalizedString("course-date-formatting.started.since %@", comment: "course start at specific date in the past")
                 return String.localizedStringWithFormat(format, self.dateFormatter.string(from: startDate))
             case .who:
                 return CommonLocalizedString("course-date-formatting.self-paced", comment: "Self-paced course")

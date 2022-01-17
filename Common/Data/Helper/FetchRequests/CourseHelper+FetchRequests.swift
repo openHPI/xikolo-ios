@@ -46,8 +46,11 @@ extension CourseHelper {
             if Brand.default.showCurrentCoursesInSelfPacedSection {
                 return NSCompoundPredicate(notPredicateWithSubpredicate: futurePredicate)
             } else {
-                return NSCompoundPredicate(andPredicateWithSubpredicates: [
-                    NSPredicate(format: "endsAt != nil"),
+                return NSCompoundPredicate(orPredicateWithSubpredicates: [
+                    NSCompoundPredicate(andPredicateWithSubpredicates: [
+                        NSPredicate(format: "endsAt = nil"),
+                        NSPredicate(format: "startsAt != nil"),
+                    ]),
                     NSPredicate(format: "endsAt < now()"),
                 ])
             }

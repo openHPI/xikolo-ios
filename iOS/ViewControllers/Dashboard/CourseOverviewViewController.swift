@@ -202,10 +202,7 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
                         point: CGPoint) -> UIContextMenuConfiguration? {
         guard indexPath.item < self.itemLimit else { return nil }
-
-        let course = self.courses[indexPath.item]
-
-        ErrorManager.shared.remember(course.id, forKey: "course_overview_list-latest_course_preview")
+        guard let course = self.courses[safe: indexPath.item] else { return nil}
 
         let previewProvider: UIContextMenuContentPreviewProvider = {
             return R.storyboard.coursePreview().instantiateInitialViewController { coder in

@@ -11,7 +11,9 @@ class CoursePreviewViewController: UIViewController {
     @IBOutlet private weak var courseImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var teacherLabel: UILabel!
+    @IBOutlet private weak var dateIconView: UIImageView!
     @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var languageIconView: UIImageView!
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
 
@@ -44,6 +46,17 @@ class CoursePreviewViewController: UIViewController {
 
         self.dateLabel.text = CoursePeriodFormatter.string(from: self.course)
         self.languageLabel.text = self.course.language.flatMap(LanguageLocalizer.nativeDisplayName(for:))
+
+        if #available(iOS 13, *) {
+            let symbolConfiguration = UIImage.SymbolConfiguration(textStyle: .callout)
+            self.languageIconView.image = UIImage(systemName: "globe", withConfiguration: symbolConfiguration)
+            self.languageIconView.tintColor = ColorCompatibility.secondaryLabel
+            self.dateIconView.image = UIImage(systemName: "calendar", withConfiguration: symbolConfiguration)
+            self.dateIconView.tintColor = ColorCompatibility.secondaryLabel
+        } else {
+            self.languageIconView.isHidden = true
+            self.dateIconView.isHidden = true
+        }
 
         self.descriptionView.textContainerInset = .zero
         self.descriptionView.textContainer.lineFragmentPadding = 0

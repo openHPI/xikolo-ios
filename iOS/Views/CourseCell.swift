@@ -249,22 +249,24 @@ extension CourseCell {
     }
 
     static func heightForOverviewList(forWidth width: CGFloat) -> CGFloat {
-        var height: CGFloat = Self.cardInset
+        // All values were taken from Interface Builder
+        var height: CGFloat = 12 // top padding
         height += width / 2 // image
         height += self.cardBottomOffsetForOverviewList
         return height
     }
 
     static var cardBottomOffsetForOverviewList: CGFloat {
-        var height: CGFloat = 8 // padding
+
+        var height: CGFloat = 8 // padding between image and labels
         height += UIFont.preferredFont(forTextStyle: .headline).lineHeight
 
         if Brand.default.features.showCourseTeachers {
-            height += 4 // padding
+            height += 4 // padding between image and text
             height += UIFont.preferredFont(forTextStyle: .subheadline).lineHeight
         }
 
-        height += 4 // padding
+        height += 4 // bottom padding
         return height
     }
 

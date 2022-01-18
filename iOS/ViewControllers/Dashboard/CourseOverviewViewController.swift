@@ -126,7 +126,14 @@ class CourseOverviewViewController: UIViewController {
             }
         }()
 
-        let height = CourseCell.heightForOverviewList(forWidth: preferredWidth) * numberOfRows
+        let height: CGFloat = {
+            if self.courses.isEmpty {
+                return PseudoCourseCell.heightForOverviewList(forWidth: preferredWidth) * numberOfRows
+            } else {
+                return CourseCell.heightForOverviewList(forWidth: preferredWidth) * numberOfRows
+            }
+        }()
+
         self.collectionViewHeightConstraint.constant = ceil(height)
     }
 
@@ -246,7 +253,6 @@ extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-
         let courseCellWidth = CourseCell.minimalWidthInOverviewList(for: collectionView.traitCollection)
         let availableWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right + 2 * CourseCell.cardInset
         let itemsPerRow = floor(availableWidth / courseCellWidth)
@@ -259,8 +265,13 @@ extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
             }
         }()
 
-        let height = CourseCell.heightForOverviewList(forWidth: preferredWidth)
-        return CGSize(width: preferredWidth, height: height)
+        if self.courses.isEmpty {
+            let height = PseudoCourseCell.heightForOverviewList(forWidth: preferredWidth)
+            return CGSize(width: availableWidth, height: height)
+        } else {
+            let height = CourseCell.heightForOverviewList(forWidth: preferredWidth)
+            return CGSize(width: preferredWidth, height: height)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView,

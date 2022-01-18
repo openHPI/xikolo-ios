@@ -22,10 +22,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="255"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wuq-dp-sgX">
-                                <rect key="frame" x="8" y="12" width="384" height="189"/>
+                                <rect key="frame" x="8" y="12" width="384" height="235"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="S0H-IY-02p">
-                                        <rect key="frame" x="8" y="78" width="368" height="33.5"/>
+                                        <rect key="frame" x="8" y="101" width="368" height="33.5"/>
                                         <subviews>
                                             <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39n-0e-ETH">
                                                 <rect key="frame" x="160.5" y="0.0" width="47" height="13.5"/>
@@ -58,7 +58,7 @@
                         <constraints>
                             <constraint firstItem="Wuq-dp-sgX" firstAttribute="leading" secondItem="raT-3Q-iQy" secondAttribute="leading" constant="8" id="4Ko-N2-SLJ"/>
                             <constraint firstItem="Wuq-dp-sgX" firstAttribute="top" secondItem="raT-3Q-iQy" secondAttribute="top" constant="12" id="ET6-qb-B0N"/>
-                            <constraint firstAttribute="bottom" secondItem="Wuq-dp-sgX" secondAttribute="bottom" constant="54" id="dlt-Ti-wbi"/>
+                            <constraint firstAttribute="bottom" secondItem="Wuq-dp-sgX" secondAttribute="bottom" constant="8" id="dlt-Ti-wbi"/>
                             <constraint firstAttribute="trailing" secondItem="Wuq-dp-sgX" secondAttribute="trailing" constant="8" id="xHJ-QV-Alu"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -76,7 +76,6 @@
             </constraints>
             <connections>
                 <outlet property="actionLabel" destination="G57-rf-7A3" id="mIN-Sf-eM8"/>
-                <outlet property="bottomConstraint" destination="dlt-Ti-wbi" id="um6-dX-zsU"/>
                 <outlet property="cardView" destination="Wuq-dp-sgX" id="Afm-7V-5eL"/>
                 <outlet property="messageLabel" destination="39n-0e-ETH" id="Hvx-Qb-AXt"/>
             </connections>

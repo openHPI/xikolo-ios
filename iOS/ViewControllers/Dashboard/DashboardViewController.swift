@@ -30,6 +30,11 @@ class DashboardViewController: CustomWidthViewController {
 
         self.addRefreshControl()
         self.refresh()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(notification:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
     }
 
     private func addContentController(_ child: UIViewController) {
@@ -49,6 +54,24 @@ class DashboardViewController: CustomWidthViewController {
         coordinator.animate { _  in
             self.navigationController?.navigationBar.sizeToFit()
         }
+    }
+
+    @objc private func coreDataChange(notification: Notification) {
+        let featureSyncDetected = notification.includesChanges(for: Feature.self, keys: [.inserted, .updated, .refreshed])
+        if featureSyncDetected {
+            self.addCourseDateOverviewIfNeeded()
+        }
+    }
+
+    private func addCourseDateOverviewIfNeeded() {
+        if self.viewIfLoaded == nil { return }
+        if self.children.contains(where: { $0 is CourseDateOverviewViewController }) { return }
+        guard FeatureHelper.hasFeature(.courseDates) else { return }
+
+        let dateOverviewViewController = R.storyboard.courseDateOverview.instantiateInitialViewController().require()
+        self.addChild(dateOverviewViewController)
+        self.stackView.insertArrangedSubview(dateOverviewViewController.view, at: 0)
+        dateOverviewViewController.didMove(toParent: self)
     }
 
 }

@@ -22,21 +22,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="255"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wuq-dp-sgX">
-                                <rect key="frame" x="14" y="14" width="372" height="187"/>
+                                <rect key="frame" x="8" y="12" width="384" height="189"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="S0H-IY-02p">
-                                        <rect key="frame" x="8" y="74.5" width="356" height="38"/>
+                                        <rect key="frame" x="8" y="78" width="368" height="33.5"/>
                                         <subviews>
                                             <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39n-0e-ETH">
-                                                <rect key="frame" x="152.5" y="0.0" width="51" height="14.5"/>
-                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="160.5" y="0.0" width="47" height="13.5"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="action" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G57-rf-7A3">
-                                                <rect key="frame" x="155.5" y="18.5" width="45" height="19.5"/>
-                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="165.5" y="17.5" width="37.5" height="16"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="S0H-IY-02p" secondAttribute="trailing" id="0yo-du-37o"/>
                                     <constraint firstItem="S0H-IY-02p" firstAttribute="leading" secondItem="Wuq-dp-sgX" secondAttribute="leadingMargin" id="Iy1-cm-5Gf"/>
@@ -54,12 +54,12 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Wuq-dp-sgX" firstAttribute="leading" secondItem="raT-3Q-iQy" secondAttribute="leading" constant="14" id="4Ko-N2-SLJ"/>
-                            <constraint firstItem="Wuq-dp-sgX" firstAttribute="top" secondItem="raT-3Q-iQy" secondAttribute="top" constant="14" id="ET6-qb-B0N"/>
+                            <constraint firstItem="Wuq-dp-sgX" firstAttribute="leading" secondItem="raT-3Q-iQy" secondAttribute="leading" constant="8" id="4Ko-N2-SLJ"/>
+                            <constraint firstItem="Wuq-dp-sgX" firstAttribute="top" secondItem="raT-3Q-iQy" secondAttribute="top" constant="12" id="ET6-qb-B0N"/>
                             <constraint firstAttribute="bottom" secondItem="Wuq-dp-sgX" secondAttribute="bottom" constant="54" id="dlt-Ti-wbi"/>
-                            <constraint firstAttribute="trailing" secondItem="Wuq-dp-sgX" secondAttribute="trailing" constant="14" id="xHJ-QV-Alu"/>
+                            <constraint firstAttribute="trailing" secondItem="Wuq-dp-sgX" secondAttribute="trailing" constant="8" id="xHJ-QV-Alu"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="translatesAutoresizingMaskIntoConstraints" value="NO"/>
@@ -67,13 +67,13 @@
                     </view>
                 </subviews>
             </view>
+            <viewLayoutGuide key="safeArea" id="LUJ-Fo-4S3"/>
             <constraints>
                 <constraint firstItem="raT-3Q-iQy" firstAttribute="leading" secondItem="Zw7-60-Zp6" secondAttribute="leading" id="C3d-Mo-PYh"/>
                 <constraint firstAttribute="bottom" secondItem="raT-3Q-iQy" secondAttribute="bottom" id="Dcc-dW-TXo"/>
                 <constraint firstAttribute="trailing" secondItem="raT-3Q-iQy" secondAttribute="trailing" id="PVc-FJ-5W5"/>
                 <constraint firstItem="raT-3Q-iQy" firstAttribute="top" secondItem="Zw7-60-Zp6" secondAttribute="top" id="aqs-44-hdc"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="LUJ-Fo-4S3"/>
             <connections>
                 <outlet property="actionLabel" destination="G57-rf-7A3" id="mIN-Sf-eM8"/>
                 <outlet property="bottomConstraint" destination="dlt-Ti-wbi" id="um6-dX-zsU"/>
@@ -83,4 +83,12 @@
             <point key="canvasLocation" x="-66" y="60"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

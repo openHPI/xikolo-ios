@@ -11,9 +11,9 @@ class ShadowContainerView: UIView {
         super.awakeFromNib()
         self.layer.masksToBounds = false
         self.layer.shadowOpacity = 0.15
-        self.layer.shadowRadius = 8.0
+        self.layer.shadowRadius = 5.0
         self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 0, height: 6)
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: CALayer.CornerStyle.default.rawValue).cgPath
     }
 

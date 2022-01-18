@@ -177,7 +177,7 @@ extension CourseCell {
 extension CourseCell {
 
     static var cardInset: CGFloat {
-        return 14
+        return 8
     }
 
     static func heightForCourseList(forWidth width: CGFloat, for course: Course) -> CGFloat {
@@ -187,7 +187,7 @@ extension CourseCell {
         let titleHeight = course.title?.height(forTextStyle: .headline, boundingWidth: cardWidth) ?? 0
         let teachersHeight = course.teachers?.height(forTextStyle: .subheadline, boundingWidth: cardWidth) ?? 0
 
-        var height = self.cardInset + imageHeight
+        var height = 12 + imageHeight
 
         if Brand.default.features.showCourseTeachers {
             if titleHeight > 0 || teachersHeight > 0 {

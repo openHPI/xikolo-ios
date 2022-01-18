@@ -109,13 +109,8 @@ extension ChannelListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        var leftPadding = collectionView.layoutMargins.left - ChannelCell.cardInset
-        var rightPadding = collectionView.layoutMargins.right - ChannelCell.cardInset
-
-        if #available(iOS 11.0, *) {
-            leftPadding -= collectionView.safeAreaInsets.left
-            rightPadding -= collectionView.safeAreaInsets.right
-        }
+        let leftPadding = collectionView.layoutMargins.left - ChannelCell.cardInset
+        let rightPadding = collectionView.layoutMargins.right - ChannelCell.cardInset
 
         return UIEdgeInsets(top: 0, left: leftPadding, bottom: collectionView.layoutMargins.bottom, right: rightPadding)
     }

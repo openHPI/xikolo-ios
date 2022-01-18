@@ -338,13 +338,8 @@ extension CourseListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        var leftPadding = collectionView.layoutMargins.left - CourseCell.cardInset
-        var rightPadding = collectionView.layoutMargins.right - CourseCell.cardInset
-
-        if #available(iOS 11.0, *) {
-            leftPadding -= collectionView.safeAreaInsets.left
-            rightPadding -= collectionView.safeAreaInsets.right
-        }
+        let leftPadding = collectionView.layoutMargins.left - CourseCell.cardInset
+        let rightPadding = collectionView.layoutMargins.right - CourseCell.cardInset
 
         return UIEdgeInsets(top: 0, left: leftPadding, bottom: collectionView.layoutMargins.bottom, right: rightPadding)
     }

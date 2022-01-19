@@ -7,7 +7,7 @@ import XCTest
 
 @testable import Common
 
-class DateLabelHelperTests: XCTestCase {
+class CoursePeriodFormatterTests: XCTestCase {
 
     func testWithStartDateAndEndDate() {
         // given
@@ -24,13 +24,14 @@ class DateLabelHelperTests: XCTestCase {
     func testWithEndDateInPast() {
         // given
         let distantPast = Date.distantPast
-        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+        let afterDistantPast = Calendar.current.date(byAdding: .day, value: 1, to: distantPast)
 
         // when
-        let labelText = CoursePeriodFormatter.string(fromStartDate: distantPast, endDate: yesterday, withStyle: .normal)
+        var labelText = CoursePeriodFormatter.string(fromStartDate: distantPast, endDate: afterDistantPast, withStyle: .normal)
+        labelText = labelText.replacingOccurrences(of: "\u{00a0}", with: " ")
 
         // then
-        XCTAssertEqual(labelText, "Self-paced")
+        XCTAssertEqual(labelText, "Self-paced since January 2, 1")
     }
 
     func testWithStartDateInPastAndNoEndDate() {
@@ -38,7 +39,8 @@ class DateLabelHelperTests: XCTestCase {
         let distantPast = Date.distantPast
 
         // when
-        let labelText = CoursePeriodFormatter.string(fromStartDate: distantPast, endDate: nil, withStyle: .normal)
+        var labelText = CoursePeriodFormatter.string(fromStartDate: distantPast, endDate: nil, withStyle: .normal)
+        labelText = labelText.replacingOccurrences(of: "\u{00a0}", with: " ")
 
         // then
         XCTAssertEqual(labelText, "Since January 1, 1")
@@ -60,7 +62,8 @@ class DateLabelHelperTests: XCTestCase {
         let distantFuture = Date.distantFuture
 
         // when
-        let labelText = CoursePeriodFormatter.string(fromStartDate: distantFuture, endDate: nil, withStyle: .normal)
+        var labelText = CoursePeriodFormatter.string(fromStartDate: distantFuture, endDate: nil, withStyle: .normal)
+        labelText = labelText.replacingOccurrences(of: "\u{00a0}", with: " ")
 
         // then
         XCTAssertEqual(labelText, "Beginning January 1, 4001")

@@ -47,24 +47,24 @@ jobs:
       - name: Copy brand assets
         run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
 
-      - name: Build + Test (Common)
-        run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
-        env:
-          scheme: Common
-          DEVELOPER_DIR: ${{ matrix.xcode }}
+      # - name: Build + Test (Common)
+      #   run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
+      #   env:
+      #     scheme: Common
+      #     DEVELOPER_DIR: ${{ matrix.xcode }}
       
-      - name: Build + Test (iOS)
-        run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
-        env:
-          scheme: openHPI-iOS
-          DEVELOPER_DIR: ${{ matrix.xcode }}
+      # - name: Build + Test (iOS)
+      #   run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
+      #   env:
+      #     scheme: openHPI-iOS
+      #     DEVELOPER_DIR: ${{ matrix.xcode }}
 
-      - name: Check localization
-        run: |
-          bundle exec fastlane localize
-          echo "\nThe following files have incomplete localization:"
-          git status --porcelain -- ':!.bundle'
-          git diff --quiet -- ':!.bundle'
+      # - name: Check localization
+      #   run: |
+      #     bundle exec fastlane localize
+      #     echo "\nThe following files have incomplete localization:"
+      #     git status --porcelain -- ':!.bundle'
+      #     git diff --quiet -- ':!.bundle'
       
       - name: Run code validation
         # uses: norio-nomura/action-swiftlint@3.2.1

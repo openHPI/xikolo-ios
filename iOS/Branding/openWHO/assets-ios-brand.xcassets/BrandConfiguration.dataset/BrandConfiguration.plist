@@ -48,6 +48,8 @@
 		<true/>
 		<key>enableCollabSpace</key>
 		<false/>
+		<key>showCourseDates</key>
+		<false/>
 		<key>showCourseTeachers</key>
 		<false/>
 	</dict>

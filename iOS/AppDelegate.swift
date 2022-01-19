@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Disable today widget on home screen if course dates are not displayed
         if let bundleId = Bundle.main.bundleIdentifier?.appending(".today") {
-            let hasContent = FeatureHelper.hasFeature(.courseDates)
+            let hasContent = Brand.default.features.showCourseDates
             NCWidgetController().setHasContent(hasContent, forWidgetWithBundleIdentifier: bundleId)
         }
 
@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.tabBarController.selectedIndex = tabToSelect.index
         }
 
-        if FeatureHelper.hasFeature(.courseDates) {
+        if Brand.default.features.showCourseDates {
             UIApplication.shared.setMinimumBackgroundFetchInterval(86400) // approx. every 24 hours
         }
 
@@ -159,7 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        guard FeatureHelper.hasFeature(.courseDates) && UserProfileHelper.shared.isLoggedIn else {
+        guard Brand.default.features.showCourseDates && UserProfileHelper.shared.isLoggedIn else {
             completionHandler(.noData)
             return
         }

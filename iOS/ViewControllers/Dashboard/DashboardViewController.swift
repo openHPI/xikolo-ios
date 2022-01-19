@@ -15,7 +15,7 @@ class DashboardViewController: CustomWidthViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if FeatureHelper.hasFeature(.courseDates) {
+        if Brand.default.features.showCourseDates {
             let dateOverviewViewController = R.storyboard.courseDateOverview.instantiateInitialViewController().require()
             self.addContentController(dateOverviewViewController)
         }
@@ -30,11 +30,6 @@ class DashboardViewController: CustomWidthViewController {
 
         self.addRefreshControl()
         self.refresh()
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(coreDataChange(notification:)),
-                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
-                                               object: CoreDataHelper.viewContext)
     }
 
     private func addContentController(_ child: UIViewController) {
@@ -56,24 +51,6 @@ class DashboardViewController: CustomWidthViewController {
         }
     }
 
-    @objc private func coreDataChange(notification: Notification) {
-        let featureSyncDetected = notification.includesChanges(for: Feature.self, keys: [.inserted, .updated, .refreshed])
-        if featureSyncDetected {
-            self.addCourseDateOverviewIfNeeded()
-        }
-    }
-
-    private func addCourseDateOverviewIfNeeded() {
-        if self.viewIfLoaded == nil { return }
-        if self.children.contains(where: { $0 is CourseDateOverviewViewController }) { return }
-        guard FeatureHelper.hasFeature(.courseDates) else { return }
-
-        let dateOverviewViewController = R.storyboard.courseDateOverview.instantiateInitialViewController().require()
-        self.addChild(dateOverviewViewController)
-        self.stackView.insertArrangedSubview(dateOverviewViewController.view, at: 0)
-        dateOverviewViewController.didMove(toParent: self)
-    }
-
 }
 
 extension DashboardViewController: RefreshableViewController {
@@ -88,7 +65,7 @@ extension DashboardViewController: RefreshableViewController {
         // This view controller is always loaded even if the user is not logged in due to the fact
         // that the view controller is embedded in a UITabBarController. So we have to check the
         // login state of user in order to avoid a failing API request
-        if FeatureHelper.hasFeature(.courseDates) && UserProfileHelper.shared.isLoggedIn {
+        if Brand.default.features.showCourseDates && UserProfileHelper.shared.isLoggedIn {
             return courseFuture.flatMap { _ in
                 return CourseDateHelper.syncAllCourseDates()
             }.asVoid()

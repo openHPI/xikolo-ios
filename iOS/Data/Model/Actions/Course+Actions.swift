@@ -13,7 +13,7 @@ extension Course {
     }
 
     func showCourseDatesAction(handler: @escaping () -> Void) -> Action? {
-        guard self.hasEnrollment && FeatureHelper.hasFeature(.courseDates) else { return nil }
+        guard self.hasEnrollment && Brand.default.features.showCourseDates else { return nil }
         let title = NSLocalizedString("course.action-menu.show-course-dates", comment: "Title for show course dates action")
         return Action(title: title, image: Action.Image.calendar, handler: handler)
     }

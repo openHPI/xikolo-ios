@@ -11,6 +11,7 @@ public struct BrandFeatures: Decodable {
     public let enableChannels: Bool
     public let enableDocuments: Bool
     public let enableCollabSpace: Bool
+    public let showCourseDates: Bool
     public let showCourseTeachers: Bool
 
 }

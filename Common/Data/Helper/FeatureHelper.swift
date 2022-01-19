@@ -10,7 +10,6 @@ public enum FeatureHelper {
 
     public enum FeatureIdentifier: String {
         case quizRecap = "quiz_recap"
-        case courseDates = "display_course_deadlines"
         case courseReactivation = "course_reactivation"
     }
 

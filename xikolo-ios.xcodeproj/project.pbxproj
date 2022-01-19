@@ -267,7 +267,7 @@
 		50AD864E2570F4B0003BDB80 /* XikoloWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD864D2570F4B0003BDB80 /* XikoloWidgetBundle.swift */; };
 		50AD86862570F5F3003BDB80 /* WidgetExtension.appex in Embed App Extension */ = {isa = PBXBuildFile; fileRef = 50AD86132570F3D4003BDB80 /* WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		50AD880725715C5E003BDB80 /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
-		50B31DFB22C49D11007DDDA4 /* DateLabelHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */; };
+		50B31DFB22C49D11007DDDA4 /* CoursePeriodFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFA22C49D11007DDDA4 /* CoursePeriodFormatterTests.swift */; };
 		50B31DFD22C4B660007DDDA4 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFC22C4B660007DDDA4 /* Locale.swift */; };
 		50B31DFF22C4C570007DDDA4 /* BrightFuturesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */; };
 		50B71B88212AC61C008CE681 /* DocumentsPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */; };
@@ -975,7 +975,7 @@
 		50AD878825715480003BDB80 /* openHPI-Widget-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openHPI-Widget-Release.xcconfig"; path = "Xcode Configurations/openhpi/openHPI-Widget-Release.xcconfig"; sourceTree = SOURCE_ROOT; };
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
-		50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabelHelperTests.swift; sourceTree = "<group>"; };
+		50B31DFA22C49D11007DDDA4 /* CoursePeriodFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePeriodFormatterTests.swift; sourceTree = "<group>"; };
 		50B31DFC22C4B660007DDDA4 /* Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
 		50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightFuturesTests.swift; sourceTree = "<group>"; };
 		50B431CD23E45258006C7BC4 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -1767,7 +1767,7 @@
 			children = (
 				50761B5720FCADD700CEDAF9 /* Info.plist */,
 				5050D66823A0125700E48498 /* CourseItemBase62UUIDTests.swift */,
-				50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */,
+				50B31DFA22C49D11007DDDA4 /* CoursePeriodFormatterTests.swift */,
 				50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */,
 			);
 			path = "Common-Tests";
@@ -3120,7 +3120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50B31DFF22C4C570007DDDA4 /* BrightFuturesTests.swift in Sources */,
-				50B31DFB22C49D11007DDDA4 /* DateLabelHelperTests.swift in Sources */,
+				50B31DFB22C49D11007DDDA4 /* CoursePeriodFormatterTests.swift in Sources */,
 				5050D66923A0125700E48498 /* CourseItemBase62UUIDTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

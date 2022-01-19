@@ -67,6 +67,7 @@ jobs:
           git diff --quiet -- ':!.bundle'
       
       - name: Run code validation
+        # uses: norio-nomura/action-swiftlint@3.2.1
         run: bundle exec danger --verbose
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -9,4 +9,5 @@ swiftlint.verbose = true
 
 # The argument "--force-exclude" is passed to SwiftLint by the danger-swiftlint plugin.
 # But this SwiftLint argument doesn't work properly and has issues. So we re-disable it.
-swiftlint.lint_files inline_mode: true, additional_swiftlint_args: '--no-force-exclude'
+swiftlint.lint_files inline_mode: true
+# , additional_swiftlint_args: '--no-force-exclude'

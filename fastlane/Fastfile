@@ -125,9 +125,9 @@ platform :ios do
     head_id = sh("git rev-parse --short head")
     diff_base_id = sh("git rev-parse --short #{options[:diff_base]}")
     # puts File.dirname(Dir.pwd)
-    git_merge_base = sh("git merge-base FETCH_HEAD #{options[:diff_base]}").strip
+    # git_merge_base = sh("git merge-base FETCH_HEAD #{options[:diff_base]}").strip
     g = Git.open(File.dirname(Dir.pwd))
-    changedFiles = g.diff("FETCH_HEAD", git_merge_base).name_status.keys.select { |file| file.end_with?(".swift") }
+    changedFiles = g.diff(options[:diff_base], "HEAD").name_status.keys.select { |file| file.end_with?(".swift") }
     # puts changedFiles
     swiftlint(
       mode: :lint,

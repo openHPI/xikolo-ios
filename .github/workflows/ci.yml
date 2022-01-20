@@ -69,7 +69,8 @@ jobs:
       #     git diff --quiet -- ':!.bundle'
 
       - name: Run code validation
-        run: set -o pipefail && Pods/SwiftLint/swiftlint "$@" --reporter github-actions-logging -- $(git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ GITHUB_HEAD_REF }} -- '*.swift')
+        run: echo 'hello'
+        # run: set -o pipefail && Pods/SwiftLint/swiftlint "$@" --reporter github-actions-logging -- $(git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ GITHUB_HEAD_REF }} -- '*.swift')
 
         # - name: Validation 2
         #   run: echo '::warning file=iOS/ViewControllers/Dashboard/DashboardViewController.swift,line=19,col=43::Operators should be surrounded by a single whitespace when they are being used. (operator_usage_whitespace)'

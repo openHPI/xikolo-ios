@@ -57,6 +57,14 @@ Determines the commit for a given build number
 
 Lint swift code with swiftlint
 
+### ios lint_pr
+
+```sh
+[bundle exec] fastlane ios lint_pr
+```
+
+Lint swift code with swiftlint
+
 ### ios format
 
 ```sh

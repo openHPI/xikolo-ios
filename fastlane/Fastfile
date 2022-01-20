@@ -133,8 +133,8 @@ platform :ios do
       mode: :lint,
       executable: "Pods/SwiftLint/swiftlint",
       config_file: ".swiftlint.yml",
-      quiet: true,
-      ignore_exit_status: true,
+      # quiet: true,
+      # ignore_exit_status: true,
       reporter: "github-actions-logging",
       files: changedFiles
     )

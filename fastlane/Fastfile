@@ -87,7 +87,7 @@ platform :ios do
       puts "Commit count difference: #{commit_count_diff}"
 
       if commit_count_diff < 0
-        UI.user_error! "The supplied build number refers to a commit which is to far ahead. Have you pulled the latest changes for the branch `#{branch_name}`?"
+        UI.user_error! "The supplied build number refers to a commit which is too far ahead. Have you pulled the latest changes for the branch `#{branch_name}`?"
       end
 
       commit_id = sh("git rev-parse --short #{branch_name}~#{commit_count_diff}").strip!
@@ -122,6 +122,8 @@ platform :ios do
     # changedFiles = sh("git --no-pager diff --name-only --relative FETCH_HEAD $(git merge-base FETCH_HEAD #{options[:diff_base]}) -- '*.swift'")
     # changedFiles = sh("GIT_PAGER='' git diff --diff-filter=d --name-only --relative FETCH_HEAD d601ed45 -- '*.swift' '.swiftlint.yml'")
 
+    head_id = sh("git rev-parse --short head")
+    diff_base_id = sh("git rev-parse --short #{options[:diff_base]}")
     # puts File.dirname(Dir.pwd)
     git_merge_base = sh("git merge-base FETCH_HEAD #{options[:diff_base]}").strip
     g = Git.open(File.dirname(Dir.pwd))

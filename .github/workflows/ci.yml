@@ -69,7 +69,7 @@ jobs:
       #     git diff --quiet -- ':!.bundle'
 
       - name: Run code validation
-        run: echo 'hello'
+        run: echo `git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ GITHUB_HEAD_REF }} -- '*.swift'`
         # run: set -o pipefail && Pods/SwiftLint/swiftlint "$@" --reporter github-actions-logging -- $(git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ GITHUB_HEAD_REF }} -- '*.swift')
 
         # - name: Validation 2

@@ -74,6 +74,9 @@ jobs:
         env:
           # DIFF_BASE: ${{ github.base_ref }}
           DIFF_BASE: ${{ github.event.pull_request.base.sha }}
+      
+      - name: Validation 2
+        run: echo '::warning file=iOS/ViewControllers/Dashboard/DashboardViewController.swift,line=19,col=43::Operators should be surrounded by a single whitespace when they are being used. (operator_usage_whitespace)'
 
         # uses: MeilCli/danger-action@v5
         # with:

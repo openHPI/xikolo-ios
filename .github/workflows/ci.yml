@@ -70,7 +70,8 @@ jobs:
         # uses: norio-nomura/action-swiftlint@3.2.1
         run: bundle exec fastlane lint_pr diff_base:"${DIFF_BASE}"
         env:
-          DIFF_BASE: ${{ github.base_ref }}
+          # DIFF_BASE: ${{ github.base_ref }}
+          DIFF_BASE: ${{ github.event.pull_request.base.sha }}
 
         # uses: MeilCli/danger-action@v5
         # with:

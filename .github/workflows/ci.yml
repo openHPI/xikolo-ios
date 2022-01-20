@@ -67,16 +67,17 @@ jobs:
       #     echo "\nThe following files have incomplete localization:"
       #     git status --porcelain -- ':!.bundle'
       #     git diff --quiet -- ':!.bundle'
+
       
       - name: Run code validation
-        # uses: norio-nomura/action-swiftlint@3.2.1
-        run: bundle exec fastlane lint_pr diff_base:"${DIFF_BASE}"
-        env:
-          # DIFF_BASE: ${{ github.base_ref }}
-          DIFF_BASE: ${{ github.event.pull_request.base.sha }}
+      #   # uses: norio-nomura/action-swiftlint@3.2.1
+      #   run: bundle exec fastlane lint_pr diff_base:"${DIFF_BASE}"
+        run: |
+          changedFiles=$(git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ GITHUB_HEAD_REF }} -- '*.swift')
+          set -o pipefail && Pods/SwiftLint/swiftlint "$@" --reporter github-actions-logging -- $changedFiles
       
-      - name: Validation 2
-        run: echo '::warning file=iOS/ViewControllers/Dashboard/DashboardViewController.swift,line=19,col=43::Operators should be surrounded by a single whitespace when they are being used. (operator_usage_whitespace)'
+        # - name: Validation 2
+        #   run: echo '::warning file=iOS/ViewControllers/Dashboard/DashboardViewController.swift,line=19,col=43::Operators should be surrounded by a single whitespace when they are being used. (operator_usage_whitespace)'
 
         # uses: MeilCli/danger-action@v5
         # with:

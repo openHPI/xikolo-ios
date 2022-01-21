@@ -9,49 +9,49 @@ on:
       - dev
 
 jobs:
-  build-test-common:
-    name: Common / Build + Test
-    runs-on: macOS-11
-    strategy:
-      matrix:
-        xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  # build-test-common:
+  #   name: Common / Build + Test
+  #   runs-on: macOS-11
+  #   strategy:
+  #     matrix:
+  #       xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      - name: Install dependencies
-        uses: ./.github/actions/setup
+  #     - name: Install dependencies
+  #       uses: ./.github/actions/setup
 
-      - name: Copy brand assets
-        run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
+  #     - name: Copy brand assets
+  #       run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
 
-      - name: Build + Test
-        run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
-        env:
-          scheme: Common
-          DEVELOPER_DIR: ${{ matrix.xcode }}
+  #     - name: Build + Test
+  #       run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
+  #       env:
+  #         scheme: Common
+  #         DEVELOPER_DIR: ${{ matrix.xcode }}
   
-  build-test-ios:
-    name: iOS / Build + Test
-    runs-on: macOS-11
-    strategy:
-      matrix:
-        xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  # build-test-ios:
+  #   name: iOS / Build + Test
+  #   runs-on: macOS-11
+  #   strategy:
+  #     matrix:
+  #       xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      - name: Install dependencies
-        uses: ./.github/actions/setup
+  #     - name: Install dependencies
+  #       uses: ./.github/actions/setup
 
-      - name: Copy brand assets
-        run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
+  #     - name: Copy brand assets
+  #       run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
       
-      - name: Build + Test
-        run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
-        env:
-          scheme: openHPI-iOS
-          DEVELOPER_DIR: ${{ matrix.xcode }}
+  #     - name: Build + Test
+  #       run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
+  #       env:
+  #         scheme: openHPI-iOS
+  #         DEVELOPER_DIR: ${{ matrix.xcode }}
 
   lint:
     name: Lint code
@@ -69,24 +69,26 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Run code validation
-        run: set -o pipefail && Pods/SwiftLint/swiftlint "$@" --strict --reporter github-actions-logging -- $(git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} -- '*.swift')
-
-  check-locales:
-    name: Check localization
-    runs-on: macOS-11
-    strategy:
-      matrix:
-        xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        uses: ./.github/actions/setup
-
-      - name: Check localization
         run: |
-          bundle exec fastlane localize
-          echo "\nThe following files have incomplete localization:"
-          git status --porcelain -- ':!.bundle'
-          git diff --quiet -- ':!.bundle'
+          git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} -- '*.swift' || exit 0
+          set -o pipefail && Pods/SwiftLint/swiftlint "$@" --strict --reporter github-actions-logging -- $(git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} -- '*.swift')
+
+  # check-locales:
+  #   name: Check localization
+  #   runs-on: macOS-11
+  #   strategy:
+  #     matrix:
+  #       xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+
+  #     - name: Install dependencies
+  #       uses: ./.github/actions/setup
+
+  #     - name: Check localization
+  #       run: |
+  #         bundle exec fastlane localize
+  #         echo "\nThe following files have incomplete localization:"
+  #         git status --porcelain -- ':!.bundle'
+  #         git diff --quiet -- ':!.bundle'

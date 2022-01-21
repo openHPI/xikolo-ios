@@ -69,9 +69,10 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Run code validation
-        run: |
-          git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} -- '*.swift' || exit 0
-          set -o pipefail && Pods/SwiftLint/swiftlint "$@" --strict --reporter github-actions-logging -- $(git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} -- '*.swift')
+        uses: ./.github/actions/swiftlint
+        # run: |
+        #   git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} -- '*.swift' || exit 0
+        #   set -o pipefail && Pods/SwiftLint/swiftlint "$@" --strict --reporter github-actions-logging -- $(git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} -- '*.swift')
 
   # check-locales:
   #   name: Check localization

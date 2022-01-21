@@ -1,0 +1,10 @@
+name: SwiftLint
+description: Run SwiftLint on pull request diff
+runs:
+  using: composite
+  steps:
+    - run: ${{ github.action_path }}/swiftlint.sh
+      shell: bash
+      env:
+        BASE_REF: ${{ github.event.pull_request.base.sha }}
+        HEAD_REF: ${{ github.event.pull_request.head.sha }}

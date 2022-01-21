@@ -16,7 +16,7 @@ class DashboardViewController: CustomWidthViewController {
         super.viewDidLoad()
 
         if Brand.default.features.showCourseDates {
-            let dateOverviewViewController =   R.storyboard.courseDateOverview.instantiateInitialViewController().require()
+            let dateOverviewViewController = R.storyboard.courseDateOverview.instantiateInitialViewController().require()
             self.addContentController(dateOverviewViewController)
         }
 

@@ -19,31 +19,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - uses: ./.github/actions/setup
-      # - name: Cache RubyGems
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: vendor/bundle
-      #     key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-      #     restore-keys: ${{ runner.os }}-gems-
-
-      # - name: Cache CocoaPods
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: Pods
-      #     key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-      #     restore-keys: ${{ runner.os }}-pods-
-
-      # - name: Install dependencies (Bundler)
-      #   run: |
-      #     bundle config path vendor/bundle
-      #     bundle config set without 'documentation'
-      #     bundle install --jobs 4 --retry 3
-
-      # - name: Install dependencies (CocoaPods)
-      #   run: bundle exec pod install
-      #   env:
-      #     DEVELOPER_DIR: ${{ matrix.xcode }}
+      - name: Install dependencies
+        uses: ./.github/actions/setup
 
       - name: Copy brand assets
         run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
@@ -64,31 +41,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - uses: ./.github/actions/setup
-      # - name: Cache RubyGems
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: vendor/bundle
-      #     key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-      #     restore-keys: ${{ runner.os }}-gems-
-
-      # - name: Cache CocoaPods
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: Pods
-      #     key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-      #     restore-keys: ${{ runner.os }}-pods-
-
-      # - name: Install dependencies (Bundler)
-      #   run: |
-      #     bundle config path vendor/bundle
-      #     bundle config set without 'documentation'
-      #     bundle install --jobs 4 --retry 3
-
-      # - name: Install dependencies (CocoaPods)
-      #   run: bundle exec pod install
-      #   env:
-      #     DEVELOPER_DIR: ${{ matrix.xcode }}
+      - name: Install dependencies
+        uses: ./.github/actions/setup
 
       - name: Copy brand assets
         run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
@@ -111,38 +65,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: ./.github/actions/setup
-      # - name: Cache RubyGems
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: vendor/bundle
-      #     key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-      #     restore-keys: ${{ runner.os }}-gems-
+      - name: Install dependencies
+        uses: ./.github/actions/setup
 
-      # - name: Cache CocoaPods
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: Pods
-      #     key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-      #     restore-keys: ${{ runner.os }}-pods-
-
-      # - name: Install dependencies (Bundler)
-      #   run: |
-      #     bundle config path vendor/bundle
-      #     bundle config set without 'documentation'
-      #     bundle install --jobs 4 --retry 3
-
-      # - name: Install dependencies (CocoaPods)
-      #   run: bundle exec pod install
-      #   env:
-      #     DEVELOPER_DIR: ${{ matrix.xcode }}
-
-      - name: Check localization
-        run: |
-          bundle exec fastlane localize
-          echo "\nThe following files have incomplete localization:"
-          git status --porcelain -- ':!.bundle'
-          git diff --quiet -- ':!.bundle'
+      - name: Run code validation
+        run: set -o pipefail && Pods/SwiftLint/swiftlint "$@" --strict --reporter github-actions-logging -- $(git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} -- '*.swift')
 
   check-locales:
     name: Check localization
@@ -154,31 +81,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - uses: ./.github/actions/setup
-      # - name: Cache RubyGems
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: vendor/bundle
-      #     key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-      #     restore-keys: ${{ runner.os }}-gems-
-
-      # - name: Cache CocoaPods
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: Pods
-      #     key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-      #     restore-keys: ${{ runner.os }}-pods-
-
-      # - name: Install dependencies (Bundler)
-      #   run: |
-      #     bundle config path vendor/bundle
-      #     bundle config set without 'documentation'
-      #     bundle install --jobs 4 --retry 3
-
-      # - name: Install dependencies (CocoaPods)
-      #   run: bundle exec pod install
-      #   env:
-      #     DEVELOPER_DIR: ${{ matrix.xcode }}
+      - name: Install dependencies
+        uses: ./.github/actions/setup
 
       - name: Check localization
         run: |

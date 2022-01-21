@@ -1,5 +1,7 @@
+name: Setup
+description: Basic setup for the project
 runs:
-  using: "composite"
+  using: composite
   steps:
     - name: Cache RubyGems
       uses: actions/cache@v2
@@ -20,8 +22,10 @@ runs:
         bundle config path vendor/bundle
         bundle config set without 'documentation'
         bundle install --jobs 4 --retry 3
+      shell: bash
 
     - name: Install dependencies (CocoaPods)
       run: bundle exec pod install
+      shell: bash
       env:
         DEVELOPER_DIR: ${{ matrix.xcode }}

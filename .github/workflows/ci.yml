@@ -9,8 +9,8 @@ on:
       - dev
 
 jobs:
-  build-test-lint:
-    name: Build + Test + Lint + Check localization
+  build-test:
+    name: Build + Test
     runs-on: macOS-11
     strategy:
       matrix:
@@ -18,8 +18,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
 
       - name: Cache RubyGems
         uses: actions/cache@v2
@@ -61,26 +59,49 @@ jobs:
       #     scheme: openHPI-iOS
       #     DEVELOPER_DIR: ${{ matrix.xcode }}
 
-      # - name: Check localization
-      #   run: |
-      #     bundle exec fastlane localize
-      #     echo "\nThe following files have incomplete localization:"
-      #     git status --porcelain -- ':!.bundle'
-      #     git diff --quiet -- ':!.bundle'
+lint:
+    name: Lint + Check localization
+    runs-on: macOS-11
+    strategy:
+      matrix:
+        xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Cache RubyGems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: ${{ runner.os }}-gems-
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v2
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: ${{ runner.os }}-pods-
+
+      - name: Install dependencies (Bundler)
+        run: |
+          bundle config path vendor/bundle
+          bundle config set without 'documentation'
+          bundle install --jobs 4 --retry 3
+
+      - name: Install dependencies (CocoaPods)
+        run: bundle exec pod install
+        env:
+          DEVELOPER_DIR: ${{ matrix.xcode }}
+
+      - name: Check localization
+        run: |
+          bundle exec fastlane localize
+          echo "\nThe following files have incomplete localization:"
+          git status --porcelain -- ':!.bundle'
+          git diff --quiet -- ':!.bundle'
 
       - name: Run code validation
-        # run: echo "${{ github.event.pull_request.base.sha }} {{ github.event.pull_request.head.sha }}"
-        # run: echo `git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ GITHUB_HEAD_REF }} -- '*.swift'`
-        run: set -o pipefail && Pods/SwiftLint/swiftlint "$@" --reporter github-actions-logging -- $(git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} -- '*.swift')
-
-        # - name: Validation 2
-        #   run: echo '::warning file=iOS/ViewControllers/Dashboard/DashboardViewController.swift,line=19,col=43::Operators should be surrounded by a single whitespace when they are being used. (operator_usage_whitespace)'
-
-        # uses: MeilCli/danger-action@v5
-        # with:
-        #   plugins_file: 'Gemfile'
-        #   install_path: 'vendor/bundle'
-        #   danger_file: 'Dangerfile'
-        #   danger_id: 'danger-pr'
-        # env:
-        #   DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: set -o pipefail && Pods/SwiftLint/swiftlint "$@" --strict --reporter github-actions-logging -- $(git --no-pager diff --diff-filter=d --name-only --relative ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} -- '*.swift')

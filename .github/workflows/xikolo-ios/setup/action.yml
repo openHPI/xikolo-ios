@@ -1,0 +1,27 @@
+runs:
+  using: "composite"
+  steps:
+    - name: Cache RubyGems
+      uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: ${{ runner.os }}-gems-
+
+    - name: Cache CocoaPods
+      uses: actions/cache@v2
+      with:
+        path: Pods
+        key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+        restore-keys: ${{ runner.os }}-pods-
+
+    - name: Install dependencies (Bundler)
+      run: |
+        bundle config path vendor/bundle
+        bundle config set without 'documentation'
+        bundle install --jobs 4 --retry 3
+
+    - name: Install dependencies (CocoaPods)
+      run: bundle exec pod install
+      env:
+        DEVELOPER_DIR: ${{ matrix.xcode }}

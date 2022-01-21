@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-test-common:
-    name: Build + Test (Common)
+    name: Common / Build + Test
     runs-on: macOS-11
     strategy:
       matrix:
@@ -19,30 +19,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Cache RubyGems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: ${{ runner.os }}-gems-
+      - uses: xikolo-ios/setup@v1
+      # - name: Cache RubyGems
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: vendor/bundle
+      #     key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+      #     restore-keys: ${{ runner.os }}-gems-
 
-      - name: Cache CocoaPods
-        uses: actions/cache@v2
-        with:
-          path: Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: ${{ runner.os }}-pods-
+      # - name: Cache CocoaPods
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: Pods
+      #     key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+      #     restore-keys: ${{ runner.os }}-pods-
 
-      - name: Install dependencies (Bundler)
-        run: |
-          bundle config path vendor/bundle
-          bundle config set without 'documentation'
-          bundle install --jobs 4 --retry 3
+      # - name: Install dependencies (Bundler)
+      #   run: |
+      #     bundle config path vendor/bundle
+      #     bundle config set without 'documentation'
+      #     bundle install --jobs 4 --retry 3
 
-      - name: Install dependencies (CocoaPods)
-        run: bundle exec pod install
-        env:
-          DEVELOPER_DIR: ${{ matrix.xcode }}
+      # - name: Install dependencies (CocoaPods)
+      #   run: bundle exec pod install
+      #   env:
+      #     DEVELOPER_DIR: ${{ matrix.xcode }}
 
       - name: Copy brand assets
         run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
@@ -54,7 +55,7 @@ jobs:
           DEVELOPER_DIR: ${{ matrix.xcode }}
   
   build-test-ios:
-    name: Build + Test (iOS)
+    name: iOS / Build + Test
     runs-on: macOS-11
     strategy:
       matrix:
@@ -63,30 +64,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Cache RubyGems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: ${{ runner.os }}-gems-
+      - uses: xikolo-ios/setup@v1
+      # - name: Cache RubyGems
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: vendor/bundle
+      #     key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+      #     restore-keys: ${{ runner.os }}-gems-
 
-      - name: Cache CocoaPods
-        uses: actions/cache@v2
-        with:
-          path: Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: ${{ runner.os }}-pods-
+      # - name: Cache CocoaPods
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: Pods
+      #     key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+      #     restore-keys: ${{ runner.os }}-pods-
 
-      - name: Install dependencies (Bundler)
-        run: |
-          bundle config path vendor/bundle
-          bundle config set without 'documentation'
-          bundle install --jobs 4 --retry 3
+      # - name: Install dependencies (Bundler)
+      #   run: |
+      #     bundle config path vendor/bundle
+      #     bundle config set without 'documentation'
+      #     bundle install --jobs 4 --retry 3
 
-      - name: Install dependencies (CocoaPods)
-        run: bundle exec pod install
-        env:
-          DEVELOPER_DIR: ${{ matrix.xcode }}
+      # - name: Install dependencies (CocoaPods)
+      #   run: bundle exec pod install
+      #   env:
+      #     DEVELOPER_DIR: ${{ matrix.xcode }}
 
       - name: Copy brand assets
         run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
@@ -109,30 +111,31 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Cache RubyGems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: ${{ runner.os }}-gems-
+      - uses: xikolo-ios/setup@v1
+      # - name: Cache RubyGems
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: vendor/bundle
+      #     key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+      #     restore-keys: ${{ runner.os }}-gems-
 
-      - name: Cache CocoaPods
-        uses: actions/cache@v2
-        with:
-          path: Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: ${{ runner.os }}-pods-
+      # - name: Cache CocoaPods
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: Pods
+      #     key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+      #     restore-keys: ${{ runner.os }}-pods-
 
-      - name: Install dependencies (Bundler)
-        run: |
-          bundle config path vendor/bundle
-          bundle config set without 'documentation'
-          bundle install --jobs 4 --retry 3
+      # - name: Install dependencies (Bundler)
+      #   run: |
+      #     bundle config path vendor/bundle
+      #     bundle config set without 'documentation'
+      #     bundle install --jobs 4 --retry 3
 
-      - name: Install dependencies (CocoaPods)
-        run: bundle exec pod install
-        env:
-          DEVELOPER_DIR: ${{ matrix.xcode }}
+      # - name: Install dependencies (CocoaPods)
+      #   run: bundle exec pod install
+      #   env:
+      #     DEVELOPER_DIR: ${{ matrix.xcode }}
 
       - name: Check localization
         run: |
@@ -151,30 +154,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Cache RubyGems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: ${{ runner.os }}-gems-
+      - uses: xikolo-ios/setup@v1
+      # - name: Cache RubyGems
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: vendor/bundle
+      #     key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+      #     restore-keys: ${{ runner.os }}-gems-
 
-      - name: Cache CocoaPods
-        uses: actions/cache@v2
-        with:
-          path: Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: ${{ runner.os }}-pods-
+      # - name: Cache CocoaPods
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: Pods
+      #     key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+      #     restore-keys: ${{ runner.os }}-pods-
 
-      - name: Install dependencies (Bundler)
-        run: |
-          bundle config path vendor/bundle
-          bundle config set without 'documentation'
-          bundle install --jobs 4 --retry 3
+      # - name: Install dependencies (Bundler)
+      #   run: |
+      #     bundle config path vendor/bundle
+      #     bundle config set without 'documentation'
+      #     bundle install --jobs 4 --retry 3
 
-      - name: Install dependencies (CocoaPods)
-        run: bundle exec pod install
-        env:
-          DEVELOPER_DIR: ${{ matrix.xcode }}
+      # - name: Install dependencies (CocoaPods)
+      #   run: bundle exec pod install
+      #   env:
+      #     DEVELOPER_DIR: ${{ matrix.xcode }}
 
       - name: Check localization
         run: |

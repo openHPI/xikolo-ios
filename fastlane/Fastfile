@@ -1,5 +1,3 @@
-fastlane_require 'git'
-
 fastlane_version "2.147.0"
 
 default_platform :ios
@@ -87,7 +85,7 @@ platform :ios do
       puts "Commit count difference: #{commit_count_diff}"
 
       if commit_count_diff < 0
-        UI.user_error! "The supplied build number refers to a commit which is too far ahead. Have you pulled the latest changes for the branch `#{branch_name}`?"
+        UI.user_error! "The supplied build number refers to a commit which is to far ahead. Have you pulled the latest changes for the branch `#{branch_name}`?"
       end
 
       commit_id = sh("git rev-parse --short #{branch_name}~#{commit_count_diff}").strip!
@@ -108,43 +106,17 @@ platform :ios do
 
   desc "Lint swift code with swiftlint"
   lane :lint do |options|
-    swiftlint(
-      mode: :lint,
-      executable: "Pods/SwiftLint/swiftlint",
-      config_file: ".swiftlint.yml",
-      quiet: true,
-      ignore_exit_status: true,
-    )
-  end
-
-  desc "Lint swift code with swiftlint"
-  lane :lint_pr do |options|
-    # changedFiles = sh("git --no-pager diff --name-only --relative FETCH_HEAD $(git merge-base FETCH_HEAD #{options[:diff_base]}) -- '*.swift'")
-    # changedFiles = sh("GIT_PAGER='' git diff --diff-filter=d --name-only --relative FETCH_HEAD d601ed45 -- '*.swift' '.swiftlint.yml'")
-
-    head_id = sh("git rev-parse --short head")
-    diff_base_id = sh("git rev-parse --short #{options[:diff_base]}")
-    # puts File.dirname(Dir.pwd)
-    # git_merge_base = sh("git merge-base FETCH_HEAD #{options[:diff_base]}").strip
-    g = Git.open(File.dirname(Dir.pwd))
-    changedFiles = g.diff(options[:diff_base], "HEAD").name_status.keys.select { |file| file.end_with?(".swift") }
-    # puts changedFiles
-    swiftlint(
-      mode: :lint,
-      executable: "Pods/SwiftLint/swiftlint",
-      config_file: ".swiftlint.yml",
-      # quiet: true,
-      # ignore_exit_status: true,
-      reporter: "github-actions-logging",
-      files: changedFiles
-    )
-    puts "::warning file=iOS/ViewControllers/Dashboard/DashboardViewController.swift,line=19,col=43::Operators should be surrounded by a single whitespace when they are being used. (operator_usage_whitespace)"
+    run_swiftlint(mode: :lint)
   end
 
   desc "Format swift code with swiftlint"
   lane :format do |options|
+    run_swiftlint(mode: :fix)
+  end
+
+  private_lane :run_swiftlint do |options|
     swiftlint(
-      mode: :fix,
+      mode: options[:mode],
       executable: "Pods/SwiftLint/swiftlint",
       config_file: ".swiftlint.yml",
       quiet: true,

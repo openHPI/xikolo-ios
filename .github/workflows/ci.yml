@@ -9,9 +9,6 @@ on:
       - dev
 
 jobs:
-  setup:
-    name: Setup
-    runs-on: macOS-11
   build-test-common:
     name: Build + Test (Common)
     runs-on: macOS-11

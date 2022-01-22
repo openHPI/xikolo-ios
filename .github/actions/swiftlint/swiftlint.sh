@@ -1,6 +1,6 @@
 #!/bin/bash
 
-changedFiles=$(git --no-pager diff --diff-filter=d --name-only FETCH_HEAD $(git merge-base $BASED_REF $HEAD_REF) -- '*.swift')
+changedFiles=$(git --no-pager diff --diff-filter=d --name-only $BASE_REF $HEAD_REF -- '*.swift')
 
 if [ -z "$changedFiles" ]
 then

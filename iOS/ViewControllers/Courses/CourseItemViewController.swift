@@ -233,12 +233,8 @@ class CourseItemViewController: UIPageViewController {
 
     func updatePreviousAndNextItemButtons() {
         let enoughSpaceForButtons: Bool = {
-            if #available(iOS 11, *) {
-                let insets = NSDirectionalEdgeInsets.readableContentInsets(for: self)
-                return insets.leading >= 84
-            } else {
-                return false
-            }
+            let insets = NSDirectionalEdgeInsets.readableContentInsets(for: self)
+            return insets.leading >= 84
         }()
 
         let childViewControllerIsFullScreen: Bool = {

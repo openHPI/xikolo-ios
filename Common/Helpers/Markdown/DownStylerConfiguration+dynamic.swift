@@ -41,11 +41,7 @@ extension DownStylerConfiguration {
     }
 
     private static func makeDynamicFont(for font: UIFont) -> UIFont {
-        if #available(iOS 11, *) {
-            return UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
-        } else {
-            return font
-        }
+        return UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
     }
 
     private static var dynamicColors: ColorCollection {

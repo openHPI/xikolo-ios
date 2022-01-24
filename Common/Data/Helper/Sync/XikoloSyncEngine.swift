@@ -11,11 +11,7 @@ extension URLSessionConfiguration {
 
     public static var waitingDefault: URLSessionConfiguration {
         let configuration = URLSessionConfiguration.default
-
-        if #available(iOS 11, *) {
-            configuration.waitsForConnectivity = true
-        }
-
+        configuration.waitsForConnectivity = true
         return configuration
     }
 

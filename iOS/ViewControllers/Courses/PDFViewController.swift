@@ -12,24 +12,7 @@ class PDFViewController: UIViewController {
 
     @IBOutlet private var shareButton: UIBarButtonItem!
 
-    @available(iOS, obsoleted: 11.0)
-    private var webView: WKWebView!
-
-    // It's not possible to annotate stored properties with @available.
-    // So we have to use a combination of type erased object and computed property
-    // as long as we support iOS 10.
-    private var pdfViewObject: AnyObject!
-
-    @available(iOS 11, *)
-    private var pdfView: PDFView {
-        get {
-            // swiftlint:disable:next force_cast
-            return self.pdfViewObject as! PDFView
-        }
-        set {
-            self.pdfViewObject = newValue
-        }
-    }
+    private var pdfView = PDFView()
 
     private lazy var progress: CircularProgressView = {
         let progress = CircularProgressView()
@@ -80,13 +63,8 @@ class PDFViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = nil
-        if #available(iOS 11, *) {
-            self.initializePDFView()
-            self.pdfView.isHidden = true
-        } else {
-            self.initializeWebView()
-            self.webView.isHidden = true
-        }
+        self.initializePDFView()
+        self.pdfView.isHidden = true
 
         self.progress.alpha = 0.0
 
@@ -110,23 +88,7 @@ class PDFViewController: UIViewController {
         self.filename = filename
     }
 
-    @available(iOS, obsoleted: 11.0)
-    func initializeWebView() {
-        // The manual initialization is necessary due to a bug in NSCoding in iOS 10
-        self.webView = WKWebView(frame: self.view.frame)
-        self.view.addSubview(webView)
-        self.webView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            self.webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            self.webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            self.webView.topAnchor.constraint(equalTo: view.topAnchor),
-        ])
-     }
-
-    @available(iOS 11, *)
     func initializePDFView() {
-        self.pdfView = PDFView()
         self.view.addSubview(self.pdfView)
         self.pdfView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -194,16 +156,9 @@ extension PDFViewController: URLSessionDownloadDelegate {
             self.tempPDFFile = tmpFile
 
             DispatchQueue.main.async {
-                if #available(iOS 11.0, *) {
-                    self.pdfView.document = PDFDocument(url: tmpFile.fileURL)
-                    self.progress.isHidden = true
-                    self.pdfView.isHidden = false
-                } else {
-                    let request = URLRequest(url: tmpFile.fileURL)
-                    self.webView.load(request)
-                    self.progress.isHidden = true
-                    self.webView.isHidden = false
-                }
+                self.pdfView.document = PDFDocument(url: tmpFile.fileURL)
+                self.progress.isHidden = true
+                self.pdfView.isHidden = false
             }
 
             self.currentDownload = nil

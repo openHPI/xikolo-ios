@@ -47,20 +47,12 @@ class DetailedDataItemView: UIStackView {
         imageView.bounds = CGRect(x: 0, y: 0, width: 12, height: 14)
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = ColorCompatibility.secondaryLabel
-
-        if #available(iOS 11, *) {
-            imageView.adjustsImageSizeForAccessibilityContentSizeCategory = true
-        }
-
+        imageView.adjustsImageSizeForAccessibilityContentSizeCategory = true
         return imageView
     }()
 
     private var progressViewLineWidth: CGFloat {
-        if #available(iOS 11, *) {
-            return self.traitCollection.preferredContentSizeCategory < .accessibilityMedium ? 1.25 : 2.5
-        } else {
-            return 1.25
-        }
+        return self.traitCollection.preferredContentSizeCategory < .accessibilityMedium ? 1.25 : 2.5
     }
 
     override func awakeFromNib() {

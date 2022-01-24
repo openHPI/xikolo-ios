@@ -12,7 +12,6 @@ class ReadableWidthNavigationController: UINavigationController {
         self.updateCustomLayoutMargins()
     }
 
-    @available(iOS 11, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
         self.updateCustomLayoutMargins()
@@ -32,18 +31,16 @@ class ReadableWidthNavigationController: UINavigationController {
     }
 
     private func updateCustomLayoutMargins() {
-        if #available(iOS 11, *) {
-            let customInsets = NSDirectionalEdgeInsets.readableContentInsets(for: self)
-            self.view.directionalLayoutMargins = customInsets
-            self.navigationBar.preservesSuperviewLayoutMargins = true
+        let customInsets = NSDirectionalEdgeInsets.readableContentInsets(for: self)
+        self.view.directionalLayoutMargins = customInsets
+        self.navigationBar.preservesSuperviewLayoutMargins = true
 
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                self.navigationBar.directionalLayoutMargins.leading = customInsets.leading
-                self.navigationBar.directionalLayoutMargins.trailing = customInsets.trailing
-            }
-
-            self.navigationBar.layoutMarginsDidChange()
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            self.navigationBar.directionalLayoutMargins.leading = customInsets.leading
+            self.navigationBar.directionalLayoutMargins.trailing = customInsets.trailing
         }
+
+        self.navigationBar.layoutMarginsDidChange()
     }
 
 }

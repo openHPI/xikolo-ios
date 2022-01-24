@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,31 +19,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please log into your account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBe-Fq-ggH">
-                                <rect key="frame" x="16" y="188" width="343" height="20.5"/>
+                                <rect key="frame" x="16" y="189.5" width="343" height="17"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currently not supported" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ki9-Gd-mbN">
-                                <rect key="frame" x="16" y="188" width="343" height="20.5"/>
+                                <rect key="frame" x="16" y="189.5" width="343" height="17"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2E-Sn-j9v">
-                                <rect key="frame" x="16" y="91.5" width="343" height="217.5"/>
+                                <rect key="frame" x="16" y="93" width="343" height="214"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="L9x-QD-5Ot">
-                                        <rect key="frame" x="0.0" y="20" width="343" height="177.5"/>
+                                        <rect key="frame" x="0.0" y="20" width="343" height="174"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HPL-4k-nVu" userLabel="Counter View">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="59.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SqI-mt-Qyh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="14.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iS-3J-iih" userLabel="Today">
-                                                                <rect key="frame" x="0.0" y="0.0" width="109" height="18"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="109" height="14.5"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                                 </accessibility>
@@ -49,7 +52,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next 7 Days" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1g-ix-PZy" userLabel="Next 7 Days">
-                                                                <rect key="frame" x="117" y="0.0" width="109" height="18"/>
+                                                                <rect key="frame" x="117" y="0.0" width="109" height="14.5"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                                 </accessibility>
@@ -58,7 +61,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFl-7o-kzc" userLabel="All">
-                                                                <rect key="frame" x="234" y="0.0" width="109" height="18"/>
+                                                                <rect key="frame" x="234" y="0.0" width="109" height="14.5"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                                 </accessibility>
@@ -69,14 +72,14 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LxF-nX-R84">
-                                                        <rect key="frame" x="0.0" y="26" width="343" height="33.5"/>
+                                                        <rect key="frame" x="0.0" y="22.5" width="343" height="37"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZT0-cS-w8o">
-                                                                <rect key="frame" x="0.0" y="0.0" width="109" height="33.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="109" height="37"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" none="YES"/>
                                                                 </accessibility>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <attributedString key="userComments">
@@ -84,23 +87,23 @@
                                                                 </attributedString>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZ7-Dc-eUO">
-                                                                <rect key="frame" x="117" y="0.0" width="109" height="33.5"/>
+                                                                <rect key="frame" x="117" y="0.0" width="109" height="37"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                                                 </accessibility>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <attributedString key="userComments">
                                                                     <fragment content="#bc-ignore!"/>
                                                                 </attributedString>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2z-4g-4CF" userLabel="2">
-                                                                <rect key="frame" x="234" y="0.0" width="109" height="33.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2z-4g-4CF">
+                                                                <rect key="frame" x="234" y="0.0" width="109" height="37"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                                                 </accessibility>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <attributedString key="userComments">
@@ -112,20 +115,20 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8Bi-3R-cfl">
-                                                <rect key="frame" x="0.0" y="83.5" width="343" height="94"/>
+                                                <rect key="frame" x="0.0" y="83.5" width="343" height="90.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ndy-1w-vea">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="39"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" image="calendar-large" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="93g-WM-EB7">
                                                                 <rect key="frame" x="0.0" y="0.0" width="39" height="39"/>
-                                                                <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="tintColor" systemColor="secondaryLabelColor"/>
                                                             </imageView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="RSp-3Z-AOw">
-                                                                <rect key="frame" x="47" y="0.0" width="296" height="39"/>
+                                                                <rect key="frame" x="47" y="2.5" width="296" height="34.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="relative date time" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVT-tT-Qtx">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="296" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="296" height="17"/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                         <nil key="highlightedColor"/>
                                                                         <attributedString key="userComments">
@@ -138,9 +141,9 @@
                                                                         </attributedString>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="date" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LU-eF-35Q">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="296" height="14.5"/>
+                                                                        <rect key="frame" x="0.0" y="21" width="296" height="13.5"/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                                        <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                         <attributedString key="userComments">
                                                                             <fragment content="#bc-ignore!">
@@ -157,13 +160,13 @@
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxh-uZ-bmr">
                                                         <rect key="frame" x="0.0" y="47" width="343" height="1"/>
-                                                        <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" systemColor="separatorColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="zUM-fx-hDZ"/>
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="z8V-UM-sHZ">
-                                                        <rect key="frame" x="0.0" y="56" width="343" height="38"/>
+                                                        <rect key="frame" x="0.0" y="56" width="343" height="34.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="course" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4TA-ww-Ysg">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="13.5"/>
@@ -179,7 +182,7 @@
                                                                 </attributedString>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NlA-DQ-CBl">
-                                                                <rect key="frame" x="0.0" y="17.5" width="343" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="17.5" width="343" height="17"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <attributedString key="userComments">
@@ -207,6 +210,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="1xb-fi-lbf"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Ki9-Gd-mbN" secondAttribute="trailing" id="4oT-Kb-YBm"/>
@@ -220,7 +224,6 @@
                             <constraint firstAttribute="trailingMargin" secondItem="s2E-Sn-j9v" secondAttribute="trailing" id="vUp-Sd-m4X"/>
                             <constraint firstItem="HPL-4k-nVu" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" constant="-2" id="zck-7t-60a"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="1xb-fi-lbf"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="zck-7t-60a"/>
@@ -254,5 +257,11 @@
     </scenes>
     <resources>
         <image name="calendar-large" width="39" height="39"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

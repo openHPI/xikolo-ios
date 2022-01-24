@@ -4,7 +4,7 @@ install! 'cocoapods',
     integrate_targets: false,
     skip_pods_project_generation: true
 
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 pod 'BartyCrouch', :git => 'https://github.com/Flinesoft/BartyCrouch.git', :tag => '3.13.0'
 pod 'R.swift', '~> 5.0'

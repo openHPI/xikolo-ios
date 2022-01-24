@@ -16,14 +16,6 @@
 	<string>Powered by HPI / openHPI</string>
 	<key>colors</key>
 	<dict>
-		<key>primary</key>
-		<string>#F0AB00</string>
-		<key>secondary</key>
-		<string>#226CA9</string>
-		<key>tertiary</key>
-		<string>#8AB54E</string>
-		<key>primaryLight</key>
-		<string>#FAE5B2</string>
 		<key>window</key>
 		<string>secondary</string>
 	</dict>

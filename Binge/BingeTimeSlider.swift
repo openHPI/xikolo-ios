@@ -11,14 +11,7 @@ class BingeTimeSlider: UISlider {
         let trackHeight: CGFloat = 2
         let superRect = super.trackRect(forBounds: bounds)
         let heightDelta = trackHeight - superRect.height
-
-        let additionalOffsetY: CGFloat
-        if #available(iOS 11, *) {
-            additionalOffsetY = -1
-        } else {
-            additionalOffsetY = -0.5
-        }
-
+        let additionalOffsetY = -1.0
         return CGRect(x: superRect.origin.x, y: superRect.origin.y - heightDelta / 2 + additionalOffsetY, width: superRect.width, height: trackHeight)
     }
 

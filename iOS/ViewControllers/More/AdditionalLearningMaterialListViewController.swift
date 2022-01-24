@@ -16,10 +16,7 @@ class AdditionalLearningMaterialListViewController: UICollectionViewController {
         super.viewDidLoad()
 
         self.adjustScrollDirection()
-
-        if #available(iOS 11, *) {
-            self.collectionView.contentInsetAdjustmentBehavior = .scrollableAxes
-        }
+        self.collectionView.contentInsetAdjustmentBehavior = .scrollableAxes
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -102,10 +99,7 @@ extension AdditionalLearningMaterialListViewController: UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
         var availableWidth = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
-
-        if #available(iOS 11, *) {
-            availableWidth -= collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right
-        }
+        availableWidth -= collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right
 
         let height = 180 + 2 * AdditionalLearningMaterialCell.cardInset
 
@@ -126,14 +120,8 @@ extension AdditionalLearningMaterialListViewController: UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        var leftPadding = collectionView.layoutMargins.left - AdditionalLearningMaterialCell.cardInset
-        var rightPadding = collectionView.layoutMargins.right - AdditionalLearningMaterialCell.cardInset
-
-        if #available(iOS 11.0, *) {
-            leftPadding -= collectionView.safeAreaInsets.left
-            rightPadding -= collectionView.safeAreaInsets.right
-        }
-
+        let leftPadding = collectionView.layoutMargins.left - AdditionalLearningMaterialCell.cardInset - collectionView.safeAreaInsets.left
+        let rightPadding = collectionView.layoutMargins.right - AdditionalLearningMaterialCell.cardInset - collectionView.safeAreaInsets.right
         return UIEdgeInsets(top: 4, left: leftPadding, bottom: collectionView.layoutMargins.bottom, right: rightPadding)
     }
 

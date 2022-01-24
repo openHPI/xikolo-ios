@@ -77,14 +77,8 @@ class CourseSearchFiltersViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if #available(iOS 11, *) {
-            let numberOfAdditionalCells = self.activeFilters.isEmpty ? 0 : 1
-            return CourseSearchFilter.availableCases.count + numberOfAdditionalCells
-        } else {
-            // On iOS 10, the clear button does not show up when filters get activated. So we use this workaround
-            // of always showing the clear button (last additional cell) for the user still using iOS 10.
-            return CourseSearchFilter.availableCases.count + 1
-        }
+        let numberOfAdditionalCells = self.activeFilters.isEmpty ? 0 : 1
+        return CourseSearchFilter.availableCases.count + numberOfAdditionalCells
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -129,14 +123,8 @@ extension CourseSearchFiltersViewController: UICollectionViewDelegateFlowLayout 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        var leftPadding = collectionView.layoutMargins.left
-        var rightPadding = collectionView.layoutMargins.right
-
-        if #available(iOS 11.0, *) {
-            leftPadding -= collectionView.safeAreaInsets.left
-            rightPadding -= collectionView.safeAreaInsets.right
-        }
-
+        let leftPadding = collectionView.layoutMargins.left - collectionView.safeAreaInsets.left
+        let rightPadding = collectionView.layoutMargins.right - collectionView.safeAreaInsets.right
         return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
     }
 

@@ -14,14 +14,6 @@
 	<string>HPI</string>
 	<key>colors</key>
 	<dict>
-		<key>primary</key>
-		<string>#DD6108</string>
-		<key>secondary</key>
-		<string>#F6A800</string>
-		<key>tertiary</key>
-		<string>#5A6065</string>
-		<key>primaryLight</key>
-		<string>#f4cfb4</string>
 		<key>window</key>
 		<string>primary</string>
 	</dict>

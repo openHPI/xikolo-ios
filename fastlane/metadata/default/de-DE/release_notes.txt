@@ -1,8 +1,4 @@
-• Überdeckende Buttons in Quizzen behoben
-• Fehlerbehebungen und kleinere Verbesserungen
-
-Auch in Version 2.12:
-• Widgets für den Homescreens unter iOS 14 und später
-• Bessere Einbindung von PDFs
-• Leistungsverbesserungen und kleinere Fehlerbehebungen
-• Buttons zum Wechseln zum vorherigen und nächsten Kurselement hinzugefügt (nur für iPads — nach links und rechts wischen funktioniert auf iPhones und iPads)
+• Design-Verbesserungen für das Dashboard
+• Design-Verbesserungen für die Kursliste
+• Kurse, die kein Enddatum haben, werden nun im Abschnitt 'Selbststudium' aufgeführt
+• Abstürze für ungültige Kontextmenüs behoben

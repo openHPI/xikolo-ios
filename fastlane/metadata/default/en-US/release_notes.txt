@@ -1,8 +1,4 @@
-• Prevent overlapping buttons in quiz items
-• Bug fixes and smaller improvements
-
-Also in version 2.12:
-• Widgets for the homescreen on iOS 14 and later
-• Better handling of PDFs
-• Performance improvements and smaller bug fixes
-• Add buttons to switch to previous and next course item (iPad only — swiping left and right still works on iPhone and iPad)
+• Visual improvements to the dashboard
+• Visual improvements to the course list
+• Course with no end date are now listed in the 'self-paced' section
+• Fix crash for invalid context menus

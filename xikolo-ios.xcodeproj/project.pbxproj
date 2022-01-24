@@ -235,7 +235,6 @@
 		508C3148276B6B32003AE388 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
 		508C3149276B6B32003AE388 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		508C314F276B80D6003AE388 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 508C314E276B80D6003AE388 /* Down */; };
-		508C3151276B8159003AE388 /* BrightFutures in Frameworks */ = {isa = PBXBuildFile; productRef = 508C3150276B8159003AE388 /* BrightFutures */; };
 		508C3154276B8C0E003AE388 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 508C3153276B8C0E003AE388 /* Rswift */; };
 		508CF44A242CA8F60086F339 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508CF449242CA8F50086F339 /* CoreServices.framework */; };
 		508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44121AB390400801530 /* SubtitleTableViewCell.swift */; };
@@ -273,6 +272,7 @@
 		50B71B88212AC61C008CE681 /* DocumentsPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */; };
 		50BC011B217755B500F38B30 /* UnavailableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */; };
 		50C21DE823549D4A00D7A1A6 /* UICollectionView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C21DE723549D4A00D7A1A6 /* UICollectionView+EmptyState.swift */; };
+		50C8356F279ED733004FEB62 /* BrightFutures in Frameworks */ = {isa = PBXBuildFile; productRef = 50C8356E279ED733004FEB62 /* BrightFutures */; };
 		50CF1F4620DCDBFC0011BFE9 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFViewController.swift */; };
 		50CF1F4E20DCDBFC0011BFE9 /* RichTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichTextViewController.swift */; };
 		50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
@@ -1225,7 +1225,7 @@
 				50AD86172570F3D5003BDB80 /* SwiftUI.framework in Frameworks */,
 				50AD86152570F3D4003BDB80 /* WidgetKit.framework in Frameworks */,
 				508C314F276B80D6003AE388 /* Down in Frameworks */,
-				508C3151276B8159003AE388 /* BrightFutures in Frameworks */,
+				50C8356F279ED733004FEB62 /* BrightFutures in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2510,7 +2510,7 @@
 			name = WidgetExtension;
 			packageProductDependencies = (
 				508C314E276B80D6003AE388 /* Down */,
-				508C3150276B8159003AE388 /* BrightFutures */,
+				50C8356E279ED733004FEB62 /* BrightFutures */,
 			);
 			productName = widgetExtension;
 			productReference = 50AD86132570F3D4003BDB80 /* WidgetExtension.appex */;
@@ -2532,6 +2532,7 @@
 				02299DD82417E867006B2E52 /* Embed App Extension */,
 				50D60D2B20E0D2C7007A4199 /* Remove Localizations */,
 				50AD2527276C91D90050831C /* Compile Acknowledgements */,
+				50C83570279EDFD8004FEB62 /* Remove Duplicate Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2907,6 +2908,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$SRCROOT/Build\\ Phases/compile-acknowledgements.sh\n";
+		};
+		50C83570279EDFD8004FEB62 /* Remove Duplicate Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Remove Duplicate Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/Build\\ Phases/remove-duplicate-frameworks.sh\n";
 		};
 		50CF1F4320DCDBFC0011BFE9 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -10829,11 +10848,6 @@
 			package = 508C30AE276B697B003AE388 /* XCRemoteSwiftPackageReference "Down" */;
 			productName = Down;
 		};
-		508C3150276B8159003AE388 /* BrightFutures */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 508C3096276B4EA7003AE388 /* XCRemoteSwiftPackageReference "BrightFutures" */;
-			productName = BrightFutures;
-		};
 		508C3153276B8C0E003AE388 /* Rswift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 508C3152276B8C0D003AE388 /* XCRemoteSwiftPackageReference "R.swift" */;
@@ -10843,6 +10857,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 508C30AE276B697B003AE388 /* XCRemoteSwiftPackageReference "Down" */;
 			productName = Down;
+		};
+		50C8356E279ED733004FEB62 /* BrightFutures */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 508C3096276B4EA7003AE388 /* XCRemoteSwiftPackageReference "BrightFutures" */;
+			productName = BrightFutures;
 		};
 /* End XCSwiftPackageProductDependency section */
 

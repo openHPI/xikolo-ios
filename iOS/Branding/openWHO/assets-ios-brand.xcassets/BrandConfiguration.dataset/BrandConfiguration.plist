@@ -20,14 +20,6 @@
 	<true/>
 	<key>colors</key>
 	<dict>
-		<key>primary</key>
-		<string>#0B72B5</string>
-		<key>secondary</key>
-		<string>#9164A7</string>
-		<key>tertiary</key>
-		<string>#A7CA6C</string>
-		<key>primaryLight</key>
-		<string>#B5D4E8</string>
 		<key>window</key>
 		<string>primary</string>
 	</dict>

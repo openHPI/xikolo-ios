@@ -14,36 +14,26 @@ public struct BrandColors: Decodable {
     }
 
     private enum CodingKeys: CodingKey {
-        case primary
-        case secondary
-        case tertiary
-        case primaryLight
         case window
     }
 
     private let windowColorChoice: WindowColorChoice
 
-    private let primaryFallback: UIColor
-    private let secondaryFallback: UIColor
-    private let tertiaryFallback: UIColor
-
-    // Light mode: 25% over #FFFFFF - Dark Mode: 25% over #1D1D1E
-    private let primaryLightFallback: UIColor
-
     public var primary: UIColor {
-        return UIColor(named: "primary") ?? self.primaryFallback
+        return UIColor(named: "primary")!
     }
 
     public var secondary: UIColor {
-        return UIColor(named: "secondary") ?? self.secondaryFallback
+        return UIColor(named: "secondary")!
     }
 
     public var tertiary: UIColor {
-        return UIColor(named: "tertiary") ?? self.tertiaryFallback
+        return UIColor(named: "tertiary")!
     }
 
     public var primaryLight: UIColor {
-        return UIColor(named: "primaryLight") ?? self.primaryLightFallback
+        // Light mode: 25% over #FFFFFF - Dark Mode: 25% over #1D1D1E
+        return UIColor(named: "primaryLight")!
     }
 
     public let answerCorrect = UIColor(red: 140 / 255, green: 179 / 255, blue: 13 / 255, alpha: 1)
@@ -52,10 +42,6 @@ public struct BrandColors: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.primaryFallback = try container.decodeColor(forKey: .primary)
-        self.secondaryFallback = try container.decodeColor(forKey: .secondary)
-        self.tertiaryFallback = try container.decodeColor(forKey: .tertiary)
-        self.primaryLightFallback = try container.decodeColor(forKey: .primaryLight)
         self.windowColorChoice = try container.decodeWindowColorChoice(forKey: .window)
     }
 

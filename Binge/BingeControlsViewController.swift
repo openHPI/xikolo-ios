@@ -146,7 +146,6 @@ class BingeControlsViewController: UIViewController {
         return button
     }()
 
-    @available(iOS 11, *)
     private lazy var airPlayButton: AVRoutePickerView = {
         let view = AVRoutePickerView()
         view.tintColor = .white
@@ -154,6 +153,11 @@ class BingeControlsViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self.delegate
         view.isHidden = true
+
+        if #available(iOS 13.0, *) {
+            view.prioritizesVideoDevices = true
+        }
+
         return view
     }()
 
@@ -277,11 +281,6 @@ class BingeControlsViewController: UIViewController {
         let view = BingeClickThroughView()
         view.backgroundColor = UIColor(white: 0.1, alpha: 0.75)
 
-        // This can be moved the the lazy init of `airplayButton` as soon as support for iOS 10 was dropped
-        if #available(iOS 13, *) {
-            self.airPlayButton.prioritizesVideoDevices = true
-        }
-
         self.addSubviews(to: view)
         self.addConstraints(with: view)
 
@@ -303,10 +302,7 @@ class BingeControlsViewController: UIViewController {
         parent.addSubview(self.titleView)
         parent.addSubview(self.topBarRightStackView)
         self.topBarRightStackView.addArrangedSubview(self.pictureInPictureButton)
-
-        if #available(iOS 11, *) {
-            self.topBarRightStackView.addArrangedSubview(self.airPlayButton)
-        }
+        self.topBarRightStackView.addArrangedSubview(self.airPlayButton)
 
         self.topBarRightStackView.addArrangedSubview(self.settingsButton)
 
@@ -317,13 +313,7 @@ class BingeControlsViewController: UIViewController {
 
     private func addConstraints(with parent: UIView) { // swiftlint:disable:this function_body_length
         let padding: CGFloat = 12
-        let parentMargins: UILayoutGuide = {
-            if #available(iOS 11, *) {
-                return parent.safeAreaLayoutGuide
-            } else {
-                return parent.layoutMarginsGuide
-            }
-        }()
+        let parentMargins = parent.safeAreaLayoutGuide
 
         let emptyViewWidthConstraint = self.emptyView.widthAnchor.constraint(equalToConstant: 0)
         emptyViewWidthConstraint.priority = .required - 1
@@ -403,10 +393,7 @@ class BingeControlsViewController: UIViewController {
             self.seekBackwardButton.widthAnchor.constraint(equalToConstant: 44),
         ])
 
-        if #available(iOS 11, *) {
-            self.airPlayButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        }
-
+        self.airPlayButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
     }
 
     private func formatTime(_ time: TimeInterval) -> String {
@@ -476,10 +463,7 @@ class BingeControlsViewController: UIViewController {
     func setTintColor(_ color: UIColor) {
         self.timeSlider.tintColor = color
         self.timeSlider.minimumTrackTintColor = color
-
-        if #available(iOS 11, *) {
-            self.airPlayButton.activeTintColor = color
-        }
+        self.airPlayButton.activeTintColor = color
     }
 
     func adaptToItem(_ item: AVPlayerItem) {
@@ -526,7 +510,6 @@ class BingeControlsViewController: UIViewController {
         self.pictureInPictureButton.isEnabled = pictureInPicturePossible
     }
 
-    @available(iOS 11, *)
     func adaptToMultiRouteOutput(for multipleRoutesDetected: Bool) {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.25) {

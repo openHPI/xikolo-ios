@@ -96,7 +96,6 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
-    @available(iOS 11, *)
     private lazy var routeDetector = AVRouteDetector()
 
     private var shouldToggleControls: Bool {
@@ -232,7 +231,7 @@ public class BingePlayerViewController: UIViewController {
 
     public weak var delegate: BingePlayerDelegate?
 
-    override public func loadView() { // swiftlint:disable:this function_body_length
+    override public func loadView() {
         let view = UIView()
         view.backgroundColor = .black
         view.addSubview(self.playerView)
@@ -247,12 +246,7 @@ public class BingePlayerViewController: UIViewController {
         self.controlsContainer.isHidden = true
         self.controlsContainer.translatesAutoresizingMaskIntoConstraints = false
 
-        let layoutGuide: UILayoutGuide
-        if #available(iOS 11, *) {
-            layoutGuide = view.safeAreaLayoutGuide
-        } else {
-            layoutGuide = view.layoutMarginsGuide
-        }
+        let layoutGuide = view.safeAreaLayoutGuide
 
         NSLayoutConstraint.activate([
             self.playerView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -358,14 +352,11 @@ public class BingePlayerViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChanged), name: AVAudioSession.routeChangeNotification, object: nil)
 
-        if #available(iOS 11, *) {
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(handleMultipleRoutes),
-                                                   name: .AVRouteDetectorMultipleRoutesDetectedDidChange,
-                                                   object: nil)
-
-            self.routeDetector.isRouteDetectionEnabled = true
-        }
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleMultipleRoutes),
+                                               name: .AVRouteDetectorMultipleRoutesDetectedDidChange,
+                                               object: nil)
+        self.routeDetector.isRouteDetectionEnabled = true
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
@@ -379,10 +370,8 @@ public class BingePlayerViewController: UIViewController {
 
         NotificationCenter.default.removeObserver(self, name: AVAudioSession.routeChangeNotification, object: nil)
 
-        if #available(iOS 11, *) {
-            NotificationCenter.default.removeObserver(self, name: .AVRouteDetectorMultipleRoutesDetectedDidChange, object: nil)
-            self.routeDetector.isRouteDetectionEnabled = false
-        }
+        NotificationCenter.default.removeObserver(self, name: .AVRouteDetectorMultipleRoutesDetectedDidChange, object: nil)
+        self.routeDetector.isRouteDetectionEnabled = false
     }
 
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -418,11 +407,7 @@ public class BingePlayerViewController: UIViewController {
     }
 
     override public var prefersStatusBarHidden: Bool {
-        if #available(iOS 11, *) {
-            return self.controlsContainer.isHidden
-        } else {
-            return true
-        }
+        return self.controlsContainer.isHidden
     }
 
     override public var prefersHomeIndicatorAutoHidden: Bool {
@@ -509,7 +494,6 @@ public class BingePlayerViewController: UIViewController {
         self.layoutState = self.isAirPlayActivated ? .remote : .inline
     }
 
-    @available(iOS 11, *)
     @objc private func handleMultipleRoutes() {
         self.controlsViewController.adaptToMultiRouteOutput(for: self.routeDetector.multipleRoutesDetected)
     }
@@ -564,9 +548,7 @@ public class BingePlayerViewController: UIViewController {
                           animations: { [weak self] in
             self?.controlsContainer.isHidden = false
             self?.setNeedsStatusBarAppearanceUpdate()
-            if #available(iOS 11, *) {
-                self?.setNeedsUpdateOfHomeIndicatorAutoHidden()
-            }
+            self?.setNeedsUpdateOfHomeIndicatorAutoHidden()
         }, completion: { [weak self] _ in
             guard self?.layoutState != .remote else { return }
             if self?.didPlayToEnd ?? false { return }
@@ -584,9 +566,7 @@ public class BingePlayerViewController: UIViewController {
                           animations: { [weak self] in
             self?.controlsContainer.isHidden = true
             self?.setNeedsStatusBarAppearanceUpdate()
-            if #available(iOS 11, *) {
-                self?.setNeedsUpdateOfHomeIndicatorAutoHidden()
-            }
+            self?.setNeedsUpdateOfHomeIndicatorAutoHidden()
         }, completion: nil)
     }
 
@@ -671,7 +651,7 @@ public class BingePlayerViewController: UIViewController {
             }
         }
 
-        if #available(iOS 10.3, *), let urlAsset = self.asset as? AVURLAsset {
+        if let urlAsset = self.asset as? AVURLAsset {
             nowPlayingInfo[MPNowPlayingInfoPropertyAssetURL] = urlAsset.url
         }
 
@@ -918,9 +898,7 @@ extension BingePlayerViewController {
                               animations: { [weak self] in
                 self?.controlsContainer.isHidden = true
                 self?.setNeedsStatusBarAppearanceUpdate()
-                if #available(iOS 11, *) {
-                    self?.setNeedsUpdateOfHomeIndicatorAutoHidden()
-                }
+                self?.setNeedsUpdateOfHomeIndicatorAutoHidden()
             }, completion: nil)
         }
 
@@ -974,12 +952,10 @@ extension BingePlayerViewController: BingePlaybackRateDelegate {
 
 extension BingePlayerViewController: AVRoutePickerViewDelegate {
 
-    @available(iOS 11, *)
     public func routePickerViewWillBeginPresentingRoutes(_ routePickerView: AVRoutePickerView) {
         self.stopAutoHideOfControlsOverlay()
     }
 
-    @available(iOS 11, *)
     public func routePickerViewDidEndPresentingRoutes(_ routePickerView: AVRoutePickerView) {
         self.autoHideControlsOverlay()
     }

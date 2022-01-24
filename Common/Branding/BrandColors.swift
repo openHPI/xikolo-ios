@@ -31,35 +31,19 @@ public struct BrandColors: Decodable {
     private let primaryLightFallback: UIColor
 
     public var primary: UIColor {
-        if #available(iOS 11, *) {
-            return UIColor(named: "primary") ?? self.primaryFallback
-        } else {
-            return self.primaryFallback
-        }
+        return UIColor(named: "primary") ?? self.primaryFallback
     }
 
     public var secondary: UIColor {
-        if #available(iOS 11, *) {
-            return UIColor(named: "secondary") ?? self.secondaryFallback
-        } else {
-            return self.secondaryFallback
-        }
+        return UIColor(named: "secondary") ?? self.secondaryFallback
     }
 
     public var tertiary: UIColor {
-        if #available(iOS 11, *) {
-            return UIColor(named: "tertiary") ?? self.tertiaryFallback
-        } else {
-            return self.tertiaryFallback
-        }
+        return UIColor(named: "tertiary") ?? self.tertiaryFallback
     }
 
     public var primaryLight: UIColor {
-        if #available(iOS 11, *) {
-            return UIColor(named: "primaryLight") ?? self.primaryLightFallback
-        } else {
-            return self.primaryLightFallback
-        }
+        return UIColor(named: "primaryLight") ?? self.primaryLightFallback
     }
 
     public let answerCorrect = UIColor(red: 140 / 255, green: 179 / 255, blue: 13 / 255, alpha: 1)

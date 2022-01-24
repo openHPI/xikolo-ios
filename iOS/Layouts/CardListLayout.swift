@@ -115,13 +115,7 @@ class CardListLayout: TopAlignedCollectionViewFlowLayout {
             guard let boundaries = self.boundaries(forSection: indexPath.section) else { return nil }
             guard let collectionView = collectionView else { return nil }
 
-            let contentOffsetY: CGFloat
-            if #available(iOS 11.0, *) {
-                contentOffsetY = collectionView.contentOffset.y + collectionView.safeAreaInsets.top
-            } else {
-                let navigationBarHeight = (self.delegate as? UIViewController)?.topLayoutGuide.length ?? 64
-                contentOffsetY = collectionView.contentOffset.y + navigationBarHeight
-            }
+            let contentOffsetY = collectionView.contentOffset.y + collectionView.safeAreaInsets.top
 
             var offsetY: CGFloat
             if contentOffsetY < boundaries.minimum {

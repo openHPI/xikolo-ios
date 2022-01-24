@@ -113,18 +113,14 @@ class CourseItemCell: UITableViewCell {
     }
 
     @objc private func adaptToTextSizeChange() {
-        if #available(iOS 11, *) {
-            let maximalWidth = self.leadingSpacerView.bounds.width - 8
-            let preferredWidth = UIFontMetrics.default.scaledValue(for: 8)
-            let width = min(preferredWidth, maximalWidth)
-            self.readStateViewWidthConstraint.constant = width
-            self.readStateView.layer.cornerRadius = width / 2
+        let maximalWidth = self.leadingSpacerView.bounds.width - 8
+        let preferredWidth = UIFontMetrics.default.scaledValue(for: 8)
+        let width = min(preferredWidth, maximalWidth)
+        self.readStateViewWidthConstraint.constant = width
+        self.readStateView.layer.cornerRadius = width / 2
 
-            let value = UIFontMetrics.default.scaledValue(for: 28)
-            self.iconWidthConstraint.constant = value
-        } else {
-            self.readStateView.layer.cornerRadius = self.readStateView.bounds.width / 2
-        }
+        let value = UIFontMetrics.default.scaledValue(for: 28)
+        self.iconWidthConstraint.constant = value
     }
 
 }

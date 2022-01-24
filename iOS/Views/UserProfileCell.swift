@@ -51,9 +51,7 @@ class UserProfileCell: UITableViewCell {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
 
-        if #available(iOS 11.0, *) {
-            self.adaptToContentSizeCategoryChange()
-        }
+        self.adaptToContentSizeCategoryChange()
 
         if #available(iOS 13, *) {
             if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
@@ -97,19 +95,17 @@ class UserProfileCell: UITableViewCell {
     }
 
     @objc private func adaptToContentSizeCategoryChange() {
-        if #available(iOS 11, *) {
-            let isAccessibilityCategory = self.traitCollection.preferredContentSizeCategory.isAccessibilityCategory
-            let compactHorizontalSizeClass = self.traitCollection.horizontalSizeClass == .compact
-            let stackedVertically = isAccessibilityCategory && compactHorizontalSizeClass
+        let isAccessibilityCategory = self.traitCollection.preferredContentSizeCategory.isAccessibilityCategory
+        let compactHorizontalSizeClass = self.traitCollection.horizontalSizeClass == .compact
+        let stackedVertically = isAccessibilityCategory && compactHorizontalSizeClass
 
-            self.outerStackView.axis = stackedVertically ? .vertical : .horizontal
-            self.labelsStackView.alignment = stackedVertically ? .center : .leading
+        self.outerStackView.axis = stackedVertically ? .vertical : .horizontal
+        self.labelsStackView.alignment = stackedVertically ? .center : .leading
 
-            let textAlignment: NSTextAlignment = stackedVertically ? .center : .natural
-            self.nameView.textAlignment = textAlignment
-            self.displayNameView.textAlignment = textAlignment
-            self.emailView.textAlignment = textAlignment
-        }
+        let textAlignment: NSTextAlignment = stackedVertically ? .center : .natural
+        self.nameView.textAlignment = textAlignment
+        self.displayNameView.textAlignment = textAlignment
+        self.emailView.textAlignment = textAlignment
     }
 
 }

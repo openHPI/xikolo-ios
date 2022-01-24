@@ -38,10 +38,8 @@ class MoreViewController: CustomWidthViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 11, *) {
-            let font = UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .largeTitle).pointSize)
-            self.newsLabel.font = UIFontMetrics(forTextStyle: .largeTitle).scaledFont(for: font)
-        }
+        let font = UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .largeTitle).pointSize)
+        self.newsLabel.font = UIFontMetrics(forTextStyle: .largeTitle).scaledFont(for: font)
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateUIAfterLoginStateChanged),

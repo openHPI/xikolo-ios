@@ -17,10 +17,7 @@ class ChannelListViewController: CustomWidthCollectionViewController {
 
         super.viewDidLoad()
 
-        if #available(iOS 11, *) {
-            self.navigationItem.largeTitleDisplayMode = .always
-        }
-
+        self.navigationItem.largeTitleDisplayMode = .always
         self.adjustScrollDirection(for: self.collectionView.bounds.size)
 
         let reuseIdentifier = R.reuseIdentifier.channelCell.identifier
@@ -33,15 +30,6 @@ class ChannelListViewController: CustomWidthCollectionViewController {
 
         self.refresh()
         self.setupEmptyState()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if #available(iOS 11.0, *) {} else {
-            self.navigationController?.navigationBar.sizeToFit()
-            self.collectionViewLayout.invalidateLayout()
-        }
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

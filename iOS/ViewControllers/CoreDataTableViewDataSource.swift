@@ -220,13 +220,6 @@ class CoreDataTableLegacyViewDataSource<Delegate: CoreDataTableViewDataSourceDel
 
     // MARK: NSFetchedResultsControllerDelegate
 
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        guard self.tableView?.window != nil else { return }
-        if #available(iOS 11, *) {} else {
-            self.tableView?.beginUpdates()
-        }
-    }
-
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange sectionInfo: NSFetchedResultsSectionInfo,
                     atSectionIndex sectionIndex: Int,
@@ -234,21 +227,13 @@ class CoreDataTableLegacyViewDataSource<Delegate: CoreDataTableViewDataSourceDel
         let sectionIndex = IndexSet(integer: sectionIndex)
         switch type {
         case .insert:
-            if #available(iOS 11, *) {
-                self.contentChangeOperations.append(BlockOperation(block: {
-                    self.tableView?.insertSections(sectionIndex, with: .fade)
-                }))
-            } else {
+            self.contentChangeOperations.append(BlockOperation(block: {
                 self.tableView?.insertSections(sectionIndex, with: .fade)
-            }
+            }))
         case .delete:
-            if #available(iOS 11, *) {
-                self.contentChangeOperations.append(BlockOperation(block: {
-                    self.tableView?.deleteSections(sectionIndex, with: .fade)
-                }))
-            } else {
+            self.contentChangeOperations.append(BlockOperation(block: {
                 self.tableView?.deleteSections(sectionIndex, with: .fade)
-            }
+            }))
         case .move, .update:
             break
         @unknown default:
@@ -264,60 +249,39 @@ class CoreDataTableLegacyViewDataSource<Delegate: CoreDataTableViewDataSourceDel
         switch type {
         case .insert:
             let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for table view cell insert")
-            if #available(iOS 11, *) {
-                self.contentChangeOperations.append(BlockOperation(block: {
-                    self.tableView?.insertRows(at: [newIndexPath], with: .fade)
-                }))
-            } else {
+            self.contentChangeOperations.append(BlockOperation(block: {
                 self.tableView?.insertRows(at: [newIndexPath], with: .fade)
-            }
+            }))
         case .delete:
             let indexPath = indexPath.require(hint: "indexPath is required for table view cell delete")
-            if #available(iOS 11, *) {
-                self.contentChangeOperations.append(BlockOperation(block: {
-                    self.tableView?.deleteRows(at: [indexPath], with: .fade)
-                }))
-            } else {
+            self.contentChangeOperations.append(BlockOperation(block: {
                 self.tableView?.deleteRows(at: [indexPath], with: .fade)
-            }
+            }))
         case .update:
             let indexPath = indexPath.require(hint: "indexPath is required for table view cell update")
-            if #available(iOS 11, *) {
-                self.contentChangeOperations.append(BlockOperation(block: {
-                    self.tableView?.reloadRows(at: [indexPath], with: .fade)
-                }))
-            } else {
+            self.contentChangeOperations.append(BlockOperation(block: {
                 self.tableView?.reloadRows(at: [indexPath], with: .fade)
-            }
+            }))
         case .move:
             let indexPath = indexPath.require(hint: "indexPath is required for table view cell move")
             let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for table view cell move")
-            if #available(iOS 11, *) {
-                self.contentChangeOperations.append(BlockOperation(block: {
-                    self.tableView?.deleteRows(at: [indexPath], with: .fade)
-                    self.tableView?.insertRows(at: [newIndexPath], with: .fade)
-                }))
-            } else {
+            self.contentChangeOperations.append(BlockOperation(block: {
                 self.tableView?.deleteRows(at: [indexPath], with: .fade)
                 self.tableView?.insertRows(at: [newIndexPath], with: .fade)
-            } // swiftlint:disable:this closing_brace_whitespace
+            }))
         @unknown default:
             break
         }
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if #available(iOS 11, *) {
-            self.tableView?.performBatchUpdates({
-                for operation in self.contentChangeOperations {
-                    operation.start()
-                }
-            }, completion: { _ in
-                self.contentChangeOperations.removeAll(keepingCapacity: false)
-            })
-        } else {
-            self.tableView?.endUpdates()
-        }
+        self.tableView?.performBatchUpdates({
+            for operation in self.contentChangeOperations {
+                operation.start()
+            }
+        }, completion: { _ in
+            self.contentChangeOperations.removeAll(keepingCapacity: false)
+        })
     }
 
     // MARK: UITableViewDataSource

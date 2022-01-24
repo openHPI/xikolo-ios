@@ -64,12 +64,9 @@ class CourseItemListViewController: UITableViewController {
 
         self.adaptToTextSizeChange()
 
-        if #available(iOS 11.0, *) {
-            self.tableView.separatorInsetReference = .fromAutomaticInsets
-
-            self.tableView.dragInteractionEnabled = true
-            self.tableView.dragDelegate = self
-        }
+        self.tableView.separatorInsetReference = .fromAutomaticInsets
+        self.tableView.dragInteractionEnabled = true
+        self.tableView.dragDelegate = self
 
         self.continueLearningHint.layer.roundCorners(for: .default)
         self.continueLearningHint.addDefaultPointerInteraction()
@@ -125,17 +122,11 @@ class CourseItemListViewController: UITableViewController {
     }
 
     @objc private func adaptToTextSizeChange() {
-        if #available(iOS 11, *) {
-            let width = UIFontMetrics.default.scaledValue(for: 28)
-            self.tableView.separatorInset = UIEdgeInsets(top: 0, left: width + 12, bottom: 0, right: 0)
-        } else {
-            self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 40.0, bottom: 0, right: 0)
-        }
+        let width = UIFontMetrics.default.scaledValue(for: 28)
+        self.tableView.separatorInset = UIEdgeInsets(top: 0, left: width + 12, bottom: 0, right: 0)
 
-        if #available(iOS 11, *) {
-            let value = UIFontMetrics.default.scaledValue(for: 28)
-            self.continueLearningItemIconWidthConstraint.constant = value
-        }
+        let value = UIFontMetrics.default.scaledValue(for: 28)
+        self.continueLearningItemIconWidthConstraint.constant = value
     }
 
     func preloadCourseContent() {
@@ -410,7 +401,6 @@ extension CourseItemListViewController: CourseAreaViewController {
 
 }
 
-@available(iOS 11.0, *)
 extension CourseItemListViewController: UITableViewDragDelegate {
 
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {

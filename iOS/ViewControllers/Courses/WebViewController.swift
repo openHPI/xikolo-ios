@@ -90,10 +90,8 @@ class WebViewController: UIViewController {
 
         self.progress.alpha = 0.0
 
-        if #available(iOS 11, *) {
-            if let cookie = TrackingHelper.trackingContextCookie(with: self) {
-                self.webView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie)
-            }
+        if let cookie = TrackingHelper.trackingContextCookie(with: self) {
+            self.webView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie)
         }
 
         self.loadURL()
@@ -119,9 +117,7 @@ class WebViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if #available(iOS 11.0, *) {
-            self.navigationItem.largeTitleDisplayMode = .never
-        }
+        self.navigationItem.largeTitleDisplayMode = .never
 
         if #available(iOS 15, *) {
             let appearance = UIToolbarAppearance()
@@ -156,10 +152,8 @@ class WebViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: nil) { _ in
-            if #available(iOS 11, *) {
-                if let cookie = TrackingHelper.trackingContextCookie(with: self) {
-                    self.webView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie)
-                }
+            if let cookie = TrackingHelper.trackingContextCookie(with: self) {
+                self.webView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie)
             }
         }
     }

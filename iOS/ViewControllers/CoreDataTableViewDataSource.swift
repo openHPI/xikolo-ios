@@ -109,10 +109,10 @@ class CoreDataTableViewDiffableDataSource<Delegate: CoreDataTableViewDataSourceD
         self.fetchedResultsController = fetchedResultsController
         self.delegate = delegate
 
-        super.init(tableView: tableView) { tableView, indexPath, _ -> UITableViewCell? in
+        super.init(tableView: tableView) { [weak delegate] tableView, indexPath, _ -> UITableViewCell? in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as? Cell else { return nil }
             let object = fetchedResultsController.object(at: indexPath)
-            delegate.configure(cell, for: object)
+            delegate?.configure(cell, for: object)
             return cell
         }
 

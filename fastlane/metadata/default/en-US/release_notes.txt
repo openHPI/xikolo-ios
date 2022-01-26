@@ -1,4 +1,6 @@
 • Visual improvements to the dashboard
 • Visual improvements to the course list
-• Course with no end date are now listed in the 'self-paced' section
+• Courses with no end date are now listed in the 'self-paced' section
+• Video playbacks will continue from the last known position
+• Improvements to the progress slider of the video player
 • Fix crash for invalid context menus

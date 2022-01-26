@@ -1,4 +1,6 @@
 • Design-Verbesserungen für das Dashboard
 • Design-Verbesserungen für die Kursliste
 • Kurse, die kein Enddatum haben, werden nun im Abschnitt 'Selbststudium' aufgeführt
+• Videowiedergabe wird ab der letzten bekannten Position fortgesetzt
+• Verbesserungen an der Fortschrittsanzeige des Videoplayers
 • Abstürze für ungültige Kontextmenüs behoben

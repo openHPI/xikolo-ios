@@ -14,7 +14,20 @@ protocol DetailedCourseItemContent {
 enum DetailedDataItem {
 
     case timeEffort(duration: TimeInterval)
+    case timeRemaining(duration: TimeInterval)
     case slides
     case points(maxPoints: Double)
 
+}
+
+extension Array where Element == DetailedDataItem {
+    var containsTimeRemaining: Bool {
+        return self.map { value -> Bool in
+            if case .timeRemaining = value {
+                return true
+            } else {
+                return false
+            }
+        }.contains(true)
+    }
 }

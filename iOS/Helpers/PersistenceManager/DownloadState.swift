@@ -14,17 +14,17 @@ enum DownloadState: String {
     static let didChangeNotification = Notification.Name("de.xikolo.ios.download.stateChanged")
 }
 
-typealias DownloadProgress = Double
-
-extension DownloadProgress {
+enum DownloadProgress {
     static let didChangeNotification = Notification.Name("de.xikolo.ios.download.progressChanged")
 }
 
 enum DownloadNotificationKey {
-
     static let resourceId = "ResourceIdKey"
     static let downloadState = "ResourceDownloadStateKey"
     static let downloadProgress = "ResourceDownloadProgressKey"
     static let downloadType = "DownloadTypeKey"
+}
 
+enum LastVideoProgress {
+    static let didChangeNotification = Notification.Name("de.xikolo.ios.video.lastPositionChanged")
 }

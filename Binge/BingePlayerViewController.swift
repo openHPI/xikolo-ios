@@ -202,6 +202,10 @@ public class BingePlayerViewController: UIViewController {
         return self.player.currentItem?.currentTime().seconds
     }
 
+    public var totalDuration: Double? {
+        return self.player.currentItem?.duration.seconds
+    }
+
     public var allowFullScreenMode = true {
         didSet {
             self.layoutState = self._layoutState
@@ -215,7 +219,7 @@ public class BingePlayerViewController: UIViewController {
     public var phonesWillAutomaticallyEnterFullScreenModeInLandscapeOrientation = true
 
     public var initiallyShowControls = true
-    public var startProgress: Float?
+    public var startPosition: Double?
 
     public var playbackRate: Float = 1.0 {
         didSet {
@@ -474,10 +478,11 @@ public class BingePlayerViewController: UIViewController {
         self.setupPictureInPictureViewController()
 
         if !self.playerWasConfigured {
-            if let progress = self.startProgress, !item.duration.isIndefinite {
-                let pinnedProgress = max(0, min(Float64(progress), 1))
+            if let startPosition = self.startPosition, !item.duration.isIndefinite {
+                let pinnedProgress = max(0, min(startPosition / item.duration.seconds, 1))
                 let newTime = CMTimeMultiplyByFloat64(item.duration, multiplier: pinnedProgress)
                 self.player.seek(to: newTime)
+                self.showControlsOverlay()
             }
 
             self.playerWasConfigured = true

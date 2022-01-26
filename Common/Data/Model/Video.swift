@@ -16,6 +16,7 @@ public final class Video: Content {
     @NSManaged public var audioURL: URL?
     @NSManaged public var downloadDate: Date?
     @NSManaged public var duration: Int32
+    @NSManaged public var lastPosition: Double
     @NSManaged public var lecturerStream: VideoStream?
     @NSManaged public var localFileBookmark: NSData?
     @NSManaged public var localSlidesBookmark: NSData?

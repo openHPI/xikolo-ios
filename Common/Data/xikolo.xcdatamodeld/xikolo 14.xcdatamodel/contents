@@ -223,6 +223,7 @@
         <attribute name="downloadDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="lastPosition" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="lecturerStream" optional="YES" attributeType="Transformable" valueTransformerName="XikoloSecureUnarchiveFromDataTransformer" customClassName="." elementID="stream_a_hls_url"/>
         <attribute name="localFileBookmark" optional="YES" attributeType="Binary"/>
         <attribute name="localSlidesBookmark" optional="YES" attributeType="Binary"/>
@@ -239,9 +240,9 @@
         <element name="Announcement" positionX="304" positionY="146" width="128" height="163"/>
         <element name="Channel" positionX="234" positionY="-63" width="128" height="163"/>
         <element name="Content" positionX="666" positionY="198" width="128" height="60"/>
-        <element name="CourseFeature" positionX="234" positionY="-63" width="128" height="59"/>
         <element name="Course" positionX="45" positionY="-18" width="128" height="478"/>
         <element name="CourseDate" positionX="214" positionY="-180" width="128" height="120"/>
+        <element name="CourseFeature" positionX="234" positionY="-63" width="128" height="59"/>
         <element name="CourseItem" positionX="468" positionY="165" width="128" height="283"/>
         <element name="CourseProgress" positionX="234" positionY="-63" width="128" height="133"/>
         <element name="CourseSection" positionX="286" positionY="306" width="128" height="180"/>
@@ -260,6 +261,6 @@
         <element name="TrackingEvent" positionX="234" positionY="-63" width="128" height="148"/>
         <element name="User" positionX="187" positionY="498" width="128" height="103"/>
         <element name="UserProfile" positionX="342" positionY="504" width="128" height="103"/>
-        <element name="Video" positionX="621" positionY="-99" width="128" height="283"/>
+        <element name="Video" positionX="621" positionY="-99" width="128" height="284"/>
     </elements>
 </model>

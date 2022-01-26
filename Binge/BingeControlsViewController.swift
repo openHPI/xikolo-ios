@@ -413,7 +413,6 @@ class BingeControlsViewController: UIViewController {
     }
 
     @objc private func togglePictureInPictureMode() {
-        print("Tap on pip button")
         self.delegate?.togglePictureInPictureMode()
     }
 

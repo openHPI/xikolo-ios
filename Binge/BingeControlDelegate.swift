@@ -9,6 +9,7 @@ protocol BingeControlDelegate: AnyObject {
 
     func startPlayback()
     func pausePlayback()
+    func willSeekTo(progress: Double)
     func seekTo(progress: Double)
     func seekForwards()
     func seekBackwards()

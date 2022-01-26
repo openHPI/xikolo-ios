@@ -80,6 +80,8 @@ public class BingePlayerViewController: UIViewController {
         "hasProtectedContent",
     ]
 
+    private var isSeeking = false
+
     private var pictureInPictureController: AVPictureInPictureController?
     private var pictureInPictureWasStartedAutomatically = false
 
@@ -524,11 +526,12 @@ public class BingePlayerViewController: UIViewController {
         // Only add the time observer if one hasn't been created yet.
         guard self.timeObserverToken == nil else { return }
 
-        let interval = CMTime(seconds: 1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        let interval = CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
 
         // Use a weak self variable to avoid a retain cycle in the block.
         self.timeObserverToken = self.player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) { [weak self] time in
             guard let item = self?.player.currentItem else { return }
+            if self?.isSeeking == true { return }
             let currentTime = CMTimeGetSeconds(time)
             let totalTime = CMTimeGetSeconds(item.duration)
             self?.controlsViewController.adaptToTimeChange(currentTime: currentTime, totalTime: totalTime)
@@ -787,13 +790,24 @@ extension BingePlayerViewController: BingeControlDelegate {
         try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
     }
 
+    func willSeekTo(progress: Double) {
+        guard let item = self.player.currentItem else { return }
+        self.isSeeking = true
+        let seekTime = CMTimeGetSeconds(CMTimeMultiplyByFloat64(item.duration, multiplier: progress))
+        let totalTime = CMTimeGetSeconds(item.duration)
+        self.controlsViewController.adaptToTimeChange(currentTime: seekTime, totalTime: totalTime, isManualSeekPosition: true)
+    }
+
     func seekTo(progress: Double) {
         guard let duration = self.player.currentItem?.duration else { return }
+        let currentTime = self.player.currentTime()
         let newTime = CMTimeMultiplyByFloat64(duration, multiplier: progress)
-        self.player.seek(to: newTime, toleranceBefore: .zero, toleranceAfter: .zero)
-        self.autoHideControlsOverlay()
-        self.updateMediaPlayerInfoCenter()
-        self.delegate?.didSeek(from: CMTimeGetSeconds(self.player.currentTime()), to: CMTimeGetSeconds(newTime))
+        self.player.seek(to: newTime, toleranceBefore: .zero, toleranceAfter: .zero) { _ in
+            self.isSeeking = false
+            self.autoHideControlsOverlay()
+            self.updateMediaPlayerInfoCenter()
+            self.delegate?.didSeek(from: CMTimeGetSeconds(currentTime), to: CMTimeGetSeconds(newTime))
+        }
     }
 
     func seekForwards() {
@@ -818,9 +832,10 @@ extension BingePlayerViewController: BingeControlDelegate {
 
         guard CMTimeCompare(currentTime, newTime) != 0 else { return }
 
-        self.player.seek(to: newTime)
-        self.updateMediaPlayerInfoCenter()
-        self.delegate?.didSeek(from: CMTimeGetSeconds(currentTime), to: CMTimeGetSeconds(newTime))
+        self.player.seek(to: newTime) { _ in
+            self.updateMediaPlayerInfoCenter()
+            self.delegate?.didSeek(from: CMTimeGetSeconds(currentTime), to: CMTimeGetSeconds(newTime))
+        }
     }
 
     func toggleFullScreenMode() {

@@ -692,7 +692,6 @@ public class BingePlayerViewController: UIViewController {
         }
 
         commandCenter.changePlaybackPositionCommand.addTarget { [weak self] event in
-            print("command center: change position")
             guard let changePositionEvent = event as? MPChangePlaybackPositionCommandEvent else { return .commandFailed }
             guard let duration = self?.player.currentItem?.duration else { return .commandFailed }
             let progress = changePositionEvent.positionTime / CMTimeGetSeconds(duration)

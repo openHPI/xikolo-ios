@@ -418,6 +418,33 @@ class VideoViewController: UIViewController {
         self.adjustedVideoContainerRatioConstraint = constraint
     }
 
+    private func rememberCurrentProgress() {
+        if let video = self.video, let currentTime = self.playerViewController?.currentTime {
+            if currentTime == self.playerViewController?.totalDuration {
+                VideoHelper.updateLastPosition(of: video, to: 0).onSuccess {
+                    self.postLastPositionChangeNotification(for: video)
+                }
+            } else {
+                VideoHelper.updateLastPosition(of: video, to: currentTime).onSuccess {
+                    self.postLastPositionChangeNotification(for: video)
+                }
+            }
+        }
+    }
+
+    private func resetLastPosition() {
+        if let video = self.video {
+            VideoHelper.updateLastPosition(of: video, to: 0).onSuccess {
+                self.postLastPositionChangeNotification(for: video)
+            }
+        }
+    }
+
+    private func postLastPositionChangeNotification(for video: Video) {
+        let userInfo: [String: Any] = [DownloadNotificationKey.resourceId: video.id]
+        NotificationCenter.default.post(name: LastVideoProgress.didChangeNotification, object: nil, userInfo: userInfo)
+    }
+
 }
 
 extension VideoViewController: BingePlayerDelegate { // Video tracking
@@ -476,6 +503,7 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         guard let pageViewController = self.parent as? UIPageViewController else { return }
         guard pageViewController.viewControllers?.contains(self) ?? false else { return } // view controller should be currently presented
         TrackingHelper.createEvent(.videoPlaybackPause, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+        self.rememberCurrentProgress()
     }
 
     func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {
@@ -499,16 +527,19 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
         context["old_current_time"] = String(oldTime)
 
         TrackingHelper.createEvent(.videoPlaybackSeek, resourceType: .video, resourceId: video.id, on: self, context: context)
+        self.rememberCurrentProgress()
     }
 
     func didReachEndOfPlayback() {
         guard let video = self.video else { return }
         TrackingHelper.createEvent(.videoPlaybackEnd, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+        self.resetLastPosition()
     }
 
     func trackVideoClose() {
         guard let video = self.video else { return }
         TrackingHelper.createEvent(.videoPlaybackClose, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+        self.rememberCurrentProgress()
     }
 
     func didChangeOrientation(to orientation: UIInterfaceOrientation?) {

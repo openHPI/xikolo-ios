@@ -21,6 +21,17 @@ class DetailedDataItemView: UIStackView {
         return formatter
     }()
 
+    private static let timeRemainingFormatter: DateComponentsFormatter = {
+        var calendar = Calendar.current
+        calendar.locale = Locale.current
+        let formatter = DateComponentsFormatter()
+        formatter.calendar = calendar
+        formatter.unitsStyle = .short
+        formatter.allowedUnits = [.hour, .minute]
+        formatter.includesTimeRemainingPhrase = true
+        return formatter
+    }()
+
     private static let pointsFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.decimalSeparator = "."
@@ -86,7 +97,7 @@ class DetailedDataItemView: UIStackView {
             guard let video = video else { return (.notDownloaded, nil) } // Currently we only support video course items to be downloaded
 
             switch data {
-            case .timeEffort:
+            case .timeEffort, .timeRemaining:
                 return (StreamPersistenceManager.shared.downloadState(for: video), StreamPersistenceManager.shared.downloadProgress(for: video))
             case .slides:
                 return (SlidesPersistenceManager.shared.downloadState(for: video), SlidesPersistenceManager.shared.downloadProgress(for: video))
@@ -118,6 +129,10 @@ class DetailedDataItemView: UIStackView {
 
         let downloaded: Bool
         switch contentItem {
+        case let .timeRemaining(duration):
+            let value = ceil(duration / 60) * 60 // round up to full minutes
+            label.text = Self.timeRemainingFormatter.string(from: value)
+            downloaded = downloadState == .downloaded
         case let .timeEffort(duration):
             let value = ceil(duration / 60) * 60 // round up to full minutes
             label.text = Self.timeEffortFormatter.string(from: value)

@@ -19,6 +19,10 @@ extension BingePlayerViewController {
             self.playbackRate = UserDefaults.standard.playbackRate
         }
 
+        if video.lastPosition > 0 {
+            self.startPosition = video.lastPosition
+        }
+
         if let offlinePlayableAsset = self.offlinePlayableAsset(for: video) {
             self.asset = offlinePlayableAsset
         } else if let fallbackURL = video.streamURLForDownload ?? video.singleStream?.hdURL ?? video.singleStream?.sdURL {

@@ -35,6 +35,10 @@ class CourseItemCell: UITableViewCell {
                                                name: DownloadState.didChangeNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleLastVideoProgressChangedNotification(_:)),
+                                               name: LastVideoProgress.didChangeNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
                                                selector: #selector(adaptToTextSizeChange),
                                                name: UIContentSizeCategory.didChangeNotification,
                                                object: nil)
@@ -102,6 +106,17 @@ class CourseItemCell: UITableViewCell {
     }
 
     @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
+        guard let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+              let item = self.item,
+              let video = item.content as? Video,
+              video.id == videoId else { return }
+
+        DispatchQueue.main.async {
+            self.configure(for: item)
+        }
+    }
+
+    @objc func handleLastVideoProgressChangedNotification(_ notification: Notification) {
         guard let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
               let item = self.item,
               let video = item.content as? Video,

@@ -8,11 +8,10 @@ import UIKit
 class BingeTimeSlider: UISlider {
 
     override open func trackRect(forBounds bounds: CGRect) -> CGRect {
-        let trackHeight: CGFloat = 2
         let superRect = super.trackRect(forBounds: bounds)
+        let trackHeight = 3.0
         let heightDelta = trackHeight - superRect.height
-        let additionalOffsetY = -1.0
-        return CGRect(x: superRect.origin.x, y: superRect.origin.y - heightDelta / 2 + additionalOffsetY, width: superRect.width, height: trackHeight)
+        return CGRect(x: superRect.origin.x, y: superRect.origin.y - heightDelta / 2, width: superRect.width, height: superRect.height + heightDelta)
     }
 
     override open func thumbRect(forBounds bounds: CGRect, trackRect rect: CGRect, value: Float) -> CGRect {

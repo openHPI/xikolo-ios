@@ -441,6 +441,8 @@ class BingeControlsViewController: UIViewController {
         switch event.allTouches?.first?.phase {
         case .began:
             self.delegate?.stopAutoHideOfControlsOverlay()
+        case .moved:
+            self.delegate?.willSeekTo(progress: Double(sender.value))
         case .ended:
             self.delegate?.seekTo(progress: Double(sender.value))
         default:
@@ -486,9 +488,9 @@ class BingeControlsViewController: UIViewController {
         self.playPauseButton.isHidden = timeControlStatus == .waitingToPlayAtSpecifiedRate
     }
 
-    func adaptToTimeChange(currentTime: TimeInterval, totalTime: TimeInterval) {
+    func adaptToTimeChange(currentTime: TimeInterval, totalTime: TimeInterval, isManualSeekPosition: Bool = false) {
         self.currentTimeView.text = self.formatTime(currentTime)
-        if !self.timeSlider.isHighlighted {
+        if !self.timeSlider.isHighlighted, !isManualSeekPosition {
             let value = Float(currentTime / totalTime)
             self.timeSlider.setValue(value, animated: true)
         }

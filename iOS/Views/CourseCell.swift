@@ -22,6 +22,15 @@ class CourseCell: UICollectionViewCell {
             }
         }
 
+        var forceEmptyTeachersLabel: Bool {
+            switch self {
+            case .courseList:
+                return false
+            case .courseOverview:
+                return true
+            }
+        }
+
         func colorWithFallback(to fallbackColor: UIColor) -> UIColor {
             if case let .courseList(configuration) = self {
                 return configuration.colorWithFallback(to: fallbackColor)
@@ -111,7 +120,11 @@ class CourseCell: UICollectionViewCell {
         self.teacherLabel.numberOfLines = configuration.showMultilineLabels ? 0 : 1
 
         self.titleLabel.text = course.title
-        self.teacherLabel.text = Brand.default.features.showCourseTeachers ? course.teachers : nil
+        self.teacherLabel.text = {
+            guard Brand.default.features.showCourseTeachers else { return nil }
+            if course.teachers?.isEmpty ?? true, configuration.forceEmptyTeachersLabel { return " " }
+            return course.teachers
+        }()
         self.teacherLabel.isHidden = !Brand.default.features.showCourseTeachers
         self.languageLabel.text = course.language.flatMap(LanguageLocalizer.nativeDisplayName(for:))
         self.dateLabel.text = CoursePeriodFormatter.string(from: course)

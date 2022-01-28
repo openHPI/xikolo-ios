@@ -37,7 +37,7 @@ class BingeControlsViewController: UIViewController {
         let normalThumbImage = UIImage.bingeImage(named: "thumb-small")?.withAlignmentRectInsets(normalAlignmentRectInsets)
         slider.setThumbImage(normalThumbImage, for: .normal)
         let highlightedAlignmentRectInsets = UIEdgeInsets(top: 12.5, left: 12.5, bottom: 12.5, right: 12.5)
-        let highlightedThumbImage = UIImage.bingeImage(named: "thumb-small")?.withAlignmentRectInsets(highlightedAlignmentRectInsets)
+        let highlightedThumbImage = UIImage.bingeImage(named: "thumb-big")?.withAlignmentRectInsets(highlightedAlignmentRectInsets)
         slider.setThumbImage(highlightedThumbImage, for: .highlighted)
         slider.addTarget(self, action: #selector(changeProgress(sender:event:)), for: .valueChanged)
 

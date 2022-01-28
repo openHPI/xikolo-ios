@@ -149,7 +149,7 @@
                                             </constraints>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="a1t-cU-PcV">
-                                            <rect key="frame" x="24" y="15" width="342" height="69.5"/>
+                                            <rect key="frame" x="24" y="15" width="334" height="69.5"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L8U-Fp-wH1">
                                                     <rect key="frame" x="0.0" y="21" width="28" height="28"/>
@@ -159,7 +159,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="U0c-TZ-Kbb">
-                                                    <rect key="frame" x="36" y="0.5" width="306" height="69"/>
+                                                    <rect key="frame" x="36" y="0.5" width="298" height="69"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="850" verticalCompressionResistancePriority="1000" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vm4-Hr-k3d">
                                                             <rect key="frame" x="0.0" y="0.0" width="60.5" height="17"/>
@@ -208,7 +208,7 @@
                                         <constraint firstItem="f0u-JP-r4C" firstAttribute="centerY" secondItem="dUS-v4-gua" secondAttribute="centerY" id="GRk-aQ-NAp"/>
                                         <constraint firstItem="fOH-l8-5Rz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dUS-v4-gua" secondAttribute="top" id="HNg-3I-Bub"/>
                                         <constraint firstItem="ruK-fv-bts" firstAttribute="top" secondItem="dUS-v4-gua" secondAttribute="top" id="Iwo-lX-quA"/>
-                                        <constraint firstItem="a1t-cU-PcV" firstAttribute="trailing" secondItem="fOH-l8-5Rz" secondAttribute="leading" constant="8" symbolic="YES" id="Oip-Zb-4nO"/>
+                                        <constraint firstItem="fOH-l8-5Rz" firstAttribute="leading" secondItem="a1t-cU-PcV" secondAttribute="trailing" id="Oip-Zb-4nO"/>
                                         <constraint firstItem="ruK-fv-bts" firstAttribute="leading" secondItem="dUS-v4-gua" secondAttribute="leading" id="Snc-YG-TmY"/>
                                         <constraint firstAttribute="bottom" secondItem="ruK-fv-bts" secondAttribute="bottom" id="VmW-UF-Ag0"/>
                                         <constraint firstItem="a1t-cU-PcV" firstAttribute="leading" secondItem="ruK-fv-bts" secondAttribute="trailing" id="l9n-Z9-4M7"/>

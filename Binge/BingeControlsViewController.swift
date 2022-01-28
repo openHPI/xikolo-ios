@@ -400,17 +400,23 @@ class BingeControlsViewController: UIViewController {
         self.airPlayButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
     }
 
-    private func formatTime(_ time: TimeInterval) -> String {
+    private func formatTime(_ time: TimeInterval, forTotalDuration totalDuration: TimeInterval) -> String {
         if time.isNaN || time.isInfinite {
             return "0:00"
         }
 
         let seconds = Int(time) % 60
-        let minutes = Int(time / 60)
-        let hours = Int(time / 60 / 60)
+        let minutes = (Int(time) / 60) % 60
+        let hours = Int(time) / 60 / 60
 
-        if hours > 0 {
+        let safeTotalDuration = totalDuration.isNaN || totalDuration.isInfinite ? time : totalDuration
+        let totalDurationMinutes = (Int(safeTotalDuration) / 60) % 60
+        let totalDurationHours = Int(safeTotalDuration) / 60 / 60
+
+        if totalDurationHours > 0 {
             return String(format: "%d:%02d:%02d", hours, minutes, seconds)
+        } else if totalDurationMinutes > 9 {
+            return String(format: "%02d:%02d", minutes, seconds)
         } else {
             return String(format: "%d:%02d", minutes, seconds)
         }
@@ -482,7 +488,7 @@ class BingeControlsViewController: UIViewController {
         self.playPauseButton.isEnabled = isValidDuration
         self.timeSlider.isEnabled = isValidDuration
 
-        self.totalTimeView.text = self.formatTime(seconds)
+        self.totalTimeView.text = self.formatTime(seconds, forTotalDuration: seconds)
         self.offlineLabel.isHidden = !item.asset.isLocalAsset
     }
 
@@ -492,7 +498,7 @@ class BingeControlsViewController: UIViewController {
     }
 
     func adaptToTimeChange(currentTime: TimeInterval, totalTime: TimeInterval, isManualSeekPosition: Bool = false) {
-        self.currentTimeView.text = self.formatTime(currentTime)
+        self.currentTimeView.text = self.formatTime(currentTime, forTotalDuration: totalTime)
         if !self.timeSlider.isHighlighted, !isManualSeekPosition {
             let value = Float(currentTime / totalTime)
             self.timeSlider.setValue(value, animated: true)

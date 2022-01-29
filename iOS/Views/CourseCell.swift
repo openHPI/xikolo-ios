@@ -22,7 +22,7 @@ class CourseCell: UICollectionViewCell {
             }
         }
 
-        var hideTeacherLabel: Bool {
+        var forceEmptyTeachersLabel: Bool {
             switch self {
             case .courseList:
                 return false
@@ -47,9 +47,15 @@ class CourseCell: UICollectionViewCell {
     @IBOutlet private weak var teacherLabel: UILabel!
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
-    @IBOutlet private weak var gradientView: UIView!
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var statusView: UIView!
+    @IBOutlet private var infoBoxes: [UIView]!
+
+    // Configuration can be moved the Interface Builder after support for iOS 12 has been dropped
+    @IBOutlet private weak var languageIconView: UIImageView!
+    @IBOutlet private weak var dateIconView: UIImageView!
+    @IBOutlet private var visualEffectViews: [UIVisualEffectView]!
+    @IBOutlet private var visualEffectVibrancyViews: [UIVisualEffectView]!
 
     var previewView: UIView? {
         return self.courseImage
@@ -78,23 +84,25 @@ class CourseCell: UICollectionViewCell {
 
         self.shadowView.layer.roundCorners(for: .default, masksToBounds: false)
         self.courseImage.layer.roundCorners(for: .default)
-        self.statusView.layer.roundCorners(for: .default)
+        self.infoBoxes.forEach { $0.layer.roundCorners(for: .inner) }
 
         self.courseImage.sd_imageTransition = .fade
 
-        let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
-        gradient.locations = [0.0, 1.0]
-        gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.gradientView.frame.size.width, height: self.gradientView.frame.size.height)
-        self.gradientView.layer.insertSublayer(gradient, at: 0)
-        self.gradientView.layer.roundCorners(for: .default)
-
         self.shadowView.addDefaultPointerInteraction()
-    }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.gradientView.layer.sublayers?.first?.frame = CGRect(x: 0.0, y: 0.0, width: self.bounds.width, height: self.gradientView.frame.size.height)
+        if #available(iOS 13, *) {
+            let blurEffect = UIBlurEffect(style: .systemChromeMaterial)
+            let vibrancyEffect = UIVibrancyEffect(blurEffect: blurEffect, style: .label)
+            self.visualEffectViews.forEach { $0.effect = blurEffect }
+            self.visualEffectVibrancyViews.forEach { $0.effect = vibrancyEffect }
+
+            let symbolConfiguration = UIImage.SymbolConfiguration(textStyle: .caption1)
+            self.languageIconView.image = UIImage(systemName: "globe", withConfiguration: symbolConfiguration)
+            self.dateIconView.image = UIImage(systemName: "calendar", withConfiguration: symbolConfiguration)
+        } else {
+            self.languageIconView.isHidden = true
+            self.dateIconView.isHidden = true
+        }
     }
 
     func configure(_ course: Course, for configuration: Configuration) {
@@ -106,21 +114,16 @@ class CourseCell: UICollectionViewCell {
         self.teacherLabel.textColor = accentColor
 
         self.courseImage.image = nil // Avoid old images on cell reuse when new image can not be loaded
-        self.courseImage.alpha = course.hidden ? 0.5 : 1.0
-        self.gradientView.isHidden = true
-        self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil) { image, _, _, _ in
-            self.gradientView.isHidden = (image == nil)
-        }
+        self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil)
 
         self.titleLabel.numberOfLines = configuration.showMultilineLabels ? 0 : 1
         self.teacherLabel.numberOfLines = configuration.showMultilineLabels ? 0 : 1
 
         self.titleLabel.text = course.title
         self.teacherLabel.text = {
-            guard configuration.hideTeacherLabel else { return course.teachers }
-            guard Brand.default.features.showCourseTeachers else { return course.teachers }
-            guard course.teachers?.isEmpty ?? true else { return course.teachers }
-            return " " // forces text into teachers label to avoid misplacement for course image
+            guard Brand.default.features.showCourseTeachers else { return nil }
+            if course.teachers?.isEmpty ?? true, configuration.forceEmptyTeachersLabel { return " " }
+            return course.teachers
         }()
         self.teacherLabel.isHidden = !Brand.default.features.showCourseTeachers
         self.languageLabel.text = course.language.flatMap(LanguageLocalizer.nativeDisplayName(for:))
@@ -187,7 +190,7 @@ extension CourseCell {
 extension CourseCell {
 
     static var cardInset: CGFloat {
-        return 14
+        return 8
     }
 
     static func heightForCourseList(forWidth width: CGFloat, for course: Course) -> CGFloat {
@@ -197,7 +200,7 @@ extension CourseCell {
         let titleHeight = course.title?.height(forTextStyle: .headline, boundingWidth: cardWidth) ?? 0
         let teachersHeight = course.teachers?.height(forTextStyle: .subheadline, boundingWidth: cardWidth) ?? 0
 
-        var height = self.cardInset + imageHeight
+        var height = 12 + imageHeight
 
         if Brand.default.features.showCourseTeachers {
             if titleHeight > 0 || teachersHeight > 0 {
@@ -259,22 +262,24 @@ extension CourseCell {
     }
 
     static func heightForOverviewList(forWidth width: CGFloat) -> CGFloat {
-        var height: CGFloat = Self.cardInset
+        // All values were taken from Interface Builder
+        var height: CGFloat = 12 // top padding
         height += width / 2 // image
         height += self.cardBottomOffsetForOverviewList
         return height
     }
 
     static var cardBottomOffsetForOverviewList: CGFloat {
-        var height: CGFloat = 8 // padding
+
+        var height: CGFloat = 8 // padding between image and labels
         height += UIFont.preferredFont(forTextStyle: .headline).lineHeight
 
         if Brand.default.features.showCourseTeachers {
-            height += 4 // padding
+            height += 4 // padding between image and text
             height += UIFont.preferredFont(forTextStyle: .subheadline).lineHeight
         }
 
-        height += 4 // padding
+        height += 4 // bottom padding
         return height
     }
 

@@ -101,7 +101,7 @@ class CourseSceneDelegate: UIResponder, UIWindowSceneDelegate {
         case "announcements":
             return .courseArea(.announcements)
         case "recap":
-            guard Brand.default.features.enableRecap else { return nil }
+            guard FeatureHelper.hasFeature(.quizRecap)  else { return nil }
             return .courseArea(.recap)
         case "documents":
             guard Brand.default.features.enableDocuments else { return nil }

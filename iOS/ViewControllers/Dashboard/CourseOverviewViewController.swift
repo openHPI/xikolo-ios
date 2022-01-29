@@ -70,9 +70,7 @@ class CourseOverviewViewController: UIViewController {
                                                name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
                                                object: CoreDataHelper.viewContext)
 
-        if #available(iOS 11.0, *) {
-            self.collectionView.dragDelegate = self
-        }
+        self.collectionView.dragDelegate = self
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -97,7 +95,6 @@ class CourseOverviewViewController: UIViewController {
         self.collectionView.collectionViewLayout.invalidateLayout()
     }
 
-    @available(iOS 11, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
         self.updateCollectionViewHeight()
@@ -126,7 +123,14 @@ class CourseOverviewViewController: UIViewController {
             }
         }()
 
-        let height = CourseCell.heightForOverviewList(forWidth: preferredWidth) * numberOfRows
+        let height: CGFloat = {
+            if self.courses.isEmpty {
+                return PseudoCourseCell.heightForOverviewList(forWidth: preferredWidth) * numberOfRows
+            } else {
+                return CourseCell.heightForOverviewList(forWidth: preferredWidth) * numberOfRows
+            }
+        }()
+
         self.collectionViewHeightConstraint.constant = ceil(height)
     }
 
@@ -202,10 +206,7 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
                         point: CGPoint) -> UIContextMenuConfiguration? {
         guard indexPath.item < self.itemLimit else { return nil }
-
-        let course = self.courses[indexPath.item]
-
-        ErrorManager.shared.remember(course.id, forKey: "course_overview_list-latest_course_preview")
+        guard let course = self.courses[safe: indexPath.item] else { return nil }
 
         let previewProvider: UIContextMenuContentPreviewProvider = {
             return R.storyboard.coursePreview().instantiateInitialViewController { coder in
@@ -249,7 +250,6 @@ extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-
         let courseCellWidth = CourseCell.minimalWidthInOverviewList(for: collectionView.traitCollection)
         let availableWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right + 2 * CourseCell.cardInset
         let itemsPerRow = floor(availableWidth / courseCellWidth)
@@ -262,27 +262,25 @@ extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
             }
         }()
 
-        let height = CourseCell.heightForOverviewList(forWidth: preferredWidth)
-        return CGSize(width: preferredWidth, height: height)
+        if self.courses.isEmpty {
+            let height = PseudoCourseCell.heightForOverviewList(forWidth: preferredWidth)
+            return CGSize(width: availableWidth, height: height)
+        } else {
+            let height = CourseCell.heightForOverviewList(forWidth: preferredWidth)
+            return CGSize(width: preferredWidth, height: height)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        var leftPadding = collectionView.layoutMargins.left - CourseCell.cardInset
-        var rightPadding = collectionView.layoutMargins.right - CourseCell.cardInset
-
-        if #available(iOS 11.0, *) {
-            leftPadding -= collectionView.safeAreaInsets.left
-            rightPadding -= collectionView.safeAreaInsets.right
-        }
-
+        let leftPadding = collectionView.layoutMargins.left - CourseCell.cardInset - collectionView.safeAreaInsets.left
+        let rightPadding = collectionView.layoutMargins.right - CourseCell.cardInset - collectionView.safeAreaInsets.right
         return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
     }
 
 }
 
-@available(iOS 11.0, *)
 extension CourseOverviewViewController: UICollectionViewDragDelegate {
 
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {

@@ -39,15 +39,6 @@ class CourseDateOverviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 11, *) {
-            // The large title font is not available on iOS 10 and the storyboard file fails to provide a suitable fallback value.
-            // Therefore, we set the font to .title1 in the storyboard file and upgrade to .largeTitle for iOS 11 manually.
-            let font = UIFont.preferredFont(forTextStyle: .largeTitle)
-            self.todayCountLabel.font = font
-            self.nextCountLabel.font = font
-            self.allCountLabel.font = font
-        }
-
         self.updateWidthConstraints()
         self.summaryContainer.layer.roundCorners(for: .default, masksToBounds: false)
         self.nextUpContainer.layer.roundCorners(for: .default, masksToBounds: false)
@@ -116,7 +107,11 @@ class CourseDateOverviewViewController: UIViewController {
     }
 
     private func updateWidthConstraints() {
-        let cellWidth = CourseCell.minimalWidthInOverviewList(for: self.traitCollection)
+        let courseCellWidth = CourseCell.minimalWidthInOverviewList(for: self.traitCollection)
+        let availableWidth = self.view.bounds.width - self.view.layoutMargins.left - self.view.layoutMargins.right + 2 * CourseCell.cardInset
+        let itemsPerRow = floor(availableWidth / courseCellWidth)
+        let cellWidth = availableWidth / itemsPerRow
+
         self.summaryWidthConstraint.constant = cellWidth - 2 * CourseCell.cardInset
         self.nextUpWidthConstraint.constant = cellWidth - 2 * CourseCell.cardInset
     }

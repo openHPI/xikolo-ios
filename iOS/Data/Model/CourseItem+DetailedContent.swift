@@ -10,10 +10,6 @@ extension CourseItem {
     var detailedContent: [DetailedDataItem] {
         var data: [DetailedDataItem] = []
 
-        if self.timeEffort > 0 {
-            data.append(DetailedDataItem.timeEffort(duration: TimeInterval(self.timeEffort)))
-        }
-
         if let detailedContent = self.content as? DetailedCourseItemContent {
             data += detailedContent.detailedData.filter {
                 // Don't include time effort twice
@@ -23,6 +19,10 @@ extension CourseItem {
                     return true
                 }
             }
+        }
+
+        if self.timeEffort > 0, !data.containsTimeRemaining {
+            data.insert(DetailedDataItem.timeEffort(duration: TimeInterval(self.timeEffort)), at: 0)
         }
 
         if self.maxPoints > 0.0 {

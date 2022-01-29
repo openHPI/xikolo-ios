@@ -5,7 +5,6 @@
 
 import UIKit
 
-@available(iOS 11, *)
 extension NSDirectionalEdgeInsets {
 
     static func customInsets(for viewController: UIViewController) -> NSDirectionalEdgeInsets {

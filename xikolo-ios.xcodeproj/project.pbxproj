@@ -44,7 +44,7 @@
 		50092A92237D8E3C00A1503F /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50092A91237D8E3B00A1503F /* ChannelCell.xib */; };
 		50092A94237DC20C00A1503F /* Channel+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A93237DC20C00A1503F /* Channel+Color.swift */; };
 		500B907F2254B854000B0D05 /* DownloadedContentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */; };
-		500C4D48278D73BE00C91295 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500C4D47278D73BE00C91295 /* Settings.swift */; };
+		500C4D48278D73BE00C91295 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		5011D6AF24EEADA5004961A0 /* CourseOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5011D6B124EEADA5004961A0 /* CourseOverview.storyboard */; };
 		5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011EF02212AEC3800B1D7F1 /* DocumentLocalizationCell.swift */; };
 		5012913422BA64DC00AAB58B /* CALayer+roundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5012913322BA64DC00AAB58B /* CALayer+roundedCorners.swift */; };
@@ -131,6 +131,12 @@
 		50467FEF238548D20084D7F6 /* ChannelHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50467FEE238548D20084D7F6 /* ChannelHeaderView.swift */; };
 		50467FF0238596710084D7F6 /* TabChannels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50467FF2238596710084D7F6 /* TabChannels.storyboard */; };
 		5046BD0A212B4DC700B9F2CD /* DocumentLocalization+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046BD09212B4DC700B9F2CD /* DocumentLocalization+Actions.swift */; };
+		5046EE42278DAB3300027499 /* CourseFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046EE41278DAB3300027499 /* CourseFeature.swift */; };
+		5046EE44278DAC3000027499 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046EE43278DAC3000027499 /* Feature.swift */; };
+		5046EE46278DAC9D00027499 /* FeatureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046EE45278DAC9D00027499 /* FeatureHelper.swift */; };
+		5046EE48278DADAF00027499 /* FeatureHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046EE47278DADAF00027499 /* FeatureHelper+FetchRequests.swift */; };
+		5046EE4A278EDB8200027499 /* ExperimentAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046EE49278EDB8200027499 /* ExperimentAssignment.swift */; };
+		5046EE4C278EE37600027499 /* ExperimentAssignmentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046EE4B278EE37600027499 /* ExperimentAssignmentHelper.swift */; };
 		504AC121239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504AC120239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift */; };
 		504BA9AD245C02AF004C836C /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
 		504BA9AE245C02C8004C836C /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
@@ -233,7 +239,6 @@
 		508C3148276B6B32003AE388 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
 		508C3149276B6B32003AE388 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		508C314F276B80D6003AE388 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 508C314E276B80D6003AE388 /* Down */; };
-		508C3151276B8159003AE388 /* BrightFutures in Frameworks */ = {isa = PBXBuildFile; productRef = 508C3150276B8159003AE388 /* BrightFutures */; };
 		508C3154276B8C0E003AE388 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 508C3153276B8C0E003AE388 /* Rswift */; };
 		508CF44A242CA8F60086F339 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508CF449242CA8F50086F339 /* CoreServices.framework */; };
 		508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44121AB390400801530 /* SubtitleTableViewCell.swift */; };
@@ -259,6 +264,7 @@
 		50A2042722FAD324004371C0 /* UITraitCollection+performAsCurrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2042622FAD324004371C0 /* UITraitCollection+performAsCurrent.swift */; };
 		50A7258F2339188000DE8338 /* CourseDates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A725912339188000DE8338 /* CourseDates.storyboard */; };
 		50A725942339188E00DE8338 /* CourseDateOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A725962339188E00DE8338 /* CourseDateOverview.storyboard */; };
+		50A8582327A41D7400989C7A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A8582227A41D7400989C7A /* Settings.swift */; };
 		50A9192F256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A9192E256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift */; };
 		50A91939256E5306002874CC /* CoreDataTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A91938256E5306002874CC /* CoreDataTestHelper.swift */; };
 		50A9715C2498F14300D78FCA /* CourseItem+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A9715B2498F14300D78FCA /* CourseItem+URL.swift */; };
@@ -279,12 +285,13 @@
 		50B1CC46256BE55900D651C6 /* XikoloNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC45256BE55900D651C6 /* XikoloNotificationDelegate.swift */; };
 		50B1CC51256CF48800D651C6 /* PersistenceManager+BrightFutures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC50256CF48800D651C6 /* PersistenceManager+BrightFutures.swift */; };
 		50B1CC7D256D54D400D651C6 /* XikoloNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC7C256D54D300D651C6 /* XikoloNotification.swift */; };
-		50B31DFB22C49D11007DDDA4 /* DateLabelHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */; };
+		50B31DFB22C49D11007DDDA4 /* CoursePeriodFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFA22C49D11007DDDA4 /* CoursePeriodFormatterTests.swift */; };
 		50B31DFD22C4B660007DDDA4 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFC22C4B660007DDDA4 /* Locale.swift */; };
 		50B31DFF22C4C570007DDDA4 /* BrightFuturesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */; };
 		50B71B88212AC61C008CE681 /* DocumentsPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */; };
 		50BC011B217755B500F38B30 /* UnavailableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */; };
 		50C21DE823549D4A00D7A1A6 /* UICollectionView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C21DE723549D4A00D7A1A6 /* UICollectionView+EmptyState.swift */; };
+		50C8356F279ED733004FEB62 /* BrightFutures in Frameworks */ = {isa = PBXBuildFile; productRef = 50C8356E279ED733004FEB62 /* BrightFutures */; };
 		50CF1F4620DCDBFC0011BFE9 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFViewController.swift */; };
 		50CF1F4E20DCDBFC0011BFE9 /* RichTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichTextViewController.swift */; };
 		50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
@@ -695,7 +702,7 @@
 		500A257D20824C2500EB7AE4 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedContentHelper.swift; sourceTree = "<group>"; };
 		500C361724B61BFB004DD157 /* xikolo 12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 12.xcdatamodel"; sourceTree = "<group>"; };
-		500C4D47278D73BE00C91295 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		500C4D49278D8E6C00C91295 /* xikolo 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 14.xcdatamodel"; sourceTree = "<group>"; };
 		5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SafeCastable.swift"; sourceTree = "<group>"; };
 		5011D6B024EEADA5004961A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseOverview.storyboard; sourceTree = "<group>"; };
 		5011D6B324EEADC3004961A0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseOverview.strings; sourceTree = "<group>"; };
@@ -817,6 +824,12 @@
 		50467FF1238596710084D7F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabChannels.storyboard; sourceTree = "<group>"; };
 		50467FF42385967A0084D7F6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabChannels.strings; sourceTree = "<group>"; };
 		5046BD09212B4DC700B9F2CD /* DocumentLocalization+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentLocalization+Actions.swift"; sourceTree = "<group>"; };
+		5046EE41278DAB3300027499 /* CourseFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseFeature.swift; sourceTree = "<group>"; };
+		5046EE43278DAC3000027499 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
+		5046EE45278DAC9D00027499 /* FeatureHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureHelper.swift; sourceTree = "<group>"; };
+		5046EE47278DADAF00027499 /* FeatureHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeatureHelper+FetchRequests.swift"; sourceTree = "<group>"; };
+		5046EE49278EDB8200027499 /* ExperimentAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentAssignment.swift; sourceTree = "<group>"; };
+		5046EE4B278EE37600027499 /* ExperimentAssignmentHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentAssignmentHelper.swift; sourceTree = "<group>"; };
 		504AC120239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileHelper+logoutTestAccount.swift"; sourceTree = "<group>"; };
 		504D6ED024E424D900426BDC /* NSDirectionalEdgeInsets+custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDirectionalEdgeInsets+custom.swift"; sourceTree = "<group>"; };
 		504D6ED224E4251F00426BDC /* ReadableWidthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadableWidthNavigationController.swift; sourceTree = "<group>"; };
@@ -967,7 +980,6 @@
 		509B10D0200790560042AA7D /* XikoloTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloTabBarController.swift; sourceTree = "<group>"; };
 		509DA847252F09CC00030465 /* AutomatedDownloadsSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomatedDownloadsSettingsViewController.swift; sourceTree = "<group>"; };
 		509DA851252FA35700030465 /* AutomatedDownloadsCourseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomatedDownloadsCourseListViewController.swift; sourceTree = "<group>"; };
-		509DA85B2530C40C00030465 /* xikolo 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 14.xcdatamodel"; sourceTree = "<group>"; };
 		509DA85C2530C49800030465 /* AutomatedDownloadSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomatedDownloadSettings.swift; sourceTree = "<group>"; };
 		50A2042422FAC389004371C0 /* ColorCompatibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCompatibility.swift; sourceTree = "<group>"; };
 		50A2042622FAD324004371C0 /* UITraitCollection+performAsCurrent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+performAsCurrent.swift"; sourceTree = "<group>"; };
@@ -975,6 +987,7 @@
 		50A725932339188400DE8338 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDates.strings; sourceTree = "<group>"; };
 		50A725952339188E00DE8338 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseDateOverview.storyboard; sourceTree = "<group>"; };
 		50A725982339189600DE8338 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateOverview.strings; sourceTree = "<group>"; };
+		50A8582227A41D7400989C7A /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		50A9192E256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateForNextAutomatedDownloadBackgroundProcessingTests.swift; sourceTree = "<group>"; };
 		50A91938256E5306002874CC /* CoreDataTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestHelper.swift; sourceTree = "<group>"; };
 		50A91A03256E5DE5002874CC /* openHPI-Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openHPI-Tests.xcconfig"; path = "Xcode Configurations/openhpi/openHPI-Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -1005,7 +1018,7 @@
 		50B1CC45256BE55900D651C6 /* XikoloNotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNotificationDelegate.swift; sourceTree = "<group>"; };
 		50B1CC50256CF48800D651C6 /* PersistenceManager+BrightFutures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceManager+BrightFutures.swift"; sourceTree = "<group>"; };
 		50B1CC7C256D54D300D651C6 /* XikoloNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNotification.swift; sourceTree = "<group>"; };
-		50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabelHelperTests.swift; sourceTree = "<group>"; };
+		50B31DFA22C49D11007DDDA4 /* CoursePeriodFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePeriodFormatterTests.swift; sourceTree = "<group>"; };
 		50B31DFC22C4B660007DDDA4 /* Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
 		50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightFuturesTests.swift; sourceTree = "<group>"; };
 		50B431CD23E45258006C7BC4 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -1067,6 +1080,7 @@
 		50E16D041F47070A00D67632 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabAccount.strings; sourceTree = "<group>"; };
 		50E3F30524484ADC00317822 /* lernencloud-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "lernencloud-UITests.xcconfig"; sourceTree = "<group>"; };
 		50E4D7F724AD22B40032B1DC /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
+		50E66A4F27A56E350074F2DA /* xikolo 15.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 15.xcdatamodel"; sourceTree = "<group>"; };
 		50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DeviceInfo.swift"; sourceTree = "<group>"; };
 		50EFACB01FFE3C0100169C35 /* Optional+require.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+require.swift"; sourceTree = "<group>"; };
 		50EFACBD1FFFB25400169C35 /* SafeCastable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCastable.swift; sourceTree = "<group>"; };
@@ -1255,7 +1269,7 @@
 				50AD86172570F3D5003BDB80 /* SwiftUI.framework in Frameworks */,
 				50AD86152570F3D4003BDB80 /* WidgetKit.framework in Frameworks */,
 				508C314F276B80D6003AE388 /* Down in Frameworks */,
-				508C3151276B8159003AE388 /* BrightFutures in Frameworks */,
+				50C8356F279ED733004FEB62 /* BrightFutures in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1336,12 +1350,15 @@
 				AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */,
 				ABFFA85B1EAB6F4700544AB3 /* CourseCertificatesHash.swift */,
 				4E6AB1F11DD36AB500B048DB /* CourseDate.swift */,
+				5046EE41278DAB3300027499 /* CourseFeature.swift */,
 				2433A5A01CE634A00060DD98 /* CourseItem.swift */,
 				2448A9D51CDA445D009A1AEA /* CourseSection.swift */,
 				5054B2DC21087D6800CE9067 /* Document.swift */,
 				5054B2DE21087DB100CE9067 /* DocumentLocalization.swift */,
 				243CE47E1D709999007C59B6 /* Enrollment.swift */,
 				AB4A01AD1E7EA151005CD595 /* EnrollmentCertificates.swift */,
+				5046EE49278EDB8200027499 /* ExperimentAssignment.swift */,
+				5046EE43278DAC3000027499 /* Feature.swift */,
 				8251A50A237182F200A443A9 /* HelpdeskTicket.swift */,
 				508869F224F6613A000FA1C8 /* LastVisit.swift */,
 				ABC8A1631D689ED80059CEF2 /* LTIExercise.swift */,
@@ -1423,11 +1440,11 @@
 				503578932195BF1500982093 /* Accessibility.swift */,
 				3D6F12EC1F2914BD00D5DFE8 /* SpotlightHelper.swift */,
 				502E8E9425D6B39800CFE234 /* WidgetHelper.swift */,
+				50A8582227A41D7400989C7A /* Settings.swift */,
 				50D28A5224BE054E0009A24C /* QuickActionHelper.swift */,
 				50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */,
 				50E0351E213673F8001F963D /* CourseListConfiguration.swift */,
 				50A2042422FAC389004371C0 /* ColorCompatibility.swift */,
-				500C4D47278D73BE00C91295 /* Settings.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1802,7 +1819,7 @@
 			children = (
 				50761B5720FCADD700CEDAF9 /* Info.plist */,
 				5050D66823A0125700E48498 /* CourseItemBase62UUIDTests.swift */,
-				50B31DFA22C49D11007DDDA4 /* DateLabelHelperTests.swift */,
+				50B31DFA22C49D11007DDDA4 /* CoursePeriodFormatterTests.swift */,
 				50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */,
 			);
 			path = "Common-Tests";
@@ -1868,6 +1885,7 @@
 				5054B2E22108836300CE9067 /* DocumentHelper+FetchRequests.swift */,
 				5054B2E82108BF9B00CE9067 /* DocumentLocalizationHelper+FetchRequest.swift */,
 				700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */,
+				5046EE47278DADAF00027499 /* FeatureHelper+FetchRequests.swift */,
 				508869F624F66519000FA1C8 /* LastVisitHelper+FetchRequests.swift */,
 				50F57D941FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift */,
 				50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */,
@@ -2318,6 +2336,8 @@
 				507F7FDB2372DA530031DC0B /* CourseProgressHelper.swift */,
 				5054B2E0210880FA00CE9067 /* DocumentHelper.swift */,
 				ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */,
+				5046EE4B278EE37600027499 /* ExperimentAssignmentHelper.swift */,
+				5046EE45278DAC9D00027499 /* FeatureHelper.swift */,
 				8251A50C23718A4500A443A9 /* HelpdeskTicketHelper.swift */,
 				508869F424F66479000FA1C8 /* LastVisitHelper.swift */,
 				ABDD84C81D8E063100C7D193 /* LTIExerciseHelper.swift */,
@@ -2558,7 +2578,7 @@
 			name = WidgetExtension;
 			packageProductDependencies = (
 				508C314E276B80D6003AE388 /* Down */,
-				508C3150276B8159003AE388 /* BrightFutures */,
+				50C8356E279ED733004FEB62 /* BrightFutures */,
 			);
 			productName = widgetExtension;
 			productReference = 50AD86132570F3D4003BDB80 /* WidgetExtension.appex */;
@@ -2580,6 +2600,7 @@
 				02299DD82417E867006B2E52 /* Embed App Extension */,
 				50D60D2B20E0D2C7007A4199 /* Remove Localizations */,
 				50AD2527276C91D90050831C /* Compile Acknowledgements */,
+				50C83570279EDFD8004FEB62 /* Remove Duplicate Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2957,6 +2978,24 @@
 			shellPath = /bin/sh;
 			shellScript = "$SRCROOT/Build\\ Phases/compile-acknowledgements.sh\n";
 		};
+		50C83570279EDFD8004FEB62 /* Remove Duplicate Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Remove Duplicate Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/Build\\ Phases/remove-duplicate-frameworks.sh\n";
+		};
 		50CF1F4320DCDBFC0011BFE9 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3177,7 +3216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50B31DFF22C4C570007DDDA4 /* BrightFuturesTests.swift in Sources */,
-				50B31DFB22C49D11007DDDA4 /* DateLabelHelperTests.swift in Sources */,
+				50B31DFB22C49D11007DDDA4 /* CoursePeriodFormatterTests.swift in Sources */,
 				5050D66923A0125700E48498 /* CourseItemBase62UUIDTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3265,7 +3304,7 @@
 				507D02F92436279F0009F12B /* Course+Actions.swift in Sources */,
 				508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */,
 				50CF1F7D20DCDBFC0011BFE9 /* CourseDetailsViewController.swift in Sources */,
-				500C4D48278D73BE00C91295 /* Settings.swift in Sources */,
+				500C4D48278D73BE00C91295 /* (null) in Sources */,
 				02F6D81F24977B6900BB2B80 /* CourseItem+NSItemProviderWriting.swift in Sources */,
 				503CEE962177082D00F34694 /* ProcotoredItemViewController.swift in Sources */,
 				502CBE2824338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift in Sources */,
@@ -3325,6 +3364,7 @@
 				82D55A1E23CF31D000EB2768 /* Sequence+sort.swift in Sources */,
 				50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */,
 				5027250A235473F600815914 /* Swizzler.swift in Sources */,
+				50A8582327A41D7400989C7A /* Settings.swift in Sources */,
 				023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */,
 				50CF1FB620DCDBFC0011BFE9 /* UserDefaults+contentPreload.swift in Sources */,
 				503988732166920400F9043B /* ShadowContainerView.swift in Sources */,
@@ -3449,6 +3489,7 @@
 				50FA2E1820E4B24300656776 /* LTIExerciseHelper.swift in Sources */,
 				0258504F2454569900CB9C65 /* Course+NSUserActivity.swift in Sources */,
 				50FA2E3A20E4B25800656776 /* CourseDate.swift in Sources */,
+				5046EE42278DAB3300027499 /* CourseFeature.swift in Sources */,
 				50FA2E1220E4B24300656776 /* AnnouncementHelper.swift in Sources */,
 				50FA2E2320E4B24A00656776 /* CourseDateHelper+FetchRequests.swift in Sources */,
 				5054B2E32108836300CE9067 /* DocumentHelper+FetchRequests.swift in Sources */,
@@ -3471,6 +3512,7 @@
 				50FA2E0220E4B1FB00656776 /* Logger.swift in Sources */,
 				5054B2E1210880FA00CE9067 /* DocumentHelper.swift in Sources */,
 				50FA2E3D20E4B25800656776 /* Enrollment.swift in Sources */,
+				5046EE44278DAC3000027499 /* Feature.swift in Sources */,
 				50FA2E0F20E4B24300656776 /* NetworkHelper.swift in Sources */,
 				50D52164225FC50500C9860D /* Int+DispatchTimeInterval.swift in Sources */,
 				50FA2E1A20E4B24300656776 /* PlatformEventHelper.swift in Sources */,
@@ -3492,12 +3534,15 @@
 				50046F6D216B53EB00D59073 /* Notification+CoreData.swift in Sources */,
 				5037FC16242DF76700B4E8CE /* UIImage+placeholder.swift in Sources */,
 				50FA2E4320E4B25800656776 /* QuizQuestion.swift in Sources */,
+				5046EE46278DAC9D00027499 /* FeatureHelper.swift in Sources */,
 				506BDB82242341750002DBDE /* AdditionalLearningMaterial.swift in Sources */,
 				50FA2E0C20E4B23C00656776 /* xikolo.xcdatamodeld in Sources */,
+				5046EE4A278EDB8200027499 /* ExperimentAssignment.swift in Sources */,
 				50FA2E3520E4B25800656776 /* Announcement.swift in Sources */,
 				5035232E21806FA600F2E7A4 /* SingleSignOnConfiguration.swift in Sources */,
 				50046F71216BBAD200D59073 /* BrightFuture+earliest.swift in Sources */,
 				50FA2E4820E4B25800656776 /* TrackingEventVerb.swift in Sources */,
+				5046EE4C278EE37600027499 /* ExperimentAssignmentHelper.swift in Sources */,
 				5052D27721591E9400927D52 /* SyncPushEngine.swift in Sources */,
 				50FA2E1320E4B24300656776 /* CourseHelper.swift in Sources */,
 				50FA2E4120E4B25800656776 /* PlatformEvent.swift in Sources */,
@@ -3536,6 +3581,7 @@
 				8251A50D23718A4500A443A9 /* HelpdeskTicketHelper.swift in Sources */,
 				50FA2E2420E4B24A00656776 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				50FA2DFF20E4B1FB00656776 /* Routes.swift in Sources */,
+				5046EE48278DADAF00027499 /* FeatureHelper+FetchRequests.swift in Sources */,
 				50092A89237D825900A1503F /* ChannelHelper+FetchRequests.swift in Sources */,
 				50FA2E4420E4B25800656776 /* QuizOption.swift in Sources */,
 				700398C421A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift in Sources */,
@@ -3942,7 +3988,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Stockpile/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4021,7 +4066,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Stockpile/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4100,7 +4144,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Stockpile/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4179,7 +4222,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Stockpile/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4258,7 +4300,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Stockpile/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4337,7 +4378,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Stockpile/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4416,7 +4456,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Stockpile/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4495,7 +4534,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Stockpile/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5105,7 +5143,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Binge/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5119,6 +5156,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -5183,7 +5221,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Binge/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5196,6 +5233,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -5261,7 +5299,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Binge/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5274,6 +5311,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -5339,7 +5377,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Binge/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5352,6 +5389,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -5417,7 +5455,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Binge/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5430,6 +5467,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -5495,7 +5533,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Binge/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5508,6 +5545,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -5573,7 +5611,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Binge/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5586,6 +5623,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -5651,7 +5689,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Binge/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5664,6 +5701,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -6791,7 +6829,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -6869,6 +6907,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -7009,7 +7048,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Binge/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7023,6 +7061,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -7094,7 +7133,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Stockpile/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7366,7 +7404,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7428,7 +7465,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -7499,6 +7536,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -7627,7 +7665,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Binge/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7640,6 +7677,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -7706,7 +7744,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Stockpile/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7959,7 +7996,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -8692,7 +8728,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -8799,7 +8835,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -8906,7 +8942,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -9013,7 +9049,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -9120,7 +9156,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -9227,7 +9263,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -9334,7 +9370,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -9441,7 +9477,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -9561,7 +9597,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9630,7 +9665,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9699,7 +9733,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9768,7 +9801,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9837,7 +9869,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9906,7 +9937,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9975,7 +10005,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -10044,7 +10073,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -10126,6 +10154,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -10196,6 +10225,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -10266,6 +10296,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -10336,6 +10367,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -10401,6 +10433,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -10466,6 +10499,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -10531,6 +10565,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -10596,6 +10631,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -10920,11 +10956,6 @@
 			package = 508C30AE276B697B003AE388 /* XCRemoteSwiftPackageReference "Down" */;
 			productName = Down;
 		};
-		508C3150276B8159003AE388 /* BrightFutures */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 508C3096276B4EA7003AE388 /* XCRemoteSwiftPackageReference "BrightFutures" */;
-			productName = BrightFutures;
-		};
 		508C3153276B8C0E003AE388 /* Rswift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 508C3152276B8C0D003AE388 /* XCRemoteSwiftPackageReference "R.swift" */;
@@ -10935,13 +10966,19 @@
 			package = 508C30AE276B697B003AE388 /* XCRemoteSwiftPackageReference "Down" */;
 			productName = Down;
 		};
+		50C8356E279ED733004FEB62 /* BrightFutures */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 508C3096276B4EA7003AE388 /* XCRemoteSwiftPackageReference "BrightFutures" */;
+			productName = BrightFutures;
+		};
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				509DA85B2530C40C00030465 /* xikolo 14.xcdatamodel */,
+				50E66A4F27A56E350074F2DA /* xikolo 15.xcdatamodel */,
+				500C4D49278D8E6C00C91295 /* xikolo 14.xcdatamodel */,
 				508869F124F6604F000FA1C8 /* xikolo 13.xcdatamodel */,
 				500C361724B61BFB004DD157 /* xikolo 12.xcdatamodel */,
 				505B0D162446FFC600F88CAD /* xikolo 11.xcdatamodel */,
@@ -10956,7 +10993,7 @@
 				ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */,
 				24597D251CC6CA0D00FB5338 /* xikolo.xcdatamodel */,
 			);
-			currentVersion = 509DA85B2530C40C00030465 /* xikolo 14.xcdatamodel */;
+			currentVersion = 50E66A4F27A56E350074F2DA /* xikolo 15.xcdatamodel */;
 			path = xikolo.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

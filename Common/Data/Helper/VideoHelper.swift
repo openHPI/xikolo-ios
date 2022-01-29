@@ -15,4 +15,22 @@ public enum VideoHelper {
         return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
+    @discardableResult public static func updateLastPosition(of video: Video, to lastPosition: Double) -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
+        CoreDataHelper.viewContext.perform {
+            guard let video = CoreDataHelper.viewContext.existingTypedObject(with: video.objectID) as? Video else {
+                promise.failure(XikoloError.coreDataObjectNotFound)
+                return
+            }
+
+            video.lastPosition = lastPosition
+
+            let saveResult = CoreDataHelper.viewContext.saveWithResult()
+            promise.complete(saveResult)
+        }
+
+        return promise.future
+    }
+
 }

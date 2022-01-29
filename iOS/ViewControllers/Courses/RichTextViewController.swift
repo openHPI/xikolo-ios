@@ -55,14 +55,6 @@ class RichTextViewController: UIViewController {
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
 
-        if #available(iOS 11, *) {
-            // nothing to do here
-        } else {
-            if let navigationBarHeight = self.navigationController?.navigationBar.frame.height {
-                self.scrollViewTopConstraint.constant = navigationBarHeight
-            }
-        }
-
         self.updateView()
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
     }

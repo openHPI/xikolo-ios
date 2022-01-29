@@ -126,6 +126,10 @@ class CourseViewController: UIViewController {
         ErrorManager.shared.remember(self.course.id, forKey: "course_id")
 
         self.cardHeaderView.addGestureRecognizer(self.downUpwardsGestureRecognizer)
+
+        FeatureHelper.syncFeatures(forCourse: self.course).onSuccess { [weak self] in
+            self?.courseAreaListViewController?.refresh()
+        }
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -385,9 +389,9 @@ extension CourseViewController: CourseAreaListViewControllerDelegate {
         if self.course.external {
             return [.courseDetails]
         } else if self.course.hasEnrollment && self.course.accessible {
-            return CourseArea.availableAreas
+            return CourseArea.availableAreas(in: self.course)
         } else {
-            return CourseArea.availableAreas.filter(\.accessibleWithoutEnrollment)
+            return CourseArea.availableAreas(in: self.course).filter(\.accessibleWithoutEnrollment)
         }
     }
 

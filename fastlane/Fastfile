@@ -111,7 +111,7 @@ platform :ios do
 
   desc "Format swift code with swiftlint"
   lane :format do |options|
-    run_swiftlint(mode: :autocorrect)
+    run_swiftlint(mode: :fix)
   end
 
   private_lane :run_swiftlint do |options|

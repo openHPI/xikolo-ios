@@ -25,6 +25,7 @@ class CourseItemListViewController: UITableViewController {
     @IBOutlet private weak var continueLearningHint: UIView!
     @IBOutlet private weak var continueLearningSectionTitleLabel: UILabel!
     @IBOutlet private weak var continueLearningItemTitleLabel: UILabel!
+    @IBOutlet private weak var continueLearningItemProgressView: UIProgressView!
     @IBOutlet private weak var continueLearningItemIconView: UIImageView!
     @IBOutlet private weak var continueLearningItemIconWidthConstraint: NSLayoutConstraint!
 
@@ -87,13 +88,11 @@ class CourseItemListViewController: UITableViewController {
 
         self.adaptToTextSizeChange()
 
-        if #available(iOS 11.0, *) {
-            self.tableView.separatorInsetReference = .fromAutomaticInsets
+        self.tableView.separatorInsetReference = .fromAutomaticInsets
+        self.tableView.dragInteractionEnabled = true
+        self.tableView.dragDelegate = self
 
-            self.tableView.dragInteractionEnabled = true
-            self.tableView.dragDelegate = self
-        }
-
+        self.continueLearningItemProgressView.tintColor = Brand.default.colors.primary
         self.continueLearningHint.layer.roundCorners(for: .default)
         self.continueLearningHint.addDefaultPointerInteraction()
 
@@ -124,6 +123,10 @@ class CourseItemListViewController: UITableViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(adaptToTextSizeChange),
                                                name: UIContentSizeCategory.didChangeNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleLastVideoProgressChangedNotification(_:)),
+                                               name: LastVideoProgress.didChangeNotification,
                                                object: nil)
 
 
@@ -160,16 +163,21 @@ class CourseItemListViewController: UITableViewController {
     }
 
     @objc private func adaptToTextSizeChange() {
-        if #available(iOS 11, *) {
-            let width = UIFontMetrics.default.scaledValue(for: 28)
-            self.tableView.separatorInset = UIEdgeInsets(top: 0, left: width + 12, bottom: 0, right: 0)
-        } else {
-            self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 40.0, bottom: 0, right: 0)
-        }
+        let width = UIFontMetrics.default.scaledValue(for: 28)
+        self.tableView.separatorInset = UIEdgeInsets(top: 0, left: width + 12, bottom: 0, right: 0)
 
-        if #available(iOS 11, *) {
-            let value = UIFontMetrics.default.scaledValue(for: 28)
-            self.continueLearningItemIconWidthConstraint.constant = value
+        let value = UIFontMetrics.default.scaledValue(for: 28)
+        self.continueLearningItemIconWidthConstraint.constant = value
+    }
+
+    @objc func handleLastVideoProgressChangedNotification(_ notification: Notification) {
+        guard let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+              let item = self.lastVisit?.item,
+              let video = item.content as? Video,
+              video.id == videoId else { return }
+
+        DispatchQueue.main.async {
+            self.updateLastVisitHint()
         }
     }
 
@@ -221,6 +229,12 @@ class CourseItemListViewController: UITableViewController {
         self.continueLearningItemTitleLabel.text = self.lastVisit?.item?.title
         self.continueLearningItemIconView.image = self.lastVisit?.item?.image
         self.continueLearningHint.isHidden = self.lastVisit?.item == nil
+
+        self.continueLearningItemProgressView.progress = {
+            guard let video = self.lastVisit?.item?.content as? Video else { return 0 }
+            guard video.duration > 0 else { return 0 }
+            return Float(video.lastPosition) / Float(video.duration)
+        }()
 
         UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
             self.tableView.resizeTableHeaderView()
@@ -494,7 +508,6 @@ extension CourseItemListViewController: CourseAreaViewController {
 
 }
 
-@available(iOS 11.0, *)
 extension CourseItemListViewController: UITableViewDragDelegate {
 
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {

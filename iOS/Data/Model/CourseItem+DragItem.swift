@@ -5,7 +5,6 @@
 
 import Common
 
-@available(iOS 11.0, *)
 extension CourseItem {
 
     func dragItem(with previewView: UIView?) -> UIDragItem {

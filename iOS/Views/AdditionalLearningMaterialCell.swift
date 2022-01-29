@@ -60,7 +60,7 @@ class AdditionalLearningMaterialCell: UICollectionViewCell {
 extension AdditionalLearningMaterialCell {
 
     static var cardInset: CGFloat {
-        return 14
+        return 8
     }
 
 }

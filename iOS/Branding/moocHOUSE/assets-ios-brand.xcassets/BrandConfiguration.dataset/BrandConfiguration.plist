@@ -16,14 +16,6 @@
 	<string>HPI</string>
 	<key>colors</key>
 	<dict>
-		<key>primary</key>
-		<string>#ABB324</string>
-		<key>secondary</key>
-		<string>#ABB324</string>
-		<key>tertiary</key>
-		<string>#ABB324</string>
-		<key>primaryLight</key>
-		<string>#E5E8BD</string>
 		<key>window</key>
 		<string>primary</string>
 	</dict>
@@ -35,14 +27,10 @@
 		<false/>
 		<key>enableCollabSpace</key>
 		<false/>
-		<key>enableRecap</key>
-		<false/>
 		<key>showCourseDates</key>
 		<true/>
 		<key>showCourseTeachers</key>
 		<true/>
-		<key>enableHelpdeskReactivationTopic</key>
-		<false/>
 	</dict>
 	<key>testAccountUserId</key>
 	<string>b70e042a-5a0c-4298-b5fa-36328205215b</string>

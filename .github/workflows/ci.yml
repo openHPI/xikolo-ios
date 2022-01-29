@@ -9,8 +9,8 @@ on:
       - dev
 
 jobs:
-  build-test-lint:
-    name: Build + Test + Lint + Check localization
+  build-test-common:
+    name: Common / Build + Test
     runs-on: macOS-11
     strategy:
       matrix:
@@ -19,45 +19,70 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Cache RubyGems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: ${{ runner.os }}-gems-
-
-      - name: Cache CocoaPods
-        uses: actions/cache@v2
-        with:
-          path: Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: ${{ runner.os }}-pods-
-
-      - name: Install dependencies (Bundler)
-        run: |
-          bundle config path vendor/bundle
-          bundle config set without 'documentation'
-          bundle install --jobs 4 --retry 3
-
-      - name: Install dependencies (CocoaPods)
-        run: bundle exec pod install
-        env:
-          DEVELOPER_DIR: ${{ matrix.xcode }}
+      - name: Install dependencies
+        uses: ./.github/actions/setup
 
       - name: Copy brand assets
         run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
 
-      - name: Build + Test (Common)
+      - name: Build + Test
         run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
         env:
           scheme: Common
           DEVELOPER_DIR: ${{ matrix.xcode }}
+  
+  build-test-ios:
+    name: iOS / Build + Test
+    runs-on: macOS-11
+    strategy:
+      matrix:
+        xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        uses: ./.github/actions/setup
+
+      - name: Copy brand assets
+        run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
       
-      - name: Build + Test (iOS)
+      - name: Build + Test
         run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
         env:
           scheme: openHPI-iOS
           DEVELOPER_DIR: ${{ matrix.xcode }}
+
+  lint:
+    name: Lint code
+    runs-on: macOS-11
+    strategy:
+      matrix:
+        xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        uses: ./.github/actions/setup
+
+      - name: Run code validation
+        uses: ./.github/actions/swiftlint
+
+  check-locales:
+    name: Check localization
+    runs-on: macOS-11
+    strategy:
+      matrix:
+        xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        uses: ./.github/actions/setup
 
       - name: Check localization
         run: |
@@ -65,8 +90,3 @@ jobs:
           echo "\nThe following files have incomplete localization:"
           git status --porcelain -- ':!.bundle'
           git diff --quiet -- ':!.bundle'
-      
-      - name: Run code validation
-        run: bundle exec danger --verbose
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

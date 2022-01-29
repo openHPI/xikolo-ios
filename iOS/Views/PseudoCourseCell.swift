@@ -15,7 +15,6 @@ class PseudoCourseCell: UICollectionViewCell {
     @IBOutlet private weak var cardView: UIView!
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var actionLabel: UILabel!
-    @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
 
     override var isAccessibilityElement: Bool {
         get { true }
@@ -61,9 +60,12 @@ class PseudoCourseCell: UICollectionViewCell {
         }
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.bottomConstraint.constant = CourseCell.cardBottomOffsetForOverviewList
+    static func heightForOverviewList(forWidth width: CGFloat) -> CGFloat {
+        // All values were taken from Interface Builder
+        var height: CGFloat = 12 // top padding
+        height += width / 2 // box/image
+        height += 8 // top padding
+        return height
     }
 
 }

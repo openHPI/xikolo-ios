@@ -33,8 +33,12 @@ class BingeControlsViewController: UIViewController {
         slider.isEnabled = false
         slider.translatesAutoresizingMaskIntoConstraints = false
 
-        slider.setThumbImage(UIImage.bingeImage(named: "thumb-small"), for: .normal)
-        slider.setThumbImage(UIImage.bingeImage(named: "thumb-big"), for: .highlighted)
+        let normalAlignmentRectInsets = UIEdgeInsets(top: 17, left: 17, bottom: 17, right: 17)
+        let normalThumbImage = UIImage.bingeImage(named: "thumb-small")?.withAlignmentRectInsets(normalAlignmentRectInsets)
+        slider.setThumbImage(normalThumbImage, for: .normal)
+        let highlightedAlignmentRectInsets = UIEdgeInsets(top: 12.5, left: 12.5, bottom: 12.5, right: 12.5)
+        let highlightedThumbImage = UIImage.bingeImage(named: "thumb-big")?.withAlignmentRectInsets(highlightedAlignmentRectInsets)
+        slider.setThumbImage(highlightedThumbImage, for: .highlighted)
         slider.addTarget(self, action: #selector(changeProgress(sender:event:)), for: .valueChanged)
 
         if #available(iOS 13.4, *) {
@@ -146,7 +150,6 @@ class BingeControlsViewController: UIViewController {
         return button
     }()
 
-    @available(iOS 11, *)
     private lazy var airPlayButton: AVRoutePickerView = {
         let view = AVRoutePickerView()
         view.tintColor = .white
@@ -154,6 +157,11 @@ class BingeControlsViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self.delegate
         view.isHidden = true
+
+        if #available(iOS 13.0, *) {
+            view.prioritizesVideoDevices = true
+        }
+
         return view
     }()
 
@@ -277,11 +285,6 @@ class BingeControlsViewController: UIViewController {
         let view = BingeClickThroughView()
         view.backgroundColor = UIColor(white: 0.1, alpha: 0.75)
 
-        // This can be moved the the lazy init of `airplayButton` as soon as support for iOS 10 was dropped
-        if #available(iOS 13, *) {
-            self.airPlayButton.prioritizesVideoDevices = true
-        }
-
         self.addSubviews(to: view)
         self.addConstraints(with: view)
 
@@ -303,10 +306,7 @@ class BingeControlsViewController: UIViewController {
         parent.addSubview(self.titleView)
         parent.addSubview(self.topBarRightStackView)
         self.topBarRightStackView.addArrangedSubview(self.pictureInPictureButton)
-
-        if #available(iOS 11, *) {
-            self.topBarRightStackView.addArrangedSubview(self.airPlayButton)
-        }
+        self.topBarRightStackView.addArrangedSubview(self.airPlayButton)
 
         self.topBarRightStackView.addArrangedSubview(self.settingsButton)
 
@@ -317,13 +317,7 @@ class BingeControlsViewController: UIViewController {
 
     private func addConstraints(with parent: UIView) { // swiftlint:disable:this function_body_length
         let padding: CGFloat = 12
-        let parentMargins: UILayoutGuide = {
-            if #available(iOS 11, *) {
-                return parent.safeAreaLayoutGuide
-            } else {
-                return parent.layoutMarginsGuide
-            }
-        }()
+        let parentMargins = parent.safeAreaLayoutGuide
 
         let emptyViewWidthConstraint = self.emptyView.widthAnchor.constraint(equalToConstant: 0)
         emptyViewWidthConstraint.priority = .required - 1
@@ -338,8 +332,8 @@ class BingeControlsViewController: UIViewController {
             self.bufferProgressView.centerYAnchor.constraint(equalTo: self.currentTimeView.centerYAnchor),
             self.bufferProgressView.heightAnchor.constraint(equalToConstant: 2),
 
-            self.timeSlider.leadingAnchor.constraint(equalTo: self.bufferProgressView.leadingAnchor),
-            self.timeSlider.trailingAnchor.constraint(equalTo: self.bufferProgressView.trailingAnchor),
+            self.timeSlider.leadingAnchor.constraint(equalTo: self.bufferProgressView.leadingAnchor, constant: -2),
+            self.timeSlider.trailingAnchor.constraint(equalTo: self.bufferProgressView.trailingAnchor, constant: -2),
             self.timeSlider.centerYAnchor.constraint(equalTo: self.bufferProgressView.centerYAnchor),
 
             self.totalTimeView.leadingAnchor.constraint(equalTo: self.bufferProgressView.trailingAnchor, constant: padding),
@@ -403,30 +397,32 @@ class BingeControlsViewController: UIViewController {
             self.seekBackwardButton.widthAnchor.constraint(equalToConstant: 44),
         ])
 
-        if #available(iOS 11, *) {
-            self.airPlayButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        }
-
+        self.airPlayButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
     }
 
-    private func formatTime(_ time: TimeInterval) -> String {
+    private func formatTime(_ time: TimeInterval, forTotalDuration totalDuration: TimeInterval) -> String {
         if time.isNaN || time.isInfinite {
             return "0:00"
         }
 
         let seconds = Int(time) % 60
-        let minutes = Int(time / 60)
-        let hours = Int(time / 60 / 60)
+        let minutes = (Int(time) / 60) % 60
+        let hours = Int(time) / 60 / 60
 
-        if hours > 0 {
+        let safeTotalDuration = totalDuration.isNaN || totalDuration.isInfinite ? time : totalDuration
+        let totalDurationMinutes = (Int(safeTotalDuration) / 60) % 60
+        let totalDurationHours = Int(safeTotalDuration) / 60 / 60
+
+        if totalDurationHours > 0 {
             return String(format: "%d:%02d:%02d", hours, minutes, seconds)
+        } else if totalDurationMinutes > 9 {
+            return String(format: "%02d:%02d", minutes, seconds)
         } else {
             return String(format: "%d:%02d", minutes, seconds)
         }
     }
 
     @objc private func togglePictureInPictureMode() {
-        print("Tap on pip button")
         self.delegate?.togglePictureInPictureMode()
     }
 
@@ -454,6 +450,8 @@ class BingeControlsViewController: UIViewController {
         switch event.allTouches?.first?.phase {
         case .began:
             self.delegate?.stopAutoHideOfControlsOverlay()
+        case .moved:
+            self.delegate?.willSeekTo(progress: Double(sender.value))
         case .ended:
             self.delegate?.seekTo(progress: Double(sender.value))
         default:
@@ -476,10 +474,7 @@ class BingeControlsViewController: UIViewController {
     func setTintColor(_ color: UIColor) {
         self.timeSlider.tintColor = color
         self.timeSlider.minimumTrackTintColor = color
-
-        if #available(iOS 11, *) {
-            self.airPlayButton.activeTintColor = color
-        }
+        self.airPlayButton.activeTintColor = color
     }
 
     func adaptToItem(_ item: AVPlayerItem) {
@@ -493,7 +488,7 @@ class BingeControlsViewController: UIViewController {
         self.playPauseButton.isEnabled = isValidDuration
         self.timeSlider.isEnabled = isValidDuration
 
-        self.totalTimeView.text = self.formatTime(seconds)
+        self.totalTimeView.text = self.formatTime(seconds, forTotalDuration: seconds)
         self.offlineLabel.isHidden = !item.asset.isLocalAsset
     }
 
@@ -502,9 +497,9 @@ class BingeControlsViewController: UIViewController {
         self.playPauseButton.isHidden = timeControlStatus == .waitingToPlayAtSpecifiedRate
     }
 
-    func adaptToTimeChange(currentTime: TimeInterval, totalTime: TimeInterval) {
-        self.currentTimeView.text = self.formatTime(currentTime)
-        if !self.timeSlider.isHighlighted {
+    func adaptToTimeChange(currentTime: TimeInterval, totalTime: TimeInterval, isManualSeekPosition: Bool = false) {
+        self.currentTimeView.text = self.formatTime(currentTime, forTotalDuration: totalTime)
+        if !self.timeSlider.isHighlighted, !isManualSeekPosition {
             let value = Float(currentTime / totalTime)
             self.timeSlider.setValue(value, animated: true)
         }
@@ -526,7 +521,6 @@ class BingeControlsViewController: UIViewController {
         self.pictureInPictureButton.isEnabled = pictureInPicturePossible
     }
 
-    @available(iOS 11, *)
     func adaptToMultiRouteOutput(for multipleRoutesDetected: Bool) {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.25) {

@@ -113,13 +113,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
         let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         let keyboardHeight = keyboardFrameValue?.cgRectValue.size.height ?? 0.0
 
-        let contentInset: CGFloat
-        if #available(iOS 11.0, *) {
-            contentInset = self.view.safeAreaInsets.top + self.view.safeAreaInsets.bottom
-        } else {
-            contentInset = self.topLayoutGuide.length + self.bottomLayoutGuide.length
-        }
-
+        let contentInset = self.view.safeAreaInsets.top + self.view.safeAreaInsets.bottom
         let viewHeight = self.view.frame.size.height - contentInset
 
         let overlappingOffset = 0.5 * viewHeight - keyboardHeight - self.emailField.frame.size.height - 8.0

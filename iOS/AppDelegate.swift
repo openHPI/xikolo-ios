@@ -97,6 +97,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 XikoloNotification.setNotificationCategories()
                 AutomatedDownloadsManager.registerBackgroundTask()
             }
+
+            if UserProfileHelper.shared.isLoggedIn {
+                FeatureHelper.syncFeatures()
+            }
         }
 
         UICollectionView.enableEmptyStates()

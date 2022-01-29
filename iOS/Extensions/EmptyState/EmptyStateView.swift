@@ -14,13 +14,7 @@ final class EmptyStateView: UIView {
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fill
-
-        if #available(iOS 11, *) {
-            stackView.spacing = UIStackView.spacingUseSystem
-        } else {
-            stackView.spacing = 16
-        }
-
+        stackView.spacing = UIStackView.spacingUseSystem
         return stackView
     }()
 

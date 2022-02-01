@@ -13,6 +13,7 @@ import UIKit
 class CourseDetailsViewController: UIViewController {
 
     @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var teaserView: UIView!
     @IBOutlet private weak var teaserImageView: UIImageView!
     @IBOutlet private weak var languageView: UILabel!
@@ -55,6 +56,9 @@ class CourseDetailsViewController: UIViewController {
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self
+
+        self.stackView.setCustomSpacing(24, after: self.notEnrollableView)
+        self.stackView.setCustomSpacing(24, after: self.enrollmentButtonWrapper)
 
         self.updateView()
 

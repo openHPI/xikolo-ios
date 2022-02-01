@@ -16,7 +16,9 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var teaserView: UIView!
     @IBOutlet private weak var teaserImageView: UIImageView!
+    @IBOutlet private weak var languageIconView: UIImageView!
     @IBOutlet private weak var languageView: UILabel!
+    @IBOutlet private weak var dateIconView: UIImageView!
     @IBOutlet private weak var dateView: UILabel!
     @IBOutlet private weak var teacherView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
@@ -59,6 +61,15 @@ class CourseDetailsViewController: UIViewController {
 
         self.stackView.setCustomSpacing(24, after: self.notEnrollableView)
         self.stackView.setCustomSpacing(24, after: self.enrollmentButtonWrapper)
+
+        if #available(iOS 13, *) {
+              let symbolConfiguration = UIImage.SymbolConfiguration(textStyle: .callout)
+            self.languageIconView.image = UIImage(systemName: "globe", withConfiguration: symbolConfiguration)
+            self.dateIconView.image = UIImage(systemName: "calendar", withConfiguration: symbolConfiguration)
+        } else {
+            self.languageIconView.isHidden = true
+            self.dateIconView.isHidden = true
+        }
 
         self.updateView()
 

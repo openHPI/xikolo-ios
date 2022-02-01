@@ -11,9 +11,14 @@ pod 'R.swift', '~> 5.0'
 pod 'SwiftLint', '~> 0.22'
 
 
+# Because `post_install` is not called if no targets are specified, we run the custom seyup in `pre_install`
 pre_install do |installer|
-    # Because `post_install` is not called if no targets are specified, we run this in `pre_install`
     Pod::UI.info "Installing BartyCrouch manually"
     system("make installables -C ./Pods/BartyCrouch >> /dev/null")
     system("cp -f /tmp/BartyCrouch.dst/usr/local/bin/bartycrouch ./Pods/BartyCrouch/bartycrouch")
+
+    Pod::UI.info "Downloading Crashlyics 'upload_symbols' to './fastlane/scripts/upload_symbols'"
+    system("mkdir -p ./fastlane/scripts")
+    system("curl -sL https://github.com/firebase/firebase-ios-sdk/raw/master/Crashlytics/upload-symbols -o ./fastlane/scripts/upload_symbols")
+    system("chmod +x ./fastlane/scripts/upload_symbols")
 end

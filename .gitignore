@@ -60,6 +60,8 @@ fastlane/screenshots
 fastlane/test_output
 # Appfile with sensitive values
 fastlane/Appfile
+# Custome scripts
+fastlane/scripts
 
 # Localization exports
 fastlane/localization-export

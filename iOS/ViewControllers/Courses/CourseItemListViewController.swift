@@ -129,8 +129,6 @@ class CourseItemListViewController: UITableViewController {
                                                name: LastVideoProgress.didChangeNotification,
                                                object: nil)
 
-
-
         self.setupEmptyState()
         self.updateAutomatedDownloadsHint(animated: false)
         self.updateLastVisit()

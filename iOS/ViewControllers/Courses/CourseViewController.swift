@@ -209,8 +209,8 @@ class CourseViewController: UIViewController {
         let menuActions = [
             self.course?.shareAction { [weak self] in self?.shareCourse() },
             self.course?.showCourseDatesAction { [weak self] in self?.showCourseDates() },
-            self.course?.openHelpdeskAction { [weak self] in self?.openHelpdesk() },
             self.course?.automatedDownloadAction { [weak self] in self?.openAutomatedDownloadSettings() },
+            self.course?.openHelpdeskAction { [weak self] in self?.openHelpdesk() },
         ].compactMap { $0 }
 
         let item = UIBarButtonItem.circularItem(

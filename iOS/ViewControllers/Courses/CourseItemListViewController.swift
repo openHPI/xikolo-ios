@@ -248,7 +248,8 @@ class CourseItemListViewController: UITableViewController {
 
             self.automatedDownloadsNewFeatureHint.isHidden = permissionMissing
             self.automatedDownloadsMissingPermissionHint.isHidden = !permissionMissing
-            self.automatedDownloadsCloseButton.isHidden = permissionMissing
+            // TODO: only hide if `permissionMissing == true`. Keep hidden for initial user test
+            self.automatedDownloadsCloseButton.isHidden = (downloadSettingsExist || hasNoNextSectionStart) && !permissionMissing
             self.automatedDownloadsHint.isHidden = !self.course.isEligibleForAutomatedDownloads || shouldHideHint
 
             let duration = animated ? defaultAnimationDurationUnlessReduceMotionEnabled : 0.0

@@ -218,6 +218,10 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        defer {
+            tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
+        }
+
         if indexPath.section == 3 {
             // Disable Automated Downloads
             CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: nil).onSuccess { [weak self] _ in
@@ -230,50 +234,45 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         }
 
         if indexPath.section == 1 {
+            // Material Type
             let materialType = AutomatedDownloadSettings.MaterialTypes.allTypesWithTitle[indexPath.row].type
-            self.downloadSettings.materialTypes.formSymmetricDifference(materialType)
+            self.downloadSettings.materialTypes.formSymmetricDifference(materialType) // adding or remove material type
             self.tableView.reloadRows(at: [indexPath], with: .none)
+            self.saveBarButtonItem.isEnabled = !self.downloadSettings.materialTypes.isEmpty
             return
         }
 
-        var oldRow: Int?
-
         switch indexPath.section {
         case 0:
+            // Download Options
             let oldOption = self.downloadSettings.downloadOption
             let newOption = AutomatedDownloadSettings.DownloadOption.allCases[indexPath.row]
             if oldOption != newOption {
                 self.downloadSettings.downloadOption = newOption
-                oldRow = AutomatedDownloadSettings.DownloadOption.allCases.firstIndex(of: oldOption)
+                if let row = AutomatedDownloadSettings.DownloadOption.allCases.firstIndex(of: oldOption) {
+                    let oldIndexPath = IndexPath(row: row, section: indexPath.section)
+                    self.tableView.reloadRows(at: [oldIndexPath, indexPath], with: .none)
+                }
             }
         case 2:
             let oldOption = self.downloadSettings.deletionOption
             let newOption = AutomatedDownloadSettings.DeletionOption.allCases[indexPath.row]
             if oldOption != newOption {
                 self.downloadSettings.deletionOption = newOption
-                oldRow = AutomatedDownloadSettings.DeletionOption.allCases.firstIndex(of: oldOption)
+                if let row = AutomatedDownloadSettings.DeletionOption.allCases.firstIndex(of: oldOption) {
+                    let oldIndexPath = IndexPath(row: row, section: indexPath.section)
+                    self.tableView.reloadRows(at: [oldIndexPath, indexPath], with: .none)
+                }
             }
         default:
             break
         }
-
-        self.switchSelectedSettingsCell(at: indexPath, to: oldRow)
 
         self.tableView.footerView(forSection: indexPath.section)?.textLabel?.text = self.tableView(tableView, titleForFooterInSection: indexPath.section)
         UIView.performWithoutAnimation {
             self.tableView.footerView(forSection: indexPath.section)?.sizeToFit()
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
-        }
-    }
-
-    private func switchSelectedSettingsCell(at indexPath: IndexPath, to row: Int?) {
-        if let row = row {
-            let oldRow = IndexPath(row: row, section: indexPath.section)
-            self.tableView.reloadRows(at: [oldRow, indexPath], with: .none)
-        } else {
-            let indexSet = IndexSet(integer: indexPath.section)
-            self.tableView.reloadSections(indexSet, with: .none)
         }
     }
 

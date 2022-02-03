@@ -11,7 +11,6 @@ import UIKit
 class AutomatedDownloadsSettingsViewController: UITableViewController {
 
     let course: Course
-    let showManageHint: Bool
     let downloadSettings: AutomatedDownloadSettings
 
     private let cellReuseIdentifier = "SettingsOptionCell"
@@ -29,7 +28,6 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
 
     init(course: Course, showManageHint: Bool = false) {
         self.course = course
-        self.showManageHint = showManageHint
         self.downloadSettings = self.course.automatedDownloadSettings ?? AutomatedDownloadSettings()
 
         super.init(style: .insetGrouped)
@@ -183,7 +181,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
             return self.downloadSettings.deletionOption.explanation
         case 3:
             return AutomatedDownloadsManager.debugBackgroundDownload
-            return self.showManageHint ? "You will be able to change these settings at any time via the course menu ('⋯') or under 'Downloaded Content' in the account tab." : nil // TODO: localize
+            return "You will be able to change these settings at any time via the course menu ('⋯') or under 'Downloaded Content' in the account tab." // TODO: localize
         default:
             return nil
         }

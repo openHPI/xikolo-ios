@@ -324,7 +324,7 @@ class CourseItemListViewController: UITableViewController {
 
     @available(iOS 13, *)
     @objc private func showAutomatedDownloadSettings() {
-        let downloadSettingsViewController = AutomatedDownloadsSettingsViewController(course: self.course, showManageHint: true)
+        let downloadSettingsViewController = AutomatedDownloadsSettingsViewController(course: self.course)
         let navigationController = ReadableWidthNavigationController(rootViewController: downloadSettingsViewController)
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }

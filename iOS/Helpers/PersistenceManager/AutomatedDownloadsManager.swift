@@ -31,6 +31,7 @@ enum AutomatedDownloadsManager {
     static func scheduleNextBackgroundProcessingTask() {
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             // Find next date for background processing
+            #warning("Change this back")
 //            guard let dateForNextBackgroundProcessing = self.dateForNextBackgroundProcessing(in: context) else {
 //                return
 //            }
@@ -48,7 +49,7 @@ enum AutomatedDownloadsManager {
                 try BGTaskScheduler.shared.submit(automatedDownloadTaskRequest)
                 self.debugBackgroundDownload = " | schedule for \(ISO8601DateFormatter().string(from: dateForNextBackgroundProcessing)) \n" + self.debugBackgroundDownload
             } catch {
-                self.debugBackgroundDownload = " | error while scheduling (\(ISO8601DateFormatter().string(from: Date())) \n" + self.debugBackgroundDownload
+                self.debugBackgroundDownload = " | error while scheduling (\(ISO8601DateFormatter().string(from: Date())) \n \(error)\n" + self.debugBackgroundDownload
             }
         }
     }

@@ -17,10 +17,12 @@ class CourseItemListViewController: UITableViewController {
     private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
     private static let timeFormatter = DateFormatter.localizedFormatter(dateStyle: .none, timeStyle: .short)
 
-    @IBOutlet private weak var automatedDownloadsHint: UIView!
-    @IBOutlet private weak var automatedDownloadsMissingPermissionHint: UIView!
+    @IBOutlet private weak var automatedDownloadsPromotionHint: UIView!
     @IBOutlet private weak var automatedDownloadsNewFeatureHint: UIView!
     @IBOutlet private weak var automatedDownloadsCloseButton: UIButton!
+    @IBOutlet private weak var automatedDownloadsActiveHint: UIView!
+    @IBOutlet private weak var automatedDownloadsMissingPermissionHint: UIView!
+
 
     @IBOutlet private weak var continueLearningHint: UIView!
     @IBOutlet private weak var continueLearningSectionTitleLabel: UILabel!
@@ -63,7 +65,6 @@ class CourseItemListViewController: UITableViewController {
     private var nextSectionStartDate: Date? {
         didSet {
             guard self.nextSectionStartDate != oldValue else { return }
-            self.updateAutomatedDownloadsHint(animated: true)
             self.updateNextSectionStartHint()
         }
     }
@@ -104,16 +105,26 @@ class CourseItemListViewController: UITableViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openContinueLearningItem))
         self.continueLearningHint.addGestureRecognizer(tapGesture)
 
-        self.automatedDownloadsHint.isHidden = true
+        self.automatedDownloadsPromotionHint.isHidden = true
         self.continueLearningHint.isHidden = true
         self.nextSectionStartLabel.isHidden = true
 
         if #available(iOS 13, *) {
-            self.automatedDownloadsHint.layer.roundCorners(for: .default)
-            self.automatedDownloadsHint.addDefaultPointerInteraction()
+            self.automatedDownloadsPromotionHint.layer.roundCorners(for: .default)
+            self.automatedDownloadsPromotionHint.addDefaultPointerInteraction()
 
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showAutomatedDownloadSettings))
-            self.automatedDownloadsHint.addGestureRecognizer(tapGesture)
+            self.automatedDownloadsActiveHint.layer.roundCorners(for: .default)
+            self.automatedDownloadsActiveHint.addDefaultPointerInteraction()
+
+            self.automatedDownloadsMissingPermissionHint.layer.roundCorners(for: .default)
+            self.automatedDownloadsMissingPermissionHint.addDefaultPointerInteraction()
+
+            let promotionTapGesture = UITapGestureRecognizer(target: self, action: #selector(showAutomatedDownloadSettings))
+            self.automatedDownloadsPromotionHint.addGestureRecognizer(promotionTapGesture)
+            let activeTapGesture = UITapGestureRecognizer(target: self, action: #selector(showAutomatedDownloadSettings))
+            self.automatedDownloadsActiveHint.addGestureRecognizer(activeTapGesture)
+            let missingPermissionTapGesture = UITapGestureRecognizer(target: self, action: #selector(openSettings))
+            self.automatedDownloadsMissingPermissionHint.addGestureRecognizer(missingPermissionTapGesture)
         }
 
         NotificationCenter.default.addObserver(self,
@@ -240,34 +251,25 @@ class CourseItemListViewController: UITableViewController {
     }
 
     private func updateAutomatedDownloadsHint(animated: Bool) {
-        let update: (Bool) -> Void = { permissionMissing in
-            let downloadSettingsExist = self.course.automatedDownloadSettings != nil
-            let hasNoNextSectionStart = self.nextSectionStartDate == nil
-            let noticedBefore = self.course.automatedDownloadsHaveBeenNoticed
-            let shouldHideHint = (downloadSettingsExist || hasNoNextSectionStart || noticedBefore) && !permissionMissing
-
-            self.automatedDownloadsNewFeatureHint.isHidden = permissionMissing
-            self.automatedDownloadsMissingPermissionHint.isHidden = !permissionMissing
-            // TODO: only hide if `permissionMissing == true`. Keep hidden for initial user test
-            self.automatedDownloadsCloseButton.isHidden = (downloadSettingsExist || hasNoNextSectionStart) && !permissionMissing
-            self.automatedDownloadsHint.isHidden = !self.course.isEligibleForAutomatedDownloads || shouldHideHint
-
-            let duration = animated ? defaultAnimationDurationUnlessReduceMotionEnabled : 0.0
-            UIView.animate(withDuration: duration) {
-                self.tableView.resizeTableHeaderView()
-            }
-        }
-
-        update(false)
-
         UNUserNotificationCenter.current().getNotificationSettings { settings in
+            let downloadSettingsExist = self.course.automatedDownloadSettings != nil
+            // TODO: Ignore this for initial user test
+            let noticedBefore = false // self.course.automatedDownloadsHaveBeenNoticed
+            let shouldHidePromotionHint = downloadSettingsExist || noticedBefore || !self.course.isEligibleForAutomatedDownloads
+
             let notificationsDenied = settings.authorizationStatus == .denied
             let notificationsForNewContent = self.course.automatedDownloadSettings?.downloadOption == .notification
             let permissionMissing = notificationsForNewContent && notificationsDenied
-            guard permissionMissing else { return }
+            let shouldHideActiveSettingsHint = !downloadSettingsExist || permissionMissing
 
             DispatchQueue.main.async {
-                update(permissionMissing)
+                self.automatedDownloadsPromotionHint.isHidden = shouldHidePromotionHint
+                self.automatedDownloadsMissingPermissionHint.isHidden = !permissionMissing
+                self.automatedDownloadsActiveHint.isHidden = shouldHideActiveSettingsHint
+
+                UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled(animated)) {
+                    self.tableView.resizeTableHeaderView()
+                }
             }
         }
     }
@@ -327,13 +329,9 @@ class CourseItemListViewController: UITableViewController {
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
-    @IBAction private func hideAutomatedDownloadsHint() {
-        CourseHelper.setAutomatedDownloadsToNoticed(for: self.course)
-        self.automatedDownloadsHint.isHidden = true
-
-        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
-            self.tableView.resizeTableHeaderView()
-        }
+    @available(iOS 13, *)
+    @objc private func openSettings() {
+        Settings.open()
     }
 
     private func scrollToContinueLearningItemAndHighlight(completionHandler: ((UITableViewCell) -> Void)? = nil) {
@@ -462,6 +460,7 @@ extension CourseItemListViewController: RefreshableViewController {
 
     func didRefresh() {
         self.updateLastVisit()
+        self.updateAutomatedDownloadsHint(animated: true)
         self.updateNextSectionStartDate()
 
         guard self.preloadingWanted else { return }

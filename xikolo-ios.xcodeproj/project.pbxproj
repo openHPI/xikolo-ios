@@ -151,6 +151,7 @@
 		50522A4C24FCEEC800A0171F /* RelationshipKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50522A4B24FCEEC800A0171F /* RelationshipKeyPath.swift */; };
 		5052D27721591E9400927D52 /* SyncPushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D27621591E9400927D52 /* SyncPushEngine.swift */; };
 		5052D27A2159208100927D52 /* XikoloSyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D2792159208100927D52 /* XikoloSyncEngine.swift */; };
+		505327A528044A3F009A46B7 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505327A428044A3F009A46B7 /* SwitchTableViewCell.swift */; };
 		5054B2DD21087D6800CE9067 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2DC21087D6800CE9067 /* Document.swift */; };
 		5054B2DF21087DB100CE9067 /* DocumentLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2DE21087DB100CE9067 /* DocumentLocalization.swift */; };
 		5054B2E1210880FA00CE9067 /* DocumentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2E0210880FA00CE9067 /* DocumentHelper.swift */; };
@@ -523,6 +524,13 @@
 			remoteGlobalIDString = 50FA2DEA20E4B1A800656776;
 			remoteInfo = Common;
 		};
+		506F5C8D280463D00096D616 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50FA2DEA20E4B1A800656776;
+			remoteInfo = Common;
+		};
 		50761B4420FCAC5A00CEDAF9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
@@ -536,13 +544,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 50FA2DEA20E4B1A800656776;
 			remoteInfo = Common;
-		};
-		508C314A276B6B32003AE388 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50FA2DEA20E4B1A800656776;
-			remoteInfo = "Common-old";
 		};
 		50AD2522276BCBC30050831C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -843,6 +844,7 @@
 		50522A4B24FCEEC800A0171F /* RelationshipKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipKeyPath.swift; sourceTree = "<group>"; };
 		5052D27621591E9400927D52 /* SyncPushEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncPushEngine.swift; sourceTree = "<group>"; };
 		5052D2792159208100927D52 /* XikoloSyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloSyncEngine.swift; sourceTree = "<group>"; };
+		505327A428044A3F009A46B7 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		5054B2DB21086CF600CE9067 /* xikolo 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 7.xcdatamodel"; sourceTree = "<group>"; };
 		5054B2DC21087D6800CE9067 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		5054B2DE21087DB100CE9067 /* DocumentLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentLocalization.swift; sourceTree = "<group>"; };
@@ -1429,6 +1431,7 @@
 				50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */,
 				508FF44121AB390400801530 /* SubtitleTableViewCell.swift */,
 				505F7C972535E18A0006F629 /* DestructiveTableViewCell.swift */,
+				505327A428044A3F009A46B7 /* SwitchTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2605,10 +2608,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				506F5C8E280463D00096D616 /* PBXTargetDependency */,
 				5067AD382367042E00ADEAB9 /* PBXTargetDependency */,
 				50DA822E23E587FD003BEDE1 /* PBXTargetDependency */,
 				50AD86882570F5F3003BDB80 /* PBXTargetDependency */,
-				508C314B276B6B32003AE388 /* PBXTargetDependency */,
 			);
 			name = iOS;
 			packageProductDependencies = (
@@ -2649,9 +2652,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50FA2DFC20E4B1A800656776 /* Build configuration list for PBXNativeTarget "Common" */;
 			buildPhases = (
+				50FA2DE820E4B1A800656776 /* Headers */,
 				50FA2DE620E4B1A800656776 /* Sources */,
 				50FA2DE720E4B1A800656776 /* Frameworks */,
-				50FA2DE820E4B1A800656776 /* Headers */,
 				50FA2DE920E4B1A800656776 /* Resources */,
 			);
 			buildRules = (
@@ -3307,6 +3310,7 @@
 				500C4D48278D73BE00C91295 /* (null) in Sources */,
 				02F6D81F24977B6900BB2B80 /* CourseItem+NSItemProviderWriting.swift in Sources */,
 				503CEE962177082D00F34694 /* ProcotoredItemViewController.swift in Sources */,
+				505327A528044A3F009A46B7 /* SwitchTableViewCell.swift in Sources */,
 				502CBE2824338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift in Sources */,
 				0280CB14237CBD4100B774BE /* SectionProgressCell.swift in Sources */,
 				50CF1F8020DCDBFC0011BFE9 /* CustomWidthNavigationController.swift in Sources */,
@@ -3609,6 +3613,11 @@
 			target = 50FA2DEA20E4B1A800656776 /* Common */;
 			targetProxy = 506BDC9A23E6C3B200DDC6EA /* PBXContainerItemProxy */;
 		};
+		506F5C8E280463D00096D616 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50FA2DEA20E4B1A800656776 /* Common */;
+			targetProxy = 506F5C8D280463D00096D616 /* PBXContainerItemProxy */;
+		};
 		50761B4520FCAC5A00CEDAF9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 50CF1F4120DCDBFC0011BFE9 /* iOS */;
@@ -3618,11 +3627,6 @@
 			isa = PBXTargetDependency;
 			target = 50FA2DEA20E4B1A800656776 /* Common */;
 			targetProxy = 50761B5920FCADD700CEDAF9 /* PBXContainerItemProxy */;
-		};
-		508C314B276B6B32003AE388 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 50FA2DEA20E4B1A800656776 /* Common */;
-			targetProxy = 508C314A276B6B32003AE388 /* PBXContainerItemProxy */;
 		};
 		50AD2523276BCBC30050831C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

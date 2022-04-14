@@ -119,8 +119,8 @@ enum AutomatedDownloadsManager {
         let promise = Promise<Void, Never>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let coursesWithNotificationsAndNewContent = self.coursesWithNotificationsAndNewContent(in: context)
-            if !coursesWithNotificationsAndNewContent.isEmpty {
+            let coursesWithNewContent = self.coursesWithNewContent(in: context)
+            if !coursesWithNewContent.isEmpty {
                 let center = UNUserNotificationCenter.current()
                 center.getNotificationSettings { settings in
                     if settings.authorizationStatus == .authorized {
@@ -152,8 +152,8 @@ enum AutomatedDownloadsManager {
         var downloadFutures: [Future<Void, XikoloError>] = []
 
         courses?.forEach { course in
-            guard course.automatedDownloadSettings?.downloadOption == .backgroundDownload || ignoreDownloadOption else { return }
-            guard let materialsToDownload = course.automatedDownloadSettings?.materialTypes else { return }
+            guard let automatedDownloadSettings = course.automatedDownloadSettings else { return }
+            guard automatedDownloadSettings.newContentAction == .notificationAndBackgroundDownload || ignoreDownloadOption else { return }
 
             self.sectionsToDownload(for: course).forEach { section in
 //                let section: CourseSection = context.typedObject(with: backgroundSection.objectID)
@@ -164,12 +164,10 @@ enum AutomatedDownloadsManager {
 //                    $0.willAccessValue(forKey: nil)
 //                    $0.content?.willAccessValue(forKey: nil)
 //                }
-                if materialsToDownload.contains(.videos) {
-                    let downloadStreamFuture = StreamPersistenceManager.shared.startDownloads(for: section)
-                    downloadFutures.append(downloadStreamFuture)
-                }
+                let downloadStreamFuture = StreamPersistenceManager.shared.startDownloads(for: section)
+                downloadFutures.append(downloadStreamFuture)
 
-                if materialsToDownload.contains(.slides) {
+                if automatedDownloadSettings.fileTypes.contains(.slides) {
                     let downloadSlidesFuture = SlidesPersistenceManager.shared.startDownloads(for: section)
                     downloadFutures.append(downloadSlidesFuture)
                 }
@@ -208,8 +206,8 @@ enum AutomatedDownloadsManager {
         var deleteFutures: [Future<Void, XikoloError>] = []
 
         courses?.forEach { course in
-            guard let materialsToDownload = course.automatedDownloadSettings?.materialTypes else { return }
-            if course.automatedDownloadSettings?.deletionOption == .manual { return }
+            guard let automatedDownloadSettings = course.automatedDownloadSettings else { return }
+            if automatedDownloadSettings.deletionOption == .manual { return }
 
             self.sectionsToDelete(for: course).forEach { section in
 //                let section: CourseSection = context.typedObject(with: backgroundSection.objectID)
@@ -221,12 +219,10 @@ enum AutomatedDownloadsManager {
 //                    $0.willAccessValue(forKey: nil)
 //                    $0.content?.willAccessValue(forKey: nil)
 //                }
-                if materialsToDownload.contains(.videos) {
-                    let deleteStreamFuture = StreamPersistenceManager.shared.deleteDownloads(for: section)
-                    deleteFutures.append(deleteStreamFuture)
-                }
+                let deleteStreamFuture = StreamPersistenceManager.shared.deleteDownloads(for: section)
+                deleteFutures.append(deleteStreamFuture)
 
-                if materialsToDownload.contains(.slides) {
+                if automatedDownloadSettings.fileTypes.contains(.slides)  {
                     let deleteSlidesFuture = SlidesPersistenceManager.shared.deleteDownloads(for: section)
                     deleteFutures.append(deleteSlidesFuture)
                 }
@@ -258,14 +254,14 @@ enum AutomatedDownloadsManager {
         return sectionsToDelete
     }
 
-    static func coursesWithNotificationsAndNewContent(in context: NSManagedObjectContext) -> [Course] {
+    static func coursesWithNewContent(in context: NSManagedObjectContext) -> [Course] {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let courses = try? context.fetch(fetchRequest)
-        let coursesWithNotification = courses?.filter { course in
-            return course.automatedDownloadSettings?.downloadOption == .notification
+        let coursesWithDownloadSettings = courses?.filter { course in
+            return course.automatedDownloadSettings != nil
         }
 
-        let coursesWithNotificationAndNewContent = coursesWithNotification?.filter { course in
+        let coursesWithNotificationAndNewContent = coursesWithDownloadSettings?.filter { course in
             let sectionStartDates = course.sections.compactMap(\.startsAt)
             let newSectionStartDates = sectionStartDates.map{ $0 > self.lastAutomatedDownloadDate  }
             return !newSectionStartDates.isEmpty

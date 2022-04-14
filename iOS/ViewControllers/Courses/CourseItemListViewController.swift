@@ -18,10 +18,9 @@ class CourseItemListViewController: UITableViewController {
     private static let timeFormatter = DateFormatter.localizedFormatter(dateStyle: .none, timeStyle: .short)
 
     @IBOutlet private weak var automatedDownloadsPromotionHint: UIView!
-    @IBOutlet private weak var automatedDownloadsNewFeatureHint: UIView!
-    @IBOutlet private weak var automatedDownloadsCloseButton: UIButton!
     @IBOutlet private weak var automatedDownloadsActiveHint: UIView!
     @IBOutlet private weak var automatedDownloadsMissingPermissionHint: UIView!
+    @IBOutlet private var automatedDownloadsDescriptionsForExtendedFeature: [UIView]!
 
 
     @IBOutlet private weak var continueLearningHint: UIView!
@@ -255,17 +254,18 @@ class CourseItemListViewController: UITableViewController {
             let downloadSettingsExist = self.course.automatedDownloadSettings != nil
             // TODO: Ignore this for initial user test
             let noticedBefore = false // self.course.automatedDownloadsHaveBeenNoticed
-            let shouldHidePromotionHint = downloadSettingsExist || noticedBefore || !self.course.isEligibleForAutomatedDownloads
+            let shouldHidePromotionHint = downloadSettingsExist || noticedBefore || !self.course.offersAutomatedDownloads
 
             let notificationsDenied = settings.authorizationStatus == .denied
-            let notificationsForNewContent = self.course.automatedDownloadSettings?.downloadOption == .notification
-            let permissionMissing = notificationsForNewContent && notificationsDenied
-            let shouldHideActiveSettingsHint = !downloadSettingsExist || permissionMissing
+            let shouldHideActiveSettingsHint = !downloadSettingsExist || notificationsDenied
 
             DispatchQueue.main.async {
                 self.automatedDownloadsPromotionHint.isHidden = shouldHidePromotionHint
-                self.automatedDownloadsMissingPermissionHint.isHidden = !permissionMissing
+                self.automatedDownloadsMissingPermissionHint.isHidden = !notificationsDenied
                 self.automatedDownloadsActiveHint.isHidden = shouldHideActiveSettingsHint
+                for view in self.automatedDownloadsDescriptionsForExtendedFeature {
+                    view.isHidden = !self.course.offersExtendedAutomatedDownloads
+                }
 
                 UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled(animated)) {
                     self.tableView.resizeTableHeaderView()
@@ -462,6 +462,13 @@ extension CourseItemListViewController: RefreshableViewController {
         self.updateLastVisit()
         self.updateAutomatedDownloadsHint(animated: true)
         self.updateNextSectionStartDate()
+
+        if self.course.isEligibleForAutomatedDownloads {
+            // TODO: enable experiment assignment
+//            ExperimentAssignmentHelper.assign(to: .automatedDownloads, inCourse: self.course).onComplete { _ in
+//                FeatureHelper.syncFeatures(forCourse: self.course)
+//            }
+        }
 
         guard self.preloadingWanted else { return }
         self.preloadCourseContent()

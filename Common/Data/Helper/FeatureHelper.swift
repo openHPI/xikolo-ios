@@ -11,6 +11,10 @@ public enum FeatureHelper {
     public enum FeatureIdentifier: String {
         case quizRecap = "quiz_recap"
         case courseReactivation = "course_reactivation"
+
+        // Identifiers for automated downloads user test
+        case newContentNotification = "mobile.new_content.notification"
+        case newContentBackgroundDownload = "mobile.new_content.background_download"
     }
 
     @discardableResult
@@ -26,6 +30,14 @@ public enum FeatureHelper {
     }
 
     public static func hasFeature(_ featureIdentifier: FeatureIdentifier, for course: Course? = nil) -> Bool {
+        #if DEBUG
+        if featureIdentifier == .newContentNotification && CommandLine.arguments.contains("-new-content-notification") {
+            return true
+        } else if featureIdentifier == .newContentBackgroundDownload && CommandLine.arguments.contains("-new-content-background-download") {
+            return true
+        }
+        #endif
+
         let hasFeatureInGlobalScope: Bool = {
             let fetchRequest = Self.FetchRequest.globalFeatures
             guard let features = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value else { return false }

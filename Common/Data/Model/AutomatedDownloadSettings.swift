@@ -8,36 +8,38 @@ import Stockpile
 
 public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
 
-    public enum DownloadOption: Int, CaseIterable {
-        case backgroundDownload = 0
+    public enum NewContentAction: Int {
         case notification = 1
+        case notificationAndBackgroundDownload = 2
 
         public var title: String {
             switch self {
-            case .backgroundDownload:
-                return "Background Download"
             case .notification:
-                return "Notification"
+                return "Notifications for new content"
+            case .notificationAndBackgroundDownload:
+                return "Notification for new content & Automated downloads"
             }
         }
 
         public var explanation: String {
-            switch self {
-            case .backgroundDownload:
-                return "description for Automated Background Download"
-            case .notification:
-                return "description for Notification"
-            }
-        }
+            var explanation = """
+            When a new course section becomes available, you will receive a notification. By tapping on this notification, you can open the course directly. If you long press on the notification, you can choose to download all videos from the new section for offline usage.
+            """
 
-        static var `default`: DownloadOption {
-            return .backgroundDownload
+            if self == .notificationAndBackgroundDownload {
+                explanation += """
+
+                In addition, the app attempt to automatically download those files for you. This will only be triggered if your device is connected to a WiFi network.
+                """
+            }
+
+            return explanation
         }
     }
 
-    public struct MaterialTypes: OptionSet {
-        public static let videos = MaterialTypes(rawValue: 1)
-        public static let slides = MaterialTypes(rawValue: 1 << 1)
+    public struct FileTypes: OptionSet {
+        public static let videos = FileTypes(rawValue: 1 << 0)
+        public static let slides = FileTypes(rawValue: 1 << 1)
 
         public let rawValue: Int
 
@@ -45,15 +47,12 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
             self.rawValue = rawValue
         }
 
-        public static var allTypesWithTitle: [(type: MaterialTypes, title: String)] {
-            return [
-                (.videos, NSLocalizedString("settings.downloads.item.video", comment: "download type video")),
-                (.slides, NSLocalizedString("settings.downloads.item.slides", comment: "download type slides")),
-            ]
-        }
-
-        static var `default`: MaterialTypes {
-            return MaterialTypes.videos
+        public var explanation: String {
+            if self.contains(.slides) {
+                return "Slides will be downloaded"
+            } else {
+                return "Only videos will be downloaded"
+            }
         }
     }
 
@@ -67,20 +66,20 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
             case .manual:
                 return "Manual"
             case .nextSection:
-                return "Next Section"
+                return "With the start of the next course section"
             case .secondNextSection:
-                return "Second Next"
+                return "With the start of the second next course section"
             }
         }
 
         public var explanation: String {
             switch self {
             case .manual:
-                return "description for Disabled"
+                return "Download content of previous course sections will not be removed automatically."
             case .nextSection:
-                return "description for Next Section"
+                return "With the start of a new course section, the downloaded content of previous course sections will be removed from this device."
             case .secondNextSection:
-                return "description for Second Next Section"
+                return "With the start of a new course section, the downloaded content of second last course section (or older) will be removed from this device."
             }
         }
 
@@ -91,28 +90,28 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
 
     public static var supportsSecureCoding: Bool { return true }
 
-    public var downloadOption: DownloadOption
-    public var materialTypes: MaterialTypes
+    public var newContentAction: NewContentAction
+    public var fileTypes: FileTypes
     public var deletionOption: DeletionOption
 
-    public override init() {
-        self.downloadOption = .default
-        self.materialTypes = .default
+    public init(enableBackgroundDownloads: Bool) {
+        self.newContentAction = enableBackgroundDownloads ? .notificationAndBackgroundDownload : .notification
+        self.fileTypes = .videos
         self.deletionOption = .default
     }
 
     public required init(coder decoder: NSCoder) {
-        let downloadOptionRawValue = decoder.decodeInteger(forKey: "download_option")
-        self.downloadOption = DownloadOption(rawValue: downloadOptionRawValue) ?? .default
-        let materialTypesRawValue = decoder.decodeInteger(forKey: "material_types")
-        self.materialTypes = MaterialTypes(rawValue: materialTypesRawValue)
+        let newContentActionRawValue = decoder.decodeInteger(forKey: "download_option")
+        self.newContentAction = NewContentAction(rawValue: newContentActionRawValue) ?? .notification
+        let fileTypesRawValue = decoder.decodeInteger(forKey: "file_types")
+        self.fileTypes = FileTypes(rawValue: fileTypesRawValue)
         let deletionOptionRawValue = decoder.decodeInteger(forKey: "deletion_option")
         self.deletionOption = DeletionOption(rawValue: deletionOptionRawValue) ?? .default
     }
 
     public func encode(with coder: NSCoder) {
-        coder.encode(self.downloadOption.rawValue, forKey: "download_option")
-        coder.encode(self.materialTypes.rawValue, forKey: "material_types")
+        coder.encode(self.newContentAction.rawValue, forKey: "new_content_option")
+        coder.encode(self.fileTypes.rawValue, forKey: "file_types")
         coder.encode(self.deletionOption.rawValue, forKey: "deletion_option")
     }
 

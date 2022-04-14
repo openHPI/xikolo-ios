@@ -42,24 +42,16 @@ public enum CourseHelper {
                 return
             }
 
-            let successHandler = {
-                course.automatedDownloadSettings = settings
-                course.automatedDownloadsHaveBeenNoticed = true
-                promise.complete(context.saveWithResult())
-            }
-
-            if settings?.downloadOption == .notification {
-                let center = UNUserNotificationCenter.current()
-                let options: UNAuthorizationOptions = [.alert]
-                center.requestAuthorization(options: options) { (granted, error) in
-                    if granted {
-                        successHandler()
-                    } else {
-                        promise.failure(.permissionError(error))
-                    }
+            let center = UNUserNotificationCenter.current()
+            let options: UNAuthorizationOptions = [.alert]
+            center.requestAuthorization(options: options) { (granted, error) in
+                if granted {
+                    course.automatedDownloadSettings = settings
+                    course.automatedDownloadsHaveBeenNoticed = true
+                    promise.complete(context.saveWithResult())
+                } else {
+                    promise.failure(.permissionError(error))
                 }
-            } else {
-                successHandler()
             }
         }
 

@@ -24,7 +24,7 @@ extension Course {
     }
 
     func automatedDownloadAction(handler: @escaping () -> Void) -> Action? {
-        guard self.isEligibleForAutomatedDownloads else { return nil }
+        guard self.offersAutomatedDownloads else { return nil }
         let title = NSLocalizedString("Manage Automated Downloads", comment: "cell title for automated downloads") // TODO: localize
         return Action(title: title, image: Action.Image.aggregatedDownload, handler: handler)
     }
@@ -35,6 +35,16 @@ extension Course {
         guard self.endsAt?.inFuture ?? false else { return false }
         guard self.sections.compactMap(\.startsAt?.inFuture).contains(true) else { return false }
         return true
+    }
+
+    var offersAutomatedDownloads: Bool {
+        guard self.isEligibleForAutomatedDownloads else { return false }
+        return FeatureHelper.hasFeature(.newContentNotification, for: self)
+    }
+
+    var offersExtendedAutomatedDownloads: Bool {
+        guard self.offersAutomatedDownloads else { return false }
+        return FeatureHelper.hasFeature(.newContentBackgroundDownload, for: self)
     }
 
 }

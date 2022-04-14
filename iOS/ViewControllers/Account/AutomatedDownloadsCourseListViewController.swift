@@ -33,7 +33,7 @@ class AutomatedDownloadsCourseListViewController: UITableViewController {
             let adjustedIndexPath = IndexPath(row: indexPath.row, section: 0)
             let course = resultsController.object(at: adjustedIndexPath)
             cell.textLabel?.text = course.title
-            cell.detailTextLabel?.text = course.automatedDownloadSettings?.downloadOption.title // TODO: all values
+            cell.detailTextLabel?.text = course.automatedDownloadSettings?.newContentAction.title // TODO: all values
             cell.accessoryType = .disclosureIndicator
             return cell
         }
@@ -56,7 +56,7 @@ class AutomatedDownloadsCourseListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Automated Downloads"
+        self.navigationItem.title = "Content Notifications"
         self.tableView.dataSource = self.dataSource
 
         self.setupEmptyState()

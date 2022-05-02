@@ -30,8 +30,8 @@ enum XikoloNotification {
         let identifier = XikoloNotification.RequestIdentifier.automatedDownloads
 
         let content = UNMutableNotificationContent()
-        content.title = "Download new course material"
-        content.body = "New content was just released"
+        content.title = "New course material available"
+        content.body = "Download videos now"
         content.categoryIdentifier = self.CategoryIdentifier.automatedDownloads
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)

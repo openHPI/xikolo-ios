@@ -12,7 +12,7 @@ import UserNotifications
 @available(iOS 13, *)
 enum AutomatedDownloadsManager {
 
-    private static let lastDownloadKey = "de.xikolo.ios.background.download.last-date"
+    private static let lastNotificationKey = "de.xikolo.ios.background.download.last-date"
     static let taskIdentifier = "de.xikolo.ios.background.download"
     static let urlSessionIdentifier = "de.xikolo.ios.background.download.sync"
 
@@ -86,10 +86,10 @@ enum AutomatedDownloadsManager {
         }
 
         let processingFuture = refreshFuture.flatMap { _ -> Future<Void, XikoloError> in
-            let notificationFuture = self.postLocalPushNotificationIfApplicable()
-            let downloadFuture = self.downloadNewContentFuture(in: CoreDataHelper.persistentContainer.newBackgroundContext(), ignoreDownloadOption: false)
+            let notificationFuture = self.postLocalPushNotification()
+            let downloadFuture = self.downloadNewContent(in: CoreDataHelper.persistentContainer.newBackgroundContext(), ignoreDownloadOption: false)
             let deleteFuture = self.deleteOldContent()
-            return downloadFuture.zip(deleteFuture).zip(notificationFuture.promoteError()).asVoid()
+            return [notificationFuture.promoteError(), downloadFuture, deleteFuture].sequence().asVoid()
         }
 
         processingFuture.onComplete { result in
@@ -115,7 +115,7 @@ enum AutomatedDownloadsManager {
         return promise.future
     }
 
-    private static func postLocalPushNotificationIfApplicable() -> Future<Void, Never> {
+    private static func postLocalPushNotification() -> Future<Void, Never> {
         let promise = Promise<Void, Never>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
@@ -125,6 +125,7 @@ enum AutomatedDownloadsManager {
                 center.getNotificationSettings { settings in
                     if settings.authorizationStatus == .authorized {
                         center.add(XikoloNotification.automatedDownloadsNotificationRequest)
+                        self.lastNotificationPostDate = Date()
                     }
                 }
             }
@@ -138,14 +139,15 @@ enum AutomatedDownloadsManager {
     // Download content (find courses -> find sections -> start downloads)
     @discardableResult
     static func downloadNewContent(ignoreDownloadOption: Bool = false) -> Future<Void, XikoloError> {
+        #warning("TODO: background or view context")
 //        return CoreDataHelper.persistentContainer.performBackgroundTask { context in
 //            return self.downloadNewContentFuture(in: context, ignoreDownloadOption: ignoreDownloadOption)
 //        }
-        return downloadNewContentFuture(in: CoreDataHelper.viewContext, ignoreDownloadOption: ignoreDownloadOption)
+        return downloadNewContent(in: CoreDataHelper.viewContext, ignoreDownloadOption: ignoreDownloadOption)
     }
 
 
-    static func downloadNewContentFuture(in context: NSManagedObjectContext, ignoreDownloadOption: Bool) -> Future<Void, XikoloError> {
+    static func downloadNewContent(in context: NSManagedObjectContext, ignoreDownloadOption: Bool) -> Future<Void, XikoloError> {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let courses = try? context.fetch(fetchRequest)
 
@@ -191,6 +193,7 @@ enum AutomatedDownloadsManager {
     }
 
     static func deleteOldContent() -> Future<Void, XikoloError> {
+        #warning("TODO: background or view context")
 //        return CoreDataHelper.persistentContainer.performBackgroundTask { context in
 //            return self.deleteOldContent(in: context)
 //        }
@@ -233,22 +236,22 @@ enum AutomatedDownloadsManager {
     }
 
     static func sectionsToDelete(for course: Course) -> Set<CourseSection> {
-        let orderedStartDates = course.sections.compactMap(\.startsAt).filter(\.inPast).sorted()
+        let orderedStartDates = course.sections.compactMap(\.endsAt).filter(\.inPast).sorted()
 
-        let possibleSectionStartForDeletion: Date? = {
+        let possibleSectionEndForDeletion: Date? = {
             switch course.automatedDownloadSettings?.deletionOption {
             case .nextSection:
-                return orderedStartDates.suffix(2).first
+                return orderedStartDates.suffix(1).first
             case .secondNextSection:
-                return orderedStartDates.suffix(3).first
+                return orderedStartDates.suffix(2).first
             default:
                 return nil
             }
         }()
 
-        guard let sectionStartForDeletion = possibleSectionStartForDeletion else { return [] }
+        guard let sectionEndForDeletion = possibleSectionEndForDeletion else { return [] }
         let sectionsToDelete = course.sections.filter {
-            ($0.startsAt == sectionStartForDeletion && $0.endsAt?.inPast ?? false) || course.endsAt?.inPast ?? false
+            (($0.endsAt ?? Date.distantFuture) <= sectionEndForDeletion) || (course.endsAt?.inPast ?? false)
         }
 
         return sectionsToDelete
@@ -256,26 +259,23 @@ enum AutomatedDownloadsManager {
 
     static func coursesWithNewContent(in context: NSManagedObjectContext) -> [Course] {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
-        let courses = try? context.fetch(fetchRequest)
-        let coursesWithDownloadSettings = courses?.filter { course in
-            return course.automatedDownloadSettings != nil
-        }
+        let coursesWithDownloadSettings = try? context.fetch(fetchRequest)
 
-        let coursesWithNotificationAndNewContent = coursesWithDownloadSettings?.filter { course in
+        let coursesWithNewContent = coursesWithDownloadSettings?.filter { course in
             let sectionStartDates = course.sections.compactMap(\.startsAt)
-            let newSectionStartDates = sectionStartDates.map{ $0 > self.lastAutomatedDownloadDate  }
+            let newSectionStartDates = sectionStartDates.filter { $0 > self.lastNotificationPostDate }
             return !newSectionStartDates.isEmpty
         }
 
-        return coursesWithNotificationAndNewContent ?? []
+        return coursesWithNewContent ?? []
     }
 
-    static var lastAutomatedDownloadDate: Date {
+    static var lastNotificationPostDate: Date {
         get {
-            return UserDefaults.standard.object(forKey: self.lastDownloadKey) as? Date ?? Date.distantPast
+            return UserDefaults.standard.object(forKey: self.lastNotificationKey) as? Date ?? Date.distantPast
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: self.lastDownloadKey)
+            UserDefaults.standard.set(newValue, forKey: self.lastNotificationKey)
         }
     }
 

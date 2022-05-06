@@ -24,12 +24,12 @@ extension Course {
     }
 
     func automatedDownloadAction(handler: @escaping () -> Void) -> Action? {
-        guard self.offersAutomatedDownloads else { return nil }
+        guard self.offersNotificationsForNewContent else { return nil }
         let title = NSLocalizedString("Manage Automated Downloads", comment: "cell title for automated downloads") // TODO: localize
         return Action(title: title, image: Action.Image.aggregatedDownload, handler: handler)
     }
 
-    var isEligibleForAutomatedDownloads: Bool {
+    var isEligibleForContentNotifications: Bool {
         guard #available(iOS 13, *) else { return false }
         guard self.hasEnrollment else { return false }
         guard self.endsAt?.inFuture ?? false else { return false }
@@ -37,13 +37,13 @@ extension Course {
         return true
     }
 
-    var offersAutomatedDownloads: Bool {
-        guard self.isEligibleForAutomatedDownloads else { return false }
+    var offersNotificationsForNewContent: Bool {
+        guard self.isEligibleForContentNotifications else { return false }
         return FeatureHelper.hasFeature(.newContentNotification, for: self)
     }
 
-    var offersExtendedAutomatedDownloads: Bool {
-        guard self.offersAutomatedDownloads else { return false }
+    var offersAutomatedBackgroundDownloads: Bool {
+        guard self.offersNotificationsForNewContent else { return false }
         return FeatureHelper.hasFeature(.newContentBackgroundDownload, for: self)
     }
 

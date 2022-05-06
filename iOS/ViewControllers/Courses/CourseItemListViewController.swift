@@ -254,7 +254,7 @@ class CourseItemListViewController: UITableViewController {
             let downloadSettingsExist = self.course.automatedDownloadSettings != nil
             // TODO: Ignore this for initial user test
             let noticedBefore = false // self.course.automatedDownloadsHaveBeenNoticed
-            let shouldHidePromotionHint = downloadSettingsExist || noticedBefore || !self.course.offersAutomatedDownloads
+            let shouldHidePromotionHint = downloadSettingsExist || noticedBefore || !self.course.offersNotificationsForNewContent
 
             let notificationsDenied = settings.authorizationStatus == .denied
             let shouldHideActiveSettingsHint = !downloadSettingsExist || notificationsDenied
@@ -264,7 +264,7 @@ class CourseItemListViewController: UITableViewController {
                 self.automatedDownloadsMissingPermissionHint.isHidden = !notificationsDenied
                 self.automatedDownloadsActiveHint.isHidden = shouldHideActiveSettingsHint
                 for view in self.automatedDownloadsDescriptionsForExtendedFeature {
-                    view.isHidden = !self.course.offersExtendedAutomatedDownloads
+                    view.isHidden = !self.course.offersAutomatedBackgroundDownloads
                 }
 
                 UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled(animated)) {
@@ -463,11 +463,23 @@ extension CourseItemListViewController: RefreshableViewController {
         self.updateAutomatedDownloadsHint(animated: true)
         self.updateNextSectionStartDate()
 
-        if self.course.isEligibleForAutomatedDownloads {
-            // TODO: enable experiment assignment
-//            ExperimentAssignmentHelper.assign(to: .automatedDownloads, inCourse: self.course).onComplete { _ in
+        if self.course.isEligibleForContentNotifications {
+            #warning("TODO: enable experiment assignment")
+//            ExperimentAssignmentHelper.assign(
+//                to: .newContentNotifications,
+//                inCourse: self.course
+//            ).flatMap { _ in
 //                FeatureHelper.syncFeatures(forCourse: self.course)
+//            }.onSuccess { _ in
+//                self.updateAutomatedDownloadsHint(animated: true)
 //            }
+        }
+
+        if #available(iOS 13, *) {
+            if self.course.automatedDownloadSettings != nil {
+                NewContentNotificationManager.renewNotifications(for: self.course)
+                AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
+            }
         }
 
         guard self.preloadingWanted else { return }

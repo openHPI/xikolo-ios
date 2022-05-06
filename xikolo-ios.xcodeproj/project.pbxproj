@@ -283,6 +283,7 @@
 		50AD864E2570F4B0003BDB80 /* XikoloWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD864D2570F4B0003BDB80 /* XikoloWidgetBundle.swift */; };
 		50AD86862570F5F3003BDB80 /* WidgetExtension.appex in Embed App Extension */ = {isa = PBXBuildFile; fileRef = 50AD86132570F3D4003BDB80 /* WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		50AD880725715C5E003BDB80 /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
+		50AF096C2823B5DB001BC2E9 /* NewContentNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AF096B2823B5DB001BC2E9 /* NewContentNotificationManager.swift */; };
 		50B1CC46256BE55900D651C6 /* XikoloNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC45256BE55900D651C6 /* XikoloNotificationDelegate.swift */; };
 		50B1CC51256CF48800D651C6 /* PersistenceManager+BrightFutures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC50256CF48800D651C6 /* PersistenceManager+BrightFutures.swift */; };
 		50B1CC7D256D54D400D651C6 /* XikoloNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC7C256D54D300D651C6 /* XikoloNotification.swift */; };
@@ -1015,6 +1016,7 @@
 		50AD864D2570F4B0003BDB80 /* XikoloWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloWidgetBundle.swift; sourceTree = "<group>"; };
 		50AD878725715439003BDB80 /* openHPI-Widget-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openHPI-Widget-Debug.xcconfig"; path = "Xcode Configurations/openhpi/openHPI-Widget-Debug.xcconfig"; sourceTree = SOURCE_ROOT; };
 		50AD878825715480003BDB80 /* openHPI-Widget-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openHPI-Widget-Release.xcconfig"; path = "Xcode Configurations/openhpi/openHPI-Widget-Release.xcconfig"; sourceTree = SOURCE_ROOT; };
+		50AF096B2823B5DB001BC2E9 /* NewContentNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContentNotificationManager.swift; sourceTree = "<group>"; };
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
 		50B1CC45256BE55900D651C6 /* XikoloNotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNotificationDelegate.swift; sourceTree = "<group>"; };
@@ -1523,6 +1525,7 @@
 				500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */,
 				50082B5E20BFDAC900B4511C /* DownloadState.swift */,
 				5027E6B32552B40A00994CF7 /* AutomatedDownloadsManager.swift */,
+				50AF096B2823B5DB001BC2E9 /* NewContentNotificationManager.swift */,
 			);
 			path = PersistenceManager;
 			sourceTree = "<group>";
@@ -3350,6 +3353,7 @@
 				02F6D821249793C700BB2B80 /* CourseItem+DragItem.swift in Sources */,
 				50CF1FA520DCDBFC0011BFE9 /* CourseViewController.swift in Sources */,
 				820CCEE623D05B140066CE11 /* CourseItem+share.swift in Sources */,
+				50AF096C2823B5DB001BC2E9 /* NewContentNotificationManager.swift in Sources */,
 				508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguration.swift in Sources */,
 				508FF44621AB42B200801530 /* UITableViewController+resizeViews.swift in Sources */,
 				50CF1FA620DCDBFC0011BFE9 /* CourseCell.swift in Sources */,

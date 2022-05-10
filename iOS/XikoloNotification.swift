@@ -5,6 +5,7 @@
 
 import Common
 import UserNotifications
+import UIKit
 
 enum XikoloNotification {
 
@@ -39,13 +40,8 @@ enum XikoloNotification {
 
         #warning("TODO: localize")
         let content = UNMutableNotificationContent()
-        if let courseTitle = section.course?.title {
-            content.title = "New course material available for \"\(courseTitle)\""
-        } else {
-            content.title = "New course material available"
-        }
-
-        content.body = "Videos can be now be downloaded"
+        content.title = section.course?.title ?? UIApplication.appName
+        content.body = "New course material is available. Download it now to continue learning offline."
         content.categoryIdentifier = self.CategoryIdentifier.automatedDownloads
         content.userInfo = ["section-id": section.id]
 

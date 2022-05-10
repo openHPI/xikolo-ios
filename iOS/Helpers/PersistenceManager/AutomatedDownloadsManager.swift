@@ -29,41 +29,41 @@ enum AutomatedDownloadsManager {
 
 
     // - schedule next background task (find next sections/course -> start change date for existing bg task or cancel | setup new bgtask)
-    static func scheduleNextBackgroundProcessingTask() {
-        CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            // Find next date for background processing
-            guard let dateForNextBackgroundProcessing = self.dateForNextBackgroundProcessing(in: context) else {
-                return
-            }
+    static func scheduleNextBackgroundProcessingTask(context: NSManagedObjectContext = CoreDataHelper.persistentContainer.newBackgroundContext()) {
+        // Find next date for background processing
+        guard let dateForNextBackgroundProcessing = self.dateForNextBackgroundProcessing(in: context) else {
+            return
+        }
 
-            // Cancel current task request
-            BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: Self.taskIdentifier)
+        // Cancel current task request
+        BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: Self.taskIdentifier)
 
-            // Setup new task request
-            let automatedDownloadTaskRequest = BGProcessingTaskRequest(identifier: Self.taskIdentifier)
-            automatedDownloadTaskRequest.earliestBeginDate = dateForNextBackgroundProcessing
-            automatedDownloadTaskRequest.requiresNetworkConnectivity = true
-            do {
-                try BGTaskScheduler.shared.submit(automatedDownloadTaskRequest)
-                self.debugLog("""
-                \(ISO8601DateFormatter().string(from: Date()))
-                Schedule BG task for \(ISO8601DateFormatter().string(from: dateForNextBackgroundProcessing))
+        // Setup new task request
+        let automatedDownloadTaskRequest = BGProcessingTaskRequest(identifier: Self.taskIdentifier)
+        automatedDownloadTaskRequest.earliestBeginDate = dateForNextBackgroundProcessing
+        automatedDownloadTaskRequest.requiresNetworkConnectivity = true
+        do {
+            try BGTaskScheduler.shared.submit(automatedDownloadTaskRequest)
+            self.debugLog("""
+            \(ISO8601DateFormatter().string(from: Date()))
+            Schedule BG task for \(ISO8601DateFormatter().string(from: dateForNextBackgroundProcessing))
 
-                """)
-            } catch {
-                self.debugLog("""
-                \(ISO8601DateFormatter().string(from: Date()))
-                Error while scheduling BG task for \(ISO8601DateFormatter().string(from: dateForNextBackgroundProcessing)):
-                \(error)
+            """)
+        } catch {
+            self.debugLog("""
+            \(ISO8601DateFormatter().string(from: Date()))
+            Error while scheduling BG task for \(ISO8601DateFormatter().string(from: dateForNextBackgroundProcessing)):
+            \(error)
 
-                """)
-            }
+            """)
         }
     }
 
     static func dateForNextBackgroundProcessing(in context: NSManagedObjectContext) -> Date? {
-        #warning("Change this back")
-        return Date()
+        // Are there pending downloads? if yes, return Date()
+        if self.pendingDownloadsOrDeletionsExist(in: context) {
+            return Date()
+        }
 
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let courses = try? context.fetch(fetchRequest)
@@ -79,17 +79,23 @@ enum AutomatedDownloadsManager {
     }
 
     static func performNextBackgroundProcessingTasks(task: BGTask) {
+        let context = CoreDataHelper.persistentContainer.newBackgroundContext()
+        context.automaticallyMergesChangesFromParent = true
+
         task.expirationHandler = {
             self.debugLog("""
             \(ISO8601DateFormatter().string(from: Date()))
             BG task expired
 
             """)
-            task.setTaskCompleted(success: false)
+            self.scheduleNextBackgroundProcessingTask(context: context)
+
             StreamPersistenceManager.shared.persistentContainerQueue.cancelAllOperations()
             StreamPersistenceManager.shared.session.invalidateAndCancel()
             SlidesPersistenceManager.shared.persistentContainerQueue.cancelAllOperations()
             SlidesPersistenceManager.shared.session.invalidateAndCancel()
+
+            task.setTaskCompleted(success: false)
         }
 
         self.debugLog("""
@@ -98,15 +104,10 @@ enum AutomatedDownloadsManager {
 
         """)
 
-        self.scheduleNextBackgroundProcessingTask()
-
-        let refreshFuture = self.refreshCourseItemsForCoursesWithAutomatedDownloads().onComplete { _ in
-            self.scheduleNextBackgroundProcessingTask()
-        }
-
+        let refreshFuture = self.refreshCourseItemsOfRelevantCourses(in: context)
         let processingFuture = refreshFuture.flatMap { _ -> Future<Void, XikoloError> in
-            let downloadFuture = self.downloadNewContent(in: CoreDataHelper.persistentContainer.newBackgroundContext())
-            let deleteFuture = self.deleteOldContent()
+            let downloadFuture = self.downloadNewContent(in: context)
+            let deleteFuture = self.deleteOldContent(in: context)
             return [downloadFuture, deleteFuture].sequence().asVoid()
         }
 
@@ -116,38 +117,27 @@ enum AutomatedDownloadsManager {
             BG task completed (result: \(result.value != nil))
 
             """)
+            self.scheduleNextBackgroundProcessingTask(context: context)
             task.setTaskCompleted(success: result.value != nil)
         }
     }
 
-    private static func refreshCourseItemsForCoursesWithAutomatedDownloads() -> Future<Void, XikoloError> {
+    private static func refreshCourseItemsOfRelevantCourses(in context: NSManagedObjectContext) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 
-        CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
-            let courses = try? context.fetch(fetchRequest)
+        let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
+        let courses = try? context.fetch(fetchRequest)
 
-            let courseSyncFuture = courses?.map { course in
-                return CourseItemHelper.syncCourseItemsWithContent(for: course, withContentType: Video.contentType, networker: self.networker)
-            }.sequence().asVoid()
+        let courseSyncFuture = courses?.map { course in
+            return CourseItemHelper.syncCourseItemsWithContent(for: course, withContentType: Video.contentType, networker: self.networker)
+        }.sequence().asVoid()
 
-            promise.completeWith(courseSyncFuture ?? Future(value: ()))
-        }
+        promise.completeWith(courseSyncFuture ?? Future(value: ()))
 
         return promise.future
     }
 
     // Download content (find courses -> find sections -> start downloads)
-    @discardableResult
-    static func downloadNewContent() -> Future<Void, XikoloError> {
-        #warning("TODO: background or view context")
-//        return CoreDataHelper.persistentContainer.performBackgroundTask { context in
-//            return self.downloadNewContentFuture(in: context)
-//        }
-        return downloadNewContent(in: CoreDataHelper.viewContext)
-    }
-
-
     static func downloadNewContent(in context: NSManagedObjectContext) -> Future<Void, XikoloError> {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let courses = try? context.fetch(fetchRequest)
@@ -167,6 +157,9 @@ enum AutomatedDownloadsManager {
     }
 
     static func sectionsToDownload(for course: Course) -> Set<CourseSection> {
+        guard let automatedDownloadSettings = course.automatedDownloadSettings else { return [] }
+        guard automatedDownloadSettings.newContentAction == .notificationAndBackgroundDownload else { return [] }
+
         let orderedStartDates = course.sections.compactMap(\.startsAt).filter(\.inPast).sorted()
 
         let lastSectionStart = orderedStartDates.last
@@ -174,19 +167,35 @@ enum AutomatedDownloadsManager {
             let endDate = section.endsAt ?? course.endsAt
             let endDateInFuture = endDate?.inFuture ?? true
             return section.startsAt == lastSectionStart && endDateInFuture
+        }.filter { section in // filter for sections with pending downloads
+            let videoContentItems = section.items.compactMap({ $0.content as? Video })
+            let itemsWithPendingDownloads = videoContentItems.filter { video in
+                let pendingVideoDownload = StreamPersistenceManager.shared.downloadState(for: video) == .notDownloaded
+                let pendingSlidesDownload = automatedDownloadSettings.fileTypes.contains(.slides) && SlidesPersistenceManager.shared.downloadState(for: video) == .notDownloaded
+                return pendingVideoDownload || pendingSlidesDownload
+            }
+
+            return !itemsWithPendingDownloads.isEmpty
         }
 
         return sectionsToDownload
     }
 
-    static func deleteOldContent() -> Future<Void, XikoloError> {
-        #warning("TODO: background or view context. StreamPersistenceManager.shared.startDownloads uses separate coredata context")
+    static func pendingDownloadsOrDeletionsExist(in context: NSManagedObjectContext) -> Bool {
+        let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
+        let courses = context.fetchMultiple(fetchRequest).value ?? []
 
-//        return CoreDataHelper.persistentContainer.performBackgroundTask { context in
-//            return self.deleteOldContent(in: context)
-//        }
+        for course in courses {
+            if !sectionsToDownload(for: course).isEmpty {
+                return true
+            }
 
-        return self.deleteOldContent(in: CoreDataHelper.viewContext)
+            if !sectionsToDelete(for: course).isEmpty {
+                return true
+            }
+        }
+
+        return false
     }
 
     // Delete older content (find courses -> find old sections -> delete content)
@@ -224,10 +233,13 @@ enum AutomatedDownloadsManager {
     }
 
     static func sectionsToDelete(for course: Course) -> Set<CourseSection> {
+        guard let automatedDownloadSettings = course.automatedDownloadSettings else { return [] }
+        guard automatedDownloadSettings.newContentAction == .notificationAndBackgroundDownload else { return [] }
+
         let orderedStartDates = course.sections.compactMap(\.endsAt).filter(\.inPast).sorted()
 
         let possibleSectionEndForDeletion: Date? = {
-            switch course.automatedDownloadSettings?.deletionOption {
+            switch automatedDownloadSettings.deletionOption {
             case .nextSection:
                 return orderedStartDates.suffix(1).first
             case .secondNextSection:
@@ -240,6 +252,15 @@ enum AutomatedDownloadsManager {
         guard let sectionEndForDeletion = possibleSectionEndForDeletion else { return [] }
         let sectionsToDelete = course.sections.filter {
             (($0.endsAt ?? Date.distantFuture) <= sectionEndForDeletion) || (course.endsAt?.inPast ?? false)
+        }.filter { section in // filter for sections with existing downloads
+            let videoContentItems = section.items.compactMap({ $0.content as? Video })
+            let itemsWithExistingDownloads = videoContentItems.filter { video in
+                let existingVideoDownload = StreamPersistenceManager.shared.downloadState(for: video) == .downloaded
+                let existingSlidesDownload = automatedDownloadSettings.fileTypes.contains(.slides) && SlidesPersistenceManager.shared.downloadState(for: video) == .downloaded
+                return existingVideoDownload || existingSlidesDownload
+            }
+
+            return !itemsWithExistingDownloads.isEmpty
         }
 
         return sectionsToDelete
@@ -284,22 +305,6 @@ enum AutomatedDownloadsManager {
 
     static func debugLog(_ text: String) {
         self.debugBackgroundDownload = text + self.debugBackgroundDownload
-    }
-
-}
-
-
-extension NSPersistentContainer {
-
-    func performBackgroundTask<U, E>(_ block: @escaping (NSManagedObjectContext) -> Future<U, E>) -> Future<U, E> {
-        let promise = Promise<U, E>()
-
-        self.performBackgroundTask { context in
-            let future = block(context)
-            promise.completeWith(future)
-        }
-
-        return promise.future
     }
 
 }

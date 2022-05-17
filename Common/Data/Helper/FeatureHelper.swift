@@ -12,7 +12,7 @@ public enum FeatureHelper {
         case quizRecap = "quiz_recap"
         case courseReactivation = "course_reactivation"
 
-        // Identifiers for automated downloads user test
+        // Identifiers for content notification and automated downloads user test
         case newContentNotification = "mobile.new_content.notification"
         case newContentBackgroundDownload = "mobile.new_content.background_download"
     }

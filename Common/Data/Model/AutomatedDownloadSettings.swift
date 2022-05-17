@@ -13,6 +13,7 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
         case notificationAndBackgroundDownload = 2
 
         public var title: String {
+            #warning("TODOL localize")
             switch self {
             case .notification:
                 return "Notifications for new content"

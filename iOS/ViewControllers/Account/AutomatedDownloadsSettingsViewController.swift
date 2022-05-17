@@ -243,7 +243,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
             }
             self.updateFooter(inSection: indexPath.section)
         } else if indexPath.section == 3 {
-            // Disable Automated Downloads
+            // Disable Content Notifications and Automated Downloads
             CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: nil).onSuccess { [weak self] _ in
                 AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
                 self?.close()

@@ -138,11 +138,13 @@ extension AutomatedDownloadsCourseListViewController: NSFetchedResultsController
 extension AutomatedDownloadsCourseListViewController: EmptyStateDataSource {
 
     var emptyStateTitleText: String {
+        #warning("TODO: localize")
         return "No Courses available"
     }
 
     var emptyStateDetailText: String? {
-        return "Automated downloads are only available during the course period for courses you enrolled to."
+        #warning("TODO: localize")
+        return "Notifications for new content are only available during the course period for courses you enrolled to."
     }
 
     func setupEmptyState() {

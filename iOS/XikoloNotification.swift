@@ -47,7 +47,7 @@ enum XikoloNotification {
 
         let dateComponents = Calendar.autoupdatingCurrent.dateComponents(
             [.year, .month, .day, .hour, .minute],
-            from: sectionStart
+            from: sectionStart.addingTimeInterval(2 * 60) // 2 minutes after section start
         )
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
 

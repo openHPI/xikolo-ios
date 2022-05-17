@@ -15,7 +15,7 @@ enum AutomatedDownloadsManager {
     static let taskIdentifier = "de.xikolo.ios.background.download"
     static let urlSessionIdentifier = "de.xikolo.ios.background.download.sync"
 
-    static let networker = XikoloBackgroundNetworker(withIdentifier: Self.urlSessionIdentifier, backgroundCompletionHandler: {
+    static let networker = XikoloBackgroundNetworker(withIdentifier: Self.urlSessionIdentifier, saveBattery: true, backgroundCompletionHandler: {
         Self.backgroundCompletionHandler?()
     })
     static var backgroundCompletionHandler: (() -> Void)?

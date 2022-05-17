@@ -56,8 +56,17 @@ public class XikoloBackgroundNetworker: NSObject, SyncNetworker, URLSessionDownl
 
     var session: URLSession!
 
-    public init(withIdentifier identifier: String, backgroundCompletionHandler: @escaping (() -> Void)) {
+    public init(withIdentifier identifier: String, saveBattery: Bool = false, backgroundCompletionHandler: @escaping (() -> Void)) {
         self.sessionConfiguration = URLSessionConfiguration.background(withIdentifier: identifier)
+
+        if saveBattery {
+            self.sessionConfiguration.waitsForConnectivity = true
+            if #available(iOS 13, *) {
+                self.sessionConfiguration.allowsConstrainedNetworkAccess = false
+                self.sessionConfiguration.allowsExpensiveNetworkAccess = false
+            }
+        }
+
         self.backgroundCompletionHandler = backgroundCompletionHandler
         super.init()
         self.session = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)

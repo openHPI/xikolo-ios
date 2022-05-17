@@ -31,7 +31,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
     init(course: Course, showManageHint: Bool = false) {
         self.course = course
 
-        let enableBackgroundDownloads = FeatureHelper.hasFeature(.newContentBackgroundDownload, for: course)
+        let enableBackgroundDownloads = self.course.offersAutomatedBackgroundDownloads
         self.downloadSettings = self.course.automatedDownloadSettings ?? AutomatedDownloadSettings(enableBackgroundDownloads: enableBackgroundDownloads)
 
         super.init(style: .insetGrouped)
@@ -131,6 +131,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: self.downloadSettings).onSuccess { [weak self] _ in
             self?.close()
         }.onSuccess {
+            NewContentNotificationManager.renewNotifications(for: self.course)
             AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
         }.onFailure { [weak self] error in
             self?.tableView.tableHeaderView?.isHidden = false
@@ -158,7 +159,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         case 1: // include slides
             return 1
         case 2: // deletion policy
-            return AutomatedDownloadSettings.DeletionOption.allCases.count
+            return self.downloadSettings.newContentAction == .notificationAndBackgroundDownload ? AutomatedDownloadSettings.DeletionOption.allCases.count : 0
         case 3: // delete settings
             return self.course.automatedDownloadSettings != nil ? 1 : 0
         default:
@@ -171,7 +172,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         case 1:
             return "Supplementary Materials" // TODO: localize
         case 2:
-            return "Deletion Policy" // TODO: localize
+            return self.downloadSettings.newContentAction == .notificationAndBackgroundDownload ? "Deletion Policy" : nil // TODO: localize
         default:
             return nil
         }
@@ -183,7 +184,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         case 1:
             return self.downloadSettings.fileTypes.explanation
         case 2:
-            return self.downloadSettings.deletionOption.explanation
+            return self.downloadSettings.newContentAction == .notificationAndBackgroundDownload ? self.downloadSettings.deletionOption.explanation : nil
         case 3:
             return AutomatedDownloadsManager.debugBackgroundDownload
             return "You will be able to change these settings at any time via the course menu ('⋯') or under 'Downloaded Content' in the account tab." // TODO: localize

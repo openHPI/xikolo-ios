@@ -82,10 +82,6 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
                 return "With the start of a new course section, the downloaded content of second last course section (or older) will be removed from this device."
             }
         }
-
-        static var `default`: DeletionOption {
-            return .nextSection
-        }
     }
 
     public static var supportsSecureCoding: Bool { return true }
@@ -97,16 +93,16 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
     public init(enableBackgroundDownloads: Bool) {
         self.newContentAction = enableBackgroundDownloads ? .notificationAndBackgroundDownload : .notification
         self.fileTypes = .videos
-        self.deletionOption = .default
+        self.deletionOption = enableBackgroundDownloads ? .nextSection : .manual
     }
 
     public required init(coder decoder: NSCoder) {
-        let newContentActionRawValue = decoder.decodeInteger(forKey: "download_option")
+        let newContentActionRawValue = decoder.decodeInteger(forKey: "new_content_option")
         self.newContentAction = NewContentAction(rawValue: newContentActionRawValue) ?? .notification
         let fileTypesRawValue = decoder.decodeInteger(forKey: "file_types")
         self.fileTypes = FileTypes(rawValue: fileTypesRawValue)
         let deletionOptionRawValue = decoder.decodeInteger(forKey: "deletion_option")
-        self.deletionOption = DeletionOption(rawValue: deletionOptionRawValue) ?? .default
+        self.deletionOption = DeletionOption(rawValue: deletionOptionRawValue) ?? .manual
     }
 
     public func encode(with coder: NSCoder) {

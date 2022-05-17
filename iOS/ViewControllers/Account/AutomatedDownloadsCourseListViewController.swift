@@ -27,7 +27,6 @@ class AutomatedDownloadsCourseListViewController: UITableViewController {
     lazy var dataSource: UITableViewDiffableDataSource = {
         return HeaderTableViewDiffableDataSource(tableView: self.tableView) { tableView, indexPath, _ -> UITableViewCell? in
             let resultsController = self.resultController(for: indexPath)
-
             let reuseIdentifier = self.cellReuseIdentifier(for: indexPath)
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
             let adjustedIndexPath = IndexPath(row: indexPath.row, section: 0)

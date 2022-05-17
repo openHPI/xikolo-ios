@@ -104,12 +104,7 @@ enum AutomatedDownloadsManager {
 
         """)
 
-        let refreshFuture = self.refreshCourseItemsOfRelevantCourses(in: context)
-        let processingFuture = refreshFuture.flatMap { _ -> Future<Void, XikoloError> in
-            let downloadFuture = self.downloadNewContent(in: context)
-            let deleteFuture = self.deleteOldContent(in: context)
-            return [downloadFuture, deleteFuture].sequence().asVoid()
-        }
+        let processingFuture = self.processPendingDownloadsAndDeletions(in: context)
 
         processingFuture.onComplete { result in
             self.debugLog("""
@@ -120,6 +115,18 @@ enum AutomatedDownloadsManager {
             self.scheduleNextBackgroundProcessingTask(context: context)
             task.setTaskCompleted(success: result.value != nil)
         }
+    }
+
+    @discardableResult
+    static func processPendingDownloadsAndDeletions(in context: NSManagedObjectContext) -> Future<Void, XikoloError> {
+        let refreshFuture = self.refreshCourseItemsOfRelevantCourses(in: context)
+        let processingFuture = refreshFuture.flatMap { _ -> Future<Void, XikoloError> in
+            let downloadFuture = self.downloadNewContent(in: context)
+            let deleteFuture = self.deleteOldContent(in: context)
+            return [downloadFuture, deleteFuture].sequence().asVoid()
+        }
+
+        return processingFuture
     }
 
     private static func refreshCourseItemsOfRelevantCourses(in context: NSManagedObjectContext) -> Future<Void, XikoloError> {
@@ -138,7 +145,7 @@ enum AutomatedDownloadsManager {
     }
 
     // Download content (find courses -> find sections -> start downloads)
-    static func downloadNewContent(in context: NSManagedObjectContext) -> Future<Void, XikoloError> {
+    private static func downloadNewContent(in context: NSManagedObjectContext) -> Future<Void, XikoloError> {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let courses = try? context.fetch(fetchRequest)
 
@@ -156,7 +163,7 @@ enum AutomatedDownloadsManager {
         return downloadFutures.sequence().asVoid()
     }
 
-    static func sectionsToDownload(for course: Course) -> Set<CourseSection> {
+    private static func sectionsToDownload(for course: Course) -> Set<CourseSection> {
         guard let automatedDownloadSettings = course.automatedDownloadSettings else { return [] }
         guard automatedDownloadSettings.newContentAction == .notificationAndBackgroundDownload else { return [] }
 
@@ -199,7 +206,7 @@ enum AutomatedDownloadsManager {
     }
 
     // Delete older content (find courses -> find old sections -> delete content)
-    static func deleteOldContent(in context: NSManagedObjectContext) -> Future<Void, XikoloError> {
+    private static func deleteOldContent(in context: NSManagedObjectContext) -> Future<Void, XikoloError> {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let courses = try? context.fetch(fetchRequest)
 
@@ -232,7 +239,7 @@ enum AutomatedDownloadsManager {
         return deleteFutures.sequence().asVoid()
     }
 
-    static func sectionsToDelete(for course: Course) -> Set<CourseSection> {
+    private static func sectionsToDelete(for course: Course) -> Set<CourseSection> {
         guard let automatedDownloadSettings = course.automatedDownloadSettings else { return [] }
         guard automatedDownloadSettings.newContentAction == .notificationAndBackgroundDownload else { return [] }
 
@@ -266,7 +273,7 @@ enum AutomatedDownloadsManager {
         return sectionsToDelete
     }
 
-    static func downloadContent(of section: CourseSection, withTypes fileTypes: AutomatedDownloadSettings.FileTypes?) -> Future<Void, XikoloError> {
+    private static func downloadContent(of section: CourseSection, withTypes fileTypes: AutomatedDownloadSettings.FileTypes?) -> Future<Void, XikoloError> {
         var downloadFutures: [Future<Void, XikoloError>] = []
 
 //                let section: CourseSection = context.typedObject(with: backgroundSection.objectID)

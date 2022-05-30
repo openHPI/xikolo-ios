@@ -133,6 +133,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         }.onSuccess {
             NewContentNotificationManager.renewNotifications(for: self.course)
             AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
+            AutomatedDownloadsManager.processPendingDownloadsAndDeletions(triggeredBy: .setup)
         }.onFailure { [weak self] error in
             self?.tableView.tableHeaderView?.isHidden = false
             UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {

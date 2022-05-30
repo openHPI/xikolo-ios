@@ -103,9 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
 
             if #available(iOS 13.0, *) {
-                CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                    AutomatedDownloadsManager.processPendingDownloadsAndDeletions(in: context)
-                }
+                AutomatedDownloadsManager.processPendingDownloadsAndDeletions(triggeredBy: .appLaunch)
             }
         }
 

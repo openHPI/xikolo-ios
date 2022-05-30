@@ -29,6 +29,11 @@ protocol PersistenceManagerConfiguration {
 
 class PersistenceManager<Configuration>: NSObject where Configuration: PersistenceManagerConfiguration {
 
+    enum Option: Equatable {
+        case silent // Don't show an alert if the download fails
+        case trackingContext([String: String?])
+    }
+
     typealias Resource = Configuration.Resource
     typealias Session = Configuration.Session
 
@@ -43,6 +48,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
     var activeDownloads: [URLSessionTask: String] = [:]
     var progresses: [String: Double] = [:]
     var completionHandlers: [URLSessionTask: ((Result<Void, XikoloError>) -> Void)] = [:]
+    var options: [URLSessionTask: [Option]] = [:]
     var didRestorePersistenceManager = false
 
     override init() {
@@ -97,7 +103,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
         }
     }
 
-    func startDownload(with url: URL, for resource: Resource, completionHandler: ((Result<Void, XikoloError>) -> Void)? = nil) {
+    func startDownload(with url: URL, for resource: Resource, options: [Option] = [], completionHandler: ((Result<Void, XikoloError>) -> Void)? = nil) {
         guard let task = self.downloadTask(with: url, for: resource, on: self.session) else {
             return
         }
@@ -105,12 +111,12 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
         let resourceIdentifier = resource[keyPath: Resource.identifierKeyPath]
         task.taskDescription = resourceIdentifier
         self.activeDownloads[task] = resourceIdentifier
-
         self.completionHandlers[task] = completionHandler
+        self.options[task] = options
 
         task.resume()
 
-        self.didStartDownload(for: resource)
+        self.didStartDownload(for: resource, options: options)
 
         let resourceObjectID = resource.objectID
 
@@ -195,8 +201,9 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
         var task: URLSessionTask?
 
         for (downloadtask, resourceId) in self.activeDownloads where resourceIdentifier == resourceId {
-            self.didCancelDownload(for: resource)
             task = downloadtask
+            let options = self.options[downloadtask] ?? []
+            self.didCancelDownload(for: resource, options: options)
             break
         }
 
@@ -273,7 +280,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
                             }
                         }
 
-                        self.didFailToDownloadResource(resource, with: error)
+                        self.didFailToDownloadResource(resource, with: task, with: error)
                     case let .failure(error):
                         ErrorManager.shared.remember((Configuration.downloadType, resourceId), forKey: "resource")
                         ErrorManager.shared.report(error)
@@ -292,7 +299,8 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
                         fetchRequest.fetchLimit = 1
 
                         if let resource = context.fetchSingle(fetchRequest).value {
-                            self.didFinishDownload(for: resource)
+                            let options = self.options[task] ?? []
+                            self.didFinishDownload(for: resource, options: options)
                         }
                     }
                 }
@@ -335,7 +343,7 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
         }
     }
 
-    func didFailToDownloadResource(_ resource: Resource, with error: NSError) {
+    func didFailToDownloadResource(_ resource: Resource, with task: URLSessionTask, with error: NSError) {
         let resourceId = resource[keyPath: Resource.identifierKeyPath]
 
         if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
@@ -353,34 +361,38 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
             code: \(error.code)
             """)
 
-        // show error
-        DispatchQueue.main.async {
-            let alertTitle = Configuration.titleForFailedDownloadAlert
-            let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
-            let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-            let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
-            alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
-                alert.dismiss(animated: trueUnlessReduceMotionEnabled)
-            })
+        let options = self.options[task] ?? []
 
-            let rootViewController: UIViewController? = {
-                if #available(iOS 13, *) {
-                    let activeScene = UIApplication.shared.connectedScenes.first { $0.activationState == .foregroundActive }
-                    if let sceneDelegate = activeScene?.delegate as? SceneDelegate {
-                        return sceneDelegate.window?.rootViewController
-                    } else if let sceneDelegate = activeScene?.delegate as? CourseSceneDelegate {
-                        return sceneDelegate.window?.rootViewController
+        if !(options.contains(.silent)) {
+            // show error
+            DispatchQueue.main.async {
+                let alertTitle = Configuration.titleForFailedDownloadAlert
+                let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
+                let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+                let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
+                alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
+                    alert.dismiss(animated: trueUnlessReduceMotionEnabled)
+                })
+
+                let rootViewController: UIViewController? = {
+                    if #available(iOS 13, *) {
+                        let activeScene = UIApplication.shared.connectedScenes.first { $0.activationState == .foregroundActive }
+                        if let sceneDelegate = activeScene?.delegate as? SceneDelegate {
+                            return sceneDelegate.window?.rootViewController
+                        } else if let sceneDelegate = activeScene?.delegate as? CourseSceneDelegate {
+                            return sceneDelegate.window?.rootViewController
+                        } else {
+                            return nil
+                        }
                     } else {
-                        return nil
+                        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                        return appDelegate?.window?.rootViewController
                     }
-                } else {
-                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
-                    return appDelegate?.window?.rootViewController
-                }
-            }()
+                }()
 
-            let presentingViewController = rootViewController?.presentedViewController ?? rootViewController
-            presentingViewController?.present(alert, animated: trueUnlessReduceMotionEnabled)
+                let presentingViewController = rootViewController?.presentedViewController ?? rootViewController
+                presentingViewController?.present(alert, animated: trueUnlessReduceMotionEnabled)
+            }
         }
     }
 
@@ -392,9 +404,9 @@ class PersistenceManager<Configuration>: NSObject where Configuration: Persisten
 
     // MARK: delegate methods
 
-    func didStartDownload(for resource: Resource) {}
-    func didCancelDownload(for resource: Resource) {}
-    func didFinishDownload(for resource: Resource) {}
+    func didStartDownload(for resource: Resource, options: [Option]) {}
+    func didCancelDownload(for resource: Resource, options: [Option]) {}
+    func didFinishDownload(for resource: Resource, options: [Option]) {}
 
 }
 

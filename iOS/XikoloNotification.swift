@@ -41,11 +41,8 @@ enum XikoloNotification {
         #warning("TODO: localize")
         let content = UNMutableNotificationContent()
         content.title = section.course?.title ?? UIApplication.appName
-        if let sectionTitle = section.title {
-            content.body = "Course section '\(sectionTitle)' just started. Download the new course material now to continue learning without an Internet connection."
-        } else {
-            content.body = "New course material is available. Download it now to continue learning without an Internet connection."
-        }
+        let sectionTitle = section.title ?? String(section.position)
+        content.body = "Course section '\(sectionTitle)' started. Download the new course material now to continue learning without an Internet connection."
         content.categoryIdentifier = self.CategoryIdentifier.automatedDownloads
         content.userInfo = ["section-id": section.id]
 

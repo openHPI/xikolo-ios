@@ -9,10 +9,10 @@ import Common
 extension PersistenceManager {
 
     @discardableResult
-    func startDownload(with url: URL, for resource: Resource) -> Future<Void, XikoloError> {
+    func startDownload(with url: URL, for resource: Resource, options: [PersistenceManager.Option] = []) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 
-        self.startDownload(with: url, for: resource) { result in
+        self.startDownload(with: url, for: resource, options: options) { result in
             promise.complete(result)
         }
 

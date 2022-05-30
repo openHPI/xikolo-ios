@@ -34,7 +34,7 @@ class XikoloNotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
                 completionHandler()
             }
         case XikoloNotification.ActionIdentifier.download:
-            AutomatedDownloadsManager.downloadContent(of: courseSection).onComplete { _ in
+            AutomatedDownloadsManager.downloadContent(of: courseSection, triggeredBy: .notification).onComplete { _ in
                 completionHandler()
             }
         default:

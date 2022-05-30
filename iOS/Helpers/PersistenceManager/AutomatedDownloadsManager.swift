@@ -12,6 +12,17 @@ import UserNotifications
 @available(iOS 13, *)
 enum AutomatedDownloadsManager {
 
+    enum DownloadTrigger: String {
+        case setup
+        case notification
+        case appLaunch = "app_launch"
+        case backgroundTask = "background_task"
+
+        var trackingContext: [String: String?] {
+            return ["download_trigger": self.rawValue]
+        }
+    }
+
     static let taskIdentifier = "de.xikolo.ios.background.download"
     static let urlSessionIdentifier = "de.xikolo.ios.background.download.sync"
 
@@ -60,7 +71,7 @@ enum AutomatedDownloadsManager {
     }
 
     static func dateForNextBackgroundProcessing(in context: NSManagedObjectContext) -> Date? {
-        // Are there pending downloads? if yes, return Date()
+        // Are there pending downloads? If yes, return the current date to run the background task as early as possible.
         if self.pendingDownloadsOrDeletionsExist(in: context) {
             return Date()
         }
@@ -104,7 +115,7 @@ enum AutomatedDownloadsManager {
 
         """)
 
-        let processingFuture = self.processPendingDownloadsAndDeletions(in: context)
+        let processingFuture = self.processPendingDownloadsAndDeletions(in: context, triggeredBy: .backgroundTask)
 
         processingFuture.onComplete { result in
             self.debugLog("""
@@ -117,11 +128,17 @@ enum AutomatedDownloadsManager {
         }
     }
 
+    static func processPendingDownloadsAndDeletions(triggeredBy trigger: DownloadTrigger) {
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            Self.processPendingDownloadsAndDeletions(in: context, triggeredBy: trigger)
+        }
+    }
+
     @discardableResult
-    static func processPendingDownloadsAndDeletions(in context: NSManagedObjectContext) -> Future<Void, XikoloError> {
+    private static func processPendingDownloadsAndDeletions(in context: NSManagedObjectContext, triggeredBy trigger: DownloadTrigger) -> Future<Void, XikoloError> {
         let refreshFuture = self.refreshCourseItemsOfRelevantCourses(in: context)
         let processingFuture = refreshFuture.flatMap { _ -> Future<Void, XikoloError> in
-            let downloadFuture = self.downloadNewContent(in: context)
+            let downloadFuture = self.downloadNewContent(in: context, triggeredBy: trigger)
             let deleteFuture = self.deleteOldContent(in: context)
             return [downloadFuture, deleteFuture].sequence().asVoid()
         }
@@ -145,7 +162,7 @@ enum AutomatedDownloadsManager {
     }
 
     // Download content (find courses -> find sections -> start downloads)
-    private static func downloadNewContent(in context: NSManagedObjectContext) -> Future<Void, XikoloError> {
+    private static func downloadNewContent(in context: NSManagedObjectContext, triggeredBy trigger: DownloadTrigger) -> Future<Void, XikoloError> {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
         let courses = try? context.fetch(fetchRequest)
 
@@ -156,14 +173,14 @@ enum AutomatedDownloadsManager {
             guard automatedDownloadSettings.newContentAction == .notificationAndBackgroundDownload else { return }
 
             self.sectionsToDownload(for: course).forEach { section in
-                downloadFutures.append(self.downloadContent(of: section, withTypes: automatedDownloadSettings.fileTypes))
+                downloadFutures.append(self.downloadContent(of: section, withTypes: automatedDownloadSettings.fileTypes, triggeredBy: trigger))
             }
         }
 
         return downloadFutures.sequence().asVoid()
     }
 
-    private static func sectionsToDownload(for course: Course) -> Set<CourseSection> {
+    static func sectionsToDownload(for course: Course) -> Set<CourseSection> {
         guard let automatedDownloadSettings = course.automatedDownloadSettings else { return [] }
         guard automatedDownloadSettings.newContentAction == .notificationAndBackgroundDownload else { return [] }
 
@@ -239,7 +256,7 @@ enum AutomatedDownloadsManager {
         return deleteFutures.sequence().asVoid()
     }
 
-    private static func sectionsToDelete(for course: Course) -> Set<CourseSection> {
+    static func sectionsToDelete(for course: Course) -> Set<CourseSection> {
         guard let automatedDownloadSettings = course.automatedDownloadSettings else { return [] }
         guard automatedDownloadSettings.newContentAction == .notificationAndBackgroundDownload else { return [] }
 
@@ -273,7 +290,9 @@ enum AutomatedDownloadsManager {
         return sectionsToDelete
     }
 
-    private static func downloadContent(of section: CourseSection, withTypes fileTypes: AutomatedDownloadSettings.FileTypes?) -> Future<Void, XikoloError> {
+    private static func downloadContent(of section: CourseSection,
+                                        withTypes fileTypes: AutomatedDownloadSettings.FileTypes?,
+                                        triggeredBy trigger: DownloadTrigger) -> Future<Void, XikoloError> {
         var downloadFutures: [Future<Void, XikoloError>] = []
 
 //                let section: CourseSection = context.typedObject(with: backgroundSection.objectID)
@@ -285,20 +304,23 @@ enum AutomatedDownloadsManager {
 //                    $0.content?.willAccessValue(forKey: nil)
 //                }
 
-        let downloadStreamFuture = StreamPersistenceManager.shared.startDownloads(for: section)
+
+        let downloadOptions: [StreamPersistenceManager.Option] = [.silent, .trackingContext(trigger.trackingContext)]
+        let downloadStreamFuture = StreamPersistenceManager.shared.startDownloads(for: section, options: downloadOptions)
         downloadFutures.append(downloadStreamFuture)
 
         if fileTypes?.contains(.slides) == true {
-            let downloadSlidesFuture = SlidesPersistenceManager.shared.startDownloads(for: section)
+            let downloadOptions: [SlidesPersistenceManager.Option] = [.silent, .trackingContext(trigger.trackingContext)]
+            let downloadSlidesFuture = SlidesPersistenceManager.shared.startDownloads(for: section, options: downloadOptions)
             downloadFutures.append(downloadSlidesFuture)
         }
 
         return downloadFutures.sequence().asVoid()
     }
 
-    static func downloadContent(of section: CourseSection) -> Future<Void, XikoloError> {
+    static func downloadContent(of section: CourseSection, triggeredBy trigger: DownloadTrigger) -> Future<Void, XikoloError> {
         let downloadSettings = section.course?.automatedDownloadSettings
-        return self.downloadContent(of: section, withTypes: downloadSettings?.fileTypes)
+        return self.downloadContent(of: section, withTypes: downloadSettings?.fileTypes, triggeredBy: trigger)
     }
 
     static var debugBackgroundDownload: String {

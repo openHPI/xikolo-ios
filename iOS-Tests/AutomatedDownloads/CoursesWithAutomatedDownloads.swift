@@ -26,7 +26,7 @@ class CoursesWithAutomatedDownloads: XCTestCase {
         course.endsAt = Calendar.current.date(byAdding: .day, value: 21, to: Date())
         course.status = "active"
         course.enrollment = Enrollment(entity: enrollmentEntityDescription, insertInto: context)
-        course.automatedDownloadSettings = AutomatedDownloadSettings()
+        course.automatedDownloadSettings = AutomatedDownloadSettings(enableBackgroundDownloads: true)
     }
 
     func testWithSettings() throws {

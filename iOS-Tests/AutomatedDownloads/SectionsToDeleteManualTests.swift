@@ -29,7 +29,7 @@ class SectionsToDeleteManualTests: XCTestCase {
         course.id = UUID().uuidString
         course.status = "active"
         course.enrollment = Enrollment(entity: enrollmentEntityDescription, insertInto: context)
-        course.automatedDownloadSettings = AutomatedDownloadSettings()
+        course.automatedDownloadSettings = AutomatedDownloadSettings(enableBackgroundDownloads: true)
         course.automatedDownloadSettings?.deletionOption = .manual
 
         section1 = CourseSection(entity: courseSectionEntityDescription, insertInto: context)
@@ -54,9 +54,9 @@ class SectionsToDeleteManualTests: XCTestCase {
         section3.startsAt = section2.endsAt
         section3.endsAt = course.endsAt
 
-        let sectionsToDownloads = AutomatedDownloadsManager.sectionsToDelete(for: course)
+        let sectionsToDelete = AutomatedDownloadsManager.sectionsToDelete(for: course)
 
-        XCTAssertEqual(sectionsToDownloads, [])
+        XCTAssertEqual(sectionsToDelete, [])
     }
 
     func testMultipleSections() throws {
@@ -69,9 +69,9 @@ class SectionsToDeleteManualTests: XCTestCase {
         section3.startsAt = section2.endsAt
         section3.endsAt = course.endsAt
 
-        let sectionsToDownloads = AutomatedDownloadsManager.sectionsToDelete(for: course)
+        let sectionsToDelete = AutomatedDownloadsManager.sectionsToDelete(for: course)
 
-        XCTAssertEqual(sectionsToDownloads, [])
+        XCTAssertEqual(sectionsToDelete, [])
     }
 
     func testOverlappingSections() throws {
@@ -84,9 +84,9 @@ class SectionsToDeleteManualTests: XCTestCase {
         section3.startsAt = section2.endsAt
         section3.endsAt = course.endsAt
 
-        let sectionsToDownloads = AutomatedDownloadsManager.sectionsToDelete(for: course)
+        let sectionsToDelete = AutomatedDownloadsManager.sectionsToDelete(for: course)
 
-        XCTAssertEqual(sectionsToDownloads, [])
+        XCTAssertEqual(sectionsToDelete, [])
     }
 
     func testBeforeCourseStart() throws {
@@ -99,9 +99,9 @@ class SectionsToDeleteManualTests: XCTestCase {
         section3.startsAt = section2.endsAt
         section3.endsAt = course.endsAt
 
-        let sectionsToDownloads = AutomatedDownloadsManager.sectionsToDelete(for: course)
+        let sectionsToDelete = AutomatedDownloadsManager.sectionsToDelete(for: course)
 
-        XCTAssertEqual(sectionsToDownloads, [])
+        XCTAssertEqual(sectionsToDelete, [])
     }
 
     func testAfterCourseEnd() throws {
@@ -114,9 +114,9 @@ class SectionsToDeleteManualTests: XCTestCase {
         section3.startsAt = section2.endsAt
         section3.endsAt = course.endsAt
 
-        let sectionsToDownloads = AutomatedDownloadsManager.sectionsToDelete(for: course)
+        let sectionsToDelete = AutomatedDownloadsManager.sectionsToDelete(for: course)
 
-        XCTAssertEqual(sectionsToDownloads, [])
+        XCTAssertEqual(sectionsToDelete, [])
     }
 
 }

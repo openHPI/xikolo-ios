@@ -406,8 +406,10 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="automatedDownloadsActiveHint" destination="xoB-bp-Lyg" id="Ips-4T-WlM"/>
+                        <outlet property="automatedDownloadsActiveHintExtended" destination="xex-gu-Eyc" id="L6e-V2-Ga5"/>
                         <outlet property="automatedDownloadsMissingPermissionHint" destination="SPT-yX-DNw" id="m1V-HI-ldp"/>
                         <outlet property="automatedDownloadsPromotionHint" destination="Og6-OU-e7q" id="dH2-Q5-6Z2"/>
+                        <outlet property="automatedDownloadsPromotionHintExtended" destination="lQ3-ov-xQ2" id="PDW-f1-lHl"/>
                         <outlet property="continueLearningHint" destination="FCQ-Fh-KIx" id="zjo-fh-XMP"/>
                         <outlet property="continueLearningItemIconView" destination="kDg-1C-EQA" id="5am-xy-g73"/>
                         <outlet property="continueLearningItemIconWidthConstraint" destination="G8h-P4-UDW" id="X4o-cP-KC7"/>
@@ -415,8 +417,6 @@
                         <outlet property="continueLearningItemTitleLabel" destination="qbL-tr-CkP" id="hGh-km-lZJ"/>
                         <outlet property="continueLearningSectionTitleLabel" destination="oNV-Jd-aVk" id="pBZ-Mf-13X"/>
                         <outlet property="nextSectionStartLabel" destination="lh1-zS-1LH" id="RoH-An-ZRg"/>
-                        <outletCollection property="automatedDownloadsDescriptionsForExtendedFeature" destination="lQ3-ov-xQ2" collectionClass="NSMutableArray" id="k55-w3-pPD"/>
-                        <outletCollection property="automatedDownloadsDescriptionsForExtendedFeature" destination="xex-gu-Eyc" collectionClass="NSMutableArray" id="fXo-4e-nHY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="70L-nu-wuT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -438,7 +438,7 @@
         <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="112"/>
         <image name="sparkles" catalog="system" width="112" height="128"/>
         <namedColor name="primary">
-            <color red="0.94117647058823528" green="0.6705882352941176" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.87058823529411766" green="0.3843137254901961" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

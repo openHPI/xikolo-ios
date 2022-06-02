@@ -187,8 +187,8 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         case 2:
             return self.downloadSettings.newContentAction == .notificationAndBackgroundDownload ? self.downloadSettings.deletionOption.explanation : nil
         case 3:
-            return AutomatedDownloadsManager.debugBackgroundDownload
-            return "You will be able to change these settings at any time via the course menu ('⋯') or under 'Downloaded Content' in the account tab." // TODO: localize
+            #warning("TODO: Localize")
+            return "You will also be able to change these settings at any time via the course menu ('⋯') or via 'Downloaded Content' in the account tab."
         default:
             return nil
         }

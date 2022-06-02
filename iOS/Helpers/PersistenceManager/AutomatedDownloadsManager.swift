@@ -53,21 +53,7 @@ enum AutomatedDownloadsManager {
         let automatedDownloadTaskRequest = BGProcessingTaskRequest(identifier: Self.taskIdentifier)
         automatedDownloadTaskRequest.earliestBeginDate = dateForNextBackgroundProcessing
         automatedDownloadTaskRequest.requiresNetworkConnectivity = true
-        do {
-            try BGTaskScheduler.shared.submit(automatedDownloadTaskRequest)
-            self.debugLog("""
-            \(ISO8601DateFormatter().string(from: Date()))
-            Schedule BG task for \(ISO8601DateFormatter().string(from: dateForNextBackgroundProcessing))
-
-            """)
-        } catch {
-            self.debugLog("""
-            \(ISO8601DateFormatter().string(from: Date()))
-            Error while scheduling BG task for \(ISO8601DateFormatter().string(from: dateForNextBackgroundProcessing)):
-            \(error)
-
-            """)
-        }
+        try? BGTaskScheduler.shared.submit(automatedDownloadTaskRequest)
     }
 
     static func dateForNextBackgroundProcessing(in context: NSManagedObjectContext) -> Date? {
@@ -94,11 +80,6 @@ enum AutomatedDownloadsManager {
         context.automaticallyMergesChangesFromParent = true
 
         task.expirationHandler = {
-            self.debugLog("""
-            \(ISO8601DateFormatter().string(from: Date()))
-            BG task expired
-
-            """)
             self.scheduleNextBackgroundProcessingTask(context: context)
 
             StreamPersistenceManager.shared.persistentContainerQueue.cancelAllOperations()
@@ -109,20 +90,9 @@ enum AutomatedDownloadsManager {
             task.setTaskCompleted(success: false)
         }
 
-        self.debugLog("""
-        \(ISO8601DateFormatter().string(from: Date()))
-        BG task started
-
-        """)
-
         let processingFuture = self.processPendingDownloadsAndDeletions(in: context, triggeredBy: .backgroundTask)
 
         processingFuture.onComplete { result in
-            self.debugLog("""
-            \(ISO8601DateFormatter().string(from: Date()))
-            BG task completed (result: \(result.value != nil))
-
-            """)
             self.scheduleNextBackgroundProcessingTask(context: context)
             task.setTaskCompleted(success: result.value != nil)
         }
@@ -321,19 +291,6 @@ enum AutomatedDownloadsManager {
     static func downloadContent(of section: CourseSection, triggeredBy trigger: DownloadTrigger) -> Future<Void, XikoloError> {
         let downloadSettings = section.course?.automatedDownloadSettings
         return self.downloadContent(of: section, withTypes: downloadSettings?.fileTypes, triggeredBy: trigger)
-    }
-
-    static var debugBackgroundDownload: String {
-        get {
-            return UserDefaults.standard.string(forKey: "debug.background.download") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "debug.background.download")
-        }
-    }
-
-    static func debugLog(_ text: String) {
-        self.debugBackgroundDownload = text + self.debugBackgroundDownload
     }
 
 }

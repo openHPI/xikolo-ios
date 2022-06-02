@@ -45,6 +45,10 @@ public enum TrackingHelper {
 
         // social
         case shareCourse = "SHARE_COURSE"
+
+        // content notification
+        case contentNotificationsEnabled = "CONTENT_NOTIFICATIONS_ENABLED"
+        case contentNotificationsDisabled = "CONTENT_NOTIFICATIONS_DISABLED"
     }
 
     // swiftlint:disable redundant_string_enum_value

@@ -130,8 +130,9 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
 
         CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: self.downloadSettings).onSuccess { [weak self] _ in
             self?.close()
-        }.onSuccess {
-            NewContentNotificationManager.renewNotifications(for: self.course)
+        }.onSuccess { [weak self, course] _ in
+            TrackingHelper.createEvent(.contentNotificationsEnabled, resourceType: .course, resourceId: course.id, on: self)
+            NewContentNotificationManager.renewNotifications(for: course)
             AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
             AutomatedDownloadsManager.processPendingDownloadsAndDeletions(triggeredBy: .setup)
         }.onFailure { [weak self] error in
@@ -245,8 +246,9 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
             self.updateFooter(inSection: indexPath.section)
         } else if indexPath.section == 3 {
             // Disable Content Notifications and Automated Downloads
-            CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: nil).onSuccess { [weak self] _ in
+            CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: nil).onSuccess { [weak self, course] _ in
                 AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
+                TrackingHelper.createEvent(.contentNotificationsDisabled, resourceType: .course, resourceId: course.id, on: self)
                 self?.close()
             }.onComplete { [weak self] _ in
                 self?.navigationItem.rightBarButtonItem = self?.saveBarButtonItem

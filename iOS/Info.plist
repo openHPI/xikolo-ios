@@ -10,7 +10,7 @@
 	<string>LongFormVideo</string>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>de.xikolo.ios.background.download</string>
+		<string>de.xikolo.ios.new-content.download.background</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

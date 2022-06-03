@@ -76,7 +76,7 @@ public enum CourseItemHelper {
         query.addFilter(forKey: "course", withValue: course.id)
         query.addFilter(forKey: "content_type", withValue: type)
         query.include("content")
-        return XikoloSyncEngine(networker: networker).synchronize(withFetchRequest: fetchRequest, withQuery: query)
+        return XikoloSyncEngine(networker: networker).synchronize(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
 }

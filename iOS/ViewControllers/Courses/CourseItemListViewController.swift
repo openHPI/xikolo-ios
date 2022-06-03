@@ -358,6 +358,18 @@ class CourseItemListViewController: UITableViewController {
         }
     }
 
+    func scroll(toSection section: CourseSection, animated: Bool) {
+        guard let anyItemInSection = section.items.first else { return }
+        guard let someRandomIndexPathInSection = self.dataSource.indexPath(for: anyItemInSection) else { return }
+        let indexPath = IndexPath(row: 0, section: someRandomIndexPathInSection.section)
+
+        self.scrollDelegate?.scrollToTop()
+
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+            self.tableView.scrollToRow(at: indexPath, at: .middle, animated: animated)
+        }
+    }
+
 }
 
 extension CourseItemListViewController { // TableViewDelegate

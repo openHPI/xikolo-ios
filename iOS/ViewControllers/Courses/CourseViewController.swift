@@ -87,6 +87,8 @@ class CourseViewController: UIViewController {
 
     var area: CourseArea = .learnings
 
+    var actionAfterOpening: ((CourseViewController) -> Void)? = nil
+
     override var toolbarItems: [UIBarButtonItem]? {
         get {
             return self.courseAreaPageViewController?.viewControllers?.first?.toolbarItems
@@ -130,6 +132,9 @@ class CourseViewController: UIViewController {
         FeatureHelper.syncFeatures(forCourse: self.course).onSuccess { [weak self] in
             self?.courseAreaListViewController?.refresh()
         }
+
+        self.actionAfterOpening?(self)
+        self.actionAfterOpening = nil
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -171,6 +176,14 @@ class CourseViewController: UIViewController {
         if container is CourseAreaListViewController {
             self.courseAreaListContainerHeight?.constant = container.preferredContentSize.height
         }
+    }
+
+    func show(section: CourseSection, animated: Bool) {
+        self.transitionIfPossible(to: .learnings, completion: { transitionSuccessful in
+            guard transitionSuccessful else { return }
+            guard let courseItemListViewController = self.courseAreaViewController as? CourseItemListViewController else { return }
+            courseItemListViewController.scroll(toSection: section, animated: animated)
+        })
     }
 
     func show(item: CourseItem, animated: Bool) {
@@ -273,28 +286,32 @@ class CourseViewController: UIViewController {
         return (red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
     }
 
-    func transitionIfPossible(to area: CourseArea) {
+    func transitionIfPossible(to area: CourseArea, completion completionHandler: ((Bool) -> Void)? = nil) {
         if self.course.hasEnrollment {
             let newArea = self.course.accessible ? area : .courseDetails
-            self.manuallyUpdate(to: newArea, updateCourseAreaSelection: true)
+            self.manuallyUpdate(to: newArea, updateCourseAreaSelection: true) {
+                completionHandler?(true)
+            }
         } else {
-            self.manuallyUpdate(to: .courseDetails, updateCourseAreaSelection: true)
+            self.manuallyUpdate(to: .courseDetails, updateCourseAreaSelection: true)  {
+                completionHandler?(false)
+            }
         }
     }
 
-    private func manuallyUpdate(to area: CourseArea, updateCourseAreaSelection: Bool) {
+    private func manuallyUpdate(to area: CourseArea, updateCourseAreaSelection: Bool, completion completionHandler: (() -> Void)? = nil) {
         self.area = area
 
         guard self.viewIfLoaded != nil else { return }
 
-        self.updateContainerView()
+        self.updateContainerView(completion: completionHandler)
 
         if updateCourseAreaSelection {
             self.courseAreaListViewController?.refresh()
         }
     }
 
-    private func updateContainerView() {
+    private func updateContainerView(completion completionHandler: (() -> Void)? = nil) {
         let animationTime: TimeInterval = 0.15
 
         UIView.animate(withDuration: animationTime, delay: animationTime, options: .curveEaseIn) {
@@ -315,6 +332,8 @@ class CourseViewController: UIViewController {
 
             UIView.animate(withDuration: animationTime, delay: 0, options: .curveEaseOut) {
                 newViewController.view.alpha = 1
+            } completion: { _ in
+                completionHandler?()
             }
         }
     }

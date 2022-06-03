@@ -26,11 +26,9 @@ class XikoloNotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         switch response.actionIdentifier {
         case UNNotificationDefaultActionIdentifier:
             DispatchQueue.main.async {
-                if let course = courseSection.course {
-                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-                    let navigator = sceneDelegate?.appNavigator
-                    navigator?.show(course: course, with: .learnings)
-                }
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                let navigator = sceneDelegate?.appNavigator
+                navigator?.show(section: courseSection)
                 completionHandler()
             }
         case XikoloNotification.ActionIdentifier.download:

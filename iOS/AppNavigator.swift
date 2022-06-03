@@ -311,6 +311,27 @@ class AppNavigator {
                       url: url)
     }
 
+    func show(section: CourseSection, url: URL? = nil) {
+        guard let course = section.course else { return }
+
+        let courseOpenAction: CourseOpenAction = { courseViewController in
+            courseViewController.show(section: section, animated: trueUnlessReduceMotionEnabled)
+        }
+
+        let courseClosedAction: CourseClosedAction = { courseViewController, accessible in
+            guard accessible else { return }
+            courseViewController.actionAfterOpening = { viewController in
+                viewController.show(section: section, animated: false)
+            }
+        }
+
+        self.navigate(course: course,
+                      courseArea: .learnings,
+                      courseOpenAction: courseOpenAction,
+                      courseClosedAction: courseClosedAction,
+                      url: url)
+    }
+
     func show(item: CourseItem, url: URL? = nil) {
         guard let course = item.section?.course else { return }
 
@@ -320,7 +341,9 @@ class AppNavigator {
 
         let courseClosedAction: CourseClosedAction = { courseViewController, accessible in
             guard accessible else { return }
-            courseViewController.show(item: item, animated: false)
+            courseViewController.actionAfterOpening = { viewController in
+                viewController.show(item: item, animated: false)
+            }
         }
 
         self.navigate(course: course,
@@ -339,7 +362,9 @@ class AppNavigator {
 
         let courseClosedAction: CourseClosedAction = { courseViewController, accessible in
             guard accessible else { return }
-            courseViewController.show(documentLocalization: documentLocalization, animated: false)
+            courseViewController.actionAfterOpening = { viewController in
+                viewController.show(documentLocalization: documentLocalization, animated: false)
+            }
         }
 
         self.navigate(course: course,

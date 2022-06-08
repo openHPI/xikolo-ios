@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -26,9 +26,10 @@ enum AutomatedDownloadsManager {
     static let taskIdentifier = "de.xikolo.ios.new-content.download.background"
     static let urlSessionIdentifier = "de.xikolo.ios.new-content.download.sync"
 
-    static let networker = XikoloBackgroundNetworker(withIdentifier: Self.urlSessionIdentifier, saveBattery: true, backgroundCompletionHandler: {
+    static let networker = XikoloBackgroundNetworker(withIdentifier: Self.urlSessionIdentifier, saveBattery: true) {
         Self.backgroundCompletionHandler?()
-    })
+    }
+
     static var backgroundCompletionHandler: (() -> Void)?
 
     static func registerBackgroundTask() {
@@ -37,7 +38,6 @@ enum AutomatedDownloadsManager {
             self.performNextBackgroundProcessingTasks(task: task)
         }
     }
-
 
     // - schedule next background task (find next sections/course -> start change date for existing bg task or cancel | setup new bgtask)
     static func scheduleNextBackgroundProcessingTask(context: NSManagedObjectContext = CoreDataHelper.persistentContainer.newBackgroundContext()) {
@@ -105,7 +105,10 @@ enum AutomatedDownloadsManager {
     }
 
     @discardableResult
-    private static func processPendingDownloadsAndDeletions(in context: NSManagedObjectContext, triggeredBy trigger: DownloadTrigger) -> Future<Void, XikoloError> {
+    private static func processPendingDownloadsAndDeletions(
+        in context: NSManagedObjectContext,
+        triggeredBy trigger: DownloadTrigger
+    ) -> Future<Void, XikoloError> {
         let refreshFuture = self.refreshCourseItemsOfRelevantCourses(in: context)
         let processingFuture = refreshFuture.flatMap { _ -> Future<Void, XikoloError> in
             let downloadFuture = self.downloadNewContent(in: context, triggeredBy: trigger)
@@ -162,11 +165,11 @@ enum AutomatedDownloadsManager {
             let endDateInFuture = endDate?.inFuture ?? true
             return section.startsAt == lastSectionStart && endDateInFuture
         }.filter { section in // filter for sections with pending downloads
-            let videoContentItems = section.items.compactMap({ $0.content as? Video })
+            let videoContentItems = section.items.compactMap { $0.content as? Video }
             let itemsWithPendingDownloads = videoContentItems.filter { video in
                 let pendingVideoDownload = StreamPersistenceManager.shared.downloadState(for: video) == .notDownloaded
-                let pendingSlidesDownload = automatedDownloadSettings.fileTypes.contains(.slides) && SlidesPersistenceManager.shared.downloadState(for: video) == .notDownloaded
-                return pendingVideoDownload || pendingSlidesDownload
+                let pendingSlidesDownload = SlidesPersistenceManager.shared.downloadState(for: video) == .notDownloaded
+                return pendingVideoDownload || (automatedDownloadSettings.fileTypes.contains(.slides) && pendingSlidesDownload)
             }
 
             return !itemsWithPendingDownloads.isEmpty
@@ -204,19 +207,10 @@ enum AutomatedDownloadsManager {
             if automatedDownloadSettings.deletionOption == .manual { return }
 
             self.sectionsToDelete(for: course).forEach { section in
-//                let section: CourseSection = context.typedObject(with: backgroundSection.objectID)
-
-//                context.refresh(section, mergeChanges: true)
-//                let section: CourseSection = CoreDataHelper.viewContext.typedObject(with: backgroundSection.objectID)
-//                section.willAccessValue(forKey: nil)
-//                section.items.forEach {
-//                    $0.willAccessValue(forKey: nil)
-//                    $0.content?.willAccessValue(forKey: nil)
-//                }
                 let deleteStreamFuture = StreamPersistenceManager.shared.deleteDownloads(for: section)
                 deleteFutures.append(deleteStreamFuture)
 
-                if automatedDownloadSettings.fileTypes.contains(.slides)  {
+                if automatedDownloadSettings.fileTypes.contains(.slides) {
                     let deleteSlidesFuture = SlidesPersistenceManager.shared.deleteDownloads(for: section)
                     deleteFutures.append(deleteSlidesFuture)
                 }
@@ -247,11 +241,11 @@ enum AutomatedDownloadsManager {
         let sectionsToDelete = course.sections.filter {
             (($0.endsAt ?? Date.distantFuture) <= sectionEndForDeletion) || (course.endsAt?.inPast ?? false)
         }.filter { section in // filter for sections with existing downloads
-            let videoContentItems = section.items.compactMap({ $0.content as? Video })
+            let videoContentItems = section.items.compactMap { $0.content as? Video }
             let itemsWithExistingDownloads = videoContentItems.filter { video in
                 let existingVideoDownload = StreamPersistenceManager.shared.downloadState(for: video) == .downloaded
-                let existingSlidesDownload = automatedDownloadSettings.fileTypes.contains(.slides) && SlidesPersistenceManager.shared.downloadState(for: video) == .downloaded
-                return existingVideoDownload || existingSlidesDownload
+                let existingSlidesDownload = SlidesPersistenceManager.shared.downloadState(for: video) == .downloaded
+                return existingVideoDownload || (automatedDownloadSettings.fileTypes.contains(.slides) && existingSlidesDownload)
             }
 
             return !itemsWithExistingDownloads.isEmpty
@@ -264,16 +258,6 @@ enum AutomatedDownloadsManager {
                                         withTypes fileTypes: AutomatedDownloadSettings.FileTypes?,
                                         triggeredBy trigger: DownloadTrigger) -> Future<Void, XikoloError> {
         var downloadFutures: [Future<Void, XikoloError>] = []
-
-//                let section: CourseSection = context.typedObject(with: backgroundSection.objectID)
-//                context.refresh(section, mergeChanges: true)
-//                section.items.forEach { context.refresh($0, mergeChanges: true) }
-//                section.willAccessValue(forKey: nil)
-//                section.items.forEach {
-//                    $0.willAccessValue(forKey: nil)
-//                    $0.content?.willAccessValue(forKey: nil)
-//                }
-
 
         let downloadOptions: [StreamPersistenceManager.Option] = [.silent, .trackingContext(trigger.trackingContext)]
         let downloadStreamFuture = StreamPersistenceManager.shared.startDownloads(for: section, options: downloadOptions)

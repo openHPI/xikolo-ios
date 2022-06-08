@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private var shortcutItemToProcess: UIApplicationShortcutItem?
 
+    // swiftlint:disable:next function_body_length
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
             self.shortcutItemToProcess = shortcutItem

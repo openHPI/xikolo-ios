@@ -8,7 +8,7 @@ import CoreData
 
 enum EntityCreationHelper {
 
-    static func newVideoItem(in context: NSManagedObjectContext, streamDownloaded: Bool = false) -> CourseItem {
+    static func newVideoItem(in context: NSManagedObjectContext, streamDownloaded: Bool = false) throws -> CourseItem {
         let courseItemEntityDescription = NSEntityDescription.entity(forEntityName: "CourseItem", in: context)!
         let videoEntityDescription = NSEntityDescription.entity(forEntityName: "Video", in: context)!
 
@@ -16,8 +16,8 @@ enum EntityCreationHelper {
         video.id = UUID().uuidString
 
         if streamDownloaded {
-            let url =  Bundle.main.url(forResource: "Info", withExtension: "plist")!
-            let bookmarkData = try! url.bookmarkData()
+            let url = Bundle.main.url(forResource: "Info", withExtension: "plist")!
+            let bookmarkData = try url.bookmarkData()
             video.localFileBookmark = NSData(data: bookmarkData)
         }
 

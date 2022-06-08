@@ -37,7 +37,7 @@ class CourseItemListViewController: UITableViewController {
     private var courseObserver: ManagedObjectObserver?
     private var course: Course! {
         didSet {
-            self.courseObserver = ManagedObjectObserver(object: self.course) { [weak self] change in
+            self.courseObserver = ManagedObjectObserver(object: self.course) { [weak self] _ in
                 DispatchQueue.main.async {
                     self?.updateAutomatedDownloadsHint(animated: true)
                 }

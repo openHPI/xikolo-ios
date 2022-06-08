@@ -1,12 +1,12 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
-import CoreData
 import Common
+import CoreData
 
-class CoreDataTestHelper {
+enum CoreDataTestHelper {
 
     static func newPersistentContainer() -> NSPersistentContainer {
         let bundle = Bundle(for: CoreDataHelper.self)
@@ -17,11 +17,11 @@ class CoreDataTestHelper {
         description.url = URL(fileURLWithPath: "/dev/null")
         container.persistentStoreDescriptions = [description]
 
-        container.loadPersistentStores(completionHandler: { _, error in
+        container.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 fatalError("Failed to load stores: \(error), \(error.userInfo)")
             }
-        })
+        }
 
         return container
     }

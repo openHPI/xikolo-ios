@@ -31,7 +31,10 @@ public enum CourseHelper {
         return XikoloSyncEngine().synchronize(withFetchRequest: Self.FetchRequest.course(withSlugOrId: slugOrId), withQuery: query)
     }
 
-    @discardableResult public static func setAutomatedDownloadSetting(forCourse course: Course, to settings: AutomatedDownloadSettings?) -> Future<Void, XikoloError> {
+    @discardableResult public static func setAutomatedDownloadSetting(
+        forCourse course: Course,
+        to settings: AutomatedDownloadSettings?
+    ) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
@@ -44,7 +47,7 @@ public enum CourseHelper {
 
             let center = UNUserNotificationCenter.current()
             let options: UNAuthorizationOptions = [.alert]
-            center.requestAuthorization(options: options) { (granted, error) in
+            center.requestAuthorization(options: options) { granted, error in
                 if granted {
                     course.automatedDownloadSettings = settings
                     course.automatedDownloadsHaveBeenNoticed = true

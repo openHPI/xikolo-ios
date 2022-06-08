@@ -97,7 +97,7 @@ final class StreamPersistenceManager: PersistenceManager<StreamPersistenceManage
         ]
 
         for case let .trackingContext(additionalContext) in options {
-            context.merge(additionalContext, uniquingKeysWith: { $1 })
+            context.merge(additionalContext) { $1 }
         }
 
         return context
@@ -184,7 +184,7 @@ extension StreamPersistenceManager {
     }
 
     @discardableResult
-    func deleteDownloads(for section: CourseSection) -> Future<Void, XikoloError>  {
+    func deleteDownloads(for section: CourseSection) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 
         let sectionObjectID = section.objectID

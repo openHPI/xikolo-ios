@@ -1,12 +1,12 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
-import XCTest
-import CoreData
 import Common
+import CoreData
 @testable import iOS
+import XCTest
 
 @available(iOS 13, *)
 class SectionsToDeleteManualTests: XCTestCase {
@@ -18,6 +18,8 @@ class SectionsToDeleteManualTests: XCTestCase {
     private var section3: CourseSection!
 
     override func setUpWithError() throws {
+        try super.setUpWithError()
+
         let container = CoreDataTestHelper.newPersistentContainer()
         context = container.newBackgroundContext()
 

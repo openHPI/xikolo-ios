@@ -1,12 +1,12 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
-import XCTest
-import CoreData
 import Common
+import CoreData
 @testable import iOS
+import XCTest
 
 @available(iOS 13, *)
 class SectionsToDownloadTests: XCTestCase {
@@ -17,6 +17,8 @@ class SectionsToDownloadTests: XCTestCase {
     private var section2: CourseSection!
 
     override func setUpWithError() throws {
+        try super.setUpWithError()
+
         let container = CoreDataTestHelper.newPersistentContainer()
         context = container.newBackgroundContext()
 
@@ -46,7 +48,7 @@ class SectionsToDownloadTests: XCTestCase {
     }
 
     func testOneSection() throws {
-        section1.items = [EntityCreationHelper.newVideoItem(in: context)]
+        section1.items = [try EntityCreationHelper.newVideoItem(in: context)]
 
         course.startsAt = Calendar.current.date(byAdding: .day, value: -1, to: Date())
         course.endsAt = Calendar.current.date(byAdding: .day, value: 14, to: Date())
@@ -74,8 +76,8 @@ class SectionsToDownloadTests: XCTestCase {
     }
 
     func testMultipleSections() throws {
-        section1.items = [EntityCreationHelper.newVideoItem(in: context)]
-        section2.items = [EntityCreationHelper.newVideoItem(in: context)]
+        section1.items = [try EntityCreationHelper.newVideoItem(in: context)]
+        section2.items = [try EntityCreationHelper.newVideoItem(in: context)]
 
         course.startsAt = Calendar.current.date(byAdding: .day, value: -1, to: Date())
         course.endsAt = Calendar.current.date(byAdding: .day, value: 14, to: Date())
@@ -103,7 +105,7 @@ class SectionsToDownloadTests: XCTestCase {
     }
 
     func testMultipleSectionsNoItemSection1() throws {
-        section2.items = [EntityCreationHelper.newVideoItem(in: context)]
+        section2.items = [try EntityCreationHelper.newVideoItem(in: context)]
 
         course.startsAt = Calendar.current.date(byAdding: .day, value: -1, to: Date())
         course.endsAt = Calendar.current.date(byAdding: .day, value: 14, to: Date())
@@ -118,7 +120,7 @@ class SectionsToDownloadTests: XCTestCase {
     }
 
     func testMultipleSectionsNoItemSection2() throws {
-        section1.items = [EntityCreationHelper.newVideoItem(in: context)]
+        section1.items = [try EntityCreationHelper.newVideoItem(in: context)]
 
         course.startsAt = Calendar.current.date(byAdding: .day, value: -1, to: Date())
         course.endsAt = Calendar.current.date(byAdding: .day, value: 14, to: Date())
@@ -133,8 +135,8 @@ class SectionsToDownloadTests: XCTestCase {
     }
 
     func testOverlappingSections() throws {
-        section1.items = [EntityCreationHelper.newVideoItem(in: context)]
-        section2.items = [EntityCreationHelper.newVideoItem(in: context)]
+        section1.items = [try EntityCreationHelper.newVideoItem(in: context)]
+        section2.items = [try EntityCreationHelper.newVideoItem(in: context)]
 
         course.startsAt = Calendar.current.date(byAdding: .day, value: -14, to: Date())
         course.endsAt = Calendar.current.date(byAdding: .day, value: 1, to: Date())
@@ -162,7 +164,7 @@ class SectionsToDownloadTests: XCTestCase {
     }
 
     func testOverlappingSectionsNoItemSection1() throws {
-        section2.items = [EntityCreationHelper.newVideoItem(in: context)]
+        section2.items = [try EntityCreationHelper.newVideoItem(in: context)]
 
         course.startsAt = Calendar.current.date(byAdding: .day, value: -14, to: Date())
         course.endsAt = Calendar.current.date(byAdding: .day, value: 1, to: Date())
@@ -177,7 +179,7 @@ class SectionsToDownloadTests: XCTestCase {
     }
 
     func testOverlappingSectionsNoItemSection2() throws {
-        section1.items = [EntityCreationHelper.newVideoItem(in: context)]
+        section1.items = [try EntityCreationHelper.newVideoItem(in: context)]
 
         course.startsAt = Calendar.current.date(byAdding: .day, value: -14, to: Date())
         course.endsAt = Calendar.current.date(byAdding: .day, value: 1, to: Date())

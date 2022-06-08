@@ -1,5 +1,5 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
@@ -135,7 +135,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
             NewContentNotificationManager.renewNotifications(for: course)
             AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
             AutomatedDownloadsManager.processPendingDownloadsAndDeletions(triggeredBy: .setup)
-        }.onFailure { [weak self] error in
+        }.onFailure { [weak self] _ in
             self?.tableView.tableHeaderView?.isHidden = false
             UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
                 self?.tableView.resizeTableHeaderView()
@@ -243,6 +243,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
                     self.tableView.reloadRows(at: [oldIndexPath, indexPath], with: .none)
                 }
             }
+
             self.updateFooter(inSection: indexPath.section)
         } else if indexPath.section == 3 {
             // Disable Content Notifications and Automated Downloads

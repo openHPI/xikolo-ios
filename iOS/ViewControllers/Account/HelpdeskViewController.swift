@@ -42,11 +42,11 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
     }
 
     var hasValidInput: Bool {
-        guard let issueTitle = self.titleTextField.text, !issueTitle.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty
+        guard let issueTitle = self.titleTextField.text, !issueTitle.components(separatedBy: .whitespacesAndNewlines).joined.isEmpty
             else { return false }
-        guard let mailAddress = self.mailAddressTextField.text, !mailAddress.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty
+        guard let mailAddress = self.mailAddressTextField.text, !mailAddress.components(separatedBy: .whitespacesAndNewlines).joined.isEmpty
             else { return false }
-        guard let issueReport = self.reportTextView.text, !issueReport.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty
+        guard let issueReport = self.reportTextView.text, !issueReport.components(separatedBy: .whitespacesAndNewlines).joined.isEmpty
             else { return false }
 
         return true

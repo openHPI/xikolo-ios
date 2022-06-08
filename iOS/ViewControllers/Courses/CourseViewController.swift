@@ -87,7 +87,7 @@ class CourseViewController: UIViewController {
 
     var area: CourseArea = .learnings
 
-    var actionAfterOpening: ((CourseViewController) -> Void)? = nil
+    var actionAfterOpening: ((CourseViewController) -> Void)?
 
     override var toolbarItems: [UIBarButtonItem]? {
         get {
@@ -293,7 +293,7 @@ class CourseViewController: UIViewController {
                 completionHandler?(true)
             }
         } else {
-            self.manuallyUpdate(to: .courseDetails, updateCourseAreaSelection: true)  {
+            self.manuallyUpdate(to: .courseDetails, updateCourseAreaSelection: true) {
                 completionHandler?(false)
             }
         }

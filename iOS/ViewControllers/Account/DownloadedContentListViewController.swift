@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 @available(iOS 13, *)
-class DownloadedContentSubMenuListViewController: UITableViewController {
+class DownloadedContentSubMenuViewController: UITableViewController {
 
     private let cellReuseIdentifier = "submenucell"
 
@@ -96,7 +96,7 @@ class DownloadedContentListViewController: UITableViewController {
         super.viewDidLoad()
 
         if #available(iOS 13, *) {
-            let submenuViewController = DownloadedContentSubMenuListViewController(style: .insetGrouped)
+            let submenuViewController = DownloadedContentSubMenuViewController(style: .insetGrouped)
             self.addChild(submenuViewController)
             self.tableView.tableHeaderView = submenuViewController.view
             submenuViewController.didMove(toParent: self)

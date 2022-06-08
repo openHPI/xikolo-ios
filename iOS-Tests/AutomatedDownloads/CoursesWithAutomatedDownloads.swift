@@ -1,12 +1,12 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
-import XCTest
-import CoreData
 import Common
+import CoreData
 @testable import iOS
+import XCTest
 
 class CoursesWithAutomatedDownloads: XCTestCase {
 
@@ -14,6 +14,8 @@ class CoursesWithAutomatedDownloads: XCTestCase {
     private var course: Course!
 
     override func setUpWithError() throws {
+        try super.setUpWithError()
+
         let container = CoreDataTestHelper.newPersistentContainer()
         context = container.newBackgroundContext()
 

@@ -1,12 +1,12 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
-import XCTest
-import CoreData
 import Common
+import CoreData
 @testable import iOS
+import XCTest
 
 @available(iOS 13, *)
 class SectionsToDeleteNextSectionTests: XCTestCase {
@@ -18,6 +18,8 @@ class SectionsToDeleteNextSectionTests: XCTestCase {
     private var section3: CourseSection!
 
     override func setUpWithError() throws {
+        try super.setUpWithError()
+
         let container = CoreDataTestHelper.newPersistentContainer()
         context = container.newBackgroundContext()
 
@@ -43,9 +45,9 @@ class SectionsToDeleteNextSectionTests: XCTestCase {
 
         course.sections = [section1, section2, section3]
 
-        section1.items = [EntityCreationHelper.newVideoItem(in: context, streamDownloaded: true)]
-        section2.items = [EntityCreationHelper.newVideoItem(in: context, streamDownloaded: true)]
-        section3.items = [EntityCreationHelper.newVideoItem(in: context, streamDownloaded: true)]
+        section1.items = [try EntityCreationHelper.newVideoItem(in: context, streamDownloaded: true)]
+        section2.items = [try EntityCreationHelper.newVideoItem(in: context, streamDownloaded: true)]
+        section3.items = [try EntityCreationHelper.newVideoItem(in: context, streamDownloaded: true)]
     }
 
     func testOneSection() throws {

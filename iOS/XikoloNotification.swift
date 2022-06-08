@@ -1,11 +1,11 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for xikolo-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
 import Common
-import UserNotifications
 import UIKit
+import UserNotifications
 
 enum XikoloNotification {
 

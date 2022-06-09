@@ -16,17 +16,11 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
     private let descriptionCellReuseIdentifier = "DescriptionCell"
     private let switchCellReuseIdentifier = "SwitchCell"
     private let optionCellReuseIdentifier = "SettingsOptionCell"
-    private let destructiveCellReuseIdentifier = "DisableCell"
 
-    private lazy var saveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
-    private lazy var cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(close))
-    private lazy var waitBarButtonItem = UIBarButtonItem(customView: self.waitIndicator)
+    private var persistedSettingExist: Bool { self.course.automatedDownloadSettings != nil }
+    private var backgroundDownloadEnabled: Bool { self.downloadSettings.newContentAction == .notificationAndBackgroundDownload }
 
-    private lazy var waitIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.color = Brand.default.colors.window
-        return indicator
-    }()
+    private lazy var doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
 
     init(course: Course, showManageHint: Bool = false) {
         self.course = course
@@ -41,14 +35,12 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         self.tableView.register(DescriptionTableViewCell.self, forCellReuseIdentifier: self.descriptionCellReuseIdentifier)
         self.tableView.register(SwitchTableViewCell.self, forCellReuseIdentifier: self.switchCellReuseIdentifier)
         self.tableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: self.optionCellReuseIdentifier)
-        self.tableView.register(DestructiveTableViewCell.self, forCellReuseIdentifier: self.destructiveCellReuseIdentifier)
 
         self.setupTableHeaderView()
         self.tableView.tableHeaderView?.isHidden = true
         self.tableView.resizeTableHeaderView()
 
-        self.navigationItem.leftBarButtonItem = self.cancelBarButtonItem
-        self.navigationItem.rightBarButtonItem = self.saveBarButtonItem
+        self.navigationItem.rightBarButtonItem = self.doneBarButtonItem
     }
 
     private func setupTableHeaderView() {
@@ -125,27 +117,6 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         }
     }
 
-    @objc private func save() {
-        self.navigationItem.rightBarButtonItem = self.waitBarButtonItem
-        self.waitIndicator.startAnimating()
-
-        CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: self.downloadSettings).onSuccess { [weak self] _ in
-            self?.close()
-        }.onSuccess { [weak self, course] _ in
-            TrackingHelper.createEvent(.contentNotificationsEnabled, resourceType: .course, resourceId: course.id, on: self)
-            NewContentNotificationManager.renewNotifications(for: course)
-            AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
-            AutomatedDownloadsManager.processPendingDownloadsAndDeletions(triggeredBy: .setup)
-        }.onFailure { [weak self] _ in
-            self?.tableView.tableHeaderView?.isHidden = false
-            UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
-                self?.tableView.resizeTableHeaderView()
-            }
-        }.onComplete { [weak self] _ in
-            self?.navigationItem.rightBarButtonItem = self?.saveBarButtonItem
-        }
-    }
-
     @objc private func openSettings() {
         Settings.open()
     }
@@ -158,13 +129,11 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: // description
-            return 1
+            return 2
         case 1: // include slides
-            return 1
+            return self.persistedSettingExist ? 1 : 0
         case 2: // deletion policy
-            return self.downloadSettings.newContentAction == .notificationAndBackgroundDownload ? AutomatedDownloadSettings.DeletionOption.allCases.count : 0
-        case 3: // delete settings
-            return self.course.automatedDownloadSettings != nil ? 1 : 0
+            return self.persistedSettingExist && self.backgroundDownloadEnabled ? AutomatedDownloadSettings.DeletionOption.allCases.count : 0
         default:
             return 0
         }
@@ -173,20 +142,19 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 2:
-            return self.downloadSettings.newContentAction == .notificationAndBackgroundDownload ? "Content Deletion" : nil // TODO: localize
+            return self.persistedSettingExist && self.backgroundDownloadEnabled ? "Content Deletion" : nil // TODO: localize
         default:
             return nil
         }
-
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 1:
-            return self.downloadSettings.fileTypes.explanation
+            return self.persistedSettingExist ? self.downloadSettings.fileTypes.explanation : nil
         case 2:
-            return self.downloadSettings.newContentAction == .notificationAndBackgroundDownload ? self.downloadSettings.deletionOption.explanation : nil
-        case 3:
+            return self.persistedSettingExist && self.backgroundDownloadEnabled ? self.downloadSettings.deletionOption.explanation : nil
+        case 0:
             #warning("TODO: Localize")
             return "You will also be able to change these settings at any time via the course menu ('⋯') or via 'Downloaded Content' in the account tab."
         default:
@@ -196,31 +164,38 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
 
     // delegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: self.descriptionCellReuseIdentifier, for: indexPath) as? DescriptionTableViewCell else { return UITableViewCell() }
             cell.decorativeImages = self.downloadSettings.newContentAction.decorativeImages
             cell.titleLabel.text = self.downloadSettings.newContentAction.title
             cell.descriptionLabel.text = self.downloadSettings.newContentAction.explanation
             return cell
-        } else if indexPath.section == 1 {
+        case (0, 1):
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.switchCellReuseIdentifier, for: indexPath)
+            #warning("TODO: Localize")
+            cell.textLabel?.text = "Activate"
+            let cellSwitch = cell.accessoryView as? UISwitch
+            cellSwitch?.isOn = self.persistedSettingExist
+            cellSwitch?.addTarget(self, action: #selector(valueOfActivateSwitchChanged(sender:)), for: .valueChanged)
+            return cell
+        case (1, _):
             let cell = tableView.dequeueReusableCell(withIdentifier: self.switchCellReuseIdentifier, for: indexPath)
             #warning("TODO: Localize")
             cell.textLabel?.text = "Include slides?"
             let cellSwitch = cell.accessoryView as? UISwitch
             cellSwitch?.isOn = self.downloadSettings.fileTypes.contains(.slides)
-            cellSwitch?.addTarget(self, action: #selector(valueOfIncludeSlidesSwitchChange(sender:)), for: .valueChanged)
+            cellSwitch?.addTarget(self, action: #selector(valueOfIncludeSlidesSwitchChanged(sender:)), for: .valueChanged)
             return cell
-        } else if indexPath.section == 2 {
+        case (2, _):
             let cell = tableView.dequeueReusableCell(withIdentifier: self.optionCellReuseIdentifier, for: indexPath)
             let deletionOption = AutomatedDownloadSettings.DeletionOption.allCases[indexPath.row]
             cell.textLabel?.text = deletionOption.title
             cell.accessoryType = deletionOption == self.downloadSettings.deletionOption ? .checkmark : .none
             return cell
-        } else { // section 3
-            let cell = tableView.dequeueReusableCell(withIdentifier: self.destructiveCellReuseIdentifier, for: indexPath)
-            #warning("TODO: Localize")
-            cell.textLabel?.text = "Disable content notifications"
-            return cell
+        default:
+            assertionFailure("Invalid index path")
+            return UITableViewCell()
         }
     }
 
@@ -229,13 +204,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
         }
 
-        if indexPath.section == 1 {
-            guard let cell = tableView.cellForRow(at: indexPath) as? SwitchTableViewCell else { return }
-            guard let cellSwitch = cell.accessoryView as? UISwitch else { return }
-
-            cellSwitch.setOn(!cellSwitch.isOn, animated: true)
-            self.valueOfIncludeSlidesSwitchChange(sender: cellSwitch)
-        } else if indexPath.section == 2 {
+        if indexPath.section == 2 {
             let oldOption = self.downloadSettings.deletionOption
             let newOption = AutomatedDownloadSettings.DeletionOption.allCases[indexPath.row]
             if oldOption != newOption {
@@ -247,26 +216,50 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
             }
 
             self.updateFooter(inSection: indexPath.section)
-        } else if indexPath.section == 3 {
-            // Disable Content Notifications and Automated Downloads
-            CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: nil).onSuccess { [weak self, course] _ in
-                AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
-                TrackingHelper.createEvent(.contentNotificationsDisabled, resourceType: .course, resourceId: course.id, on: self)
-                self?.close()
-            }.onComplete { [weak self] _ in
-                self?.navigationItem.rightBarButtonItem = self?.saveBarButtonItem
-            }
         }
     }
 
-    @objc private func valueOfIncludeSlidesSwitchChange(sender: UISwitch) {
+    @objc private func valueOfActivateSwitchChanged(sender: UISwitch) {
+        self.save(sender: sender, deleteSettings: !sender.isOn).onSuccess { _ in
+            let sections = IndexSet(integersIn: 1...2)
+            self.tableView.reloadSections(sections, with: .automatic)
+        }
+
+    }
+
+    @objc private func valueOfIncludeSlidesSwitchChanged(sender: UISwitch) {
         if sender.isOn {
             self.downloadSettings.fileTypes.update(with: .slides)
         } else {
             self.downloadSettings.fileTypes.remove(.slides)
         }
 
-        self.updateFooter(inSection: 1)
+        self.save(sender: sender).onSuccess { _ in
+            self.updateFooter(inSection: 1)
+        }
+    }
+
+    private func save(sender: UISwitch, deleteSettings: Bool = false) -> Future<Void, XikoloError> {
+        sender.isEnabled = false
+
+        let downloadSettings = deleteSettings ? nil : self.downloadSettings
+        let result = CourseHelper.setAutomatedDownloadSetting(forCourse: self.course, to: downloadSettings).onSuccess { [weak self, course] _ in
+            TrackingHelper.createEvent(.contentNotificationsEnabled, resourceType: .course, resourceId: course.id, on: self)
+            NewContentNotificationManager.renewNotifications(for: course)
+            AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
+            AutomatedDownloadsManager.processPendingDownloadsAndDeletions(triggeredBy: .setup)
+        }.onComplete { [weak self] result in
+            let isSuccess = result.value != nil
+            self?.tableView.tableHeaderView?.isHidden = isSuccess
+            UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+                self?.tableView.resizeTableHeaderView()
+            }
+        }.onComplete { result in
+            sender.isOn = downloadSettings != nil
+            sender.isEnabled = true
+        }
+
+        return result
     }
 
     private func updateFooter(inSection section: Int) {

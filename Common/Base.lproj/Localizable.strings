@@ -1,4 +1,40 @@
 
+/* Automated Downloads (Deletion options): Explanation for manual deletion */
+"automated-downloads.deletion-options.explanation.manual" = "Downloaded content will not be removed automatically.";
+
+/* Automated Downloads (Deletion options): Explanation for deletion with next section */
+"automated-downloads.deletion-options.explanation.next-section" = "With the start of a new course section, the downloaded content of previous course sections will be removed from this device.";
+
+/* Automated Downloads (Deletion options): Explanation for deletion with second next section */
+"automated-downloads.deletion-options.explanation.second-next-section" = "With the start of a new course section, the downloaded content of the penultimate course section (and older) will be removed from this device.";
+
+/* Automated Downloads (Deletion options): Title for manual deletion */
+"automated-downloads.deletion-options.title.manually" = "Manually";
+
+/* Automated Downloads (Deletion options): Title for deletion with next section */
+"automated-downloads.deletion-options.title.next-section" = "With the start of the next course section";
+
+/* Automated Downloads (Deletion options): Title for deletion with second next section */
+"automated-downloads.deletion-options.title.second-next-section" = "With the start of the second next course section";
+
+/* Automated Downloads (Notification only): Explanation of the feature */
+"automated-downloads.feature.explanation.notification" = "When a new course section becomes available, you will receive a notification. If you tap this notification, you can open the course directly. If you long press on the notification, you can download the content of the new section for offline use.";
+
+/* Automated Downloads (Notification + Background Downloads): Explanation of the feature (addendum) */
+"automated-downloads.feature.explanation.notification-background-download" = "In addition, the app will try to download the new content for you automatically. This is only triggered when your device is connected to a WiFi network and it has the least impact on battery life.";
+
+/* Automated Downloads (Notification only): Title of the feature */
+"automated-downloads.feature.title.notification" = "Notifications for New Content";
+
+/* Automated Downloads (Notification + Background Downloads): Title of the feature */
+"automated-downloads.feature.title.notification-background-download" = "Notifications for New Content & Automated Downloads";
+
+/* Automated Downloads (File types): Explanation for considering only videos */
+"automated-downloads.files-type.explanation.videos" = "Only videos will be downloaded.";
+
+/* Automated Downloads (File types): Explanation for considering videos and slides */
+"automated-downloads.files-type.explanation.videos-slides" = "Videos and slides will be downloaded.";
+
 /* title for course start in a course date cell */
 "course-date-cell.course-start.title" = "Course start";
 

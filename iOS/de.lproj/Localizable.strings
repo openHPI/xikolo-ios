@@ -44,6 +44,33 @@
 /* App state message for server maintenance */
 "app-state.maintenance.server maintenance on %@" = "Server-Wartung auf %@";
 
+/* Section title in course list for activated automated downloads */
+"automated-downloads.course-list.section.title.activated for" = "Aktiviert für";
+
+/* Section title in course list for available automated downloads */
+"automated-downloads.course-list.section.title.available for" = "Verfügbar für";
+
+/* Title for course list for automated downloads */
+"automated-downloads.course-list.title" = "Benachrichtigungen für neue Inhalte";
+
+/* Automated Downloads: Action title for managing notifications for new content */
+"automated-downloads.setup.action.title" = "Benachrichtigungen für neue Inhalte verwalten";
+
+/* Automated Downloads (Setup): Header title for the content deletion section */
+"automated-downloads.setup.header.content-deletion" = "Löschen von Inhalten";
+
+/* Automated Downloads (Setup): Hint for the location of the settings view */
+"automated-downloads.setup.message.edit-again" = "Diese Einstellungen können auch jederzeit über das Kursmenü ('⋯') oder über 'Heruntergeladene Inhalte' in der Registerkarte 'Konto' ändern werden.";
+
+/* Automated Downloads (Setup): Message shown after failed setup */
+"automated-downloads.setup.message.failed" = "Einrichtung fehlgeschlagen: Bitte die Berechtigungen überprüfen";
+
+/* Automated Downloads (Setup): Title for the activate switch */
+"automated-downloads.setup.switch.title.activate" = "Aktivieren";
+
+/* Automated Downloads (Setup): Title for the switch to include slides */
+"automated-downloads.setup.switch.title.include-slides" = "einschließlich Folien";
+
 /* button title for starting playback for channel teaser video */
 "channel-header.play-teaser" = "Teaser abspielen";
 
@@ -254,6 +281,12 @@
 /* title for empty announcement list */
 "empty-view.announcements.title" = "Zurzeit gibt es keine Neuigkeiten";
 
+/* explanation for empty course list for automated downloads */
+"empty-view.automated-downloads.course-list.explanation" = "Benachrichtigungen über neue Inhalte sind nur während des Kurszeitraums der Kurse, für die Sie eingeschrieben sind, verfügbar.";
+
+/* title for empty course list for automated downloads */
+"empty-view.automated-downloads.course-list.title" = "Keine Kurse verfügbar";
+
 /* title for empty certificates list */
 "empty-view.certificates.no-certificates.title" = "Keine Zeugnisse verfügbar";
 
@@ -307,6 +340,9 @@
 
 /* title to confirm alert */
 "global.alert.ok" = "OK";
+
+/* Button title to open settings app */
+"global.button.title.open-settings" = "Einstellungen öffnen";
 
 /* Title for button for deselecting all items in a list */
 "global.list.selection.deselect all" = "Alle abwählen";

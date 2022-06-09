@@ -25,7 +25,8 @@ class DownloadedContentSubMenuViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath)
-        cell.textLabel?.text = "Manage Content Notifications" // TODO: localize
+        cell.textLabel?.text = NSLocalizedString("automated-downloads.setup.action.title",
+                                                 comment: "Automated Downloads: Action title for managing notifications for new content")
         cell.accessoryType = .disclosureIndicator
         return cell
     }

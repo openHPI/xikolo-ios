@@ -45,7 +45,8 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
 
     private func setupTableHeaderView() {
         let label = UILabel()
-        label.text = "Setup failed. Please check the permissions" // TODO: localization
+        label.text = NSLocalizedString("automated-downloads.setup.message.failed",
+                                       comment: "Automated Downloads (Setup): Message shown after failed setup")
         label.textColor = ColorCompatibility.systemRed
         label.font = UIFont.preferredFont(forTextStyle: .callout)
         label.adjustsFontForContentSizeCategory = true
@@ -53,8 +54,8 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         label.textAlignment = .center
 
         let buttonFont = UIFont.preferredFont(forTextStyle: .footnote)
-        #warning("TODO: localize")
-        let attributedButtonText = NSMutableAttributedString(string: "Open Settings", attributes: [.font: buttonFont]) // TODO: localization
+        let buttonText = NSLocalizedString("global.button.title.open-settings", comment: "Button title to open settings app")
+        let attributedButtonText = NSMutableAttributedString(string: buttonText, attributes: [.font: buttonFont])
 
         let symbolConfiguration = UIImage.SymbolConfiguration(font: buttonFont, scale: .small)
         let symbolImage = UIImage(systemName: "chevron.right", withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysTemplate)
@@ -137,7 +138,9 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 2:
-            return self.persistedSettingsExist && self.backgroundDownloadEnabled ? "Content Deletion" : nil // TODO: localize
+            let headerTitle = NSLocalizedString("automated-downloads.setup.header.content-deletion",
+                                                comment: "Automated Downloads (Setup): Header title for the content deletion section")
+            return self.persistedSettingsExist && self.backgroundDownloadEnabled ? headerTitle : nil
         default:
             return nil
         }
@@ -146,8 +149,8 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 0:
-            #warning("TODO: Localize")
-            return "You will also be able to change these settings at any time via the course menu ('⋯') or via 'Downloaded Content' in the account tab."
+            return NSLocalizedString("automated-downloads.setup.message.edit-again",
+                                     comment: "Automated Downloads (Setup): Hint for the location of the settings view")
         case 1:
             return self.persistedSettingsExist ? self.downloadSettings.fileTypes.explanation : nil
         case 2:
@@ -170,8 +173,8 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
             return cell
         case (0, 1):
             let cell = tableView.dequeueReusableCell(withIdentifier: self.switchCellReuseIdentifier, for: indexPath)
-            #warning("TODO: Localize")
-            cell.textLabel?.text = "Activate"
+            cell.textLabel?.text = NSLocalizedString("automated-downloads.setup.switch.title.activate",
+                                                    comment: "Automated Downloads (Setup): Title for the activate switch")
             cell.selectionStyle = .none
             let cellSwitch = cell.accessoryView as? UISwitch
             cellSwitch?.isOn = self.persistedSettingsExist
@@ -179,8 +182,8 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
             return cell
         case (1, _):
             let cell = tableView.dequeueReusableCell(withIdentifier: self.switchCellReuseIdentifier, for: indexPath)
-            #warning("TODO: Localize")
-            cell.textLabel?.text = "Include slides?"
+            cell.textLabel?.text = NSLocalizedString("automated-downloads.setup.switch.title.include-slides",
+                                                     comment: "Automated Downloads (Setup): Title for the switch to include slides")
             cell.selectionStyle = .none
             let cellSwitch = cell.accessoryView as? UISwitch
             cellSwitch?.isOn = self.downloadSettings.fileTypes.contains(.slides)

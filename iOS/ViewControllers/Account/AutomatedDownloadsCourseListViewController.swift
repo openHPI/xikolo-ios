@@ -55,7 +55,7 @@ class AutomatedDownloadsCourseListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Content Notifications"
+        self.navigationItem.title = NSLocalizedString("automated-downloads.course-list.title", comment: "Title for course list for automated downloads")
         self.tableView.dataSource = self.dataSource
 
         self.setupEmptyState()
@@ -98,8 +98,10 @@ extension AutomatedDownloadsCourseListViewController: NSFetchedResultsController
 
         let currentSnapshot = self.dataSource.snapshot()
 
-        let section1 = "Activated For" // TODO: localize
-        let section2 = "Available For"
+        let section1 = NSLocalizedString("automated-downloads.course-list.section.title.activated for",
+                                         comment: "Section title in course list for activated automated downloads")
+        let section2 = NSLocalizedString("automated-downloads.course-list.section.title.available for",
+                                         comment: "Section title in course list for available automated downloads")
 
         var snapshot = NSDiffableDataSourceSnapshot<String, NSObject>()
 
@@ -138,13 +140,11 @@ extension AutomatedDownloadsCourseListViewController: NSFetchedResultsController
 extension AutomatedDownloadsCourseListViewController: EmptyStateDataSource {
 
     var emptyStateTitleText: String {
-        #warning("TODO: localize")
-        return "No Courses available"
+        return NSLocalizedString("empty-view.automated-downloads.course-list.title", comment: "title for empty course list for automated downloads")
     }
 
     var emptyStateDetailText: String? {
-        #warning("TODO: localize")
-        return "Notifications for new content are only available during the course period for courses you enrolled to."
+        return NSLocalizedString("empty-view.automated-downloads.course-list.explanation", comment: "explanation for empty course list for automated downloads")
     }
 
     func setupEmptyState() {

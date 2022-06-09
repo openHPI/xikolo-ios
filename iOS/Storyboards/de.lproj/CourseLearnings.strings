@@ -1,3 +1,27 @@
 
 /* Class = "UILabel"; text = "Continue Learning"; ObjectID = "Hy1-Sb-ya1"; */
 "Hy1-Sb-ya1.text" = "Lernen fortsetzen";
+
+/* Class = "UILabel"; text = "You will be notified when new content is available."; ObjectID = "InR-Aj-L77"; */
+"InR-Aj-L77.text" = "Es werden Benachrichtigungen für neuen Inhalte verschickt.";
+
+/* Class = "UILabel"; text = "Get notified when new content is available"; ObjectID = "f4k-xM-UDj"; */
+"f4k-xM-UDj.text" = "Erhalte Benachrichtigungen, wenn neue Inhalte verfügbar sind";
+
+/* Class = "UILabel"; text = "Permission missing"; ObjectID = "fR0-Ds-ft3"; */
+"fR0-Ds-ft3.text" = "Fehlende Berechtigung";
+
+/* Class = "UILabel"; text = "Activate in Settings"; ObjectID = "NAX-Sw-lt0"; */
+"NAX-Sw-lt0.text" = "In den Einstellungen aktivieren";
+
+/* Class = "UILabel"; text = "New Feature"; ObjectID = "a5z-Bd-WSj"; */
+"a5z-Bd-WSj.text" = "Neue Funktion";
+
+/* Class = "UILabel"; text = "The app will try to download the new content automatically."; ObjectID = "lQ3-ov-xQ2"; */
+"lQ3-ov-xQ2.text" = "Die App wird versuchen, die neuen Inhalte automatisch herunterzuladen.";
+
+/* Class = "UILabel"; text = "You will not receive notifications when new content is available."; ObjectID = "p2g-r0-qxm"; */
+"p2g-r0-qxm.text" = "Bei neuen Inhalten werden keine Benachrichtigungen verschickt.";
+
+/* Class = "UILabel"; text = "The app will try to download the new content automatically."; ObjectID = "xex-gu-Eyc"; */
+"xex-gu-Eyc.text" = "Die App wird versuchen, die neuen Inhalte automatisch herunterzuladen.";

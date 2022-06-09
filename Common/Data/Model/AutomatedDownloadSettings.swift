@@ -13,25 +13,23 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
         case notificationAndBackgroundDownload = 2
 
         public var title: String {
-            #warning("TODOL localize")
             switch self {
             case .notification:
-                return "Notifications for new content"
+                return CommonLocalizedString("automated-downloads.feature.title.notification",
+                                             comment: "Automated Downloads (Notification only): Title of the feature")
             case .notificationAndBackgroundDownload:
-                return "Notification for new content & Automated downloads"
+                return CommonLocalizedString("automated-downloads.feature.title.notification-background-download",
+                                             comment: "Automated Downloads (Notification + Background Downloads): Title of the feature")
             }
         }
 
         public var explanation: String {
-            var explanation = """
-            When a new course section becomes available, you will receive a notification. By tapping on this notification, you can open the course directly. If you long press on the notification, you can choose to download all videos from the new section for offline usage.
-            """
+            var explanation = CommonLocalizedString("automated-downloads.feature.explanation.notification",
+                                                    comment: "Automated Downloads (Notification only): Explanation of the feature")
 
             if self == .notificationAndBackgroundDownload {
-                explanation += """
-
-                In addition, the app attempt to automatically download those files for you. This will only be triggered if your device is connected to a WiFi network.
-                """
+                explanation += CommonLocalizedString("automated-downloads.feature.explanation.notification-background-download",
+                                                     comment: "Automated Downloads (Notification + Background Downloads): Explanation of the feature (addendum)")
             }
 
             return explanation
@@ -75,9 +73,11 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
 
         public var explanation: String {
             if self.contains(.slides) {
-                return "Slides will be downloaded"
+                return CommonLocalizedString("automated-downloads.files-type.explanation.videos-slides",
+                                             comment: "Automated Downloads (File types): Explanation for considering videos and slides")
             } else {
-                return "Only videos will be downloaded"
+                return CommonLocalizedString("automated-downloads.files-type.explanation.videos",
+                                             comment: "Automated Downloads (File types): Explanation for considering only videos")
             }
         }
     }
@@ -90,22 +90,28 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
         public var title: String {
             switch self {
             case .manual:
-                return "Manual"
+                return CommonLocalizedString("automated-downloads.deletion-options.title.manually",
+                                             comment: "Automated Downloads (Deletion options): Title for manual deletion")
             case .nextSection:
-                return "With the start of the next course section"
+                return CommonLocalizedString("automated-downloads.deletion-options.title.next-section",
+                                             comment: "Automated Downloads (Deletion options): Title for deletion with next section")
             case .secondNextSection:
-                return "With the start of the second next course section"
+                return CommonLocalizedString("automated-downloads.deletion-options.title.second-next-section",
+                                             comment: "Automated Downloads (Deletion options): Title for deletion with second next section")
             }
         }
 
         public var explanation: String {
             switch self {
             case .manual:
-                return "Download content of previous course sections will not be removed automatically."
+                return CommonLocalizedString("automated-downloads.deletion-options.explanation.manual",
+                                             comment: "Automated Downloads (Deletion options): Explanation for manual deletion")
             case .nextSection:
-                return "With the start of a new course section, the downloaded content of previous course sections will be removed from this device."
+                return CommonLocalizedString("automated-downloads.deletion-options.explanation.next-section",
+                                             comment: "Automated Downloads (Deletion options): Explanation for deletion with next section")
             case .secondNextSection:
-                return "With the start of a new course section, the downloaded content of second last course section (or older) will be removed from this device."
+                return CommonLocalizedString("automated-downloads.deletion-options.explanation.second-next-section",
+                                             comment: "Automated Downloads (Deletion options): Explanation for deletion with second next section")
             }
         }
     }

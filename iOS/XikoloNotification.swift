@@ -27,8 +27,8 @@ enum XikoloNotification {
 
     static func setNotificationCategories() {
         let center = UNUserNotificationCenter.current()
-        #warning("TODO: localize")
-        let downloadAction = UNNotificationAction(identifier: ActionIdentifier.download, title: "Download now", options: [])
+        let title = NSString.localizedUserNotificationString(forKey: "notification.new-content.action.download", arguments: nil)
+        let downloadAction = UNNotificationAction(identifier: ActionIdentifier.download, title: title, options: [])
         let category = UNNotificationCategory(identifier: CategoryIdentifier.automatedDownloads, actions: [downloadAction], intentIdentifiers: [])
         center.setNotificationCategories([category])
     }
@@ -38,11 +38,10 @@ enum XikoloNotification {
 
         let identifier = Self.RequestIdentifier.identifier(for: section)
 
-        #warning("TODO: localize")
         let content = UNMutableNotificationContent()
         content.title = section.course?.title ?? UIApplication.appName
         let sectionTitle = section.title ?? String(section.position)
-        content.body = "Course section '\(sectionTitle)' started. Download the new course material now to continue learning without an Internet connection."
+        content.body = NSString.localizedUserNotificationString(forKey: "notification.new-content.body", arguments: [sectionTitle])
         content.categoryIdentifier = self.CategoryIdentifier.automatedDownloads
         content.userInfo = ["section-id": section.id]
 

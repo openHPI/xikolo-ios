@@ -38,7 +38,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
 
         self.tableView.allowsMultipleSelection = true
         self.tableView.cellLayoutMarginsFollowReadableWidth = true
-        self.tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: self.descriptionCellReuseIdentifier)
+        self.tableView.register(DescriptionTableViewCell.self, forCellReuseIdentifier: self.descriptionCellReuseIdentifier)
         self.tableView.register(SwitchTableViewCell.self, forCellReuseIdentifier: self.switchCellReuseIdentifier)
         self.tableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: self.optionCellReuseIdentifier)
         self.tableView.register(DestructiveTableViewCell.self, forCellReuseIdentifier: self.destructiveCellReuseIdentifier)
@@ -61,6 +61,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         label.textAlignment = .center
 
         let buttonFont = UIFont.preferredFont(forTextStyle: .footnote)
+        #warning("TODO: localize")
         let attributedButtonText = NSMutableAttributedString(string: "Open Settings", attributes: [.font: buttonFont]) // TODO: localization
 
         let symbolConfiguration = UIImage.SymbolConfiguration(font: buttonFont, scale: .small)
@@ -171,10 +172,8 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 1:
-            return "Supplementary Materials" // TODO: localize
         case 2:
-            return self.downloadSettings.newContentAction == .notificationAndBackgroundDownload ? "Deletion Policy" : nil // TODO: localize
+            return self.downloadSettings.newContentAction == .notificationAndBackgroundDownload ? "Content Deletion" : nil // TODO: localize
         default:
             return nil
         }
@@ -198,12 +197,14 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
     // delegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: self.descriptionCellReuseIdentifier, for: indexPath)
-            cell.textLabel?.text = self.downloadSettings.newContentAction.title
-            cell.detailTextLabel?.text = self.downloadSettings.newContentAction.explanation
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: self.descriptionCellReuseIdentifier, for: indexPath) as? DescriptionTableViewCell else { return UITableViewCell() }
+            cell.decorativeImages = self.downloadSettings.newContentAction.decorativeImages
+            cell.titleLabel.text = self.downloadSettings.newContentAction.title
+            cell.descriptionLabel.text = self.downloadSettings.newContentAction.explanation
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: self.switchCellReuseIdentifier, for: indexPath)
+            #warning("TODO: Localize")
             cell.textLabel?.text = "Include slides?"
             let cellSwitch = cell.accessoryView as? UISwitch
             cellSwitch?.isOn = self.downloadSettings.fileTypes.contains(.slides)
@@ -217,6 +218,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
             return cell
         } else { // section 3
             let cell = tableView.dequeueReusableCell(withIdentifier: self.destructiveCellReuseIdentifier, for: indexPath)
+            #warning("TODO: Localize")
             cell.textLabel?.text = "Disable content notifications"
             return cell
         }

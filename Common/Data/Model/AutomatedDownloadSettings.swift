@@ -36,6 +36,31 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
 
             return explanation
         }
+
+        @available(iOS 13.0, *)
+        public var decorativeImages: (UIImage?, UIImage?, UIImage?) {
+            let symbolConfiguration = UIImage.SymbolConfiguration(textStyle: .largeTitle, scale: .medium)
+            let smallSymbolConfiguration = UIImage.SymbolConfiguration(textStyle: .title1, scale: .small)
+
+            let bellSymbol: UIImage? = {
+                if #available(iOS 14, *) {
+                    return UIImage(systemName: "bell.badge.fill", withConfiguration: symbolConfiguration)
+                } else {
+                    return UIImage(systemName: "bell.fill", withConfiguration: symbolConfiguration)
+                }
+            }()
+
+            switch self {
+            case .notification:
+                return (bellSymbol, nil, nil)
+            case .notificationAndBackgroundDownload:
+                return (
+                    bellSymbol,
+                    UIImage(systemName: "plus", withConfiguration: smallSymbolConfiguration),
+                    UIImage(systemName: "square.and.arrow.down.on.square.fill", withConfiguration: symbolConfiguration)
+                )
+            }
+        }
     }
 
     public struct FileTypes: OptionSet {

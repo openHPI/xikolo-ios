@@ -295,6 +295,7 @@
 		50BC011B217755B500F38B30 /* UnavailableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */; };
 		50C21DE823549D4A00D7A1A6 /* UICollectionView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C21DE723549D4A00D7A1A6 /* UICollectionView+EmptyState.swift */; };
 		50C8356F279ED733004FEB62 /* BrightFutures in Frameworks */ = {isa = PBXBuildFile; productRef = 50C8356E279ED733004FEB62 /* BrightFutures */; };
+		50CCE56E2851F35D00219DD2 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CCE56D2851F35D00219DD2 /* DescriptionTableViewCell.swift */; };
 		50CF1F4620DCDBFC0011BFE9 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFViewController.swift */; };
 		50CF1F4E20DCDBFC0011BFE9 /* RichTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichTextViewController.swift */; };
 		50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
@@ -1038,6 +1039,7 @@
 		50C4700521BA801C00F50A1A /* xikolo 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 8.xcdatamodel"; sourceTree = "<group>"; };
 		50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDateHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
+		50CCE56D2851F35D00219DD2 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		50CF1F3E20DCCF4F0011BFE9 /* openHPI-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
 		50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Release.xcconfig"; sourceTree = "<group>"; };
 		50CF201620DCDBFC0011BFE9 /* openhpi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openhpi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1434,6 +1436,7 @@
 				50E4D7F724AD22B40032B1DC /* UserProfileCell.swift */,
 				50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */,
 				508FF44121AB390400801530 /* SubtitleTableViewCell.swift */,
+				50CCE56D2851F35D00219DD2 /* DescriptionTableViewCell.swift */,
 				505F7C972535E18A0006F629 /* DestructiveTableViewCell.swift */,
 				505327A428044A3F009A46B7 /* SwitchTableViewCell.swift */,
 			);
@@ -3321,6 +3324,7 @@
 				502CBE2824338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift in Sources */,
 				0280CB14237CBD4100B774BE /* SectionProgressCell.swift in Sources */,
 				50CF1F8020DCDBFC0011BFE9 /* CustomWidthNavigationController.swift in Sources */,
+				50CCE56E2851F35D00219DD2 /* DescriptionTableViewCell.swift in Sources */,
 				700398C221A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift in Sources */,
 				50F3DD4B245859E00008CE27 /* DocumentLocalization+Persistence.swift in Sources */,
 				50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */,

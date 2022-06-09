@@ -11,24 +11,34 @@ class DescriptionTableViewCell: UITableViewCell {
     private let decorativeImageView2 = UIImageView()
     private let decorativeImageView3 = UIImageView()
 
+    let topMessageLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = ColorCompatibility.secondaryLabel
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
+
     let titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.textColor = ColorCompatibility.label
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-        titleLabel.adjustsFontForContentSizeCategory = true
-        titleLabel.numberOfLines = 0
-        titleLabel.textAlignment = .center
-        return titleLabel
+        let label = UILabel()
+        label.textColor = ColorCompatibility.label
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
     }()
 
     let descriptionLabel: UILabel = {
-        let descriptionLabel = UILabel()
-        descriptionLabel.textColor = ColorCompatibility.secondaryLabel
-        descriptionLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
-        descriptionLabel.adjustsFontForContentSizeCategory = true
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.textAlignment = .center
-        return descriptionLabel
+        let label = UILabel()
+        label.textColor = ColorCompatibility.secondaryLabel
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
     }()
 
     var decorativeImages: (UIImage?, UIImage?, UIImage?) {
@@ -49,19 +59,18 @@ class DescriptionTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        let innerStackView = UIStackView(arrangedSubviews: [self.decorativeImageView1, self.decorativeImageView2, self.decorativeImageView3])
-        innerStackView.axis = .horizontal
-        innerStackView.alignment = .center
-        innerStackView.spacing = 8
+        let decorativeImageStackView = UIStackView(arrangedSubviews: [self.decorativeImageView1, self.decorativeImageView2, self.decorativeImageView3])
+        decorativeImageStackView.axis = .horizontal
+        decorativeImageStackView.alignment = .center
+        decorativeImageStackView.spacing = 8
 
-        let stackView = UIStackView(arrangedSubviews: [innerStackView, self.titleLabel, self.descriptionLabel])
+        let stackView = UIStackView(arrangedSubviews: [self.topMessageLabel, decorativeImageStackView, self.titleLabel, self.descriptionLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.spacing = 16
         stackView.setCustomSpacing(8, after: self.titleLabel)
         self.contentView.addSubview(stackView)
-
 
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.leadingAnchor),

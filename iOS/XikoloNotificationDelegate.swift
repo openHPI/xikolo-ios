@@ -13,7 +13,7 @@ class XikoloNotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        guard response.notification.request.content.categoryIdentifier == XikoloNotification.CategoryIdentifier.automatedDownloads else { return }
+        guard response.notification.request.content.categoryIdentifier == XikoloNotification.CategoryIdentifier.newContent else { return }
 
         guard let courseSectionId = response.notification.request.content.userInfo["section-id"] as? String else { return }
         let fetchRequest = CourseSectionHelper.FetchRequest.courseSection(withId: courseSectionId)

@@ -10,7 +10,7 @@ import UserNotifications
 enum XikoloNotification {
 
     enum CategoryIdentifier {
-        static let automatedDownloads = "XikoloAutomatedDownloadCategory"
+        static let newContent = "XikoloNewContentCategory"
     }
 
     enum ActionIdentifier {
@@ -18,7 +18,7 @@ enum XikoloNotification {
     }
 
     enum RequestIdentifier {
-        static let automatedDownloads = "XikoloAutomatedDownloadLocalNotification"
+        static let automatedDownloads = "XikoloNewContentLocalNotification"
 
         static func identifier(for section: CourseSection) -> String {
             return "new-content-section-\(section.id)"
@@ -29,7 +29,7 @@ enum XikoloNotification {
         let center = UNUserNotificationCenter.current()
         let title = NSString.localizedUserNotificationString(forKey: "notification.new-content.action.download", arguments: nil)
         let downloadAction = UNNotificationAction(identifier: ActionIdentifier.download, title: title, options: [])
-        let category = UNNotificationCategory(identifier: CategoryIdentifier.automatedDownloads, actions: [downloadAction], intentIdentifiers: [])
+        let category = UNNotificationCategory(identifier: CategoryIdentifier.newContent, actions: [downloadAction], intentIdentifiers: [])
         center.setNotificationCategories([category])
     }
 
@@ -42,7 +42,7 @@ enum XikoloNotification {
         content.title = section.course?.title ?? UIApplication.appName
         let sectionTitle = section.title ?? String(section.position)
         content.body = NSString.localizedUserNotificationString(forKey: "notification.new-content.body", arguments: [sectionTitle])
-        content.categoryIdentifier = self.CategoryIdentifier.automatedDownloads
+        content.categoryIdentifier = self.CategoryIdentifier.newContent
         content.userInfo = ["section-id": section.id]
 
         let dateComponents = Calendar.autoupdatingCurrent.dateComponents(

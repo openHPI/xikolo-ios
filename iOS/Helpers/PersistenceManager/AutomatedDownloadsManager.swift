@@ -157,7 +157,9 @@ enum AutomatedDownloadsManager {
         guard let automatedDownloadSettings = course.automatedDownloadSettings else { return [] }
         guard automatedDownloadSettings.newContentAction == .notificationAndBackgroundDownload else { return [] }
 
-        let orderedStartDates = course.sections.compactMap(\.startsAt).filter(\.inPast).sorted()
+        let orderedStartDates = course.sections.filter { section in
+            return section.items.contains { $0.content is Video }
+        }.compactMap(\.startsAt).filter(\.inPast).sorted()
 
         let lastSectionStart = orderedStartDates.last
         let sectionsToDownload = course.sections.filter { section in
@@ -224,7 +226,9 @@ enum AutomatedDownloadsManager {
         guard let automatedDownloadSettings = course.automatedDownloadSettings else { return [] }
         guard automatedDownloadSettings.newContentAction == .notificationAndBackgroundDownload else { return [] }
 
-        let orderedStartDates = course.sections.compactMap(\.endsAt).filter(\.inPast).sorted()
+        let orderedStartDates = course.sections.filter { section in
+            return section.items.contains { $0.content is Video }
+        }.compactMap(\.endsAt).filter(\.inPast).sorted()
 
         let possibleSectionEndForDeletion: Date? = {
             switch automatedDownloadSettings.deletionOption {

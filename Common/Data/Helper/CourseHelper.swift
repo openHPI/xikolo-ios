@@ -45,15 +45,20 @@ public enum CourseHelper {
                 return
             }
 
-            let center = UNUserNotificationCenter.current()
-            let options: UNAuthorizationOptions = [.alert]
-            center.requestAuthorization(options: options) { granted, error in
-                if granted {
-                    course.automatedDownloadSettings = settings
-                    course.automatedDownloadsHaveBeenNoticed = true
-                    promise.complete(context.saveWithResult())
-                } else {
-                    promise.failure(.permissionError(error))
+            if settings == nil { // delete settings
+                course.automatedDownloadSettings = settings
+                promise.complete(context.saveWithResult())
+            } else {
+                let center = UNUserNotificationCenter.current()
+                let options: UNAuthorizationOptions = [.alert]
+                center.requestAuthorization(options: options) { granted, error in
+                    if granted {
+                        course.automatedDownloadSettings = settings
+                        course.automatedDownloadsHaveBeenNoticed = true
+                        promise.complete(context.saveWithResult())
+                    } else {
+                        promise.failure(.permissionError(error))
+                    }
                 }
             }
         }

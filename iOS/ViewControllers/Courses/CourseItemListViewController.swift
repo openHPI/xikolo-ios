@@ -258,10 +258,12 @@ class CourseItemListViewController: UITableViewController {
             let notificationsDenied = settings.authorizationStatus == .denied
             let shouldHideActiveSettingsHint = !downloadSettingsExist || notificationsDenied
 
+            let shouldHideMissingPermissionHint = !(downloadSettingsExist && notificationsDenied)
+
             DispatchQueue.main.async {
                 self.automatedDownloadsPromotionHint.isHidden = shouldHidePromotionHint
                 self.automatedDownloadsPromotionHintExtended.isHidden = !self.course.offersAutomatedBackgroundDownloads
-                self.automatedDownloadsMissingPermissionHint.isHidden = !notificationsDenied
+                self.automatedDownloadsMissingPermissionHint.isHidden = shouldHideMissingPermissionHint
                 self.automatedDownloadsActiveHint.isHidden = shouldHideActiveSettingsHint
                 self.automatedDownloadsActiveHintExtended.isHidden = !backgroundDownloadEnabled
 

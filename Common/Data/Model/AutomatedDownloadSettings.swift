@@ -28,6 +28,7 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
                                                     comment: "Automated Downloads (Notification only): Explanation of the feature")
 
             if self == .notificationAndBackgroundDownload {
+                explanation += "\n\n"
                 explanation += CommonLocalizedString("automated-downloads.feature.explanation.notification-background-download",
                                                      comment: "Automated Downloads (Notification + Background Downloads): Explanation of the feature (addendum)")
             }

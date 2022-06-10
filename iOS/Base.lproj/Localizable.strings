@@ -63,7 +63,7 @@
 "automated-downloads.setup.message.edit-again" = "You will be able to change these settings at any time via the course menu ('⋯') or via 'Downloaded Content' in the account tab.";
 
 /* Automated Downloads (Setup): Message shown after failed setup */
-"automated-downloads.setup.message.failed" = "Setup failed: Please check the permissions";
+"automated-downloads.setup.message.failed" = "Setup failed: Please check the app's permission to send notification";
 
 /* Automated Downloads (Setup): Title for the activate switch */
 "automated-downloads.setup.switch.title.activate" = "Activate";

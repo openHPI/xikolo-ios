@@ -63,7 +63,7 @@
 "automated-downloads.setup.message.edit-again" = "Diese Einstellungen können auch jederzeit über das Kursmenü ('⋯') oder über 'Heruntergeladene Inhalte' in der Registerkarte 'Konto' ändern werden.";
 
 /* Automated Downloads (Setup): Message shown after failed setup */
-"automated-downloads.setup.message.failed" = "Einrichtung fehlgeschlagen: Bitte die Berechtigungen überprüfen";
+"automated-downloads.setup.message.failed" = "Einrichtung fehlgeschlagen: Bitte die Berechtigung der App zum Senden von Benachrichtigungen überprüfen";
 
 /* Automated Downloads (Setup): Title for the activate switch */
 "automated-downloads.setup.switch.title.activate" = "Aktivieren";

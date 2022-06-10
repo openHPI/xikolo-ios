@@ -375,6 +375,7 @@ class CourseViewController: UIViewController {
         guard #available(iOS 13, *), let course = self.course else { return }
         let downloadSettingsViewController = AutomatedDownloadsSettingsViewController(course: course)
         let navigationController = ReadableWidthNavigationController(rootViewController: downloadSettingsViewController)
+        navigationController.modalPresentationStyle = .formSheet
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 

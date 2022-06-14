@@ -11,10 +11,10 @@ on:
 jobs:
   build-test-common:
     name: Common / Build + Test
-    runs-on: macOS-11
+    runs-on: macOS-12
     strategy:
       matrix:
-        xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
+        xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -33,10 +33,10 @@ jobs:
   
   build-test-ios:
     name: iOS / Build + Test
-    runs-on: macOS-11
+    runs-on: macOS-12
     strategy:
       matrix:
-        xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
+        xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -55,10 +55,10 @@ jobs:
 
   lint:
     name: Lint code
-    runs-on: macOS-11
+    runs-on: macOS-12
     strategy:
       matrix:
-        xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
+        xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -73,10 +73,10 @@ jobs:
 
   check-locales:
     name: Check localization
-    runs-on: macOS-11
+    runs-on: macOS-12
     strategy:
       matrix:
-        xcode: ['/Applications/Xcode_13.2.app/Contents/Developer']
+        xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
     steps:
       - name: Checkout
         uses: actions/checkout@v2

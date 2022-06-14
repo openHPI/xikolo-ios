@@ -9,51 +9,51 @@ on:
       - dev
 
 jobs:
-  build-test-common:
-    name: Common / Build + Test
-    runs-on: macOS-12
-    strategy:
-      matrix:
-        xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  # build-test-common:
+  #   name: Common / Build + Test
+  #   runs-on: macOS-12
+  #   strategy:
+  #     matrix:
+  #       xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      - name: Install dependencies
-        uses: ./.github/actions/setup
+  #     - name: Install dependencies
+  #       uses: ./.github/actions/setup
 
-      - name: Copy brand assets
-        run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
+  #     - name: Copy brand assets
+  #       run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
 
-      - name: Build + Test
-        run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
-        env:
-          scheme: Common
-          DEVELOPER_DIR: ${{ matrix.xcode }}
-          FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 80
+  #     - name: Build + Test
+  #       run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
+  #       env:
+  #         scheme: Common
+  #         DEVELOPER_DIR: ${{ matrix.xcode }}
+  #         FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 80
   
-  build-test-ios:
-    name: iOS / Build + Test
-    runs-on: macOS-12
-    strategy:
-      matrix:
-        xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  # build-test-ios:
+  #   name: iOS / Build + Test
+  #   runs-on: macOS-12
+  #   strategy:
+  #     matrix:
+  #       xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      - name: Install dependencies
-        uses: ./.github/actions/setup
+  #     - name: Install dependencies
+  #       uses: ./.github/actions/setup
 
-      - name: Copy brand assets
-        run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
+  #     - name: Copy brand assets
+  #       run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
       
-      - name: Build + Test
-        run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
-        env:
-          scheme: openHPI-iOS
-          DEVELOPER_DIR: ${{ matrix.xcode }}
-          FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 80
+  #     - name: Build + Test
+  #       run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
+  #       env:
+  #         scheme: openHPI-iOS
+  #         DEVELOPER_DIR: ${{ matrix.xcode }}
+  #         FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 80
 
   lint:
     name: Lint code
@@ -73,22 +73,22 @@ jobs:
       - name: Run code validation
         uses: ./.github/actions/swiftlint
 
-  check-locales:
-    name: Check localization
-    runs-on: macOS-12
-    strategy:
-      matrix:
-        xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  # check-locales:
+  #   name: Check localization
+  #   runs-on: macOS-12
+  #   strategy:
+  #     matrix:
+  #       xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      - name: Install dependencies
-        uses: ./.github/actions/setup
+  #     - name: Install dependencies
+  #       uses: ./.github/actions/setup
 
-      - name: Check localization
-        run: |
-          bundle exec fastlane localize
-          echo "\nThe following files have incomplete localization:"
-          git status --porcelain -- ':!.bundle'
-          git diff --quiet -- ':!.bundle'
+  #     - name: Check localization
+  #       run: |
+  #         bundle exec fastlane localize
+  #         echo "\nThe following files have incomplete localization:"
+  #         git status --porcelain -- ':!.bundle'
+  #         git diff --quiet -- ':!.bundle'

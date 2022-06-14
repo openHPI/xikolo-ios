@@ -24,7 +24,7 @@ public final class ManagedObjectObserver {
     }
 
     deinit {
-        guard let token = self.token else { return }
+        guard let token =     self.token else { return }
         NotificationCenter.default.removeObserver(token)
     }
 

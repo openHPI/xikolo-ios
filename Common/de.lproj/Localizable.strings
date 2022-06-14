@@ -20,7 +20,7 @@
 /* Automated Downloads (Notification only): Explanation of the feature */
 "automated-downloads.feature.explanation.notification" = "Wenn ein neuer Kursabschnitt verfügbar wird, erhalten Sie eine Benachrichtigung. Wenn Sie auf diese Benachrichtigung tippen, können Sie den Kurs direkt öffnen. Wenn Sie lange auf die Benachrichtigung drücken, können Sie die Inhalte des neuen Abschnitts zur Offline-Nutzung herunterladen.";
 
-/* Automated Downloads (Notification + Background Downloads): Explanation of the feature (addendum) */
+/* Automated Downloads (Notification + Background Downloads): Explanation of the feature (add.) */
 "automated-downloads.feature.explanation.notification-background-download" = "Zusätzlich wird die App versuchen, die neuen Inhalte automatisch herunterzuladen. Dies wird nur ausgelöst, wenn Ihr Gerät mit einem WiFi-Netzwerk verbunden ist und es die geringsten Auswirkungen auf die Akkulaufzeit hat.";
 
 /* Automated Downloads (Notification only): Title of the feature */

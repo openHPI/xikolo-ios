@@ -30,14 +30,14 @@ public final class AutomatedDownloadSettings: NSObject, NSSecureCoding {
             if self == .notificationAndBackgroundDownload {
                 explanation += "\n\n"
                 explanation += CommonLocalizedString("automated-downloads.feature.explanation.notification-background-download",
-                                                     comment: "Automated Downloads (Notification + Background Downloads): Explanation of the feature (addendum)")
+                                                     comment: "Automated Downloads (Notification + Background Downloads): Explanation of the feature (add.)")
             }
 
             return explanation
         }
 
         @available(iOS 13.0, *)
-        public var decorativeImages: (UIImage?, UIImage?, UIImage?) {
+        public var decorativeImages: (UIImage?, UIImage?, UIImage?) {  // swiftlint:disable:this large_tuple
             let symbolConfiguration = UIImage.SymbolConfiguration(textStyle: .largeTitle, scale: .medium)
             let smallSymbolConfiguration = UIImage.SymbolConfiguration(textStyle: .title1, scale: .small)
 

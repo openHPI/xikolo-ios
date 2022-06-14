@@ -9,7 +9,7 @@ import CoreData
 import XCTest
 
 @available(iOS 13, *)
-class DateForNextAutomatedDownloadBackgroundProcessingTests: XCTestCase {
+class DateForNextAutomatedDownloadBackgroundProcessingTests: XCTestCase { // swiftlint:disable:this type_name
 
     private var context: NSManagedObjectContext!
     private var course: Course!

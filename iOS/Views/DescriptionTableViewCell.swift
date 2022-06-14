@@ -41,6 +41,7 @@ class DescriptionTableViewCell: UITableViewCell {
         return label
     }()
 
+    // swiftlint:disable:next large_tuple
     var decorativeImages: (UIImage?, UIImage?, UIImage?) {
         get {
             return (

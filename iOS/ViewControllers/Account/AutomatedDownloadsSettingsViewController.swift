@@ -164,7 +164,8 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: self.descriptionCellReuseIdentifier, for: indexPath) as? DescriptionTableViewCell else { return UITableViewCell() }
+            let someTableViewCell = tableView.dequeueReusableCell(withIdentifier: self.descriptionCellReuseIdentifier, for: indexPath)
+            guard let cell = someTableViewCell as? DescriptionTableViewCell else { return UITableViewCell() }
             cell.topMessageLabel.text = self.course.title
             cell.decorativeImages = self.downloadSettings.newContentAction.decorativeImages
             cell.titleLabel.text = self.downloadSettings.newContentAction.title
@@ -174,7 +175,7 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         case (0, 1):
             let cell = tableView.dequeueReusableCell(withIdentifier: self.switchCellReuseIdentifier, for: indexPath)
             cell.textLabel?.text = NSLocalizedString("automated-downloads.setup.switch.title.activate",
-                                                    comment: "Automated Downloads (Setup): Title for the activate switch")
+                                                     comment: "Automated Downloads (Setup): Title for the activate switch")
             cell.selectionStyle = .none
             let cellSwitch = cell.accessoryView as? UISwitch
             cellSwitch?.isOn = self.persistedSettingsExist

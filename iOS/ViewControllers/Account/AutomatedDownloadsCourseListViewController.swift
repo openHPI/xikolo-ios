@@ -8,7 +8,7 @@ import CoreData
 import UIKit
 
 @available(iOS 13, *)
-class AutomatedDownloadsCourseListViewController: UITableViewController {
+class AutomatedDownloadsCourseListViewController: UITableViewController { // swiftlint:disable:this type_name
 
     lazy var activeCoursesFetchedResultsController: NSFetchedResultsController<Course> = {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
@@ -32,7 +32,7 @@ class AutomatedDownloadsCourseListViewController: UITableViewController {
             let adjustedIndexPath = IndexPath(row: indexPath.row, section: 0)
             let course = resultsController.object(at: adjustedIndexPath)
             cell.textLabel?.text = course.title
-            cell.detailTextLabel?.text = course.automatedDownloadSettings?.newContentAction.title // TODO: all values
+            cell.detailTextLabel?.text = course.automatedDownloadSettings?.newContentAction.title
             cell.accessoryType = .disclosureIndicator
             return cell
         }

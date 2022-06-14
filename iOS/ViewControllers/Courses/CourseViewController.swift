@@ -179,11 +179,11 @@ class CourseViewController: UIViewController {
     }
 
     func show(section: CourseSection, animated: Bool) {
-        self.transitionIfPossible(to: .learnings, completion: { transitionSuccessful in
+        self.transitionIfPossible(to: .learnings) { transitionSuccessful in
             guard transitionSuccessful else { return }
             guard let courseItemListViewController = self.courseAreaViewController as? CourseItemListViewController else { return }
             courseItemListViewController.scroll(toSection: section, animated: animated)
-        })
+        }
     }
 
     func show(item: CourseItem, animated: Bool) {

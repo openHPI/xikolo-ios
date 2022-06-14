@@ -10,6 +10,7 @@ import Common
 import CoreData
 import UIKit
 
+// swiftlint:disable:next type_body_length
 class CourseItemListViewController: UITableViewController {
 
     private static let contentToBePreloaded: [PreloadableCourseItemContent.Type] = [Video.self, RichText.self]
@@ -78,6 +79,7 @@ class CourseItemListViewController: UITableViewController {
         }
     }
 
+    // swiftlint:disable:next function_body_length
     override func viewDidLoad() {
         super.viewDidLoad()
 

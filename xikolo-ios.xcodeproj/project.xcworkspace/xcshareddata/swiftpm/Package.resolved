@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/abseil-cpp-SwiftPM.git",
       "state" : {
-        "revision" : "fffc3c2729be5747390ad02d5100291a0d9ad26a",
-        "version" : "0.20200225.4"
+        "revision" : "d302de612e3d57c6f4afaf087da18fba8eac72a7",
+        "version" : "0.20220203.1"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/boringssl-SwiftPM.git",
       "state" : {
-        "revision" : "734a8247442fde37df4364c21f6a0085b6a36728",
-        "version" : "0.7.2"
+        "revision" : "79db6516894a932d0ddaff3b05b9da1e4f6c4069",
+        "version" : "0.9.0"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "revision" : "08686f04881483d2bc098b2696e674c0ba135e47",
-        "version" : "8.10.0"
+        "revision" : "111d8d6ad1a1afd6c8e9561d26e55ab1e74fcb42",
+        "version" : "8.15.0"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleAppMeasurement.git",
       "state" : {
-        "revision" : "9b2f6aca5b4685c45f9f5481f19bee8e7982c538",
-        "version" : "8.9.1"
+        "revision" : "ef819db8c58657a6ca367322e73f3b6322afe0a2",
+        "version" : "8.15.0"
       }
     },
     {
@@ -73,12 +73,12 @@
       }
     },
     {
-      "identity" : "grpc-swiftpm",
+      "identity" : "grpc-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/firebase/grpc-SwiftPM.git",
+      "location" : "https://github.com/grpc/grpc-ios.git",
       "state" : {
-        "revision" : "fb405dd2c7901485f7e158b24e3a0a47e4efd8b5",
-        "version" : "1.28.4"
+        "revision" : "2af4f6e9c2b18beae228f50b1198c641be859d2b",
+        "version" : "1.44.2-grpc"
       }
     },
     {
@@ -158,8 +158,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "a72df4849408da7e5d3c1b586797b7c601c41d1b",
-        "version" : "5.12.1"
+        "revision" : "b729cc14f65e1412efc781a4cc46bd7f4720a3ae",
+        "version" : "5.12.6"
       }
     },
     {

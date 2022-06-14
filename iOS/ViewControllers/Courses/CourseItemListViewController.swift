@@ -475,18 +475,6 @@ extension CourseItemListViewController: RefreshableViewController {
         self.updateAutomatedDownloadsHint(animated: true)
         self.updateNextSectionStartDate()
 
-        if self.course.isEligibleForContentNotifications {
-            #warning("TODO: enable experiment assignment")
-//            ExperimentAssignmentHelper.assign(
-//                to: .newContentNotifications,
-//                inCourse: self.course
-//            ).flatMap { _ in
-//                FeatureHelper.syncFeatures(forCourse: self.course)
-//            }.onSuccess { _ in
-//                self.updateAutomatedDownloadsHint(animated: true)
-//            }
-        }
-
         if #available(iOS 13, *) {
             if self.course.automatedDownloadSettings != nil {
                 NewContentNotificationManager.renewNotifications(for: self.course)

@@ -8,4 +8,5 @@ then
     exit 0
 fi
 
-set -o pipefail && swiftlint "$@" --strict --reporter github-actions-logging -- $changedFiles
+echo $(pwd)
+set -o pipefail && ./Pods/SwiftLint/swiftlint  "$@" --strict --config ./.swiftlint.yml --reporter github-actions-logging -- $changedFiles

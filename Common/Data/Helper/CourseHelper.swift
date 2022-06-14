@@ -66,28 +66,6 @@ public enum CourseHelper {
         return promise.future
     }
 
-    @discardableResult public static func setAutomatedDownloadsToNoticed(for course: Course) -> Future<Void, XikoloError> {
-        if course.automatedDownloadsHaveBeenNoticed {
-            return Future(value: ())
-        }
-
-        let promise = Promise<Void, XikoloError>()
-
-        CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
-
-            guard let course = context.existingTypedObject(with: course.objectID) as? Course else {
-                promise.failure(.missingResource(ofType: Course.self))
-                return
-            }
-
-            course.automatedDownloadsHaveBeenNoticed = true
-            promise.complete(context.saveWithResult())
-        }
-
-        return promise.future
-    }
-
     public static func visit(_ course: Course) {
         let courseObjectId = course.objectID
         CoreDataHelper.persistentContainer.performBackgroundTask { context in

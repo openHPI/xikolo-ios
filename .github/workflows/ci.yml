@@ -30,6 +30,7 @@ jobs:
         env:
           scheme: Common
           DEVELOPER_DIR: ${{ matrix.xcode }}
+          FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 80
   
   build-test-ios:
     name: iOS / Build + Test
@@ -52,6 +53,7 @@ jobs:
         env:
           scheme: openHPI-iOS
           DEVELOPER_DIR: ${{ matrix.xcode }}
+          FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 80
 
   lint:
     name: Lint code

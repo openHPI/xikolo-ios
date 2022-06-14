@@ -162,7 +162,6 @@
 		505641E52119B9A6009FC4F0 /* ObjectsDidChangeNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505641E42119B9A6009FC4F0 /* ObjectsDidChangeNotification.swift */; };
 		5058578421344C75006A5D15 /* PseudoCourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5058578321344C75006A5D15 /* PseudoCourseCell.xib */; };
 		5058578621351CBD006A5D15 /* PseudoCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058578521351CBD006A5D15 /* PseudoCourseCell.swift */; };
-		505F7C982535E18A0006F629 /* DestructiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505F7C972535E18A0006F629 /* DestructiveTableViewCell.swift */; };
 		505F7CA22535E1D70006F629 /* HeaderTableViewDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505F7CA12535E1D70006F629 /* HeaderTableViewDiffableDataSource.swift */; };
 		5060EC6923831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060EC6823831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift */; };
 		5063F8ED25C88466006C3048 /* CourseDateStatisticsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063F8EC25C88466006C3048 /* CourseDateStatisticsWidget.swift */; };
@@ -866,7 +865,6 @@
 		505B0D182448466800F88CAD /* openSAP-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openSAP-UITests.xcconfig"; path = "Xcode Configurations/opensap/openSAP-UITests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		505B0D192448469000F88CAD /* openWHO-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openWHO-UITests.xcconfig"; path = "Xcode Configurations/openwho/openWHO-UITests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		505B0D1A244846A700F88CAD /* moocHOUSE-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "moocHOUSE-UITests.xcconfig"; path = "Xcode Configurations/moochouse/moocHOUSE-UITests.xcconfig"; sourceTree = SOURCE_ROOT; };
-		505F7C972535E18A0006F629 /* DestructiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestructiveTableViewCell.swift; sourceTree = "<group>"; };
 		505F7CA12535E1D70006F629 /* HeaderTableViewDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewDiffableDataSource.swift; sourceTree = "<group>"; };
 		50604585206BCE10009569D1 /* BrandColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandColors.swift; sourceTree = "<group>"; };
 		50604592206BCF48009569D1 /* URL+URLQueryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+URLQueryItem.swift"; sourceTree = "<group>"; };
@@ -1437,7 +1435,6 @@
 				50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */,
 				508FF44121AB390400801530 /* SubtitleTableViewCell.swift */,
 				50CCE56D2851F35D00219DD2 /* DescriptionTableViewCell.swift */,
-				505F7C972535E18A0006F629 /* DestructiveTableViewCell.swift */,
 				505327A428044A3F009A46B7 /* SwitchTableViewCell.swift */,
 			);
 			path = Views;
@@ -3396,7 +3393,6 @@
 				5044C8DD21A8089C006490CE /* ContentPersistenceManager.swift in Sources */,
 				50CF1FBD20DCDBFC0011BFE9 /* WebViewController.swift in Sources */,
 				5060EC6923831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift in Sources */,
-				505F7C982535E18A0006F629 /* DestructiveTableViewCell.swift in Sources */,
 				502E55CF24ED5CE4005FB624 /* DynamicSizeButton.swift in Sources */,
 				50CF1FC820DCDBFC0011BFE9 /* CourseInteractionController.swift in Sources */,
 				5039887521679A0600F9043B /* CourseItemCellDelegate.swift in Sources */,

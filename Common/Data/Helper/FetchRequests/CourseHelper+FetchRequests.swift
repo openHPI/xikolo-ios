@@ -176,8 +176,7 @@ extension CourseHelper {
                 NSPredicate(format: "automatedDownloadSettings == nil"),
             ])
             request.sortDescriptors = [
-                NSSortDescriptor(keyPath: \Course.lastVisited, ascending: false),
-                self.customOrderSortDescriptor,
+                NSSortDescriptor(keyPath: \Course.endsAt, ascending: true),
             ]
             return request
         }
@@ -191,8 +190,7 @@ extension CourseHelper {
                 NSPredicate(format: "automatedDownloadSettings != nil"),
             ])
             request.sortDescriptors = [
-                NSSortDescriptor(keyPath: \Course.lastVisited, ascending: false),
-                self.customOrderSortDescriptor,
+                NSSortDescriptor(keyPath: \Course.endsAt, ascending: true),
             ]
             return request
         }

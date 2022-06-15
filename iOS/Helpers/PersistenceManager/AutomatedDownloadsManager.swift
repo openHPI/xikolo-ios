@@ -33,7 +33,6 @@ enum AutomatedDownloadsManager {
     static var backgroundCompletionHandler: (() -> Void)?
 
     static func registerBackgroundTask() {
-        #warning("Use non-default bg queue?")
         BGTaskScheduler.shared.register(forTaskWithIdentifier: Self.taskIdentifier, using: nil) { task in
             self.performNextBackgroundProcessingTasks(task: task)
         }

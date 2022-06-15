@@ -181,8 +181,6 @@ extension StreamPersistenceManager {
     func deleteDownloads(for section: CourseSection) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 
-        let sectionObjectID = section.objectID
-
         self.persistentContainerQueue.addOperation {
             let sectionDeleteFuture = section.items.compactMap { item in
                 return item.content as? Video

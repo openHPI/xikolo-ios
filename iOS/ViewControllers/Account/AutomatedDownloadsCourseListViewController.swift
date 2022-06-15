@@ -27,24 +27,21 @@ class AutomatedDownloadsCourseListViewController: UITableViewController { // swi
     lazy var dataSource: UITableViewDiffableDataSource = {
         return HeaderTableViewDiffableDataSource(tableView: self.tableView) { tableView, indexPath, _ -> UITableViewCell? in
             let resultsController = self.resultController(for: indexPath)
-            let reuseIdentifier = self.cellReuseIdentifier(for: indexPath)
-            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.subtitleCellReuseIdentifier, for: indexPath)
             let adjustedIndexPath = IndexPath(row: indexPath.row, section: 0)
             let course = resultsController.object(at: adjustedIndexPath)
             cell.textLabel?.text = course.title
-            cell.detailTextLabel?.text = course.automatedDownloadSettings?.newContentAction.title
+            cell.detailTextLabel?.text = CoursePeriodFormatter.string(from: course)
             cell.accessoryType = .disclosureIndicator
             return cell
         }
     }()
 
-    private let defaultCellReuseIdentifier = "DefaultCell"
     private let subtitleCellReuseIdentifier = "SubtitleCell"
 
     init() {
         super.init(style: .insetGrouped)
         self.tableView.cellLayoutMarginsFollowReadableWidth = true
-        self.tableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: self.defaultCellReuseIdentifier)
         self.tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: self.subtitleCellReuseIdentifier)
     }
 
@@ -78,14 +75,6 @@ class AutomatedDownloadsCourseListViewController: UITableViewController { // swi
         }
 
         return indexPath.section == 0 ? self.activeCoursesFetchedResultsController : self.inactiveCoursesFetchedResultsController
-    }
-
-    private func cellReuseIdentifier(for indexPath: IndexPath) -> String {
-        if self.activeCoursesFetchedResultsController.fetchedObjects?.isEmpty ?? true {
-            return self.defaultCellReuseIdentifier
-        }
-
-        return indexPath.section == 0 ? self.subtitleCellReuseIdentifier : self.defaultCellReuseIdentifier
     }
 
 }

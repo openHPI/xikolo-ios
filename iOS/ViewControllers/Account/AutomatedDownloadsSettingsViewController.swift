@@ -39,8 +39,6 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         self.setupTableHeaderView()
         self.tableView.tableHeaderView?.isHidden = true
         self.tableView.resizeTableHeaderView()
-
-        self.navigationItem.rightBarButtonItem = self.doneBarButtonItem
     }
 
     private func setupTableHeaderView() {
@@ -90,6 +88,15 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         ])
 
         self.tableView.tableHeaderView = headerView
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let isPresentedModally = self.navigationController?.presentingViewController?.presentedViewController == self.navigationController
+        if isPresentedModally {
+            self.navigationItem.rightBarButtonItem = self.doneBarButtonItem
+        }
     }
 
     @available(*, unavailable)

@@ -34,7 +34,6 @@ extension Course {
         guard #available(iOS 13, *) else { return false }
         guard self.hasEnrollment else { return false }
         guard self.endsAt?.inFuture ?? false else { return false }
-        guard self.sections.compactMap(\.startsAt?.inFuture).contains(true) else { return false }
         return true
     }
 

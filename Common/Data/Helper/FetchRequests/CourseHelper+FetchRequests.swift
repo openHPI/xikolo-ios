@@ -173,7 +173,6 @@ extension CourseHelper {
                 visiblePredicate,
                 enrolledPredicate,
                 NSPredicate(format: "endsAt >= %@", Date() as NSDate),
-                NSPredicate(format: "ANY sections.startsAt > now()"),
                 NSPredicate(format: "automatedDownloadSettings == nil"),
             ])
             request.sortDescriptors = [

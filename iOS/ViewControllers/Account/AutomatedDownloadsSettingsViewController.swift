@@ -248,6 +248,8 @@ class AutomatedDownloadsSettingsViewController: UITableViewController {
         }
 
         self.save(sender: sender).onSuccess { _ in
+            AutomatedDownloadsManager.processPendingDownloadsAndDeletions(triggeredBy: .setup)
+        }.onSuccess { _ in
             self.updateFooter(inSection: 1)
         }
     }

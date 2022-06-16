@@ -160,49 +160,35 @@ extension StreamPersistenceManager {
 
     @discardableResult
     func startDownloads(for section: CourseSection, options: [StreamPersistenceManager.Option] = []) -> Future<Void, XikoloError> {
-        let promise = Promise<Void, XikoloError>()
+        let sectionDownloadFuture = section.items.compactMap { item in
+            return item.content as? Video
+        }.filter { video in
+            return self.downloadState(for: video) == .notDownloaded
+        }.map { video in
+            self.startDownload(for: video, options: options)
+        }.sequence().asVoid()
 
-        self.persistentContainerQueue.addOperation {
-            let sectionDownloadFuture = section.items.compactMap { item in
-                return item.content as? Video
-            }.filter { video in
-                return self.downloadState(for: video) == .notDownloaded
-            }.map { video in
-                self.startDownload(for: video, options: options)
-            }.sequence().asVoid()
-
-            promise.completeWith(sectionDownloadFuture)
-        }
-
-        return promise.future
+        return sectionDownloadFuture
     }
 
     @discardableResult
     func deleteDownloads(for section: CourseSection) -> Future<Void, XikoloError> {
-        let promise = Promise<Void, XikoloError>()
+        let sectionDeleteFuture = section.items.compactMap { item in
+            return item.content as? Video
+        }.map { video in
+            self.deleteDownload(for: video)
+        }.sequence().asVoid()
 
-        self.persistentContainerQueue.addOperation {
-            let sectionDeleteFuture = section.items.compactMap { item in
-                return item.content as? Video
-            }.map { video in
-                self.deleteDownload(for: video)
-            }.sequence().asVoid()
-
-            return promise.completeWith(sectionDeleteFuture)
-        }
-
-        return promise.future
+        return sectionDeleteFuture
     }
 
     func cancelDownloads(for section: CourseSection) {
-        self.persistentContainerQueue.addOperation {
-            section.items.compactMap { item in
-                return item.content as? Video
-            }.filter { video in
-                return [.pending, .downloading].contains(StreamPersistenceManager.shared.downloadState(for: video))
-            }.forEach { video in
-                self.cancelDownload(for: video)
-            }
+        section.items.compactMap { item in
+            return item.content as? Video
+        }.filter { video in
+            return [.pending, .downloading].contains(StreamPersistenceManager.shared.downloadState(for: video))
+        }.forEach { video in
+            self.cancelDownload(for: video)
         }
     }
 

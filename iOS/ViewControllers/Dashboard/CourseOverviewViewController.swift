@@ -104,7 +104,7 @@ class CourseOverviewViewController: UIViewController {
         let courseCellWidth = CourseCell.minimalWidthInOverviewList(for: self.collectionView.traitCollection)
         let availableWidth = self.view.bounds.width - self.view.layoutMargins.left - self.view.layoutMargins.right + 2 * CourseCell.cardInset
 
-        let itemsPerRow = floor(availableWidth / courseCellWidth)
+        let itemsPerRow = max(1, floor(availableWidth / courseCellWidth))
         let numberOfItems = CGFloat(self.collectionView(self.collectionView, numberOfItemsInSection: 0))
 
         let numberOfRows: CGFloat = {
@@ -252,7 +252,7 @@ extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let courseCellWidth = CourseCell.minimalWidthInOverviewList(for: collectionView.traitCollection)
         let availableWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right + 2 * CourseCell.cardInset
-        let itemsPerRow = floor(availableWidth / courseCellWidth)
+        let itemsPerRow = max(1, floor(availableWidth / courseCellWidth))
 
         let preferredWidth: CGFloat = {
             if self.traitCollection.horizontalSizeClass == .regular && self.traitCollection.verticalSizeClass == .regular {

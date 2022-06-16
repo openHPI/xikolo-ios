@@ -109,7 +109,7 @@ class CourseDateOverviewViewController: UIViewController {
     private func updateWidthConstraints() {
         let courseCellWidth = CourseCell.minimalWidthInOverviewList(for: self.traitCollection)
         let availableWidth = self.view.bounds.width - self.view.layoutMargins.left - self.view.layoutMargins.right + 2 * CourseCell.cardInset
-        let itemsPerRow = floor(availableWidth / courseCellWidth)
+        let itemsPerRow = max(1, floor(availableWidth / courseCellWidth))
         let cellWidth = availableWidth / itemsPerRow
 
         self.summaryWidthConstraint.constant = cellWidth - 2 * CourseCell.cardInset

@@ -4,6 +4,7 @@
 //
 
 import AVFoundation
+import BrightFutures
 import Common
 import CoreData
 
@@ -56,11 +57,6 @@ final class StreamPersistenceManager: PersistenceManager<StreamPersistenceManage
         return session.makeAssetDownloadTask(asset: asset, assetTitle: assetTitle, assetArtworkData: resource.posterImageData, options: options)
     }
 
-    func startDownload(for video: Video) {
-        guard let url = video.streamURLForDownload else { return }
-        self.startDownload(with: url, for: video)
-    }
-
     override func startSupplementaryDownloads(for task: URLSessionTask, with resourceIdentifier: String) -> Bool {
         guard let assetDownloadTask = task as? AVAssetDownloadTask else { return false }
         guard let (mediaSelectionGroup, mediaSelectionOption) = self.nextMediaSelection(assetDownloadTask.urlAsset) else { return false }
@@ -91,26 +87,35 @@ final class StreamPersistenceManager: PersistenceManager<StreamPersistenceManage
         resource.downloadDate = nil
     }
 
-    private func trackingContext(for video: Video) -> [String: String?] {
-        return [
+    private func trackingContext(for video: Video, options: [Option]) -> [String: String?] {
+        var context = [
             "section_id": video.item?.section?.id,
             "course_id": video.item?.section?.course?.id,
             "video_download_pref": String(describing: UserDefaults.standard.videoQualityForDownload.rawValue),
             "free_space": String(describing: StreamPersistenceManager.systemFreeSize),
             "total_space": String(describing: StreamPersistenceManager.systemSize),
         ]
+
+        for case let .trackingContext(additionalContext) in options {
+            context.merge(additionalContext) { $1 }
+        }
+
+        return context
     }
 
-    override func didStartDownload(for resource: Video) {
-        TrackingHelper.createEvent(.videoDownloadStart, resourceType: .video, resourceId: resource.id, on: nil, context: self.trackingContext(for: resource))
+    override func didStartDownload(for resource: Video, options: [Option]) {
+        let trackingContext = self.trackingContext(for: resource, options: options)
+        TrackingHelper.createEvent(.videoDownloadStart, resourceType: .video, resourceId: resource.id, on: nil, context: trackingContext)
     }
 
-    override func didCancelDownload(for resource: Video) {
-        TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: resource.id, on: nil, context: self.trackingContext(for: resource))
+    override func didCancelDownload(for resource: Video, options: [Option]) {
+        let trackingContext = self.trackingContext(for: resource, options: options)
+        TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: resource.id, on: nil, context: trackingContext)
     }
 
-    override func didFinishDownload(for resource: Video) {
-        TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resource.id, on: nil, context: self.trackingContext(for: resource))
+    override func didFinishDownload(for resource: Video, options: [Option]) {
+        let trackingContext = self.trackingContext(for: resource, options: options)
+        TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resource.id, on: nil, context: trackingContext)
     }
 
     private func nextMediaSelection(_ asset: AVURLAsset) -> (mediaSelectionGroup: AVMediaSelectionGroup, mediaSelectionOption: AVMediaSelectionOption)? {
@@ -147,37 +152,43 @@ final class StreamPersistenceManager: PersistenceManager<StreamPersistenceManage
 
 extension StreamPersistenceManager {
 
-    func startDownloads(for section: CourseSection) {
-        self.persistentContainerQueue.addOperation {
-            section.items.compactMap { item in
-                return item.content as? Video
-            }.filter { video in
-                return StreamPersistenceManager.shared.downloadState(for: video) == .notDownloaded
-            }.forEach { video in
-                self.startDownload(for: video)
-            }
-        }
+    @discardableResult
+    func startDownload(for video: Video, options: [StreamPersistenceManager.Option] = []) -> Future<Void, XikoloError> {
+        guard let url = video.streamURLForDownload else { return Future(error: .totallyUnknownError) }
+        return self.startDownload(with: url, for: video, options: options)
     }
 
-    func deleteDownloads(for section: CourseSection) {
-        self.persistentContainerQueue.addOperation {
-            section.items.compactMap { item in
-                return item.content as? Video
-            }.forEach { video in
-                self.deleteDownload(for: video)
-            }
-        }
+    @discardableResult
+    func startDownloads(for section: CourseSection, options: [StreamPersistenceManager.Option] = []) -> Future<Void, XikoloError> {
+        let sectionDownloadFuture = section.items.compactMap { item in
+            return item.content as? Video
+        }.filter { video in
+            return self.downloadState(for: video) == .notDownloaded
+        }.map { video in
+            self.startDownload(for: video, options: options)
+        }.sequence().asVoid()
+
+        return sectionDownloadFuture
+    }
+
+    @discardableResult
+    func deleteDownloads(for section: CourseSection) -> Future<Void, XikoloError> {
+        let sectionDeleteFuture = section.items.compactMap { item in
+            return item.content as? Video
+        }.map { video in
+            self.deleteDownload(for: video)
+        }.sequence().asVoid()
+
+        return sectionDeleteFuture
     }
 
     func cancelDownloads(for section: CourseSection) {
-        self.persistentContainerQueue.addOperation {
-            section.items.compactMap { item in
-                return item.content as? Video
-            }.filter { video in
-                return [.pending, .downloading].contains(StreamPersistenceManager.shared.downloadState(for: video))
-            }.forEach { video in
-                self.cancelDownload(for: video)
-            }
+        section.items.compactMap { item in
+            return item.content as? Video
+        }.filter { video in
+            return [.pending, .downloading].contains(StreamPersistenceManager.shared.downloadState(for: video))
+        }.forEach { video in
+            self.cancelDownload(for: video)
         }
     }
 

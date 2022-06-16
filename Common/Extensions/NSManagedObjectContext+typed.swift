@@ -13,11 +13,11 @@ extension NSManagedObjectContext {
             let objects = try self.fetch(fetchRequest)
 
             guard objects.count < 2 else {
-                return .failure(.coreDataObjectNotFound)
+                return .failure(.coreDataMoreThanOneObjectFound)
             }
 
             guard let object = objects.first else {
-                return .failure(.coreDataMoreThanOneObjectFound)
+                return .failure(.coreDataObjectNotFound)
             }
 
             return .success(object)

@@ -44,6 +44,7 @@
 		50092A92237D8E3C00A1503F /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50092A91237D8E3B00A1503F /* ChannelCell.xib */; };
 		50092A94237DC20C00A1503F /* Channel+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A93237DC20C00A1503F /* Channel+Color.swift */; };
 		500B907F2254B854000B0D05 /* DownloadedContentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */; };
+		500C4D48278D73BE00C91295 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		5011D6AF24EEADA5004961A0 /* CourseOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5011D6B124EEADA5004961A0 /* CourseOverview.storyboard */; };
 		5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011EF02212AEC3800B1D7F1 /* DocumentLocalizationCell.swift */; };
 		5012913422BA64DC00AAB58B /* CALayer+roundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5012913322BA64DC00AAB58B /* CALayer+roundedCorners.swift */; };
@@ -61,6 +62,7 @@
 		5027250A235473F600815914 /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50272509235473F600815914 /* Swizzler.swift */; };
 		5027250C2354756800815914 /* UITableView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027250B2354756800815914 /* UITableView+EmptyState.swift */; };
 		5027250E2354780C00815914 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027250D2354780C00815914 /* EmptyStateView.swift */; };
+		5027E6B42552B40A00994CF7 /* AutomatedDownloadsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5027E6B32552B40A00994CF7 /* AutomatedDownloadsManager.swift */; };
 		502902E021BABA79004B1B43 /* AccountViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502902DF21BABA79004B1B43 /* AccountViewControllerDataSource.swift */; };
 		502CBDCD2433716C00BF6001 /* Stockpile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 502CBDC42433716B00BF6001 /* Stockpile.framework */; };
 		502CBDD62433716C00BF6001 /* Stockpile.h in Headers */ = {isa = PBXBuildFile; fileRef = 502CBDC62433716C00BF6001 /* Stockpile.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -149,6 +151,7 @@
 		50522A4C24FCEEC800A0171F /* RelationshipKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50522A4B24FCEEC800A0171F /* RelationshipKeyPath.swift */; };
 		5052D27721591E9400927D52 /* SyncPushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D27621591E9400927D52 /* SyncPushEngine.swift */; };
 		5052D27A2159208100927D52 /* XikoloSyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D2792159208100927D52 /* XikoloSyncEngine.swift */; };
+		505327A528044A3F009A46B7 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505327A428044A3F009A46B7 /* SwitchTableViewCell.swift */; };
 		5054B2DD21087D6800CE9067 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2DC21087D6800CE9067 /* Document.swift */; };
 		5054B2DF21087DB100CE9067 /* DocumentLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2DE21087DB100CE9067 /* DocumentLocalization.swift */; };
 		5054B2E1210880FA00CE9067 /* DocumentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2E0210880FA00CE9067 /* DocumentHelper.swift */; };
@@ -159,6 +162,7 @@
 		505641E52119B9A6009FC4F0 /* ObjectsDidChangeNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505641E42119B9A6009FC4F0 /* ObjectsDidChangeNotification.swift */; };
 		5058578421344C75006A5D15 /* PseudoCourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5058578321344C75006A5D15 /* PseudoCourseCell.xib */; };
 		5058578621351CBD006A5D15 /* PseudoCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058578521351CBD006A5D15 /* PseudoCourseCell.swift */; };
+		505F7CA22535E1D70006F629 /* HeaderTableViewDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505F7CA12535E1D70006F629 /* HeaderTableViewDiffableDataSource.swift */; };
 		5060EC6923831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060EC6823831C8E00327005 /* TopAlignedCollectionViewFlowLayout.swift */; };
 		5063F8ED25C88466006C3048 /* CourseDateStatisticsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063F8EC25C88466006C3048 /* CourseDateStatisticsWidget.swift */; };
 		5063F95925C89757006C3048 /* CourseDateStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063F95825C89757006C3048 /* CourseDateStatisticsView.swift */; };
@@ -214,6 +218,7 @@
 		507F7FDA2372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FD92372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift */; };
 		507F7FDC2372DA530031DC0B /* CourseProgressHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FDB2372DA530031DC0B /* CourseProgressHelper.swift */; };
 		5083329C2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083329B2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift */; };
+		5087E5EE284514550068B0BF /* EntityCreationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5087E5ED284514550068B0BF /* EntityCreationHelper.swift */; };
 		508869F324F6613A000FA1C8 /* LastVisit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508869F224F6613A000FA1C8 /* LastVisit.swift */; };
 		508869F524F66479000FA1C8 /* LastVisitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508869F424F66479000FA1C8 /* LastVisitHelper.swift */; };
 		508869F724F66519000FA1C8 /* LastVisitHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508869F624F66519000FA1C8 /* LastVisitHelper+FetchRequests.swift */; };
@@ -253,12 +258,24 @@
 		5095B1DD20EB81E900572924 /* Crashlytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */; };
 		5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1DE20EBA9D700572924 /* UserDefaults+playbackRate.swift */; };
 		5095B1E420EBD41900572924 /* NSManagedObjectContext+typed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E320EBD41900572924 /* NSManagedObjectContext+typed.swift */; };
+		509DA848252F09CC00030465 /* AutomatedDownloadsSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509DA847252F09CC00030465 /* AutomatedDownloadsSettingsViewController.swift */; };
+		509DA852252FA35700030465 /* AutomatedDownloadsCourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509DA851252FA35700030465 /* AutomatedDownloadsCourseListViewController.swift */; };
+		509DA85D2530C49800030465 /* AutomatedDownloadSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509DA85C2530C49800030465 /* AutomatedDownloadSettings.swift */; };
 		50A2042522FAC389004371C0 /* ColorCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2042422FAC389004371C0 /* ColorCompatibility.swift */; };
 		50A2042722FAD324004371C0 /* UITraitCollection+performAsCurrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2042622FAD324004371C0 /* UITraitCollection+performAsCurrent.swift */; };
 		50A7258F2339188000DE8338 /* CourseDates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A725912339188000DE8338 /* CourseDates.storyboard */; };
 		50A725942339188E00DE8338 /* CourseDateOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A725962339188E00DE8338 /* CourseDateOverview.storyboard */; };
+		50A8582327A41D7400989C7A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A8582227A41D7400989C7A /* Settings.swift */; };
+		50A9192F256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A9192E256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift */; };
+		50A91939256E5306002874CC /* CoreDataTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A91938256E5306002874CC /* CoreDataTestHelper.swift */; };
 		50A9715C2498F14300D78FCA /* CourseItem+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A9715B2498F14300D78FCA /* CourseItem+URL.swift */; };
 		50AD2526276BCC000050831C /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 50AD2525276BCC000050831C /* Down */; };
+		50AD858A256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD8589256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift */; };
+		50AD85A4256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD85A3256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift */; };
+		50AD85AE25700F50003BDB80 /* SectionsToDownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD85AD25700F50003BDB80 /* SectionsToDownloadTests.swift */; };
+		50AD85B8257017BA003BDB80 /* SectionsToDeleteManualTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD85B7257017BA003BDB80 /* SectionsToDeleteManualTests.swift */; };
+		50AD85CA2570E838003BDB80 /* SectionsToDeleteNextSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD85C92570E838003BDB80 /* SectionsToDeleteNextSectionTests.swift */; };
+		50AD85D42570E881003BDB80 /* SectionsToDeleteSecondNextSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD85D32570E881003BDB80 /* SectionsToDeleteSecondNextSectionTests.swift */; };
 		50AD86152570F3D4003BDB80 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AD86142570F3D4003BDB80 /* WidgetKit.framework */; };
 		50AD86172570F3D5003BDB80 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AD86162570F3D4003BDB80 /* SwiftUI.framework */; };
 		50AD861A2570F3D5003BDB80 /* ContinueLearningWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD86192570F3D5003BDB80 /* ContinueLearningWidget.swift */; };
@@ -266,6 +283,10 @@
 		50AD864E2570F4B0003BDB80 /* XikoloWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD864D2570F4B0003BDB80 /* XikoloWidgetBundle.swift */; };
 		50AD86862570F5F3003BDB80 /* WidgetExtension.appex in Embed App Extension */ = {isa = PBXBuildFile; fileRef = 50AD86132570F3D4003BDB80 /* WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		50AD880725715C5E003BDB80 /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
+		50AF096C2823B5DB001BC2E9 /* NewContentNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AF096B2823B5DB001BC2E9 /* NewContentNotificationManager.swift */; };
+		50B1CC46256BE55900D651C6 /* XikoloNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC45256BE55900D651C6 /* XikoloNotificationDelegate.swift */; };
+		50B1CC51256CF48800D651C6 /* PersistenceManager+BrightFutures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC50256CF48800D651C6 /* PersistenceManager+BrightFutures.swift */; };
+		50B1CC7D256D54D400D651C6 /* XikoloNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1CC7C256D54D300D651C6 /* XikoloNotification.swift */; };
 		50B31DFB22C49D11007DDDA4 /* CoursePeriodFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFA22C49D11007DDDA4 /* CoursePeriodFormatterTests.swift */; };
 		50B31DFD22C4B660007DDDA4 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFC22C4B660007DDDA4 /* Locale.swift */; };
 		50B31DFF22C4C570007DDDA4 /* BrightFuturesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */; };
@@ -273,6 +294,7 @@
 		50BC011B217755B500F38B30 /* UnavailableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */; };
 		50C21DE823549D4A00D7A1A6 /* UICollectionView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C21DE723549D4A00D7A1A6 /* UICollectionView+EmptyState.swift */; };
 		50C8356F279ED733004FEB62 /* BrightFutures in Frameworks */ = {isa = PBXBuildFile; productRef = 50C8356E279ED733004FEB62 /* BrightFutures */; };
+		50CCE56E2851F35D00219DD2 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CCE56D2851F35D00219DD2 /* DescriptionTableViewCell.swift */; };
 		50CF1F4620DCDBFC0011BFE9 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFViewController.swift */; };
 		50CF1F4E20DCDBFC0011BFE9 /* RichTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichTextViewController.swift */; };
 		50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
@@ -504,6 +526,13 @@
 			remoteGlobalIDString = 50FA2DEA20E4B1A800656776;
 			remoteInfo = Common;
 		};
+		506F5C8D280463D00096D616 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50FA2DEA20E4B1A800656776;
+			remoteInfo = Common;
+		};
 		50761B4420FCAC5A00CEDAF9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
@@ -517,13 +546,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 50FA2DEA20E4B1A800656776;
 			remoteInfo = Common;
-		};
-		508C314A276B6B32003AE388 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50FA2DEA20E4B1A800656776;
-			remoteInfo = "Common-old";
 		};
 		50AD2522276BCBC30050831C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -714,6 +736,7 @@
 		50272509235473F600815914 /* Swizzler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
 		5027250B2354756800815914 /* UITableView+EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyState.swift"; sourceTree = "<group>"; };
 		5027250D2354780C00815914 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		5027E6B32552B40A00994CF7 /* AutomatedDownloadsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomatedDownloadsManager.swift; sourceTree = "<group>"; };
 		5028ED0D23882C7B006F1F76 /* xikolo 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 9.xcdatamodel"; sourceTree = "<group>"; };
 		502902DF21BABA79004B1B43 /* AccountViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewControllerDataSource.swift; sourceTree = "<group>"; };
 		502CBDC42433716B00BF6001 /* Stockpile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Stockpile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -823,6 +846,7 @@
 		50522A4B24FCEEC800A0171F /* RelationshipKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipKeyPath.swift; sourceTree = "<group>"; };
 		5052D27621591E9400927D52 /* SyncPushEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncPushEngine.swift; sourceTree = "<group>"; };
 		5052D2792159208100927D52 /* XikoloSyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloSyncEngine.swift; sourceTree = "<group>"; };
+		505327A428044A3F009A46B7 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		5054B2DB21086CF600CE9067 /* xikolo 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 7.xcdatamodel"; sourceTree = "<group>"; };
 		5054B2DC21087D6800CE9067 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		5054B2DE21087DB100CE9067 /* DocumentLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentLocalization.swift; sourceTree = "<group>"; };
@@ -839,8 +863,9 @@
 		505B0D162446FFC600F88CAD /* xikolo 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 11.xcdatamodel"; sourceTree = "<group>"; };
 		505B0D172448413500F88CAD /* openHPI-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openHPI-UITests.xcconfig"; path = "Xcode Configurations/openhpi/openHPI-UITests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		505B0D182448466800F88CAD /* openSAP-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openSAP-UITests.xcconfig"; path = "Xcode Configurations/opensap/openSAP-UITests.xcconfig"; sourceTree = SOURCE_ROOT; };
-		505B0D192448469000F88CAD /* opneWHO-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "opneWHO-UITests.xcconfig"; path = "Xcode Configurations/openwho/opneWHO-UITests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		505B0D192448469000F88CAD /* openWHO-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openWHO-UITests.xcconfig"; path = "Xcode Configurations/openwho/openWHO-UITests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		505B0D1A244846A700F88CAD /* moocHOUSE-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "moocHOUSE-UITests.xcconfig"; path = "Xcode Configurations/moochouse/moocHOUSE-UITests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		505F7CA12535E1D70006F629 /* HeaderTableViewDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewDiffableDataSource.swift; sourceTree = "<group>"; };
 		50604585206BCE10009569D1 /* BrandColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandColors.swift; sourceTree = "<group>"; };
 		50604592206BCF48009569D1 /* URL+URLQueryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+URLQueryItem.swift"; sourceTree = "<group>"; };
 		5060A5211F177304007896FF /* DetailedCourseItemContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedCourseItemContent.swift; sourceTree = "<group>"; };
@@ -925,6 +950,7 @@
 		507F7FD92372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseProgressHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		507F7FDB2372DA530031DC0B /* CourseProgressHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgressHelper.swift; sourceTree = "<group>"; };
 		5083329B2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+CircularBackground.swift"; sourceTree = "<group>"; };
+		5087E5ED284514550068B0BF /* EntityCreationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityCreationHelper.swift; sourceTree = "<group>"; };
 		508869F124F6604F000FA1C8 /* xikolo 13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 13.xcdatamodel"; sourceTree = "<group>"; };
 		508869F224F6613A000FA1C8 /* LastVisit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastVisit.swift; sourceTree = "<group>"; };
 		508869F424F66479000FA1C8 /* LastVisitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastVisitHelper.swift; sourceTree = "<group>"; };
@@ -956,14 +982,32 @@
 		5095B1DE20EBA9D700572924 /* UserDefaults+playbackRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+playbackRate.swift"; sourceTree = "<group>"; };
 		5095B1E320EBD41900572924 /* NSManagedObjectContext+typed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+typed.swift"; sourceTree = "<group>"; };
 		509B10D0200790560042AA7D /* XikoloTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloTabBarController.swift; sourceTree = "<group>"; };
+		509DA847252F09CC00030465 /* AutomatedDownloadsSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomatedDownloadsSettingsViewController.swift; sourceTree = "<group>"; };
+		509DA851252FA35700030465 /* AutomatedDownloadsCourseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomatedDownloadsCourseListViewController.swift; sourceTree = "<group>"; };
+		509DA85C2530C49800030465 /* AutomatedDownloadSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomatedDownloadSettings.swift; sourceTree = "<group>"; };
 		50A2042422FAC389004371C0 /* ColorCompatibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCompatibility.swift; sourceTree = "<group>"; };
 		50A2042622FAD324004371C0 /* UITraitCollection+performAsCurrent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+performAsCurrent.swift"; sourceTree = "<group>"; };
 		50A725902339188000DE8338 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseDates.storyboard; sourceTree = "<group>"; };
 		50A725932339188400DE8338 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDates.strings; sourceTree = "<group>"; };
 		50A725952339188E00DE8338 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseDateOverview.storyboard; sourceTree = "<group>"; };
 		50A725982339189600DE8338 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateOverview.strings; sourceTree = "<group>"; };
+		50A8582227A41D7400989C7A /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		50A9192E256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateForNextAutomatedDownloadBackgroundProcessingTests.swift; sourceTree = "<group>"; };
+		50A91938256E5306002874CC /* CoreDataTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestHelper.swift; sourceTree = "<group>"; };
+		50A91A03256E5DE5002874CC /* openHPI-Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openHPI-Tests.xcconfig"; path = "Xcode Configurations/openhpi/openHPI-Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		50A91A04256E5E75002874CC /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
+		50A91A05256E5EB4002874CC /* openSAP-Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openSAP-Tests.xcconfig"; path = "Xcode Configurations/opensap/openSAP-Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		50A91A2F256E6426002874CC /* openWHO-Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openWHO-Tests.xcconfig"; path = "Xcode Configurations/openwho/openWHO-Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		50A91A30256E6455002874CC /* moocHOUSE-Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "moocHOUSE-Tests.xcconfig"; path = "Xcode Configurations/moochouse/moocHOUSE-Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		50A91A31256E6481002874CC /* lernencloud-Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "lernencloud-Tests.xcconfig"; sourceTree = "<group>"; };
 		50A9715B2498F14300D78FCA /* CourseItem+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseItem+URL.swift"; sourceTree = "<group>"; };
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		50AD8589256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesWithAutomatedDownloads.swift; sourceTree = "<group>"; };
+		50AD85A3256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesForAutomatedDownloads.swift; sourceTree = "<group>"; };
+		50AD85AD25700F50003BDB80 /* SectionsToDownloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsToDownloadTests.swift; sourceTree = "<group>"; };
+		50AD85B7257017BA003BDB80 /* SectionsToDeleteManualTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsToDeleteManualTests.swift; sourceTree = "<group>"; };
+		50AD85C92570E838003BDB80 /* SectionsToDeleteNextSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsToDeleteNextSectionTests.swift; sourceTree = "<group>"; };
+		50AD85D32570E881003BDB80 /* SectionsToDeleteSecondNextSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsToDeleteSecondNextSectionTests.swift; sourceTree = "<group>"; };
 		50AD86132570F3D4003BDB80 /* WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AD86142570F3D4003BDB80 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		50AD86162570F3D4003BDB80 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -973,8 +1017,12 @@
 		50AD864D2570F4B0003BDB80 /* XikoloWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloWidgetBundle.swift; sourceTree = "<group>"; };
 		50AD878725715439003BDB80 /* openHPI-Widget-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openHPI-Widget-Debug.xcconfig"; path = "Xcode Configurations/openhpi/openHPI-Widget-Debug.xcconfig"; sourceTree = SOURCE_ROOT; };
 		50AD878825715480003BDB80 /* openHPI-Widget-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "openHPI-Widget-Release.xcconfig"; path = "Xcode Configurations/openhpi/openHPI-Widget-Release.xcconfig"; sourceTree = SOURCE_ROOT; };
+		50AF096B2823B5DB001BC2E9 /* NewContentNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContentNotificationManager.swift; sourceTree = "<group>"; };
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
+		50B1CC45256BE55900D651C6 /* XikoloNotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNotificationDelegate.swift; sourceTree = "<group>"; };
+		50B1CC50256CF48800D651C6 /* PersistenceManager+BrightFutures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceManager+BrightFutures.swift"; sourceTree = "<group>"; };
+		50B1CC7C256D54D300D651C6 /* XikoloNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNotification.swift; sourceTree = "<group>"; };
 		50B31DFA22C49D11007DDDA4 /* CoursePeriodFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePeriodFormatterTests.swift; sourceTree = "<group>"; };
 		50B31DFC22C4B660007DDDA4 /* Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
 		50B31DFE22C4C570007DDDA4 /* BrightFuturesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightFuturesTests.swift; sourceTree = "<group>"; };
@@ -989,6 +1037,7 @@
 		50C4700521BA801C00F50A1A /* xikolo 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 8.xcdatamodel"; sourceTree = "<group>"; };
 		50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDateHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
+		50CCE56D2851F35D00219DD2 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		50CF1F3E20DCCF4F0011BFE9 /* openHPI-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
 		50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Release.xcconfig"; sourceTree = "<group>"; };
 		50CF201620DCDBFC0011BFE9 /* openhpi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openhpi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1037,6 +1086,7 @@
 		50E16D041F47070A00D67632 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabAccount.strings; sourceTree = "<group>"; };
 		50E3F30524484ADC00317822 /* lernencloud-UITests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "lernencloud-UITests.xcconfig"; sourceTree = "<group>"; };
 		50E4D7F724AD22B40032B1DC /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
+		50E66A4F27A56E350074F2DA /* xikolo 15.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 15.xcdatamodel"; sourceTree = "<group>"; };
 		50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DeviceInfo.swift"; sourceTree = "<group>"; };
 		50EFACB01FFE3C0100169C35 /* Optional+require.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+require.swift"; sourceTree = "<group>"; };
 		50EFACBD1FFFB25400169C35 /* SafeCastable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCastable.swift; sourceTree = "<group>"; };
@@ -1296,6 +1346,7 @@
 			isa = PBXGroup;
 			children = (
 				AB2802C81D2A8ABB008C8BAE /* Announcement.swift */,
+				509DA85C2530C49800030465 /* AutomatedDownloadSettings.swift */,
 				50092A81237D671900A1503F /* Channel.swift */,
 				24A16D7B1CFDE60200CAD9FE /* Content.swift */,
 				24D48E171CCA4FC100E8051E /* Course.swift */,
@@ -1358,12 +1409,10 @@
 				503988722166920400F9043B /* ShadowContainerView.swift */,
 				5077012D218F38BC005568A6 /* InnerPillLabel.swift */,
 				508B9FA7211D7A600090BD16 /* RefreshControl.swift */,
-				50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */,
 				026A1CA5239141C600F61976 /* CourseProgressView.swift */,
 				0280CB13237CBD4100B774BE /* SectionProgressCell.swift */,
 				02E20BE723882CFB006C9345 /* VisitProgressStackView.swift */,
 				021DA1A623869C1700E6E763 /* ExerciseProgressStackView.swift */,
-				508FF44121AB390400801530 /* SubtitleTableViewCell.swift */,
 				50092A8F237D89BD00A1503F /* ChannelCell.swift */,
 				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */,
@@ -1383,6 +1432,10 @@
 				50371FF8204ECB8E006E9634 /* CircularProgressView.swift */,
 				B4E079EC21879C9200EA53F5 /* CertificateCell.swift */,
 				50E4D7F724AD22B40032B1DC /* UserProfileCell.swift */,
+				50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */,
+				508FF44121AB390400801530 /* SubtitleTableViewCell.swift */,
+				50CCE56D2851F35D00219DD2 /* DescriptionTableViewCell.swift */,
+				505327A428044A3F009A46B7 /* SwitchTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1394,6 +1447,7 @@
 				503578932195BF1500982093 /* Accessibility.swift */,
 				3D6F12EC1F2914BD00D5DFE8 /* SpotlightHelper.swift */,
 				502E8E9425D6B39800CFE234 /* WidgetHelper.swift */,
+				50A8582227A41D7400989C7A /* Settings.swift */,
 				50D28A5224BE054E0009A24C /* QuickActionHelper.swift */,
 				50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */,
 				50E0351E213673F8001F963D /* CourseListConfiguration.swift */,
@@ -1464,6 +1518,7 @@
 			isa = PBXGroup;
 			children = (
 				50082B4F20BFDA7800B4511C /* PersistenceManager.swift */,
+				50B1CC50256CF48800D651C6 /* PersistenceManager+BrightFutures.swift */,
 				50082B5420BFDA8800B4511C /* FilePersistenceManager.swift */,
 				50F720271F28D72D00779995 /* StreamPersistenceManager.swift */,
 				50082B5920BFDA9C00B4511C /* SlidesPersistenceManager.swift */,
@@ -1471,6 +1526,8 @@
 				5044C8DC21A8089C006490CE /* ContentPersistenceManager.swift */,
 				500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */,
 				50082B5E20BFDAC900B4511C /* DownloadState.swift */,
+				5027E6B32552B40A00994CF7 /* AutomatedDownloadsManager.swift */,
+				50AF096B2823B5DB001BC2E9 /* NewContentNotificationManager.swift */,
 			);
 			path = PersistenceManager;
 			sourceTree = "<group>";
@@ -1710,6 +1767,7 @@
 				5066DF952434BDBC0041BD9B /* lernencloud-iOS-Release.xcconfig */,
 				5066DF972434BDBC0041BD9B /* lernencloud-Today-Debug.xcconfig */,
 				5066DF942434BDBC0041BD9B /* lernencloud-Today-Release.xcconfig */,
+				50A91A31256E6481002874CC /* lernencloud-Tests.xcconfig */,
 				5089102325DBBB0800760E49 /* lernencloud-Widget-Debug.xcconfig */,
 				5089102425DBBB1700760E49 /* lernencloud-Widget-Release.xcconfig */,
 				50E3F30524484ADC00317822 /* lernencloud-UITests.xcconfig */,
@@ -1758,6 +1816,8 @@
 			isa = PBXGroup;
 			children = (
 				50761B4320FCAC5A00CEDAF9 /* Info.plist */,
+				50AD8578256EA29B003BDB80 /* AutomatedDownloads */,
+				50A91938256E5306002874CC /* CoreDataTestHelper.swift */,
 			);
 			path = "iOS-Tests";
 			sourceTree = "<group>";
@@ -1784,6 +1844,21 @@
 				5046BD09212B4DC700B9F2CD /* DocumentLocalization+Actions.swift */,
 			);
 			path = Actions;
+			sourceTree = "<group>";
+		};
+		50AD8578256EA29B003BDB80 /* AutomatedDownloads */ = {
+			isa = PBXGroup;
+			children = (
+				5087E5ED284514550068B0BF /* EntityCreationHelper.swift */,
+				50AD8589256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift */,
+				50AD85A3256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift */,
+				50A9192E256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift */,
+				50AD85AD25700F50003BDB80 /* SectionsToDownloadTests.swift */,
+				50AD85C92570E838003BDB80 /* SectionsToDeleteNextSectionTests.swift */,
+				50AD85D32570E881003BDB80 /* SectionsToDeleteSecondNextSectionTests.swift */,
+				50AD85B7257017BA003BDB80 /* SectionsToDeleteManualTests.swift */,
+			);
+			path = AutomatedDownloads;
 			sourceTree = "<group>";
 		};
 		50AD86182570F3D5003BDB80 /* WidgetExtension */ = {
@@ -1837,6 +1912,7 @@
 			children = (
 				50B431CD23E45258006C7BC4 /* Debug.xcconfig */,
 				50B431CE23E4526D006C7BC4 /* Release.xcconfig */,
+				50A91A04256E5E75002874CC /* Tests.xcconfig */,
 				50D65A1420E0220900DFD183 /* openHPI */,
 				50D65A1820E0231400DFD183 /* openSAP */,
 				50D65A1620E0230E00DFD183 /* openWHO */,
@@ -1854,6 +1930,7 @@
 				50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */,
 				50B431CF23E4542B006C7BC4 /* openHPI-Today-Debug.xcconfig */,
 				50B431D023E4543C006C7BC4 /* openHPI-Today-Release.xcconfig */,
+				50A91A03256E5DE5002874CC /* openHPI-Tests.xcconfig */,
 				50AD878725715439003BDB80 /* openHPI-Widget-Debug.xcconfig */,
 				50AD878825715480003BDB80 /* openHPI-Widget-Release.xcconfig */,
 				505B0D172448413500F88CAD /* openHPI-UITests.xcconfig */,
@@ -1869,9 +1946,10 @@
 				50D65A1C20E023B100DFD183 /* openWHO-iOS-Release.xcconfig */,
 				50DA821A23E4758D003BEDE1 /* openWHO-Today-Debug.xcconfig */,
 				50DA821B23E475A0003BEDE1 /* openWHO-Today-Release.xcconfig */,
+				50A91A2F256E6426002874CC /* openWHO-Tests.xcconfig */,
+				505B0D192448469000F88CAD /* openWHO-UITests.xcconfig */,
 				502E8F3E25DB12E500CFE234 /* openWHO-Widget-Debug.xcconfig */,
 				502E8F3F25DB130F00CFE234 /* openWHO-Widget-Release.xcconfig */,
-				505B0D192448469000F88CAD /* opneWHO-UITests.xcconfig */,
 			);
 			path = openWHO;
 			sourceTree = "<group>";
@@ -1884,6 +1962,7 @@
 				50D65A2020E023C100DFD183 /* moocHOUSE-iOS-Release.xcconfig */,
 				50DA821C23E475C9003BEDE1 /* moocHOUSE-Today-Debug.xcconfig */,
 				50DA821D23E475DA003BEDE1 /* moocHOUSE-Today-Release.xcconfig */,
+				50A91A30256E6455002874CC /* moocHOUSE-Tests.xcconfig */,
 				5089102125DBBADE00760E49 /* moocHOUSE-Widget-Debug.xcconfig */,
 				5089102225DBBAF000760E49 /* moocHOUSE-Widget-Release.xcconfig */,
 				505B0D1A244846A700F88CAD /* moocHOUSE-UITests.xcconfig */,
@@ -1899,6 +1978,7 @@
 				50D65A1920E0238000DFD183 /* openSAP-iOS-Release.xcconfig */,
 				50DA821823E4755E003BEDE1 /* openSAP-Today-Debug.xcconfig */,
 				50DA821923E4756F003BEDE1 /* openSAP-Today-Release.xcconfig */,
+				50A91A05256E5EB4002874CC /* openSAP-Tests.xcconfig */,
 				5089101F25DBBABA00760E49 /* openSAP-Widget-Debug.xcconfig */,
 				5089102025DBBAC900760E49 /* openSAP-Widget-Release.xcconfig */,
 				505B0D182448466800F88CAD /* openSAP-UITests.xcconfig */,
@@ -2012,7 +2092,6 @@
 				50CF1F3D20DCCED10011BFE9 /* Xcode Configurations */,
 				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 				A90587BC1B3BFC130095DB89 /* Products */,
-				B48A5532D8E322172FD78521 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2050,6 +2129,8 @@
 				023B8E68230615E90027E370 /* SceneDelegate.swift */,
 				020E853F2449E128006BD700 /* CourseSceneDelegate.swift */,
 				50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */,
+				50B1CC45256BE55900D651C6 /* XikoloNotificationDelegate.swift */,
+				50B1CC7C256D54D300D651C6 /* XikoloNotification.swift */,
 				504D6ED224E4251F00426BDC /* ReadableWidthNavigationController.swift */,
 				5071BA1D1FCD901600BF5C5F /* CustomWidthNavigationController.swift */,
 				5035D91224E5282000431A6B /* CustomWidthViewController.swift */,
@@ -2083,6 +2164,8 @@
 				700398C121A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift */,
 				82D13D0B235726E70006A0D9 /* HelpdeskViewController.swift */,
 				507D02F324360A090009F12B /* HelpdeskTicketTopicListViewController.swift */,
+				509DA847252F09CC00030465 /* AutomatedDownloadsSettingsViewController.swift */,
+				509DA851252FA35700030465 /* AutomatedDownloadsCourseListViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -2219,13 +2302,6 @@
 			path = openWHO;
 			sourceTree = "<group>";
 		};
-		B48A5532D8E322172FD78521 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		F80D678E1B9867D700E27520 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2239,6 +2315,7 @@
 				ABCE242F1E8B938E00D55CB7 /* CustomHeaderWebView.swift */,
 				24B651441D351AF100624DBC /* CoreDataTableViewDataSource.swift */,
 				2433A5AC1CE642AC0060DD98 /* CoreDataCollectionViewDataSource.swift */,
+				505F7CA12535E1D70006F629 /* HeaderTableViewDiffableDataSource.swift */,
 				82CF971E245D9878008EC208 /* LoadingScreen.swift */,
 			);
 			path = ViewControllers;
@@ -2537,10 +2614,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				506F5C8E280463D00096D616 /* PBXTargetDependency */,
 				5067AD382367042E00ADEAB9 /* PBXTargetDependency */,
 				50DA822E23E587FD003BEDE1 /* PBXTargetDependency */,
 				50AD86882570F5F3003BDB80 /* PBXTargetDependency */,
-				508C314B276B6B32003AE388 /* PBXTargetDependency */,
 			);
 			name = iOS;
 			packageProductDependencies = (
@@ -2635,6 +2712,7 @@
 					50761B3E20FCAC5900CEDAF9 = {
 						CreatedOnToolsVersion = 9.4.1;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 1220;
 						ProvisioningStyle = Automatic;
 					};
 					50761B5220FCADD600CEDAF9 = {
@@ -3131,6 +3209,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50AD85D42570E881003BDB80 /* SectionsToDeleteSecondNextSectionTests.swift in Sources */,
+				50AD85AE25700F50003BDB80 /* SectionsToDownloadTests.swift in Sources */,
+				50AD85B8257017BA003BDB80 /* SectionsToDeleteManualTests.swift in Sources */,
+				50A91939256E5306002874CC /* CoreDataTestHelper.swift in Sources */,
+				5087E5EE284514550068B0BF /* EntityCreationHelper.swift in Sources */,
+				50A9192F256E52E8002874CC /* DateForNextAutomatedDownloadBackgroundProcessingTests.swift in Sources */,
+				50AD858A256EA37B003BDB80 /* CoursesWithAutomatedDownloads.swift in Sources */,
+				50AD85A4256F0A5C003BDB80 /* CoursesForAutomatedDownloads.swift in Sources */,
+				50AD85CA2570E838003BDB80 /* SectionsToDeleteNextSectionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3175,6 +3262,7 @@
 			files = (
 				50CF1F4620DCDBFC0011BFE9 /* PDFViewController.swift in Sources */,
 				5035D91124E526E600431A6B /* CustomWidthTableViewController.swift in Sources */,
+				509DA848252F09CC00030465 /* AutomatedDownloadsSettingsViewController.swift in Sources */,
 				50CF1F4E20DCDBFC0011BFE9 /* RichTextViewController.swift in Sources */,
 				50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */,
 				50CF1F5020DCDBFC0011BFE9 /* CourseDismissAnimationController.swift in Sources */,
@@ -3191,6 +3279,7 @@
 				50CF1F5920DCDBFC0011BFE9 /* CourseSection+Actions.swift in Sources */,
 				50CF1F5B20DCDBFC0011BFE9 /* CourseContent+image.swift in Sources */,
 				50467FEF238548D20084D7F6 /* ChannelHeaderView.swift in Sources */,
+				50B1CC46256BE55900D651C6 /* XikoloNotificationDelegate.swift in Sources */,
 				50CF1F5C20DCDBFC0011BFE9 /* CourseDateListViewController.swift in Sources */,
 				5012913422BA64DC00AAB58B /* CALayer+roundedCorners.swift in Sources */,
 				5077012E218F38BC005568A6 /* InnerPillLabel.swift in Sources */,
@@ -3225,11 +3314,14 @@
 				507D02F92436279F0009F12B /* Course+Actions.swift in Sources */,
 				508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */,
 				50CF1F7D20DCDBFC0011BFE9 /* CourseDetailsViewController.swift in Sources */,
+				500C4D48278D73BE00C91295 /* (null) in Sources */,
 				02F6D81F24977B6900BB2B80 /* CourseItem+NSItemProviderWriting.swift in Sources */,
 				503CEE962177082D00F34694 /* ProcotoredItemViewController.swift in Sources */,
+				505327A528044A3F009A46B7 /* SwitchTableViewCell.swift in Sources */,
 				502CBE2824338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift in Sources */,
 				0280CB14237CBD4100B774BE /* SectionProgressCell.swift in Sources */,
 				50CF1F8020DCDBFC0011BFE9 /* CustomWidthNavigationController.swift in Sources */,
+				50CCE56E2851F35D00219DD2 /* DescriptionTableViewCell.swift in Sources */,
 				700398C221A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift in Sources */,
 				50F3DD4B245859E00008CE27 /* DocumentLocalization+Persistence.swift in Sources */,
 				50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */,
@@ -3247,6 +3339,7 @@
 				50CF1F9120DCDBFC0011BFE9 /* VideoStreamingSettingsViewController.swift in Sources */,
 				50E4D7F824AD22B40032B1DC /* UserProfileCell.swift in Sources */,
 				5019CE922171F21D0001805E /* CourseItemContentViewController.swift in Sources */,
+				5027E6B42552B40A00994CF7 /* AutomatedDownloadsManager.swift in Sources */,
 				5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */,
 				50F3DD49245859710008CE27 /* Video+Persistence.swift in Sources */,
 				50CF1F9620DCDBFC0011BFE9 /* CourseTransitioningDelegate.swift in Sources */,
@@ -3258,12 +3351,14 @@
 				5035D90F24E526CD00431A6B /* CustomWidthCollectionViewController.swift in Sources */,
 				50CF1F9E20DCDBFC0011BFE9 /* AppNavigator.swift in Sources */,
 				50913F27218C9E90006C7F11 /* String+height.swift in Sources */,
+				50B1CC7D256D54D400D651C6 /* XikoloNotification.swift in Sources */,
 				50CF1F9F20DCDBFC0011BFE9 /* CourseHeaderView.swift in Sources */,
 				50CF1FA020DCDBFC0011BFE9 /* VideoViewController.swift in Sources */,
 				508AB2C22109F0DE0079EAE5 /* DocumentHeader.swift in Sources */,
 				02F6D821249793C700BB2B80 /* CourseItem+DragItem.swift in Sources */,
 				50CF1FA520DCDBFC0011BFE9 /* CourseViewController.swift in Sources */,
 				820CCEE623D05B140066CE11 /* CourseItem+share.swift in Sources */,
+				50AF096C2823B5DB001BC2E9 /* NewContentNotificationManager.swift in Sources */,
 				508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguration.swift in Sources */,
 				508FF44621AB42B200801530 /* UITableViewController+resizeViews.swift in Sources */,
 				50CF1FA620DCDBFC0011BFE9 /* CourseCell.swift in Sources */,
@@ -3274,6 +3369,7 @@
 				50CF1FA820DCDBFC0011BFE9 /* CourseAreaListViewController.swift in Sources */,
 				50CF1FAD20DCDBFC0011BFE9 /* R.generated.swift in Sources */,
 				507CC05B21788487008819FE /* PillView.swift in Sources */,
+				50B1CC51256CF48800D651C6 /* PersistenceManager+BrightFutures.swift in Sources */,
 				50092A94237DC20C00A1503F /* Channel+Color.swift in Sources */,
 				70893B5621C3D1F600AF22E3 /* LTIExerciseHintViewController.swift in Sources */,
 				50CF1FB120DCDBFC0011BFE9 /* UITableViewCell+enable.swift in Sources */,
@@ -3281,6 +3377,7 @@
 				82D55A1E23CF31D000EB2768 /* Sequence+sort.swift in Sources */,
 				50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */,
 				5027250A235473F600815914 /* Swizzler.swift in Sources */,
+				50A8582327A41D7400989C7A /* Settings.swift in Sources */,
 				023B8E69230615E90027E370 /* SceneDelegate.swift in Sources */,
 				50CF1FB620DCDBFC0011BFE9 /* UserDefaults+contentPreload.swift in Sources */,
 				503988732166920400F9043B /* ShadowContainerView.swift in Sources */,
@@ -3300,6 +3397,7 @@
 				50CF1FC820DCDBFC0011BFE9 /* CourseInteractionController.swift in Sources */,
 				5039887521679A0600F9043B /* CourseItemCellDelegate.swift in Sources */,
 				50FA2E6220E51A0500656776 /* SpotlightHelper.swift in Sources */,
+				509DA852252FA35700030465 /* AutomatedDownloadsCourseListViewController.swift in Sources */,
 				50CF1FCC20DCDBFC0011BFE9 /* AnnouncementListViewController.swift in Sources */,
 				5019CE902171E9390001805E /* CourseItemViewController.swift in Sources */,
 				5044C8E321A8105C006490CE /* UIAlertViewController+downloadedContent.swift in Sources */,
@@ -3342,6 +3440,7 @@
 				50CF1FEB20DCDBFC0011BFE9 /* CircularProgressView.swift in Sources */,
 				82773EF6242E245C0007F651 /* UIActivityViewController+share.swift in Sources */,
 				5013D3F924374029009C6D92 /* MoreViewController.swift in Sources */,
+				505F7CA22535E1D70006F629 /* HeaderTableViewDiffableDataSource.swift in Sources */,
 				02E20BE823882CFB006C9345 /* VisitProgressStackView.swift in Sources */,
 				5039887721679A3500F9043B /* PreloadableCourseItemContent.swift in Sources */,
 				50B71B88212AC61C008CE681 /* DocumentsPersistenceManager.swift in Sources */,
@@ -3381,6 +3480,7 @@
 				508869F324F6613A000FA1C8 /* LastVisit.swift in Sources */,
 				50FA2E1720E4B24300656776 /* EnrollmentHelper.swift in Sources */,
 				5037FC1C242DF84E00B4E8CE /* AsyncImagesStyler.swift in Sources */,
+				509DA85D2530C49800030465 /* AutomatedDownloadSettings.swift in Sources */,
 				50FA2E5D20E4B26400656776 /* UIColor+hex.swift in Sources */,
 				50FA2E1F20E4B24300656776 /* UserProfileHelper.swift in Sources */,
 				50FA2E0E20E4B24300656776 /* CoreDataHelper.swift in Sources */,
@@ -3521,6 +3621,11 @@
 			target = 50FA2DEA20E4B1A800656776 /* Common */;
 			targetProxy = 506BDC9A23E6C3B200DDC6EA /* PBXContainerItemProxy */;
 		};
+		506F5C8E280463D00096D616 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50FA2DEA20E4B1A800656776 /* Common */;
+			targetProxy = 506F5C8D280463D00096D616 /* PBXContainerItemProxy */;
+		};
 		50761B4520FCAC5A00CEDAF9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 50CF1F4120DCDBFC0011BFE9 /* iOS */;
@@ -3530,11 +3635,6 @@
 			isa = PBXTargetDependency;
 			target = 50FA2DEA20E4B1A800656776 /* Common */;
 			targetProxy = 50761B5920FCADD700CEDAF9 /* PBXContainerItemProxy */;
-		};
-		508C314B276B6B32003AE388 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 50FA2DEA20E4B1A800656776 /* Common */;
-			targetProxy = 508C314A276B6B32003AE388 /* PBXContainerItemProxy */;
 		};
 		50AD2523276BCBC30050831C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -5626,6 +5726,7 @@
 		};
 		50761B4620FCAC5A00CEDAF9 /* openHPI-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50A91A03256E5DE5002874CC /* openHPI-Tests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5690,12 +5791,14 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "openHPI-iOS-Debug";
 		};
 		50761B4720FCAC5A00CEDAF9 /* openSAP-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50A91A05256E5EB4002874CC /* openSAP-Tests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5756,6 +5859,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5763,6 +5867,7 @@
 		};
 		50761B4820FCAC5A00CEDAF9 /* openWHO-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50A91A2F256E6426002874CC /* openWHO-Tests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5823,6 +5928,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5830,6 +5936,7 @@
 		};
 		50761B4920FCAC5A00CEDAF9 /* moocHOUSE-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50A91A30256E6455002874CC /* moocHOUSE-Tests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5890,6 +5997,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5897,6 +6005,7 @@
 		};
 		50761B4A20FCAC5A00CEDAF9 /* openHPI-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50A91A03256E5DE5002874CC /* openHPI-Tests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -5954,6 +6063,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5961,6 +6071,7 @@
 		};
 		50761B4B20FCAC5A00CEDAF9 /* openSAP-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50A91A05256E5EB4002874CC /* openSAP-Tests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6018,6 +6129,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6025,6 +6137,7 @@
 		};
 		50761B4C20FCAC5A00CEDAF9 /* openWHO-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50A91A2F256E6426002874CC /* openWHO-Tests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6082,6 +6195,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6089,6 +6203,7 @@
 		};
 		50761B4D20FCAC5A00CEDAF9 /* moocHOUSE-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50A91A30256E6455002874CC /* moocHOUSE-Tests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6146,6 +6261,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -7145,6 +7261,7 @@
 		};
 		507D02DD2434C1CD0009F12B /* lernencloud-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50A91A31256E6481002874CC /* lernencloud-Tests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7209,6 +7326,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "lernencloud-iOS-Debug";
@@ -7748,6 +7866,7 @@
 		};
 		507D02E72434C1E60009F12B /* lernencloud-iOS-Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50A91A31256E6481002874CC /* lernencloud-Tests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -7805,6 +7924,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -9064,7 +9184,7 @@
 		};
 		50D65A3B20E0298D00DFD183 /* openWHO-iOS-Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 505B0D192448469000F88CAD /* opneWHO-UITests.xcconfig */;
+			baseConfigurationReference = 505B0D192448469000F88CAD /* openWHO-UITests.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9279,7 +9399,7 @@
 		};
 		50D65A4F20E029A600DFD183 /* openWHO-iOS-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 505B0D192448469000F88CAD /* opneWHO-UITests.xcconfig */;
+			baseConfigurationReference = 505B0D192448469000F88CAD /* openWHO-UITests.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -10869,6 +10989,7 @@
 		24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				50E66A4F27A56E350074F2DA /* xikolo 15.xcdatamodel */,
 				500C4D49278D8E6C00C91295 /* xikolo 14.xcdatamodel */,
 				508869F124F6604F000FA1C8 /* xikolo 13.xcdatamodel */,
 				500C361724B61BFB004DD157 /* xikolo 12.xcdatamodel */,
@@ -10884,7 +11005,7 @@
 				ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */,
 				24597D251CC6CA0D00FB5338 /* xikolo.xcdatamodel */,
 			);
-			currentVersion = 500C4D49278D8E6C00C91295 /* xikolo 14.xcdatamodel */;
+			currentVersion = 50E66A4F27A56E350074F2DA /* xikolo 15.xcdatamodel */;
 			path = xikolo.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

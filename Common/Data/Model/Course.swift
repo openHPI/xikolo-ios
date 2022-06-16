@@ -32,6 +32,8 @@ public final class Course: NSManagedObject {
     @NSManaged public var teaserStream: VideoStream?
     @NSManaged public var categories: String?
     @NSManaged public var topics: String?
+    @NSManaged public var automatedDownloadSettings: AutomatedDownloadSettings?
+    @NSManaged public var automatedDownloadsHaveBeenNoticed: Bool
 
     @NSManaged public var channel: Channel?
     @NSManaged public var sections: Set<CourseSection>

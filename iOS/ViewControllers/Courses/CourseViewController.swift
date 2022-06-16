@@ -64,26 +64,7 @@ class CourseViewController: UIViewController {
         return item
     }()
 
-    private lazy var actionMenuButton: UIBarButtonItem = {
-        let menuActions = [
-            self.course?.shareAction { [weak self] in self?.shareCourse() },
-            self.course?.showCourseDatesAction { [weak self] in self?.showCourseDates() },
-            self.course?.openHelpdesk { [weak self] in self?.openHelpdesk() },
-        ].compactMap { $0 }
-
-        let item = UIBarButtonItem.circularItem(
-            with: R.image.navigationBarIcons.dots(),
-            target: self,
-            menuActions: [menuActions]
-        )
-
-        item.accessibilityLabel = NSLocalizedString(
-            "accessibility-label.course.navigation-bar.item.actions",
-            comment: "Accessibility label for actions button in navigation bar of the course card view"
-        )
-
-        return item
-    }()
+    private lazy var actionMenuButton: UIBarButtonItem = self.makeActionsButton()
 
     private var downUpwardsInitialHeaderOffset: CGFloat = 0
     private lazy var downUpwardsGestureRecognizer: UIPanGestureRecognizer = {
@@ -105,6 +86,8 @@ class CourseViewController: UIViewController {
     }
 
     var area: CourseArea = .learnings
+
+    var actionAfterOpening: ((CourseViewController) -> Void)?
 
     override var toolbarItems: [UIBarButtonItem]? {
         get {
@@ -149,6 +132,9 @@ class CourseViewController: UIViewController {
         FeatureHelper.syncFeatures(forCourse: self.course).onSuccess { [weak self] in
             self?.courseAreaListViewController?.refresh()
         }
+
+        self.actionAfterOpening?(self)
+        self.actionAfterOpening = nil
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -192,6 +178,14 @@ class CourseViewController: UIViewController {
         }
     }
 
+    func show(section: CourseSection, animated: Bool) {
+        self.transitionIfPossible(to: .learnings) { transitionSuccessful in
+            guard transitionSuccessful else { return }
+            guard let courseItemListViewController = self.courseAreaViewController as? CourseItemListViewController else { return }
+            courseItemListViewController.scroll(toSection: section, animated: animated)
+        }
+    }
+
     func show(item: CourseItem, animated: Bool) {
         self.transitionIfPossible(to: .learnings)
 
@@ -222,6 +216,28 @@ class CourseViewController: UIViewController {
             let headerColor = self?.averageColorUnderStatusBar(withCourseVisual: image) ?? Brand.default.colors.secondary
             self?.courseNavigationController?.adjustToUnderlyingColor(headerColor)
         }
+    }
+
+    private func makeActionsButton() -> UIBarButtonItem {
+        let menuActions = [
+            self.course?.shareAction { [weak self] in self?.shareCourse() },
+            self.course?.showCourseDatesAction { [weak self] in self?.showCourseDates() },
+            self.course?.automatedDownloadAction { [weak self] in self?.openAutomatedDownloadSettings() },
+            self.course?.openHelpdeskAction { [weak self] in self?.openHelpdesk() },
+        ].compactMap { $0 }
+
+        let item = UIBarButtonItem.circularItem(
+            with: R.image.navigationBarIcons.dots(),
+            target: self,
+            menuActions: [menuActions]
+        )
+
+        item.accessibilityLabel = NSLocalizedString(
+            "accessibility-label.course.navigation-bar.item.actions",
+            comment: "Accessibility label for actions button in navigation bar of the course card view"
+        )
+
+        return item
     }
 
     private func averageColorUnderStatusBar(withCourseVisual image: UIImage?) -> UIColor? {
@@ -270,28 +286,32 @@ class CourseViewController: UIViewController {
         return (red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
     }
 
-    func transitionIfPossible(to area: CourseArea) {
+    func transitionIfPossible(to area: CourseArea, completion completionHandler: ((Bool) -> Void)? = nil) {
         if self.course.hasEnrollment {
             let newArea = self.course.accessible ? area : .courseDetails
-            self.manuallyUpdate(to: newArea, updateCourseAreaSelection: true)
+            self.manuallyUpdate(to: newArea, updateCourseAreaSelection: true) {
+                completionHandler?(true)
+            }
         } else {
-            self.manuallyUpdate(to: .courseDetails, updateCourseAreaSelection: true)
+            self.manuallyUpdate(to: .courseDetails, updateCourseAreaSelection: true) {
+                completionHandler?(false)
+            }
         }
     }
 
-    private func manuallyUpdate(to area: CourseArea, updateCourseAreaSelection: Bool) {
+    private func manuallyUpdate(to area: CourseArea, updateCourseAreaSelection: Bool, completion completionHandler: (() -> Void)? = nil) {
         self.area = area
 
         guard self.viewIfLoaded != nil else { return }
 
-        self.updateContainerView()
+        self.updateContainerView(completion: completionHandler)
 
         if updateCourseAreaSelection {
             self.courseAreaListViewController?.refresh()
         }
     }
 
-    private func updateContainerView() {
+    private func updateContainerView(completion completionHandler: (() -> Void)? = nil) {
         let animationTime: TimeInterval = 0.15
 
         UIView.animate(withDuration: animationTime, delay: animationTime, options: .curveEaseIn) {
@@ -312,6 +332,8 @@ class CourseViewController: UIViewController {
 
             UIView.animate(withDuration: animationTime, delay: 0, options: .curveEaseOut) {
                 newViewController.view.alpha = 1
+            } completion: { _ in
+                completionHandler?()
             }
         }
     }
@@ -345,7 +367,15 @@ class CourseViewController: UIViewController {
     private func openHelpdesk() {
         let helpdeskViewController = R.storyboard.tabAccount.helpdeskViewController().require()
         helpdeskViewController.course = self.course
-        let navigationController = CustomWidthNavigationController(rootViewController: helpdeskViewController)
+        let navigationController = ReadableWidthNavigationController(rootViewController: helpdeskViewController)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    private func openAutomatedDownloadSettings() {
+        guard #available(iOS 13, *), let course = self.course else { return }
+        let downloadSettingsViewController = AutomatedDownloadsSettingsViewController(course: course)
+        let navigationController = ReadableWidthNavigationController(rootViewController: downloadSettingsViewController)
+        navigationController.modalPresentationStyle = .formSheet
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
@@ -450,6 +480,9 @@ extension CourseViewController: UIPageViewControllerDelegate {
 extension CourseViewController: CourseAreaViewControllerDelegate {
 
     func enrollmentStateDidChange(whenNewlyCreated newlyCreated: Bool) {
+        self.actionMenuButton = self.makeActionsButton()
+        self.navigationItem.rightBarButtonItem = self.actionMenuButton
+
         if newlyCreated {
             self.transitionIfPossible(to: .learnings)
         } else {

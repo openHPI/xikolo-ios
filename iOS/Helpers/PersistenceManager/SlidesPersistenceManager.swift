@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import Common
 import CoreData
 
@@ -32,79 +33,86 @@ final class SlidesPersistenceManager: FilePersistenceManager<SlidesPersistenceMa
         return self.createURLSession(withIdentifier: "slides-download")
     }
 
-    func startDownload(for video: Video) {
-        guard let url = video.slidesURL else { return }
-        self.startDownload(with: url, for: video)
-    }
-
-    private func trackingContext(for video: Video) -> [String: String?] {
-        return [
+    private func trackingContext(for video: Video, options: [Option]) -> [String: String?] {
+        var context = [
             "section_id": video.item?.section?.id,
             "course_id": video.item?.section?.course?.id,
             "free_space": String(describing: SlidesPersistenceManager.systemFreeSize),
             "total_space": String(describing: SlidesPersistenceManager.systemSize),
         ]
+
+        for case let .trackingContext(additionalContext) in options {
+            context.merge(additionalContext) { $1 }
+        }
+
+        return context
     }
 
-    override func didStartDownload(for resource: Video) {
+    override func didStartDownload(for resource: Video, options: [Option]) {
         TrackingHelper.createEvent(.slidesDownloadStart,
                                    resourceType: .video,
                                    resourceId: resource.id,
                                    on: nil,
-                                   context: self.trackingContext(for: resource))
+                                   context: self.trackingContext(for: resource, options: options))
     }
 
-    override func didCancelDownload(for resource: Video) {
+    override func didCancelDownload(for resource: Video, options: [Option]) {
         TrackingHelper.createEvent(.slidesDownloadCanceled,
                                    resourceType: .video,
                                    resourceId: resource.id,
                                    on: nil,
-                                   context: self.trackingContext(for: resource))
+                                   context: self.trackingContext(for: resource, options: options))
     }
 
-    override func didFinishDownload(for resource: Video) {
+    override func didFinishDownload(for resource: Video, options: [Option]) {
         TrackingHelper.createEvent(.slidesDownloadFinished,
                                    resourceType: .video,
                                    resourceId: resource.id,
                                    on: nil,
-                                   context: self.trackingContext(for: resource))
+                                   context: self.trackingContext(for: resource, options: options))
     }
 
 }
 
 extension SlidesPersistenceManager {
 
-    func startDownloads(for section: CourseSection) {
-        self.persistentContainerQueue.addOperation {
-            section.items.compactMap { item in
-                return item.content as? Video
-            }.filter { video in
-                return SlidesPersistenceManager.shared.downloadState(for: video) == .notDownloaded
-            }.forEach { video in
-                self.startDownload(for: video)
-            }
-        }
+    @discardableResult
+    func startDownload(for video: Video, options: [SlidesPersistenceManager.Option] = []) -> Future<Void, XikoloError> {
+        guard let url = video.slidesURL else { return Future(error: .totallyUnknownError) }
+        return self.startDownload(with: url, for: video, options: options)
     }
 
-    func deleteDownloads(for section: CourseSection) {
-        self.persistentContainerQueue.addOperation {
-            section.items.compactMap { item in
-                return item.content as? Video
-            }.forEach { video in
-                self.deleteDownload(for: video)
-            }
-        }
+    @discardableResult
+    func startDownloads(for section: CourseSection, options: [SlidesPersistenceManager.Option] = []) -> Future<Void, XikoloError> {
+        let sectionDownloadFuture = section.items.compactMap { item in
+            return item.content as? Video
+        }.filter { video in
+            return self.downloadState(for: video) == .notDownloaded
+        }.map { video in
+            self.startDownload(for: video, options: options)
+        }.sequence().asVoid()
+
+        return sectionDownloadFuture
+    }
+
+    @discardableResult
+    func deleteDownloads(for section: CourseSection) -> Future<Void, XikoloError> {
+        let sectionDeleteFuture = section.items.compactMap { item in
+            return item.content as? Video
+        }.map { video in
+            self.deleteDownload(for: video)
+        }.sequence().asVoid()
+
+        return sectionDeleteFuture
     }
 
     func cancelDownloads(for section: CourseSection) {
-        self.persistentContainerQueue.addOperation {
-            section.items.compactMap { item in
-                return item.content as? Video
-            }.filter { video in
-                return [.pending, .downloading].contains(SlidesPersistenceManager.shared.downloadState(for: video))
-            }.forEach { video in
-                self.cancelDownload(for: video)
-            }
+        section.items.compactMap { item in
+            return item.content as? Video
+        }.filter { video in
+            return [.pending, .downloading].contains(SlidesPersistenceManager.shared.downloadState(for: video))
+        }.forEach { video in
+            self.cancelDownload(for: video)
         }
     }
 

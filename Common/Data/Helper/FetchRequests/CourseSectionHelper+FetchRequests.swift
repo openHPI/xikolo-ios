@@ -36,6 +36,13 @@ extension CourseSectionHelper {
             return request
         }
 
+        public static func courseSection(withId id: String) -> NSFetchRequest<CourseSection> {
+            let request: NSFetchRequest<CourseSection> = CourseSection.fetchRequest()
+            request.predicate = NSPredicate(format: "id = %@", id)
+            request.fetchLimit = 1
+            return request
+        }
+
     }
 
 }

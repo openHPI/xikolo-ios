@@ -1,0 +1,7 @@
+//
+//  Created for xikolo-ios under GPL-3.0 license.
+//  Copyright © HPI. All rights reserved.
+//
+
+TEST_HOST = $(BUILT_PRODUCTS_DIR)/$(APP_IDENTIFIER).app/$(APP_IDENTIFIER)
+BUNDLE_LOADER = $(TEST_HOST)

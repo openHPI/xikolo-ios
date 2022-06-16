@@ -3,8 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+APP_IDENTIFIER = opensap
+
 BRAND_NAME = openSAP
-PRODUCT_NAME = opensap
+PRODUCT_NAME = $(APP_IDENTIFIER)
 DISPLAY_NAME = openSAP
 URL_SCHEME = opensap
 

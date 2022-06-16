@@ -3,8 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+APP_IDENTIFIER = openwho
+
 BRAND_NAME = openWHO
-PRODUCT_NAME = openwho
+PRODUCT_NAME = $(APP_IDENTIFIER)
 DISPLAY_NAME = OpenWHO
 URL_SCHEME = openwho
 

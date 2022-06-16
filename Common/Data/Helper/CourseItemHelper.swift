@@ -70,4 +70,17 @@ public enum CourseItemHelper {
         return promise.future
     }
 
+    @discardableResult public static func syncCourseItemsWithContent(
+        for course: Course,
+        withContentType type: String,
+        networker: SyncNetworker
+    ) -> Future<SyncMultipleResult, XikoloError> {
+        let fetchRequest = Self.FetchRequest.courseItems(forCourse: course)
+        var query = MultipleResourcesQuery(type: CourseItem.self)
+        query.addFilter(forKey: "course", withValue: course.id)
+        query.addFilter(forKey: "content_type", withValue: type)
+        query.include("content")
+        return XikoloSyncEngine(networker: networker).synchronize(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
+    }
+
 }

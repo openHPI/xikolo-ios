@@ -8,6 +8,10 @@
 	<string>$(APP_GROUP_IDENTIFIER)</string>
 	<key>AVInitialRouteSharingPolicy</key>
 	<string>LongFormVideo</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>de.xikolo.ios.new-content.download.background</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -84,6 +88,7 @@
 	<array>
 		<string>audio</string>
 		<string>fetch</string>
+		<string>processing</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

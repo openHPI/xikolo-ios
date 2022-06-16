@@ -11,6 +11,9 @@ import UIKit
 
 let logger = Logger(subsystem: "de.xikolo.iOS", category: "iOS")
 
+@available(iOS 13, *)
+private let notificationDelegate = XikoloNotificationDelegate()
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -32,11 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private var shortcutItemToProcess: UIApplicationShortcutItem?
 
+    // swiftlint:disable:next function_body_length
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
         if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
             self.shortcutItemToProcess = shortcutItem
-           }
+        }
 
         CoreDataHelper.migrateModelToCommon()
         UserProfileHelper.shared.logoutFromTestAccount()
@@ -90,8 +93,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 logger.error("Failed to start reachability notification")
             }
 
+            if #available(iOS 13.0, *) {
+                UNUserNotificationCenter.current().delegate = notificationDelegate
+                XikoloNotification.setNotificationCategories()
+                AutomatedDownloadsManager.registerBackgroundTask()
+            }
+
             if UserProfileHelper.shared.isLoggedIn {
                 FeatureHelper.syncFeatures()
+            }
+
+            if #available(iOS 13.0, *) {
+                AutomatedDownloadsManager.processPendingDownloadsAndDeletions(triggeredBy: .appLaunch)
             }
         }
 
@@ -184,6 +197,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             SlidesPersistenceManager.shared.backgroundCompletionHandler = completionHandler
         } else if DocumentsPersistenceManager.shared.session.configuration.identifier == identifier {
             DocumentsPersistenceManager.shared.backgroundCompletionHandler = completionHandler
+        } else if #available(iOS 13, *), AutomatedDownloadsManager.urlSessionIdentifier == identifier {
+            AutomatedDownloadsManager.backgroundCompletionHandler = completionHandler
         }
     }
 

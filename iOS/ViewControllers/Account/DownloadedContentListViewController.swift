@@ -8,6 +8,49 @@ import Common
 import Foundation
 import UIKit
 
+@available(iOS 13, *)
+class DownloadedContentSubMenuViewController: UITableViewController {
+
+    private let cellReuseIdentifier = "submenucell"
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.preservesSuperviewLayoutMargins = true
+        self.tableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: self.cellReuseIdentifier)
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath)
+        cell.textLabel?.text = NSLocalizedString("automated-downloads.setup.action.title",
+                                                 comment: "Automated Downloads: Action title for managing notifications for new content")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController = AutomatedDownloadsCourseListViewController()
+        self.show(viewController, sender: self)
+    }
+
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.calculatePreferredSize()
+    }
+
+    private func calculatePreferredSize() {
+        self.preferredContentSize = self.tableView.contentSize
+    }
+
+}
+
 class DownloadedContentListViewController: UITableViewController {
 
     private static let timeEffortFormatter: DateComponentsFormatter = {
@@ -53,6 +96,13 @@ class DownloadedContentListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if #available(iOS 13, *) {
+            let submenuViewController = DownloadedContentSubMenuViewController(style: .insetGrouped)
+            self.addChild(submenuViewController)
+            self.tableView.tableHeaderView = submenuViewController.view
+            submenuViewController.didMove(toParent: self)
+        }
+
         self.setupEmptyState()
         self.refresh()
 
@@ -62,11 +112,17 @@ class DownloadedContentListViewController: UITableViewController {
                                                object: CoreDataHelper.viewContext)
     }
 
+    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+        super.preferredContentSizeDidChange(forChildContentContainer: container)
+        self.tableView.resizeTableHeaderView()
+    }
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: nil) { _ in
             self.tableView.resizeTableHeaderView()
+            self.tableView.resizeTableFooterView()
         }
     }
 
@@ -101,8 +157,8 @@ class DownloadedContentListViewController: UITableViewController {
         let format = NSLocalizedString("settings.downloads.total size: %@", comment: "total size label")
         let formattedFileSize = ByteCountFormatter.string(fromByteCount: Int64(fileSize), countStyle: .file)
         self.totalFileSizeLabel.text = String.localizedStringWithFormat(format, formattedFileSize)
-        self.tableView.tableHeaderView?.isHidden = self.courseDownloads.isEmpty
-        self.tableView.resizeTableHeaderView()
+        self.tableView.tableFooterView?.isHidden = self.courseDownloads.isEmpty
+        self.tableView.resizeTableFooterView()
     }
 
     private func aggregatedFileSize(for courseDownload: CourseDownload) -> UInt64 {
@@ -314,7 +370,6 @@ extension DownloadedContentListViewController: EmptyStateDataSource {
 
     func setupEmptyState() {
         self.tableView.emptyStateDataSource = self
-        self.tableView.tableFooterView = UIView()
     }
 
 }

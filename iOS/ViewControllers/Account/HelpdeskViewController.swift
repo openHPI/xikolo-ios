@@ -42,12 +42,15 @@ class HelpdeskViewController: UITableViewController, UIAdaptivePresentationContr
     }
 
     var hasValidInput: Bool {
+        // swiftlint:disable empty_enum_arguments
+        // `joined()` falselt trigger the swiftlint rule "empty_enum_arguments"
         guard let issueTitle = self.titleTextField.text, !issueTitle.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty
             else { return false }
         guard let mailAddress = self.mailAddressTextField.text, !mailAddress.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty
             else { return false }
         guard let issueReport = self.reportTextView.text, !issueReport.components(separatedBy: .whitespacesAndNewlines).joined().isEmpty
             else { return false }
+        // swiftlint:enable empty_enum_arguments
 
         return true
     }

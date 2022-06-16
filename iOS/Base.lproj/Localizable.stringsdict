@@ -20,5 +20,15 @@
 			<string>%d courses found</string>
 		</dict>
 	</dict>
+	<key>notification.new-content.action.download</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Download now</string>
+	</dict>
+	<key>notification.new-content.body</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Course section &apos;%@&apos; started. Download the new course material to continue learning without an Internet connection.</string>
+	</dict>
 </dict>
 </plist>

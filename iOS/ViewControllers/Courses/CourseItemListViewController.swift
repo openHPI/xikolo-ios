@@ -10,12 +10,19 @@ import Common
 import CoreData
 import UIKit
 
+// swiftlint:disable:next type_body_length
 class CourseItemListViewController: UITableViewController {
 
     private static let contentToBePreloaded: [PreloadableCourseItemContent.Type] = [Video.self, RichText.self]
 
     private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
     private static let timeFormatter = DateFormatter.localizedFormatter(dateStyle: .none, timeStyle: .short)
+
+    @IBOutlet private weak var automatedDownloadsPromotionHint: UIView!
+    @IBOutlet private weak var automatedDownloadsPromotionHintExtended: UIView!
+    @IBOutlet private weak var automatedDownloadsActiveHint: UIView!
+    @IBOutlet private weak var automatedDownloadsActiveHintExtended: UIView!
+    @IBOutlet private weak var automatedDownloadsMissingPermissionHint: UIView!
 
     @IBOutlet private weak var continueLearningHint: UIView!
     @IBOutlet private weak var continueLearningSectionTitleLabel: UILabel!
@@ -26,22 +33,39 @@ class CourseItemListViewController: UITableViewController {
 
     @IBOutlet private weak var nextSectionStartLabel: UILabel!
 
-    private var course: Course!
     private var dataSource: CoreDataTableViewDataSourceWrapper<CourseItem>!
+
+    private var courseObserver: ManagedObjectObserver?
+    private var course: Course! {
+        didSet {
+            self.courseObserver = ManagedObjectObserver(object: self.course) { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.updateAutomatedDownloadsHint(animated: true)
+                }
+            }
+        }
+    }
 
     private var lastVisitObserver: ManagedObjectObserver?
     private var lastVisit: LastVisit? {
         didSet {
-            self.updateHeaderView()
+            self.updateLastVisitHint()
             if let lastVisit = self.lastVisit {
                 self.lastVisitObserver = ManagedObjectObserver(object: lastVisit) { [weak self] _ in
                     DispatchQueue.main.async {
-                        self?.updateHeaderView()
+                        self?.updateLastVisitHint()
                     }
                 }
             } else {
                 self.lastVisitObserver = nil
             }
+        }
+    }
+
+    private var nextSectionStartDate: Date? {
+        didSet {
+            guard self.nextSectionStartDate != oldValue else { return }
+            self.updateNextSectionStartHint()
         }
     }
 
@@ -55,6 +79,7 @@ class CourseItemListViewController: UITableViewController {
         }
     }
 
+    // swiftlint:disable:next function_body_length
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -81,6 +106,28 @@ class CourseItemListViewController: UITableViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openContinueLearningItem))
         self.continueLearningHint.addGestureRecognizer(tapGesture)
 
+        self.automatedDownloadsPromotionHint.isHidden = true
+        self.continueLearningHint.isHidden = true
+        self.nextSectionStartLabel.isHidden = true
+
+        if #available(iOS 13, *) {
+            self.automatedDownloadsPromotionHint.layer.roundCorners(for: .default)
+            self.automatedDownloadsPromotionHint.addDefaultPointerInteraction()
+
+            self.automatedDownloadsActiveHint.layer.roundCorners(for: .default)
+            self.automatedDownloadsActiveHint.addDefaultPointerInteraction()
+
+            self.automatedDownloadsMissingPermissionHint.layer.roundCorners(for: .default)
+            self.automatedDownloadsMissingPermissionHint.addDefaultPointerInteraction()
+
+            let promotionTapGesture = UITapGestureRecognizer(target: self, action: #selector(showAutomatedDownloadSettings))
+            self.automatedDownloadsPromotionHint.addGestureRecognizer(promotionTapGesture)
+            let activeTapGesture = UITapGestureRecognizer(target: self, action: #selector(showAutomatedDownloadSettings))
+            self.automatedDownloadsActiveHint.addGestureRecognizer(activeTapGesture)
+            let missingPermissionTapGesture = UITapGestureRecognizer(target: self, action: #selector(openSettings))
+            self.automatedDownloadsMissingPermissionHint.addGestureRecognizer(missingPermissionTapGesture)
+        }
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
                                                name: Notification.Name.reachabilityChanged,
@@ -94,12 +141,10 @@ class CourseItemListViewController: UITableViewController {
                                                name: LastVideoProgress.didChangeNotification,
                                                object: nil)
 
-        self.continueLearningHint.isHidden = true
-        self.tableView.resizeTableHeaderView()
-
         self.setupEmptyState()
+        self.updateAutomatedDownloadsHint(animated: false)
         self.updateLastVisit()
-        self.updateFooterView()
+        self.updateNextSectionStartDate()
         self.navigationItem.title = self.course.title
 
         // setup table view data
@@ -142,7 +187,7 @@ class CourseItemListViewController: UITableViewController {
               video.id == videoId else { return }
 
         DispatchQueue.main.async {
-            self.updateHeaderView()
+            self.updateLastVisitHint()
         }
     }
 
@@ -189,7 +234,7 @@ class CourseItemListViewController: UITableViewController {
         self.lastVisit = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value
     }
 
-    private func updateHeaderView() {
+    private func updateLastVisitHint() {
         self.continueLearningSectionTitleLabel.text = self.lastVisit?.item?.section?.title
         self.continueLearningItemTitleLabel.text = self.lastVisit?.item?.title
         self.continueLearningItemIconView.image = self.lastVisit?.item?.image
@@ -206,25 +251,55 @@ class CourseItemListViewController: UITableViewController {
         }
     }
 
-    private func updateFooterView() {
-        guard self.course.startsAt?.inPast ?? true else {
-            self.nextSectionStartLabel.isHidden = true
+    private func updateAutomatedDownloadsHint(animated: Bool) {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            let downloadSettingsExist = self.course.automatedDownloadSettings != nil
+            let backgroundDownloadEnabled = self.course.automatedDownloadSettings?.newContentAction == .notificationAndBackgroundDownload
+            let shouldHidePromotionHint = downloadSettingsExist || !self.course.offersNotificationsForNewContent
 
-            UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
-                self.tableView.resizeTableFooterView()
+            let notificationsDenied = settings.authorizationStatus == .denied
+            let shouldHideActiveSettingsHint = !downloadSettingsExist || notificationsDenied
+
+            let shouldHideMissingPermissionHint = !(downloadSettingsExist && notificationsDenied)
+
+            DispatchQueue.main.async {
+                self.automatedDownloadsPromotionHint.isHidden = shouldHidePromotionHint
+                self.automatedDownloadsPromotionHintExtended.isHidden = !self.course.offersAutomatedBackgroundDownloads
+                self.automatedDownloadsMissingPermissionHint.isHidden = shouldHideMissingPermissionHint
+                self.automatedDownloadsActiveHint.isHidden = shouldHideActiveSettingsHint
+                self.automatedDownloadsActiveHintExtended.isHidden = !backgroundDownloadEnabled
+
+                UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled(animated)) {
+                    self.tableView.resizeTableHeaderView()
+                }
             }
+        }
+    }
 
+    private func updateNextSectionStartDate() {
+        guard self.course.startsAt?.inPast ?? true else {
+            self.nextSectionStartDate = nil
             return
         }
 
         let request = CourseSectionHelper.FetchRequest.nextUnpublishedSection(for: self.course)
-        guard let sectionStartDate = CoreDataHelper.viewContext.fetchSingle(request).value?.startsAt else {
-            self.nextSectionStartLabel.isHidden = true
+        guard let date = CoreDataHelper.viewContext.fetchSingle(request).value?.startsAt else {
+            self.nextSectionStartDate = nil
+            return
+        }
 
+        self.nextSectionStartDate = date
+    }
+
+    private func updateNextSectionStartHint() {
+        defer {
             UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
                 self.tableView.resizeTableFooterView()
             }
+        }
 
+        guard let sectionStartDate = self.nextSectionStartDate else {
+            self.nextSectionStartLabel.isHidden = true
             return
         }
 
@@ -241,16 +316,24 @@ class CourseItemListViewController: UITableViewController {
                                        comment: "Format string for the next section start in the footer of course item list")
         self.nextSectionStartLabel.text = String(format: format, dateText, timeText)
         self.nextSectionStartLabel.isHidden = false
-
-        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
-            self.tableView.resizeTableFooterView()
-        }
     }
 
     @objc private func openContinueLearningItem() {
         self.scrollToContinueLearningItemAndHighlight { [weak self] cell in
             self?.performSegue(withIdentifier: R.segue.courseItemListViewController.showCourseItem, sender: cell)
         }
+    }
+
+    @available(iOS 13, *)
+    @objc private func showAutomatedDownloadSettings() {
+        let downloadSettingsViewController = AutomatedDownloadsSettingsViewController(course: self.course)
+        let navigationController = ReadableWidthNavigationController(rootViewController: downloadSettingsViewController)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    @available(iOS 13, *)
+    @objc private func openSettings() {
+        Settings.open()
     }
 
     private func scrollToContinueLearningItemAndHighlight(completionHandler: ((UITableViewCell) -> Void)? = nil) {
@@ -276,6 +359,18 @@ class CourseItemListViewController: UITableViewController {
                     completionHandler?(cell)
                 }
             })
+        }
+    }
+
+    func scroll(toSection section: CourseSection, animated: Bool) {
+        guard let anyItemInSection = section.items.first else { return }
+        guard let someRandomIndexPathInSection = self.dataSource.indexPath(for: anyItemInSection) else { return }
+        let indexPath = IndexPath(row: 0, section: someRandomIndexPathInSection.section)
+
+        self.scrollDelegate?.scrollToTop()
+
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+            self.tableView.scrollToRow(at: indexPath, at: .middle, animated: animated)
         }
     }
 
@@ -379,7 +474,15 @@ extension CourseItemListViewController: RefreshableViewController {
 
     func didRefresh() {
         self.updateLastVisit()
-        self.updateFooterView()
+        self.updateAutomatedDownloadsHint(animated: true)
+        self.updateNextSectionStartDate()
+
+        if #available(iOS 13, *) {
+            if self.course.automatedDownloadSettings != nil {
+                NewContentNotificationManager.renewNotifications(for: self.course)
+                AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
+            }
+        }
 
         guard self.preloadingWanted else { return }
         self.preloadCourseContent()

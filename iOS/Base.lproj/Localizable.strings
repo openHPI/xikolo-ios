@@ -44,6 +44,33 @@
 /* App state message for server maintenance */
 "app-state.maintenance.server maintenance on %@" = "Server maintenance on %@";
 
+/* Section title in course list for activated automated downloads */
+"automated-downloads.course-list.section.title.activated for" = "Activated for";
+
+/* Section title in course list for available automated downloads */
+"automated-downloads.course-list.section.title.available for" = "Available for";
+
+/* Title for course list for automated downloads */
+"automated-downloads.course-list.title" = "Notifications for new content";
+
+/* Automated Downloads: Action title for managing notifications for new content */
+"automated-downloads.setup.action.title" = "Manage notifications for new content";
+
+/* Automated Downloads (Setup): Header title for the content deletion section */
+"automated-downloads.setup.header.content-deletion" = "Content Deletion";
+
+/* Automated Downloads (Setup): Hint for the location of the settings view */
+"automated-downloads.setup.message.edit-again" = "You will be able to change these settings at any time via the course menu ('⋯') or via 'Downloaded Content' in the account tab.";
+
+/* Automated Downloads (Setup): Message shown after failed setup */
+"automated-downloads.setup.message.failed" = "Setup failed: Please check the app's permission to send notification";
+
+/* Automated Downloads (Setup): Title for the activate switch */
+"automated-downloads.setup.switch.title.activate" = "Activate";
+
+/* Automated Downloads (Setup): Title for the switch to include slides */
+"automated-downloads.setup.switch.title.include-slides" = "Include slides";
+
 /* button title for starting playback for channel teaser video */
 "channel-header.play-teaser" = "Play Teaser";
 
@@ -254,6 +281,12 @@
 /* title for empty announcement list */
 "empty-view.announcements.title" = "There are no news at the moment";
 
+/* explanation for empty course list for automated downloads */
+"empty-view.automated-downloads.course-list.explanation" = "Notifications of new content are only available during the course period of courses you are enrolled in.";
+
+/* title for empty course list for automated downloads */
+"empty-view.automated-downloads.course-list.title" = "No courses available";
+
 /* title for empty certificates list */
 "empty-view.certificates.no-certificates.title" = "No certificates available";
 
@@ -307,6 +340,9 @@
 
 /* title to confirm alert */
 "global.alert.ok" = "OK";
+
+/* Button title to open settings app */
+"global.button.title.open-settings" = "Open settings";
 
 /* Title for button for deselecting all items in a list */
 "global.list.selection.deselect all" = "Deselect all";

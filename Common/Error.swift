@@ -33,4 +33,6 @@ public enum XikoloError: Error {
 
     case userCanceled
 
+    case permissionError(Error?)
+
 }

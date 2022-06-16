@@ -3,8 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+APP_IDENTIFIER = lernencloud
+
 BRAND_NAME = lernencloud
-PRODUCT_NAME = lernencloud
+PRODUCT_NAME = $(APP_IDENTIFIER)
 DISPLAY_NAME = LERNEN.cloud
 URL_SCHEME = lernencloud
 

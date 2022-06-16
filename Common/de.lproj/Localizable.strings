@@ -1,4 +1,40 @@
 
+/* Automated Downloads (Deletion options): Explanation for manual deletion */
+"automated-downloads.deletion-options.explanation.manual" = "Heruntergeladene Inhalte werden nicht automatisch entfernt.";
+
+/* Automated Downloads (Deletion options): Explanation for deletion with next section */
+"automated-downloads.deletion-options.explanation.next-section" = "Mit dem Beginn eines neuen Kursabschnitts werden die heruntergeladenen Inhalte früherer Kursabschnitte von diesem Gerät entfernt.";
+
+/* Automated Downloads (Deletion options): Explanation for deletion with second next section */
+"automated-downloads.deletion-options.explanation.second-next-section" = "Mit dem Start eines neuen Kursabschnitts werden die heruntergeladenen Inhalte des vorletzten Kursabschnitts (and älter) von diesem Gerät entfernt.";
+
+/* Automated Downloads (Deletion options): Title for manual deletion */
+"automated-downloads.deletion-options.title.manually" = "Manuell";
+
+/* Automated Downloads (Deletion options): Title for deletion with next section */
+"automated-downloads.deletion-options.title.next-section" = "Mit dem Beginn des nächsten Kursabschnitts";
+
+/* Automated Downloads (Deletion options): Title for deletion with second next section */
+"automated-downloads.deletion-options.title.second-next-section" = "Mit dem Beginn des übernächsten Kursabschnitts";
+
+/* Automated Downloads (Notification only): Explanation of the feature */
+"automated-downloads.feature.explanation.notification" = "Wenn ein neuer Kursabschnitt verfügbar wird, erhalten Sie eine Benachrichtigung. Wenn Sie auf diese Benachrichtigung tippen, können Sie den Kurs direkt öffnen. Wenn Sie lange auf die Benachrichtigung drücken, können Sie die Inhalte des neuen Abschnitts zur Offline-Nutzung herunterladen.";
+
+/* Automated Downloads (Notification + Background Downloads): Explanation of the feature (add.) */
+"automated-downloads.feature.explanation.notification-background-download" = "Zusätzlich wird die App versuchen, die neuen Inhalte automatisch herunterzuladen. Dies wird nur ausgelöst, wenn Ihr Gerät mit einem WiFi-Netzwerk verbunden ist und es die geringsten Auswirkungen auf die Akkulaufzeit hat.";
+
+/* Automated Downloads (Notification only): Title of the feature */
+"automated-downloads.feature.title.notification" = "Benachrichtigungen für neue Inhalte";
+
+/* Automated Downloads (Notification + Background Downloads): Title of the feature */
+"automated-downloads.feature.title.notification-background-download" = "Benachrichtigungen für neue Inhalte & Automatisierte Downloads";
+
+/* Automated Downloads (File types): Explanation for considering only videos */
+"automated-downloads.files-type.explanation.videos" = "Nur Videos werden heruntergeladen";
+
+/* Automated Downloads (File types): Explanation for considering videos and slides */
+"automated-downloads.files-type.explanation.videos-slides" = "Videos und Folien werden heruntergeladen.";
+
 /* title for course start in a course date cell */
 "course-date-cell.course-start.title" = "Kursstart";
 

@@ -198,14 +198,14 @@ extension UIButton {
             }
         }
 
-        if #available(iOS 14, *) {} else {
+        if #unavailable(iOS 14) {
             var associatedKey = "legacy_action_wrappers"
             objc_setAssociatedObject(self, &associatedKey, actionWrappers, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 
     func removeAllTargetsAndGestures() {
-        if #available(iOS 14, *) {} else {
+        if #unavailable(iOS 14) {
             self.removeTarget(nil, action: nil, for: .allEvents)
             self.gestureRecognizers?.forEach { self.removeGestureRecognizer($0) }
         }

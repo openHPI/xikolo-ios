@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NCWidgetController().setHasContent(hasContent, forWidgetWithBundleIdentifier: bundleId)
         }
 
-        if #available(iOS 13.0, *) {} else {
+        if #unavailable(iOS 13.0) {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             self.window?.rootViewController = self.tabBarController
             self.window?.tintColor = Brand.default.colors.window
@@ -152,7 +152,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         if let shortcutItem = self.shortcutItemToProcess {
-            if #available(iOS 13.0, *) {} else {
+            if #unavailable(iOS 13) {
                 self.appNavigator.handle(shortcutItem: shortcutItem)
             }
 

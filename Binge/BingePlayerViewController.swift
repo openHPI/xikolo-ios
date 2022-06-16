@@ -245,7 +245,7 @@ public class BingePlayerViewController: UIViewController {
         view.addSubview(self.errorView)
         view.addSubview(self.loadingIndicator)
 
-        if #available(iOS 13, *) {} else {
+        if #unavailable(iOS 13) {
             view.addSubview(self.volumeIndicator)
         }
 
@@ -273,7 +273,7 @@ public class BingePlayerViewController: UIViewController {
             self.loadingIndicator.widthAnchor.constraint(equalToConstant: 75), // including 2 * shadowRadius
         ])
 
-        if #available(iOS 13, *) {} else {
+        if #unavailable(iOS 13) {
             NSLayoutConstraint.activate([
                 self.volumeIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 self.volumeIndicator.topAnchor.constraint(equalTo: view.topAnchor),
@@ -350,7 +350,7 @@ public class BingePlayerViewController: UIViewController {
             self?.reactOnStatusChange()
         }
 
-        if #available(iOS 13, *) {} else {
+        if #unavailable(iOS 13) {
             self.outputVolumeObservation = AVAudioSession.sharedInstance().observe(\.outputVolume, options: [.new]) { [weak self] _, _ in
                 self?.showVolumeIndicator()
             }
@@ -429,7 +429,7 @@ public class BingePlayerViewController: UIViewController {
                                                        allowFullScreenMode: self.allowFullScreenMode,
                                                        isStandAlone: self.isStandAlone)
 
-        if #available(iOS 13, *) {} else {
+        if #unavailable(iOS 13) {
             self.volumeIndicator.isHidden = self.layoutState != .fullScreen
         }
 

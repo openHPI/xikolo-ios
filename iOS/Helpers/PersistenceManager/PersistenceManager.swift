@@ -16,7 +16,7 @@ protocol Persistable {
 
 protocol PersistenceManagerConfiguration {
 
-    associatedtype Resource: NSManagedObject & Persistable
+    associatedtype Resource: NSManagedObject, Persistable
     associatedtype Session: URLSession
 
     static var keyPath: ReferenceWritableKeyPath<Resource, NSData?> { get }

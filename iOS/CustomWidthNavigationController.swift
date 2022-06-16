@@ -38,7 +38,7 @@ class CustomWidthNavigationController: UINavigationController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if #available(iOS 13, *) {} else {
+        if #unavailable(iOS 13) {
             self.hideShadowImage(inView: self.view)
         }
     }

@@ -108,7 +108,7 @@ extension CourseDateListViewController: CoreDataTableViewDataSourceDelegate {
     func configure(_ cell: CourseDateCell, for object: CourseDate) {
         cell.configure(for: object, inCourseContext: self.course != nil)
 
-        if #available(iOS 13, *) {} else {
+        if #unavailable(iOS 13) {
             cell.backgroundColor = ColorCompatibility.systemBackground
         }
     }

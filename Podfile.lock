@@ -3,12 +3,12 @@ PODS:
   - R.swift (5.4.0):
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
-  - SwiftLint (0.43.1)
+  - SwiftLint (0.47.1)
 
 DEPENDENCIES:
   - BartyCrouch (from `https://github.com/Flinesoft/BartyCrouch.git`, tag `3.13.0`)
   - R.swift (~> 5.0)
-  - SwiftLint (~> 0.22)
+  - SwiftLint (~> 0.47)
 
 SPEC REPOS:
   trunk:
@@ -30,8 +30,8 @@ SPEC CHECKSUMS:
   BartyCrouch: 69e5e6ec67e77951dc1c22aa48abbf05d175b81c
   R.swift: c533450b0f7dc494e0993f5f1a1db925d84c3006
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
-  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
 
-PODFILE CHECKSUM: fb9f4465931b7e08eb0b99f6becf9dba5dc0473b
+PODFILE CHECKSUM: 61a75f6376cec245a03686fb2726757c25595d2d
 
 COCOAPODS: 1.11.3

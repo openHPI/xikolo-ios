@@ -69,6 +69,9 @@ opt_in_rules:
 
 disabled_rules:
 - explicit_enum_raw_value
+- file_length
+- type_body_length
+- function_body_length
 
 analyzer_rules:
 - explicit_self

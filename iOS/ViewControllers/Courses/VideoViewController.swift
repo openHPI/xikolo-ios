@@ -138,7 +138,7 @@ class VideoViewController: UIViewController {
         self.didViewAppear = true
 
         // Autoplay logic
-        if self.isFirstAppearance {
+        if self.isFirstAppearance && !UserDefaults.standard.disableVideoAutoPlay {
             self.playerViewController?.startPlayback()
         } else {
             self.playerViewController?.showControlsOverlay()

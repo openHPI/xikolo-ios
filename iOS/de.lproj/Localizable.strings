@@ -458,6 +458,9 @@
 /* section title for settings */
 "settings.section-title.settings" = "Einstellungen";
 
+/* cell title for video auto play */
+"settings.video-auto-play.title" = "Videowiedergabe automatisch starten";
+
 /* best video quality */
 "settings.video-quality.best" = "Beste";
 

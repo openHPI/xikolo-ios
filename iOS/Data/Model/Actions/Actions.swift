@@ -88,6 +88,38 @@ struct Action {
                 return nil
             }
         }
+
+        static var unenroll: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "xmark.diamond")
+            } else {
+                return nil
+            }
+        }
+
+        static var markAsCompleted: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "checkmark.seal")
+            } else {
+                return nil
+            }
+        }
+
+        static var ok: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "checkmark")
+            } else {
+                return nil
+            }
+        }
+
+        static var cancel: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "xmark")
+            } else {
+                return nil
+            }
+        }
     }
 
 }
@@ -116,7 +148,7 @@ extension Array where Element == Action {
     }
 
     @available(iOS 13.0, *)
-    func asActions() -> [UIAction] {
+    func asActions() -> [UIMenuElement] {
         return self.map(UIAction.init(action:))
     }
 

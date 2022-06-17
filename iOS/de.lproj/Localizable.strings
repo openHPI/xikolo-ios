@@ -320,6 +320,9 @@
 /* title of Course enrollment options button */
 "enrollment.button.not-enrolled.title" = "Einschreiben";
 
+/* message for the mark as completed action that this action can not be undone */
+"enrollment.mark-as-completed.message.no-undo" = "Dies kann nicht rückgängig gemacht werden.";
+
 /* title for 'mask as completed' action */
 "enrollment.options-alert.mask-as-completed-action.title" = "Als abgeschlossen markieren";
 

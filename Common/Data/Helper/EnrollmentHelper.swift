@@ -17,6 +17,7 @@ public enum EnrollmentHelper {
         return XikoloSyncEngine().createResource(ofType: Enrollment.self, withData: resourceData).asVoid()
     }
 
+    @discardableResult
     public static func delete(_ enrollment: Enrollment?) -> Future<Void, XikoloError> {
         guard let enrollment = enrollment else {
             return Future(error: .missingResource(ofType: Enrollment.self))
@@ -41,7 +42,8 @@ public enum EnrollmentHelper {
         return promise.future
     }
 
-    @discardableResult public static func markAsCompleted(_ course: Course) -> Future<Void, XikoloError> {
+    @discardableResult
+    public static func markAsCompleted(_ course: Course) -> Future<Void, XikoloError> {
         guard let enrollment = course.enrollment else {
             return Future(error: .missingResource(ofType: Enrollment.self))
         }

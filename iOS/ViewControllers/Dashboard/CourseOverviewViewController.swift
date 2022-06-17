@@ -215,12 +215,16 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
         }
 
         let actionProvider: UIContextMenuActionProvider = { _ in
-            let userActions = [
+            var userActions = [
                 course.showCourseDatesAction { [weak self] in self?.showCourseDates(course: course) },
                 course.shareAction { [weak self] in self?.shareCourse(at: indexPath) },
-            ].compactMap { $0 }
+            ].compactMap { $0 }.asActions()
 
-            return UIMenu(title: "", children: userActions.asActions())
+            if let manageEnrollmentMenu = course.manageEnrollmentMenu {
+                userActions.append(manageEnrollmentMenu)
+            }
+
+            return UIMenu(title: "", children: userActions)
         }
 
         return UIContextMenuConfiguration(identifier: indexPath as NSIndexPath, previewProvider: previewProvider, actionProvider: actionProvider)

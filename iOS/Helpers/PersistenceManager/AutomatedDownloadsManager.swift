@@ -225,11 +225,12 @@ enum AutomatedDownloadsManager {
         guard let automatedDownloadSettings = course.automatedDownloadSettings else { return [] }
         guard automatedDownloadSettings.newContentAction == .notificationAndBackgroundDownload else { return [] }
 
-        let orderedStartDates = course.sections.filter { section in
+        let startDates = Set(course.sections.filter { section in
             return section.items.contains { $0.content is Video }
-        }.compactMap(\.endsAt).filter(\.inPast).sorted()
+        }.compactMap(\.startsAt).filter(\.inPast))
+        let orderedStartDates = Array(startDates).sorted()
 
-        let possibleSectionEndForDeletion: Date? = {
+        let possibleSectionStartForDeletion: Date? = {
             switch automatedDownloadSettings.deletionOption {
             case .nextSection:
                 return orderedStartDates.suffix(1).first
@@ -240,9 +241,9 @@ enum AutomatedDownloadsManager {
             }
         }()
 
-        guard let sectionEndForDeletion = possibleSectionEndForDeletion else { return [] }
+        guard let sectionStartForDeletion = possibleSectionStartForDeletion else { return [] }
         let sectionsToDelete = course.sections.filter {
-            (($0.endsAt ?? Date.distantFuture) <= sectionEndForDeletion) || (course.endsAt?.inPast ?? false)
+            (($0.startsAt ?? Date.distantFuture) < sectionStartForDeletion) || (course.endsAt?.inPast ?? false)
         }.filter { section in // filter for sections with existing downloads
             let videoContentItems = section.items.compactMap { $0.content as? Video }
             let itemsWithExistingDownloads = videoContentItems.filter { video in

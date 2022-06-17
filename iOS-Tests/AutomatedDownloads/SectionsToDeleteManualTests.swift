@@ -50,11 +50,8 @@ class SectionsToDeleteManualTests: XCTestCase {
         course.startsAt = Calendar.current.date(byAdding: .day, value: -14, to: Date())
         course.endsAt = Calendar.current.date(byAdding: .day, value: 1, to: Date())
         section1.startsAt = course.startsAt
-        section1.endsAt = Calendar.current.date(byAdding: .day, value: -7, to: Date())
-        section2.startsAt = section1.endsAt
-        section2.endsAt = Calendar.current.date(byAdding: .day, value: -4, to: Date())
-        section3.startsAt = section2.endsAt
-        section3.endsAt = course.endsAt
+        section2.startsAt = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        section3.startsAt = Calendar.current.date(byAdding: .day, value: -4, to: Date())
 
         let sectionsToDelete = AutomatedDownloadsManager.sectionsToDelete(for: course)
 
@@ -65,11 +62,8 @@ class SectionsToDeleteManualTests: XCTestCase {
         course.startsAt = Calendar.current.date(byAdding: .day, value: -14, to: Date())
         course.endsAt = Calendar.current.date(byAdding: .day, value: 1, to: Date())
         section1.startsAt = course.startsAt
-        section1.endsAt = Calendar.current.date(byAdding: .day, value: -7, to: Date())
         section2.startsAt = section1.startsAt
-        section2.endsAt = section1.endsAt
-        section3.startsAt = section2.endsAt
-        section3.endsAt = course.endsAt
+        section3.startsAt = Calendar.current.date(byAdding: .day, value: -7, to: Date())
 
         let sectionsToDelete = AutomatedDownloadsManager.sectionsToDelete(for: course)
 
@@ -80,11 +74,8 @@ class SectionsToDeleteManualTests: XCTestCase {
         course.startsAt = Calendar.current.date(byAdding: .day, value: -14, to: Date())
         course.endsAt = Calendar.current.date(byAdding: .day, value: 7, to: Date())
         section1.startsAt = course.startsAt
-        section1.endsAt = Calendar.current.date(byAdding: .day, value: -7, to: Date())
         section2.startsAt = course.startsAt
-        section2.endsAt = Calendar.current.date(byAdding: .day, value: 1, to: Date())
-        section3.startsAt = section2.endsAt
-        section3.endsAt = course.endsAt
+        section3.startsAt = Calendar.current.date(byAdding: .day, value: 1, to: Date())
 
         let sectionsToDelete = AutomatedDownloadsManager.sectionsToDelete(for: course)
 
@@ -95,11 +86,8 @@ class SectionsToDeleteManualTests: XCTestCase {
         course.startsAt = Calendar.current.date(byAdding: .day, value: 1, to: Date())
         course.endsAt = Calendar.current.date(byAdding: .day, value: 14, to: Date())
         section1.startsAt = course.startsAt
-        section1.endsAt = Calendar.current.date(byAdding: .day, value: 7, to: Date())
-        section2.startsAt = section1.endsAt
-        section2.endsAt = Calendar.current.date(byAdding: .day, value: 10, to: Date())
-        section3.startsAt = section2.endsAt
-        section3.endsAt = course.endsAt
+        section2.startsAt = Calendar.current.date(byAdding: .day, value: 7, to: Date())
+        section3.startsAt = Calendar.current.date(byAdding: .day, value: 10, to: Date())
 
         let sectionsToDelete = AutomatedDownloadsManager.sectionsToDelete(for: course)
 
@@ -110,11 +98,8 @@ class SectionsToDeleteManualTests: XCTestCase {
         course.startsAt = Calendar.current.date(byAdding: .day, value: -14, to: Date())
         course.endsAt = Calendar.current.date(byAdding: .day, value: -1, to: Date())
         section1.startsAt = course.startsAt
-        section1.endsAt = Calendar.current.date(byAdding: .day, value: -7, to: Date())
-        section2.startsAt = section1.endsAt
-        section2.endsAt = Calendar.current.date(byAdding: .day, value: -4, to: Date())
-        section3.startsAt = section2.endsAt
-        section3.endsAt = course.endsAt
+        section2.startsAt =  Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        section3.startsAt = Calendar.current.date(byAdding: .day, value: -4, to: Date())
 
         let sectionsToDelete = AutomatedDownloadsManager.sectionsToDelete(for: course)
 

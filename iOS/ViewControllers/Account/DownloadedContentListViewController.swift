@@ -96,15 +96,9 @@ class DownloadedContentListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 13, *) {
-            let submenuViewController = DownloadedContentSubMenuViewController(style: .insetGrouped)
-            self.addChild(submenuViewController)
-            self.tableView.tableHeaderView = submenuViewController.view
-            submenuViewController.didMove(toParent: self)
-        }
-
         self.setupEmptyState()
         self.refresh()
+        self.setupTableHeaderView()
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(coreDataChange(notification:)),
@@ -150,6 +144,26 @@ class DownloadedContentListViewController: UITableViewController {
         }
 
         return downloadedCourseList
+    }
+
+    private func setupTableHeaderView() {
+        let context = CoreDataHelper.viewContext
+        let fetchRequestWithAutomatedDownloads = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
+        let coursesWithAutomatedDownloadsResult = context.fetchMultiple(fetchRequestWithAutomatedDownloads)
+        let coursesWithAutomatedDownloadsExist = !(coursesWithAutomatedDownloadsResult.value?.isEmpty ?? true)
+
+        let fetchRequestForAutomatedDownloads = CourseHelper.FetchRequest.coursesForAutomatedDownloads
+        let coursesForAutomatedDownloadsResult = context.fetchMultiple(fetchRequestForAutomatedDownloads)
+        let coursesForAutomatedDownloadsExist = coursesForAutomatedDownloadsResult.value?.map {
+            return FeatureHelper.hasFeature(.newContentNotification, for: $0)
+        }.contains(true) ?? false
+
+        if #available(iOS 13, *), coursesWithAutomatedDownloadsExist || coursesForAutomatedDownloadsExist {
+            let submenuViewController = DownloadedContentSubMenuViewController(style: .insetGrouped)
+            self.addChild(submenuViewController)
+            self.tableView.tableHeaderView = submenuViewController.view
+            submenuViewController.didMove(toParent: self)
+        }
     }
 
     private func updateTotalFileSizeLabel() {

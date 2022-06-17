@@ -92,7 +92,7 @@ class SectionsToDeleteNextSectionTests: XCTestCase {
         course.startsAt = Calendar.current.date(byAdding: .day, value: 1, to: Date())
         course.endsAt = Calendar.current.date(byAdding: .day, value: 14, to: Date())
         section1.startsAt = course.startsAt
-        section2.startsAt =  Calendar.current.date(byAdding: .day, value: 7, to: Date())
+        section2.startsAt = Calendar.current.date(byAdding: .day, value: 7, to: Date())
         section3.startsAt = Calendar.current.date(byAdding: .day, value: 10, to: Date())
 
         let sectionsToDelete = AutomatedDownloadsManager.sectionsToDelete(for: course)

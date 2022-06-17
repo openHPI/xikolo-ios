@@ -48,12 +48,12 @@ extension Course {
         guard let enrollment = self.enrollment, !enrollment.completed else { return nil }
 
         let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
-        let cancelAction = UIAction(title: cancelActionTitle, image: Action.Image.cancel) { action in }
+        let cancelAction = UIAction(title: cancelActionTitle, image: Action.Image.cancel) { _ in }
 
         let confirmActionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
         let confirmActionSubtitle = NSLocalizedString("enrollment.mark-as-completed.message.no-undo",
                                                       comment: "message for the mark as completed action that this action can not be undone")
-        let markAsCompletedAction = UIAction(title: confirmActionTitle, subtitle: confirmActionSubtitle, image: Action.Image.ok) { action in
+        let markAsCompletedAction = UIAction(title: confirmActionTitle, subtitle: confirmActionSubtitle, image: Action.Image.ok) { _ in
             EnrollmentHelper.markAsCompleted(self)
         }
 

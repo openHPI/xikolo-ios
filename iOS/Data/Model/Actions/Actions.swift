@@ -105,6 +105,7 @@ struct Action {
             }
         }
 
+        // swiftlint:disable:next identifier_name
         static var ok: UIImage? {
             if #available(iOS 13, *) {
                 return UIImage(systemName: "checkmark")

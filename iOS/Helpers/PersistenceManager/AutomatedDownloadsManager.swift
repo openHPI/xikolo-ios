@@ -32,6 +32,10 @@ enum AutomatedDownloadsManager {
 
     static var backgroundCompletionHandler: (() -> Void)?
 
+    // This excludes processing via the background API
+    static var dispatchQueueForProcessings = DispatchQueue(label: "automated-downloads-trigger", qos: .background)
+    static var runningProcessing: Future<Void, XikoloError>?
+
     static func registerBackgroundTask() {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: Self.taskIdentifier, using: nil) { task in
             self.performNextBackgroundProcessingTasks(task: task)
@@ -97,9 +101,27 @@ enum AutomatedDownloadsManager {
         }
     }
 
-    static func processPendingDownloadsAndDeletions(triggeredBy trigger: DownloadTrigger) {
-        CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            Self.processPendingDownloadsAndDeletions(in: context, triggeredBy: trigger)
+    @discardableResult
+    static func processPendingDownloadsAndDeletions(triggeredBy trigger: DownloadTrigger) -> Future<Void, XikoloError> {
+        self.dispatchQueueForProcessings.sync {
+            if let runningProcessing = self.runningProcessing {
+                return runningProcessing
+            }
+
+            let promise = Promise<Void, XikoloError>()
+            let future = promise.future
+            self.runningProcessing = future
+
+            future.onComplete { _ in
+                Self.runningProcessing = nil
+            }
+
+            CoreDataHelper.persistentContainer.performBackgroundTask { context in
+                let processingFuture = Self.processPendingDownloadsAndDeletions(in: context, triggeredBy: trigger)
+                promise.completeWith(processingFuture)
+            }
+
+            return future
         }
     }
 

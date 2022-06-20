@@ -59,6 +59,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         shortcutItemToProcess = nil
+
+        AutomatedDownloadsManager.processPendingDownloadsAndDeletions(triggeredBy: .appLaunch)
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

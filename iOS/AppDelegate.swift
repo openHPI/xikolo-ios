@@ -102,10 +102,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if UserProfileHelper.shared.isLoggedIn {
                 FeatureHelper.syncFeatures()
             }
-
-            if #available(iOS 13.0, *) {
-                AutomatedDownloadsManager.processPendingDownloadsAndDeletions(triggeredBy: .appLaunch)
-            }
         }
 
         UICollectionView.enableEmptyStates()

@@ -10,26 +10,21 @@ import UIKit
 @available(iOS 13, *)
 class AutomatedDownloadsCourseListViewController: UITableViewController { // swiftlint:disable:this type_name
 
-    lazy var activeCoursesFetchedResultsController: NSFetchedResultsController<Course> = {
+    private lazy var activeCourses: [Course] = {
         let fetchRequest = CourseHelper.FetchRequest.coursesWithAutomatedDownloads
-        let fetchedResultsController = CoreDataHelper.createResultsController(fetchRequest, sectionNameKeyPath: nil)
-        fetchedResultsController.delegate = self
-        return fetchedResultsController
+        let result = CoreDataHelper.viewContext.fetchMultiple(fetchRequest)
+        return result.value ?? []
     }()
 
-    lazy var inactiveCoursesFetchedResultsController: NSFetchedResultsController<Course> = {
+    private lazy var inactiveCourses: [Course] = {
         let fetchRequest = CourseHelper.FetchRequest.coursesForAutomatedDownloads
-        let fetchedResultsController = CoreDataHelper.createResultsController(fetchRequest, sectionNameKeyPath: nil)
-        fetchedResultsController.delegate = self
-        return fetchedResultsController
+        let result = CoreDataHelper.viewContext.fetchMultiple(fetchRequest)
+        return result.value?.filter { FeatureHelper.hasFeature(.newContentNotification, for: $0) } ?? []
     }()
 
     lazy var dataSource: UITableViewDiffableDataSource = {
-        return HeaderTableViewDiffableDataSource(tableView: self.tableView) { tableView, indexPath, _ -> UITableViewCell? in
-            let resultsController = self.resultController(for: indexPath)
+        return StringSectionTableViewDiffableDataSource<Course>(tableView: self.tableView) { tableView, indexPath, course -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: self.subtitleCellReuseIdentifier, for: indexPath)
-            let adjustedIndexPath = IndexPath(row: indexPath.row, section: 0)
-            let course = resultsController.object(at: adjustedIndexPath)
             cell.textLabel?.text = course.title
             cell.detailTextLabel?.text = CoursePeriodFormatter.string(from: course)
             cell.accessoryType = .disclosureIndicator
@@ -57,70 +52,31 @@ class AutomatedDownloadsCourseListViewController: UITableViewController { // swi
 
         self.setupEmptyState()
 
-        try? self.activeCoursesFetchedResultsController.performFetch()
-        try? self.inactiveCoursesFetchedResultsController.performFetch()
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let resultsController = self.resultController(for: indexPath)
-        let adjustedIndexPath = IndexPath(row: indexPath.row, section: 0)
-        let course = resultsController.object(at: adjustedIndexPath)
-        let viewController = AutomatedDownloadsSettingsViewController(course: course)
-        self.show(viewController, sender: self)
-    }
-
-    private func resultController(for indexPath: IndexPath) -> NSFetchedResultsController<Course> {
-        if self.activeCoursesFetchedResultsController.fetchedObjects?.isEmpty ?? true {
-            return self.inactiveCoursesFetchedResultsController
-        }
-
-        return indexPath.section == 0 ? self.activeCoursesFetchedResultsController : self.inactiveCoursesFetchedResultsController
-    }
-
-}
-
-@available(iOS 13, *)
-extension AutomatedDownloadsCourseListViewController: NSFetchedResultsControllerDelegate {
-
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
-        let changes = snapshot as NSDiffableDataSourceSnapshot<String, NSObject>
-
-        let currentSnapshot = self.dataSource.snapshot()
-
         let section1 = NSLocalizedString("automated-downloads.course-list.section.title.activated for",
                                          comment: "Section title in course list for activated automated downloads")
         let section2 = NSLocalizedString("automated-downloads.course-list.section.title.available for",
                                          comment: "Section title in course list for available automated downloads")
 
-        var snapshot = NSDiffableDataSourceSnapshot<String, NSObject>()
+        var snapshot = self.dataSource.snapshot()
 
-        if controller == self.activeCoursesFetchedResultsController {
-            if !changes.itemIdentifiers.isEmpty {
-                snapshot.appendSections([section1])
-                snapshot.appendItems(changes.itemIdentifiers, toSection: section1)
-            }
-
-            if currentSnapshot.sectionIdentifiers.contains(section2) {
-                snapshot.appendSections([section2])
-                var itemsInOtherSection = currentSnapshot.itemIdentifiers(inSection: section2)
-                itemsInOtherSection.removeAll { changes.itemIdentifiers.contains($0) }
-                snapshot.appendItems(itemsInOtherSection, toSection: section2)
-            }
-        } else {
-            if currentSnapshot.sectionIdentifiers.contains(section1) {
-                snapshot.appendSections([section1])
-                var itemsInOtherSection = currentSnapshot.itemIdentifiers(inSection: section1)
-                itemsInOtherSection.removeAll { changes.itemIdentifiers.contains($0) }
-                snapshot.appendItems(itemsInOtherSection, toSection: section1)
-            }
-
-            if !changes.itemIdentifiers.isEmpty {
-                snapshot.appendSections([section2])
-                snapshot.appendItems(changes.itemIdentifiers, toSection: section2)
-            }
+        if !self.activeCourses.isEmpty {
+            snapshot.appendSections([section1])
+            snapshot.appendItems(self.activeCourses, toSection: section1)
         }
 
-        self.dataSource.apply(snapshot, animatingDifferences: false)
+        if !self.inactiveCourses.isEmpty {
+            snapshot.appendSections([section2])
+            snapshot.appendItems(self.inactiveCourses, toSection: section2)
+        }
+
+        self.dataSource.apply(snapshot)
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let courses = indexPath.section == 0 && !self.activeCourses.isEmpty ? self.activeCourses : self.inactiveCourses
+        let course = courses[indexPath.row]
+        let viewController = AutomatedDownloadsSettingsViewController(course: course)
+        self.show(viewController, sender: self)
     }
 
 }

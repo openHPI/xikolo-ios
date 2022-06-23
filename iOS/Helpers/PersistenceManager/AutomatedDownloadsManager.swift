@@ -179,7 +179,16 @@ enum AutomatedDownloadsManager {
         guard automatedDownloadSettings.newContentAction == .notificationAndBackgroundDownload else { return [] }
 
         let orderedStartDates = course.sections.filter { section in
-            return section.items.contains { $0.content is Video }
+            // Using higher order functions on `section.items` may result in a EXC_BAD_ACCESS error.
+            // This behavior was only observed in `sectionToDelete(for:)`. However to be on the
+            // safe side (the code is nearly identical), we use an inelegant check here as well.
+            for item in section.items {
+                if item.content is Video {
+                    return true
+                }
+            }
+
+            return false
         }.compactMap(\.startsAt).filter(\.inPast).sorted()
 
         let lastSectionStart = orderedStartDates.last
@@ -248,7 +257,17 @@ enum AutomatedDownloadsManager {
         guard automatedDownloadSettings.newContentAction == .notificationAndBackgroundDownload else { return [] }
 
         let startDates = Set(course.sections.filter { section in
-            return section.items.contains { $0.content is Video }
+            // Using higher order functions on `section.items` like ``section.items.map(\.content)`,
+            // `section.items.contains { $0.content is Video }` or `section.items.contains { $0.contentType == Video.contentType}`
+            // does result in a EXC_BAD_ACCESS error. Might this be a bug in CoreData?
+            // Nevertheless, we iterate over the items instead. Until now, this has not failed (but requires some inelegant code).
+            for item in section.items {
+                if item.content is Video {
+                    return true
+                }
+            }
+
+            return false
         }.compactMap(\.startsAt).filter(\.inPast))
         let orderedStartDates = Array(startDates).sorted()
 

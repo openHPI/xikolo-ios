@@ -8,7 +8,7 @@ import SafariServices
 import UIKit
 import WebKit
 
-class LoginViewController: UIViewController, WKUIDelegate {
+class PasswordLoginViewController: UIViewController, LoginViewController, WKUIDelegate {
 
     @IBOutlet private weak var emailField: UITextField!
     @IBOutlet private weak var passwordField: UITextField!
@@ -19,7 +19,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
     @IBOutlet private weak var centerInputFieldsConstraints: NSLayoutConstraint!
     @IBOutlet private var textFieldBackgroundViews: [UIView]!
 
-    weak var delegate: LoginDelegate?
+    weak var loginDelegate: LoginDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +71,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
         UserProfileHelper.shared.login(email, password: password).earliest(at: dispatchTime).onComplete { [weak self] _ in
             self?.loginButton.stopAnimation()
         }.onSuccess { [weak self] _ in
-            self?.delegate?.didSuccessfullyLogin()
+            self?.loginDelegate?.didSuccessfullyLogin()
             self?.presentingViewController?.dismiss(animated: trueUnlessReduceMotionEnabled)
         }.onFailure { [weak self] _ in
             self?.emailField.shake()
@@ -92,7 +92,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
     }
 
     @IBAction private func singleSignOn() {
-        self.performSegue(withIdentifier: R.segue.loginViewController.showSSOWebView, sender: self)
+        self.performSegue(withIdentifier: R.segue.passwordLoginViewController.showSSOWebView, sender: self)
     }
 
     @IBAction private func dismissKeyboard() {
@@ -101,8 +101,8 @@ class LoginViewController: UIViewController, WKUIDelegate {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let typedInfo = R.segue.loginViewController.showSSOWebView(segue: segue) {
-            typedInfo.destination.loginDelegate = self.delegate
+        if let typedInfo = R.segue.passwordLoginViewController.showSSOWebView(segue: segue) {
+            typedInfo.destination.loginDelegate = self.loginDelegate
             typedInfo.destination.url = Routes.singleSignOn
         }
     }
@@ -134,7 +134,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
 
 }
 
-extension LoginViewController: UITextFieldDelegate {
+extension PasswordLoginViewController: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.emailField.layoutIfNeeded()
@@ -152,6 +152,12 @@ extension LoginViewController: UITextFieldDelegate {
 
         return true
     }
+
+}
+
+protocol LoginViewController: AnyObject {
+
+    var loginDelegate: LoginDelegate? { get set }
 
 }
 

@@ -240,8 +240,8 @@ private struct LoginItem: DataSourceItem {
     let cellReuseIdentifier = R.reuseIdentifier.loginCell.identifier
 
     func performAction(on viewController: AccountViewController) {
-        let identifier = R.segue.accountViewController.showLogin.identifier
-        viewController.performSegue(withIdentifier: identifier, sender: nil)
+        let loginNavigationController = LoginHelper.loginNavigationViewController(loginDelegate: nil)
+        viewController.present(loginNavigationController, animated: trueUnlessReduceMotionEnabled)
     }
 }
 

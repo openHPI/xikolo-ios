@@ -35,6 +35,7 @@
 		50046F6F216B938D00D59073 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50046F6E216B938D00D59073 /* LoadingButton.swift */; };
 		50046F71216BBAD200D59073 /* BrightFuture+earliest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50046F70216BBAD200D59073 /* BrightFuture+earliest.swift */; };
 		50051B2D2338C10000221558 /* CourseDateOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50051B2C2338C10000221558 /* CourseDateOverviewViewController.swift */; };
+		5008A76728C8DE8400449D55 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5008A76628C8DE8400449D55 /* LoginHelper.swift */; };
 		50092A82237D671900A1503F /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A81237D671900A1503F /* Channel.swift */; };
 		50092A86237D7EA000A1503F /* ChannelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A85237D7EA000A1503F /* ChannelHelper.swift */; };
 		50092A89237D825900A1503F /* ChannelHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A88237D825900A1503F /* ChannelHelper+FetchRequests.swift */; };
@@ -353,7 +354,7 @@
 		50CF1FDA20DCDBFC0011BFE9 /* CourseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A63020797ED800E98351 /* CourseNavigationController.swift */; };
 		50CF1FE020DCDBFC0011BFE9 /* CoreDataTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* CoreDataTableViewDataSource.swift */; };
 		50CF1FE120DCDBFC0011BFE9 /* CourseAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F3DD7209BB193006B3DAC /* CourseAreaViewController.swift */; };
-		50CF1FE220DCDBFC0011BFE9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* LoginViewController.swift */; };
+		50CF1FE220DCDBFC0011BFE9 /* PasswordLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* PasswordLoginViewController.swift */; };
 		50CF1FE620DCDBFC0011BFE9 /* RichText+Preloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+Preloading.swift */; };
 		50CF1FE820DCDBFC0011BFE9 /* UIView+SafeCastable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */; };
 		50CF1FEB20DCDBFC0011BFE9 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FF8204ECB8E006E9634 /* CircularProgressView.swift */; };
@@ -695,6 +696,7 @@
 		50082B5920BFDA9C00B4511C /* SlidesPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidesPersistenceManager.swift; sourceTree = "<group>"; };
 		50082B5E20BFDAC900B4511C /* DownloadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadState.swift; sourceTree = "<group>"; };
 		50082B6420C0358C00B4511C /* xikolo 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 6.xcdatamodel"; sourceTree = "<group>"; };
+		5008A76628C8DE8400449D55 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		50092A81237D671900A1503F /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		50092A85237D7EA000A1503F /* ChannelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHelper.swift; sourceTree = "<group>"; };
 		50092A88237D825900A1503F /* ChannelHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelHelper+FetchRequests.swift"; sourceTree = "<group>"; };
@@ -1219,7 +1221,7 @@
 		F85225371B4D27D700C9BF56 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileHelper.swift; sourceTree = "<group>"; };
 		F875A5161B5697640030F38C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F89473C11B3C46FD00553882 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F89473C11B3C46FD00553882 /* PasswordLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordLoginViewController.swift; sourceTree = "<group>"; };
 		F8FABFBC1B580B7A0007F308 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1454,6 +1456,7 @@
 				50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */,
 				50E0351E213673F8001F963D /* CourseListConfiguration.swift */,
 				50A2042422FAC389004371C0 /* ColorCompatibility.swift */,
+				5008A76628C8DE8400449D55 /* LoginHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2327,7 +2330,7 @@
 		F80D678F1B9867F400E27520 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				F89473C11B3C46FD00553882 /* LoginViewController.swift */,
+				F89473C11B3C46FD00553882 /* PasswordLoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -3333,6 +3336,7 @@
 				503CEE962177082D00F34694 /* ProcotoredItemViewController.swift in Sources */,
 				505327A528044A3F009A46B7 /* SwitchTableViewCell.swift in Sources */,
 				502CBE2824338C7600BF6001 /* UIVIew+defaultPointerInteraction.swift in Sources */,
+				5008A76728C8DE8400449D55 /* LoginHelper.swift in Sources */,
 				0280CB14237CBD4100B774BE /* SectionProgressCell.swift in Sources */,
 				50CF1F8020DCDBFC0011BFE9 /* CustomWidthNavigationController.swift in Sources */,
 				50CCE56E2851F35D00219DD2 /* DescriptionTableViewCell.swift in Sources */,
@@ -3445,7 +3449,7 @@
 				50CF1FE120DCDBFC0011BFE9 /* CourseAreaViewController.swift in Sources */,
 				50911AF5223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift in Sources */,
 				504AC121239C4917007F097B /* UserProfileHelper+logoutTestAccount.swift in Sources */,
-				50CF1FE220DCDBFC0011BFE9 /* LoginViewController.swift in Sources */,
+				50CF1FE220DCDBFC0011BFE9 /* PasswordLoginViewController.swift in Sources */,
 				5036A9B323190E4100F7A63F /* UIViewController+AppNavigator.swift in Sources */,
 				50CF1FE620DCDBFC0011BFE9 /* RichText+Preloading.swift in Sources */,
 				50146FC92221829500177E96 /* CourseSearchFiltersViewController.swift in Sources */,

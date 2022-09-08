@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="krt-FK-dfi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="krt-FK-dfi">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21204"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +15,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="MA3-VX-yBw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewLayout key="collectionViewLayout" id="4tZ-S8-H3m" customClass="CardListLayout" customModule="iOS" customModuleProvider="target"/>
                         <cells/>
                         <connections>
@@ -24,9 +25,6 @@
                     <navigationItem key="navigationItem" id="feQ-Xn-WIz"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <segue destination="Yk2-z5-k8r" kind="presentation" identifier="ShowLogin" id="Fvt-qD-Nql"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9p-Zg-3vF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -40,9 +38,9 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="aYN-LP-p0K">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -53,16 +51,11 @@
             </objects>
             <point key="canvasLocation" x="838" y="0.0"/>
         </scene>
-        <!--LoginNavigationController-->
-        <scene sceneID="ezc-vW-cPY">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Login" referencedIdentifier="LoginNavigationController" id="Yk2-z5-k8r" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kA3-DG-c2g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2295" y="-1"/>
-        </scene>
     </scenes>
     <resources>
         <image name="tab bar items/courses" width="28" height="28"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -375,12 +375,7 @@ class AppNavigator {
     }
 
     func presentDashboardLoginViewController() {
-        let loginNavigationController = R.storyboard.login.instantiateInitialViewController().require()
-        let firstViewController = loginNavigationController.viewControllers.first.require()
-        let loginViewController = firstViewController.require(toHaveType: LoginViewController.self)
-
-        loginViewController.delegate = self
-
+        let loginNavigationController = LoginHelper.loginNavigationViewController(loginDelegate: self)
         self.tabBarController?.present(loginNavigationController, animated: trueUnlessReduceMotionEnabled)
     }
 

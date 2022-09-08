@@ -103,13 +103,6 @@ class CourseDetailsViewController: UIViewController {
         self.refreshEnrollButton()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let typedInfo = R.segue.courseDetailsViewController.showLogin(segue: segue) {
-            let loginViewController = typedInfo.destination.viewControllers.first as? LoginViewController
-            loginViewController?.delegate = self
-        }
-    }
-
     private func refreshEnrollButton() {
         let buttonTitle: String
         if self.course.external {
@@ -163,7 +156,8 @@ class CourseDetailsViewController: UIViewController {
                 self.showEnrollmentOptions()
             }
         } else {
-            self.performSegue(withIdentifier: R.segue.courseDetailsViewController.showLogin, sender: nil)
+            let loginNavigationController = LoginHelper.loginNavigationViewController(loginDelegate: self)
+            self.present(loginNavigationController, animated: trueUnlessReduceMotionEnabled)
         }
     }
 

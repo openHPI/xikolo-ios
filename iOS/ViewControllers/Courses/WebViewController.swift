@@ -7,7 +7,7 @@ import Common
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController {
+class WebViewController: UIViewController, LoginViewController {
 
     private lazy var webView: WKWebView = {
         let webView = WKWebView(frame: self.view.frame, configuration: self.webViewConfiguration)
@@ -84,6 +84,10 @@ class WebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if self.navigationController?.viewControllers.first == self {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Dismiss", style: .plain, target: self, action: #selector(dismissNavigationController))
+        }
 
         self.addWebView()
         self.webView.isHidden = true
@@ -165,6 +169,10 @@ class WebViewController: UIViewController {
         if self.webView.isLoading {
             self.webView.stopLoading()
         }
+    }
+
+    @objc private func dismissNavigationController() {
+        self.presentingViewController?.dismiss(animated: trueUnlessReduceMotionEnabled)
     }
 
     private func loadURL() {

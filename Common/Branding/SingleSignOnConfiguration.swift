@@ -9,6 +9,7 @@ public struct SingleSignOnConfiguration: Decodable {
     let provider: SingleSignOnProvider
     let platformTitle: String
     public let buttonTitle: String
+    public let disabledPasswordLogin: Bool
 }
 
 enum SingleSignOnProvider: String, Decodable {

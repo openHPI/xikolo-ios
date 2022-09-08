@@ -27,6 +27,8 @@
 		<string>sap</string>
 		<key>buttonTitle</key>
 		<string>Single Sign On</string>
+		<key>disabledPasswordLogin</key>
+		<true/>
 	</dict>
 	<key>features</key>
 	<dict>

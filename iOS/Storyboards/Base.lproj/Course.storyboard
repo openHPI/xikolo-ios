@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WaE-pr-4AO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WaE-pr-4AO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21204"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VE7-ox-Fte">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="238"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="242"/>
                             </imageView>
                             <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bmv-rC-bZT">
-                                <rect key="frame" x="0.0" y="214" width="414" height="109.5"/>
+                                <rect key="frame" x="0.0" y="218" width="414" height="109.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AFF-tD-7pz" userLabel="Corner View">
                                         <rect key="frame" x="0.0" y="8" width="414" height="32"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="9a3-Lq-xW3"/>
                                         </constraints>
@@ -42,7 +43,7 @@
                                                 </attributedString>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="MOr-5N-Ewr" firstAttribute="leading" secondItem="AJR-HV-dnR" secondAttribute="leadingMargin" id="ePo-z9-7me"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="MOr-5N-Ewr" secondAttribute="trailing" id="eYt-lZ-Tbg"/>
@@ -81,7 +82,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BeB-Ri-K3W" userLabel="Header Helper View">
-                                <rect key="frame" x="0.0" y="88" width="10" height="150"/>
+                                <rect key="frame" x="0.0" y="92" width="10" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="10" id="g33-uF-yjI"/>
@@ -89,13 +90,14 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KL2-g9-OIx">
-                                <rect key="frame" x="0.0" y="323.5" width="414" height="572.5"/>
+                                <rect key="frame" x="0.0" y="327.5" width="414" height="568.5"/>
                                 <connections>
                                     <segue destination="6qK-3g-pc6" kind="embed" id="lSN-d1-iw9"/>
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="fUc-Ws-hEN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="VE7-ox-Fte" firstAttribute="leading" secondItem="raX-iA-spo" secondAttribute="leading" id="3aE-od-jK8"/>
                             <constraint firstAttribute="bottom" secondItem="KL2-g9-OIx" secondAttribute="bottom" id="8mA-M8-Xzp"/>
@@ -111,7 +113,6 @@
                             <constraint firstItem="bmv-rC-bZT" firstAttribute="leading" secondItem="fUc-Ws-hEN" secondAttribute="leading" id="cFA-Fu-ZJc"/>
                             <constraint firstItem="bmv-rC-bZT" firstAttribute="trailing" secondItem="fUc-Ws-hEN" secondAttribute="trailing" id="tzT-3W-Hid"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="fUc-Ws-hEN"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="K1m-mm-Pjy">
                         <nil key="title"/>
@@ -126,20 +127,11 @@
                         <outlet property="headerImageView" destination="VE7-ox-Fte" id="BNm-BP-iJQ"/>
                         <outlet property="titleLabel" destination="MOr-5N-Ewr" id="1mo-Fw-9f0"/>
                         <outlet property="titleView" destination="AJR-HV-dnR" id="D8I-cq-SH7"/>
-                        <segue destination="Nqa-is-6mG" kind="presentation" identifier="ShowLogin" id="GuI-2H-Gxr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GHf-No-lT1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3468" y="-0.44977511244377816"/>
-        </scene>
-        <!--LoginNavigationController-->
-        <scene sceneID="AUb-yL-l1X">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Login" referencedIdentifier="LoginNavigationController" id="Nqa-is-6mG" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WJ8-Ti-a1y" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3468" y="437"/>
         </scene>
         <!--Course Navigation Controller-->
         <scene sceneID="bRC-RK-zBN">
@@ -147,7 +139,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WaE-pr-4AO" customClass="CourseNavigationController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="T25-DF-ezb">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -166,7 +158,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" id="KBY-lC-wpD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" sectionInsetReference="safeArea" id="4yJ-0Y-wfJ">
                             <size key="itemSize" width="50" height="34"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -175,7 +167,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseAreaCell" id="MQQ-G5-gWa" customClass="CourseAreaCell" customModule="iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="27" width="50" height="34"/>
+                                <rect key="frame" x="0.0" y="29" width="50" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="34"/>
@@ -183,7 +175,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RYF-nl-mvh">
                                             <rect key="frame" x="0.0" y="2" width="50" height="30"/>
-                                            <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" systemColor="systemFillColor"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJi-Ax-SOf">
                                             <rect key="frame" x="0.0" y="8" width="50" height="18"/>
@@ -235,4 +227,12 @@
             <point key="canvasLocation" x="4248" y="132"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

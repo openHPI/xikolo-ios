@@ -2938,6 +2938,7 @@
 		};
 		507661A8242B2B7E00C19E34 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -2956,6 +2957,7 @@
 		};
 		507661A9242B2BA800C19E34 /* Clear Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -2974,6 +2976,7 @@
 		};
 		50AD2527276C91D90050831C /* Compile Acknowledgements */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -2992,6 +2995,7 @@
 		};
 		50C83570279EDFD8004FEB62 /* Remove Duplicate Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -3010,6 +3014,7 @@
 		};
 		50CF1F4320DCDBFC0011BFE9 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 12;
 			files = (
 			);
@@ -3040,6 +3045,7 @@
 		};
 		50CF200F20DCDBFC0011BFE9 /* Copy GoogleServices-Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 12;
 			files = (
 			);
@@ -3054,6 +3060,7 @@
 		};
 		50CF201220DCDBFC0011BFE9 /* Clear Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -3068,6 +3075,7 @@
 		};
 		50D60D2B20E0D2C7007A4199 /* Remove Localizations */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -3082,6 +3090,7 @@
 		};
 		50D65A0D20DE33B100DFD183 /* Copy Brand Assets */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -3096,6 +3105,7 @@
 		};
 		50DE8CF725FB9F3E00340EB4 /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 12;
 			files = (
 			);
@@ -3114,6 +3124,7 @@
 		};
 		50DE8CF825FB9F5300340EB4 /* Clear Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);

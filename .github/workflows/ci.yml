@@ -14,7 +14,7 @@ jobs:
     runs-on: macOS-12
     strategy:
       matrix:
-        xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
+        xcode: ['/Applications/Xcode_14.0.app/Contents/Developer']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
     runs-on: macOS-12
     strategy:
       matrix:
-        xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
+        xcode: ['/Applications/Xcode_14.0.app/Contents/Developer']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -60,7 +60,7 @@ jobs:
     runs-on: macOS-12
     strategy:
       matrix:
-        xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
+        xcode: ['/Applications/Xcode_14.0.app/Contents/Developer']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -78,7 +78,7 @@ jobs:
     runs-on: macOS-12
     strategy:
       matrix:
-        xcode: ['/Applications/Xcode_13.4.1.app/Contents/Developer']
+        xcode: ['/Applications/Xcode_14.0.app/Contents/Developer']
     steps:
       - name: Checkout
         uses: actions/checkout@v2

@@ -18,7 +18,7 @@ class CoursePeriodFormatterTests: XCTestCase {
         let labelText = CoursePeriodFormatter.string(fromStartDate: distantPast, endDate: distantFuture, withStyle: .normal)
 
         // then
-        XCTAssertEqual(labelText, "January 1, 1 – January 1, 4001")
+        XCTAssertEqual(labelText, "Jan 1, 1 – Jan 1, 4001")
     }
 
     func testWithEndDateInPast() {
@@ -31,7 +31,7 @@ class CoursePeriodFormatterTests: XCTestCase {
         labelText = labelText.replacingOccurrences(of: "\u{00a0}", with: " ")
 
         // then
-        XCTAssertEqual(labelText, "Self-paced since January 2, 1")
+        XCTAssertEqual(labelText, "Self-paced since Jan 2, 1")
     }
 
     func testWithStartDateInPastAndNoEndDate() {
@@ -43,7 +43,7 @@ class CoursePeriodFormatterTests: XCTestCase {
         labelText = labelText.replacingOccurrences(of: "\u{00a0}", with: " ")
 
         // then
-        XCTAssertEqual(labelText, "Since January 1, 1")
+        XCTAssertEqual(labelText, "Since Jan 1, 1")
     }
 
     func testWithStartDateInPastAndNoEndDateInWhoStyle() {
@@ -66,7 +66,7 @@ class CoursePeriodFormatterTests: XCTestCase {
         labelText = labelText.replacingOccurrences(of: "\u{00a0}", with: " ")
 
         // then
-        XCTAssertEqual(labelText, "Beginning January 1, 4001")
+        XCTAssertEqual(labelText, "Beginning Jan 1, 4001")
     }
 
     func testWithStartDateInFutureAndNoEndDateInWhoStyle() {

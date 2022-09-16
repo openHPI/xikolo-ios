@@ -15,6 +15,7 @@ class PasswordLoginViewController: UIViewController, LoginViewController, WKUIDe
     @IBOutlet private weak var loginButton: LoadingButton!
     @IBOutlet private weak var registerButton: UIButton!
     @IBOutlet private weak var singleSignOnView: UIView!
+    @IBOutlet private weak var singleSignOnLabel: UILabel!
     @IBOutlet private weak var singleSignOnButton: UIButton!
     @IBOutlet private weak var centerInputFieldsConstraints: NSLayoutConstraint!
     @IBOutlet private var textFieldBackgroundViews: [UIView]!
@@ -52,6 +53,11 @@ class PasswordLoginViewController: UIViewController, LoginViewController, WKUIDe
 
             // Disable native registration
             self.registerButton.isHidden = singleSignOnConfig.disabledRegistration
+            if singleSignOnConfig.disabledRegistration {
+                self.singleSignOnLabel.text = NSLocalizedString("login.sso.label.login or sign up with", comment: "Label for SSO login and signup")
+            } else {
+                self.singleSignOnLabel.text = NSLocalizedString("login.sso.label.login with", comment: "Label for SSO login")
+            }
         } else {
             self.singleSignOnView.isHidden = true
         }

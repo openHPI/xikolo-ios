@@ -365,6 +365,12 @@
 /* hint for checking the FAQ before creating a helpdesk ticket */
 "helpdesk.hint.faq" = "Bevor Sie ein Ticket an den technischen Support schreiben, stellen Sie sicher, dass Sie unsere FAQ gelesen haben. Bei Fragen zu Kursinhalten wenden Sie sich bitte an das Lehrerteam im Kursforum.";
 
+/* Label for SSO login and signup */
+"login.sso.label.login or sign up with" = "Anmelden oder registrieren mit";
+
+/* Label for SSO login */
+"login.sso.label.login with" = "Anmelden mit";
+
 /* solo peer assessment */
 "peer-assessment-type.solo" = "Solo Peer Assessment";
 

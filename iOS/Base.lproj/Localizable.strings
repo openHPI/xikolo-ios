@@ -365,6 +365,12 @@
 /* hint for checking the FAQ before creating a helpdesk ticket */
 "helpdesk.hint.faq" = "Before writing a ticket to technical support, please make sure that you have read our FAQ. If you have any questions about course content, please contact the teacher team in the course forum.";
 
+/* Label for SSO login and signup */
+"login.sso.label.login or sign up with" = "Login or sign up with";
+
+/* Label for SSO login */
+"login.sso.label.login with" = "Login with";
+
 /* solo peer assessment */
 "peer-assessment-type.solo" = "Solo Peer Assessment";
 

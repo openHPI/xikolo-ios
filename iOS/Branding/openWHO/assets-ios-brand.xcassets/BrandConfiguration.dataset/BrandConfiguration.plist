@@ -31,6 +31,8 @@
 		<string>who</string>
 		<key>buttonTitle</key>
 		<string>WHO Identity (WIMS)</string>
+		<key>disabledRegistration</key>
+		<false/>
 		<key>disabledPasswordLogin</key>
 		<false/>
 	</dict>

@@ -25,6 +25,8 @@
 		<string>hpi</string>
 		<key>buttonTitle</key>
 		<string>HPI OpenID Connect</string>
+		<key>disabledRegistration</key>
+		<false/>
 		<key>disabledPasswordLogin</key>
 		<false/>
 	</dict>

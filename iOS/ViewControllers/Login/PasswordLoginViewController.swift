@@ -45,10 +45,13 @@ class PasswordLoginViewController: UIViewController, LoginViewController, WKUIDe
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
 
-        if let title = Brand.default.singleSignOn?.buttonTitle {
+        if let singleSignOnConfig = Brand.default.singleSignOn {
             self.singleSignOnView.isHidden = false
             self.singleSignOnButton.backgroundColor = Brand.default.colors.primary
-            self.singleSignOnButton.setTitle(title, for: .normal)
+            self.singleSignOnButton.setTitle(singleSignOnConfig.buttonTitle, for: .normal)
+
+            // Disable native registration
+            self.registerButton.isHidden = singleSignOnConfig.disabledRegistration
         } else {
             self.singleSignOnView.isHidden = true
         }

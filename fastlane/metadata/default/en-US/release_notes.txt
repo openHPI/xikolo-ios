@@ -1,6 +1,5 @@
-• Visual improvements to the dashboard
-• Visual improvements to the course list
-• Courses with no end date are now listed in the 'self-paced' section
-• Video playbacks will continue from the last known position
-• Improvements to the progress slider of the video player
-• Fix crash for invalid context menus
+• Support of iOS 16
+• Show progress bar for last visited item
+• Autoplay of videos can now be disabled 
+• Manage your enrollment status via the context menu of the course card
+• Minor improvements and bug fixes

@@ -1,6 +1,5 @@
-• Design-Verbesserungen für das Dashboard
-• Design-Verbesserungen für die Kursliste
-• Kurse, die kein Enddatum haben, werden nun im Abschnitt 'Selbststudium' aufgeführt
-• Videowiedergabe wird ab der letzten bekannten Position fortgesetzt
-• Verbesserungen an der Fortschrittsanzeige des Videoplayers
-• Abstürze für ungültige Kontextmenüs behoben
+• Unterstützung von iOS 16
+• Fortschrittsbalken für das zuletzt besuchte Element wird angezeigt
+• Die automatischen Wiedergabe von Videos kann deaktiviert werden
+• Hinzufügen einer Aktion zur Verwaltung der Einschreibung zum Kontextmenü von Kurskarten
+• Kleinere Verbesserungen und Fehlerbehebungen

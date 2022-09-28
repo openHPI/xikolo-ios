@@ -242,7 +242,9 @@ platform :ios do
         include_bitcode: true,
         include_symbols: true,
         export_method: "app-store",
+        include_bitcode: false,
         export_options: {
+          compileBitcode: false,
           provisioningProfiles: {
             "de.xikolo.#{flavor.downcase}" => "#{flavor}-iOS-dist",
             "de.xikolo.#{flavor.downcase}.today" => "#{flavor}-today-dist",

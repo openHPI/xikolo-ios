@@ -28,7 +28,7 @@
 		<key>buttonTitle</key>
 		<string>SAP Single Sign On</string>
 		<key>disabledRegistration</key>
-		<false/>
+		<true/>
 		<key>disabledPasswordLogin</key>
 		<false/>
 	</dict>

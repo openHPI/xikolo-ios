@@ -34,7 +34,7 @@ enum AutomatedDownloadsManager {
 
     // This excludes processing via the background API
     static var dispatchQueueForProcessings = DispatchQueue(label: "automated-downloads-trigger", qos: .background)
-    static var runningProcessing: Future<Void, XikoloError>?
+    static var runningProcessing: (startDate: Date, future: Future<Void, XikoloError>)?
 
     static func registerBackgroundTask() {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: Self.taskIdentifier, using: nil) { task in
@@ -104,13 +104,13 @@ enum AutomatedDownloadsManager {
     @discardableResult
     static func processPendingDownloadsAndDeletions(triggeredBy trigger: DownloadTrigger) -> Future<Void, XikoloError> {
         self.dispatchQueueForProcessings.sync {
-            if let runningProcessing = self.runningProcessing {
-                return runningProcessing
+            if let runningProcessing = self.runningProcessing, runningProcessing.startDate.addingTimeInterval(10 * 60).inFuture {
+                return runningProcessing.future
             }
 
             let promise = Promise<Void, XikoloError>()
             let future = promise.future
-            self.runningProcessing = future
+            self.runningProcessing = (Date(), future)
 
             future.onComplete { _ in
                 Self.runningProcessing = nil

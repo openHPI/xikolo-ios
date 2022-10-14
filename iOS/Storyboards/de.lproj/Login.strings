@@ -8,7 +8,7 @@
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "atu-fQ-cU3"; */
 "atu-fQ-cU3.normalTitle" = "Einloggen";
 
-/* Class = "UIButton"; normalTitle = "Forgot password?"; ObjectID = "dxp-cD-HRD"; */
+/* Class = "UIButton"; normalTitle = "Forgot your password?"; ObjectID = "dxp-cD-HRD"; */
 "dxp-cD-HRD.normalTitle" = "Passwort vergessen?";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "k8P-v8-ptI"; */

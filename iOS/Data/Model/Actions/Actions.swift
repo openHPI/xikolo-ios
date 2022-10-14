@@ -105,6 +105,14 @@ struct Action {
             }
         }
 
+        static var notification: UIImage? {
+            if #available(iOS 13, *) {
+                return UIImage(systemName: "app.badge")
+            } else {
+                return nil
+            }
+        }
+
         // swiftlint:disable:next identifier_name
         static var ok: UIImage? {
             if #available(iOS 13, *) {

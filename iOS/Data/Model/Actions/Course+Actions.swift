@@ -28,7 +28,7 @@ extension Course {
         guard self.offersNotificationsForNewContent else { return nil }
         let title = NSLocalizedString("automated-downloads.setup.action.title",
                                       comment: "Automated Downloads: Action title for managing notifications for new content")
-        return Action(title: title, image: Action.Image.aggregatedDownload, handler: handler)
+        return Action(title: title, image: Action.Image.notification, handler: handler)
     }
 
     @available(iOS 13.0, *)

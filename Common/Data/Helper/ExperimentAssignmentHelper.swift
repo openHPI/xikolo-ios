@@ -9,7 +9,7 @@ import Stockpile
 public enum ExperimentAssignmentHelper {
 
     public enum ExperimentIdentifier: String {
-        case newContentNotifications = "mobile.new_content_notification"
+        case contentNotificationsAndAutomatedDownloads = "mobile.content_notification_and_downloads"
     }
 
     @discardableResult

@@ -477,6 +477,17 @@ extension CourseItemListViewController: RefreshableViewController {
         self.updateAutomatedDownloadsHint(animated: true)
         self.updateNextSectionStartDate()
 
+        if let course = self.course, course.isEligibleForContentNotifications {
+             ExperimentAssignmentHelper.assign(
+                 to: .contentNotificationsAndAutomatedDownloads,
+                 inCourse: course
+             ).flatMap { _ in
+                 FeatureHelper.syncFeatures(forCourse: course)
+             }.onSuccess { [weak self] _ in
+                 self?.updateAutomatedDownloadsHint(animated: true)
+             }
+         }
+
         if #available(iOS 13, *) {
             if self.course.automatedDownloadSettings != nil {
                 NewContentNotificationManager.renewNotifications(for: self.course)

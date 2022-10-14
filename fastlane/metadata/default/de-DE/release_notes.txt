@@ -1,5 +1,7 @@
+• Kleinere Verbesserungen und Fehlerbehebungen
+
+Auch in Version 2.14:
 • Unterstützung von iOS 16
 • Fortschrittsbalken für das zuletzt besuchte Element wird angezeigt
 • Die automatischen Wiedergabe von Videos kann deaktiviert werden
 • Hinzufügen einer Aktion zur Verwaltung der Einschreibung zum Kontextmenü von Kurskarten
-• Kleinere Verbesserungen und Fehlerbehebungen

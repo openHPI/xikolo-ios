@@ -197,14 +197,20 @@ enum AutomatedDownloadsManager {
             let endDateInFuture = endDate?.inFuture ?? true
             return section.startsAt == lastSectionStart && endDateInFuture
         }.filter { section in // filter for sections with pending downloads
-            let videoContentItems = section.items.compactMap { $0.content as? Video }
-            let itemsWithPendingDownloads = videoContentItems.filter { video in
-                let pendingVideoDownload = StreamPersistenceManager.shared.downloadState(for: video) == .notDownloaded
-                let pendingSlidesDownload = SlidesPersistenceManager.shared.downloadState(for: video) == .notDownloaded
-                return pendingVideoDownload || (automatedDownloadSettings.fileTypes.contains(.slides) && pendingSlidesDownload)
+            // Using higher order functions on `section.items` may result in a EXC_BAD_ACCESS error.
+            // This behavior was only observed in `sectionToDelete(for:)`. However to be on the
+            // safe side (the code is nearly identical), we use an inelegant check here as well.
+            for item in section.items {
+                if let video = item.content as? Video {
+                    let pendingVideoDownload = StreamPersistenceManager.shared.downloadState(for: video) == .notDownloaded
+                    let pendingSlidesDownload = SlidesPersistenceManager.shared.downloadState(for: video) == .notDownloaded
+                    if pendingVideoDownload || (automatedDownloadSettings.fileTypes.contains(.slides) && pendingSlidesDownload) {
+                        return true
+                    }
+                }
             }
 
-            return !itemsWithPendingDownloads.isEmpty
+            return false
         }
 
         return sectionsToDownload
@@ -286,14 +292,20 @@ enum AutomatedDownloadsManager {
         let sectionsToDelete = course.sections.filter {
             (($0.startsAt ?? Date.distantFuture) < sectionStartForDeletion) || (course.endsAt?.inPast ?? false)
         }.filter { section in // filter for sections with existing downloads
-            let videoContentItems = section.items.compactMap { $0.content as? Video }
-            let itemsWithExistingDownloads = videoContentItems.filter { video in
-                let existingVideoDownload = StreamPersistenceManager.shared.downloadState(for: video) == .downloaded
-                let existingSlidesDownload = SlidesPersistenceManager.shared.downloadState(for: video) == .downloaded
-                return existingVideoDownload || (automatedDownloadSettings.fileTypes.contains(.slides) && existingSlidesDownload)
+            // Using higher order functions on `section.items` may result in a EXC_BAD_ACCESS error.
+            // This behavior was only observed in `sectionToDelete(for:)`. However to be on the
+            // safe side (the code is nearly identical), we use an inelegant check here as well.
+            for item in section.items {
+                if let video = item.content as? Video {
+                    let existingVideoDownload = StreamPersistenceManager.shared.downloadState(for: video) == .downloaded
+                    let existingSlidesDownload = SlidesPersistenceManager.shared.downloadState(for: video) == .downloaded
+                    if existingVideoDownload || (automatedDownloadSettings.fileTypes.contains(.slides) && existingSlidesDownload) {
+                        return true
+                    }
+                }
             }
 
-            return !itemsWithExistingDownloads.isEmpty
+            return false
         }
 
         return sectionsToDelete

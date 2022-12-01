@@ -32,6 +32,8 @@ public final class Course: NSManagedObject {
     @NSManaged public var teaserStream: VideoStream?
     @NSManaged public var categories: String?
     @NSManaged public var topics: String?
+    @NSManaged public var show_on_list: Bool
+
     @NSManaged public var automatedDownloadSettings: AutomatedDownloadSettings?
     @NSManaged public var automatedDownloadsHaveBeenNoticed: Bool
 
@@ -97,6 +99,7 @@ extension Course: JSONAPIPullable {
         self.external = try attributes.value(for: "external")
         self.externalURL = try attributes.value(for: "external_url")
         self.teaserStream = try attributes.value(for: "teaser_stream") ?? self.teaserStream
+//        self.show_on_list = try attributes.value(for: "show_on_list")
 
         let categoryValues = try attributes.value(for: "classifiers.category") as [String]?
         self.categories = Self.arrayString(for: categoryValues)

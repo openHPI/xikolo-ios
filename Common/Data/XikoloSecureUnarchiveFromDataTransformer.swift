@@ -17,13 +17,14 @@ class XikoloSecureUnarchiveFromDataTransformer: NSSecureUnarchiveFromDataTransfo
             CourseCertificates.self,
             CourseCertificatesHash.self,
             EnrollmentCertificates.self,
-            QuizOption.self,
+            QuizQuestionOption.self,
             TrackingEventUser.self,
             TrackingEventVerb.self,
             TrackingEventResource.self,
             VideoStream.self,
             VisitProgress.self,
             AutomatedDownloadSettings.self,
+            NSArray.self,
         ]
     }
 

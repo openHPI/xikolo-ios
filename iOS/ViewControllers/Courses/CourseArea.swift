@@ -75,7 +75,11 @@ enum CourseArea: CaseIterable {
         case .announcements:
             return R.storyboard.announcements.instantiateInitialViewController()
         case .recap:
-            return R.storyboard.webViewController.instantiateInitialViewController()
+            if #available(iOS 15.0, *) {
+                return R.storyboard.courseQuizRecap.instantiateInitialViewController()
+            } else {
+                return R.storyboard.webViewController.instantiateInitialViewController()
+            }
         case .certificates:
             return R.storyboard.courseCertificates.instantiateInitialViewController()
         case .progress:

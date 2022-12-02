@@ -54,6 +54,17 @@
 		<key>category</key>
 		<string>proficiencyLevel</string>
 	</dict>
+	<key>additionalLearningMaterial</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>Serving Countries</string>
+			<key>url</key>
+			<string>https://openwho.org/pages/serving-countries</string>
+			<key>imageName</key>
+			<string>More/earth-asia</string>
+		</dict>
+	</array>
 	<key>testAccountUserId</key>
 	<string>334bd85a-760f-4d50-b919-2fcdc7395003</string>
 </dict>

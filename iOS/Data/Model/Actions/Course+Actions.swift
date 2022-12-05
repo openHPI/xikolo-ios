@@ -25,7 +25,7 @@ extension Course {
     }
 
     func automatedDownloadAction(handler: @escaping () -> Void) -> Action? {
-        guard self.offersNotificationsForNewContent else { return nil }
+        guard self.offersNotificationsForNewContent || self.automatedDownloadSettings != nil else { return nil }
         let title = NSLocalizedString("automated-downloads.setup.action.title",
                                       comment: "Automated Downloads: Action title for managing notifications for new content")
         return Action(title: title, image: Action.Image.notification, handler: handler)

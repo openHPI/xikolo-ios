@@ -33,12 +33,20 @@ struct QuizRecapView: View {
     @State var revealedQuestionOptions: Set<QuizQuestionOption> = []
     @State var allOptions: [QuizQuestionOption] = []
 
-    var allCorrectOptions: Set<QuizQuestionOption> {
-        Set(currentQuestion?.options.filter(\.correct) ?? [])
+    var attributedFallbackQuestionText: String? {
+        guard let text = currentQuestion?.text else { return nil }
+        let textFromAttributedString = MarkdownHelper.string(for: text)
+        return textFromAttributedString.isEmpty ? nil : textFromAttributedString
+    }
+
+    /// We explicitly need to check for the IDs here, when the quiz is synced in the background
+    /// the data for the options is renewed and this text would fail if we check for the whole object.
+    var allCorrectOptionIds: Set<String> {
+        Set(currentQuestion?.options.filter(\.correct).map(\.id) ?? [])
     }
 
     var allCorrectOptionsSelected: Bool {
-        allCorrectOptions == revealedQuestionOptions
+        allCorrectOptionIds == Set(revealedQuestionOptions.map(\.id))
     }
 
     var questionEnded: Bool {

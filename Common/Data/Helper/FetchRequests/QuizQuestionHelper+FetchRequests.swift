@@ -31,8 +31,7 @@ public enum QuizQuestionHelper {
             }()
 
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                NSPredicate(format: "excludedFromRecap = %@", NSNumber(value: false)),
-                NSPredicate(format: "type IN %@", ["select_multiple", "select_one"].map(NSString.init(string:))),
+                NSPredicate(format: "eligibleForRecap = %@", NSNumber(value: true)),
                 NSPredicate(format: "quiz.item.exerciseType = %@", NSString(string: "selftest")),
                 NSPredicate(format: "quiz.item.section.course = %@", course),
                 sectionPredicate,

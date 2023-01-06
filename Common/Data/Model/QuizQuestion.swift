@@ -15,7 +15,7 @@ public final class QuizQuestion: NSManagedObject {
     @NSManaged public var type: String?
     @NSManaged public var position: Int32
     @NSManaged public var shuffleOptions: Bool
-    @NSManaged public var excludedFromRecap: Bool
+    @NSManaged public var eligibleForRecap: Bool
     @NSManaged public var options: [QuizQuestionOption]
     @NSManaged public var quiz: Quiz?
 
@@ -43,7 +43,7 @@ extension QuizQuestion: JSONAPIPullable {
         self.type = try attributes.value(for: "type")
         self.shuffleOptions = try attributes.value(for: "shuffle_options")
         self.position = try attributes.value(for: "position")
-        self.excludedFromRecap = false //try attributes.value(for: "excluded_from_recap")
+        self.eligibleForRecap = try attributes.value(for: "eligible_for_recap")
         self.options = try attributes.value(for: "options")
     }
 

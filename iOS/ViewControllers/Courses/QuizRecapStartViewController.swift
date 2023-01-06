@@ -221,6 +221,6 @@ extension CourseItem {
     var eligibleForQuizRecap: Bool {
         guard self.contentType == "quiz" && self.exerciseType == "selftest" else { return false }
         guard let quiz = self.content as? Quiz else { return false }
-        return quiz.questions.contains { $0.excludedFromRecap == false }
+        return quiz.questions.contains { $0.eligibleForRecap == true }
     }
 }

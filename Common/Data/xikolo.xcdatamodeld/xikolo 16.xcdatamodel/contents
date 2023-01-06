@@ -171,7 +171,7 @@
         <relationship name="questions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="QuizQuestion" inverseName="quiz" inverseEntity="QuizQuestion"/>
     </entity>
     <entity name="QuizQuestion" representedClassName=".QuizQuestion" syncable="YES">
-        <attribute name="excludedFromRecap" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="eligibleForRecap" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="explanation" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="options" optional="YES" attributeType="Transformable" valueTransformerName="XikoloSecureUnarchiveFromDataTransformer" customClassName=".[QuizQuestionOption]"/>

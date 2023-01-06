@@ -19,7 +19,7 @@ struct QuizRecapView: View {
     var successCount: Int { correctlyAnsweredQuestions.count }
     var errorCount: Int { incorrectlyAnsweredQuestions.count }
 
-    var recapEnded: Bool { remainingQuestions.isEmpty }
+    var recapEnded: Bool { remainingQuestions.isEmpty && currentQuestion == nil }
 
     @State var currentQuestion: QuizQuestion? {
         didSet {
@@ -28,7 +28,6 @@ struct QuizRecapView: View {
                 return question.shuffleOptions ? question.options.shuffled() : question.options
             }()
             revealedQuestionOptions = []
-            timeRemainingUntilNextQuestion = 3
         }
     }
     @State var revealedQuestionOptions: Set<QuizQuestionOption> = []
@@ -80,6 +79,39 @@ struct QuizRecapView: View {
         loadNewQuestion()
     }
 
+    var stopButton: some View {
+        Button {
+            remainingQuestions = []
+            currentQuestion = nil
+        } label: {
+            HStack {
+                Image(systemName: "stop.fill")
+                Text("Stop")
+            }
+            .font(.body)
+            .foregroundColor(.primary)
+            .padding(.vertical, 6)
+            .padding(.horizontal, 10)
+            .background(Color(UIColor.secondarySystemBackground))
+            .cornerRadius(999)
+        }
+        .padding()
+    }
+
+    var closeButton: some View {
+        Button {
+            dismissAction()
+        } label: {
+            Image(systemName: "xmark")
+                .font(.body)
+                .foregroundColor(.primary)
+                .padding(6)
+                .background(Color(UIColor.secondarySystemBackground))
+                .cornerRadius(999)
+        }
+        .padding()
+    }
+
     var topInfo: some View {
         Group {
             if !recapEnded {
@@ -119,9 +151,17 @@ struct QuizRecapView: View {
 
     func questionDescription(for question: QuizQuestion) -> some View {
         VStack(spacing: 8) {
-            Text(question.text ?? "")
-                .font(.body)
-                .fontWeight(.medium)
+            if let attributedFallbackQuestionText = attributedFallbackQuestionText, attributedFallbackQuestionText != currentQuestion?.text {
+                Text(attributedFallbackQuestionText)
+                    .font(.body)
+                    .fontWeight(.medium)
+            } else {
+                Text(currentQuestion?.text ?? "")
+                    .font(.body)
+                    .fontWeight(.medium)
+                    .multilineTextAlignment(.center)
+            }
+
             Group {
                 switch(question.questionType) {
                 case .singleAnswer:
@@ -154,32 +194,36 @@ struct QuizRecapView: View {
         .padding(.horizontal, 24)
     }
 
+    var shimmeringSparkles: some View {
+        ZStack {
+            Image(systemName: "sparkles")
+                .font(.system(size: 60))
+                .frame(maxWidth: 150, maxHeight: 90, alignment: .center)
+
+            Image(systemName: "sparkle")
+                .font(.system(size: 30))
+                .frame(maxWidth: 150, maxHeight: 90, alignment: .topLeading)
+                .padding(.horizontal)
+
+            Image(systemName: "sparkle")
+                .font(.system(size: 10))
+                .frame(maxWidth: 150, maxHeight: 90, alignment: .leading)
+
+            Image(systemName: "sparkle")
+                .font(.system(size: 25))
+                .frame(maxWidth: 150, maxHeight: 90, alignment: .bottomTrailing)
+
+            Image(systemName: "sparkle")
+                .font(.system(size: 15))
+                .frame(maxWidth: 150, maxHeight: 90, alignment: .trailing)
+        }
+        .foregroundColor(.yellow)
+        .shimmer()
+    }
+
     var summary: some View {
-        VStack {
-            ZStack {
-                Image(systemName: "sparkles")
-                    .font(.system(size: 60))
-                    .frame(maxWidth: 150, maxHeight: 90, alignment: .center)
-
-                Image(systemName: "sparkle")
-                    .font(.system(size: 30))
-                    .frame(maxWidth: 150, maxHeight: 90, alignment: .topLeading)
-                    .padding(.horizontal)
-
-                Image(systemName: "sparkle")
-                    .font(.system(size: 10))
-                    .frame(maxWidth: 150, maxHeight: 90, alignment: .leading)
-
-                Image(systemName: "sparkle")
-                    .font(.system(size: 25))
-                    .frame(maxWidth: 150, maxHeight: 90, alignment: .bottomTrailing)
-
-                Image(systemName: "sparkle")
-                    .font(.system(size: 15))
-                    .frame(maxWidth: 150, maxHeight: 90, alignment: .trailing)
-            }
-            .foregroundColor(.yellow)
-            .shimmer()
+        VStack(spacing: 16) {
+            shimmeringSparkles
 
             VStack(spacing: 16) {
                 Text("Quiz abgeschlossen!")
@@ -218,116 +262,105 @@ struct QuizRecapView: View {
         }
     }
 
+    var restartButton: some View {
+        Button {
+            loadNewQuestionSet()
+        } label: {
+            HStack {
+                Image(systemName: "arrow.clockwise")
+                if let questionLimit = configuration.questionLimit {
+                    Text("Restart with \(questionLimit) new questions")
+                } else {
+                    Text("Restart")
+                }
+            }
+            .padding(.vertical, 10)
+            .padding(.horizontal, 16)
+        }
+        .modify {
+            if #available(iOS 16, *) {
+                $0.fontWeight(.medium)
+            }
+        }
+        .foregroundColor(Color.white)
+        .background(Color.orange)
+        .cornerRadius(100)
+    }
+
+    var incorrectlyAnsweredQuestionsSummary: some View {
+        Group {
+            if !incorrectlyAnsweredQuestions.isEmpty {
+                Spacer(minLength: 12)
+                VStack(alignment: .leading) {
+                    Text("Incorrectly answered questions")
+                        .font(.subheadline)
+                    let grouped = incorrectlyAnsweredQuestions.reduce(into: [:]) { result, character in
+                        result[character, default: 0] += 1
+                    }
+                    ForEach(grouped.sorted(by: { a, b in
+                        return a.1 > b.1
+                    }), id: \.key) { question, count in
+                        HStack {
+                            Text(question.text ?? "")
+                            Spacer()
+                            HStack(spacing: 4) {
+                                Image(systemName: "xmark.diamond")
+                                Text("\(count)")
+                            }
+                            .font(.footnote.monospaced())
+                            Image(systemName: "arrow.right")
+                        }
+                        .padding(.vertical, 4)
+                        .foregroundColor(.secondary)
+
+                        Divider()
+                    }
+                }
+            }
+        }
+    }
+
     var body: some View {
         Group {
             if let currentQuestion = currentQuestion, !recapEnded {
                 VStack {
                     HStack {
-                        Button {
-                            remainingQuestions = []
-                        } label: {
-                            HStack {
-                                Image(systemName: "stop.fill")
-                                Text("Stop")
-                            }
-                            .font(.footnote)
-                            .foregroundColor(.primary)
-                            .padding(.vertical, 6)
-                            .padding(.horizontal, 10)
-                            .background(Color(UIColor.secondarySystemBackground))
-                            .cornerRadius(999)
-                        }
-                        .padding()
+                        stopButton
                         Spacer()
                         topInfo
                     }
+
                     ScrollView {
-                        VStack {
-                            VStack(spacing: 24) {
-                                questionEndView
-                                questionDescription(for: currentQuestion)
-                                questionOptions
+                        VStack(spacing: 24) {
+                            questionEndView
+                            questionDescription(for: currentQuestion)
+                            questionOptions
 
-                                Text("Next question in \( timeRemainingUntilNextQuestion + 1)...")
-                                    .font(.callout.monospacedDigit())
-                                    .foregroundColor(.secondary)
-                                    .opacity(questionEnded && timeRemainingUntilNextQuestion < 3 ? 1 : 0)
+                            Text("Next question in \( timeRemainingUntilNextQuestion + 1)...")
+                                .font(.callout.monospacedDigit())
+                                .foregroundColor(.secondary)
+                                .opacity(questionEnded && !remainingQuestions.isEmpty && timeRemainingUntilNextQuestion < 3 ? 1 : 0)
 
-                            }
-                            .padding(.horizontal, 8)
-//                            .frame(maxWidth: 400, minHeight: 400) // TOOD: check values
                         }
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: 600, minHeight: 400)
+                        .padding(.horizontal, 8)
                     }
                 }
             } else {
                 VStack {
                     HStack {
-                        Button {
-                            dismissAction()
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .foregroundStyle(.primary, Color(UIColor.secondarySystemBackground))
-                                .foregroundColor(.secondary)
-                                .font(.system(size: 24))
-                        }
-                        .padding()
+                        closeButton
                         Spacer()
                     }
+
                     ScrollView {
                         VStack(spacing: 24) {
                             summary
-                            Button {
-                                loadNewQuestionSet()
-                            } label: {
-                                HStack {
-                                    Image(systemName: "arrow.clockwise")
-                                    Text("Restart with xx new questions")
-                                }
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 16)
-                            }
-                            .modify {
-                                if #available(iOS 16, *) {
-                                    $0.fontWeight(.medium)
-                                }
-                            }
-                            .foregroundColor(Color.white)
-                            .background(Color.orange)
-                            .cornerRadius(100)
-
-                            if 1 != 0 {
-                                Spacer(minLength: 12)
-                                VStack(alignment: .leading) {
-                                    Text("Incorrectly answered questions")
-                                        .font(.subheadline)
-                                    let grouped = incorrectlyAnsweredQuestions.reduce(into: [:]) { result, character in
-                                        result[character, default: 0] += 1
-                                    }
-                                    ForEach(grouped.sorted(by: { a, b in
-                                        return a.1 > b.1
-                                    }), id: \.key) { question, count in
-                                        HStack {
-                                            Text(question.text ?? "")
-                                            Spacer()
-                                            HStack(spacing: 4) {
-                                                Image(systemName: "xmark.diamond")
-                                                Text("\(count)")
-                                            }
-                                            .font(.footnote.monospaced())
-                                            Image(systemName: "arrow.right")
-                                        }
-                                        .padding(.vertical, 4)
-                                        .foregroundColor(.secondary)
-
-                                        Divider()
-                                    }
-                                }
-
-                            }
+                            restartButton
+                            incorrectlyAnsweredQuestionsSummary
                         }
-                        .padding(.horizontal)
-//                        .frame(maxWidth: 400, minHeight: 400) // TODO: check values
+                        .frame(maxWidth: 600, minHeight: 400)
+                        .padding(.horizontal, 8)
                     }
                 }
 
@@ -360,11 +393,11 @@ struct QuizRecapView: View {
 
         if questionEnded, let currentQuestion = currentQuestion {
             if allCorrectOptionsSelected {
-                timeRemainingUntilNextQuestion = 2
+                timeRemainingUntilNextQuestion = 1
                 correctlyAnsweredQuestions.append(currentQuestion)
                 remainingQuestions.removeFirst()
             } else {
-                timeRemainingUntilNextQuestion = 4
+                timeRemainingUntilNextQuestion = 3
                 incorrectlyAnsweredQuestions.append(currentQuestion)
                 remainingQuestions.removeFirst()
                 if incorrectlyAnsweredQuestions.filter({ $0 == currentQuestion }).count < 3 {
@@ -374,13 +407,5 @@ struct QuizRecapView: View {
             }
             timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
         }
-    }
-}
-
-@available(iOS 15, *)
-struct QuizRecapView_Previews: PreviewProvider {
-    static var previews: some View {
-//        QuizRecapView()
-        Text("Test")
     }
 }

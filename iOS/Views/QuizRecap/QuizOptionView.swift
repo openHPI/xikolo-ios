@@ -13,15 +13,27 @@ struct QuestionOptionView: View {
     @Binding var selected: Bool
     @Binding var questionEnded: Bool
 
+    var attributedFallbackQuestionText: String? {
+        guard let text = option.text else { return nil }
+        let textFromAttributedString = MarkdownHelper.string(for: text)
+        return textFromAttributedString.isEmpty ? nil : textFromAttributedString
+    }
+
     var body: some View {
-        Text(option.text ?? "")
-            .lineLimit(nil)
-            .multilineTextAlignment(.center)
-            .padding(8)
-            .frame(maxWidth: .infinity)
-            .foregroundColor(backgroundColor.darker(by: 0.7))
-            .background(backgroundColor.lighter(by: 0.2))
-            .cornerRadius(18)
+        Group {
+            if let attributedFallbackQuestionText = attributedFallbackQuestionText, attributedFallbackQuestionText != option.text {
+                Text(attributedFallbackQuestionText)
+            } else {
+                Text(option.text ?? "")
+                    .multilineTextAlignment(.center)
+            }
+        }
+        .lineLimit(nil)
+        .padding(12)
+        .frame(maxWidth: .infinity, minHeight: 44)
+        .foregroundColor(backgroundColor.darker(by: 0.9))
+        .background(backgroundColor.lighter(by: 0.2))
+        .cornerRadius(22)
     }
 
     var backgroundColor: Color {
@@ -30,12 +42,13 @@ struct QuestionOptionView: View {
         } else if questionEnded {
             return option.correct ? Color.green : Color(UIColor.systemGray4)
         } else {
-            return Color.orange
+            return Color(Brand.default.colors.primaryLight)
         }
-
     }
+
 }
 
+#if DEBUG
 @available(iOS 15, *)
 struct QuestionOptionView_Previews: PreviewProvider {
     static let correctOption = {
@@ -62,6 +75,6 @@ struct QuestionOptionView_Previews: PreviewProvider {
         ForEach([correctOption, incorrectOption], id: \.id) { option in
             QuestionOptionView(option: option, selected: .constant(false), questionEnded: .constant(false))
         }
-
     }
 }
+#endif

@@ -71,15 +71,15 @@ class QuizRecapStartViewController: UIViewController {
     func updateSettingsSubtitle() {
         let part1 = {
             if self.considerOnlyVisitedItems {
-                return "Only questions from self-test items that you have visited will be considered."
+                return "Only questions from self-test items that you have visited will be tested."
             } else {
-                return ""
+                return "Questions from all self-test items will be tested, regardless if you visited the item or not."
             }
         }()
 
         let part2 = {
             if course.sectionsForQuizRecap.map(\.id).allSatisfy({ sections.contains($0) }) {
-                return "Quiz questions from all available course sections (\(course.sectionsForQuizRecap.count)) will be considered."
+                return "Self-test questions from all available course sections (\(course.sectionsForQuizRecap.count)) will be considered."
             }
 
             let joinedCourseSectionTitles = course.sectionsForQuizRecap

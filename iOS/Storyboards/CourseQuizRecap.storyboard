@@ -94,7 +94,7 @@
                                                             </button>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sHb-LO-3R2">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sHb-LO-3R2">
                                                         <rect key="frame" x="0.0" y="386.66666666666669" width="358" height="42.333333333333314"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQ7-sg-fpb">
@@ -157,9 +157,9 @@
                         <constraints>
                             <constraint firstItem="4Ms-TD-YRb" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="9fP-ax-dju"/>
                             <constraint firstItem="4El-1p-N8f" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="RAq-lW-Gni"/>
-                            <constraint firstItem="4El-1p-N8f" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Wga-9Z-UnK"/>
+                            <constraint firstItem="4El-1p-N8f" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="Wga-9Z-UnK"/>
                             <constraint firstAttribute="bottom" secondItem="4El-1p-N8f" secondAttribute="bottom" id="iUA-ZK-DaM"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="4El-1p-N8f" secondAttribute="trailing" id="rst-yP-fqw"/>
+                            <constraint firstAttribute="trailing" secondItem="4El-1p-N8f" secondAttribute="trailing" id="rst-yP-fqw"/>
                         </constraints>
                     </view>
                     <connections>

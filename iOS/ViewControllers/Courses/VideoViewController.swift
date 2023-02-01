@@ -492,83 +492,70 @@ extension VideoViewController: BingePlayerDelegate { // Video tracking
 
     func didStartPlayback() {
         NotificationCenter.default.post(name: Self.didStartPlaybackNotification, object: self, userInfo: nil)
-
-        if let video = self.video {
-            TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
-        }
+        TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: courseItem.id, on: self, context: self.newTrackingContext)
     }
 
     func didPausePlayback() {
-        guard let video = self.video else { return }
         guard let pageViewController = self.parent as? UIPageViewController else { return }
         guard pageViewController.viewControllers?.contains(self) ?? false else { return } // view controller should be currently presented
-        TrackingHelper.createEvent(.videoPlaybackPause, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+        TrackingHelper.createEvent(.videoPlaybackPause, resourceType: .video, resourceId: courseItem.id, on: self, context: self.newTrackingContext)
         self.rememberCurrentProgress()
     }
 
     func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {
         UserDefaults.standard.playbackRate = newRate
 
-        guard let video = self.video else { return }
-
         var context = self.newTrackingContext
         context["current_speed"] = nil
         context["old_speed"] = String(oldRate)
         context["new_speed"] = String(newRate)
-        TrackingHelper.createEvent(.videoPlaybackChangeSpeed, resourceType: .video, resourceId: video.id, on: self, context: context)
+        TrackingHelper.createEvent(.videoPlaybackChangeSpeed, resourceType: .video, resourceId: courseItem.id, on: self, context: context)
     }
 
     func didSeek(from oldTime: TimeInterval, to newTime: TimeInterval) {
-        guard let video = self.video else { return }
-
         var context = self.newTrackingContext
         context["current_time"] = nil
         context["new_current_time"] = String(newTime)
         context["old_current_time"] = String(oldTime)
 
-        TrackingHelper.createEvent(.videoPlaybackSeek, resourceType: .video, resourceId: video.id, on: self, context: context)
+        TrackingHelper.createEvent(.videoPlaybackSeek, resourceType: .video, resourceId: courseItem.id, on: self, context: context)
         self.rememberCurrentProgress()
     }
 
     func didReachEndOfPlayback() {
-        guard let video = self.video else { return }
-        TrackingHelper.createEvent(.videoPlaybackEnd, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+        TrackingHelper.createEvent(.videoPlaybackEnd, resourceType: .video, resourceId: courseItem.id, on: self, context: self.newTrackingContext)
         self.resetLastPosition()
     }
 
     func trackVideoClose() {
-        guard let video = self.video else { return }
-        TrackingHelper.createEvent(.videoPlaybackClose, resourceType: .video, resourceId: video.id, on: self, context: self.newTrackingContext)
+        TrackingHelper.createEvent(.videoPlaybackClose, resourceType: .video, resourceId: courseItem.id, on: self, context: self.newTrackingContext)
         self.rememberCurrentProgress()
     }
 
     func didChangeOrientation(to orientation: UIInterfaceOrientation?) {
-        guard let video = self.video else { return }
         guard self.isInForeground else { return }
         guard let orientation = orientation else { return }
 
         let verb: TrackingHelper.AnalyticsVerb = orientation.isLandscape ? .videoPlaybackDeviceOrientationLandscape : .videoPlaybackDeviceOrientationPortrait
         var context = self.newTrackingContext
         context["current_orientation"] = nil
-        TrackingHelper.createEvent(verb, resourceType: .video, resourceId: video.id, on: self, context: context)
+        TrackingHelper.createEvent(verb, resourceType: .video, resourceId: courseItem.id, on: self, context: context)
     }
 
     func didChangeSubtitles(from oldLanguageCode: String?, to newLanguageCode: String?) {
-        guard let video = self.video else { return }
         var context = self.newTrackingContext
         context["new_subtitle_language"] = newLanguageCode ?? "off"
-        TrackingHelper.createEvent(.videoPlaybackChangeSubtitle, resourceType: .video, resourceId: video.id, on: self, context: context)
+        TrackingHelper.createEvent(.videoPlaybackChangeSubtitle, resourceType: .video, resourceId: courseItem.id, on: self, context: context)
     }
 
     func didChangeLayout(from oldLayout: LayoutState, to newLayout: LayoutState) {
         self.videoIsShownInFullScreen = newLayout == .fullScreen
 
-        guard let video = self.video else { return }
         var context = self.newTrackingContext
         context["current_layout"] = nil
         context["new_layout"] = oldLayout.rawValue
         context["old_layout"] = newLayout.rawValue
-        TrackingHelper.createEvent(.videoPlaybackChangeLayout, resourceType: .video, resourceId: video.id, on: self, context: context)
+        TrackingHelper.createEvent(.videoPlaybackChangeLayout, resourceType: .video, resourceId: courseItem.id, on: self, context: context)
     }
 
 }

@@ -238,7 +238,7 @@ struct QuizRecapView: View {
                     .font(.headline)
                     .lineLimit(nil)
                     .multilineTextAlignment(.center)
-                Text("Glückwunsch, Sie haben \(successCount) Fragen in insgesamt \(successCount + errorCount) Versuchen beantwortet.") // TODO: Plural
+                Text("Glückwunsch, Sie haben \(successCount) Fragen in insgesamt \(successCount + errorCount) Versuchen beantwortet.")
                     .lineLimit(nil)
                     .multilineTextAlignment(.center)
 
@@ -257,10 +257,6 @@ struct QuizRecapView: View {
                 }
                 .imageScale(.large)
                 .font(.system(size: 20, weight: .medium).monospacedDigit())
-
-                Text("Großartig, Sie haben alle Fragen richtig beantwortet. Versuchen Sie es erneut mit mehr Fragen.")
-                    .lineLimit(nil)
-                    .multilineTextAlignment(.center)
             }
             .lineLimit(nil)
             .multilineTextAlignment(.center)

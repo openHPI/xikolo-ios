@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WaE-pr-4AO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WaE-pr-4AO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,6 +21,54 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VE7-ox-Fte">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="242"/>
                             </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AHH-87-oLV">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="amz-ft-EAs">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XHn-Nv-GiF">
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="AvT-yg-GJc">
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="regular"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
+                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="BJn-6j-DWU">
+                                <rect key="frame" x="187" y="159.5" width="207" height="54.5"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qal-MT-3Zk">
+                                    <rect key="frame" x="0.0" y="0.0" width="207" height="54.5"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPc-gO-GP2">
+                                            <rect key="frame" x="0.0" y="0.0" width="207" height="54.5"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" imagePlacement="leading" title="Practice your new knowledge here!" imagePadding="8">
+                                                <imageReference key="image" image="questionmark.app.fill" catalog="system" symbolScale="large" renderingMode="template" variableValue="1"/>
+                                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24"/>
+                                                <color key="baseForegroundColor" systemColor="labelColor"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="openQuizRecap:" destination="GW9-XM-IkA" eventType="touchUpInside" id="MOu-ed-1Gx"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fPc-gO-GP2" firstAttribute="top" secondItem="qal-MT-3Zk" secondAttribute="top" id="3xG-Yp-Emp"/>
+                                        <constraint firstAttribute="bottom" secondItem="fPc-gO-GP2" secondAttribute="bottom" id="5dB-4E-PXR"/>
+                                        <constraint firstItem="fPc-gO-GP2" firstAttribute="leading" secondItem="qal-MT-3Zk" secondAttribute="leading" id="BhB-Bj-Nn1"/>
+                                        <constraint firstAttribute="trailing" secondItem="fPc-gO-GP2" secondAttribute="trailing" id="NXq-Ky-ah3"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="systemThickMaterial"/>
+                            </visualEffectView>
                             <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bmv-rC-bZT">
                                 <rect key="frame" x="0.0" y="218" width="414" height="109.5"/>
                                 <subviews>
@@ -104,13 +153,16 @@
                             <constraint firstItem="bmv-rC-bZT" firstAttribute="top" secondItem="VE7-ox-Fte" secondAttribute="bottom" constant="-24" id="Cqo-Ib-NUp"/>
                             <constraint firstItem="BeB-Ri-K3W" firstAttribute="top" secondItem="fUc-Ws-hEN" secondAttribute="top" id="Gns-35-cOf"/>
                             <constraint firstAttribute="trailing" secondItem="VE7-ox-Fte" secondAttribute="trailing" id="JGf-3N-ecU"/>
+                            <constraint firstItem="bmv-rC-bZT" firstAttribute="topMargin" secondItem="BJn-6j-DWU" secondAttribute="bottom" constant="12" id="MI9-Gu-A8b"/>
                             <constraint firstItem="BeB-Ri-K3W" firstAttribute="leading" secondItem="fUc-Ws-hEN" secondAttribute="leading" id="NKc-XE-H2l"/>
                             <constraint firstItem="KL2-g9-OIx" firstAttribute="top" secondItem="bmv-rC-bZT" secondAttribute="bottom" id="RuG-Sy-QxV"/>
+                            <constraint firstItem="BJn-6j-DWU" firstAttribute="width" secondItem="raX-iA-spo" secondAttribute="width" multiplier="0.5" id="TJf-hN-tNI"/>
                             <constraint firstItem="KL2-g9-OIx" firstAttribute="leading" secondItem="raX-iA-spo" secondAttribute="leading" id="Ved-2z-ePs"/>
                             <constraint firstAttribute="trailing" secondItem="KL2-g9-OIx" secondAttribute="trailing" id="akK-38-4R1"/>
                             <constraint firstItem="VE7-ox-Fte" firstAttribute="top" secondItem="raX-iA-spo" secondAttribute="top" id="bDn-SI-ndM"/>
                             <constraint firstItem="BeB-Ri-K3W" firstAttribute="bottom" secondItem="VE7-ox-Fte" secondAttribute="bottom" id="bu7-hM-lgd"/>
                             <constraint firstItem="bmv-rC-bZT" firstAttribute="leading" secondItem="fUc-Ws-hEN" secondAttribute="leading" id="cFA-Fu-ZJc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BJn-6j-DWU" secondAttribute="trailing" id="qe5-1u-lTk"/>
                             <constraint firstItem="bmv-rC-bZT" firstAttribute="trailing" secondItem="fUc-Ws-hEN" secondAttribute="trailing" id="tzT-3W-Hid"/>
                         </constraints>
                     </view>
@@ -125,6 +177,7 @@
                         <outlet property="headerImageTopSafeAreaConstraint" destination="Gns-35-cOf" id="blo-WB-3hW"/>
                         <outlet property="headerImageTopSuperviewConstraint" destination="bDn-SI-ndM" id="dXS-Ro-RgK"/>
                         <outlet property="headerImageView" destination="VE7-ox-Fte" id="BNm-BP-iJQ"/>
+                        <outlet property="recapPromoView" destination="BJn-6j-DWU" id="TcL-UF-bGH"/>
                         <outlet property="titleLabel" destination="MOr-5N-Ewr" id="1mo-Fw-9f0"/>
                         <outlet property="titleView" destination="AJR-HV-dnR" id="D8I-cq-SH7"/>
                     </connections>
@@ -228,6 +281,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="questionmark.app.fill" catalog="system" width="128" height="114"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

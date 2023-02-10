@@ -407,6 +407,7 @@
 		50F3166B25C43ECD009BD594 /* CourseDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3166A25C43ECD009BD594 /* CourseDateViewModel.swift */; };
 		50F3167625C44760009BD594 /* CourseDateOverviewWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3167525C44760009BD594 /* CourseDateOverviewWidgetProvider.swift */; };
 		50F3168125C447AE009BD594 /* CourseDateStatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3168025C447AE009BD594 /* CourseDateStatisticsViewModel.swift */; };
+		50F3BBBD2969951300DE8C02 /* UserDefaults+quizRecapNoticedInCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3BBBC2969951300DE8C02 /* UserDefaults+quizRecapNoticedInCourse.swift */; };
 		50F3BBC0296DB17200DE8C02 /* QuizRecapNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3BBBF296DB17200DE8C02 /* QuizRecapNotificationManager.swift */; };
 		50F3DD49245859710008CE27 /* Video+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3DD48245859710008CE27 /* Video+Persistence.swift */; };
 		50F3DD4B245859E00008CE27 /* DocumentLocalization+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3DD4A245859E00008CE27 /* DocumentLocalization+Persistence.swift */; };
@@ -1125,6 +1126,7 @@
 		50F3166A25C43ECD009BD594 /* CourseDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateViewModel.swift; sourceTree = "<group>"; };
 		50F3167525C44760009BD594 /* CourseDateOverviewWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateOverviewWidgetProvider.swift; sourceTree = "<group>"; };
 		50F3168025C447AE009BD594 /* CourseDateStatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateStatisticsViewModel.swift; sourceTree = "<group>"; };
+		50F3BBBC2969951300DE8C02 /* UserDefaults+quizRecapNoticedInCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+quizRecapNoticedInCourse.swift"; sourceTree = "<group>"; };
 		50F3BBBF296DB17200DE8C02 /* QuizRecapNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRecapNotificationManager.swift; sourceTree = "<group>"; };
 		50F3DD48245859710008CE27 /* Video+Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Video+Persistence.swift"; sourceTree = "<group>"; };
 		50F3DD4A245859E00008CE27 /* DocumentLocalization+Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentLocalization+Persistence.swift"; sourceTree = "<group>"; };
@@ -1765,6 +1767,7 @@
 				5095B1DE20EBA9D700572924 /* UserDefaults+playbackRate.swift */,
 				50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */,
 				828707EA24ADF74F00CE60CB /* UserDefaults+Theme.swift */,
+				50F3BBBC2969951300DE8C02 /* UserDefaults+quizRecapNoticedInCourse.swift */,
 			);
 			path = UserDefaults;
 			sourceTree = "<group>";
@@ -3518,6 +3521,7 @@
 				502506962906D72400EEA982 /* QuizRecapViewController.swift in Sources */,
 				50146FC92221829500177E96 /* CourseSearchFiltersViewController.swift in Sources */,
 				503CEE942174EEE200F34694 /* CourseItem+AvailableContent.swift in Sources */,
+				50F3BBBD2969951300DE8C02 /* UserDefaults+quizRecapNoticedInCourse.swift in Sources */,
 				50C21DE823549D4A00D7A1A6 /* UICollectionView+EmptyState.swift in Sources */,
 				50CF1FE820DCDBFC0011BFE9 /* UIView+SafeCastable.swift in Sources */,
 				50CF1FEB20DCDBFC0011BFE9 /* CircularProgressView.swift in Sources */,

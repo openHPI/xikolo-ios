@@ -51,10 +51,15 @@ class QuizRecapStartViewController: UIViewController {
         self.updateView()
 
         self.addRefreshControl()
-        self.refresh()
 
         self.scrollView.delegate = self
         self.scrollView.alwaysBounceVertical = true
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UserDefaults.standard.setQuizRecapNoticed(to: true, in: self.course)
+        NotificationCenter.default.post(name: UserDefaults.quizRecapNoticedNotificationName, object: self.course.id)
     }
 
     func updateView() {

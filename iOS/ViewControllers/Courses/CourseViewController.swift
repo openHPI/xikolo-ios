@@ -16,6 +16,8 @@ class CourseViewController: UIViewController {
     @IBOutlet private weak var headerImageView: UIImageView!
     @IBOutlet private weak var cardHeaderView: UIView!
     @IBOutlet private weak var cornerView: UIView!
+    @IBOutlet private weak var recapPromoView: UIView!
+
     @IBOutlet private weak var courseAreaListContainerHeight: NSLayoutConstraint!
     @IBOutlet private weak var headerImageHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var headerImageTopSuperviewConstraint: NSLayoutConstraint!
@@ -97,6 +99,8 @@ class CourseViewController: UIViewController {
         set {}
     }
 
+    override var canBecomeFirstResponder: Bool { return true }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -128,12 +132,28 @@ class CourseViewController: UIViewController {
 
         self.cardHeaderView.addGestureRecognizer(self.downUpwardsGestureRecognizer)
 
+        // Quiz recap promo
+        self.recapPromoView.layer.roundCorners(for: .default)
+        self.updateRecapPromoView()
+
         FeatureHelper.syncFeatures(forCourse: self.course).onSuccess { [weak self] in
             self?.courseAreaListViewController?.refresh()
+            self?.updateRecapPromoView()
         }
 
         self.actionAfterOpening?(self)
         self.actionAfterOpening = nil
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.becomeFirstResponder()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateRecapPromoView), name: UserDefaults.quizRecapNoticedNotificationName, object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.resignFirstResponder()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -400,6 +420,28 @@ class CourseViewController: UIViewController {
         }
     }
 
+    @objc private func updateRecapPromoView() {
+        let quizRecapEnabled = FeatureHelper.hasFeature(.quizRecap)
+        let quizRecapPromoEnabled = FeatureHelper.hasFeature(.quizRecapOneTimePromotion, for: self.course)
+        let shouldShowPromo = quizRecapEnabled && quizRecapPromoEnabled && !UserDefaults.standard.wasQuizRecapNoticed(in: self.course)
+        UIView.animate(withDuration: defaultAnimationDurationUnlessReduceMotionEnabled) {
+            self.recapPromoView.isHidden = !shouldShowPromo
+        }
+    }
+
+    @IBAction private func openQuizRecap(_ sender: Any) {
+        guard FeatureHelper.hasFeature(.quizRecap) else { return }
+        self.appNavigator?.show(course: self.course, with: .recap)
+        self.scrollToTop()
+    }
+
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        super.motionEnded(motion, with: event)
+        if motion == .motionShake {
+            UserDefaults.standard.setQuizRecapNoticed(to: false, in: self.course)
+            self.updateRecapPromoView()
+        }
+    }
 }
 
 extension CourseViewController: CourseAreaListViewControllerDelegate {

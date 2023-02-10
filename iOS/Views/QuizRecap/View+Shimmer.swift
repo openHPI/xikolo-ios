@@ -32,6 +32,8 @@ struct ShimmerConfiguration {
 @available(iOS 13, *)
 struct ShimmeringView<Content: View>: View {
 
+    @Environment(\.colorScheme) var colorScheme
+
     private let content: () -> Content
     private let configuration: ShimmerConfiguration
     @State private var startPoint: UnitPoint
@@ -53,7 +55,7 @@ struct ShimmeringView<Content: View>: View {
                 endPoint: endPoint
             )
             .opacity(configuration.opacity)
-            .blendMode(.screen)
+            .blendMode(colorScheme == .dark ? .darken : .screen)
             .onAppear {
                 withAnimation(Animation.linear(duration: configuration.duration).delay(2).repeatForever(autoreverses: false)) {
                     startPoint = configuration.finalLocation.start

@@ -49,29 +49,19 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Bog-08-SWT">
                                                         <rect key="frame" x="0.0" y="134.66666666666666" width="358" height="227.99999999999997"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwG-7X-jKr">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGZ-Gf-Osz">
                                                                 <rect key="frame" x="0.0" y="0.0" width="358" height="51"/>
-                                                                <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Short" subtitle="10 questions" imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
-                                                                    <imageReference key="image" image="gamecontroller.fill" catalog="system" symbolScale="large" renderingMode="template"/>
-                                                                    <color key="baseBackgroundColor" name="primary"/>
-                                                                </buttonConfiguration>
-                                                                <connections>
-                                                                    <action selector="startShortRecapSession" destination="Y6W-OH-hqX" eventType="touchUpInside" id="pa1-CR-0ga"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdz-Mu-mUo">
-                                                                <rect key="frame" x="0.0" y="59.000000000000028" width="358" height="51"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Medium" subtitle="20 questions" imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
-                                                                    <imageReference key="image" image="figure.run" catalog="system" symbolScale="large" renderingMode="template"/>
+                                                                <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Complete" subtitle=" " imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
+                                                                    <imageReference key="image" image="graduationcap.fill" catalog="system" symbolScale="large" renderingMode="template"/>
                                                                     <color key="baseBackgroundColor" name="primary"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
-                                                                    <action selector="startMediumRecapSession" destination="Y6W-OH-hqX" eventType="touchUpInside" id="fuM-b0-So8"/>
+                                                                    <action selector="startCompleteRecapSession" destination="Y6W-OH-hqX" eventType="touchUpInside" id="9Bu-cO-vhq"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNU-yQ-sat">
-                                                                <rect key="frame" x="0.0" y="118.00000000000003" width="358" height="51"/>
+                                                                <rect key="frame" x="0.0" y="59.000000000000028" width="358" height="51"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Long" subtitle="50 questions" imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
                                                                     <imageReference key="image" image="bolt.circle.fill" catalog="system" symbolScale="large" renderingMode="template"/>
@@ -81,15 +71,25 @@
                                                                     <action selector="startLongRecapSession" destination="Y6W-OH-hqX" eventType="touchUpInside" id="hkO-Tf-yzW"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGZ-Gf-Osz">
-                                                                <rect key="frame" x="0.0" y="177.00000000000003" width="358" height="51"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdz-Mu-mUo">
+                                                                <rect key="frame" x="0.0" y="118.00000000000003" width="358" height="51"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Complete" subtitle=" " imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
-                                                                    <imageReference key="image" image="graduationcap.fill" catalog="system" symbolScale="large" renderingMode="template"/>
+                                                                <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Medium" subtitle="20 questions" imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
+                                                                    <imageReference key="image" image="figure.run" catalog="system" symbolScale="large" renderingMode="template"/>
                                                                     <color key="baseBackgroundColor" name="primary"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
-                                                                    <action selector="startCompleteRecapSession" destination="Y6W-OH-hqX" eventType="touchUpInside" id="9Bu-cO-vhq"/>
+                                                                    <action selector="startMediumRecapSession" destination="Y6W-OH-hqX" eventType="touchUpInside" id="fuM-b0-So8"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwG-7X-jKr">
+                                                                <rect key="frame" x="0.0" y="177.00000000000003" width="358" height="51"/>
+                                                                <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Short" subtitle="10 questions" imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
+                                                                    <imageReference key="image" image="gamecontroller.fill" catalog="system" symbolScale="large" renderingMode="template"/>
+                                                                    <color key="baseBackgroundColor" name="primary"/>
+                                                                </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="startShortRecapSession" destination="Y6W-OH-hqX" eventType="touchUpInside" id="pa1-CR-0ga"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>

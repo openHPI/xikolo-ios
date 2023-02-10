@@ -13,7 +13,7 @@ class AppNavigator {
     private weak var currentCourseNavigationController: CourseNavigationController?
     private let courseTransitioningDelegate = CourseTransitioningDelegate() // swiftlint:disable:this weak_delegate
 
-    private weak var tabBarController: UITabBarController?
+    weak var tabBarController: UITabBarController?
 
     init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController

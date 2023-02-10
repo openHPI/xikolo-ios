@@ -55,4 +55,10 @@ public enum FeatureHelper {
         return hasFeatureInGlobalScope || hasFeatureInCourseScope
     }
 
+    public static func hasAnyFeature(_ featureIdentifiers: [FeatureIdentifier], for course: Course? = nil) -> Bool {
+        return featureIdentifiers.map {
+            Self.hasFeature($0, for: course)
+        }.contains(true)
+    }
+
 }

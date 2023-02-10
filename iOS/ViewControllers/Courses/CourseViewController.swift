@@ -318,7 +318,7 @@ class CourseViewController: UIViewController {
         } completion: { _ in
             self.courseAreaViewController = nil
 
-            guard let newViewController = self.area.viewController else {
+            guard let newViewController = self.area.viewController(for: self.course) else {
                 self.courseAreaPageViewController?.setViewControllers(nil, direction: .forward, animated: false)
                 return
             }
@@ -442,14 +442,14 @@ extension CourseViewController: UIPageViewControllerDataSource {
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let area = self.previousAvailableArea else { return nil }
-        guard let viewController = area.viewController else { return nil }
+        guard let viewController = area.viewController(for: self.course) else { return nil }
         viewController.configure(for: self.course, with: area, delegate: self)
         return viewController
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let area = self.nextAvailableArea else { return nil }
-        guard let viewController = area.viewController else { return nil }
+        guard let viewController = area.viewController(for: self.course) else { return nil }
         viewController.configure(for: self.course, with: area, delegate: self)
         return viewController
     }

@@ -62,7 +62,7 @@ enum CourseArea: CaseIterable {
         }
     }
 
-    var viewController: (UIViewController & CourseAreaViewController)? {
+    func viewController(for course: Course) -> (UIViewController & CourseAreaViewController)? {
         switch self {
         case .learnings:
             return R.storyboard.courseLearnings.instantiateInitialViewController()
@@ -75,7 +75,7 @@ enum CourseArea: CaseIterable {
         case .announcements:
             return R.storyboard.announcements.instantiateInitialViewController()
         case .recap:
-            if #available(iOS 15.0, *) {
+            if #available(iOS 15.0, *), FeatureHelper.hasFeature(.quizRecapVersion2, for: course) {
                 return R.storyboard.courseQuizRecap.instantiateInitialViewController()
             } else {
                 return R.storyboard.webViewController.instantiateInitialViewController()

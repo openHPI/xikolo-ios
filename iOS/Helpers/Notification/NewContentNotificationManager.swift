@@ -12,7 +12,7 @@ enum NewContentNotificationManager {
     static func renewNotifications(for course: Course) {
         let center = UNUserNotificationCenter.current()
 
-        let identifiersForPendingRequests = course.sections.map(XikoloNotification.RequestIdentifier.identifier(for:))
+        let identifiersForPendingRequests = course.sections.map(XikoloNotification.RequestIdentifier.identifierForNewContent(for:))
         center.removePendingNotificationRequests(withIdentifiers: identifiersForPendingRequests)
 
         guard FeatureHelper.hasFeature(.newContentNotification, for: course) else { return }

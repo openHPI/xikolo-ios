@@ -30,5 +30,15 @@
 		<key>NSStringLocalizedFormatKey</key>
 		<string>Course section &apos;%@&apos; started. Download the new course material to continue learning without an Internet connection.</string>
 	</dict>
+	<key>notification.quiz-recap-section.body</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Course section &apos;%@&apos; is ending soon. Practice your newly gained knowledge with the quiz recap.</string>
+	</dict>
+	<key>notification.quiz-recap-course.body</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>The course is ending soon. Practice all your new knowledge with the quiz recap to be prepared for the final exam.</string>
+	</dict>
 </dict>
 </plist>

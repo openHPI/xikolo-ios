@@ -407,6 +407,7 @@
 		50F3166B25C43ECD009BD594 /* CourseDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3166A25C43ECD009BD594 /* CourseDateViewModel.swift */; };
 		50F3167625C44760009BD594 /* CourseDateOverviewWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3167525C44760009BD594 /* CourseDateOverviewWidgetProvider.swift */; };
 		50F3168125C447AE009BD594 /* CourseDateStatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3168025C447AE009BD594 /* CourseDateStatisticsViewModel.swift */; };
+		50F3BBC0296DB17200DE8C02 /* QuizRecapNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3BBBF296DB17200DE8C02 /* QuizRecapNotificationManager.swift */; };
 		50F3DD49245859710008CE27 /* Video+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3DD48245859710008CE27 /* Video+Persistence.swift */; };
 		50F3DD4B245859E00008CE27 /* DocumentLocalization+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F3DD4A245859E00008CE27 /* DocumentLocalization+Persistence.swift */; };
 		50F6DAD72497440900A85A8B /* Course+NSItemProviderWriting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6DAD62497440900A85A8B /* Course+NSItemProviderWriting.swift */; };
@@ -1124,6 +1125,7 @@
 		50F3166A25C43ECD009BD594 /* CourseDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateViewModel.swift; sourceTree = "<group>"; };
 		50F3167525C44760009BD594 /* CourseDateOverviewWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateOverviewWidgetProvider.swift; sourceTree = "<group>"; };
 		50F3168025C447AE009BD594 /* CourseDateStatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateStatisticsViewModel.swift; sourceTree = "<group>"; };
+		50F3BBBF296DB17200DE8C02 /* QuizRecapNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRecapNotificationManager.swift; sourceTree = "<group>"; };
 		50F3DD48245859710008CE27 /* Video+Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Video+Persistence.swift"; sourceTree = "<group>"; };
 		50F3DD4A245859E00008CE27 /* DocumentLocalization+Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentLocalization+Persistence.swift"; sourceTree = "<group>"; };
 		50F45AE0200D06BD009304A3 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -1472,6 +1474,7 @@
 			isa = PBXGroup;
 			children = (
 				50082B4E20BFDA4400B4511C /* PersistenceManager */,
+				50F3BBBE296DB14C00DE8C02 /* Notification */,
 				503578932195BF1500982093 /* Accessibility.swift */,
 				3D6F12EC1F2914BD00D5DFE8 /* SpotlightHelper.swift */,
 				502E8E9425D6B39800CFE234 /* WidgetHelper.swift */,
@@ -1556,7 +1559,6 @@
 				500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */,
 				50082B5E20BFDAC900B4511C /* DownloadState.swift */,
 				5027E6B32552B40A00994CF7 /* AutomatedDownloadsManager.swift */,
-				50AF096B2823B5DB001BC2E9 /* NewContentNotificationManager.swift */,
 			);
 			path = PersistenceManager;
 			sourceTree = "<group>";
@@ -2078,6 +2080,15 @@
 				5063F99925C97044006C3048 /* CourseDateView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		50F3BBBE296DB14C00DE8C02 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				50AF096B2823B5DB001BC2E9 /* NewContentNotificationManager.swift */,
+				50F3BBBF296DB17200DE8C02 /* QuizRecapNotificationManager.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		50F3DD47245859520008CE27 /* Persistence */ = {
@@ -3320,6 +3331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50F3BBC0296DB17200DE8C02 /* QuizRecapNotificationManager.swift in Sources */,
 				50CF1F4620DCDBFC0011BFE9 /* PDFViewController.swift in Sources */,
 				5035D91124E526E600431A6B /* CustomWidthTableViewController.swift in Sources */,
 				509DA848252F09CC00030465 /* AutomatedDownloadsSettingsViewController.swift in Sources */,

@@ -8,7 +8,7 @@ import Stockpile
 
 public enum FeatureHelper {
 
-    public enum FeatureIdentifier: String {
+    public enum FeatureIdentifier: String, CaseIterable {
         case quizRecap = "quiz_recap"
         case courseReactivation = "course_reactivation"
 
@@ -31,10 +31,11 @@ public enum FeatureHelper {
 
     public static func hasFeature(_ featureIdentifier: FeatureIdentifier, for course: Course? = nil) -> Bool {
         #if DEBUG
-        if featureIdentifier == .newContentNotification && CommandLine.arguments.contains("-new-content-notification") {
-            return true
-        } else if featureIdentifier == .newContentBackgroundDownload && CommandLine.arguments.contains("-new-content-background-download") {
-            return true
+        for identifier in FeatureIdentifier.allCases where identifier == featureIdentifier {
+            let commandLineArgument = "-" + identifier.rawValue.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "_", with: "-")
+            if CommandLine.arguments.contains(commandLineArgument) {
+                return true
+            }
         }
         #endif
 

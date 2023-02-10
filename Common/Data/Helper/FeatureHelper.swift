@@ -15,6 +15,11 @@ public enum FeatureHelper {
         // Identifiers for content notification and automated downloads user test
         case newContentNotification = "mobile.new_content.notification"
         case newContentBackgroundDownload = "mobile.new_content.background_download"
+
+        case quizRecapOneTimePromotion = "mobile.quiz_recap.one_time_promotion"
+        case quizRecapSectionNotifications = "mobile.quiz_recap.notifications.section"
+        case quizRecapCourseEndNotification = "mobile.quiz_recap.notifications.course_end"
+        case quizRecapVersion2 = "mobile.quiz_recap.version_2"
     }
 
     @discardableResult

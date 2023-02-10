@@ -8,6 +8,9 @@ import SwiftUI
 
 @available(iOS 15, *)
 struct QuestionOptionView: View {
+
+    @Environment(\.colorScheme) var colorScheme
+
     let option: QuizQuestionOption
 
     @Binding var selected: Bool
@@ -30,9 +33,13 @@ struct QuestionOptionView: View {
         }
         .lineLimit(nil)
         .padding(12)
-        .frame(maxWidth: .infinity, minHeight: 44)
-        .foregroundColor(backgroundColor.darker(by: 0.9))
-        .background(backgroundColor.lighter(by: 0.2))
+        .frame(maxWidth: .infinity, minHeight: 66)
+        .foregroundColor(
+            colorScheme == .dark ? backgroundColor.lighter(by: 0.9) : backgroundColor.darker(by: 0.9)
+        )
+        .background(
+            colorScheme == .dark ? backgroundColor.darker(by: 0.5) : backgroundColor.lighter(by: 0.2)
+        )
         .cornerRadius(22)
     }
 
@@ -42,7 +49,7 @@ struct QuestionOptionView: View {
         } else if questionEnded {
             return option.correct ? Color.green : Color(UIColor.systemGray4)
         } else {
-            return Color(Brand.default.colors.primaryLight)
+            return colorScheme == .dark ? Color(Brand.default.colors.primary) : Color(Brand.default.colors.primaryLight)
         }
     }
 

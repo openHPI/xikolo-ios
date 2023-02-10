@@ -486,12 +486,33 @@ extension CourseItemListViewController: RefreshableViewController {
              }.onSuccess { [weak self] _ in
                  self?.updateAutomatedDownloadsHint(animated: true)
              }
-         }
+        }
 
         if #available(iOS 13, *) {
             if self.course.automatedDownloadSettings != nil {
                 NewContentNotificationManager.renewNotifications(for: self.course)
                 AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
+            }
+        }
+
+        if #available(iOS 15, *), let course = self.course {
+            ExperimentAssignmentHelper.assign(to: .nativeQuizRecapWithNotifications, inCourse: course).flatMap { _ in
+                FeatureHelper.syncFeatures(forCourse: course)
+            }.onSuccess { _ in
+                NotificationCenter.default.post(name: UserDefaults.quizRecapNoticedNotificationName, object: course.id)
+            }.onComplete { _ in
+                if FeatureHelper.hasAnyFeature([.quizRecapSectionNotifications, .quizRecapCourseEndNotification], for: course) {
+                    let center = UNUserNotificationCenter.current()
+                    let options: UNAuthorizationOptions = [.alert]
+                    center.requestAuthorization(options: options) { _, _ in }
+                }
+
+                if FeatureHelper.hasAnyFeature([.quizRecapVersion2, .quizRecapSectionNotifications, .quizRecapCourseEndNotification], for: course) {
+                    QuizRecapNotificationManager.renewNotifications(for: course)
+                    QuizHelper.syncQuizzes(forCourse: course).onComplete { _ in
+                        QuizRecapNotificationManager.renewNotifications(for: course)
+                    }
+                }
             }
         }
 

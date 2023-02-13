@@ -10,6 +10,7 @@ import SwiftUI
 struct QuizRecapView: View {
     let configuration: QuizRecapConfiguration
     let dismissAction: (() -> Void)
+    @State var sessionId = UUID()
     @State var totalQuestionCount: Int
 
     @State var remainingQuestions: [QuizQuestion]
@@ -62,35 +63,61 @@ struct QuizRecapView: View {
         let questions = Self.newQuestions(for: configuration)
         _totalQuestionCount = State(initialValue: questions.count)
         _remainingQuestions = State(initialValue: questions)
+
+        let overallQuestionCount = Self.allEligibleQuestions(for: configuration).count
+        self.track(.quizRecapStarted, with: [
+            "questions_count": String(questions.count),
+            "questions_total": String(overallQuestionCount),
+            "only_visited_items": String(configuration.onlyVisitedItems),
+            "section_ids": configuration.sectionIds.joined(separator: ","),
+        ])
     }
 
-    static func newQuestions(for configuration: QuizRecapConfiguration) -> [QuizQuestion] {
+    static func allEligibleQuestions(for configuration: QuizRecapConfiguration) -> [QuizQuestion] {
         let courseFetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: configuration.courseId)
         guard let course = CoreDataHelper.viewContext.fetchSingle(courseFetchRequest).value else { return [] }
 
         let questionsFetchRequest = QuizQuestionHelper.FetchRequest.questionsForRecap(in: course,
-                                                                             limitedToSectionsWithIds: configuration.sectionIds,
-                                                                             onlyVisitedItems: configuration.onlyVisitedItems)
+                                                                                      limitedToSectionsWithIds: configuration.sectionIds,
+                                                                                      onlyVisitedItems: configuration.onlyVisitedItems)
 
-        guard let questions = CoreDataHelper.viewContext.fetchMultiple(questionsFetchRequest).value else { return [] }
+        return CoreDataHelper.viewContext.fetchMultiple(questionsFetchRequest).value ?? []
+    }
 
+    static func newQuestions(for configuration: QuizRecapConfiguration) -> [QuizQuestion] {
+        let questions = self.allEligibleQuestions(for: configuration)
         let endIndex = min(questions.count, configuration.questionLimit ?? questions.count)
         return Array(questions.shuffled()[..<endIndex])
     }
 
     func loadNewQuestionSet() {
         let questions = Self.newQuestions(for: configuration)
+        self.sessionId = UUID()
         self.totalQuestionCount = questions.count
         self.remainingQuestions = questions
         self.correctlyAnsweredQuestions = []
         self.incorrectlyAnsweredQuestions = []
         loadNewQuestion()
+
+        let overallQuestionCount = Self.allEligibleQuestions(for: configuration).count
+        self.track(.quizRecapStarted, with: [
+            "questions_count": String(questions.count),
+            "questions_total": String(overallQuestionCount),
+            "only_visited_items": String(configuration.onlyVisitedItems),
+            "section_ids": configuration.sectionIds.joined(separator: ","),
+        ])
     }
 
     var stopButton: some View {
         Button {
             remainingQuestions = []
             currentQuestion = nil
+
+            self.track(.quizRecapStopped, with: [
+                "correct_count": String(self.successCount),
+                "wrong_count": String(self.errorCount),
+                "stopped_by_user": String(true),
+            ])
         } label: {
             HStack {
                 Image(systemName: "stop.fill")
@@ -388,6 +415,14 @@ struct QuizRecapView: View {
     func loadNewQuestion() {
         timer.upstream.connect().cancel()
         currentQuestion = remainingQuestions.first
+
+        if currentQuestion == nil {
+            self.track(.quizRecapStopped, with: [
+                "correct_count": String(self.successCount),
+                "wrong_count": String(self.errorCount),
+                "stopped_by_user": String(false),
+            ])
+        }
     }
 
     func evaluateSelection(of option: QuizQuestionOption) {
@@ -396,6 +431,11 @@ struct QuizRecapView: View {
         revealedQuestionOptions.insert(option)
 
         if questionEnded, let currentQuestion = currentQuestion {
+            self.track(.quizRecapQuestionAnswered, with: [
+                "question_id": currentQuestion.id,
+                "correct": String(allCorrectOptionsSelected),
+            ])
+
             if allCorrectOptionsSelected {
                 timeRemainingUntilNextQuestion = 1
                 correctlyAnsweredQuestions.append(currentQuestion)
@@ -409,7 +449,15 @@ struct QuizRecapView: View {
                     remainingQuestions.insert(currentQuestion, at: newIndex)
                 }
             }
+
             timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
         }
     }
+
+    func track(_ verb: TrackingHelper.AnalyticsVerb, with context: [String: String?]) {
+        var recapContext = context
+        recapContext["recap_session_id"] = self.sessionId.uuidString
+        TrackingHelper.createEvent(verb, resourceType: .course, resourceId: configuration.courseId, on: nil, context: recapContext)
+    }
+
 }

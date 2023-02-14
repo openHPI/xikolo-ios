@@ -34,8 +34,8 @@ struct QuizRecapView: View {
     @State var revealedQuestionOptions: Set<QuizQuestionOption> = []
     @State var allOptions: [QuizQuestionOption] = []
 
-    var attributedFallbackQuestionText: String? {
-        guard let text = currentQuestion?.text else { return nil }
+    func attributedFallbackText(for question: QuizQuestion) -> String? {
+        guard let text = question.text else { return nil }
         let textFromAttributedString = MarkdownHelper.string(for: text)
         return textFromAttributedString.isEmpty ? nil : textFromAttributedString
     }
@@ -189,7 +189,7 @@ struct QuizRecapView: View {
                     .foregroundColor(.secondary)
             }
 
-            if let attributedFallbackQuestionText = attributedFallbackQuestionText, attributedFallbackQuestionText != question.text {
+            if let attributedFallbackQuestionText = attributedFallbackText(for: question), attributedFallbackQuestionText != question.text {
                 Text(attributedFallbackQuestionText)
                     .font(.body)
                     .fontWeight(.medium)
@@ -335,7 +335,7 @@ struct QuizRecapView: View {
                         }
                         .font(.footnote.monospaced())
 
-                        Text(question.text ?? "")
+                        Text(attributedFallbackText(for: question) ?? question.text ?? "")
                             .lineLimit(3)
                         Spacer()
                         Image(systemName: "arrow.right")

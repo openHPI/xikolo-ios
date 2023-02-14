@@ -386,7 +386,17 @@ struct QuizRecapView: View {
                     ScrollView {
                         VStack(spacing: 24) {
                             summary
-                            restartButton
+                            VStack {
+                                restartButton
+
+                                Button {
+                                    dismissAction()
+                                } label: {
+                                    Text("More options")
+                                    Image(systemName: "chevron.forward")
+                                        .imageScale(.small)
+                                }
+                            }
                             answeredQuestionsSummary
                         }
                         .frame(maxWidth: 600)

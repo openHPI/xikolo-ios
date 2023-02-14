@@ -231,7 +231,7 @@ struct QuizRecapView: View {
         }
     }
 
-    var shimmeringSparkles: some View {
+    var sparkles: some View {
         ZStack {
             Image(systemName: "sparkles")
                 .font(.system(size: 60))
@@ -255,12 +255,11 @@ struct QuizRecapView: View {
                 .frame(maxWidth: 150, maxHeight: 90, alignment: .trailing)
         }
         .foregroundColor(.yellow)
-        .shimmer()
     }
 
     var summary: some View {
         VStack(spacing: 16) {
-            shimmeringSparkles
+            sparkles
 
             VStack(spacing: 16) {
                 Text("Quiz abgeschlossen!")

@@ -172,7 +172,6 @@
 		50620C51292268EF00F2AFA3 /* QuizRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50620C50292268EF00F2AFA3 /* QuizRecapView.swift */; };
 		50620C532922691800F2AFA3 /* QuizOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50620C522922691800F2AFA3 /* QuizOptionView.swift */; };
 		50620C5529226B8000F2AFA3 /* Color+Brightness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50620C5429226B8000F2AFA3 /* Color+Brightness.swift */; };
-		50620C57292271A700F2AFA3 /* View+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50620C56292271A700F2AFA3 /* View+Shimmer.swift */; };
 		50620C59292281A400F2AFA3 /* View+Modify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50620C58292281A400F2AFA3 /* View+Modify.swift */; };
 		5063F8ED25C88466006C3048 /* CourseDateStatisticsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063F8EC25C88466006C3048 /* CourseDateStatisticsWidget.swift */; };
 		5063F95925C89757006C3048 /* CourseDateStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063F95825C89757006C3048 /* CourseDateStatisticsView.swift */; };
@@ -894,7 +893,6 @@
 		50620C50292268EF00F2AFA3 /* QuizRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRecapView.swift; sourceTree = "<group>"; };
 		50620C522922691800F2AFA3 /* QuizOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizOptionView.swift; sourceTree = "<group>"; };
 		50620C5429226B8000F2AFA3 /* Color+Brightness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Brightness.swift"; sourceTree = "<group>"; };
-		50620C56292271A700F2AFA3 /* View+Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shimmer.swift"; sourceTree = "<group>"; };
 		50620C58292281A400F2AFA3 /* View+Modify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Modify.swift"; sourceTree = "<group>"; };
 		5063F8EC25C88466006C3048 /* CourseDateStatisticsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateStatisticsWidget.swift; sourceTree = "<group>"; };
 		5063F95825C89757006C3048 /* CourseDateStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateStatisticsView.swift; sourceTree = "<group>"; };
@@ -1778,7 +1776,6 @@
 				50620C50292268EF00F2AFA3 /* QuizRecapView.swift */,
 				50620C522922691800F2AFA3 /* QuizOptionView.swift */,
 				50620C5429226B8000F2AFA3 /* Color+Brightness.swift */,
-				50620C56292271A700F2AFA3 /* View+Shimmer.swift */,
 				50620C58292281A400F2AFA3 /* View+Modify.swift */,
 			);
 			path = QuizRecap;
@@ -3355,7 +3352,6 @@
 				50E0351F213673F8001F963D /* CourseListConfiguration.swift in Sources */,
 				50CF1F5920DCDBFC0011BFE9 /* CourseSection+Actions.swift in Sources */,
 				50CF1F5B20DCDBFC0011BFE9 /* CourseContent+image.swift in Sources */,
-				50620C57292271A700F2AFA3 /* View+Shimmer.swift in Sources */,
 				50467FEF238548D20084D7F6 /* ChannelHeaderView.swift in Sources */,
 				50B1CC46256BE55900D651C6 /* XikoloNotificationDelegate.swift in Sources */,
 				50CF1F5C20DCDBFC0011BFE9 /* CourseDateListViewController.swift in Sources */,

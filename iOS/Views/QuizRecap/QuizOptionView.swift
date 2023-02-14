@@ -32,6 +32,7 @@ struct QuestionOptionView: View {
             }
         }
         .lineLimit(nil)
+        .fixedSize(horizontal: false, vertical: true)
         .padding(12)
         .frame(maxWidth: .infinity, minHeight: 66)
         .foregroundColor(

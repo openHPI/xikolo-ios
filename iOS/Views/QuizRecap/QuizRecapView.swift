@@ -266,9 +266,11 @@ struct QuizRecapView: View {
                     .font(.headline)
                     .lineLimit(nil)
                     .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
                 Text("Glückwunsch, Sie haben \(successCount) Fragen in insgesamt \(successCount + errorCount) Versuchen beantwortet.")
                     .lineLimit(nil)
                     .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
 
                 HStack(spacing: 24) {
                     HStack {
@@ -286,8 +288,6 @@ struct QuizRecapView: View {
                 .imageScale(.large)
                 .font(.system(size: 20, weight: .medium).monospacedDigit())
             }
-            .lineLimit(nil)
-            .multilineTextAlignment(.center)
             .padding()
             .background(Color(UIColor.secondarySystemBackground))
             .cornerRadius(16)

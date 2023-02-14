@@ -133,7 +133,6 @@ struct QuizRecapView: View {
             .background(Color(UIColor.secondarySystemBackground))
             .cornerRadius(999)
         }
-        .padding()
     }
 
     var closeButton: some View {
@@ -147,30 +146,24 @@ struct QuizRecapView: View {
                 .background(Color(UIColor.secondarySystemBackground))
                 .cornerRadius(999)
         }
-        .padding()
     }
 
     var topInfo: some View {
-        Group {
-            if !recapEnded {
-                HStack(spacing: 24) {
-                    HStack {
-                        Image(systemName: "xmark.diamond")
-                        Text("\(errorCount)")
-                    }
-                    .foregroundColor(!recapEnded && questionEnded && !allCorrectOptionsSelected ? .red : .primary)
-
-                    HStack {
-                        Image(systemName: "checkmark.seal.fill")
-                        Text("\(successCount)/\(totalQuestionCount)")
-                    }
-                    .foregroundColor(!recapEnded && questionEnded && allCorrectOptionsSelected ? .green : .primary)
-                }
-                .font(.footnote.monospaced())
-                .frame(height: 22)
-                .padding()
+        HStack(spacing: 24) {
+            HStack {
+                Image(systemName: "xmark.diamond")
+                Text("\(errorCount)")
             }
+            .foregroundColor(!recapEnded && questionEnded && !allCorrectOptionsSelected ? .red : .primary)
+
+            HStack {
+                Image(systemName: "checkmark.seal.fill")
+                Text("\(successCount)/\(totalQuestionCount)")
+            }
+            .foregroundColor(!recapEnded && questionEnded && allCorrectOptionsSelected ? .green : .primary)
         }
+        .font(.footnote.monospaced())
+        .frame(height: 22)
     }
 
     var questionEndView: some View {
@@ -229,7 +222,6 @@ struct QuizRecapView: View {
                     }
             }
         }
-        .padding(.horizontal, 24)
     }
 
     var shimmeringSparkles: some View {
@@ -360,6 +352,7 @@ struct QuizRecapView: View {
                         Spacer()
                         topInfo
                     }
+                    .padding()
 
                     ScrollView {
                         VStack(spacing: 24) {
@@ -371,10 +364,9 @@ struct QuizRecapView: View {
                                 .font(.callout.monospacedDigit())
                                 .foregroundColor(.secondary)
                                 .opacity(questionEnded && !remainingQuestions.isEmpty && timeRemainingUntilNextQuestion < 3 ? 1 : 0)
-
                         }
-                        .frame(maxWidth: 600, minHeight: 400)
-                        .padding(.horizontal, 8)
+                        .frame(maxWidth: 600)
+                        .padding(.horizontal)
                     }
                 }
             } else {
@@ -383,6 +375,7 @@ struct QuizRecapView: View {
                         closeButton
                         Spacer()
                     }
+                    .padding()
 
                     ScrollView {
                         VStack(spacing: 24) {
@@ -390,8 +383,8 @@ struct QuizRecapView: View {
                             restartButton
                             answeredQuestionsSummary
                         }
-                        .frame(maxWidth: 600, minHeight: 400)
-                        .padding(.horizontal, 8)
+                        .frame(maxWidth: 600)
+                        .padding(.horizontal)
                     }
                 }
 

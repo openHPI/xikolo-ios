@@ -38,7 +38,7 @@ struct QuestionOptionView: View {
             colorScheme == .dark ? backgroundColor.lighter(by: 0.9) : backgroundColor.darker(by: 0.9)
         )
         .background(
-            colorScheme == .dark ? backgroundColor.darker(by: 0.5) : backgroundColor.lighter(by: 0.2)
+            colorScheme == .dark ? backgroundColor.darker(by: 0.4) : backgroundColor.lighter(by: 0.2)
         )
         .cornerRadius(22)
     }

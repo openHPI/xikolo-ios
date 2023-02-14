@@ -283,7 +283,7 @@ struct QuizRecapView: View {
             .lineLimit(nil)
             .multilineTextAlignment(.center)
             .padding()
-            .background(Color(UIColor.systemGroupedBackground))
+            .background(Color(UIColor.secondarySystemBackground))
             .cornerRadius(16)
         }
     }

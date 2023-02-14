@@ -11,14 +11,14 @@ struct QuizRecapView: View {
     let configuration: QuizRecapConfiguration
     let dismissAction: (() -> Void)
     @State var sessionId = UUID()
-    @State var totalQuestionCount: Int
 
+    @State var questionCounts: [QuizQuestion: Int]
+    @State var correctlyAnsweredQuestions: Set<QuizQuestion>
     @State var remainingQuestions: [QuizQuestion]
-    @State var correctlyAnsweredQuestions: [QuizQuestion] = []
-    @State var incorrectlyAnsweredQuestions: [QuizQuestion] = []
 
-    var successCount: Int { correctlyAnsweredQuestions.count }
-    var errorCount: Int { incorrectlyAnsweredQuestions.count }
+    @State var totalQuestionCount: Int
+    @State var errorCount: Int = 0
+    var successCount: Int { self.correctlyAnsweredQuestions.count }
 
     var recapEnded: Bool { remainingQuestions.isEmpty && currentQuestion == nil }
 
@@ -61,8 +61,10 @@ struct QuizRecapView: View {
         self.configuration = configuration
         self.dismissAction = dismissAction
         let questions = Self.newQuestions(for: configuration)
-        _totalQuestionCount = State(initialValue: questions.count)
         _remainingQuestions = State(initialValue: questions)
+        _totalQuestionCount = State(initialValue: questions.count)
+        _questionCounts = State(initialValue: [:])
+        _correctlyAnsweredQuestions = State(initialValue: [])
 
         let overallQuestionCount = Self.allEligibleQuestions(for: configuration).count
         self.track(.quizRecapStarted, with: [
@@ -93,10 +95,11 @@ struct QuizRecapView: View {
     func loadNewQuestionSet() {
         let questions = Self.newQuestions(for: configuration)
         self.sessionId = UUID()
-        self.totalQuestionCount = questions.count
         self.remainingQuestions = questions
-        self.correctlyAnsweredQuestions = []
-        self.incorrectlyAnsweredQuestions = []
+        self.totalQuestionCount = questions.count
+        self.questionCounts = [:]
+        self.correctlyAnsweredQuestions = Set()
+        self.errorCount = 0
         loadNewQuestion()
 
         let overallQuestionCount = Self.allEligibleQuestions(for: configuration).count
@@ -318,34 +321,31 @@ struct QuizRecapView: View {
         .cornerRadius(100)
     }
 
-    var incorrectlyAnsweredQuestionsSummary: some View {
-        Group {
-            if !incorrectlyAnsweredQuestions.isEmpty {
-                Spacer(minLength: 12)
-                VStack(alignment: .leading) {
-                    Text("Incorrectly answered questions")
-                        .font(.subheadline)
-                    let grouped = incorrectlyAnsweredQuestions.reduce(into: [:]) { result, character in
-                        result[character, default: 0] += 1
-                    }
-                    ForEach(grouped.sorted(by: { a, b in
-                        return a.1 > b.1
-                    }), id: \.key) { question, count in
-                        HStack {
-                            Text(question.text ?? "")
-                            Spacer()
-                            HStack(spacing: 4) {
-                                Image(systemName: "xmark.diamond")
-                                Text("\(count)")
-                            }
-                            .font(.footnote.monospaced())
-                            Image(systemName: "arrow.right")
+    var answeredQuestionsSummary: some View {
+        VStack {
+            Spacer(minLength: 12)
+            VStack(alignment: .leading) {
+                ForEach(questionCounts.sorted(by: { a, b in
+                    if a.1 == b.1 { return !correctlyAnsweredQuestions.contains(a.0) && correctlyAnsweredQuestions.contains(b.0) }
+                    return a.1 > b.1
+                }), id: \.key) { question, count in
+                    HStack {
+                        HStack(spacing: 4) {
+                            Image(systemName: correctlyAnsweredQuestions.contains(question) ? "checkmark.seal.fill" : "xmark.diamond.fill")
+                                .foregroundColor(correctlyAnsweredQuestions.contains(question) ? .green : .red)
+                            Text("\(count)")
                         }
-                        .padding(.vertical, 4)
-                        .foregroundColor(.secondary)
+                        .font(.footnote.monospaced())
 
-                        Divider()
+                        Text(question.text ?? "")
+                            .lineLimit(3)
+                        Spacer()
+                        Image(systemName: "arrow.right")
                     }
+                    .padding(.vertical, 4)
+                    .foregroundColor(.secondary)
+
+                    Divider()
                 }
             }
         }
@@ -388,7 +388,7 @@ struct QuizRecapView: View {
                         VStack(spacing: 24) {
                             summary
                             restartButton
-                            incorrectlyAnsweredQuestionsSummary
+                            answeredQuestionsSummary
                         }
                         .frame(maxWidth: 600, minHeight: 400)
                         .padding(.horizontal, 8)
@@ -431,6 +431,7 @@ struct QuizRecapView: View {
         revealedQuestionOptions.insert(option)
 
         if questionEnded, let currentQuestion = currentQuestion {
+            questionCounts[currentQuestion, default: 0] += 1
             self.track(.quizRecapQuestionAnswered, with: [
                 "question_id": currentQuestion.id,
                 "correct": String(allCorrectOptionsSelected),
@@ -438,13 +439,15 @@ struct QuizRecapView: View {
 
             if allCorrectOptionsSelected {
                 timeRemainingUntilNextQuestion = 1
-                correctlyAnsweredQuestions.append(currentQuestion)
+                correctlyAnsweredQuestions.insert(currentQuestion)
                 remainingQuestions.removeFirst()
             } else {
                 timeRemainingUntilNextQuestion = 3
-                incorrectlyAnsweredQuestions.append(currentQuestion)
+                errorCount += 1
                 remainingQuestions.removeFirst()
-                if incorrectlyAnsweredQuestions.filter({ $0 == currentQuestion }).count < 3 {
+
+                // Re-insert incorrectly answered question up to three times
+                if questionCounts[currentQuestion, default: 0] < 3 {
                     let newIndex = min(Int.random(in: 5...10), remainingQuestions.count)
                     remainingQuestions.insert(currentQuestion, at: newIndex)
                 }

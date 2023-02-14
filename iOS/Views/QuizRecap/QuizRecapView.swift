@@ -182,12 +182,19 @@ struct QuizRecapView: View {
 
     func questionDescription(for question: QuizQuestion) -> some View {
         VStack(spacing: 8) {
-            if let attributedFallbackQuestionText = attributedFallbackQuestionText, attributedFallbackQuestionText != currentQuestion?.text {
+            if let sectionTitle = question.quiz?.item?.section?.title {
+                Text(sectionTitle)
+                    .font(.footnote)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.secondary)
+            }
+
+            if let attributedFallbackQuestionText = attributedFallbackQuestionText, attributedFallbackQuestionText != question.text {
                 Text(attributedFallbackQuestionText)
                     .font(.body)
                     .fontWeight(.medium)
             } else {
-                Text(currentQuestion?.text ?? "")
+                Text(question.text ?? "")
                     .font(.body)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.center)

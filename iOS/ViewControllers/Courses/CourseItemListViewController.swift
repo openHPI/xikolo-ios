@@ -513,6 +513,19 @@ extension CourseItemListViewController: RefreshableViewController {
                         QuizRecapNotificationManager.renewNotifications(for: course)
                     }
                 }
+
+                let renewNotifications = {
+                    if FeatureHelper.hasAnyFeature([.quizRecapSectionNotifications, .quizRecapCourseEndNotification], for: course) {
+                        QuizRecapNotificationManager.renewNotifications(for: course)
+                    }
+                }
+
+                renewNotifications()
+                if FeatureHelper.hasFeature(.quizRecapVersion2, for: course) {
+                    QuizHelper.syncQuizzes(forCourse: course).onSuccess { _ in
+                        renewNotifications()
+                    }
+                }
             }
         }
 

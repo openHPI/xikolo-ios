@@ -26,6 +26,7 @@ class QuizRecapStartViewController: UIViewController {
     @IBOutlet private weak var startButtonLong: UIButton!
     @IBOutlet private weak var startButtonComplete: UIButton!
     @IBOutlet private weak var optionsLabel: UILabel!
+    @IBOutlet private weak var optionsIndicator: UIView!
 
     private weak var delegate: CourseAreaViewControllerDelegate?
     private var course: Course!
@@ -83,19 +84,20 @@ class QuizRecapStartViewController: UIViewController {
         }()
 
         let part2 = {
-            if course.sectionsForQuizRecap.map(\.id).allSatisfy({ sections.contains($0) }) {
-                return "Self-test questions from all available course sections (\(course.sectionsForQuizRecap.count)) will be considered."
+            if self.course.sectionsForQuizRecap.map(\.id).allSatisfy({ sections.contains($0) }) {
+                return "Self-test questions from all available course sections (\(self.course.sectionsForQuizRecap.count)) will be considered."
             }
 
-            let joinedCourseSectionTitles = course.sectionsForQuizRecap
-                .filter { sections.contains($0.id) }
+            let joinedCourseSectionTitles = self.course.sectionsForQuizRecap
+                .filter { self.sections.contains($0.id) }
                 .sorted(by: \.position)
                 .compactMap(\.title)
                 .lazy.joined(separator: ", ")
-            return "Only \(sections.count) course section(s) will be considered: " + joinedCourseSectionTitles
+            return "Only \(self.sections.count) course section(s) will be considered: " + joinedCourseSectionTitles
         }()
 
         self.optionsLabel.text = [part1, part2].joined(separator: "\n")
+        self.optionsIndicator.isHidden = !self.considerOnlyVisitedItems && self.course.sectionsForQuizRecap.map(\.id).allSatisfy({ self.sections.contains($0) })
     }
 
     func updateStartButtons() {

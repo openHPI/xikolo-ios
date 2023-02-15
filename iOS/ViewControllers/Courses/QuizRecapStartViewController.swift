@@ -55,6 +55,11 @@ class QuizRecapStartViewController: UIViewController {
 
         self.scrollView.delegate = self
         self.scrollView.alwaysBounceVertical = true
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(notification:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -153,6 +158,13 @@ class QuizRecapStartViewController: UIViewController {
         let navigationController = UINavigationController(rootViewController: quizRecapViewController)
         navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    @objc private func coreDataChange(notification: Notification) {
+        // Workaround for when visiting the quiz recap before quizzes have been loaded for the first time
+        if notification.includesChanges(for: Quiz.self) || notification.includesChanges(for: QuizQuestion.self) {
+            self.updateView()
+        }
     }
 
 }

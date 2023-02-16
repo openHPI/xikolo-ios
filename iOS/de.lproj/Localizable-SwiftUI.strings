@@ -1,0 +1,9 @@
+"quiz-recap.answer-options.single-select.explanation" = "Wähle die richtige Antwort aus";
+"quiz-recap.answer-options.multi-answer.explanation" = "Mehrere Antworten können richtig sein";
+"quiz-recap.button.stop" = "Stop";
+"quiz-recap.end-screen.headline" = "Quiz abgeschlossen!";
+"quiz-recap.end-screen.description %lld %lld" = "Glückwunsch, Sie haben %lld Fragen in insgesamt %lld Versuchen beantwortet.";
+"quiz-recap.button.restart" = "Wiederholen";
+"quiz-recap.button.restart-with-questions %lld" = "Wiederholen mit %lld neuen Fragen";
+"quiz-recap.button.more-options" = "Weitere Möglichkeiten";
+"quiz-recap.prompt.next-question %lld" = "Nächste Frage in %lld...";

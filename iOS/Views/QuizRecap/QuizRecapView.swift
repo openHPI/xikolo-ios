@@ -127,7 +127,7 @@ struct QuizRecapView: View {
         } label: {
             HStack {
                 Image(systemName: "stop.fill")
-                Text("Stop")
+                Text("quiz-recap.button.stop", tableName: "Localizable-SwiftUI")
             }
             .font(.body)
             .foregroundColor(.primary)
@@ -206,9 +206,9 @@ struct QuizRecapView: View {
             Group {
                 switch(question.questionType) {
                 case .singleAnswer:
-                    Text("Select the correct answer")
+                    Text("quiz-recap.answer-options.single-select.explanation", tableName: "Localizable-SwiftUI")
                 case .multipleAnswer:
-                    Text("One or more answers might be correct")
+                    Text("quiz-recap.answer-options.multi-answer.explanation", tableName: "Localizable-SwiftUI")
                 default:
                     EmptyView()
                 }
@@ -265,12 +265,12 @@ struct QuizRecapView: View {
             sparkles
 
             VStack(spacing: 16) {
-                Text("Quiz abgeschlossen!")
+                Text("quiz-recap.end-screen.headline", tableName: "Localizable-SwiftUI")
                     .font(.headline)
                     .lineLimit(nil)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
-                Text("Glückwunsch, Sie haben \(successCount) Fragen in insgesamt \(successCount + errorCount) Versuchen beantwortet.")
+                Text("quiz-recap.end-screen.description \(successCount) \(successCount + errorCount)", tableName: "Localizable-SwiftUI")
                     .lineLimit(nil)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
@@ -304,9 +304,9 @@ struct QuizRecapView: View {
             HStack {
                 Image(systemName: "arrow.clockwise")
                 if let questionLimit = configuration.questionLimit {
-                    Text("Restart with \(questionLimit) new questions")
+                    Text("quiz-recap.button.restart-with-questions \(questionLimit)", tableName: "Localizable-SwiftUI")
                 } else {
-                    Text("Restart")
+                    Text("quiz-recap.button.restart", tableName: "Localizable-SwiftUI")
                 }
             }
             .padding(.vertical, 10)
@@ -373,7 +373,7 @@ struct QuizRecapView: View {
                             questionDescription(for: currentQuestion)
                             questionOptions
 
-                            Text("Next question in \( timeRemainingUntilNextQuestion + 1)...")
+                            Text("quiz-recap.prompt.next-question \(timeRemainingUntilNextQuestion + 1)", tableName: "Localizable-SwiftUI")
                                 .font(.callout.monospacedDigit())
                                 .foregroundColor(.secondary)
                                 .opacity(questionEnded && !remainingQuestions.isEmpty && timeRemainingUntilNextQuestion < 3 ? 1 : 0)
@@ -399,7 +399,7 @@ struct QuizRecapView: View {
                                 Button {
                                     dismissAction()
                                 } label: {
-                                    Text("More options")
+                                    Text("quiz-recap.button.more-options", tableName: "Localizable-SwiftUI")
                                     Image(systemName: "chevron.forward")
                                         .imageScale(.small)
                                 }

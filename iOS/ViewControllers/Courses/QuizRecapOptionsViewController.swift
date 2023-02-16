@@ -61,7 +61,7 @@ class QuizRecapOptionsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "Quiz Recap Settings"
+        self.navigationItem.title = NSLocalizedString("quiz-recap.settings.title", comment: "Title for the setting view for the quiz recap")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         self.navigationItem.rightBarButtonItem = {
             let title = NSLocalizedString("course-list.search.filter.options.apply", comment: "Title for applying selected filter options")
@@ -113,7 +113,8 @@ class QuizRecapOptionsViewController: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifierVisited, for: indexPath)
-            cell.textLabel?.text = "Consider only visited items"
+            cell.textLabel?.text = NSLocalizedString("quiz-recap.settings.option.consider-only-visited-items",
+                                                     comment: "Title for the quiz recap setting option to consider only visited items")
             cell.selectionStyle = .none
             let cellSwitch = cell.accessoryView as? UISwitch
             cellSwitch?.isOn = self.considerOnlyVisitedItems
@@ -123,16 +124,19 @@ class QuizRecapOptionsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? "Course sections" : nil
+        return section == 0 ? NSLocalizedString("quiz-recap.settings.section-title.course sections", comment: "Section title for course sections") : nil
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         guard section == 1 else { return nil }
         let sectionsWithNotVisitedSelfTests = self.courseSections.filter(\.containsUnvisitedItemsForQuizRecap)
         if sectionsWithNotVisitedSelfTests.isEmpty {
-            return "You have visited all available self-test items"
+            return NSLocalizedString("quiz-recap.settings.explanation.all-self-test-visited",
+                                     comment: "Explanation when all self test have been visited")
         } else {
-            return "There are self-test items in \(sectionsWithNotVisitedSelfTests.count) course section(s) that you have not visited yet: \(sectionsWithNotVisitedSelfTests.compactMap(\.title).joined(separator: ", "))"
+            let format = NSLocalizedString("quiz-recap.settings.explanation.some-self-tests-not-visited",
+                                           comment: "Format: Explanation when some self test have not been visited")
+            return String(format: format, sectionsWithNotVisitedSelfTests.count, sectionsWithNotVisitedSelfTests.compactMap(\.title).joined(separator: ", "))
         }
     }
 

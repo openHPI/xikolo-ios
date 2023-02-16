@@ -42,9 +42,9 @@
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                             <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="BJn-6j-DWU">
-                                <rect key="frame" x="189.5" y="160" width="204.5" height="54"/>
+                                <rect key="frame" x="189" y="160" width="205" height="54"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qal-MT-3Zk">
-                                    <rect key="frame" x="0.0" y="0.0" width="204" height="54"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="205" height="54"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPc-gO-GP2">

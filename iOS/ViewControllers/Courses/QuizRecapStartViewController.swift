@@ -82,15 +82,19 @@ class QuizRecapStartViewController: UIViewController {
     func updateSettingsSubtitle() {
         let part1 = {
             if self.considerOnlyVisitedItems {
-                return "Only questions from self-test items that you have visited will be tested."
+                return NSLocalizedString("quiz-recap.settings-summary.consider-only-visited-item.true",
+                                         comment: "Text to appear in the settings summary for the quiz recap if only visited items should be considered.")
             } else {
-                return "Questions from all self-test items will be tested, regardless if you visited the item or not."
+                return NSLocalizedString("quiz-recap.settings-summary.consider-only-visited-item.false",
+                                         comment: "Text to appear in the settings summary for the quiz recap if not only visited items should be considered.")
             }
         }()
 
         let part2 = {
             if self.course.sectionsForQuizRecap.map(\.id).allSatisfy({ sections.contains($0) }) {
-                return "Self-test questions from all available course sections (\(self.course.sectionsForQuizRecap.count)) will be considered."
+                let format = NSLocalizedString("quiz-recap.settings-summary.section-names.all",
+                                         comment: "Format: Text to appear in the settings summary for the quiz recap when all course sections are considered.")
+                return String(format: format, self.course.sectionsForQuizRecap.count)
             }
 
             let joinedCourseSectionTitles = self.course.sectionsForQuizRecap
@@ -98,7 +102,9 @@ class QuizRecapStartViewController: UIViewController {
                 .sorted(by: \.position)
                 .compactMap(\.title)
                 .lazy.joined(separator: ", ")
-            return "Only \(self.sections.count) course section(s) will be considered: " + joinedCourseSectionTitles
+            let format = NSLocalizedString("quiz-recap.settings-summary.section-names.some",
+                                     comment: "Format: Text to appear in the settings summary for the quiz recap when only some course sections are considered.")
+            return String(format: format, self.sections.count, joinedCourseSectionTitles)
         }()
 
         self.optionsLabel.text = [part1, part2].joined(separator: "\n")
@@ -117,7 +123,8 @@ class QuizRecapStartViewController: UIViewController {
 
         if #available(iOS 15, *) {
             var buttonConfig = self.startButtonComplete.configuration
-            buttonConfig?.subtitle = "\(questionCount) questions"
+            let format = NSLocalizedString("quiz-recap.start-button.subtitle", comment: "Format: Subtitle for the start buttons for the quiz recap")
+            buttonConfig?.subtitle = String(format: format, questionCount)
             self.startButtonComplete.configuration = buttonConfig
         }
     }

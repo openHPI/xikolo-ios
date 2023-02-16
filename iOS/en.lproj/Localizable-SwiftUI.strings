@@ -1,0 +1,9 @@
+"quiz-recap.answer-options.single-select.explanation" = "Select the correct answer";
+"quiz-recap.answer-options.multi-answer.explanation" = "One or more answers might be correct";
+"quiz-recap.button.stop" = "Stop";
+"quiz-recap.end-screen.headline" = "Quiz completed!";
+"quiz-recap.end-screen.description %lld %lld" = "Congratulations, you solved %lld questions with %lld attempts in total!";
+"quiz-recap.button.restart" = "Restart";
+"quiz-recap.button.restart-with-questions %lld" = "Restart with %lld new questions";
+"quiz-recap.button.more-options" = "More options";
+"quiz-recap.prompt.next-question %lld" = "Next question in %lld...";

@@ -53,7 +53,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="358" height="51"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Complete" subtitle=" " imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
-                                                                    <imageReference key="image" image="graduationcap.fill" catalog="system" symbolScale="large" renderingMode="template"/>
+                                                                    <imageReference key="image" image="square.grid.2x2.fill.4" symbolScale="large" renderingMode="hierarchical-single" variableValue="1"/>
                                                                     <color key="baseBackgroundColor" name="primary"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
@@ -64,7 +64,7 @@
                                                                 <rect key="frame" x="0.0" y="59.000000000000028" width="358" height="51"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Long" subtitle="50 questions" imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
-                                                                    <imageReference key="image" image="bolt.circle.fill" catalog="system" symbolScale="large" renderingMode="template"/>
+                                                                    <imageReference key="image" image="square.grid.2x2.fill.3" symbolScale="large" renderingMode="hierarchical-single"/>
                                                                     <color key="baseBackgroundColor" name="primary"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
@@ -75,7 +75,7 @@
                                                                 <rect key="frame" x="0.0" y="118.00000000000003" width="358" height="51"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Medium" subtitle="20 questions" imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
-                                                                    <imageReference key="image" image="figure.run" catalog="system" symbolScale="large" renderingMode="template"/>
+                                                                    <imageReference key="image" image="square.grid.2x2.fill.2" symbolScale="large" renderingMode="hierarchical-single"/>
                                                                     <color key="baseBackgroundColor" name="primary"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
@@ -85,7 +85,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwG-7X-jKr">
                                                                 <rect key="frame" x="0.0" y="177.00000000000003" width="358" height="51"/>
                                                                 <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Short" subtitle="10 questions" imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
-                                                                    <imageReference key="image" image="gamecontroller.fill" catalog="system" symbolScale="large" renderingMode="template"/>
+                                                                    <imageReference key="image" image="square.grid.2x2.fill.1" symbolScale="large" renderingMode="hierarchical-single"/>
                                                                     <color key="baseBackgroundColor" name="primary"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
@@ -210,13 +210,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bolt.circle.fill" catalog="system" width="128" height="123"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="exclamationmark.shield" catalog="system" width="128" height="119"/>
-        <image name="figure.run" catalog="system" width="115" height="128"/>
-        <image name="gamecontroller.fill" catalog="system" width="128" height="79"/>
-        <image name="graduationcap.fill" catalog="system" width="128" height="108"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="99"/>
+        <image name="square.grid.2x2.fill.1" width="10" height="10"/>
+        <image name="square.grid.2x2.fill.2" width="10" height="10"/>
+        <image name="square.grid.2x2.fill.3" width="10" height="10"/>
+        <image name="square.grid.2x2.fill.4" width="10" height="10"/>
         <namedColor name="primary">
             <color red="0.87058823529411766" green="0.3843137254901961" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

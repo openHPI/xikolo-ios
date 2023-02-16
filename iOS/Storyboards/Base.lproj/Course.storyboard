@@ -42,16 +42,16 @@
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                             <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="BJn-6j-DWU">
-                                <rect key="frame" x="187" y="159.5" width="207" height="54.5"/>
+                                <rect key="frame" x="189.5" y="160" width="204.5" height="54"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qal-MT-3Zk">
-                                    <rect key="frame" x="0.0" y="0.0" width="207" height="54.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="204" height="54"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPc-gO-GP2">
-                                            <rect key="frame" x="0.0" y="0.0" width="207" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="204.5" height="54.5"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" imagePlacement="leading" title="Practice your new knowledge here!" imagePadding="8">
-                                                <imageReference key="image" image="questionmark.app.fill" catalog="system" symbolScale="large" renderingMode="template" variableValue="1"/>
+                                                <imageReference key="image" image="brain.head.profile" catalog="system" symbolScale="default" renderingMode="template" variableValue="1"/>
                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24"/>
                                                 <color key="baseForegroundColor" systemColor="labelColor"/>
                                             </buttonConfiguration>
@@ -156,7 +156,7 @@
                             <constraint firstItem="bmv-rC-bZT" firstAttribute="topMargin" secondItem="BJn-6j-DWU" secondAttribute="bottom" constant="12" id="MI9-Gu-A8b"/>
                             <constraint firstItem="BeB-Ri-K3W" firstAttribute="leading" secondItem="fUc-Ws-hEN" secondAttribute="leading" id="NKc-XE-H2l"/>
                             <constraint firstItem="KL2-g9-OIx" firstAttribute="top" secondItem="bmv-rC-bZT" secondAttribute="bottom" id="RuG-Sy-QxV"/>
-                            <constraint firstItem="BJn-6j-DWU" firstAttribute="width" secondItem="raX-iA-spo" secondAttribute="width" multiplier="0.5" id="TJf-hN-tNI"/>
+                            <constraint firstItem="BJn-6j-DWU" firstAttribute="width" relation="lessThanOrEqual" secondItem="raX-iA-spo" secondAttribute="width" multiplier="0.6" id="TJf-hN-tNI"/>
                             <constraint firstItem="KL2-g9-OIx" firstAttribute="leading" secondItem="raX-iA-spo" secondAttribute="leading" id="Ved-2z-ePs"/>
                             <constraint firstAttribute="trailing" secondItem="KL2-g9-OIx" secondAttribute="trailing" id="akK-38-4R1"/>
                             <constraint firstItem="VE7-ox-Fte" firstAttribute="top" secondItem="raX-iA-spo" secondAttribute="top" id="bDn-SI-ndM"/>
@@ -281,7 +281,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="questionmark.app.fill" catalog="system" width="128" height="114"/>
+        <image name="brain.head.profile" catalog="system" width="120" height="128"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

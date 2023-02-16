@@ -42,6 +42,13 @@ class QuizRecapViewController: UIViewController {
     func makeContentViewController() -> UIHostingController<QuizRecapView> {
         let contentView = QuizRecapView(configuration: configuration) {
             self.dismiss(animated: trueUnlessReduceMotionEnabled, completion: nil)
+        } openItemForQuizQuestionAction: { question in
+            let item = question.quiz?.item
+            let previousItem = item?.previousItem
+            guard let itemToOpen = previousItem ?? item, let appNavigator = self.appNavigator else { return }
+            self.dismiss(animated: trueUnlessReduceMotionEnabled) {
+                appNavigator.show(item: itemToOpen)
+            }
         }
         let contentViewController = UIHostingController(rootView: contentView)
         contentViewController.view.translatesAutoresizingMaskIntoConstraints = false

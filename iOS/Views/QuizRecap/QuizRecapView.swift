@@ -10,6 +10,8 @@ import SwiftUI
 struct QuizRecapView: View {
     let configuration: QuizRecapConfiguration
     let dismissAction: (() -> Void)
+    let openItemForQuizQuestionAction: ((QuizQuestion) -> Void)
+
     @State var sessionId = UUID()
 
     @State var questionCounts: [QuizQuestion: Int]
@@ -57,9 +59,10 @@ struct QuizRecapView: View {
     @State var timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
     @State var timeRemainingUntilNextQuestion: Int = 0
 
-    init(configuration: QuizRecapConfiguration, dismissAction: @escaping () -> Void) {
+    init(configuration: QuizRecapConfiguration, dismissAction: @escaping () -> Void, openItemForQuizQuestionAction: @escaping (QuizQuestion) -> Void) {
         self.configuration = configuration
         self.dismissAction = dismissAction
+        self.openItemForQuizQuestionAction = openItemForQuizQuestionAction
         let questions = Self.newQuestions(for: configuration)
         _remainingQuestions = State(initialValue: questions)
         _totalQuestionCount = State(initialValue: questions.count)
@@ -340,8 +343,12 @@ struct QuizRecapView: View {
                         Spacer()
                         Image(systemName: "arrow.right")
                     }
+                    .contentShape(Rectangle())
                     .padding(.vertical, 4)
                     .foregroundColor(.secondary)
+                    .onTapGesture {
+                        self.openItemForQuizQuestionAction(question)
+                    }
 
                     Divider()
                 }

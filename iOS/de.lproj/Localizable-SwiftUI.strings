@@ -3,6 +3,7 @@
 "quiz-recap.button.stop" = "Stop";
 "quiz-recap.end-screen.headline" = "Quiz abgeschlossen!";
 "quiz-recap.end-screen.description %lld %lld" = "Glückwunsch, Sie haben %lld Fragen in insgesamt %lld Versuchen beantwortet.";
+"quiz-recap.end-screen.subheadline.answered questions" = "Beantwortete Fragen";
 "quiz-recap.button.restart" = "Wiederholen";
 "quiz-recap.button.restart-with-questions %lld" = "Wiederholen mit %lld neuen Fragen";
 "quiz-recap.button.more-options" = "Weitere Möglichkeiten";

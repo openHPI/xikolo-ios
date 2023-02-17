@@ -325,6 +325,11 @@ struct QuizRecapView: View {
     var answeredQuestionsSummary: some View {
         VStack {
             Spacer(minLength: 12)
+
+            Text("quiz-recap.end-screen.subheadline.answered questions", tableName: "Localizable-SwiftUI")
+                .foregroundColor(.secondary)
+                .font(.headline)
+
             VStack(alignment: .leading) {
                 ForEach(questionCounts.sorted(by: { a, b in
                     if a.1 == b.1 { return !correctlyAnsweredQuestions.contains(a.0) && correctlyAnsweredQuestions.contains(b.0) }

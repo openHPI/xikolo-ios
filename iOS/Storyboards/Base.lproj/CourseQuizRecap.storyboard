@@ -91,7 +91,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwG-7X-jKr">
                                                                 <rect key="frame" x="0.0" y="177.00000000000003" width="358" height="51"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Short" subtitle="10 questions" imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
+                                                                <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Quick" subtitle="10 questions" imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
                                                                     <imageReference key="image" image="square.grid.2x2.fill.1" symbolScale="large" renderingMode="hierarchical-single"/>
                                                                     <color key="baseBackgroundColor" name="primary"/>
                                                                 </buttonConfiguration>

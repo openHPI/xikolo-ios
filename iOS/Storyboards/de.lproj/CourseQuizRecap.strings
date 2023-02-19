@@ -41,7 +41,7 @@
 /* Class = "UIButton"; configuration.subtitle = "10 questions"; ObjectID = "uwG-7X-jKr"; */
 "uwG-7X-jKr.configuration.subtitle" = "10 Fragen";
 
-/* Class = "UIButton"; configuration.title = "Short"; ObjectID = "uwG-7X-jKr"; */
+/* Class = "UIButton"; configuration.title = "Quick"; ObjectID = "uwG-7X-jKr"; */
 "uwG-7X-jKr.configuration.title" = "Kurz";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "uwG-7X-jKr"; */

@@ -52,3 +52,6 @@
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "mQ7-sg-fpb"; */
 "mQ7-sg-fpb.normalTitle" = "Einstellungen";
+
+/* Class = "UILabel"; text = "Even when not being connected to the Internet"; ObjectID = "7iP-DT-jPR"; */
+"7iP-DT-jPR.text" = "auch ohne eine Internetverbindung";

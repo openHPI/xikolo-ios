@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="15G31" minimumToolsVersion="Xcode 7.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22D68" minimumToolsVersion="Xcode 7.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Channel" representedClassName=".Channel" syncable="YES">
         <attribute name="color_string" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,6 +24,7 @@
         <attribute name="image_url" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="order" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="show_on_list" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
@@ -124,21 +125,4 @@
         <attribute name="thumbnail_url" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="transcript_url" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
-    <elements>
-        <element name="Channel" positionX="9" positionY="443" width="128" height="118"/>
-        <element name="Content" positionX="666" positionY="198" width="128" height="75"/>
-        <element name="Course" positionX="9" positionY="9" width="128" height="390"/>
-        <element name="CourseDate" positionX="198" positionY="-9" width="128" height="120"/>
-        <element name="CourseEnrollment" positionX="18" positionY="-124" width="128" height="73"/>
-        <element name="CourseItem" positionX="432" positionY="135" width="128" height="133"/>
-        <element name="CourseSection" positionX="214" positionY="117" width="128" height="135"/>
-        <element name="LTIExercise" positionX="684" positionY="308" width="128" height="103"/>
-        <element name="NewsArticle" positionX="225" positionY="-165" width="128" height="133"/>
-        <element name="PeerAssessment" positionX="540" positionY="299" width="128" height="58"/>
-        <element name="PlatformEvent" positionX="7" positionY="308" width="128" height="133"/>
-        <element name="Quiz" positionX="828" positionY="198" width="128" height="163"/>
-        <element name="QuizQuestion" positionX="1033" positionY="228" width="128" height="165"/>
-        <element name="RichText" positionX="837" positionY="90" width="128" height="60"/>
-        <element name="Video" positionX="655" positionY="-99" width="128" height="210"/>
-    </elements>
 </model>

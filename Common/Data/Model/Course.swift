@@ -99,7 +99,7 @@ extension Course: JSONAPIPullable {
         self.external = try attributes.value(for: "external")
         self.externalURL = try attributes.value(for: "external_url")
         self.teaserStream = try attributes.value(for: "teaser_stream") ?? self.teaserStream
-//        self.show_on_list = try attributes.value(for: "show_on_list")
+        self.show_on_list = try attributes.value(for: "show_on_list")
 
         let categoryValues = try attributes.value(for: "classifiers.category") as [String]?
         self.categories = Self.arrayString(for: categoryValues)

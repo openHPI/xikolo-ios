@@ -12,6 +12,7 @@ extension CourseHelper {
 
         private static let visiblePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(format: "status != %@", "preparation"),
+            NSPredicate(format: "show_on_list == %@", NSNumber(value: true)),
         ])
 
         private static let deletedEnrollmentPredicate = NSPredicate(format: "enrollment.objectStateValue = %d", ObjectState.deleted.rawValue)

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Quiz Recap Start View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="QuizRecapStartViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4El-1p-N8f">
+                                <rect key="frame" x="0.0" y="47" width="390" height="797"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Ms-TD-YRb" userLabel="Scroll Content">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="625"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="rOK-Vv-JOb">
+                                                <rect key="frame" x="16" y="20" width="358" height="585"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kHs-6Y-3vy">
+                                                        <rect key="frame" x="0.0" y="0.0" width="358" height="136.66666666666666"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here you can practice your knowledge!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aj7-7q-4ZX">
+                                                                <rect key="frame" x="0.0" y="0.0" width="358" height="20.333333333333332"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Even when not being connected to the Internet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iP-DT-jPR">
+                                                                <rect key="frame" x="0.0" y="28.333333333333329" width="358" height="18"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gST-7i-kbj">
+                                                                <rect key="frame" x="0.0" y="54.333333333333336" width="358" height="82.333333333333314"/>
+                                                                <string key="text">Choose how many random questions you want to practice. Questions will be evaluated right away, so you get instant feedback. You can also filter by course sections via the 'Settings' button.</string>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Bog-08-SWT">
+                                                        <rect key="frame" x="0.0" y="160.66666666666663" width="358" height="228"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGZ-Gf-Osz">
+                                                                <rect key="frame" x="0.0" y="0.0" width="358" height="51"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Complete" subtitle=" " imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
+                                                                    <imageReference key="image" image="square.grid.2x2.fill.4" symbolScale="large" renderingMode="hierarchical-single" variableValue="1"/>
+                                                                    <color key="baseBackgroundColor" name="primary"/>
+                                                                </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="startCompleteRecapSession" destination="Y6W-OH-hqX" eventType="touchUpInside" id="9Bu-cO-vhq"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNU-yQ-sat">
+                                                                <rect key="frame" x="0.0" y="59.000000000000028" width="358" height="51"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Long" subtitle="50 questions" imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
+                                                                    <imageReference key="image" image="square.grid.2x2.fill.3" symbolScale="large" renderingMode="hierarchical-single"/>
+                                                                    <color key="baseBackgroundColor" name="primary"/>
+                                                                </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="startLongRecapSession" destination="Y6W-OH-hqX" eventType="touchUpInside" id="hkO-Tf-yzW"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdz-Mu-mUo">
+                                                                <rect key="frame" x="0.0" y="118.00000000000003" width="358" height="51"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Medium" subtitle="20 questions" imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
+                                                                    <imageReference key="image" image="square.grid.2x2.fill.2" symbolScale="large" renderingMode="hierarchical-single"/>
+                                                                    <color key="baseBackgroundColor" name="primary"/>
+                                                                </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="startMediumRecapSession" destination="Y6W-OH-hqX" eventType="touchUpInside" id="fuM-b0-So8"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwG-7X-jKr">
+                                                                <rect key="frame" x="0.0" y="177.00000000000003" width="358" height="51"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="filled" imagePlacement="leading" title="Quick" subtitle="10 questions" imagePadding="8" cornerStyle="capsule" titleAlignment="automatic">
+                                                                    <imageReference key="image" image="square.grid.2x2.fill.1" symbolScale="large" renderingMode="hierarchical-single"/>
+                                                                    <color key="baseBackgroundColor" name="primary"/>
+                                                                </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="startShortRecapSession" destination="Y6W-OH-hqX" eventType="touchUpInside" id="pa1-CR-0ga"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sHb-LO-3R2">
+                                                        <rect key="frame" x="0.0" y="412.66666666666669" width="358" height="52"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rpl-A9-WEL">
+                                                                <rect key="frame" x="123.66666666666666" y="0.0" width="111" height="44"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQ7-sg-fpb">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="111" height="44"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="tinted" title="Settings" imagePadding="6" titleAlignment="center">
+                                                                            <imageReference key="image" image="slider.horizontal.3" catalog="system" symbolScale="medium"/>
+                                                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleCallout"/>
+                                                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                                            <color key="baseBackgroundColor" name="primary"/>
+                                                                        </buttonConfiguration>
+                                                                        <connections>
+                                                                            <action selector="openOptionsMenu" destination="Y6W-OH-hqX" eventType="touchUpInside" id="luL-6f-grz"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tlm-ca-rMB">
+                                                                        <rect key="frame" x="96" y="-10.000000000000002" width="26" height="24.666666666666664"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="26" id="P19-rE-NV3"/>
+                                                                            <constraint firstAttribute="width" constant="26" id="sN5-lJ-Cke"/>
+                                                                        </constraints>
+                                                                        <imageReference key="image" image="checkmark.circle.fill" catalog="system" renderingMode="hierarchical">
+                                                                            <hierarchicalColors>
+                                                                                <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color name="primary"/>
+                                                                                <color name="primary"/>
+                                                                            </hierarchicalColors>
+                                                                        </imageReference>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="mQ7-sg-fpb" firstAttribute="top" secondItem="rpl-A9-WEL" secondAttribute="top" id="4KD-Cq-jXg"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="mQ7-sg-fpb" secondAttribute="bottom" id="8HF-Ul-0Ev"/>
+                                                                    <constraint firstItem="Tlm-ca-rMB" firstAttribute="centerY" secondItem="mQ7-sg-fpb" secondAttribute="top" constant="2" id="F8v-D1-WO6"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="mQ7-sg-fpb" secondAttribute="trailing" id="XC8-x5-0yN"/>
+                                                                    <constraint firstItem="Tlm-ca-rMB" firstAttribute="centerX" secondItem="mQ7-sg-fpb" secondAttribute="trailing" constant="-2" id="cC2-1q-ZDE"/>
+                                                                    <constraint firstItem="mQ7-sg-fpb" firstAttribute="leading" secondItem="rpl-A9-WEL" secondAttribute="leading" id="v7P-A6-Gw4"/>
+                                                                    <constraint firstAttribute="height" constant="44" id="vuA-jG-GiD"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auP-pm-LvA">
+                                                                <rect key="frame" x="179" y="51.999999999999943" width="0.0" height="0.0"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XaB-ex-dD5">
+                                                        <rect key="frame" x="0.0" y="488.66666666666657" width="358" height="96.333333333333314"/>
+                                                        <subviews>
+                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJT-aw-8rh">
+                                                                <rect key="frame" x="15.666666666666657" y="0.0" width="326.66666666666674" height="96.333333333333329"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="gray" imagePlacement="leading" title="Currently, there are no questions available to recap. Please check again later." imagePadding="16" cornerStyle="large" titleAlignment="center">
+                                                                    <imageReference key="image" image="exclamationmark.shield" catalog="system" symbolScale="large" variableValue="1"/>
+                                                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                                                    <directionalEdgeInsets key="contentInsets" top="16" leading="16" bottom="16" trailing="16"/>
+                                                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                                </buttonConfiguration>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="rOK-Vv-JOb" secondAttribute="trailing" id="4yv-6u-pt7"/>
+                                            <constraint firstItem="rOK-Vv-JOb" firstAttribute="leading" secondItem="4Ms-TD-YRb" secondAttribute="leadingMargin" id="8lG-P4-wxr"/>
+                                            <constraint firstItem="rOK-Vv-JOb" firstAttribute="top" secondItem="4Ms-TD-YRb" secondAttribute="top" constant="20" symbolic="YES" id="PCC-1k-xxh"/>
+                                            <constraint firstAttribute="bottom" secondItem="rOK-Vv-JOb" secondAttribute="bottom" constant="20" symbolic="YES" id="myX-pa-eAi"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4Ms-TD-YRb" secondAttribute="trailing" id="ClO-sx-d6f"/>
+                                    <constraint firstAttribute="bottom" secondItem="4Ms-TD-YRb" secondAttribute="bottom" id="fDa-VZ-rkW"/>
+                                    <constraint firstItem="4Ms-TD-YRb" firstAttribute="leading" secondItem="4El-1p-N8f" secondAttribute="leading" id="uO2-en-DSb"/>
+                                    <constraint firstItem="4Ms-TD-YRb" firstAttribute="top" secondItem="4El-1p-N8f" secondAttribute="top" id="vYy-VZ-WaJ"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4Ms-TD-YRb" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="9fP-ax-dju"/>
+                            <constraint firstItem="4El-1p-N8f" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="RAq-lW-Gni"/>
+                            <constraint firstItem="4El-1p-N8f" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="Wga-9Z-UnK"/>
+                            <constraint firstAttribute="bottom" secondItem="4El-1p-N8f" secondAttribute="bottom" id="iUA-ZK-DaM"/>
+                            <constraint firstAttribute="trailing" secondItem="4El-1p-N8f" secondAttribute="trailing" id="rst-yP-fqw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="optionsIndicator" destination="Tlm-ca-rMB" id="fwx-Lo-Ac6"/>
+                        <outlet property="optionsLabel" destination="auP-pm-LvA" id="LIt-9g-gzn"/>
+                        <outlet property="scrollView" destination="4El-1p-N8f" id="JFi-4W-IGj"/>
+                        <outlet property="startButtonComplete" destination="KGZ-Gf-Osz" id="6Bc-k9-Apo"/>
+                        <outlet property="startButtonLong" destination="HNU-yQ-sat" id="oE4-1w-LYt"/>
+                        <outlet property="startButtonMedium" destination="Hdz-Mu-mUo" id="gia-sA-CFi"/>
+                        <outlet property="startButtonShort" destination="uwG-7X-jKr" id="TgS-pl-jOm"/>
+                        <outletCollection property="contentViews" destination="sHb-LO-3R2" collectionClass="NSMutableArray" id="YSS-Vt-Fzo"/>
+                        <outletCollection property="loadingViews" destination="XaB-ex-dD5" collectionClass="NSMutableArray" id="HAG-Kv-CIa"/>
+                        <outletCollection property="contentViews" destination="Bog-08-SWT" collectionClass="NSMutableArray" id="QKn-eI-1ur"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="-23"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="exclamationmark.shield" catalog="system" width="128" height="119"/>
+        <image name="slider.horizontal.3" catalog="system" width="128" height="99"/>
+        <image name="square.grid.2x2.fill.1" width="10" height="10"/>
+        <image name="square.grid.2x2.fill.2" width="10" height="10"/>
+        <image name="square.grid.2x2.fill.3" width="10" height="10"/>
+        <image name="square.grid.2x2.fill.4" width="10" height="10"/>
+        <namedColor name="primary">
+            <color red="0.87058823529411766" green="0.3843137254901961" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

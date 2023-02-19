@@ -49,6 +49,11 @@ public enum TrackingHelper {
         // content notification
         case contentNotificationsEnabled = "CONTENT_NOTIFICATIONS_ENABLED"
         case contentNotificationsDisabled = "CONTENT_NOTIFICATIONS_DISABLED"
+
+        // quiz recap
+        case quizRecapStarted = "RECAP_STARTED"
+        case quizRecapQuestionAnswered = "RECAP_ANSWERED"
+        case quizRecapStopped = "RECAP_STOPPED"
     }
 
     // swiftlint:disable redundant_string_enum_value

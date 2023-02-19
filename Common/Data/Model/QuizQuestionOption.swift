@@ -6,17 +6,17 @@
 import Foundation
 import Stockpile
 
-final class QuizOption: NSObject, NSSecureCoding, IncludedPullable {
+public final class QuizQuestionOption: NSObject, NSSecureCoding, IncludedPullable {
 
     public static var supportsSecureCoding: Bool { return true }
 
-    var id: String
-    var text: String?
-    var position: Int32
-    var correct: Bool
-    var explanation: String?
+    public var id: String
+    public var text: String?
+    public var position: Int32
+    public var correct: Bool
+    public var explanation: String?
 
-    required init(object: ResourceData) throws {
+    required public init(object: ResourceData) throws {
         self.id = try object.value(for: "id")
         self.text = try object.value(for: "text")
         self.position = try object.value(for: "position")
@@ -24,7 +24,7 @@ final class QuizOption: NSObject, NSSecureCoding, IncludedPullable {
         self.explanation = try object.value(for: "explanation")
     }
 
-    required init?(coder decoder: NSCoder) {
+    required public init?(coder decoder: NSCoder) {
         guard let id = decoder.decodeObject(of: NSString.self, forKey: "id") as String? else {
             return nil
         }
@@ -36,7 +36,7 @@ final class QuizOption: NSObject, NSSecureCoding, IncludedPullable {
         self.explanation = decoder.decodeObject(of: NSString.self, forKey: "explanation") as String?
     }
 
-    func encode(with coder: NSCoder) {
+    public func encode(with coder: NSCoder) {
         coder.encode(self.id, forKey: "id")
         coder.encode(self.text, forKey: "text")
         coder.encode(self.position, forKey: "position")

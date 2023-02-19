@@ -8,13 +8,18 @@ import Stockpile
 
 public enum FeatureHelper {
 
-    public enum FeatureIdentifier: String {
+    public enum FeatureIdentifier: String, CaseIterable {
         case quizRecap = "quiz_recap"
         case courseReactivation = "course_reactivation"
 
         // Identifiers for content notification and automated downloads user test
         case newContentNotification = "mobile.new_content.notification"
         case newContentBackgroundDownload = "mobile.new_content.background_download"
+
+        case quizRecapOneTimePromotion = "mobile.quiz_recap.one_time_promotion"
+        case quizRecapSectionNotifications = "mobile.quiz_recap.notifications.section"
+        case quizRecapCourseEndNotification = "mobile.quiz_recap.notifications.course_end"
+        case quizRecapVersion2 = "mobile.quiz_recap.version_2"
     }
 
     @discardableResult
@@ -31,10 +36,11 @@ public enum FeatureHelper {
 
     public static func hasFeature(_ featureIdentifier: FeatureIdentifier, for course: Course? = nil) -> Bool {
         #if DEBUG
-        if featureIdentifier == .newContentNotification && CommandLine.arguments.contains("-new-content-notification") {
-            return true
-        } else if featureIdentifier == .newContentBackgroundDownload && CommandLine.arguments.contains("-new-content-background-download") {
-            return true
+        for identifier in FeatureIdentifier.allCases where identifier == featureIdentifier {
+            let commandLineArgument = "-" + identifier.rawValue.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "_", with: "-")
+            if CommandLine.arguments.contains(commandLineArgument) {
+                return true
+            }
         }
         #endif
 
@@ -52,6 +58,12 @@ public enum FeatureHelper {
         }()
 
         return hasFeatureInGlobalScope || hasFeatureInCourseScope
+    }
+
+    public static func hasAnyFeature(_ featureIdentifiers: [FeatureIdentifier], for course: Course? = nil) -> Bool {
+        return featureIdentifiers.map {
+            Self.hasFeature($0, for: course)
+        }.contains(true)
     }
 
 }

@@ -258,9 +258,9 @@ class CourseItemListViewController: UITableViewController {
             let shouldHidePromotionHint = downloadSettingsExist || !self.course.offersNotificationsForNewContent
 
             let notificationsDenied = settings.authorizationStatus == .denied
-            let shouldHideActiveSettingsHint = !downloadSettingsExist || notificationsDenied
+            let shouldHideActiveSettingsHint = !downloadSettingsExist || notificationsDenied || !self.course.isEligibleForContentNotifications
 
-            let shouldHideMissingPermissionHint = !(downloadSettingsExist && notificationsDenied)
+            let shouldHideMissingPermissionHint = !(downloadSettingsExist && notificationsDenied) || !self.course.isEligibleForContentNotifications
 
             DispatchQueue.main.async {
                 self.automatedDownloadsPromotionHint.isHidden = shouldHidePromotionHint
@@ -400,6 +400,34 @@ extension CourseItemListViewController { // TableViewDelegate
         return header
     }
 
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard #available(iOS 15, *) else { return nil }
+
+        guard FeatureHelper.hasFeature(.quizRecapOneTimePromotion) else {
+            return nil
+        }
+
+        let action = UIAction { [weak self] action in
+            guard let course = self?.course else { return }
+            self?.appNavigator?.show(course: course, with: .recap)
+        }
+
+        var configuration = UIButton.Configuration.plain()
+        configuration.title = NSLocalizedString("course-item-list.section-footer.practice your new knowledge with a quiz recap",
+                                                comment: "Quiz Recap promotion in the footer of a section on the course item list")
+        configuration.titleAlignment = .leading
+        configuration.buttonSize = .mini
+        configuration.imagePlacement = .trailing
+        configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(scale: .small)
+        configuration.imagePadding = 5
+        configuration.image = UIImage(systemName: "chevron.forward")
+
+        let button = UIButton(configuration: configuration, primaryAction: action)
+        button.tintColor = Brand.default.colors.window
+
+        return button
+    }
+
     @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let courseItem = self.dataSource.object(at: indexPath)
@@ -486,12 +514,33 @@ extension CourseItemListViewController: RefreshableViewController {
              }.onSuccess { [weak self] _ in
                  self?.updateAutomatedDownloadsHint(animated: true)
              }
-         }
+        }
 
         if #available(iOS 13, *) {
             if self.course.automatedDownloadSettings != nil {
                 NewContentNotificationManager.renewNotifications(for: self.course)
                 AutomatedDownloadsManager.scheduleNextBackgroundProcessingTask()
+            }
+        }
+
+        if #available(iOS 15, *), let course = self.course {
+            ExperimentAssignmentHelper.assign(to: .nativeQuizRecapWithNotifications, inCourse: course).flatMap { _ in
+                FeatureHelper.syncFeatures(forCourse: course)
+            }.onSuccess { _ in
+                NotificationCenter.default.post(name: UserDefaults.quizRecapNoticedNotificationName, object: course.id)
+            }.onComplete { _ in
+                if FeatureHelper.hasAnyFeature([.quizRecapSectionNotifications, .quizRecapCourseEndNotification], for: course) {
+                    let center = UNUserNotificationCenter.current()
+                    let options: UNAuthorizationOptions = [.alert]
+                    center.requestAuthorization(options: options) { _, _ in }
+                }
+
+                QuizRecapNotificationManager.renewNotifications(for: course)
+                if FeatureHelper.hasFeature(.quizRecapVersion2, for: course) {
+                    QuizHelper.syncQuizzes(forCourse: course).onSuccess { _ in
+                        QuizRecapNotificationManager.renewNotifications(for: course)
+                    }
+                }
             }
         }
 

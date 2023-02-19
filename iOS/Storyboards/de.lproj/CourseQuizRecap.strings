@@ -1,0 +1,57 @@
+
+/* Class = "UILabel"; text = "Here you can practice your knowledge!"; ObjectID = "Aj7-7q-4ZX"; */
+"Aj7-7q-4ZX.text" = "Hier kann das neue Wissen getestet werden!";
+
+/* Class = "UIButton"; configuration.subtitle = "50 questions"; ObjectID = "HNU-yQ-sat"; */
+"HNU-yQ-sat.configuration.subtitle" = "50 Fragen";
+
+/* Class = "UIButton"; configuration.title = "Long"; ObjectID = "HNU-yQ-sat"; */
+"HNU-yQ-sat.configuration.title" = "Lang";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "HNU-yQ-sat"; */
+"HNU-yQ-sat.normalTitle" = "Lang";
+
+/* Class = "UIButton"; configuration.subtitle = "20 questions"; ObjectID = "Hdz-Mu-mUo"; */
+"Hdz-Mu-mUo.configuration.subtitle" = "20 Fragen";
+
+/* Class = "UIButton"; configuration.title = "Medium"; ObjectID = "Hdz-Mu-mUo"; */
+"Hdz-Mu-mUo.configuration.title" = "Mittel";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Hdz-Mu-mUo"; */
+"Hdz-Mu-mUo.normalTitle" = "Mittel";
+
+/* Class = "UIButton"; configuration.subtitle = " "; ObjectID = "KGZ-Gf-Osz"; */
+"KGZ-Gf-Osz.configuration.subtitle" = " ";
+
+/* Class = "UIButton"; configuration.title = "Complete"; ObjectID = "KGZ-Gf-Osz"; */
+"KGZ-Gf-Osz.configuration.title" = "Komplett";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "KGZ-Gf-Osz"; */
+"KGZ-Gf-Osz.normalTitle" = "Komplett";
+
+/* Class = "UIButton"; configuration.title = "Currently, there are no questions available to recap. Please check again later."; ObjectID = "cJT-aw-8rh"; */
+"cJT-aw-8rh.configuration.title" = "Derzeit stehen keine Fragen zur Wiederholung zur Verfügung. Bitte schaue später noch einmal nach.";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "cJT-aw-8rh"; */
+"cJT-aw-8rh.normalTitle" = "Derzeit stehen keine Fragen zur Wiederholung zur Verfügung. Bitte schaue später noch einmal nach.";
+
+/* Class = "UILabel"; text = "Choose how many random questions you want to practice. Questions will be evaluated right away, so you get instant feedback. You can also filter by course sections via the 'Settings' button."; ObjectID = "gST-7i-kbj"; */
+"gST-7i-kbj.text" = "Wähle aus, wie viele Zufallsfragen wiederholt werden sollen. Für schnelleres Feedback werden die Fragen sofort ausgewertet. Über die 'Einstellungen' kann auch nach Kursabschnitten gefiltert werden.";
+
+/* Class = "UIButton"; configuration.subtitle = "10 questions"; ObjectID = "uwG-7X-jKr"; */
+"uwG-7X-jKr.configuration.subtitle" = "10 Fragen";
+
+/* Class = "UIButton"; configuration.title = "Quick"; ObjectID = "uwG-7X-jKr"; */
+"uwG-7X-jKr.configuration.title" = "Kurz";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "uwG-7X-jKr"; */
+"uwG-7X-jKr.normalTitle" = "Kurz";
+
+/* Class = "UIButton"; configuration.title = "Settings"; ObjectID = "mQ7-sg-fpb"; */
+"mQ7-sg-fpb.configuration.title" = "Einstellungen";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "mQ7-sg-fpb"; */
+"mQ7-sg-fpb.normalTitle" = "Einstellungen";
+
+/* Class = "UILabel"; text = "Even when not being connected to the Internet"; ObjectID = "7iP-DT-jPR"; */
+"7iP-DT-jPR.text" = "auch ohne eine Internetverbindung";

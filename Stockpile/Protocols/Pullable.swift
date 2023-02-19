@@ -121,13 +121,12 @@ extension Pullable where Self: NSManagedObject {
                     }
                 }
             case .notExisting:
-                break
+                currentObjects.removeAll()
             }
         } catch let error as MarshalError {
             throw NestedMarshalError.nestedMarshalError(error, includeType: A.type, includeKey: key)
         }
 
-        // TODO: really?
         for currentObject in currentObjects {
             context.coreDataContext.delete(currentObject)
         }

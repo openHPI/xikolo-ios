@@ -10,6 +10,7 @@ public enum ExperimentAssignmentHelper {
 
     public enum ExperimentIdentifier: String {
         case contentNotificationsAndAutomatedDownloads = "mobile.content_notification_and_downloads"
+        case nativeQuizRecapWithNotifications = "mobile.native_quiz_recap_with_notifications"
     }
 
     @discardableResult

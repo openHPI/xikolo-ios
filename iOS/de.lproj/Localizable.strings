@@ -119,6 +119,9 @@
 /* Action title to scroll to the suggested course item to continue learning */
 "course-item-list.header.continue-learning.Show item in list" = "Lerninhalt in Liste zeigen";
 
+/* Quiz Recap promotion in the footer of a section on the course item list */
+"course-item-list.section-footer.practice your new knowledge with a quiz recap" = "Teste das neue Wissen mit einem Quiz Recap";
+
 /* delete all downloads for video */
 "course-item.combined-download-action.delete-download.title" = "Alle Lernmaterialien löschen";
 
@@ -379,6 +382,36 @@
 
 /* subtitle for homescreen quick actions */
 "quickactions.subtitle" = "Lernen fortsetzen";
+
+/* Text to appear in the settings summary for the quiz recap if not only visited items should be considered. */
+"quiz-recap.settings-summary.consider-only-visited-item.false" = "Fragen aus allen Selbsttests werden getestet, unabhängig davon, ob der Test besucht wurde oder nicht.";
+
+/* Text to appear in the settings summary for the quiz recap if only visited items should be considered. */
+"quiz-recap.settings-summary.consider-only-visited-item.true" = "Es werden nur Fragen aus Selbsttests getestet, die besucht wurden.";
+
+/* Format: Text to appear in the settings summary for the quiz recap when all course sections are considered. */
+"quiz-recap.settings-summary.section-names.all" = "Es werden Selbsttestfragen aus allen veröffentlichten Kursabschnitten (%d) berücksichtigt.";
+
+/* Format: Text to appear in the settings summary for the quiz recap when only some course sections are considered. */
+"quiz-recap.settings-summary.section-names.some" = "Es werden nur %d Kursabschnitt(e) berücksichtigt: %@";
+
+/* Explanation when all self test have been visited */
+"quiz-recap.settings.explanation.all-self-test-visited" = "Alle verfügbaren Selbsttests werden besucht.";
+
+/* Format: Explanation when some self test have not been visited */
+"quiz-recap.settings.explanation.some-self-tests-not-visited" = "Es gibt Selbsttests in %d Kursabschnitten, die noch nicht besucht wurden: %@";
+
+/* Title for the quiz recap setting option to consider only visited items */
+"quiz-recap.settings.option.consider-only-visited-items" = "Nur besuchte Selbsttests berücksichtigen";
+
+/* Section title for course sections */
+"quiz-recap.settings.section-title.course sections" = "Kursabschnitte";
+
+/* Title for the setting view for the quiz recap */
+"quiz-recap.settings.title" = "Einstellungen";
+
+/* Format: Subtitle for the start buttons for the quiz recap */
+"quiz-recap.start-button.subtitle" = "%d Fragen";
 
 /* label for app build */
 "settings.app.build.label" = "Build";

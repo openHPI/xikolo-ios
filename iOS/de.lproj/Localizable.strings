@@ -119,6 +119,9 @@
 /* Action title to scroll to the suggested course item to continue learning */
 "course-item-list.header.continue-learning.Show item in list" = "Lerninhalt in Liste zeigen";
 
+/* Quiz Recap promotion in the footer of a section on the course item list */
+"course-item-list.section-footer.practice your new knowledge with a quiz recap" = "Teste das neue Wissen mit einem Quiz Recap";
+
 /* delete all downloads for video */
 "course-item.combined-download-action.delete-download.title" = "Alle Lernmaterialien löschen";
 

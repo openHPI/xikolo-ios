@@ -400,6 +400,34 @@ extension CourseItemListViewController { // TableViewDelegate
         return header
     }
 
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard #available(iOS 15, *) else { return nil }
+
+        guard FeatureHelper.hasFeature(.quizRecapOneTimePromotion) else {
+            return nil
+        }
+
+        let action = UIAction { [weak self] action in
+            guard let course = self?.course else { return }
+            self?.appNavigator?.show(course: course, with: .recap)
+        }
+
+        var configuration = UIButton.Configuration.plain()
+        configuration.title = NSLocalizedString("course-item-list.section-footer.practice your new knowledge with a quiz recap",
+                                                comment: "Quiz Recap promotion in the footer of a section on the course item list")
+        configuration.titleAlignment = .leading
+        configuration.buttonSize = .mini
+        configuration.imagePlacement = .trailing
+        configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(scale: .small)
+        configuration.imagePadding = 5
+        configuration.image = UIImage(systemName: "chevron.forward")
+
+        let button = UIButton(configuration: configuration, primaryAction: action)
+        button.tintColor = Brand.default.colors.window
+
+        return button
+    }
+
     @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let courseItem = self.dataSource.object(at: indexPath)

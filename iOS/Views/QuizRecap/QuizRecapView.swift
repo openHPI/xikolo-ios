@@ -481,6 +481,7 @@ struct QuizRecapView: View {
     func track(_ verb: TrackingHelper.AnalyticsVerb, with context: [String: String?]) {
         var recapContext = context
         recapContext["recap_session_id"] = self.sessionId.uuidString
+        recapContext["course_id"] = configuration.courseId
         TrackingHelper.createEvent(verb, resourceType: .course, resourceId: configuration.courseId, on: nil, context: recapContext)
     }
 

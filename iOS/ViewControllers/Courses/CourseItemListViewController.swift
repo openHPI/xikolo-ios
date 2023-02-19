@@ -535,23 +535,10 @@ extension CourseItemListViewController: RefreshableViewController {
                     center.requestAuthorization(options: options) { _, _ in }
                 }
 
-                if FeatureHelper.hasAnyFeature([.quizRecapVersion2, .quizRecapSectionNotifications, .quizRecapCourseEndNotification], for: course) {
-                    QuizRecapNotificationManager.renewNotifications(for: course)
-                    QuizHelper.syncQuizzes(forCourse: course).onComplete { _ in
-                        QuizRecapNotificationManager.renewNotifications(for: course)
-                    }
-                }
-
-                let renewNotifications = {
-                    if FeatureHelper.hasAnyFeature([.quizRecapSectionNotifications, .quizRecapCourseEndNotification], for: course) {
-                        QuizRecapNotificationManager.renewNotifications(for: course)
-                    }
-                }
-
-                renewNotifications()
+                QuizRecapNotificationManager.renewNotifications(for: course)
                 if FeatureHelper.hasFeature(.quizRecapVersion2, for: course) {
                     QuizHelper.syncQuizzes(forCourse: course).onSuccess { _ in
-                        renewNotifications()
+                        QuizRecapNotificationManager.renewNotifications(for: course)
                     }
                 }
             }

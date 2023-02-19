@@ -395,6 +395,21 @@
 /* Format: Text to appear in the settings summary for the quiz recap when only some course sections are considered. */
 "quiz-recap.settings-summary.section-names.some" = "Only %d course section(s) will be considered: %@";
 
+/* Explanation when all self test have been visited */
+"quiz-recap.settings.explanation.all-self-test-visited" = "You have visited all available self-test items.";
+
+/* Format: Explanation when some self test have not been visited */
+"quiz-recap.settings.explanation.some-self-tests-not-visited" = "There are self-tests in %d course section(s) that you have not visited yet: %@";
+
+/* Title for the quiz recap setting option to consider only visited items */
+"quiz-recap.settings.option.consider-only-visited-items" = "Consider only visited self-tests";
+
+/* Section title for course sections */
+"quiz-recap.settings.section-title.course sections" = "Course sections";
+
+/* Title for the setting view for the quiz recap */
+"quiz-recap.settings.title" = "Settings";
+
 /* Format: Subtitle for the start buttons for the quiz recap */
 "quiz-recap.start-button.subtitle" = "%d questions";
 
@@ -508,18 +523,3 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video Quality using WiFi";
-
-/* Explanation when all self test have been visited */
-"quiz-recap.settings.explanation.all-self-test-visited" = "You have visited all available self-test items.";
-
-/* Format: Explanation when some self test have not been visited */
-"quiz-recap.settings.explanation.some-self-tests-not-visited" = "There are self-tests in %d course section(s) that you have not visited yet: %@";
-
-/* Title for the quiz recap setting option to consider only visited items */
-"quiz-recap.settings.option.consider-only-visited-items" = "Consider only visited self-tests";
-
-/* Section title for course sections */
-"quiz-recap.settings.section-title.course sections" = "Course sections";
-
-/* Title for the setting view for the quiz recap */
-"quiz-recap.settings.title" = "Settings";

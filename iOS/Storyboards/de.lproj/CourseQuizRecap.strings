@@ -36,7 +36,7 @@
 "cJT-aw-8rh.normalTitle" = "Derzeit stehen keine Fragen zur Wiederholung zur Verfügung. Bitte schaue später noch einmal nach.";
 
 /* Class = "UILabel"; text = "Choose how many random questions you want to practice. Questions will be evaluated right away, so you get instant feedback. You can also filter by course sections via the 'Settings' button."; ObjectID = "gST-7i-kbj"; */
-"gST-7i-kbj.text" = "Wählen aus, wie viele Zufallsfragen wiederholt werden sollen. Für schnelleres Feedback werden die Fragen sofort ausgewertet. Über die 'Einstellungen' kann auch nach Kursabschnitten gefiltert werden.";
+"gST-7i-kbj.text" = "Wähle aus, wie viele Zufallsfragen wiederholt werden sollen. Für schnelleres Feedback werden die Fragen sofort ausgewertet. Über die 'Einstellungen' kann auch nach Kursabschnitten gefiltert werden.";
 
 /* Class = "UIButton"; configuration.subtitle = "10 questions"; ObjectID = "uwG-7X-jKr"; */
 "uwG-7X-jKr.configuration.subtitle" = "10 Fragen";

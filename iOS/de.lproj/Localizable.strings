@@ -395,6 +395,21 @@
 /* Format: Text to appear in the settings summary for the quiz recap when only some course sections are considered. */
 "quiz-recap.settings-summary.section-names.some" = "Es werden nur %d Kursabschnitt(e) berücksichtigt: %@";
 
+/* Explanation when all self test have been visited */
+"quiz-recap.settings.explanation.all-self-test-visited" = "Alle verfügbaren Selbsttests werden besucht.";
+
+/* Format: Explanation when some self test have not been visited */
+"quiz-recap.settings.explanation.some-self-tests-not-visited" = "Es gibt Selbsttests in %d Kursabschnitten, die noch nicht besucht wurden: %@";
+
+/* Title for the quiz recap setting option to consider only visited items */
+"quiz-recap.settings.option.consider-only-visited-items" = "Nur besuchte Selbsttests berücksichtigen";
+
+/* Section title for course sections */
+"quiz-recap.settings.section-title.course sections" = "Kursabschnitte";
+
+/* Title for the setting view for the quiz recap */
+"quiz-recap.settings.title" = "Einstellungen";
+
 /* Format: Subtitle for the start buttons for the quiz recap */
 "quiz-recap.start-button.subtitle" = "%d Fragen";
 
@@ -508,18 +523,3 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video-Qualität mit WLAN";
-
-/* Explanation when all self test have been visited */
-"quiz-recap.settings.explanation.all-self-test-visited" = "Alle verfügbaren Selbsttests werden besucht.";
-
-/* Format: Explanation when some self test have not been visited */
-"quiz-recap.settings.explanation.some-self-tests-not-visited" = "Es gibt Selbsttests in %d Kursabschnitten, die noch nicht besucht wurden: %@";
-
-/* Title for the quiz recap setting option to consider only visited items */
-"quiz-recap.settings.option.consider-only-visited-items" = "Nur besuchte Selbsttests berücksichtigen";
-
-/* Section title for course sections */
-"quiz-recap.settings.section-title.course sections" = "Kursabschnitte";
-
-/* Title for the setting view for the quiz recap */
-"quiz-recap.settings.title" = "Einstellungen";

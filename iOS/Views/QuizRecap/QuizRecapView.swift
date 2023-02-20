@@ -424,7 +424,7 @@ struct QuizRecapView: View {
             loadNewQuestion()
         }
         .onReceive(timer) { _ in
-            guard questionEnded else { return }
+            guard questionEnded && !recapEnded else { return }
             if timeRemainingUntilNextQuestion > 0 {
                 timeRemainingUntilNextQuestion -= 1
             } else {

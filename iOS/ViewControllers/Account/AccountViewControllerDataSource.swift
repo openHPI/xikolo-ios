@@ -5,7 +5,7 @@
 
 import Common
 import MessageUI
-import Rswift
+import RswiftResources
 import UIKit
 
 class AccountViewControllerDataSource: NSObject {
@@ -206,9 +206,9 @@ extension TitledDataSourceItem {
     }
 }
 
-private struct SegueItem<T: StoryboardSegueIdentifierType>: TitledDataSourceItem where T.SourceType == AccountViewController {
+private struct SegueItem<Destination: UIViewController>: TitledDataSourceItem {
     let title: String
-    let segueIdentifier: T
+    let segueIdentifier: SegueIdentifier<UIStoryboardSegue, AccountViewController, Destination>
     let cellReuseIdentifier = R.reuseIdentifier.defaultCell.identifier
 
     func performAction(on viewController: AccountViewController) {

@@ -433,7 +433,7 @@ extension CourseItemListViewController { // TableViewDelegate
         let courseItem = self.dataSource.object(at: indexPath)
 
         let previewProvider: UIContextMenuContentPreviewProvider = {
-            return R.storyboard.courseItemPreview().instantiateInitialViewController { coder in
+            return R.storyboard.courseItemPreview.instantiateInitialViewController { coder in
                 return CourseItemPreviewViewController(coder: coder, courseItem: courseItem)
             }
         }

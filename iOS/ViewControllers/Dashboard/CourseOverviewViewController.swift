@@ -209,7 +209,7 @@ extension CourseOverviewViewController: UICollectionViewDelegate {
         guard let course = self.courses[safe: indexPath.item] else { return nil }
 
         let previewProvider: UIContextMenuContentPreviewProvider = {
-            return R.storyboard.coursePreview().instantiateInitialViewController { coder in
+            return R.storyboard.coursePreview.instantiateInitialViewController { coder in
                 return CoursePreviewViewController(coder: coder, course: course, listConfiguration: self.configuration)
             }
         }

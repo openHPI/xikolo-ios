@@ -7,7 +7,6 @@ install! 'cocoapods',
 platform :ios, '11.0'
 
 pod 'BartyCrouch', :git => 'https://github.com/Flinesoft/BartyCrouch.git', :tag => '3.13.0'
-pod 'R.swift', '~> 5.0'
 pod 'SwiftLint', '~> 0.22'
 
 

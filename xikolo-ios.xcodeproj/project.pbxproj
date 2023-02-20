@@ -252,7 +252,6 @@
 		508C3148276B6B32003AE388 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
 		508C3149276B6B32003AE388 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		508C314F276B80D6003AE388 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 508C314E276B80D6003AE388 /* Down */; };
-		508C3154276B8C0E003AE388 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 508C3153276B8C0E003AE388 /* Rswift */; };
 		508CF44A242CA8F60086F339 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508CF449242CA8F50086F339 /* CoreServices.framework */; };
 		508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44121AB390400801530 /* SubtitleTableViewCell.swift */; };
 		508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguration.swift */; };
@@ -346,7 +345,6 @@
 		50CF1FA520DCDBFC0011BFE9 /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F226D1D7CB95500ED0BF1 /* CourseViewController.swift */; };
 		50CF1FA620DCDBFC0011BFE9 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
 		50CF1FA820DCDBFC0011BFE9 /* CourseAreaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5017B3BB204983E7001D90A1 /* CourseAreaListViewController.swift */; };
-		50CF1FAD20DCDBFC0011BFE9 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
 		50CF1FB120DCDBFC0011BFE9 /* UITableViewCell+enable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */; };
 		50CF1FB320DCDBFC0011BFE9 /* DetailedCourseItemContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedCourseItemContent.swift */; };
 		50CF1FB620DCDBFC0011BFE9 /* UserDefaults+contentPreload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED7F1FE3D9680096095B /* UserDefaults+contentPreload.swift */; };
@@ -495,6 +493,7 @@
 		50FA2E6520E51B3100656776 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50FA2E6620E51B7E00656776 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
 		50FB7122232BBDC700359BB2 /* UIView+backgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB7121232BBDC700359BB2 /* UIView+backgroundColor.swift */; };
+		50FD0BD029A377AC0002EB04 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 50FD0BCF29A377AC0002EB04 /* RswiftLibrary */; };
 		50FE0F3F236C5F4000057A17 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50FE0F41236C5F4000057A17 /* Localizable.strings */; };
 		50FF4509250A34CF00A4D055 /* RelationshipKeyPathsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FF4508250A34CF00A4D055 /* RelationshipKeyPathsObserver.swift */; };
 		700398C021A437CD00FE9D81 /* FileManager+fileSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */; };
@@ -718,7 +717,6 @@
 		50092A8F237D89BD00A1503F /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		50092A91237D8E3B00A1503F /* ChannelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		50092A93237DC20C00A1503F /* Channel+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+Color.swift"; sourceTree = "<group>"; };
-		500A257D20824C2500EB7AE4 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedContentHelper.swift; sourceTree = "<group>"; };
 		500C361724B61BFB004DD157 /* xikolo 12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 12.xcdatamodel"; sourceTree = "<group>"; };
 		500C4D49278D8E6C00C91295 /* xikolo 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 14.xcdatamodel"; sourceTree = "<group>"; };
@@ -1317,7 +1315,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				50CF1FEF20DCDBFC0011BFE9 /* QuartzCore.framework in Frameworks */,
-				508C3154276B8C0E003AE388 /* Rswift in Frameworks */,
 				502CBDD92433716C00BF6001 /* Stockpile.framework in Frameworks */,
 				50CF1FF020DCDBFC0011BFE9 /* SystemConfiguration.framework in Frameworks */,
 				50CF1FF120DCDBFC0011BFE9 /* Security.framework in Frameworks */,
@@ -1328,6 +1325,7 @@
 				50CF1FF320DCDBFC0011BFE9 /* CoreData.framework in Frameworks */,
 				508C30AD276B66B2003AE388 /* FirebaseCrashlytics in Frameworks */,
 				50CF1FF420DCDBFC0011BFE9 /* CFNetwork.framework in Frameworks */,
+				50FD0BD029A377AC0002EB04 /* RswiftLibrary in Frameworks */,
 				5067AD392367042E00ADEAB9 /* Binge.framework in Frameworks */,
 				508C3148276B6B32003AE388 /* Common.framework in Frameworks */,
 			);
@@ -2205,7 +2203,6 @@
 				AB947CE11E19E1EC009888B0 /* Settings.bundle */,
 				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,
 				50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */,
-				500A257D20824C2500EB7AE4 /* R.generated.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -2663,7 +2660,6 @@
 			buildPhases = (
 				50CF1F4320DCDBFC0011BFE9 /* Set Build Number */,
 				50D65A0D20DE33B100DFD183 /* Copy Brand Assets */,
-				50CF1F4420DCDBFC0011BFE9 /* Run R.swift */,
 				50CF1F4520DCDBFC0011BFE9 /* Sources */,
 				50CF1FEE20DCDBFC0011BFE9 /* Frameworks */,
 				50CF1FF620DCDBFC0011BFE9 /* Resources */,
@@ -2678,6 +2674,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				50FD0BD229A3780A0002EB04 /* PBXTargetDependency */,
 				506F5C8E280463D00096D616 /* PBXTargetDependency */,
 				5067AD382367042E00ADEAB9 /* PBXTargetDependency */,
 				50DA822E23E587FD003BEDE1 /* PBXTargetDependency */,
@@ -2689,7 +2686,7 @@
 				508C3099276B4EC3003AE388 /* BrightFutures */,
 				508C30AA276B66B2003AE388 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				508C30AC276B66B2003AE388 /* FirebaseCrashlytics */,
-				508C3153276B8C0E003AE388 /* Rswift */,
+				50FD0BCF29A377AC0002EB04 /* RswiftLibrary */,
 			);
 			productName = "xikolo-ios";
 			productReference = 50CF201620DCDBFC0011BFE9 /* openhpi.app */;
@@ -2828,7 +2825,7 @@
 				508C30A6276B6524003AE388 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
 				508C30A9276B66B2003AE388 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				508C30AE276B697B003AE388 /* XCRemoteSwiftPackageReference "Down" */,
-				508C3152276B8C0D003AE388 /* XCRemoteSwiftPackageReference "R.swift" */,
+				50FD0BCE29A377AC0002EB04 /* XCRemoteSwiftPackageReference "R.swift" */,
 			);
 			productRefGroup = A90587BC1B3BFC130095DB89 /* Products */;
 			projectDirPath = "";
@@ -3089,22 +3086,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$SRCROOT/Build\\ Phases/set-build-number.sh\n";
-		};
-		50CF1F4420DCDBFC0011BFE9 /* Run R.swift */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$TEMP_DIR/rswift-lastrun",
-			);
-			name = "Run R.swift";
-			outputPaths = (
-				"$(SRCROOT)/iOS/R.generated.swift",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Build\\ Phases/run-rswift.sh\n";
 		};
 		50CF200F20DCDBFC0011BFE9 /* Copy GoogleServices-Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3451,7 +3432,6 @@
 				5083329C2487957100F4DA06 /* UIBarButtonItem+CircularBackground.swift in Sources */,
 				506BDB94242380A80002DBDE /* AdditionalLearningMaterialListViewController.swift in Sources */,
 				50CF1FA820DCDBFC0011BFE9 /* CourseAreaListViewController.swift in Sources */,
-				50CF1FAD20DCDBFC0011BFE9 /* R.generated.swift in Sources */,
 				507CC05B21788487008819FE /* PillView.swift in Sources */,
 				50B1CC51256CF48800D651C6 /* PersistenceManager+BrightFutures.swift in Sources */,
 				50092A94237DC20C00A1503F /* Channel+Color.swift in Sources */,
@@ -3751,6 +3731,10 @@
 			isa = PBXTargetDependency;
 			target = 50DA822323E587FC003BEDE1 /* TodayExtension */;
 			targetProxy = 50DA822D23E587FD003BEDE1 /* PBXContainerItemProxy */;
+		};
+		50FD0BD229A3780A0002EB04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 50FD0BD129A3780A0002EB04 /* RswiftGenerateInternalResources */;
 		};
 /* End PBXTargetDependency section */
 
@@ -11010,12 +10994,12 @@
 				minimumVersion = 0.11.0;
 			};
 		};
-		508C3152276B8C0D003AE388 /* XCRemoteSwiftPackageReference "R.swift" */ = {
+		50FD0BCE29A377AC0002EB04 /* XCRemoteSwiftPackageReference "R.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mac-cain13/R.swift.Library";
+			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
 			requirement = {
-				kind = exactVersion;
-				version = 5.4.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -11076,11 +11060,6 @@
 			package = 508C30AE276B697B003AE388 /* XCRemoteSwiftPackageReference "Down" */;
 			productName = Down;
 		};
-		508C3153276B8C0E003AE388 /* Rswift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 508C3152276B8C0D003AE388 /* XCRemoteSwiftPackageReference "R.swift" */;
-			productName = Rswift;
-		};
 		50AD2525276BCC000050831C /* Down */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 508C30AE276B697B003AE388 /* XCRemoteSwiftPackageReference "Down" */;
@@ -11090,6 +11069,15 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 508C3096276B4EA7003AE388 /* XCRemoteSwiftPackageReference "BrightFutures" */;
 			productName = BrightFutures;
+		};
+		50FD0BCF29A377AC0002EB04 /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50FD0BCE29A377AC0002EB04 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = RswiftLibrary;
+		};
+		50FD0BD129A3780A0002EB04 /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:RswiftGenerateInternalResources";
 		};
 /* End XCSwiftPackageProductDependency section */
 

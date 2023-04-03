@@ -403,7 +403,7 @@ extension CourseItemListViewController { // TableViewDelegate
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard #available(iOS 15, *) else { return nil }
 
-        guard FeatureHelper.hasFeature(.quizRecapOneTimePromotion) else {
+        guard FeatureHelper.hasFeature(.quizRecapOneTimePromotion, for: self.course) else {
             return nil
         }
 

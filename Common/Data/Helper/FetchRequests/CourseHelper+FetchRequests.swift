@@ -10,9 +10,10 @@ extension CourseHelper {
 
     public enum FetchRequest {
 
-        private static let visiblePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(format: "status != %@", "preparation"),
-            NSPredicate(format: "show_on_list == %@", NSNumber(value: true)),
+        private static let visiblePredicate = NSPredicate(format: "status != %@", "preparation")
+        private static let visibleOnCourseListPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            visiblePredicate,
+            NSPredicate(format: "show_on_list = %@", NSNumber(value: true)),
         ])
 
         private static let deletedEnrollmentPredicate = NSPredicate(format: "enrollment.objectStateValue = %d", ObjectState.deleted.rawValue)
@@ -58,16 +59,16 @@ extension CourseHelper {
         }()
 
         private static let currentCoursesPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            visiblePredicate,
+            visibleOnCourseListPredicate,
             NSCompoundPredicate(notPredicateWithSubpredicate: futurePredicate),
             NSCompoundPredicate(notPredicateWithSubpredicate: pastPredicate),
         ])
         private static let upcomingCoursesPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            visiblePredicate,
+            visibleOnCourseListPredicate,
             futurePredicate,
         ])
         private static let selfPacedCoursesPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            visiblePredicate,
+            visibleOnCourseListPredicate,
             pastPredicate,
         ])
         private static let searchableCoursesPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
@@ -76,12 +77,31 @@ extension CourseHelper {
             selfPacedCoursesPredicate,
         ])
 
+        private static let currentCoursesPredicateForChannels = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            visiblePredicate,
+            NSCompoundPredicate(notPredicateWithSubpredicate: futurePredicate),
+            NSCompoundPredicate(notPredicateWithSubpredicate: pastPredicate),
+        ])
+        private static let upcomingCoursesPredicateForChannels = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            visiblePredicate,
+            futurePredicate,
+        ])
+        private static let selfPacedCoursesPredicateForChannels = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            visiblePredicate,
+            pastPredicate,
+        ])
+        private static let searchableCoursesPredicateForChannels = NSCompoundPredicate(orPredicateWithSubpredicates: [
+            currentCoursesPredicateForChannels,
+            upcomingCoursesPredicateForChannels,
+            selfPacedCoursesPredicateForChannels,
+        ])
+
         private static let customOrderSortDescriptor = NSSortDescriptor(keyPath: \Course.order, ascending: true)
 
         private static var visibleCoursesRequest: NSFetchRequest<Course> {
             let request: NSFetchRequest<Course> = Course.fetchRequest()
             request.sortDescriptors = [self.customOrderSortDescriptor]
-            request.predicate = self.visiblePredicate
+            request.predicate = self.visibleOnCourseListPredicate
             return request
         }
 
@@ -199,7 +219,7 @@ extension CourseHelper {
         public static func currentCourses(for channel: Channel) -> NSFetchRequest<Course> {
             let request = self.visibleCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                self.currentCoursesPredicate,
+                self.currentCoursesPredicateForChannels,
                 NSPredicate(format: "channel = %@", channel),
             ])
             request.sortDescriptors = [
@@ -212,7 +232,7 @@ extension CourseHelper {
         public static func upcomingCourses(for channel: Channel) -> NSFetchRequest<Course> {
             let request = self.visibleCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                self.upcomingCoursesPredicate,
+                self.upcomingCoursesPredicateForChannels,
                 NSPredicate(format: "channel = %@", channel),
             ])
             request.sortDescriptors = [
@@ -225,7 +245,7 @@ extension CourseHelper {
         public static func selfpacedCourses(for channel: Channel) -> NSFetchRequest<Course> {
             let request = self.visibleCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                self.selfPacedCoursesPredicate,
+                self.selfPacedCoursesPredicateForChannels,
                 NSPredicate(format: "channel = %@", channel),
             ])
             return request
@@ -243,7 +263,7 @@ extension CourseHelper {
         public static var distinctLanguages: NSFetchRequest<NSDictionary> {
             let entityName = Course.entity().name!
             let fetchRequest = NSFetchRequest<NSDictionary>(entityName: entityName)
-            fetchRequest.predicate = self.visiblePredicate
+            fetchRequest.predicate = self.visibleOnCourseListPredicate
             fetchRequest.resultType = .dictionaryResultType
             fetchRequest.propertiesToFetch = [NSString(string: "language")]
             fetchRequest.returnsObjectsAsFaults = false
@@ -255,7 +275,7 @@ extension CourseHelper {
             let entityName = Course.entity().name!
             let fetchRequest = NSFetchRequest<NSDictionary>(entityName: entityName)
             fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                 self.visiblePredicate,
+                 self.visibleOnCourseListPredicate,
                  NSPredicate(format: "categories != nil"),
             ])
             fetchRequest.resultType = .dictionaryResultType
@@ -268,7 +288,7 @@ extension CourseHelper {
             let entityName = Course.entity().name!
             let fetchRequest = NSFetchRequest<NSDictionary>(entityName: entityName)
             fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                self.visiblePredicate,
+                self.visibleOnCourseListPredicate,
                 NSPredicate(format: "topics != nil"),
             ])
             fetchRequest.resultType = .dictionaryResultType

@@ -1,6 +1,6 @@
 PODS:
   - BartyCrouch (3.13.0)
-  - SwiftLint (0.47.1)
+  - SwiftLint (0.52.2)
 
 DEPENDENCIES:
   - BartyCrouch (from `https://github.com/Flinesoft/BartyCrouch.git`, tag `3.13.0`)
@@ -22,8 +22,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   BartyCrouch: 69e5e6ec67e77951dc1c22aa48abbf05d175b81c
-  SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
+  SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
 PODFILE CHECKSUM: a511e8e61b9162b1c364c7e4d7d72f66374f5827
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

@@ -40,7 +40,6 @@
 		50092A86237D7EA000A1503F /* ChannelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A85237D7EA000A1503F /* ChannelHelper.swift */; };
 		50092A89237D825900A1503F /* ChannelHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A88237D825900A1503F /* ChannelHelper+FetchRequests.swift */; };
 		50092A8C237D889700A1503F /* ChannelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A8B237D889700A1503F /* ChannelListViewController.swift */; };
-		50092A8E237D88A900A1503F /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A8D237D88A900A1503F /* ChannelViewController.swift */; };
 		50092A90237D89BD00A1503F /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A8F237D89BD00A1503F /* ChannelCell.swift */; };
 		50092A92237D8E3C00A1503F /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50092A91237D8E3B00A1503F /* ChannelCell.xib */; };
 		50092A94237DC20C00A1503F /* Channel+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50092A93237DC20C00A1503F /* Channel+Color.swift */; };
@@ -713,7 +712,6 @@
 		50092A85237D7EA000A1503F /* ChannelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHelper.swift; sourceTree = "<group>"; };
 		50092A88237D825900A1503F /* ChannelHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50092A8B237D889700A1503F /* ChannelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListViewController.swift; sourceTree = "<group>"; };
-		50092A8D237D88A900A1503F /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		50092A8F237D89BD00A1503F /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		50092A91237D8E3B00A1503F /* ChannelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		50092A93237DC20C00A1503F /* Channel+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+Color.swift"; sourceTree = "<group>"; };
@@ -1569,7 +1567,6 @@
 			isa = PBXGroup;
 			children = (
 				50092A8B237D889700A1503F /* ChannelListViewController.swift */,
-				50092A8D237D88A900A1503F /* ChannelViewController.swift */,
 			);
 			path = Channels;
 			sourceTree = "<group>";
@@ -3478,7 +3475,6 @@
 				5036A9B52319232800F7A63F /* UIWindow+FullScreen.swift in Sources */,
 				020E85402449E128006BD700 /* CourseSceneDelegate.swift in Sources */,
 				50D28A5324BE054E0009A24C /* QuickActionHelper.swift in Sources */,
-				50092A8E237D88A900A1503F /* ChannelViewController.swift in Sources */,
 				700398C021A437CD00FE9D81 /* FileManager+fileSize.swift in Sources */,
 				502506942906952700EEA982 /* QuizRecapOptionsViewController.swift in Sources */,
 				50CF1FD520DCDBFC0011BFE9 /* Video+Actions.swift in Sources */,

@@ -157,7 +157,7 @@ public struct XikoloSyncEngine: SyncEngine {
 
         if statusCode == 406 {
             status = .expired
-        } else if statusCode == 503 {
+        } else if 500 ... 504 ~= statusCode {
             status = .maintenance
         } else if 200 ... 299 ~= statusCode,
             let expirationDateString = headers[Routes.Header.apiVersionExpirationDate] as? String,

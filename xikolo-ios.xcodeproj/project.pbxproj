@@ -224,7 +224,6 @@
 		507D723E233780AD00DADE06 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D723D233780AD00DADE06 /* DashboardViewController.swift */; };
 		507DFF9A2153E397006DC140 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 507DFF9C2153E397006DC140 /* InfoPlist.strings */; };
 		507EE26A29081D7D00FEF865 /* QuizQuestionHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507EE26929081D7D00FEF865 /* QuizQuestionHelper+FetchRequests.swift */; };
-		507EE26C29082E4800FEF865 /* Quiz+Preloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507EE26B29082E4700FEF865 /* Quiz+Preloading.swift */; };
 		507F7FD62371B5E70031DC0B /* BingeMediaSelectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FD52371B5E70031DC0B /* BingeMediaSelectionDataSource.swift */; };
 		507F7FDA2372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FD92372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift */; };
 		507F7FDC2372DA530031DC0B /* CourseProgressHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F7FDB2372DA530031DC0B /* CourseProgressHelper.swift */; };
@@ -971,7 +970,6 @@
 		507DFFA02153E41B006DC140 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		507EE268290814E400FEF865 /* xikolo 16.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 16.xcdatamodel"; sourceTree = "<group>"; };
 		507EE26929081D7D00FEF865 /* QuizQuestionHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuizQuestionHelper+FetchRequests.swift"; sourceTree = "<group>"; };
-		507EE26B29082E4700FEF865 /* Quiz+Preloading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quiz+Preloading.swift"; sourceTree = "<group>"; };
 		507F7FD52371B5E70031DC0B /* BingeMediaSelectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingeMediaSelectionDataSource.swift; sourceTree = "<group>"; };
 		507F7FD92372DA450031DC0B /* CourseProgressHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseProgressHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		507F7FDB2372DA530031DC0B /* CourseProgressHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgressHelper.swift; sourceTree = "<group>"; };
@@ -1604,7 +1602,6 @@
 				50F3DD47245859520008CE27 /* Persistence */,
 				5019A7671F20AD4F008C8138 /* RichText+Preloading.swift */,
 				5019A7621F20ACE6008C8138 /* Video+Preloading.swift */,
-				507EE26B29082E4700FEF865 /* Quiz+Preloading.swift */,
 				50092A93237DC20C00A1503F /* Channel+Color.swift */,
 				503988782167A04200F9043B /* CourseItem+DetailedContent.swift */,
 				503CEE932174EEE200F34694 /* CourseItem+AvailableContent.swift */,
@@ -3449,7 +3446,6 @@
 				021DA1A82386A12400E6E763 /* ExerciseProgressStackView.swift in Sources */,
 				507D723E233780AD00DADE06 /* DashboardViewController.swift in Sources */,
 				503988792167A04200F9043B /* CourseItem+DetailedContent.swift in Sources */,
-				507EE26C29082E4800FEF865 /* Quiz+Preloading.swift in Sources */,
 				828FF16523EF4424006515B5 /* PeerAssessmentHintViewController.swift in Sources */,
 				506BDB98242385D40002DBDE /* AdditionalLearningMaterialCell.swift in Sources */,
 				5044C8DD21A8089C006490CE /* ContentPersistenceManager.swift in Sources */,

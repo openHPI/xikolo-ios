@@ -407,7 +407,7 @@ extension CourseItemListViewController { // TableViewDelegate
             return nil
         }
 
-        let action = UIAction { [weak self] action in
+        let action = UIAction { [weak self] _ in
             guard let course = self?.course else { return }
             self?.appNavigator?.show(course: course, with: .recap)
         }

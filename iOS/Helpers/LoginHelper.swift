@@ -20,7 +20,7 @@ enum LoginHelper {
         let loginViewController = firstViewController.require(toHaveType: LoginViewController.self)
         loginViewController.loginDelegate = loginDelegate
 
-        if let webViewController = loginViewController as? WebViewController  {
+        if let webViewController = loginViewController as? WebViewController {
             webViewController.url = Routes.singleSignOn
         }
 

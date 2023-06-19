@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 
 @available(iOS 15.0, *)
 class QuizRecapViewController: UIViewController {

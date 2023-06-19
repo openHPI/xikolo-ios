@@ -16,7 +16,7 @@ public final class QuizQuestionOption: NSObject, NSSecureCoding, IncludedPullabl
     public var correct: Bool
     public var explanation: String?
 
-    required public init(object: ResourceData) throws {
+    public required init(object: ResourceData) throws {
         self.id = try object.value(for: "id")
         self.text = try object.value(for: "text")
         self.position = try object.value(for: "position")
@@ -24,7 +24,7 @@ public final class QuizQuestionOption: NSObject, NSSecureCoding, IncludedPullabl
         self.explanation = try object.value(for: "explanation")
     }
 
-    required public init?(coder decoder: NSCoder) {
+    public required init?(coder decoder: NSCoder) {
         guard let id = decoder.decodeObject(of: NSString.self, forKey: "id") as String? else {
             return nil
         }

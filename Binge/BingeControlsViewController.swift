@@ -480,7 +480,7 @@ class BingeControlsViewController: UIViewController {
     func adaptToItem(_ item: AVPlayerItem) {
         let duration = item.duration
         let isValidDuration = duration.isNumeric && duration.value != 0
-        let seconds = isValidDuration ? CMTimeGetSeconds(duration): 0.0
+        let seconds = isValidDuration ? CMTimeGetSeconds(duration) : 0.0
         let currentTime = CMTimeGetSeconds(item.currentTime())
 
         self.timeSlider.value = isValidDuration ? Float(currentTime / seconds) : 0.0

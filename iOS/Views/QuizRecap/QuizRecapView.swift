@@ -204,7 +204,7 @@ struct QuizRecapView: View {
             }
 
             Group {
-                switch(question.questionType) {
+                switch question.questionType {
                 case .singleAnswer:
                     Text("quiz-recap.answer-options.single-select.explanation", tableName: "Localizable-SwiftUI")
                 case .multipleAnswer:

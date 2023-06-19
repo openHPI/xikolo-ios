@@ -66,7 +66,7 @@ struct QuestionOptionView_Previews: PreviewProvider {
             "position": 0,
             "correct": true,
             "explanation": "foobar",
-        ])
+        ] as [String : Any])
     }()
 
     static let incorrectOption = {
@@ -76,7 +76,7 @@ struct QuestionOptionView_Previews: PreviewProvider {
             "position": 0,
             "correct": false,
             "explanation": "foobar",
-        ])
+        ] as [String : Any])
     }()
 
     static var previews: some View {

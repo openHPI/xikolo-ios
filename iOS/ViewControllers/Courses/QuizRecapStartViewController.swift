@@ -18,8 +18,8 @@ class QuizRecapStartViewController: UIViewController {
 
     @IBOutlet private weak var scrollView: UIScrollView!
 
-    @IBOutlet var contentViews: [UIView]!
-    @IBOutlet var loadingViews: [UIView]!
+    @IBOutlet private var contentViews: [UIView]!
+    @IBOutlet private var loadingViews: [UIView]!
 
     @IBOutlet private weak var startButtonShort: UIButton!
     @IBOutlet private weak var startButtonMedium: UIButton!
@@ -31,7 +31,7 @@ class QuizRecapStartViewController: UIViewController {
     private weak var delegate: CourseAreaViewControllerDelegate?
     private var course: Course!
 
-    private var considerOnlyVisitedItems: Bool = false {
+    private var considerOnlyVisitedItems = false {
         didSet {
             self.updateView()
         }
@@ -103,12 +103,12 @@ class QuizRecapStartViewController: UIViewController {
                 .compactMap(\.title)
                 .lazy.joined(separator: ", ")
             let format = NSLocalizedString("quiz-recap.settings-summary.section-names.some",
-                                     comment: "Format: Text to appear in the settings summary for the quiz recap when only some course sections are considered.")
+                                           comment: "Format: Text to appear in the settings summary for the quiz recap when only some course sections are considered.")
             return String(format: format, self.sections.count, joinedCourseSectionTitles)
         }()
 
         self.optionsLabel.text = [part1, part2].joined(separator: "\n")
-        self.optionsIndicator.isHidden = !self.considerOnlyVisitedItems && self.course.sectionsForQuizRecap.map(\.id).allSatisfy({ self.sections.contains($0) })
+        self.optionsIndicator.isHidden = !self.considerOnlyVisitedItems && self.course.sectionsForQuizRecap.map(\.id).allSatisfy { self.sections.contains($0) }
     }
 
     func updateStartButtons() {
@@ -129,7 +129,7 @@ class QuizRecapStartViewController: UIViewController {
         }
     }
 
-    @IBAction func openOptionsMenu() {
+    @IBAction private func openOptionsMenu() {
         let optionsViewController = QuizRecapOptionsViewController(course: course,
                                                                    selectedSections: self.sections,
                                                                    considerOnlyVisitedItems: self.considerOnlyVisitedItems,
@@ -139,19 +139,19 @@ class QuizRecapStartViewController: UIViewController {
         self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
-    @IBAction func startShortRecapSession() {
+    @IBAction private func startShortRecapSession() {
         self.startRecapSession(withQuestionLimit: 10)
     }
 
-    @IBAction func startMediumRecapSession() {
+    @IBAction private func startMediumRecapSession() {
         self.startRecapSession(withQuestionLimit: 20)
     }
 
-    @IBAction func startLongRecapSession() {
+    @IBAction private func startLongRecapSession() {
         self.startRecapSession(withQuestionLimit: 50)
     }
 
-    @IBAction func startCompleteRecapSession() {
+    @IBAction private func startCompleteRecapSession() {
         self.startRecapSession()
     }
 
@@ -231,7 +231,6 @@ extension Course {
         return self.sections.filter(\.containsItemsForQuizRecap)
     }
 }
-
 
 extension CourseSection {
     var containsItemsForQuizRecap: Bool {

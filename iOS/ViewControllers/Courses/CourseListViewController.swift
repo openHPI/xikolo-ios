@@ -309,6 +309,7 @@ extension CourseListViewController: UISearchResultsUpdating {
 
 extension CourseListViewController: UISearchControllerDelegate {
 
+
     func willPresentSearchController(_ searchController: UISearchController) {
         self.collectionView?.refreshControl = nil
 

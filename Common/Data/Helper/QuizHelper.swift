@@ -9,7 +9,7 @@ import Stockpile
 
 public enum QuizHelper {
 
-    @discardableResult static public func syncQuizzes(forCourse course: Course) -> Future<Void, XikoloError> {
+    @discardableResult public static func syncQuizzes(forCourse course: Course) -> Future<Void, XikoloError> {
         return CourseItemHelper.syncCourseItems(forCourse: course, withContentType: "quiz").flatMap { syncResult -> Future<Void, XikoloError> in
             let promise = Promise<Void, XikoloError>()
 
@@ -34,7 +34,7 @@ public enum QuizHelper {
         }
     }
 
-    @discardableResult static public func syncQuiz(_ quiz: Quiz) -> Future<SyncSingleResult, XikoloError> {
+    @discardableResult public static func syncQuiz(_ quiz: Quiz) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = Self.FetchRequest.quiz(withId: quiz.id)
         var query = SingleResourceQuery(resource: quiz)
         query.include("questions")

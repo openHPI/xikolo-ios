@@ -183,6 +183,7 @@ enum AutomatedDownloadsManager {
             // This behavior was only observed in `sectionToDelete(for:)`. However to be on the
             // safe side (the code is nearly identical), we use an inelegant check here as well.
             for item in section.items {
+                // swiftlint:disable:next for_where
                 if item.content is Video {
                     return true
                 }
@@ -268,6 +269,7 @@ enum AutomatedDownloadsManager {
             // does result in a EXC_BAD_ACCESS error. Might this be a bug in CoreData?
             // Nevertheless, we iterate over the items instead. Until now, this has not failed (but requires some inelegant code).
             for item in section.items {
+                // swiftlint:disable:next for_where
                 if item.content is Video {
                     return true
                 }

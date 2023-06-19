@@ -38,7 +38,9 @@ enum XikoloNotification {
         let categories = [
             self.categoriesForNewContentNotifications(),
             self.categoriesFoRecapNotifications(),
-        ].reduce(Set(), { $0.union($1) })
+        ].reduce(into: Set()) { partialResult, category in
+            partialResult.formUnion(category)
+        }
         center.setNotificationCategories(categories)
     }
 

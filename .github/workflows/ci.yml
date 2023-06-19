@@ -25,6 +25,9 @@ jobs:
       - name: Copy brand assets
         run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
 
+      - name: Disable package plugin validation
+        run: defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
+
       - name: Build + Test
         run: bundle exec fastlane run scan scheme:"${scheme}" clean:true
         env:
@@ -47,6 +50,9 @@ jobs:
 
       - name: Copy brand assets
         run: cp -R ./iOS/Branding/openHPI/assets-ios-brand.xcassets ./iOS/assets-ios-brand.generated.xcassets
+
+      - name: Disable package plugin validation
+        run: defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
       
       - name: Build + Test
         run: bundle exec fastlane run scan scheme:"${scheme}" clean:true

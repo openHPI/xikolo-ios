@@ -70,14 +70,6 @@ class CourseListViewController: CustomWidthCollectionViewController {
         self.collectionView.dragDelegate = self
     }
 
-    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
-        super.preferredContentSizeDidChange(forChildContentContainer: container)
-        if container is CourseSearchFiltersViewController {
-            let isSearching = self.navigationItem.searchController?.isActive ?? false
-            self.updateSearchFilterContainerHeight(isSearching: isSearching)
-        }
-    }
-
     private func setupSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.delegate = self

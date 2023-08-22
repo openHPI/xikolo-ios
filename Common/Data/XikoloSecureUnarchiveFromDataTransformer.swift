@@ -5,7 +5,6 @@
 
 import Foundation
 
-@available(iOS 12.0, *)
 @objc(XikoloSecureUnarchiveFromDataTransformer)
 class XikoloSecureUnarchiveFromDataTransformer: NSSecureUnarchiveFromDataTransformer {
 

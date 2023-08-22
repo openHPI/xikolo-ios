@@ -9,9 +9,7 @@ import CoreData
 public class CoreDataHelper { // swiftlint:disable:this convenience_type
 
     public static var persistentContainer: NSPersistentContainer = {
-        if #available(iOS 12, *) {
-            XikoloSecureUnarchiveFromDataTransformer.register()
-        }
+        XikoloSecureUnarchiveFromDataTransformer.register()
 
         let bundle = Bundle(for: CoreDataHelper.self)
         let modelURL = bundle.url(forResource: "xikolo", withExtension: "momd").require()

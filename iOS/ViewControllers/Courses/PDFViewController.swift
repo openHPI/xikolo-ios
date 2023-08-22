@@ -99,10 +99,7 @@ class PDFViewController: UIViewController {
         ])
 
         self.pdfView.autoScales = true
-
-        if #available(iOS 12.0, *) {
-            self.pdfView.pageShadowsEnabled = false
-        }
+        self.pdfView.pageShadowsEnabled = false
     }
 
     private func loadPDF(for url: URL) {

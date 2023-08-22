@@ -51,7 +51,7 @@ class CourseCell: UICollectionViewCell {
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private var infoBoxes: [UIView]!
 
-    // Configuration can be moved the Interface Builder after support for iOS 12 has been dropped
+    // Configuration can be moved the Interface Builder after supporting only iOS 13 and later
     @IBOutlet private weak var languageIconView: UIImageView!
     @IBOutlet private weak var dateIconView: UIImageView!
     @IBOutlet private var visualEffectViews: [UIVisualEffectView]!

@@ -12,7 +12,7 @@
 
 ## Development Toolchain
 
-- Xcode 14
+- Xcode 15
 - bundler: `gem install bundler`
 
 The following tools will be installed via bundler:

@@ -10,14 +10,17 @@ struct ContinueLearningWidgetEntryView: View {
     var entry: ContinueLearningWidgetProvider.Entry
 
     var body: some View {
-        if !entry.userIsLoggedIn {
-            EmptyStateView.notLoggedIn
-        } else if let course = entry.course {
-            CourseView(course: course)
-                .padding()
-        } else {
-            EmptyStateView.noCourses
+        Group {
+            if !entry.userIsLoggedIn {
+                EmptyStateView.notLoggedIn
+            } else if let course = entry.course {
+                CourseView(course: course)
+                    .backport.widgetPadding()
+            } else {
+                EmptyStateView.noCourses
+            }
         }
+        .backport.widgetBackground()
     }
 }
 

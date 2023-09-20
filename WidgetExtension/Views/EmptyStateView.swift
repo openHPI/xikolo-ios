@@ -23,7 +23,7 @@ enum EmptyStateView: View {
                 .foregroundColor(Color.secondary)
                 .minimumScaleFactor(0.8)
         }
-        .padding()
+        .backport.widgetPadding()
     }
 
     var headline: Text {

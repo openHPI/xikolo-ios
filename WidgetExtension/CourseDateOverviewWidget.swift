@@ -10,20 +10,23 @@ struct CourseDateOverviewWidgetEntryView: View {
     var entry: CourseDateOverviewWidgetProvider.Entry
 
     var body: some View {
-        if !entry.userIsLoggedIn {
-            EmptyStateView.notLoggedIn
-        } else if let courseDate = entry.nextCourseDate {
-            HStack {
-                CourseDateStatisticsView(courseDateStatistics: entry.courseDateStatistics)
-                Divider()
-                    .padding(.horizontal, 4) // todo change to vertical
-                CourseDateView(courseDate: courseDate)
-                    .widgetURL(courseDate.url)
+        Group {
+            if !entry.userIsLoggedIn {
+                EmptyStateView.notLoggedIn
+            } else if let courseDate = entry.nextCourseDate {
+                HStack {
+                    CourseDateStatisticsView(courseDateStatistics: entry.courseDateStatistics)
+                    Divider()
+                        .padding(.horizontal, 4) // todo change to vertical
+                    CourseDateView(courseDate: courseDate)
+                        .widgetURL(courseDate.url)
+                }
+                .backport.widgetPadding()
+            } else {
+                EmptyStateView.noCourseDates
             }
-            .padding()
-        } else {
-            EmptyStateView.noCourseDates
         }
+        .backport.widgetBackground()
     }
 }
 

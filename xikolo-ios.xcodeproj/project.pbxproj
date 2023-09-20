@@ -212,6 +212,7 @@
 		506D7E1B2104B7730018D9E2 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506D7E1A2104B7730018D9E2 /* CourseCell.xib */; };
 		506E5B2224A102AA00AE899C /* LanguageLocalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E5B2124A102AA00AE899C /* LanguageLocalizer.swift */; };
 		50761B5820FCADD700CEDAF9 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
+		5076F4982ABAF2DC00B6AB6D /* View+Backport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5076F4972ABAF2DC00B6AB6D /* View+Backport.swift */; };
 		5077012E218F38BC005568A6 /* InnerPillLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5077012D218F38BC005568A6 /* InnerPillLabel.swift */; };
 		507896C8233DEA1A00EA65E5 /* Course+share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507896C7233DEA1A00EA65E5 /* Course+share.swift */; };
 		507CC05B21788487008819FE /* PillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507CC05A21788487008819FE /* PillView.swift */; };
@@ -948,6 +949,7 @@
 		50761B4320FCAC5A00CEDAF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50761B5320FCADD600CEDAF9 /* Common-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Common-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50761B5720FCADD700CEDAF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5076F4972ABAF2DC00B6AB6D /* View+Backport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Backport.swift"; sourceTree = "<group>"; };
 		5077012D218F38BC005568A6 /* InnerPillLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerPillLabel.swift; sourceTree = "<group>"; };
 		507896C7233DEA1A00EA65E5 /* Course+share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+share.swift"; sourceTree = "<group>"; };
 		507A5CC92021CBAA009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
@@ -1784,6 +1786,7 @@
 				5063F98325C93F51006C3048 /* Color+appColors.swift */,
 				5063F98E25C9400C006C3048 /* UIImage+appIcon.swift */,
 				502E8EA225DAA6C400CFE234 /* Image+centerCropped.swift */,
+				5076F4972ABAF2DC00B6AB6D /* View+Backport.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3297,6 +3300,7 @@
 				5063F98F25C9400C006C3048 /* UIImage+appIcon.swift in Sources */,
 				50AD864E2570F4B0003BDB80 /* XikoloWidgetBundle.swift in Sources */,
 				50F3164025C42F82009BD594 /* ContinueLearningWidgetProvider.swift in Sources */,
+				5076F4982ABAF2DC00B6AB6D /* View+Backport.swift in Sources */,
 				502E8EA325DAA6C400CFE234 /* Image+centerCropped.swift in Sources */,
 				5063F9A525C9BBFE006C3048 /* NextCourseDateWidget.swift in Sources */,
 				50F3164B25C42FC4009BD594 /* CourseView.swift in Sources */,

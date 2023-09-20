@@ -10,14 +10,17 @@ struct NextCourseDateWidgetEntryView: View {
     var entry: CourseDateOverviewWidgetProvider.Entry
 
     var body: some View {
-        if !entry.userIsLoggedIn {
-            EmptyStateView.notLoggedIn
-        } else if let courseDate = entry.nextCourseDate {
-            CourseDateView(courseDate: courseDate)
-                .padding()
-        } else {
-            EmptyStateView.noCourseDates
+        Group {
+            if !entry.userIsLoggedIn {
+                EmptyStateView.notLoggedIn
+            } else if let courseDate = entry.nextCourseDate {
+                CourseDateView(courseDate: courseDate)
+                    .backport.widgetPadding()
+            } else {
+                EmptyStateView.noCourseDates
+            }
         }
+        .backport.widgetBackground()
     }
 }
 

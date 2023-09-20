@@ -10,14 +10,17 @@ struct CourseDateStatisticsWidgetEntryView: View {
     var entry: CourseDateOverviewWidgetProvider.Entry
 
     var body: some View {
-        if !entry.userIsLoggedIn {
-            EmptyStateView.notLoggedIn
-        } else if entry.nextCourseDate != nil {
-            CourseDateStatisticsView(courseDateStatistics: entry.courseDateStatistics)
-                .padding()
-        } else {
-            EmptyStateView.noCourseDates
+        Group {
+            if !entry.userIsLoggedIn {
+                EmptyStateView.notLoggedIn
+            } else if entry.nextCourseDate != nil {
+                CourseDateStatisticsView(courseDateStatistics: entry.courseDateStatistics)
+                    .backport.widgetPadding()
+            } else {
+                EmptyStateView.noCourseDates
+            }
         }
+        .backport.widgetBackground()
     }
 }
 

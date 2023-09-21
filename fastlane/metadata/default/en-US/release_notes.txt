@@ -1,7 +1,2 @@
+• Support of iOS 17 and iPadOS 17
 • Minor improvements and bug fixes
-
-Also in version 2.14:
-• Support of iOS 16
-• Show progress bar for last visited item
-• Autoplay of videos can now be disabled 
-• Manage your enrollment status via the context menu of the course card

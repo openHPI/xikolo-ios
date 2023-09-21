@@ -2662,11 +2662,11 @@
 				50CF1FF620DCDBFC0011BFE9 /* Resources */,
 				50CF200F20DCDBFC0011BFE9 /* Copy GoogleServices-Info.plist */,
 				50FA2DFD20E4B1A800656776 /* Embed Frameworks */,
-				50CF201220DCDBFC0011BFE9 /* Clear Build Number */,
 				02299DD82417E867006B2E52 /* Embed App Extension */,
 				50D60D2B20E0D2C7007A4199 /* Remove Localizations */,
 				50AD2527276C91D90050831C /* Compile Acknowledgements */,
 				50C83570279EDFD8004FEB62 /* Remove Duplicate Frameworks */,
+				50CF201220DCDBFC0011BFE9 /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -3105,7 +3105,10 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
+				"$(SRCROOT)/iOS/Info.plist",
 			);
 			name = "Clear Build Number";
 			outputPaths = (

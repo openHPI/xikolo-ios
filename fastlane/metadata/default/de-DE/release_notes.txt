@@ -1,2 +1,4 @@
-• Unterstützung von iOS 17 und iPadOS 17
 • Kleinere Verbesserungen und Fehlerbehebungen
+
+Auch in Version 2.15:
+• Unterstützung von iOS 17 und iPadOS 17

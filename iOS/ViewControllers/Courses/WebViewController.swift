@@ -185,7 +185,7 @@ class WebViewController: UIViewController, LoginViewController {
             dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
                 dataStore.removeData(
                     ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),
-                    for: records.filter { Brand.default.host.contains($0.displayName) },
+                    for: records.filter { Brand.default.host.contains($0.displayName) || ["msftauth.net", "microsoftonline.com"].contains($0.displayName) },
                     completionHandler: completion
                 )
             }

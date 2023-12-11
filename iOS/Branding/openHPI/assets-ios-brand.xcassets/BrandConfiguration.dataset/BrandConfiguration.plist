@@ -20,11 +20,11 @@
 	<key>singleSignOn</key>
 	<dict>
 		<key>provider</key>
-		<string>oidc</string>
+		<string>saml</string>
 		<key>platformTitle</key>
-		<string>hpi</string>
+		<string>hpi_saml</string>
 		<key>buttonTitle</key>
-		<string>HPI OpenID Connect</string>
+		<string>HPI SSO</string>
 		<key>disabledRegistration</key>
 		<false/>
 		<key>disabledPasswordLogin</key>

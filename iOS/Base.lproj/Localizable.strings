@@ -36,7 +36,7 @@
 "announcement.alert.mark all as read" = "Mark all as read";
 
 /* App state message for deprecated API version */
-"app-state.api-deprecated.please update the %@ app before %@" = "Please update the %@ app before %@";
+"app-state.api-deprecated.discontinued from %@" = "The app will be discontinued on %@.\nPlease use our website.";
 
 /* App state message for expired API version */
 "app-state.api-expired.app version of %@ expired - please update" = "App version of %@ expired - Please update";

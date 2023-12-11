@@ -72,10 +72,10 @@ class XikoloTabBarController: UITabBarController {
         return tabBarController
     }
 
-    private static let messageViewHeight: CGFloat = 16
+    private static let messageViewHeight: CGFloat = 16 * 2
     private static let messageLabelFontSize: CGFloat = 12
 
-    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
+    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .short, timeStyle: .none)
 
     private var messageView = UIView()
     private var messageLabel = UILabel()
@@ -126,6 +126,7 @@ class XikoloTabBarController: UITabBarController {
         }
 
         self.messageLabel.textAlignment = .center
+        self.messageLabel.numberOfLines = 2
         self.messageLabel.font = UIFont.systemFont(ofSize: XikoloTabBarController.messageLabelFontSize)
         self.messageView.addSubview(self.messageLabel)
 
@@ -185,9 +186,9 @@ class XikoloTabBarController: UITabBarController {
             return Configuration(backgroundColor: Brand.default.colors.window, textColor: .white, message: message)
         case .deprecated(expiresOn: let expirationDate):
             let formattedExpirationDate = XikoloTabBarController.dateFormatter.string(from: expirationDate)
-            let format = NSLocalizedString("app-state.api-deprecated.please update the %@ app before %@",
+            let format = NSLocalizedString("app-state.api-deprecated.discontinued from %@",
                                            comment: "App state message for deprecated API version")
-            let message = String.localizedStringWithFormat(format, UIApplication.appName, formattedExpirationDate)
+            let message = String.localizedStringWithFormat(format, formattedExpirationDate)
             return Configuration(backgroundColor: .orange, textColor: .white, message: message)
         case .expired:
             let format = NSLocalizedString("app-state.api-expired.app version of %@ expired - please update",

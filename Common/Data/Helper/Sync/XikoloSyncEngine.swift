@@ -148,6 +148,7 @@ public struct XikoloSyncEngine: SyncEngine {
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en")
         formatter.dateFormat = "EEEE, dd LLL yyyy HH:mm:ss zzz"
         return formatter
     }()

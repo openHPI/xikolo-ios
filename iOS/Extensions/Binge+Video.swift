@@ -32,9 +32,11 @@ extension BingePlayerViewController {
         }
 
         if let posterImageURL = video.item?.section?.course?.imageURL {
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .userInitiated).async {
                 if let imageData = try? Data(contentsOf: posterImageURL), let image = UIImage(data: imageData) {
-                    self.posterImage = image
+                    DispatchQueue.main.async {
+                        self.posterImage = image
+                    }
                 }
             }
         }

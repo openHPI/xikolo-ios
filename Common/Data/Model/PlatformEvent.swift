@@ -6,6 +6,7 @@
 import CoreData
 import Stockpile
 
+@available(*, deprecated, message: "Deprecated in API")
 final class PlatformEvent: NSManagedObject {
 
     @NSManaged var id: String
@@ -21,6 +22,7 @@ final class PlatformEvent: NSManagedObject {
 
 }
 
+@available(*, deprecated, message: "Deprecated in API")
 extension PlatformEvent: JSONAPIPullable {
 
     static var type: String {

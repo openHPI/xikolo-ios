@@ -14,8 +14,6 @@ class ChannelHeaderView: UICollectionReusableView {
     @IBOutlet private weak var channelTeaserView: UIVisualEffectView!
     @IBOutlet private weak var playTeaserLabel: UILabel!
 
-    weak var delegate: ChannelHeaderViewDelegate?
-
     override func awakeFromNib() {
         super.awakeFromNib()
         self.channelTeaserView.isUserInteractionEnabled = true
@@ -30,13 +28,10 @@ class ChannelHeaderView: UICollectionReusableView {
         self.imageView.backgroundColor = Brand.default.colors.window
         self.imageView.sd_setImage(with: channel.imageURL, placeholderImage: nil)
         self.descriptionLabel.text = MarkdownHelper.string(for: channel.channelDescription ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
-
-        self.channelTeaserView.isHidden = channel.stageStream?.hlsURL == nil
+        self.channelTeaserView.isHidden = true
     }
 
-    @objc private func playChannelTeaser() {
-        self.delegate?.playChannelTeaser()
-    }
+    @objc private func playChannelTeaser() {}
 }
 
 extension ChannelHeaderView {
@@ -50,11 +45,5 @@ extension ChannelHeaderView {
 
         return imageHeight + descriptionHeight + 12
     }
-
-}
-
-public protocol ChannelHeaderViewDelegate: AnyObject {
-
-    func playChannelTeaser()
 
 }

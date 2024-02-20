@@ -187,32 +187,6 @@ class CourseListViewController: CustomWidthCollectionViewController {
 
 }
 
-extension CourseListViewController: ChannelHeaderViewDelegate {
-
-    func playChannelTeaser() {
-
-        guard case let .coursesInChannel(channel) = self.configuration else { return }
-        guard let url = channel.stageStream?.hlsURL else { return }
-
-        let playerViewController = BingePlayerViewController()
-        playerViewController.delegate = self
-        playerViewController.tintColor = Brand.default.colors.window
-        playerViewController.initiallyShowControls = false
-        playerViewController.modalPresentationStyle = .fullScreen
-
-        if UserDefaults.standard.playbackRate > 0 {
-            playerViewController.playbackRate = UserDefaults.standard.playbackRate
-        }
-
-        playerViewController.asset = AVURLAsset(url: url)
-        self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
-            playerViewController.startPlayback()
-            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
-        }
-    }
-
-}
-
 extension CourseListViewController: BingePlayerDelegate {
 
     func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {
@@ -391,7 +365,6 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
         guard case let .coursesInChannel(channel) = self.configuration else { return nil }
 
         view.configure(for: channel)
-        view.delegate = self
 
         return view
     }

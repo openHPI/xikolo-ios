@@ -31,14 +31,6 @@ class CourseCell: UICollectionViewCell {
             }
         }
 
-        func colorWithFallback(to fallbackColor: UIColor) -> UIColor {
-            if case let .courseList(configuration) = self {
-                return configuration.colorWithFallback(to: fallbackColor)
-            }
-
-            return fallbackColor
-        }
-
     }
 
     @IBOutlet private weak var shadowView: UIView!
@@ -106,12 +98,10 @@ class CourseCell: UICollectionViewCell {
     }
 
     func configure(_ course: Course, for configuration: Configuration) {
-        let accentColor = configuration.colorWithFallback(to: Brand.default.colors.secondary)
-
-        self.courseImage.backgroundColor = accentColor
-        self.statusView.backgroundColor = accentColor
-        self.statusLabel.backgroundColor = accentColor
-        self.teacherLabel.textColor = accentColor
+        self.courseImage.backgroundColor = Brand.default.colors.secondary
+        self.statusView.backgroundColor = Brand.default.colors.secondary
+        self.statusLabel.backgroundColor = Brand.default.colors.secondary
+        self.teacherLabel.textColor = Brand.default.colors.secondary
 
         self.courseImage.image = nil // Avoid old images on cell reuse when new image can not be loaded
         self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil)

@@ -27,7 +27,7 @@ class ChannelHeaderView: UICollectionReusableView {
     }
 
     func configure(for channel: Channel) {
-        self.imageView.backgroundColor = channel.colorWithFallback(to: Brand.default.colors.window)
+        self.imageView.backgroundColor = Brand.default.colors.window
         self.imageView.sd_setImage(with: channel.imageURL, placeholderImage: nil)
         self.descriptionLabel.text = MarkdownHelper.string(for: channel.channelDescription ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
 

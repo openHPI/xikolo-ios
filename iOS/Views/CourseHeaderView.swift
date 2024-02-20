@@ -26,7 +26,7 @@ class CourseHeaderView: UICollectionReusableView {
 
     func configure(_ section: NSFetchedResultsSectionInfo, for configuration: CourseListConfiguration) {
         self.titleView.text = section.name
-        self.titleView.textColor = configuration.colorWithFallback(to: Brand.default.colors.secondary)
+        self.titleView.textColor = Brand.default.colors.secondary
     }
 
     func configure(withText headerText: String) {

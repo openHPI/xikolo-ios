@@ -34,9 +34,8 @@ class CoursePreviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let accentColor = self.listConfiguration.colorWithFallback(to: Brand.default.colors.secondary)
-        self.courseImageView.backgroundColor = accentColor
-        self.teacherLabel.textColor = accentColor
+        self.courseImageView.backgroundColor = Brand.default.colors.secondary
+        self.teacherLabel.textColor = Brand.default.colors.secondary
 
         self.courseImageView.sd_imageTransition = .fade
         self.courseImageView.sd_setImage(with: self.course.imageURL)

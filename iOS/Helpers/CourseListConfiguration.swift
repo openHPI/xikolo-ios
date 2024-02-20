@@ -103,12 +103,4 @@ enum CourseListConfiguration {
         }
     }
 
-    func colorWithFallback(to fallbackColor: UIColor) -> UIColor {
-        if case let .coursesInChannel(channel) = self {
-            return channel.colorWithFallback(to: fallbackColor)
-        }
-
-        return fallbackColor
-    }
-
 }

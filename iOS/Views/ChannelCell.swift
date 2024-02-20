@@ -31,7 +31,7 @@ class ChannelCell: UICollectionViewCell {
         self.channelImage.sd_setImage(with: channel.imageURL, placeholderImage: nil)
 
         self.titleLabel.text = channel.title
-        self.titleLabel.textColor = channel.colorWithFallback(to: ColorCompatibility.label)
+        self.titleLabel.textColor = Brand.default.colors.primary
 
         let markDown = MarkdownHelper.string(for: channel.channelDescription ?? "")
         self.descriptionLabel.text = markDown.replacingOccurrences(of: "\n", with: " ")

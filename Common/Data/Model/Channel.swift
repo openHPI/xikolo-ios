@@ -12,7 +12,7 @@ public final class Channel: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var title: String?
     @NSManaged public var channelDescription: String?
-    @NSManaged public var colorString: String?
+    @available(*, deprecated, message: "Deprecated in API") @NSManaged public var colorString: String?
     @NSManaged public var position: Int16
     @NSManaged public var imageURL: URL?
     @NSManaged public var stageStream: VideoStream?
@@ -35,7 +35,6 @@ extension Channel: JSONAPIPullable {
         let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.channelDescription = try attributes.value(for: "description")
-        self.colorString = try attributes.value(for: "color")
         self.position = try attributes.value(for: "position")
         self.imageURL = try attributes.failsafeURL(for: "mobile_image_url")
         self.stageStream = try attributes.value(for: "stage_stream") ?? self.stageStream
